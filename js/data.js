@@ -4,7 +4,7 @@
  *
  * 改 WhatsApp：下面的 whatsapp 用「国家码+号码」，不要加 + 或空格
  * 加产品：往 PRODUCTS 数组里照抄一条即可，image 会自动匹配同名图片
- * 加分类：往 CATEGORIES 里加一条，并放一张 assets/img/cat/<slug>.png
+ * 加分类：往 CATEGORIES 里加一条，并放一张 img/cat/<slug>.png
  */
 
 window.SITE_CONFIG = {
@@ -133,17 +133,17 @@ window.PRODUCTS = [
  * 产品用真实产品照（方形裁切）
  */
 /* 少数产品在 Unsplash 上的原图已下架，暂用所属分类的插画顶上。
- * 以后补好 assets/img/prod/<id>.jpg，把对应行删掉即可。 */
+ * 以后补好 img/prod/<id>.jpg，把对应行删掉即可。 */
 var FALLBACK_TO_CATEGORY = ['boom-tower', 'dyson-airwrap', 'magsafe-pad'];
 
 (function buildImagePaths() {
   window.CATEGORIES.forEach(function (c) {
-    c.image = 'assets/img/cat/' + c.slug + '.png';
+    c.image = 'img/cat/' + c.slug + '.png';
   });
   window.PRODUCTS.forEach(function (p) {
-    p.categoryImage = 'assets/img/cat/' + p.collection + '.png';
+    p.categoryImage = 'img/cat/' + p.collection + '.png';
     p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1
       ? p.categoryImage
-      : 'assets/img/prod/' + p.id + '.jpg';
+      : 'img/prod/' + p.id + '.jpg';
   });
 })();
