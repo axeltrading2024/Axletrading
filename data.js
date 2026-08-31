@@ -1,0 +1,584 @@
+/* ============================================================
+ *  全站配置与数据源 —— 想改品牌 / 产品 / 联系方式，只改这个文件
+ * ============================================================
+ *
+ * 改 WhatsApp：下面的 whatsapp 用「国家码+号码」，不要加 + 或空格
+ * 加产品：往 PRODUCTS 数组里照抄一条即可，image 会自动匹配同名图片
+ * 加分类：往 CATEGORIES 里加一条，并放一张 img/cat/<slug>.png
+ */
+
+window.SITE_CONFIG = {
+  "brand": "EddySupply",
+  "tagline": "Wholesale Product Finder",
+  "contactName": "Eddy",
+  "whatsapp": "8615875209571",
+  "whatsappDisplay": "+86 158 7520 9571",
+  "greeting": "Hi Eddy! I'd like some information about your products.",
+  "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",
+  "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
+  "heroTitle": "Wholesale products",
+  "heroTitleAccent": "made simple.",
+  "heroSubtitle": "Browse the full catalogue, build your inquiry list, and send it all to Eddy in one message. No more back-and-forth on WhatsApp.",
+  "searchPlaceholder": "Search product, brand, category…",
+  "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
+};
+
+/* ---------------- 分类 ---------------- */
+window.CATEGORIES = [
+  {
+    "slug": "speakers",
+    "name": "Speakers",
+    "tagline": "Room-filling sound",
+    "image": "img/cat/speakers.png"
+  },
+  {
+    "slug": "perfumes",
+    "name": "Perfumes",
+    "tagline": "Signature scents",
+    "subcategories": [
+      {
+        "slug": "best-sellers",
+        "name": "Best Sellers"
+      },
+      {
+        "slug": "niche",
+        "name": "Niche Perfumes"
+      },
+      {
+        "slug": "arabic",
+        "name": "Arabic Perfumes"
+      }
+    ],
+    "image": "img/cat/perfumes.png"
+  },
+  {
+    "slug": "watches",
+    "name": "Watches",
+    "tagline": "Time, refined",
+    "subcategories": [
+      {
+        "slug": "luxury",
+        "name": "Luxury Watches"
+      },
+      {
+        "slug": "smart",
+        "name": "Smart Watches"
+      }
+    ],
+    "image": "img/cat/watches.png"
+  },
+  {
+    "slug": "earbuds-headphones",
+    "name": "Earbuds & Headphones",
+    "tagline": "Immersive audio",
+    "image": "img/cat/earbuds-headphones.png"
+  },
+  {
+    "slug": "hair-dryers",
+    "name": "Hair Dryers",
+    "tagline": "Salon at home",
+    "image": "img/cat/hair-dryers.png"
+  },
+  {
+    "slug": "vacuum-cleaners",
+    "name": "Vacuum Cleaners",
+    "tagline": "Effortless clean",
+    "image": "img/cat/vacuum-cleaners.png"
+  },
+  {
+    "slug": "cameras",
+    "name": "Cameras",
+    "tagline": "Capture everything",
+    "image": "img/cat/cameras.png"
+  },
+  {
+    "slug": "sunglasses",
+    "name": "Sunglasses",
+    "tagline": "Frame your day",
+    "subcategories": [
+      {
+        "slug": "ai",
+        "name": "AI Glasses"
+      },
+      {
+        "slug": "luxury",
+        "name": "Luxury Glasses"
+      }
+    ],
+    "image": "img/cat/sunglasses.png"
+  },
+  {
+    "slug": "chargers",
+    "name": "Chargers",
+    "tagline": "Power, everywhere",
+    "image": "img/cat/chargers.png"
+  },
+  {
+    "slug": "phone-cases",
+    "name": "Phone Cases",
+    "tagline": "Protect in style",
+    "image": "img/cat/phone-cases.png"
+  },
+  {
+    "slug": "other",
+    "name": "Other Products",
+    "tagline": "The rest",
+    "image": "img/cat/other.png"
+  }
+];
+
+/* ---------------- 产品 ---------------- */
+window.PRODUCTS = [
+  {
+    "id": "airpods-pro-2",
+    "name": "AirPods Pro 2",
+    "brand": "Apple",
+    "price": "€10",
+    "note": "ANC · Wireless charging case-valid serial number",
+    "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
+    "collection": "earbuds-headphones",
+    "popular": true,
+    "keywords": [
+      "airpods",
+      "apple",
+      "wireless",
+      "earbuds",
+      "anc"
+    ]
+  },
+  {
+    "id": "airpods-max",
+    "name": "AirPods Max",
+    "brand": "Apple",
+    "price": "$349",
+    "note": "Over-ear · Spatial audio",
+    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
+    "collection": "earbuds-headphones",
+    "popular": true,
+    "keywords": [
+      "airpods",
+      "apple",
+      "headphones",
+      "over-ear"
+    ]
+  },
+  {
+    "id": "airpods-4",
+    "name": "AirPods 4",
+    "brand": "Apple",
+    "price": "$99",
+    "note": "New generation",
+    "desc": "Redesigned for all-day comfort with a smaller case and improved call quality.",
+    "collection": "earbuds-headphones",
+    "keywords": [
+      "airpods",
+      "apple"
+    ]
+  },
+  {
+    "id": "sony-wh1000",
+    "name": "Sony-style Wireless Headphones",
+    "brand": "Sony",
+    "price": "$149",
+    "note": "Active noise cancelling",
+    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
+    "collection": "earbuds-headphones",
+    "keywords": [
+      "sony",
+      "wh1000",
+      "headphones",
+      "anc"
+    ]
+  },
+  {
+    "id": "jbl-flip-7",
+    "name": "JBL Flip 7",
+    "brand": "JBL",
+    "price": "$89",
+    "note": "Portable · Waterproof",
+    "desc": "Rugged IP67 portable speaker with punchy bass and 16 hours of playtime.",
+    "collection": "speakers",
+    "popular": true,
+    "keywords": [
+      "jbl",
+      "flip",
+      "speaker",
+      "bluetooth"
+    ]
+  },
+  {
+    "id": "jbl-charge",
+    "name": "JBL Charge 6",
+    "brand": "JBL",
+    "price": "$129",
+    "note": "Powerbank speaker",
+    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
+    "collection": "speakers",
+    "keywords": [
+      "jbl",
+      "charge",
+      "speaker"
+    ]
+  },
+  {
+    "id": "boom-tower",
+    "name": "Party Tower Speaker",
+    "brand": "EddySupply",
+    "price": "$219",
+    "note": "LED · Karaoke ready",
+    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
+    "collection": "speakers",
+    "keywords": [
+      "party",
+      "tower",
+      "karaoke"
+    ]
+  },
+  {
+    "id": "dior-sauvage",
+    "name": "Dior Sauvage EDP 100ml",
+    "brand": "Dior",
+    "price": "$79",
+    "note": "Icon fragrance",
+    "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "popular": true,
+    "keywords": [
+      "dior",
+      "sauvage",
+      "perfume",
+      "cologne"
+    ]
+  },
+  {
+    "id": "bleu-chanel",
+    "name": "Bleu de Chanel EDP 100ml",
+    "brand": "Chanel",
+    "price": "$85",
+    "note": "Woody aromatic",
+    "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "keywords": [
+      "chanel",
+      "bleu",
+      "perfume"
+    ]
+  },
+  {
+    "id": "baccarat",
+    "name": "Baccarat Rouge 540",
+    "brand": "MFK",
+    "price": "$149",
+    "note": "Niche · Saffron amber",
+    "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
+    "collection": "perfumes",
+    "subcategory": "niche",
+    "keywords": [
+      "baccarat",
+      "niche",
+      "perfume"
+    ]
+  },
+  {
+    "id": "oud-royale",
+    "name": "Oud Royale 50ml",
+    "brand": "EddySupply",
+    "price": "$59",
+    "note": "Warm oud",
+    "desc": "Deep Arabian-style oud with saffron and resin, built for evening wear.",
+    "collection": "perfumes",
+    "subcategory": "arabic",
+    "keywords": [
+      "oud",
+      "arabic",
+      "perfume"
+    ]
+  },
+  {
+    "id": "rolex-submariner",
+    "name": "Rolex Submariner Style",
+    "brand": "Rolex",
+    "price": "$299",
+    "note": "Automatic · Steel",
+    "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "popular": true,
+    "keywords": [
+      "rolex",
+      "submariner",
+      "luxury",
+      "watch"
+    ]
+  },
+  {
+    "id": "rolex-daytona",
+    "name": "Rolex Daytona Style",
+    "brand": "Rolex",
+    "price": "$329",
+    "note": "Chronograph",
+    "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "keywords": [
+      "rolex",
+      "daytona",
+      "luxury",
+      "watch"
+    ]
+  },
+  {
+    "id": "ap-royal-oak",
+    "name": "AP Royal Oak Style",
+    "brand": "Audemars Piguet",
+    "price": "$389",
+    "note": "Octagonal bezel",
+    "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "keywords": [
+      "ap",
+      "royal oak",
+      "luxury"
+    ]
+  },
+  {
+    "id": "apple-watch-10",
+    "name": "Apple Watch Series 10",
+    "brand": "Apple",
+    "price": "$249",
+    "note": "GPS · 45mm",
+    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "keywords": [
+      "apple",
+      "watch",
+      "smart"
+    ]
+  },
+  {
+    "id": "galaxy-watch",
+    "name": "Galaxy Watch Ultra Style",
+    "brand": "Samsung",
+    "price": "$179",
+    "note": "AMOLED · GPS",
+    "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "keywords": [
+      "samsung",
+      "galaxy",
+      "smart",
+      "watch"
+    ]
+  },
+  {
+    "id": "dyson-supersonic",
+    "name": "Dyson Supersonic Style",
+    "brand": "Dyson",
+    "price": "$189",
+    "note": "Ionic · 5 attachments",
+    "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
+    "collection": "hair-dryers",
+    "popular": true,
+    "keywords": [
+      "dyson",
+      "supersonic",
+      "hair",
+      "dryer"
+    ]
+  },
+  {
+    "id": "dyson-airwrap",
+    "name": "Dyson Airwrap Style",
+    "brand": "Dyson",
+    "price": "$249",
+    "note": "Multi-styler",
+    "desc": "Curl, wave, smooth and dry with no extreme heat, using controlled Coanda airflow.",
+    "collection": "hair-dryers",
+    "keywords": [
+      "dyson",
+      "airwrap",
+      "styler"
+    ]
+  },
+  {
+    "id": "dyson-v15",
+    "name": "Dyson V15 Style Cordless",
+    "brand": "Dyson",
+    "price": "$299",
+    "note": "Cordless · HEPA",
+    "desc": "High-torque cordless vacuum with laser dust detection and full-machine HEPA filtration.",
+    "collection": "vacuum-cleaners",
+    "keywords": [
+      "dyson",
+      "v15",
+      "vacuum",
+      "cordless"
+    ]
+  },
+  {
+    "id": "robot-vac",
+    "name": "Robot Vacuum Pro",
+    "brand": "EddySupply",
+    "price": "$219",
+    "note": "Lidar · Mopping",
+    "desc": "Lidar navigation with room mapping, strong suction and an integrated mopping pad.",
+    "collection": "vacuum-cleaners",
+    "keywords": [
+      "robot",
+      "vacuum",
+      "mop"
+    ]
+  },
+  {
+    "id": "sony-a7",
+    "name": "Sony A7 IV Style",
+    "brand": "Sony",
+    "price": "$1499",
+    "note": "Mirrorless · 33MP",
+    "desc": "Full-frame mirrorless body with 33MP resolution, 4K 60p video and real-time autofocus.",
+    "collection": "cameras",
+    "keywords": [
+      "sony",
+      "a7",
+      "camera",
+      "mirrorless"
+    ]
+  },
+  {
+    "id": "gopro-13",
+    "name": "GoPro Hero 13 Style",
+    "brand": "GoPro",
+    "price": "$329",
+    "note": "Action · 5.3K",
+    "desc": "Rugged action camera with 5.3K video, HyperSmooth stabilisation and waterproof build.",
+    "collection": "cameras",
+    "keywords": [
+      "gopro",
+      "action",
+      "camera"
+    ]
+  },
+  {
+    "id": "cartier-glasses",
+    "name": "Cartier Style Sunglasses",
+    "brand": "Cartier",
+    "price": "$189",
+    "note": "Gold accents",
+    "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "popular": true,
+    "keywords": [
+      "cartier",
+      "sunglasses",
+      "luxury",
+      "glasses"
+    ]
+  },
+  {
+    "id": "rayban-meta",
+    "name": "Ray-Ban Meta AI Glasses",
+    "brand": "Ray-Ban",
+    "price": "$299",
+    "note": "Camera · Voice AI",
+    "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
+    "collection": "sunglasses",
+    "subcategory": "ai",
+    "keywords": [
+      "rayban",
+      "meta",
+      "ai",
+      "smart glasses"
+    ]
+  },
+  {
+    "id": "gentle-monster",
+    "name": "Gentle Monster Style",
+    "brand": "Gentle Monster",
+    "price": "$149",
+    "note": "Acetate frame",
+    "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "keywords": [
+      "gentle monster",
+      "sunglasses"
+    ]
+  },
+  {
+    "id": "gan-65w",
+    "name": "GaN Fast Charger 65W",
+    "brand": "EddySupply",
+    "price": "$29",
+    "note": "USB-C · 3-port",
+    "desc": "Compact GaN charger delivering 65W across three ports for laptop, tablet and phone.",
+    "collection": "chargers",
+    "keywords": [
+      "charger",
+      "usb-c",
+      "gan"
+    ]
+  },
+  {
+    "id": "magsafe-pad",
+    "name": "MagSafe Wireless Pad",
+    "brand": "EddySupply",
+    "price": "$25",
+    "note": "15W",
+    "desc": "Magnetic 15W wireless charging pad with an aluminium shell and slip-free base.",
+    "collection": "chargers",
+    "keywords": [
+      "magsafe",
+      "wireless",
+      "charger"
+    ]
+  },
+  {
+    "id": "iphone-case-clear",
+    "name": "iPhone 16 Pro Clear Case",
+    "brand": "EddySupply",
+    "price": "$12",
+    "note": "MagSafe compatible",
+    "desc": "Slim clear case with reinforced corners and a full-strength MagSafe magnet ring.",
+    "collection": "phone-cases",
+    "keywords": [
+      "iphone",
+      "case",
+      "clear"
+    ]
+  },
+  {
+    "id": "leather-case",
+    "name": "Leather Snap Case",
+    "brand": "EddySupply",
+    "price": "$19",
+    "note": "Premium leather",
+    "desc": "Full-grain leather snap-on case that develops a patina with everyday use.",
+    "collection": "phone-cases",
+    "keywords": [
+      "leather",
+      "case",
+      "iphone"
+    ]
+  }
+];
+
+/* ---------------- 派生：图片路径 ---------------- */
+var FALLBACK_TO_CATEGORY = ["boom-tower","dyson-airwrap","magsafe-pad"];
+
+(function buildImagePaths() {
+  window.CATEGORIES.forEach(function (c) {
+    c.image = 'img/cat/' + c.slug + '.png';
+  });
+  window.PRODUCTS.forEach(function (p) {
+    p.categoryImage = 'img/cat/' + p.collection + '.png';
+    p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1
+      ? p.categoryImage
+      : 'img/prod/' + p.id + '.jpg';
+  });
+})();
