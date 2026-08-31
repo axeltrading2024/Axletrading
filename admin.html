@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>产品管理 · EddySupply</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231a1a1a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle'>E</text></svg>">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- 顶部工具条 -->
+  <header class="admin-top">
+    <div class="admin-top-inner">
+      <a class="admin-brand" href="admin.html">
+        <span class="brand-mark">E</span>
+        <span>产品管理后台<small>EddySupply · 改产品、导出、发布</small></span>
+      </a>
+      <div class="admin-actions">
+        <button type="button" class="btn btn-outline" data-check>🔍 检查问题</button>
+        <button type="button" class="btn btn-outline" data-import>⬆ 导入 data.js</button>
+        <button type="button" class="btn btn-dark" data-export>⬇ 导出 data.js</button>
+        <button type="button" class="btn btn-ghost" data-open-site>打开网站 →</button>
+      </div>
+      <input type="file" accept=".js" data-import-file style="display:none">
+    </div>
+  </header>
+
+  <main class="admin-main">
+
+    <!-- 状态条 -->
+    <div class="status-bar" data-status></div>
+
+    <div class="admin-layout">
+
+      <!-- 左：产品列表 -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2>产品列表</h2>
+          <span class="hint" data-prod-count></span>
+        </div>
+        <div class="admin-search">
+          <input type="search" data-search placeholder="搜索产品名 / 品牌 / 关键词…">
+        </div>
+        <div class="admin-filters" data-cat-filters></div>
+        <div class="prod-list" data-prod-list></div>
+        <div style="padding:12px 14px;border-top:1px solid var(--border)">
+          <button type="button" class="btn btn-dark" style="width:100%;justify-content:center" data-new>＋ 添加新产品</button>
+        </div>
+      </section>
+
+      <!-- 右：编辑表单 -->
+      <section class="panel">
+        <div class="panel-head">
+          <h2 data-form-title>添加新产品</h2>
+          <span class="hint">填完点「保存产品」，最后记得「导出 data.js」</span>
+        </div>
+        <div class="admin-form">
+          <div class="form-grid" data-form-grid>
+            <div class="field">
+              <label for="f-id">产品 ID（网址用，一般不用改）</label>
+              <input id="f-id" data-f-id placeholder="自动生成，如 apple-watch">
+              <span class="help">只能用小写字母、数字、短横线</span>
+            </div>
+            <div class="field">
+              <label for="f-name">产品名称 *</label>
+              <input id="f-name" data-f-name placeholder="如 AirPods Pro 2">
+            </div>
+            <div class="field">
+              <label for="f-brand">品牌 *</label>
+              <input id="f-brand" data-f-brand placeholder="如 Apple">
+            </div>
+            <div class="field">
+              <label for="f-price">批发价 *</label>
+              <input id="f-price" data-f-price placeholder="如 $129">
+            </div>
+            <div class="field">
+              <label for="f-collection">所属分类 *</label>
+              <select id="f-collection" data-f-collection></select>
+            </div>
+            <div class="field">
+              <label for="f-subcategory">子分类（可选）</label>
+              <select id="f-subcategory" data-f-subcategory></select>
+            </div>
+            <div class="field full">
+              <label for="f-note">一句话卖点（卡片上显示）</label>
+              <input id="f-note" data-f-note placeholder="如 ANC · Wireless charging case">
+            </div>
+            <div class="field full">
+              <label for="f-desc">详细介绍（详情页显示）</label>
+              <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
+            </div>
+            <div class="field full">
+              <label for="f-keywords">搜索关键词（英文逗号分隔）</label>
+              <input id="f-keywords" data-f-keywords placeholder="如 airpods, apple, wireless">
+            </div>
+            <div class="field check">
+              <input type="checkbox" id="f-popular" data-f-popular>
+              <label for="f-popular">设为热门（显示在首页 Popular 轮播）</label>
+            </div>
+          </div>
+
+          <div class="img-tools">
+            <img data-img-preview alt="产品图预览" src="">
+            <div>
+              <div class="it-h">产品图片</div>
+              <div class="it-name" data-img-name style="font-size:12px;font-weight:600;color:var(--accent-brand);margin-bottom:4px">选择图片后自动改名</div>
+              <div class="it-p" data-img-tip>选择图片后会自动压缩并命名为「产品ID.jpg」下载</div>
+              <input type="file" accept="image/*" data-img-file>
+              <div class="it-tip">保存位置：<code>assets/img/prod/</code>（图名 = 产品 ID）</div>
+            </div>
+          </div>
+
+          <div class="form-foot">
+            <button type="button" class="btn btn-dark" data-save>💾 保存产品</button>
+            <button type="button" class="btn btn-outline" data-new>清空重填</button>
+            <button type="button" class="btn btn-danger" data-del-current style="display:none" title="删除当前编辑的产品">删除</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 检查报告 -->
+    <div class="report" data-report style="display:none"></div>
+
+    <!-- 发布指南 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>📖 小白三步走：改产品 → 导出 → 发布</h2>
+      </div>
+      <div class="guide-body">
+        <div class="gstep">
+          <div class="num">1</div>
+          <div>
+            <h4>改产品（就在本页）</h4>
+            <p>点左边产品 → 右边改 → 保存；点「＋ 添加新产品」新增。新产品的图片选好后会自动压缩、自动改名下载，把下载的图片放进网站文件夹的 <code>assets/img/prod/</code> 里。</p>
+          </div>
+        </div>
+        <div class="gstep">
+          <div class="num">2</div>
+          <div>
+            <h4>导出数据</h4>
+            <p>点顶部「⬇ 导出 data.js」，下载一个 <code>data.js</code> 文件。它就是整个网站的产品数据。</p>
+          </div>
+        </div>
+        <div class="gstep">
+          <div class="num">3</div>
+          <div>
+            <h4>发布上线</h4>
+            <p>把导出的 <code>data.js</code>（以及新下载的图片）上传到托管平台，覆盖同名文件，网站 1 分钟内自动更新。托管平台选一个免费的：<strong>GitHub Pages</strong>（全球访问，最常用）或 <strong>腾讯云 EdgeOne Pages</strong>（国内也能快速访问）。具体步骤见我的回复。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

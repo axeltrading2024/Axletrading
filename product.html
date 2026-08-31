@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product — EddySupply</title>
+  <meta name="description" content="Product details, specifications and one-tap WhatsApp inquiry.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231a1a1a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle'>E</text></svg>">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="product">
+
+  <div data-header></div>
+
+  <main class="wrap" data-product></main>
+
+  <section class="wrap" data-related style="padding-bottom:96px"></section>
+
+  <footer class="site-footer">
+    © <span data-year>2026</span> EddySupply. Chat with us on WhatsApp · +86 158 7520 9571
+  </footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    var y = document.querySelector('[data-year]');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
