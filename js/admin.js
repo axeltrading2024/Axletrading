@@ -178,10 +178,10 @@
     if (used.indexOf(p.id) > -1) { status('产品 ID「' + p.id + '」已被占用，请换一个', 'err'); return; }
     if (!/^[a-z0-9-]+$/.test(p.id)) { status('ID 只能用小写字母、数字和短横线（如 apple-watch）', 'err'); return; }
 
-    // 图片路径：新图 → assets/img/prod/<id>.jpg；若是原分类插画顶替则保持
+    // 图片路径：新图 → img/prod/<id>.jpg；若是原分类插画顶替则保持
     var old = state.editingId ? getProduct(state.editingId) : null;
-    p.image = (old && old.image) || 'assets/img/prod/' + p.id + '.jpg';
-    if (old && String(old.image).indexOf('assets/img/cat/') === 0) p.image = old.image;
+    p.image = (old && old.image) || 'img/prod/' + p.id + '.jpg';
+    if (old && String(old.image).indexOf('img/cat/') === 0) p.image = old.image;
 
     if (state.editingId) {
       var idx = PRODUCTS.indexOf(old);
@@ -233,7 +233,7 @@
         }
         var fname = id + '.jpg';
         $('[data-img-name]').textContent = fname;
-        $('[data-img-tip]').textContent = '点击「下载图片」保存到 assets/img/prod/ 文件夹';
+        $('[data-img-tip]').textContent = '点击「下载图片」保存到 img/prod/ 文件夹';
 
         // 下载
         var a = document.createElement('a');
@@ -242,7 +242,7 @@
         document.body.appendChild(a);
         a.click();
         a.remove();
-        status('图片已处理并开始下载：' + fname + '（放到 assets/img/prod/ 里即可）');
+        status('图片已处理并开始下载：' + fname + '（放到 img/prod/ 里即可）');
       };
       img.src = reader.result;
     };
@@ -265,7 +265,7 @@
       if (p.subcategory) o.subcategory = p.subcategory;
       if (p.popular) o.popular = true;
       if (p.keywords && p.keywords.length) o.keywords = p.keywords;
-      if (String(p.image || '').indexOf('assets/img/cat/') === 0) fallback.push(p.id);
+      if (String(p.image || '').indexOf('img/cat/') === 0) fallback.push(p.id);
       return o;
     });
 
@@ -276,7 +276,7 @@
     lines.push(' *');
     lines.push(' * 改 WhatsApp：下面的 whatsapp 用「国家码+号码」，不要加 + 或空格');
     lines.push(' * 加产品：往 PRODUCTS 数组里照抄一条即可，image 会自动匹配同名图片');
-    lines.push(' * 加分类：往 CATEGORIES 里加一条，并放一张 assets/img/cat/<slug>.png');
+    lines.push(' * 加分类：往 CATEGORIES 里加一条，并放一张 img/cat/<slug>.png');
     lines.push(' */');
     lines.push('');
     lines.push('window.SITE_CONFIG = ' + JSON.stringify(CFG, null, 2) + ';');
@@ -292,13 +292,13 @@
     lines.push('');
     lines.push('(function buildImagePaths() {');
     lines.push('  window.CATEGORIES.forEach(function (c) {');
-    lines.push("    c.image = 'assets/img/cat/' + c.slug + '.png';");
+    lines.push("    c.image = 'img/cat/' + c.slug + '.png';");
     lines.push('  });');
     lines.push('  window.PRODUCTS.forEach(function (p) {');
-    lines.push("    p.categoryImage = 'assets/img/cat/' + p.collection + '.png';");
+    lines.push("    p.categoryImage = 'img/cat/' + p.collection + '.png';");
     lines.push('    p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1');
     lines.push("      ? p.categoryImage");
-    lines.push("      : 'assets/img/prod/' + p.id + '.jpg';");
+    lines.push("      : 'img/prod/' + p.id + '.jpg';");
     lines.push('  });');
     lines.push('})();');
 
@@ -310,7 +310,7 @@
     a.click();
     a.remove();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
-    status('已导出 data.js —— 把它覆盖到 assets/js/data.js（或上传到托管平台替换同名文件）');
+    status('已导出 data.js —— 把它覆盖到 js/data.js（或上传到托管平台替换同名文件）');
   }
 
   /* ---------------- 导入 data.js ---------------- */
