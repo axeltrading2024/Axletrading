@@ -403,7 +403,7 @@
     list.innerHTML = rows.map(function (p) {
       return '' +
         '<div class="prod-row' + (state.editingId === p.id ? ' is-active' : '') + '" data-open="' + esc(p.id) + '">' +
-          '<img src="' + esc(p.image) + '" alt="" loading="lazy">' +
+          '<img src="' + esc(p.image && !p.image.match(/^https?:\/\//) && !p.image.match(/^data:/) ? 'https://axeltrading2024.github.io/Axletrading/' + p.image : p.image) + '" alt="" loading="lazy">' +
           '<div class="meta">' +
             '<div class="pn">' + esc(p.name) + '</div>' +
             '<div class="pm">' + esc(p.brand) + ' · ' + esc(p.price) + (p.subcategory ? ' · ' + esc(p.subcategory) : '') + '</div>' +
@@ -442,7 +442,11 @@
     syncSubcats();
     if (p.subcategory) $('[data-f-subcategory]').value = p.subcategory;
     $('[data-form-title]').textContent = '编辑产品';
-    $('[data-img-preview]').src = p.image;
+    var imgUrl = p.image || '';
+    if (imgUrl && !imgUrl.match(/^https?:\/\//) && !imgUrl.match(/^data:/)) {
+      imgUrl = 'https://axeltrading2024.github.io/Axletrading/' + imgUrl + '?t=' + Date.now();
+    }
+    $('[data-img-preview]').src = imgUrl;
     $('[data-img-name]').textContent = p.id + '.jpg';
     $('[data-img-tip]').textContent = '已用图片：' + p.image;
     var delCur = $('[data-del-current]');
