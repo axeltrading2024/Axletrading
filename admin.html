@@ -180,6 +180,17 @@
       </div>
     </section>
 
+    <!-- 分类图片管理 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>📂 分类图片管理</h2>
+        <span class="hint">首页上每个分类卡片的图片，点「换图」即可更换</span>
+      </div>
+      <div class="guide-body" data-cat-list>
+        <!-- JS 动态填充 -->
+      </div>
+    </section>
+
   </main>
 
   <script src="js/data.js"></script>
@@ -805,6 +816,85 @@
     });
   }
 
+  /* ---------------- 分类图片管理 ---------------- */
+  function renderCatList() {
+    var box = $('[data-cat-list]');
+    if (!box) return;
+    box.innerHTML = '<div class="cat-grid">' + CATEGORIES.map(function (c) {
+      var imgUrl = c.image || '';
+      if (imgUrl && !imgUrl.match(/^https?:\/\//) && !imgUrl.match(/^data:/)) {
+        imgUrl = 'https://axeltrading2024.github.io/Axletrading/' + imgUrl + '?t=' + Date.now();
+      }
+      return '<div class="cat-card" data-cat-slug="' + esc(c.slug) + '">' +
+        '<img src="' + esc(imgUrl) + '" alt="' + esc(c.name) + '" loading="lazy">' +
+        '<div class="cat-name">' + esc(c.name) + '</div>' +
+        '<div class="cat-slug">' + esc(c.slug) + '.png</div>' +
+        '<div class="cat-status" data-cat-status="' + esc(c.slug) + '"></div>' +
+        '<input type="file" accept="image/*" data-cat-file="' + esc(c.slug) + '">' +
+        '<button type="button" class="btn btn-outline" data-cat-btn="' + esc(c.slug) + '">🖼 换图</button>' +
+      '</div>';
+    }).join('') + '</div>';
+
+    // 绑定换图按钮
+    CATEGORIES.forEach(function (c) {
+      var btn = $('[data-cat-btn="' + c.slug + '"]');
+      var fileInput = $('[data-cat-file="' + c.slug + '"]');
+      if (btn && fileInput) {
+        btn.addEventListener('click', function () { fileInput.click(); });
+        fileInput.addEventListener('change', function (e) {
+          if (e.target.files && e.target.files[0]) {
+            handleCatImage(e.target.files[0], c.slug);
+          }
+        });
+      }
+    });
+  }
+
+  function handleCatImage(file, slug) {
+    if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
+    var target = 800;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      var img = new Image();
+      img.onload = function () {
+        var cv = document.createElement('canvas');
+        var ctx = cv.getContext('2d');
+        var w = img.width, h = img.height;
+        if (w > h) { if (w > target) { h = Math.round(h * target / w); w = target; } }
+        else { if (h > target) { w = Math.round(w * target / h); h = target; } }
+        cv.width = w; cv.height = h;
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        var dataUrl = cv.toDataURL('image/png', 0.92);
+        var statusEl = $('[data-cat-status="' + slug + '"]');
+        if (statusEl) statusEl.textContent = '正在上传…';
+        if (ghEnabled()) {
+          uploadCatImage(slug, dataUrl).then(function () {
+            if (statusEl) { statusEl.textContent = '✅ 已更新'; statusEl.className = 'cat-status ok'; }
+            status('✅ 分类图片已更新：' + slug + '.png（约 1 分钟后首页生效）');
+            // 刷新当前卡片图片
+            var cardImg = $('[data-cat-slug="' + slug + '"] img');
+            if (cardImg) cardImg.src = 'https://axeltrading2024.github.io/Axletrading/img/cat/' + slug + '.png?t=' + Date.now();
+          }).catch(function (e) {
+            if (statusEl) { statusEl.textContent = '上传失败'; statusEl.className = 'cat-status err'; }
+            status('分类图片上传失败：' + e.message, 'err');
+          });
+        } else {
+          if (statusEl) statusEl.textContent = '未连接 GitHub，请手动上传';
+          status('未连接一键发布，分类图片无法自动上传。请先在设置里连接 GitHub。', 'err');
+        }
+      };
+      img.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function uploadCatImage(slug, dataUrl) {
+    var b64 = dataUrl.split(',')[1];
+    var path = 'img/cat/' + slug + '.png';
+    return ghPut(path, b64, 'Update category image: ' + slug + '.png');
+  }
+
   function fillCollectionSelect() {
     var sel = $('[data-f-collection]');
     sel.innerHTML = CATEGORIES.map(function (c) {
@@ -817,6 +907,7 @@
     fillCollectionSelect();
     renderFilters();
     renderList();
+    renderCatList();
     resetForm();
     bind();
     renderGhPanel();
