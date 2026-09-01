@@ -467,7 +467,7 @@ window.PRODUCTS = [
     "id": "cartier-glasses",
     "name": "Cartier Style Sunglasses",
     "brand": "Cartier",
-    "price": "$189",
+    "price": "€35",
     "note": "Gold accents",
     "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
     "collection": "sunglasses",
