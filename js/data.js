@@ -546,19 +546,14 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "party-tower-120-speaker",
-    "name": "Party box120 Speaker",
+    "id": "b",
+    "name": "JBL boom box4",
     "brand": "",
-    "price": "€180",
-    "note": "LED · Karaoke ready with handle and wheels",
-    "desc": "loud speaker with micro phone and moverable",
+    "price": "€40",
+    "note": "protable-bass sound-",
+    "desc": "",
     "collection": "speakers",
-    "keywords": [
-      "jbl",
-      "party box",
-      "speaker",
-      "bluetooth"
-    ]
+    "popular": true
   }
 ];
 
