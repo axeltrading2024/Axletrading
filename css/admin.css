@@ -258,3 +258,41 @@
 .gstep h4 { margin: 2px 0 4px; font-size: 14px; }
 .gstep p { margin: 0; font-size: 13px; color: var(--muted-foreground); line-height: 1.6; }
 .gstep code { background: var(--muted); padding: 1px 6px; border-radius: 5px; font-size: 12px; }
+
+/* ============ 一键发布设置面板 ============ */
+.gh-panel { margin-bottom: 16px; }
+.gh-status { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--muted); color: var(--muted-foreground); white-space: nowrap; }
+.gh-status.ok { background: rgba(34,197,94,.12); color: #16a34a; }
+.gh-body { display: flex; flex-direction: column; gap: 10px; }
+.gh-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.gh-row label { font-size: 12px; font-weight: 600; color: var(--muted-foreground); min-width: 92px; }
+.gh-row input {
+  flex: 1; min-width: 220px; padding: 8px 12px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--card); color: var(--foreground);
+  font-size: 13px; font-family: inherit; outline: none;
+}
+.gh-row input:focus { border-color: var(--accent-brand); box-shadow: 0 0 0 3px oklch(0.68 0.17 148 / 0.15); }
+.gh-actions { margin-top: 2px; }
+.gh-tip {
+  font-size: 12px; color: var(--muted-foreground); line-height: 1.6;
+  background: var(--muted); border-radius: 10px; padding: 10px 12px;
+}
+
+/* ============ 分类图片管理 ============ */
+.cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.cat-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--card); overflow: hidden; text-align: center;
+  padding: 12px; display: flex; flex-direction: column; gap: 10px;
+}
+.cat-card img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px;
+  background: var(--muted);
+}
+.cat-card .cat-name { font-size: 13px; font-weight: 600; }
+.cat-card .cat-slug { font-size: 11px; color: var(--muted-foreground); }
+.cat-card input[type=file] { display: none; }
+.cat-card .btn { width: 100%; justify-content: center; padding: 8px 14px; font-size: 12px; }
+.cat-card .cat-status { font-size: 11px; min-height: 16px; }
+.cat-card .cat-status.ok { color: #16a34a; }
+.cat-card .cat-status.err { color: #e5484d; }
