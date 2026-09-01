@@ -209,9 +209,9 @@ window.PRODUCTS = [
   {
     "id": "jbl-charge",
     "name": "JBL Charge 6",
-    "brand": "JBL",
-    "price": "$129",
-    "note": "Powerbank speaker",
+    "brand": "oem",
+    "price": "€20",
+    "note": "highbass and portable speaker",
     "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
     "collection": "speakers",
     "keywords": [
