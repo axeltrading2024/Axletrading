@@ -300,7 +300,7 @@ window.PRODUCTS = [
     "id": "rolex-submariner",
     "name": "Rolex Submariner Style",
     "brand": "Rolex",
-    "price": "$299",
+    "price": "€65",
     "note": "Automatic · Steel",
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
