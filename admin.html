@@ -564,10 +564,21 @@
   function deleteProduct(id) {
     var p = getProduct(id);
     if (!p) return;
-    if (!confirm('确定删除「' + p.name + '」？\n删除后记得「导出 data.js」并重新上传。')) return;
+    if (!confirm('确定删除「' + p.name + '」？\n删除后自动发布到线上。')) return;
     PRODUCTS = PRODUCTS.filter(function (x) { return x.id !== id; });
     status('已删除：' + p.name);
     resetForm();
+    renderList();
+
+    // 已连接 GitHub → 自动发布到线上
+    if (ghEnabled()) {
+      status('已删除：' + p.name + ' —— 正在发布到线上…');
+      publishData().then(function () {
+        status('✅ 已删除并发布（约 1 分钟后官网更新）');
+      }).catch(function (e) {
+        status('已删除，但发布失败：' + e.message + '（可点「重新发布」重试）', 'err');
+      });
+    }
   }
 
   /* ---------------- 图片工具：压缩 + 自动改名 ---------------- */
