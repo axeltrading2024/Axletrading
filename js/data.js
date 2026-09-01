@@ -165,9 +165,9 @@ window.PRODUCTS = [
   {
     "id": "airpods-4",
     "name": "AirPods 4",
-    "brand": "Apple",
-    "price": "$99",
-    "note": "New generation",
+    "brand": "oem",
+    "price": "€12",
+    "note": "New generation-ANC-serial number",
     "desc": "Redesigned for all-day comfort with a smaller case and improved call quality.",
     "collection": "earbuds-headphones",
     "keywords": [
