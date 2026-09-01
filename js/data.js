@@ -544,6 +544,21 @@ window.PRODUCTS = [
       "case",
       "iphone"
     ]
+  },
+  {
+    "id": "party-tower-120-speaker",
+    "name": "Party box120 Speaker",
+    "brand": "",
+    "price": "€180",
+    "note": "LED · Karaoke ready with handle and wheels",
+    "desc": "loud speaker with micro phone and moverable",
+    "collection": "speakers",
+    "keywords": [
+      "jbl",
+      "party box",
+      "speaker",
+      "bluetooth"
+    ]
   }
 ];
 
