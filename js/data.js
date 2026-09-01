@@ -429,21 +429,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "sony-a7",
-    "name": "Sony A7 IV Style",
-    "brand": "Sony",
-    "price": "$1499",
-    "note": "Mirrorless · 33MP",
-    "desc": "Full-frame mirrorless body with 33MP resolution, 4K 60p video and real-time autofocus.",
-    "collection": "other",
-    "keywords": [
-      "sony",
-      "a7",
-      "camera",
-      "mirrorless"
-    ]
-  },
-  {
     "id": "gopro-13",
     "name": "GoPro Hero 13 Style",
     "brand": "GoPro",
