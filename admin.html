@@ -180,6 +180,29 @@
       </div>
     </section>
 
+    <!-- 分类与子分类管理 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>🗂 分类与子分类管理</h2>
+        <span class="hint">增加 / 删除分类，管理子分类（改完自动发布上线）</span>
+      </div>
+      <div class="guide-body">
+        <div class="gh-actions" style="margin-bottom:4px">
+          <button type="button" class="btn btn-dark" data-cat-add>＋ 添加分类</button>
+        </div>
+        <!-- 添加 / 改名表单（默认隐藏） -->
+        <div class="cat-form" data-cat-form style="display:none">
+          <div class="gh-row"><label>分类名称 *</label><input data-cat-name placeholder="如 Smart Home"></div>
+          <div class="gh-row"><label>一句话描述</label><input data-cat-tagline placeholder="如 Connected living（可留空）"></div>
+          <div class="gh-actions">
+            <button type="button" class="btn btn-dark" data-cat-save>💾 保存</button>
+            <button type="button" class="btn btn-outline" data-cat-cancel>取消</button>
+          </div>
+        </div>
+        <div data-cat-manage-list></div>
+      </div>
+    </section>
+
     <!-- 分类图片管理 -->
     <section class="guide">
       <div class="guide-head">
@@ -814,6 +837,161 @@
         status('发布失败：' + e.message, 'err');
       }).finally(function () { ghPublish.disabled = false; });
     });
+
+    // 分类与子分类管理表单
+    var catAdd = $('[data-cat-add]');
+    if (catAdd) catAdd.addEventListener('click', function () { openCatForm(null); });
+    var catSave = $('[data-cat-save]');
+    if (catSave) catSave.addEventListener('click', saveCatForm);
+    var catCancel = $('[data-cat-cancel]');
+    if (catCancel) catCancel.addEventListener('click', closeCatForm);
+  }
+
+  /* ---------------- 分类与子分类管理 ---------------- */
+  var catEditingSlug = null;
+
+  function renderCatManageList() {
+    var box = $('[data-cat-manage-list]');
+    if (!box) return;
+    box.innerHTML = CATEGORIES.map(function (c) {
+      var prodCount = PRODUCTS.filter(function (p) { return p.collection === c.slug; }).length;
+      var subs = (c.subcategories || []).map(function (s) {
+        return '<span class="sub-chip" data-sub-del="' + esc(c.slug) + '|' + esc(s.slug) + '" title="点 × 删除">' +
+          esc(s.name) + ' <b>×</b></span>';
+      }).join('');
+      return '<div class="cat-mgmt-row">' +
+        '<div class="cm-main">' +
+          '<div class="cm-name">' + esc(c.name) + ' <code>' + esc(c.slug) + '</code>' +
+            '<span class="cm-count">' + prodCount + ' 个产品</span></div>' +
+          '<div class="cm-tag">' + esc(c.tagline || '') + '</div>' +
+          '<div class="cm-subs">' + (subs || '<span class="muted">暂无子分类</span>') +
+            ' <button type="button" class="mini-btn" data-sub-add="' + esc(c.slug) + '">＋ 子分类</button></div>' +
+        '</div>' +
+        '<div class="cm-actions">' +
+          '<button type="button" class="mini-btn" data-cat-edit="' + esc(c.slug) + '">✏️ 改名</button>' +
+          '<button type="button" class="mini-btn danger" data-cat-del="' + esc(c.slug) + '">🗑 删除</button>' +
+        '</div>' +
+      '</div>';
+    }).join('') || '<div class="prod-empty">还没有分类，点上方「＋ 添加分类」创建</div>';
+
+    // 绑定事件
+    $$('[data-cat-edit]', box).forEach(function (b) {
+      b.addEventListener('click', function () { openCatForm(b.getAttribute('data-cat-edit')); });
+    });
+    $$('[data-cat-del]', box).forEach(function (b) {
+      b.addEventListener('click', function () { deleteCategory(b.getAttribute('data-cat-del')); });
+    });
+    $$('[data-sub-add]', box).forEach(function (b) {
+      b.addEventListener('click', function () { addSubcategory(b.getAttribute('data-sub-add')); });
+    });
+    $$('[data-sub-del]', box).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var parts = b.getAttribute('data-sub-del').split('|');
+        deleteSubcategory(parts[0], parts[1]);
+      });
+    });
+  }
+
+  function openCatForm(slug) {
+    catEditingSlug = slug || null;
+    var form = $('[data-cat-form]');
+    form.style.display = 'block';
+    var c = slug ? getCategory(slug) : null;
+    $('[data-cat-name]').value = c ? (c.name || '') : '';
+    $('[data-cat-tagline]').value = c ? (c.tagline || '') : '';
+    $('[data-cat-name]').focus();
+  }
+  function closeCatForm() {
+    catEditingSlug = null;
+    $('[data-cat-form]').style.display = 'none';
+    $('[data-cat-name]').value = '';
+    $('[data-cat-tagline]').value = '';
+  }
+
+  function saveCatForm() {
+    var name = ($('[data-cat-name]').value || '').trim();
+    if (!name) { status('分类名称不能为空', 'err'); return; }
+    var tagline = ($('[data-cat-tagline]').value || '').trim();
+    if (catEditingSlug) {
+      var c = getCategory(catEditingSlug);
+      if (c) { c.name = name; c.tagline = tagline; }
+      status('已改名：' + name);
+    } else {
+      var used = CATEGORIES.map(function (x) { return x.slug; });
+      var slug = slugify(name, used);
+      CATEGORIES.push({ slug: slug, name: name, tagline: tagline, subcategories: [] });
+      status('已添加分类：' + name + '（' + slug + '）');
+    }
+    closeCatForm();
+    renderCatManageList();
+    renderCatList();
+    fillCollectionSelect();
+    renderFilters();
+    publishIfReady();
+  }
+
+  function addSubcategory(catSlug) {
+    var c = getCategory(catSlug);
+    if (!c) return;
+    var name = prompt('输入子分类名称（如 Luxury Watches）：');
+    if (!name || !name.trim()) return;
+    name = name.trim();
+    var used = (c.subcategories || []).map(function (s) { return s.slug; });
+    var slug = slugify(name, used);
+    if (!c.subcategories) c.subcategories = [];
+    c.subcategories.push({ slug: slug, name: name });
+    status('已添加子分类：' + name);
+    renderCatManageList();
+    renderFilters();
+    publishIfReady();
+  }
+
+  function deleteSubcategory(catSlug, subSlug) {
+    var c = getCategory(catSlug);
+    if (!c || !confirm('确定删除子分类「' + subSlug + '」？\n该子分类下的产品会保留，但子分类标记会被清除。')) return;
+    c.subcategories = (c.subcategories || []).filter(function (s) { return s.slug !== subSlug; });
+    PRODUCTS.forEach(function (p) {
+      if (p.collection === catSlug && p.subcategory === subSlug) delete p.subcategory;
+    });
+    status('已删除子分类：' + subSlug);
+    renderCatManageList();
+    renderFilters();
+    renderList();
+    publishIfReady();
+  }
+
+  function deleteCategory(slug) {
+    var c = getCategory(slug);
+    if (!c) return;
+    var affected = PRODUCTS.filter(function (p) { return p.collection === slug; });
+    var msg = '确定删除分类「' + c.name + '」？';
+    if (affected.length) msg += '\n⚠️ 该分类下有 ' + affected.length + ' 个产品，删除后这些产品会移到「Other Products」。';
+    if (!confirm(msg)) return;
+    CATEGORIES = CATEGORIES.filter(function (x) { return x.slug !== slug; });
+    // 受影响产品移到 other（若存在）否则移到第一个分类
+    var fallbackCat = getCategory('other') || CATEGORIES[0];
+    if (fallbackCat) {
+      affected.forEach(function (p) { p.collection = fallbackCat.slug; delete p.subcategory; });
+    }
+    status('已删除分类：' + c.name);
+    renderCatManageList();
+    renderCatList();
+    fillCollectionSelect();
+    renderFilters();
+    renderList();
+    publishIfReady();
+  }
+
+  function publishIfReady() {
+    if (ghEnabled()) {
+      publishData().then(function () {
+        status('✅ 分类已更新并发布（约 1 分钟后官网生效）');
+      }).catch(function (e) {
+        status('已更新，但发布失败：' + e.message, 'err');
+      });
+    } else {
+      status('分类已更新。未连接一键发布，请记得导出 data.js 并手动上传。', 'err');
+    }
   }
 
   /* ---------------- 分类图片管理 ---------------- */
@@ -907,6 +1085,7 @@
     fillCollectionSelect();
     renderFilters();
     renderList();
+    renderCatManageList();
     renderCatList();
     resetForm();
     bind();
