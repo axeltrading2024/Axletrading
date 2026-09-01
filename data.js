@@ -133,8 +133,8 @@ window.PRODUCTS = [
     "id": "airpods-pro-2",
     "name": "AirPods Pro 2",
     "brand": "Apple",
-    "price": "€10",
-    "note": "ANC · Wireless charging case-valid serial number",
+    "price": "$129",
+    "note": "ANC · Wireless charging case",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "popular": true,
@@ -149,10 +149,10 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "Apple",
-    "price": "$349",
-    "note": "Over-ear · Spatial audio",
-    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
+    "brand": "oem",
+    "price": "€75",
+    "note": "Over-ear · Spatial audio-meta earmuffs-valid serial number-1：1 package",
+    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 8  hours of battery.",
     "collection": "earbuds-headphones",
     "popular": true,
     "keywords": [
@@ -565,6 +565,15 @@ window.PRODUCTS = [
       "case",
       "iphone"
     ]
+  },
+  {
+    "id": "charge-6",
+    "name": "Charge 6",
+    "brand": "OEM",
+    "price": "€20",
+    "note": "high sound quality-bluetooth 5.1-portable-three colors option",
+    "desc": "portable speaker with waterproof and up to 10 hours play time",
+    "collection": "speakers"
   }
 ];
 
