@@ -282,7 +282,7 @@
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
 .cat-card {
   border: 1px solid var(--border); border-radius: var(--radius-lg);
-  background: var(--card); overflow: hidden; text-align: center;
+  background: var(--card); overflow: visible; text-align: center;
   padding: 12px; display: flex; flex-direction: column; gap: 10px;
 }
 .cat-card img {
@@ -292,7 +292,7 @@
 .cat-card .cat-name { font-size: 13px; font-weight: 600; }
 .cat-card .cat-slug { font-size: 11px; color: var(--muted-foreground); }
 .cat-card input[type=file] { display: none; }
-.cat-card .btn { width: 100%; justify-content: center; padding: 8px 14px; font-size: 12px; }
+.cat-card .btn { width: 100%; justify-content: center; padding: 8px 14px; font-size: 12px; margin-top: 4px; }
 .cat-card .cat-status { font-size: 11px; min-height: 16px; }
 .cat-card .cat-status.ok { color: #16a34a; }
 .cat-card .cat-status.err { color: #e5484d; }
