@@ -243,7 +243,8 @@
       .then(function (existing) {
         var body = { message: message, content: contentBase64 };
         if (existing && existing.sha) body.sha = existing.sha;
-        return fetch(url, { method: 'PUT', headers: headers, body: JSON.stringify(body) })
+        var putHeaders = Object.assign({}, headers, { 'Content-Type': 'application/json' });
+        return fetch(url, { method: 'PUT', headers: putHeaders, body: JSON.stringify(body) })
           .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || ('HTTP ' + r.status)); return j; }); });
       });
   }
