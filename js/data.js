@@ -86,12 +86,6 @@ window.CATEGORIES = [
     "image": "img/cat/vacuum-cleaners.png"
   },
   {
-    "slug": "cameras",
-    "name": "Cameras",
-    "tagline": "Capture everything",
-    "image": "img/cat/cameras.png"
-  },
-  {
     "slug": "sunglasses",
     "name": "Sunglasses",
     "tagline": "Frame your day",
@@ -441,7 +435,7 @@ window.PRODUCTS = [
     "price": "$1499",
     "note": "Mirrorless · 33MP",
     "desc": "Full-frame mirrorless body with 33MP resolution, 4K 60p video and real-time autofocus.",
-    "collection": "cameras",
+    "collection": "other",
     "keywords": [
       "sony",
       "a7",
@@ -456,7 +450,7 @@ window.PRODUCTS = [
     "price": "$329",
     "note": "Action · 5.3K",
     "desc": "Rugged action camera with 5.3K video, HyperSmooth stabilisation and waterproof build.",
-    "collection": "cameras",
+    "collection": "other",
     "keywords": [
       "gopro",
       "action",
