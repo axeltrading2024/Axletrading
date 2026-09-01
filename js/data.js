@@ -255,7 +255,7 @@ window.PRODUCTS = [
     "id": "bleu-chanel",
     "name": "Bleu de Chanel EDP 100ml",
     "brand": "Chanel",
-    "price": "$85",
+    "price": "€18",
     "note": "Woody aromatic",
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
