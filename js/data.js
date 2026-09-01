@@ -149,9 +149,9 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "Apple",
-    "price": "$349",
-    "note": "Over-ear · Spatial audio",
+    "brand": "oem",
+    "price": "€75",
+    "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
     "collection": "earbuds-headphones",
     "popular": true,
