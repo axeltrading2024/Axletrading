@@ -219,7 +219,7 @@ window.PRODUCTS = [
     "name": "Party Tower 120 Speaker",
     "brand": "EddySupply",
     "price": "€180",
-    "note": "LED · Karaoke ready",
+    "note": "LED · Karaoke ready-outdoor swimming pool",
     "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
     "collection": "speakers",
     "keywords": [
