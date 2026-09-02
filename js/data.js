@@ -52,6 +52,12 @@ window.CATEGORIES = [
     "image": "img/cat/perfumes.png"
   },
   {
+    "slug": "earbuds-headphones",
+    "name": "Earbuds & Headphones",
+    "tagline": "Immersive audio",
+    "image": "img/cat/earbuds-headphones.png"
+  },
+  {
     "slug": "watches",
     "name": "Watches",
     "tagline": "Time, refined",
@@ -66,12 +72,6 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/watches.png"
-  },
-  {
-    "slug": "earbuds-headphones",
-    "name": "Earbuds & Headphones",
-    "tagline": "Immersive audio",
-    "image": "img/cat/earbuds-headphones.png"
   },
   {
     "slug": "hair-dryers",
