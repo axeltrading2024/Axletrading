@@ -380,22 +380,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "ap-royal-oak",
-    "name": "AP Royal Oak Style",
-    "brand": "Audemars Piguet",
-    "price": "€65",
-    "note": "Octagonal bezel",
-    "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "popular": true,
-    "keywords": [
-      "ap",
-      "royal oak",
-      "luxury"
-    ]
-  },
-  {
     "id": "dyson-supersonic",
     "name": "Dyson Supersonic",
     "brand": "Dyson",
@@ -409,6 +393,22 @@ window.PRODUCTS = [
       "supersonic",
       "hair",
       "dryer"
+    ]
+  },
+  {
+    "id": "ap-royal-oak",
+    "name": "AP Royal Oak Style",
+    "brand": "Audemars Piguet",
+    "price": "€65",
+    "note": "Octagonal bezel",
+    "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "popular": true,
+    "keywords": [
+      "ap",
+      "royal oak",
+      "luxury"
     ]
   },
   {
