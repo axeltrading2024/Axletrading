@@ -90,22 +90,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "sunglasses",
-    "name": "Sunglasses",
-    "tagline": "Frame your day",
-    "subcategories": [
-      {
-        "slug": "ai",
-        "name": "AI Glasses"
-      },
-      {
-        "slug": "luxury",
-        "name": "Luxury Glasses"
-      }
-    ],
-    "image": "img/cat/sunglasses.png"
-  },
-  {
     "slug": "chargers",
     "name": "Cellphone accessories",
     "tagline": "Power and protection",
@@ -120,6 +104,22 @@ window.CATEGORIES = [
         "name": "phonecase"
       }
     ]
+  },
+  {
+    "slug": "sunglasses",
+    "name": "Sunglasses",
+    "tagline": "Frame your day",
+    "subcategories": [
+      {
+        "slug": "ai",
+        "name": "AI Glasses"
+      },
+      {
+        "slug": "luxury",
+        "name": "Luxury Glasses"
+      }
+    ],
+    "image": "img/cat/sunglasses.png"
   },
   {
     "slug": "other",
