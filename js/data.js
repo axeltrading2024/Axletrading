@@ -90,12 +90,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "vacuum-cleaners",
-    "name": "Vacuum Cleaners",
-    "tagline": "Effortless clean",
-    "image": "img/cat/vacuum-cleaners.png"
-  },
-  {
     "slug": "sunglasses",
     "name": "Sunglasses",
     "tagline": "Frame your day",
@@ -417,7 +411,7 @@ window.PRODUCTS = [
     "price": "$299",
     "note": "Cordless · HEPA",
     "desc": "High-torque cordless vacuum with laser dust detection and full-machine HEPA filtration.",
-    "collection": "vacuum-cleaners",
+    "collection": "other",
     "keywords": [
       "dyson",
       "v15",
@@ -432,7 +426,7 @@ window.PRODUCTS = [
     "price": "$219",
     "note": "Lidar · Mopping",
     "desc": "Lidar navigation with room mapping, strong suction and an integrated mopping pad.",
-    "collection": "vacuum-cleaners",
+    "collection": "other",
     "keywords": [
       "robot",
       "vacuum",
