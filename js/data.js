@@ -519,7 +519,8 @@ window.PRODUCTS = [
     "price": "$12",
     "note": "MagSafe compatible",
     "desc": "Slim clear case with reinforced corners and a full-strength MagSafe magnet ring.",
-    "collection": "other",
+    "collection": "chargers",
+    "subcategory": "phonecase",
     "keywords": [
       "iphone",
       "case",
