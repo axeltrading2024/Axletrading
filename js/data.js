@@ -505,6 +505,7 @@ window.PRODUCTS = [
     "note": "15W",
     "desc": "Magnetic 15W wireless charging pad with an aluminium shell and slip-free base.",
     "collection": "chargers",
+    "subcategory": "chargers",
     "keywords": [
       "magsafe",
       "wireless",
