@@ -180,7 +180,7 @@ window.PRODUCTS = [
     "id": "sony-wh1000",
     "name": "Sony-style Wireless Headphones",
     "brand": "Sony",
-    "price": "$149",
+    "price": "€65",
     "note": "Active noise cancelling",
     "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
     "collection": "earbuds-headphones",
@@ -648,8 +648,8 @@ window.PRODUCTS = [
     "name": "security camera",
     "brand": "EddySupply",
     "price": "€59",
-    "note": "dual lens dual views-AI alert",
-    "desc": "Featuring 6MP full-color night vision and AI human detection, this dual-lens indoor camera delivers crystal-clear monitoring 24/7. Its upper pan-tilt lens (270°/90°) and fixed wide-angle lower lens provide complete coverage. Enjoy accurate alerts with zero false alarms, plus two-way audio, HDR, and instant app connectivity",
+    "note": "dual camera-360 protection",
+    "desc": "",
     "collection": "other"
   }
 ];
