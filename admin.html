@@ -138,6 +138,15 @@
             </div>
           </div>
 
+          <div class="var-mgr">
+            <div class="it-h">型号 / Variants（可选）</div>
+            <div class="it-p">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图。访客在详情页点型号按钮切换。</div>
+            <div data-var-list></div>
+            <div class="gh-actions" style="margin-top:8px">
+              <button type="button" class="btn btn-outline" data-var-add>＋ 添加型号</button>
+            </div>
+          </div>
+
           <div class="form-foot">
             <button type="button" class="btn btn-dark" data-save>💾 保存产品</button>
             <button type="button" class="btn btn-outline" data-new>清空重填</button>
@@ -305,6 +314,11 @@
       if (p.subcategory) o.subcategory = p.subcategory;
       if (p.popular) o.popular = true;
       if (p.keywords && p.keywords.length) o.keywords = p.keywords;
+      if (p.variants && p.variants.length) {
+        o.variants = p.variants.map(function (v) {
+          return { name: v.name, price: v.price || '', image: v.image || '' };
+        });
+      }
       if (String(p.image || '').indexOf('img/cat/') === 0) fallback.push(p.id);
       return o;
     });
@@ -483,6 +497,7 @@
     $('[data-img-preview]').src = imgUrl;
     $('[data-img-name]').textContent = p.id + '.jpg';
     $('[data-img-tip]').textContent = '已用图片：' + p.image;
+    renderVarRows(p.variants);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'inline-flex';
     renderList();
@@ -498,6 +513,7 @@
     $('[data-img-preview]').src = '';
     $('[data-img-name]').textContent = '选择图片后自动改名';
     $('[data-img-tip]').textContent = '不上传图片则沿用分类插画';
+    renderVarRows(null);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'none';
     renderList();
@@ -521,6 +537,7 @@
     p.popular = $('[data-f-popular]').checked;
     p.keywords = p.keywords ? p.keywords.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : [];
     if (!p.subcategory) p.subcategory = undefined;
+    p.variants = collectVariants();
     return p;
   }
 
@@ -644,6 +661,111 @@
     document.body.appendChild(a);
     a.click();
     a.remove();
+  }
+
+  /* ---------------- 型号 / Variants ---------------- */
+  function varSlug(name) {
+    return slugify(name, []);
+  }
+
+  function addVarRow(v, focus) {
+    var list = $('[data-var-list]');
+    if (!list) return;
+    v = v || {};
+    var row = document.createElement('div');
+    row.className = 'var-row';
+    row.setAttribute('data-var-row', '');
+    row.innerHTML =
+      '<div class="var-fields">' +
+        '<input class="var-name" data-var-name placeholder="型号名，如 Black / 32GB" value="' + esc(v.name || '') + '">' +
+        '<input class="var-price" data-var-price placeholder="价格，如 $129（留空则同主价）" value="' + esc(v.price || '') + '">' +
+      '</div>' +
+      '<div class="var-img">' +
+        '<input type="file" accept="image/*" data-var-file style="display:none">' +
+        '<button type="button" class="btn btn-outline" data-var-pick>🖼 图片</button>' +
+        '<span class="var-img-status" data-var-img-status>' + (v.image ? '✅ ' + esc(v.image) : '未选（用主图）') + '</span>' +
+        '<input type="hidden" data-var-img-value value="' + esc(v.image || '') + '">' +
+      '</div>' +
+      '<button type="button" class="btn btn-ghost var-del" data-var-del title="删除该型号">×</button>';
+    list.appendChild(row);
+    if (focus) {
+      var n = row.querySelector('[data-var-name]');
+      if (n) n.focus();
+    }
+    return row;
+  }
+
+  function renderVarRows(variants) {
+    var list = $('[data-var-list]');
+    if (!list) return;
+    list.innerHTML = '';
+    (variants || []).forEach(function (v) { addVarRow(v, false); });
+  }
+
+  function collectVariants() {
+    var out = [];
+    $$('[data-var-row]').forEach(function (row) {
+      var name = (row.querySelector('[data-var-name]').value || '').trim();
+      var price = (row.querySelector('[data-var-price]').value || '').trim();
+      var image = (row.querySelector('[data-var-img-value]').value || '').trim();
+      if (!name) return;
+      out.push({ name: name, price: price, image: image });
+    });
+    return out.length ? out : undefined;
+  }
+
+  /** 压缩图片到 800px jpg（与主图一致），回调 dataUrl */
+  function compressToJpeg(file, cb) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var target = 800;
+        var scale = Math.min(target / img.width, target / img.height, 1);
+        var w = Math.round(img.width * scale);
+        var h = Math.round(img.height * scale);
+        var cv = document.createElement('canvas');
+        cv.width = w; cv.height = h;
+        var ctx = cv.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+        cb(cv.toDataURL('image/jpeg', 0.82));
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handleVariantImage(file, row) {
+    if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
+    compressToJpeg(file, function (dataUrl) {
+      var vName = (row.querySelector('[data-var-name]').value || '').trim();
+      if (!vName) { status('请先填写型号名，再选图片', 'err'); return; }
+      var pid = ($('[data-f-id]').value || '').trim() || slugify($('[data-f-name]').value || 'product', []);
+      var fname = pid + '-' + varSlug(vName) + '.jpg';
+      var st = row.querySelector('[data-var-img-status]');
+      var hv = row.querySelector('[data-var-img-value]');
+      if (ghEnabled()) {
+        st.textContent = '正在上传 ' + fname + ' …';
+        var b64 = String(dataUrl).split(',')[1] || dataUrl;
+        ghPut('img/prod/' + fname, b64, '上传型号图 ' + fname).then(function () {
+          hv.value = 'img/prod/' + fname;
+          st.textContent = '✅ 已发布：img/prod/' + fname;
+          status('✅ 型号图已发布：' + fname);
+        }).catch(function (e) {
+          hv.value = 'img/prod/' + fname;
+          st.textContent = '上传失败，已下载，稍后手动传';
+          triggerDownload(fname, dataUrl);
+          status('型号图上传失败：' + e.message, 'err');
+        });
+      } else {
+        hv.value = 'img/prod/' + fname;
+        st.textContent = '已处理，下载到 img/prod/';
+        triggerDownload(fname, dataUrl);
+        status('型号图已处理并开始下载：' + fname);
+      }
+    });
   }
 
   /* ---------------- 导出 data.js ---------------- */
@@ -801,6 +923,28 @@
     $('[data-img-file]').addEventListener('change', function (e) {
       handleImageFile(e.target.files[0]);
       e.target.value = '';
+    });
+
+    // 型号 / Variants
+    $('[data-var-add]').addEventListener('click', function () { addVarRow(null, true); });
+    var varList = $('[data-var-list]');
+    varList.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-var-row]');
+      if (!row) return;
+      var del = e.target.closest('[data-var-del]');
+      if (del) { row.remove(); return; }
+      var pick = e.target.closest('[data-var-pick]');
+      if (pick) {
+        var fi = row.querySelector('[data-var-file]');
+        if (fi) fi.click();
+      }
+    });
+    varList.addEventListener('change', function (e) {
+      var fi = e.target.closest('[data-var-file]');
+      if (!fi) return;
+      var row = fi.closest('[data-var-row]');
+      if (row) handleVariantImage(fi.files[0], row);
+      fi.value = '';
     });
 
     // 导出 / 导入 / 检查
