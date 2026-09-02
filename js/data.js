@@ -500,8 +500,8 @@ window.PRODUCTS = [
     "id": "rayban-meta",
     "name": "Ray-Ban Meta AI Glasses",
     "brand": "Ray-Ban",
-    "price": "$299",
-    "note": "Camera · Voice AI",
+    "price": "€75",
+    "note": "Camera · Voice AI-real translation",
     "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
     "collection": "sunglasses",
     "subcategory": "ai",
@@ -510,6 +510,13 @@ window.PRODUCTS = [
       "meta",
       "ai",
       "smart glasses"
+    ],
+    "variants": [
+      {
+        "name": "MT5",
+        "price": "€60",
+        "image": "img/prod/rayban-meta-mt5.jpg"
+      }
     ]
   },
   {
