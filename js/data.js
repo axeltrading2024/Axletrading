@@ -459,12 +459,13 @@ window.PRODUCTS = [
   },
   {
     "id": "dyson-v15",
-    "name": "Dyson V15 Style Cordless",
+    "name": "Dyson V15 detective",
     "brand": "Dyson",
-    "price": "$299",
+    "price": "€165",
     "note": "Cordless · HEPA",
     "desc": "High-torque cordless vacuum with laser dust detection and full-machine HEPA filtration.",
-    "collection": "other",
+    "collection": "hair-dryers",
+    "subcategory": "vacuum-cleaners",
     "keywords": [
       "dyson",
       "v15",
