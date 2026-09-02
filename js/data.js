@@ -90,22 +90,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "chargers",
-    "name": "Cellphone accessories",
-    "tagline": "Power and protection",
-    "image": "img/cat/chargers.png",
-    "subcategories": [
-      {
-        "slug": "chargers",
-        "name": "chargers"
-      },
-      {
-        "slug": "phonecase",
-        "name": "phonecase"
-      }
-    ]
-  },
-  {
     "slug": "sunglasses",
     "name": "Sunglasses",
     "tagline": "Frame your day",
@@ -120,6 +104,22 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/sunglasses.png"
+  },
+  {
+    "slug": "chargers",
+    "name": "Cellphone accessories",
+    "tagline": "Power and protection",
+    "image": "img/cat/chargers.png",
+    "subcategories": [
+      {
+        "slug": "chargers",
+        "name": "chargers"
+      },
+      {
+        "slug": "phonecase",
+        "name": "phonecase"
+      }
+    ]
   },
   {
     "slug": "other",
