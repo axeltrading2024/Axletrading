@@ -537,10 +537,11 @@ window.PRODUCTS = [
     "id": "gan-65w",
     "name": "GaN Fast Charger 65W",
     "brand": "EddySupply",
-    "price": "$29",
+    "price": "€10",
     "note": "USB-C · 3-port",
     "desc": "Compact GaN charger delivering 65W across three ports for laptop, tablet and phone.",
     "collection": "chargers",
+    "subcategory": "chargers",
     "keywords": [
       "charger",
       "usb-c",
