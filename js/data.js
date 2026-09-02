@@ -266,6 +266,11 @@ window.PRODUCTS = [
         "name": "parfum",
         "price": "",
         "image": "img/prod/dior-sauvage-parfum.jpg"
+      },
+      {
+        "name": "EDP",
+        "price": "",
+        "image": ""
       }
     ]
   },
