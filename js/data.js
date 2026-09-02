@@ -534,7 +534,8 @@ window.PRODUCTS = [
     "price": "$19",
     "note": "Premium leather",
     "desc": "Full-grain leather snap-on case that develops a patina with everyday use.",
-    "collection": "other",
+    "collection": "chargers",
+    "subcategory": "phonecase",
     "keywords": [
       "leather",
       "case",
