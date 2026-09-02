@@ -481,20 +481,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "robot-vac",
-    "name": "Robot Vacuum Pro",
-    "brand": "EddySupply",
-    "price": "$219",
-    "note": "Lidar · Mopping",
-    "desc": "Lidar navigation with room mapping, strong suction and an integrated mopping pad.",
-    "collection": "other",
-    "keywords": [
-      "robot",
-      "vacuum",
-      "mop"
-    ]
-  },
-  {
     "id": "cartier-glasses",
     "name": "Cartier Style Sunglasses",
     "brand": "Cartier",
