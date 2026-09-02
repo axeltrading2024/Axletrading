@@ -114,6 +114,10 @@ window.CATEGORIES = [
       {
         "slug": "chargers",
         "name": "chargers"
+      },
+      {
+        "slug": "phonecase",
+        "name": "phonecase"
       }
     ]
   },
