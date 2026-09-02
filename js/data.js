@@ -445,7 +445,6 @@ window.PRODUCTS = [
     "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
     "collection": "sunglasses",
     "subcategory": "luxury",
-    "popular": true,
     "keywords": [
       "cartier",
       "sunglasses",
