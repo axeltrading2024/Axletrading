@@ -122,12 +122,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "phone-cases",
-    "name": "Phone Cases",
-    "tagline": "Protect in style",
-    "image": "img/cat/phone-cases.png"
-  },
-  {
     "slug": "other",
     "name": "Other Products",
     "tagline": "The rest",
@@ -525,7 +519,7 @@ window.PRODUCTS = [
     "price": "$12",
     "note": "MagSafe compatible",
     "desc": "Slim clear case with reinforced corners and a full-strength MagSafe magnet ring.",
-    "collection": "phone-cases",
+    "collection": "other",
     "keywords": [
       "iphone",
       "case",
@@ -539,7 +533,7 @@ window.PRODUCTS = [
     "price": "$19",
     "note": "Premium leather",
     "desc": "Full-grain leather snap-on case that develops a patina with everyday use.",
-    "collection": "phone-cases",
+    "collection": "other",
     "keywords": [
       "leather",
       "case",
