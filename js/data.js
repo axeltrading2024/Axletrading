@@ -396,19 +396,19 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
-    "brand": "Apple",
-    "price": "€30",
-    "note": "three colors option care your daily routine",
-    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
-    "collection": "watches",
-    "subcategory": "smart",
+    "id": "dyson-supersonic",
+    "name": "Dyson Supersonic",
+    "brand": "Dyson",
+    "price": "€65",
+    "note": "Ionic · 5 attachments-10 colors option",
+    "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
+    "collection": "hair-dryers",
     "popular": true,
     "keywords": [
-      "apple",
-      "watch",
-      "smart"
+      "dyson",
+      "supersonic",
+      "hair",
+      "dryer"
     ]
   },
   {
@@ -428,19 +428,19 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "dyson-supersonic",
-    "name": "Dyson Supersonic",
-    "brand": "Dyson",
-    "price": "€65",
-    "note": "Ionic · 5 attachments-10 colors option",
-    "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
-    "collection": "hair-dryers",
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
+    "brand": "Apple",
+    "price": "€30",
+    "note": "three colors option care your daily routine",
+    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
+    "collection": "watches",
+    "subcategory": "smart",
     "popular": true,
     "keywords": [
-      "dyson",
-      "supersonic",
-      "hair",
-      "dryer"
+      "apple",
+      "watch",
+      "smart"
     ]
   },
   {
