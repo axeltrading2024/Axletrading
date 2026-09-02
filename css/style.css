@@ -1358,6 +1358,45 @@ a {
   margin-top: 28px;
 }
 
+.variant-block {
+  margin-top: 22px;
+}
+.variant-label {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+}
+.variant-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.variant-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .18s var(--ease-out-soft);
+}
+.variant-chip:hover {
+  border-color: var(--foreground);
+}
+.variant-chip.is-active {
+  background: var(--foreground);
+  color: var(--card);
+  border-color: var(--foreground);
+}
+
 .spec-list {
   margin-top: 32px;
   border-top: 1px solid var(--border);
