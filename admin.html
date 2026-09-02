@@ -212,6 +212,17 @@
       </div>
     </section>
 
+    <!-- 热门产品排序 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>🔥 热门产品排序</h2>
+        <span class="hint">调整首页「Popular products」横滑区的显示顺序（改完自动发布）</span>
+      </div>
+      <div class="guide-body" data-hot-manage-list>
+        <!-- JS 动态填充 -->
+      </div>
+    </section>
+
     <!-- 分类图片管理 -->
     <section class="guide">
       <div class="guide-head">
@@ -1023,6 +1034,8 @@
             ' <button type="button" class="mini-btn" data-sub-add="' + esc(c.slug) + '">＋ 子分类</button></div>' +
         '</div>' +
         '<div class="cm-actions">' +
+          '<button type="button" class="mini-btn" data-cat-move="' + esc(c.slug) + '" data-dir="-1" title="上移">↑ 上移</button>' +
+          '<button type="button" class="mini-btn" data-cat-move="' + esc(c.slug) + '" data-dir="1" title="下移">↓ 下移</button>' +
           '<button type="button" class="mini-btn" data-cat-edit="' + esc(c.slug) + '">✏️ 改名</button>' +
           '<button type="button" class="mini-btn danger" data-cat-del="' + esc(c.slug) + '">🗑 删除</button>' +
         '</div>' +
@@ -1030,6 +1043,11 @@
     }).join('') || '<div class="prod-empty">还没有分类，点上方「＋ 添加分类」创建</div>';
 
     // 绑定事件
+    $$('[data-cat-move]', box).forEach(function (b) {
+      b.addEventListener('click', function () {
+        moveCategory(b.getAttribute('data-cat-move'), parseInt(b.getAttribute('data-dir'), 10));
+      });
+    });
     $$('[data-cat-edit]', box).forEach(function (b) {
       b.addEventListener('click', function () { openCatForm(b.getAttribute('data-cat-edit')); });
     });
@@ -1137,6 +1155,26 @@
     publishIfReady();
   }
 
+  /** 上移 / 下移分类（dir=-1 上移，dir=1 下移） */
+  function moveCategory(slug, dir) {
+    var idx = -1;
+    for (var i = 0; i < CATEGORIES.length; i++) if (CATEGORIES[i].slug === slug) { idx = i; break; }
+    if (idx < 0) return;
+    var target = idx + dir;
+    if (target < 0 || target >= CATEGORIES.length) {
+      status(dir < 0 ? '已经是第一个分类了' : '已经是最后一个分类了');
+      return;
+    }
+    var tmp = CATEGORIES[idx];
+    CATEGORIES[idx] = CATEGORIES[target];
+    CATEGORIES[target] = tmp;
+    renderCatManageList();
+    fillCollectionSelect();
+    renderFilters();
+    renderList();
+    publishIfReady();
+  }
+
   function publishIfReady() {
     if (ghEnabled()) {
       publishData().then(function () {
@@ -1147,6 +1185,60 @@
     } else {
       status('分类已更新。未连接一键发布，请记得导出 data.js 并手动上传。', 'err');
     }
+  }
+
+  /* ---------------- 热门产品排序 ---------------- */
+  function renderHotManageList() {
+    var box = $('[data-hot-manage-list]');
+    if (!box) return;
+    var hot = PRODUCTS.filter(function (p) { return p.popular; });
+    if (!hot.length) {
+      box.innerHTML = '<div class="prod-empty">还没有热门产品 —— 在编辑产品时勾选「🔥 设为热门」即可加入此区</div>';
+      return;
+    }
+    box.innerHTML = hot.map(function (p, i) {
+      return '<div class="cat-mgmt-row">' +
+        '<div class="cm-main">' +
+          '<div class="cm-name"><span class="cm-order">' + (i + 1) + '</span> ' + esc(p.name) +
+            ' <code>' + esc(p.id) + '</code>' +
+            '<span class="cm-count">' + esc(p.price || '') + '</span></div>' +
+          '<div class="cm-tag">' + esc(p.note || '') + '</div>' +
+        '</div>' +
+        '<div class="cm-actions">' +
+          '<button type="button" class="mini-btn" data-hot-move="' + esc(p.id) + '" data-dir="-1" title="上移">↑ 上移</button>' +
+          '<button type="button" class="mini-btn" data-hot-move="' + esc(p.id) + '" data-dir="1" title="下移">↓ 下移</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    $$('[data-hot-move]', box).forEach(function (b) {
+      b.addEventListener('click', function () {
+        moveHotProduct(b.getAttribute('data-hot-move'), parseInt(b.getAttribute('data-dir'), 10));
+      });
+    });
+  }
+
+  /** 上移 / 下移热门产品（只调整热门产品之间的相对顺序，不扰动其它产品） */
+  function moveHotProduct(id, dir) {
+    var cur = -1;
+    for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) { cur = i; break; }
+    if (cur < 0 || !PRODUCTS[cur].popular) return;
+    // 收集热门产品在 PRODUCTS 中的索引，找到当前产品在热门序列里的位置
+    var hotIdx = [];
+    for (var j = 0; j < PRODUCTS.length; j++) if (PRODUCTS[j].popular) hotIdx.push(j);
+    var pos = hotIdx.indexOf(cur);
+    var target = pos + dir;
+    if (target < 0 || target >= hotIdx.length) {
+      status(dir < 0 ? '已经是第一个热门产品了' : '已经是最后一个热门产品了');
+      return;
+    }
+    var other = hotIdx[target];
+    var tmp = PRODUCTS[cur];
+    PRODUCTS[cur] = PRODUCTS[other];
+    PRODUCTS[other] = tmp;
+    renderHotManageList();
+    renderList();
+    publishIfReady();
   }
 
   /* ---------------- 分类图片管理 ---------------- */
@@ -1241,6 +1333,7 @@
     renderFilters();
     renderList();
     renderCatManageList();
+    renderHotManageList();
     renderCatList();
     resetForm();
     bind();
