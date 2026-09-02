@@ -276,14 +276,15 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "oud-royale",
-    "name": "Oud Royale 50ml",
-    "brand": "EddySupply",
-    "price": "$59",
-    "note": "Warm oud",
-    "desc": "Deep Arabian-style oud with saffron and resin, built for evening wear.",
+    "id": "valentino-born-in-roma",
+    "name": "Valentino born in roma",
+    "brand": "oem",
+    "price": "€18",
+    "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
+    "desc": "Valentino Born in Roma is a \"cool couture\" fragrance that pays homage to the Eternal City. It perfectly balances the luxury of haute couture with a modern, free-spirited attitude, blending a luminous jasmine trio, warm bourbon vanilla, and cool contemporary woods",
     "collection": "perfumes",
-    "subcategory": "arabic",
+    "subcategory": "best-sellers",
+    "popular": true,
     "keywords": [
       "oud",
       "arabic",
