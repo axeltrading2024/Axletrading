@@ -109,7 +109,13 @@ window.CATEGORIES = [
     "slug": "chargers",
     "name": "cellphone accessories",
     "tagline": "Power and protection",
-    "image": "img/cat/chargers.png"
+    "image": "img/cat/chargers.png",
+    "subcategories": [
+      {
+        "slug": "chargers",
+        "name": "chargers"
+      }
+    ]
   },
   {
     "slug": "phone-cases",
