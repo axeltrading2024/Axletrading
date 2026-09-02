@@ -339,6 +339,11 @@ window.PRODUCTS = [
         "name": "donna",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-miss.jpg"
+      },
+      {
+        "name": "caro fantasy",
+        "price": "",
+        "image": ""
       }
     ]
   },
