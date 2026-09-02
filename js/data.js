@@ -597,17 +597,29 @@ window.PRODUCTS = [
   },
   {
     "id": "leather-case",
-    "name": "Leather Snap Case",
+    "name": "brand phoncase",
     "brand": "EddySupply",
-    "price": "$19",
-    "note": "Premium leather",
-    "desc": "Full-grain leather snap-on case that develops a patina with everyday use.",
+    "price": "€5",
+    "note": "premium protectiion-magsafe",
+    "desc": "",
     "collection": "chargers",
     "subcategory": "phonecase",
     "keywords": [
-      "leather",
+      "otter",
       "case",
       "iphone"
+    ],
+    "variants": [
+      {
+        "name": "defender",
+        "price": "",
+        "image": "img/prod/leather-case-silicon-protection.jpg"
+      },
+      {
+        "name": "symmetry+",
+        "price": "",
+        "image": "img/prod/leather-case-semmetry.jpg"
+      }
     ]
   },
   {
