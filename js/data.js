@@ -642,6 +642,15 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "popular": true
+  },
+  {
+    "id": "s",
+    "name": "security camera",
+    "brand": "EddySupply",
+    "price": "€59",
+    "note": "dual camera-360 protection",
+    "desc": "",
+    "collection": "other"
   }
 ];
 
