@@ -75,7 +75,7 @@ window.CATEGORIES = [
   },
   {
     "slug": "hair-dryers",
-    "name": "home applaince",
+    "name": "Home applaince",
     "tagline": "Salon at home",
     "image": "img/cat/hair-dryers.png",
     "subcategories": [
