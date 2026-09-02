@@ -26,10 +26,10 @@ window.SITE_CONFIG = {
 /* ---------------- 分类 ---------------- */
 window.CATEGORIES = [
   {
-    "slug": "earbuds-headphones",
-    "name": "Earbuds & Headphones",
-    "tagline": "Immersive audio",
-    "image": "img/cat/earbuds-headphones.png"
+    "slug": "speakers",
+    "name": "Speakers",
+    "tagline": "Room-filling sound",
+    "image": "img/cat/speakers.png"
   },
   {
     "slug": "perfumes",
@@ -52,10 +52,10 @@ window.CATEGORIES = [
     "image": "img/cat/perfumes.png"
   },
   {
-    "slug": "speakers",
-    "name": "Speakers",
-    "tagline": "Room-filling sound",
-    "image": "img/cat/speakers.png"
+    "slug": "earbuds-headphones",
+    "name": "Earbuds & Headphones",
+    "tagline": "Immersive audio",
+    "image": "img/cat/earbuds-headphones.png"
   },
   {
     "slug": "watches",
@@ -192,50 +192,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "jbl-flip-7",
-    "name": "JBL Flip 7",
-    "brand": "oem",
-    "price": "€18",
-    "note": "Portable · Waterproof",
-    "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
-    "collection": "speakers",
-    "popular": true,
-    "keywords": [
-      "jbl",
-      "flip",
-      "speaker",
-      "bluetooth"
-    ]
-  },
-  {
-    "id": "jbl-charge",
-    "name": "JBL Charge 6",
-    "brand": "Oem",
-    "price": "€20",
-    "note": "Powerbank speaker-protable",
-    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
-    "collection": "speakers",
-    "keywords": [
-      "jbl",
-      "charge",
-      "speaker"
-    ]
-  },
-  {
-    "id": "boom-tower",
-    "name": "Party Tower 120 Speaker",
-    "brand": "EddySupply",
-    "price": "€180",
-    "note": "LED · Karaoke ready-outdoor swimming pool",
-    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
-    "collection": "speakers",
-    "keywords": [
-      "party",
-      "tower",
-      "karaoke"
-    ]
-  },
-  {
     "id": "dior-sauvage",
     "name": "Dior Sauvage 100ml",
     "brand": "oem",
@@ -272,6 +228,50 @@ window.PRODUCTS = [
         "price": "",
         "image": ""
       }
+    ]
+  },
+  {
+    "id": "jbl-charge",
+    "name": "JBL Charge 6",
+    "brand": "Oem",
+    "price": "€20",
+    "note": "Powerbank speaker-protable",
+    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
+    "collection": "speakers",
+    "keywords": [
+      "jbl",
+      "charge",
+      "speaker"
+    ]
+  },
+  {
+    "id": "boom-tower",
+    "name": "Party Tower 120 Speaker",
+    "brand": "EddySupply",
+    "price": "€180",
+    "note": "LED · Karaoke ready-outdoor swimming pool",
+    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
+    "collection": "speakers",
+    "keywords": [
+      "party",
+      "tower",
+      "karaoke"
+    ]
+  },
+  {
+    "id": "jbl-flip-7",
+    "name": "JBL Flip 7",
+    "brand": "oem",
+    "price": "€18",
+    "note": "Portable · Waterproof",
+    "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
+    "collection": "speakers",
+    "popular": true,
+    "keywords": [
+      "jbl",
+      "flip",
+      "speaker",
+      "bluetooth"
     ]
   },
   {
@@ -380,6 +380,22 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "dyson-supersonic",
+    "name": "Dyson Supersonic",
+    "brand": "Dyson",
+    "price": "€65",
+    "note": "Ionic · 5 attachments-10 colors option",
+    "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
+    "collection": "hair-dryers",
+    "popular": true,
+    "keywords": [
+      "dyson",
+      "supersonic",
+      "hair",
+      "dryer"
+    ]
+  },
+  {
     "id": "ap-royal-oak",
     "name": "AP Royal Oak Style",
     "brand": "Audemars Piguet",
@@ -396,6 +412,22 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "galaxy-watch",
+    "name": "Galaxy Watch Ultra",
+    "brand": "Samsung",
+    "price": "€30",
+    "note": "AMOLED · GPS",
+    "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "keywords": [
+      "samsung",
+      "galaxy",
+      "smart",
+      "watch"
+    ]
+  },
+  {
     "id": "apple-watch-11",
     "name": "Apple Watch Series 11",
     "brand": "Apple",
@@ -409,38 +441,6 @@ window.PRODUCTS = [
       "apple",
       "watch",
       "smart"
-    ]
-  },
-  {
-    "id": "galaxy-watch",
-    "name": "Galaxy Watch Ultra Style",
-    "brand": "Samsung",
-    "price": "$179",
-    "note": "AMOLED · GPS",
-    "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
-    "collection": "watches",
-    "subcategory": "smart",
-    "keywords": [
-      "samsung",
-      "galaxy",
-      "smart",
-      "watch"
-    ]
-  },
-  {
-    "id": "dyson-supersonic",
-    "name": "Dyson Supersonic",
-    "brand": "Dyson",
-    "price": "€65",
-    "note": "Ionic · 5 attachments-10 colors option",
-    "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
-    "collection": "hair-dryers",
-    "popular": true,
-    "keywords": [
-      "dyson",
-      "supersonic",
-      "hair",
-      "dryer"
     ]
   },
   {
