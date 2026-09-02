@@ -296,6 +296,28 @@ window.PRODUCTS = [
       "oud",
       "arabic",
       "perfume"
+    ],
+    "variants": [
+      {
+        "name": "intensely",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-intensely.jpg"
+      },
+      {
+        "name": "uno",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-uno.jpg"
+      },
+      {
+        "name": "extradose",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-extradose.jpg"
+      },
+      {
+        "name": "donna",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-miss.jpg"
+      }
     ]
   },
   {
