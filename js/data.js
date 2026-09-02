@@ -192,50 +192,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "jbl-flip-7",
-    "name": "JBL Flip 7",
-    "brand": "oem",
-    "price": "€18",
-    "note": "Portable · Waterproof",
-    "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
-    "collection": "speakers",
-    "popular": true,
-    "keywords": [
-      "jbl",
-      "flip",
-      "speaker",
-      "bluetooth"
-    ]
-  },
-  {
-    "id": "jbl-charge",
-    "name": "JBL Charge 6",
-    "brand": "Oem",
-    "price": "€20",
-    "note": "Powerbank speaker-protable",
-    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
-    "collection": "speakers",
-    "keywords": [
-      "jbl",
-      "charge",
-      "speaker"
-    ]
-  },
-  {
-    "id": "boom-tower",
-    "name": "Party Tower 120 Speaker",
-    "brand": "EddySupply",
-    "price": "€180",
-    "note": "LED · Karaoke ready-outdoor swimming pool",
-    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
-    "collection": "speakers",
-    "keywords": [
-      "party",
-      "tower",
-      "karaoke"
-    ]
-  },
-  {
     "id": "dior-sauvage",
     "name": "Dior Sauvage 100ml",
     "brand": "oem",
@@ -272,6 +228,50 @@ window.PRODUCTS = [
         "price": "",
         "image": ""
       }
+    ]
+  },
+  {
+    "id": "jbl-charge",
+    "name": "JBL Charge 6",
+    "brand": "Oem",
+    "price": "€20",
+    "note": "Powerbank speaker-protable",
+    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
+    "collection": "speakers",
+    "keywords": [
+      "jbl",
+      "charge",
+      "speaker"
+    ]
+  },
+  {
+    "id": "boom-tower",
+    "name": "Party Tower 120 Speaker",
+    "brand": "EddySupply",
+    "price": "€180",
+    "note": "LED · Karaoke ready-outdoor swimming pool",
+    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
+    "collection": "speakers",
+    "keywords": [
+      "party",
+      "tower",
+      "karaoke"
+    ]
+  },
+  {
+    "id": "jbl-flip-7",
+    "name": "JBL Flip 7",
+    "brand": "oem",
+    "price": "€18",
+    "note": "Portable · Waterproof",
+    "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
+    "collection": "speakers",
+    "popular": true,
+    "keywords": [
+      "jbl",
+      "flip",
+      "speaker",
+      "bluetooth"
     ]
   },
   {
