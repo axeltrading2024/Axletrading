@@ -340,11 +340,11 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-10",
-    "name": "Apple Watch Series 10",
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
     "brand": "Apple",
-    "price": "$249",
-    "note": "GPS · 45mm",
+    "price": "€30",
+    "note": "three colors option care your daily routine",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "watches",
     "subcategory": "smart",
