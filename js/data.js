@@ -328,7 +328,7 @@ window.PRODUCTS = [
     "id": "ap-royal-oak",
     "name": "AP Royal Oak Style",
     "brand": "Audemars Piguet",
-    "price": "$389",
+    "price": "€65",
     "note": "Octagonal bezel",
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
