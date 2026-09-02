@@ -471,6 +471,13 @@ window.PRODUCTS = [
       "v15",
       "vacuum",
       "cordless"
+    ],
+    "variants": [
+      {
+        "name": "V15 submarine",
+        "price": "€180",
+        "image": "img/prod/dyson-v15-v15-submarine.jpg"
+      }
     ]
   },
   {
