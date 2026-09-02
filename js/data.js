@@ -355,6 +355,7 @@ window.PRODUCTS = [
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "watches",
     "subcategory": "smart",
+    "popular": true,
     "keywords": [
       "apple",
       "watch",
