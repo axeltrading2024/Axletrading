@@ -520,7 +520,7 @@ window.PRODUCTS = [
       {
         "name": "rayban meta",
         "price": "",
-        "image": "img/prod/rayban-meta-rayban-meta.jpg"
+        "image": ""
       }
     ]
   },
