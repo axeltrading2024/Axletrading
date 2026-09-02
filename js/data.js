@@ -237,7 +237,7 @@ window.PRODUCTS = [
   },
   {
     "id": "dior-sauvage",
-    "name": "Dior Sauvage EDP 100ml",
+    "name": "Dior Sauvage 100ml",
     "brand": "oem",
     "price": "€18",
     "note": "Icon fragrance",
@@ -250,6 +250,23 @@ window.PRODUCTS = [
       "sauvage",
       "perfume",
       "cologne"
+    ],
+    "variants": [
+      {
+        "name": "EDT",
+        "price": "",
+        "image": "img/prod/dior-sauvage-edp.jpg"
+      },
+      {
+        "name": "Exilir",
+        "price": "",
+        "image": "img/prod/dior-sauvage-exilir.jpg"
+      },
+      {
+        "name": "parfum",
+        "price": "",
+        "image": "img/prod/dior-sauvage-parfum.jpg"
+      }
     ]
   },
   {
