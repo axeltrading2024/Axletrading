@@ -77,7 +77,17 @@ window.CATEGORIES = [
     "slug": "hair-dryers",
     "name": "home applaince",
     "tagline": "Salon at home",
-    "image": "img/cat/hair-dryers.png"
+    "image": "img/cat/hair-dryers.png",
+    "subcategories": [
+      {
+        "slug": "hair-care",
+        "name": "hair care"
+      },
+      {
+        "slug": "vacuum-cleaners",
+        "name": "vacuum cleaners"
+      }
+    ]
   },
   {
     "slug": "vacuum-cleaners",
