@@ -430,20 +430,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "gopro-13",
-    "name": "GoPro Hero 13 Style",
-    "brand": "GoPro",
-    "price": "$329",
-    "note": "Action · 5.3K",
-    "desc": "Rugged action camera with 5.3K video, HyperSmooth stabilisation and waterproof build.",
-    "collection": "other",
-    "keywords": [
-      "gopro",
-      "action",
-      "camera"
-    ]
-  },
-  {
     "id": "cartier-glasses",
     "name": "Cartier Style Sunglasses",
     "brand": "Cartier",
