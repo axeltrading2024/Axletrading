@@ -312,7 +312,7 @@ window.PRODUCTS = [
     "id": "rolex-daytona",
     "name": "Rolex Daytona Style",
     "brand": "Rolex",
-    "price": "$329",
+    "price": "€65",
     "note": "Chronograph",
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
