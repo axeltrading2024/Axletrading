@@ -92,11 +92,17 @@
     if (!items.length) return CFG.greeting;
     var lines = [CFG.inquiryIntro, ''];
     items.forEach(function (it, i) {
-      lines.push((i + 1) + '. ' + it.name + ' (' + it.brand + ') — ' + it.price + ' × ' + it.qty);
+      var label = it.name + (it.variant ? ' [' + it.variant + ']' : '');
+      lines.push((i + 1) + '. ' + label + ' (' + it.brand + ') — ' + it.price + ' × ' + it.qty);
     });
     lines.push('');
     lines.push(CFG.inquiryOutro);
     return lines.join('\n');
+  }
+
+  /** 询价篮条目唯一键：同产品不同型号是不同条目 */
+  function itemKey(it) {
+    return it.id + (it.variant ? '::' + it.variant : '');
   }
 
   /* ---------------- 询价篮 ---------------- */
@@ -113,6 +119,7 @@
         this.items = arr.filter(function (it) { return it && it.id; }).map(function (it) {
           return {
             id: it.id,
+            variant: it.variant || '',
             name: it.name || '',
             brand: it.brand || '',
             image: it.image || '',
@@ -130,16 +137,17 @@
     onChange: function (fn) { this.listeners.push(fn); },
     emit: function () { this.listeners.forEach(function (fn) { fn(Store.items); }); },
 
-    has: function (id) { return this.items.some(function (it) { return it.id === id; }); },
+    has: function (key) { return this.items.some(function (it) { return itemKey(it) === key; }); },
     count: function () { return this.items.reduce(function (n, it) { return n + it.qty; }, 0); },
 
     add: function (product) {
-      var existing = this.items.filter(function (it) { return it.id === product.id; })[0];
+      var key = itemKey(product);
+      var existing = this.items.filter(function (it) { return itemKey(it) === key; })[0];
       if (existing) {
         existing.qty += 1;
       } else {
         this.items.push({
-          id: product.id, name: product.name, brand: product.brand,
+          id: product.id, variant: product.variant || '', name: product.name, brand: product.brand,
           image: product.image, price: product.price, qty: 1,
         });
       }
@@ -147,15 +155,15 @@
       this.emit();
     },
 
-    setQty: function (id, qty) {
-      if (qty <= 0) return this.remove(id);
-      this.items.forEach(function (it) { if (it.id === id) it.qty = Math.floor(qty); });
+    setQty: function (key, qty) {
+      if (qty <= 0) return this.remove(key);
+      this.items.forEach(function (it) { if (itemKey(it) === key) it.qty = Math.floor(qty); });
       this.save();
       this.emit();
     },
 
-    remove: function (id) {
-      this.items = this.items.filter(function (it) { return it.id !== id; });
+    remove: function (key) {
+      this.items = this.items.filter(function (it) { return itemKey(it) !== key; });
       this.save();
       this.emit();
     },
@@ -323,20 +331,21 @@
       return;
     }
     body.innerHTML = Store.items.map(function (it) {
+      var key = itemKey(it);
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
           '<div class="info">' +
-            '<p class="i-name">' + esc(it.name) + '</p>' +
+            '<p class="i-name">' + esc(it.name) + (it.variant ? ' <span class="i-var">· ' + esc(it.variant) + '</span>' : '') + '</p>' +
             '<p class="i-brand">' + esc(it.brand) + '</p>' +
             '<p class="i-price">' + esc(it.price) + '</p>' +
             '<div class="qty">' +
-              '<button type="button" data-qty="' + esc(it.id) + '" data-delta="-1" aria-label="Decrease">−</button>' +
+              '<button type="button" data-qty="' + esc(key) + '" data-delta="-1" aria-label="Decrease">−</button>' +
               '<span class="n">' + it.qty + '</span>' +
-              '<button type="button" data-qty="' + esc(it.id) + '" data-delta="1" aria-label="Increase">+</button>' +
+              '<button type="button" data-qty="' + esc(key) + '" data-delta="1" aria-label="Increase">+</button>' +
             '</div>' +
           '</div>' +
-          '<button type="button" class="inq-remove" data-remove="' + esc(it.id) + '" aria-label="Remove">' + ICON.trash + '</button>' +
+          '<button type="button" class="inq-remove" data-remove="' + esc(key) + '" aria-label="Remove">' + ICON.trash + '</button>' +
         '</div>';
     }).join('');
   }
@@ -344,7 +353,8 @@
   /** 同步所有「Add to Inquiry」按钮的状态 */
   function syncAddButtons() {
     $$('[data-add]').forEach(function (btn) {
-      var inList = Store.has(btn.getAttribute('data-add'));
+      var key = itemKey({ id: btn.getAttribute('data-add'), variant: btn.getAttribute('data-variant') || '' });
+      var inList = Store.has(key);
       btn.classList.toggle('btn-in-cart', inList);
       btn.classList.toggle('btn-outline', !inList);
       btn.setAttribute('aria-pressed', inList ? 'true' : 'false');
@@ -365,11 +375,23 @@
     clearTimeout(bumpTimer);
   }
 
-  function addProduct(id, silent) {
+  function addProduct(id, variant, silent) {
     var p = getProduct(id);
     if (!p) return;
-    Store.add(p);
-    if (!silent) toast(p.name + ' added to inquiry');
+    var v = null;
+    if (variant && p.variants && p.variants.length) {
+      p.variants.forEach(function (x) { if (x.name === variant) v = x; });
+    }
+    Store.add({
+      id: p.id,
+      variant: v ? v.name : '',
+      name: p.name,
+      brand: p.brand,
+      image: v ? v.image : p.image,
+      price: v ? v.price : p.price,
+      qty: 1,
+    });
+    if (!silent) toast(p.name + (v ? ' [' + v.name + ']' : '') + ' added to inquiry');
   }
 
   /* ---------------- 全局事件委托 ---------------- */
@@ -379,7 +401,7 @@
 
       var addBtn = t.closest('[data-add]');
       if (addBtn) {
-        addProduct(addBtn.getAttribute('data-add'));
+        addProduct(addBtn.getAttribute('data-add'), addBtn.getAttribute('data-variant') || '');
         return;
       }
 
@@ -388,10 +410,10 @@
 
       var qtyBtn = t.closest('[data-qty]');
       if (qtyBtn) {
-        var id = qtyBtn.getAttribute('data-qty');
+        var key = qtyBtn.getAttribute('data-qty');
         var delta = parseInt(qtyBtn.getAttribute('data-delta'), 10);
-        var cur = Store.items.filter(function (it) { return it.id === id; })[0];
-        if (cur) Store.setQty(id, cur.qty + delta);
+        var cur = Store.items.filter(function (it) { return itemKey(it) === key; })[0];
+        if (cur) Store.setQty(key, cur.qty + delta);
         return;
       }
 
@@ -576,6 +598,10 @@
     var cat = getCategory(p.collection);
     document.title = p.name + ' — ' + CFG.brand;
 
+    var variants = (p.variants && p.variants.length) ? p.variants : null;
+    var defImage = p.image || '';
+    var defPrice = p.price || '';
+
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
         '<a href="index.html">Home</a><span class="sep">/</span>' +
@@ -583,14 +609,24 @@
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
       '<div class="detail">' +
-        '<div class="detail-media"><img src="' + esc(p.image) + '" alt="' + esc(p.name) + '"></div>' +
+        '<div class="detail-media"><img data-variant-img src="' + esc(defImage) + '" alt="' + esc(p.name) + '"></div>' +
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
           '<h1>' + esc(p.name) + '</h1>' +
-          '<p class="detail-price">' + esc(p.price) + '</p>' +
+          '<p class="detail-price" data-variant-price>' + esc(defPrice) + '</p>' +
           '<p class="detail-desc">' + esc(p.desc || p.note) + '</p>' +
+          (variants
+            ? '<div class="variant-block">' +
+                '<div class="variant-label">Model / Option</div>' +
+                '<div class="variant-row">' +
+                  variants.map(function (v, i) {
+                    return '<button type="button" class="variant-chip' + (i === 0 ? ' is-active' : '') + '" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
+                  }).join('') +
+                '</div>' +
+              '</div>'
+            : '') +
           '<div class="detail-actions">' +
-            '<button type="button" class="btn btn-dark" data-add="' + esc(p.id) + '">' +
+            '<button type="button" class="btn btn-dark" data-add="' + esc(p.id) + '"' + (variants ? ' data-variant="' + esc(variants[0].name) + '"' : '') + '>' +
               '<span class="ico">' + ICON.plus + '</span><span class="lbl">Add to Inquiry</span>' +
             '</button>' +
             '<a class="btn btn-whatsapp" data-ask="' + esc(p.id) + '" href="#" target="_blank" rel="noreferrer">' +
@@ -607,6 +643,31 @@
             : '') +
         '</div>' +
       '</div>';
+
+    // 型号切换：点型号按钮 → 换主图 / 换价格 / 更新 Add 按钮与 WhatsApp
+    if (variants) {
+      var imgEl = $('[data-variant-img]');
+      var priceEl = $('[data-variant-price]');
+      var addBtn = $('[data-add][data-variant]');
+      var askEl = $('[data-ask]');
+      $$('.variant-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
+          chip.classList.add('is-active');
+          var vImg = chip.getAttribute('data-variant-image');
+          var vPrice = chip.getAttribute('data-variant-price');
+          var vName = chip.getAttribute('data-variant');
+          if (imgEl) imgEl.src = vImg;
+          if (priceEl) priceEl.textContent = vPrice;
+          if (addBtn) addBtn.setAttribute('data-variant', vName);
+          if (askEl) {
+            askEl.href = waLink("Hi " + CFG.contactName + "! I'm interested in " + p.name +
+              " (" + vName + ", " + vPrice + ", " + p.brand + "). Could you share pricing and MOQ?");
+          }
+          syncAddButtons();
+        });
+      });
+    }
 
     // 「Ask on WhatsApp」带上这个产品的信息
     var ask = $('[data-ask]');
