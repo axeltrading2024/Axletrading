@@ -107,8 +107,8 @@ window.CATEGORIES = [
   },
   {
     "slug": "chargers",
-    "name": "Chargers",
-    "tagline": "Power, everywhere",
+    "name": "cellphone accessories",
+    "tagline": "Power and protection",
     "image": "img/cat/chargers.png"
   },
   {
