@@ -523,7 +523,7 @@ window.PRODUCTS = [
     "id": "gentle-monster",
     "name": "Gentle Monster Style",
     "brand": "Gentle Monster",
-    "price": "$149",
+    "price": "€35",
     "note": "Acetate frame",
     "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
     "collection": "sunglasses",
