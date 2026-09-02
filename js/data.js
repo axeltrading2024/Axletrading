@@ -516,6 +516,11 @@ window.PRODUCTS = [
         "name": "MT5",
         "price": "€60",
         "image": "img/prod/rayban-meta-mt5.jpg"
+      },
+      {
+        "name": "rayban meata",
+        "price": "",
+        "image": ""
       }
     ]
   },
