@@ -565,9 +565,9 @@ window.PRODUCTS = [
   },
   {
     "id": "iphone-case-clear",
-    "name": "iPhone 16 Pro Clear Case",
+    "name": "iPhone 17 official case",
     "brand": "EddySupply",
-    "price": "$12",
+    "price": "€6",
     "note": "MagSafe compatible",
     "desc": "Slim clear case with reinforced corners and a full-strength MagSafe magnet ring.",
     "collection": "chargers",
@@ -576,6 +576,23 @@ window.PRODUCTS = [
       "iphone",
       "case",
       "clear"
+    ],
+    "variants": [
+      {
+        "name": "clear",
+        "price": "",
+        "image": "img/prod/iphone-case-clear-clear.jpg"
+      },
+      {
+        "name": "Woven",
+        "price": "",
+        "image": "img/prod/iphone-case-clear-woven.jpg"
+      },
+      {
+        "name": "silicon",
+        "price": "",
+        "image": "img/prod/iphone-case-clear-silicon.jpg"
+      }
     ]
   },
   {
