@@ -719,6 +719,48 @@ window.PRODUCTS = [
     "note": "ANC-valid serial number-magsafe",
     "desc": "active noise cancelling earbuds",
     "collection": "earbuds-headphones"
+  },
+  {
+    "id": "r",
+    "name": "rolex datejust",
+    "brand": "",
+    "price": "€65",
+    "note": "steel-automatic movement",
+    "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "keywords": [
+      "rolex",
+      "datejust",
+      "brand wathes"
+    ],
+    "variants": [
+      {
+        "name": "golden day-date",
+        "price": "",
+        "image": "img/prod/r-golden-day-date.jpg"
+      },
+      {
+        "name": "green",
+        "price": "",
+        "image": "img/prod/r-green.jpg"
+      },
+      {
+        "name": "white",
+        "price": "",
+        "image": "img/prod/r-white.jpg"
+      },
+      {
+        "name": "black golden",
+        "price": "",
+        "image": "img/prod/r-black-golden.jpg"
+      },
+      {
+        "name": "blue",
+        "price": "",
+        "image": "img/prod/r-blue.jpg"
+      }
+    ]
   }
 ];
 
