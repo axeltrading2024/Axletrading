@@ -388,6 +388,33 @@ window.PRODUCTS = [
       "submariner",
       "luxury",
       "watch"
+    ],
+    "variants": [
+      {
+        "name": "black",
+        "price": "",
+        "image": "img/prod/rolex-submariner-black.jpg"
+      },
+      {
+        "name": "green-black",
+        "price": "",
+        "image": ""
+      },
+      {
+        "name": "green",
+        "price": "",
+        "image": "img/prod/rolex-submariner-green.jpg"
+      },
+      {
+        "name": "black-golden",
+        "price": "",
+        "image": "img/prod/rolex-submariner-black-golden.jpg"
+      },
+      {
+        "name": "blue-golden",
+        "price": "",
+        "image": "img/prod/rolex-submariner-blue-golden.jpg"
+      }
     ]
   },
   {
