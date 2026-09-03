@@ -690,16 +690,64 @@ window.PRODUCTS = [
   },
   {
     "id": "gentle-monster",
-    "name": "Gentle Monster Style",
-    "brand": "Gentle Monster",
+    "name": "LV style sunglasses",
+    "brand": "Oem",
     "price": "€35",
     "note": "Acetate frame",
     "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
     "collection": "sunglasses",
     "subcategory": "luxury",
     "keywords": [
-      "gentle monster",
+      "LV",
+      "luxury",
       "sunglasses"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/gentle-monster-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/gentle-monster-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/gentle-monster-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/gentle-monster-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/gentle-monster-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/gentle-monster-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/gentle-monster-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/gentle-monster-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/gentle-monster-9.jpg"
+      }
     ]
   },
   {
