@@ -431,6 +431,43 @@ window.PRODUCTS = [
       "daytona",
       "luxury",
       "watch"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/rolex-daytona-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/rolex-daytona-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/rolex-daytona-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/rolex-daytona-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/rolex-daytona-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/rolex-daytona-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/rolex-daytona-7.jpg"
+      }
     ]
   },
   {
