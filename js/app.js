@@ -21,6 +21,15 @@
   /** 搜索归一化：小写 + 去空格 */
   function norm(s) { return String(s || '').toLowerCase().replace(/\s+/g, ''); }
 
+  /* ---------------- 图片加载失败兜底（显示占位图，不借用分类图） ---------------- */
+  var PLACEHOLDER_IMG = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23f1efe8'/%3E%3Cg fill='none' stroke='%23b4b2a9' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='116' y='136' width='168' height='128' rx='14'/%3E%3Ccircle cx='168' cy='180' r='15'/%3E%3Cpath d='M128 250l46-42 34 30 38-38 26 26'/%3E%3C/g%3E%3C/svg%3E";
+  document.addEventListener('error', function (e) {
+    var t = e.target;
+    if (t && t.tagName === 'IMG' && String(t.src).indexOf('data:image/svg+xml') !== 0) {
+      t.src = PLACEHOLDER_IMG;
+    }
+  }, true);
+
   /** 从 "$129" / "¥899" 里拆出货币符号和数值 */
   function parsePrice(p) {
     var m = String(p || '').match(/^([^\d\s]*)?\s*([\d.,]+)/);
@@ -388,7 +397,7 @@
       name: p.name,
       brand: p.brand,
       image: v ? v.image : p.image,
-      price: v ? v.price : p.price,
+      price: v ? (v.price || p.price) : p.price,
       qty: 1,
     });
     if (!silent) toast(p.name + (v ? ' [' + v.name + ']' : '') + ' added to inquiry');
@@ -453,31 +462,7 @@
     var phEl = $('[data-search-input]');
     if (phEl) phEl.placeholder = CFG.searchPlaceholder;
 
-    // 主推品：从热门里随机挑一个
-    var featured = $('[data-featured]');
-    if (featured) {
-      var pool = popularProducts();
-      var pick = pool[Math.floor(Math.random() * pool.length)] || PRODUCTS[0];
-      if (pick) {
-        featured.innerHTML = '' +
-          '<p class="eyebrow" style="letter-spacing:.28em">Featured this visit</p>' +
-          '<div class="featured-stage"><div class="tilt" data-tilt>' +
-            '<img class="featured-img" src="' + esc(pick.categoryImage) + '" alt="' + esc(pick.name) + '" draggable="false" data-tilt-img>' +
-          '</div></div>' +
-          '<div class="featured-meta">' +
-            '<p class="eyebrow-lg">' + esc(pick.brand) + '</p>' +
-            '<h2>' + esc(pick.name) + '</h2>' +
-            '<p class="note">' + esc(pick.note) + ' · ' + esc(pick.price) + '</p>' +
-            '<div class="featured-actions">' +
-              '<button type="button" class="btn btn-outline" data-add="' + esc(pick.id) + '">' +
-                '<span class="ico">' + ICON.plus + '</span><span class="lbl">Add to Inquiry</span>' +
-              '</button>' +
-              '<a class="btn btn-outline" href="product.html?id=' + esc(pick.id) + '">View details' + ICON.arrowRight + '</a>' +
-            '</div>' +
-          '</div>';
-      }
-      bindTilt();
-    }
+    // 主推品区块已移除（2026-09-03 需求），首页直接进入热门产品
 
     // 热门轮播
     var scroller = $('[data-popular]');
