@@ -191,19 +191,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods-4",
-    "name": "AirPods 4",
-    "brand": "oem",
-    "price": "€12",
-    "note": "New generation-ANC-serial number",
-    "desc": "Redesigned for all-day comfort with a smaller case and improved call quality.",
-    "collection": "earbuds-headphones",
-    "keywords": [
-      "airpods",
-      "apple"
-    ]
-  },
-  {
     "id": "sony-wh1000",
     "name": "Sony-style Wireless Headphones",
     "brand": "Sony",
@@ -932,48 +919,6 @@ window.PRODUCTS = [
     "note": "dual camera-360 protection",
     "desc": "",
     "collection": "other"
-  },
-  {
-    "id": "r",
-    "name": "rolex datejust",
-    "brand": "",
-    "price": "€65",
-    "note": "steel-automatic movement",
-    "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "keywords": [
-      "rolex",
-      "datejust",
-      "brand wathes"
-    ],
-    "variants": [
-      {
-        "name": "golden day-date",
-        "price": "",
-        "image": "img/prod/r-golden-day-date.jpg"
-      },
-      {
-        "name": "green",
-        "price": "",
-        "image": "img/prod/r-green.jpg"
-      },
-      {
-        "name": "white",
-        "price": "",
-        "image": "img/prod/r-white.jpg"
-      },
-      {
-        "name": "black golden",
-        "price": "",
-        "image": "img/prod/r-black-golden.jpg"
-      },
-      {
-        "name": "blue",
-        "price": "",
-        "image": "img/prod/r-blue.jpg"
-      }
-    ]
   }
 ];
 
