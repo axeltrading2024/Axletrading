@@ -581,11 +581,10 @@ window.PRODUCTS = [
     "id": "dyson-airwrap",
     "name": "Dyson Airwrap Style",
     "brand": "Dyson",
-    "price": "€135",
+    "price": "€150",
     "note": "Multi-styler",
     "desc": "Curl, wave, smooth and dry with no extreme heat, using controlled Coanda airflow.",
     "collection": "hair-dryers",
-    "subcategory": "hair-care",
     "keywords": [
       "dyson",
       "airwrap",
@@ -593,54 +592,19 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "HS05-1",
+        "name": "1",
         "price": "",
         "image": "img/prod/dyson-airwrap-1.jpg"
       },
       {
-        "name": "HS05-2",
+        "name": "2",
         "price": "",
         "image": "img/prod/dyson-airwrap-2.jpg"
       },
       {
-        "name": "HS05-3",
+        "name": "3",
         "price": "",
         "image": "img/prod/dyson-airwrap-3.jpg"
-      },
-      {
-        "name": "HS05-4",
-        "price": "",
-        "image": "img/prod/dyson-airwrap-4.jpg"
-      },
-      {
-        "name": "HS08-1",
-        "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-1.jpg"
-      },
-      {
-        "name": "HS08-2",
-        "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-2.jpg"
-      },
-      {
-        "name": "HS08-3",
-        "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-3.jpg"
-      },
-      {
-        "name": "HS08-4",
-        "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-4.jpg"
-      },
-      {
-        "name": "HS09-1",
-        "price": "€150",
-        "image": "img/prod/dyson-airwrap-hs09-1.jpg"
-      },
-      {
-        "name": "HS09-2",
-        "price": "€150",
-        "image": "img/prod/dyson-airwrap-hs09-2.jpg"
       }
     ]
   },
