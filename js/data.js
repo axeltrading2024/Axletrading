@@ -1060,17 +1060,12 @@ window.PRODUCTS = [
   }
 ];
 
-/* ---------------- 派生：图片路径 ---------------- */
-var FALLBACK_TO_CATEGORY = ["boom-tower","dyson-airwrap","magsafe-pad"];
-
+/* ---------------- 派生：图片路径（分类图与产品图相互独立） ---------------- */
 (function buildImagePaths() {
   window.CATEGORIES.forEach(function (c) {
     c.image = 'img/cat/' + c.slug + '.png';
   });
   window.PRODUCTS.forEach(function (p) {
-    p.categoryImage = 'img/cat/' + p.collection + '.png';
-    p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1
-      ? p.categoryImage
-      : 'img/prod/' + p.id + '.jpg';
+    p.image = 'img/prod/' + p.id + '.jpg';
   });
 })();
