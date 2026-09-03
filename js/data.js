@@ -126,6 +126,12 @@ window.CATEGORIES = [
     "name": "Other Products",
     "tagline": "The rest",
     "image": "img/cat/other.png"
+  },
+  {
+    "slug": "clothes-and-s-hose",
+    "name": "clothes &s hose",
+    "tagline": "fashion style",
+    "subcategories": []
   }
 ];
 
