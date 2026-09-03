@@ -592,19 +592,54 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
-        "price": "",
+        "name": "HS05-1",
+        "price": "€135",
         "image": "img/prod/dyson-airwrap-1.jpg"
       },
       {
-        "name": "2",
-        "price": "",
+        "name": "HS05-2",
+        "price": "€135",
         "image": "img/prod/dyson-airwrap-2.jpg"
       },
       {
-        "name": "3",
-        "price": "",
+        "name": "HS05-3",
+        "price": "€135",
         "image": "img/prod/dyson-airwrap-3.jpg"
+      },
+      {
+        "name": "HS05-4",
+        "price": "€135",
+        "image": "img/prod/dyson-airwrap-hs05-4.jpg"
+      },
+      {
+        "name": "HS08-1",
+        "price": "€145",
+        "image": "img/prod/dyson-airwrap-hs08-1.jpg"
+      },
+      {
+        "name": "HS08-2",
+        "price": "€145",
+        "image": "img/prod/dyson-airwrap-hs08-2.jpg"
+      },
+      {
+        "name": "HS08-3",
+        "price": "€145",
+        "image": "img/prod/dyson-airwrap-hs08-3.jpg"
+      },
+      {
+        "name": "HS08-4",
+        "price": "€145",
+        "image": "img/prod/dyson-airwrap-hs08-4.jpg"
+      },
+      {
+        "name": "Hs09-1",
+        "price": "€150",
+        "image": "img/prod/dyson-airwrap-hs09-1.jpg"
+      },
+      {
+        "name": "Hs09-2",
+        "price": "€150",
+        "image": "img/prod/dyson-airwrap-hs09-2.jpg"
       }
     ]
   },
