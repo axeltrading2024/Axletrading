@@ -934,15 +934,6 @@ window.PRODUCTS = [
     "collection": "other"
   },
   {
-    "id": "a-2",
-    "name": "airpodspro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC-valid serial number-magsafe",
-    "desc": "active noise cancelling earbuds",
-    "collection": "earbuds-headphones"
-  },
-  {
     "id": "r",
     "name": "rolex datejust",
     "brand": "",
