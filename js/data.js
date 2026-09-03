@@ -628,19 +628,36 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "cartier-glasses",
-    "name": "Cartier Style Sunglasses",
-    "brand": "Cartier",
+    "id": "prada-glasses",
+    "name": "prada Style Sunglasses",
+    "brand": "prada",
     "price": "€35",
     "note": "Gold accents",
     "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
     "collection": "sunglasses",
     "subcategory": "luxury",
     "keywords": [
-      "cartier",
+      "prada",
       "sunglasses",
       "luxury",
       "glasses"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/prada-glasses-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/prada-glasses-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/prada-glasses-3.jpg"
+      }
     ]
   },
   {
