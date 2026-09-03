@@ -585,6 +585,23 @@ window.PRODUCTS = [
       "dyson",
       "airwrap",
       "styler"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/dyson-airwrap-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/dyson-airwrap-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/dyson-airwrap-3.jpg"
+      }
     ]
   },
   {
