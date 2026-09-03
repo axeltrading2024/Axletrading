@@ -298,6 +298,18 @@ window.PRODUCTS = [
       "party",
       "tower",
       "karaoke"
+    ],
+    "variants": [
+      {
+        "name": "party box120",
+        "price": "€180",
+        "image": "img/prod/boom-tower-party-box120.jpg"
+      },
+      {
+        "name": "partybox 320",
+        "price": "€225",
+        "image": "img/prod/boom-tower-partybox-320.jpg"
+      }
     ]
   },
   {
@@ -1048,12 +1060,17 @@ window.PRODUCTS = [
   }
 ];
 
-/* ---------------- 派生：图片路径（分类图与产品图相互独立） ---------------- */
+/* ---------------- 派生：图片路径 ---------------- */
+var FALLBACK_TO_CATEGORY = ["boom-tower","dyson-airwrap","magsafe-pad"];
+
 (function buildImagePaths() {
   window.CATEGORIES.forEach(function (c) {
     c.image = 'img/cat/' + c.slug + '.png';
   });
   window.PRODUCTS.forEach(function (p) {
-    p.image = 'img/prod/' + p.id + '.jpg';
+    p.categoryImage = 'img/cat/' + p.collection + '.png';
+    p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1
+      ? p.categoryImage
+      : 'img/prod/' + p.id + '.jpg';
   });
 })();
