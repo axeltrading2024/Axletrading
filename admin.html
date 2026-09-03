@@ -311,7 +311,6 @@
   }
   /** 生成当前数据的 data.js 完整内容 */
   function buildDataJS() {
-    var fallback = [];
     var prods = PRODUCTS.map(function (p) {
       var o = {
         id: p.id,
@@ -330,7 +329,6 @@
           return { name: v.name, price: v.price || '', image: v.image || '' };
         });
       }
-      if (String(p.image || '').indexOf('img/cat/') === 0) fallback.push(p.id);
       return o;
     });
 
@@ -352,18 +350,13 @@
     lines.push('/* ---------------- 产品 ---------------- */');
     lines.push('window.PRODUCTS = ' + JSON.stringify(prods, null, 2) + ';');
     lines.push('');
-    lines.push('/* ---------------- 派生：图片路径 ---------------- */');
-    lines.push('var FALLBACK_TO_CATEGORY = ' + JSON.stringify(fallback) + ';');
-    lines.push('');
+    lines.push('/* ---------------- 派生：图片路径（分类图与产品图相互独立） ---------------- */');
     lines.push('(function buildImagePaths() {');
     lines.push('  window.CATEGORIES.forEach(function (c) {');
     lines.push("    c.image = 'img/cat/' + c.slug + '.png';");
     lines.push('  });');
     lines.push('  window.PRODUCTS.forEach(function (p) {');
-    lines.push("    p.categoryImage = 'img/cat/' + p.collection + '.png';");
-    lines.push('    p.image = FALLBACK_TO_CATEGORY.indexOf(p.id) > -1');
-    lines.push("      ? p.categoryImage");
-    lines.push("      : 'img/prod/' + p.id + '.jpg';");
+    lines.push("    p.image = 'img/prod/' + p.id + '.jpg';");
     lines.push('  });');
     lines.push('})();');
     return lines.join('\n');
