@@ -1075,7 +1075,7 @@ window.PRODUCTS = [
     "price": "€25",
     "note": "foot massage",
     "desc": "",
-    "collection": "other",
+    "collection": "clothes-and-s-hose",
     "popular": true,
     "keywords": [
       "nike shose",
