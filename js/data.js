@@ -841,10 +841,10 @@ window.PRODUCTS = [
   },
   {
     "id": "magsafe-pad",
-    "name": "MagSafe Wireless Pad",
+    "name": "cellphone charger",
     "brand": "EddySupply",
-    "price": "$25",
-    "note": "15W",
+    "price": "€2",
+    "note": "20W fast charger",
     "desc": "Magnetic 15W wireless charging pad with an aluminium shell and slip-free base.",
     "collection": "chargers",
     "subcategory": "chargers",
@@ -852,6 +852,33 @@ window.PRODUCTS = [
       "magsafe",
       "wireless",
       "charger"
+    ],
+    "variants": [
+      {
+        "name": "20W adapter",
+        "price": "€2",
+        "image": "img/prod/magsafe-pad-20w-charger.jpg"
+      },
+      {
+        "name": "cable",
+        "price": "€2",
+        "image": "img/prod/magsafe-pad-cable.jpg"
+      },
+      {
+        "name": "charger fit",
+        "price": "€4",
+        "image": "img/prod/magsafe-pad-charger-fit.jpg"
+      },
+      {
+        "name": "wireless",
+        "price": "€6",
+        "image": "img/prod/magsafe-pad-wireless.jpg"
+      },
+      {
+        "name": "magsafe pack",
+        "price": "€8",
+        "image": "img/prod/magsafe-pad-magsafe-pack.jpg"
+      }
     ]
   },
   {
