@@ -500,6 +500,33 @@ window.PRODUCTS = [
       "ap",
       "royal oak",
       "luxury"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-5.jpg"
+      }
     ]
   },
   {
