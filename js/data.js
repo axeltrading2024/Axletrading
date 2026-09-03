@@ -847,7 +847,24 @@ window.PRODUCTS = [
     "note": "protable-bass sound-",
     "desc": "",
     "collection": "speakers",
-    "popular": true
+    "popular": true,
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/b-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/b-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/b-3.jpg"
+      }
+    ]
   },
   {
     "id": "a",
