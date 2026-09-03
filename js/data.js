@@ -559,6 +559,18 @@ window.PRODUCTS = [
       "apple",
       "watch",
       "smart"
+    ],
+    "variants": [
+      {
+        "name": "S11",
+        "price": "",
+        "image": "img/prod/apple-watch-11-s11.jpg"
+      },
+      {
+        "name": "ultra3",
+        "price": "",
+        "image": "img/prod/apple-watch-11-ultra3.jpg"
+      }
     ]
   },
   {
