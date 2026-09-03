@@ -963,6 +963,42 @@ window.PRODUCTS = [
         "image": "img/prod/n-stand-black.jpg"
       }
     ]
+  },
+  {
+    "id": "m",
+    "name": "nike mind001",
+    "brand": "",
+    "price": "€25",
+    "note": "foot massage",
+    "desc": "",
+    "collection": "other",
+    "popular": true,
+    "keywords": [
+      "nike shose",
+      "mind001"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/m-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/m-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/m-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/m-4.jpg"
+      }
+    ]
   }
 ];
 
