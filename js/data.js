@@ -91,7 +91,7 @@ window.CATEGORIES = [
   },
   {
     "slug": "sunglasses",
-    "name": "Sunglasses",
+    "name": "Sunglasses & bags",
     "tagline": "Frame your day",
     "subcategories": [
       {
