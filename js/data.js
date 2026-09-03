@@ -936,6 +936,33 @@ window.PRODUCTS = [
     "note": "dual camera-360 protection",
     "desc": "",
     "collection": "other"
+  },
+  {
+    "id": "n",
+    "name": "NFC card",
+    "brand": "",
+    "price": "€2",
+    "note": "NFC card",
+    "desc": "tap and rate you a five star",
+    "collection": "other",
+    "popular": true,
+    "variants": [
+      {
+        "name": "sticker",
+        "price": "",
+        "image": "img/prod/n-sticker.jpg"
+      },
+      {
+        "name": "stand white",
+        "price": "",
+        "image": "img/prod/n-stand-white.jpg"
+      },
+      {
+        "name": "stand black",
+        "price": "",
+        "image": "img/prod/n-stand-black.jpg"
+      }
+    ]
   }
 ];
 
