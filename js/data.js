@@ -1032,7 +1032,14 @@ window.PRODUCTS = [
     "price": "€59",
     "note": "dual camera-360 protection",
     "desc": "",
-    "collection": "other"
+    "collection": "other",
+    "variants": [
+      {
+        "name": "dual lens",
+        "price": "",
+        "image": ""
+      }
+    ]
   },
   {
     "id": "n",
