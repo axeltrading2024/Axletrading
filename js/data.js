@@ -161,6 +161,33 @@ window.PRODUCTS = [
       "apple",
       "headphones",
       "over-ear"
+    ],
+    "variants": [
+      {
+        "name": "midnight",
+        "price": "",
+        "image": "img/prod/airpods-max-night-black.jpg"
+      },
+      {
+        "name": "starlight",
+        "price": "",
+        "image": "img/prod/airpods-max-starlight.jpg"
+      },
+      {
+        "name": "orange",
+        "price": "",
+        "image": "img/prod/airpods-max-orange.jpg"
+      },
+      {
+        "name": "purple",
+        "price": "",
+        "image": "img/prod/airpods-max-purple.jpg"
+      },
+      {
+        "name": "blue",
+        "price": "",
+        "image": "img/prod/airpods-max-blue.jpg"
+      }
     ]
   },
   {
