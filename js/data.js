@@ -133,9 +133,9 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods Pro 2",
+    "name": "AirPods",
     "brand": "Apple",
-    "price": "€10",
+    "price": "€12",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
@@ -146,6 +146,23 @@ window.PRODUCTS = [
       "wireless",
       "earbuds",
       "anc"
+    ],
+    "variants": [
+      {
+        "name": "pro2",
+        "price": "",
+        "image": "img/prod/airpods-pro-2-airpods-pro2.jpg"
+      },
+      {
+        "name": "gen4",
+        "price": "",
+        "image": "img/prod/airpods-pro-2-airpods-gen4.jpg"
+      },
+      {
+        "name": "pro3",
+        "price": "",
+        "image": "img/prod/airpods-pro-2-pro3.jpg"
+      }
     ]
   },
   {
