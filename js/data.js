@@ -511,6 +511,18 @@ window.PRODUCTS = [
       "supersonic",
       "hair",
       "dryer"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/dyson-supersonic-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/dyson-supersonic-2.jpg"
+      }
     ]
   },
   {
