@@ -129,7 +129,7 @@ window.CATEGORIES = [
   },
   {
     "slug": "clothes-and-s-hose",
-    "name": "clothes &s hose",
+    "name": "clothes & shose",
     "tagline": "fashion style",
     "subcategories": []
   }
