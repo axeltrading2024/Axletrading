@@ -572,7 +572,6 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "luxury",
-    "popular": true,
     "keywords": [
       "ap",
       "royal oak",
