@@ -153,7 +153,7 @@
     } catch (e) { return []; }
   }
 
-  /** 当前清单 → 可复制的专属链接（始终指向首页，客户打开看到精选横幅） */
+  /** 当前清单 → 可复制的专属链接（始终指向首页，客户打开看到报价清单） */
   function buildShareUrl(items) {
     if (!items.length) return '';
     var base = location.origin + location.pathname.replace(/[^/]*$/, 'index.html');
@@ -512,24 +512,14 @@
         return;
       }
 
-      var addAllBtn = t.closest('[data-shared-addall]');
-      if (addAllBtn) {
-        var shared = decodeItems((location.hash.match(/[#&]l=([^&]+)/) || [])[1] || '');
-        shared.forEach(function (it) {
-          var key = itemKey(it);
-          var ex = Store.items.filter(function (x) { return itemKey(x) === key; })[0];
-          if (ex) ex.qty += it.qty; else Store.items.push(it);
-        });
-        Store.save();
-        Store.emit();
-        toast('Added to your inquiry list');
-        return;
-      }
-
-      if (t.closest('[data-shared-dismiss]')) {
-        var sb = $('[data-shared-banner]');
-        if (sb) sb.remove();
-        history.replaceState(null, '', location.pathname + location.search);
+      var sqBtn = t.closest('[data-sqty]');
+      if (sqBtn) {
+        var sIdx = parseInt(sqBtn.getAttribute('data-sqty'), 10);
+        var sDelta = parseInt(sqBtn.getAttribute('data-delta'), 10);
+        if (sharedItems[sIdx]) {
+          sharedItems[sIdx].qty = Math.max(1, sharedItems[sIdx].qty + sDelta);
+          renderSharedQuote();
+        }
         return;
       }
     });
@@ -831,12 +821,56 @@
         '<p>No products in this sub-collection at the moment.</p></div>';
   }
 
-  /* ---------------- 专属链接落地：客户打开 #l=... 时显示精选清单横幅 ---------------- */
+  /* ---------------- 专属链接落地：客户打开 #l=... 时显示报价清单 ---------------- */
+  var sharedItems = [];
+
+  /** 从 "€18" 这类价格串取数值；无效返回 null */
+  function priceNum(s) {
+    var n = parseFloat(String(s).replace(/[^0-9.]/g, ''));
+    return isFinite(n) ? n : null;
+  }
+
+  /** 按当前清单数量计算预估合计（保留首个价格里的货币符号） */
+  function sharedTotal() {
+    var sum = 0, has = false;
+    sharedItems.forEach(function (it) {
+      var n = priceNum(it.price);
+      if (n !== null) { sum += n * it.qty; has = true; }
+    });
+    if (!has) return '';
+    var sym = String(sharedItems[0].price).replace(/[0-9.,\s]/g, '');
+    var r = Math.round(sum * 100) / 100;
+    return sym + (r % 1 === 0 ? String(r) : r.toFixed(2));
+  }
+
+  function renderSharedQuote() {
+    var body = $('[data-shared-body]');
+    if (!body) return;
+    body.innerHTML = sharedItems.map(function (it, idx) {
+      return '' +
+        '<div class="inq-item">' +
+          '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
+          '<div class="info">' +
+            '<p class="i-name">' + esc(it.name) + (it.variant ? ' <span class="i-var">· ' + esc(it.variant) + '</span>' : '') + '</p>' +
+            '<p class="i-brand">' + esc(it.brand || '') + '</p>' +
+            '<p class="i-price">' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</p>' +
+            '<div class="qty">' +
+              '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease">−</button>' +
+              '<span class="n">' + it.qty + '</span>' +
+              '<button type="button" data-sqty="' + idx + '" data-delta="1" aria-label="Increase">+</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+    var totalEl = $('[data-shared-total]');
+    if (totalEl) totalEl.textContent = sharedTotal() || '—';
+  }
+
   function initSharedList() {
     var m = location.hash.match(/[#&]l=([^&]+)/);
     if (!m) return;
-    var items = decodeItems(m[1]);
-    if (!items.length) return;
+    sharedItems = decodeItems(m[1]);
+    if (!sharedItems.length) return;
     var header = $('.site-header');
     var banner = document.createElement('section');
     banner.className = 'shared-banner';
@@ -845,29 +879,17 @@
       '<div class="wrap">' +
         '<div class="shared-head">' +
           '<div>' +
-            '<p class="eyebrow">Curated for you · ' + esc(CFG.brand) + '</p>' +
-            '<h2>' + items.length + ' product' + (items.length === 1 ? '' : 's') + ' picked for you</h2>' +
+            '<p class="eyebrow">Quote list · ' + esc(CFG.brand) + '</p>' +
+            '<h2>' + sharedItems.length + ' product' + (sharedItems.length === 1 ? '' : 's') + ' for your review</h2>' +
           '</div>' +
-          '<button type="button" class="shared-close" data-shared-dismiss aria-label="Dismiss">' + ICON.close + '</button>' +
         '</div>' +
-        '<div class="shared-grid">' +
-          items.map(function (it) {
-            return '<a class="shared-item" href="product.html?id=' + esc(it.id) + '">' +
-              '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy">' +
-              '<span class="s-name">' + esc(it.name) + (it.variant ? ' · ' + esc(it.variant) : '') + '</span>' +
-              '<span class="s-price">' + esc(it.price) + '</span>' +
-            '</a>';
-          }).join('') +
-        '</div>' +
-        '<div class="shared-actions">' +
-          '<a class="btn btn-whatsapp" data-shared-wa href="' + esc(waLink(buildInquiryMessage(items))) + '" target="_blank" rel="noreferrer">' +
-            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Ask about these on WhatsApp' +
-          '</a>' +
-          '<button type="button" class="btn btn-outline" data-shared-addall>Add all to my inquiry list</button>' +
-        '</div>' +
+        '<div class="shared-quote" data-shared-body></div>' +
+        '<div class="shared-total"><span>Estimated total</span><b data-shared-total>—</b></div>' +
+        '<p class="shared-note">Quantities are adjustable. Contact us for an official quotation.</p>' +
       '</div>';
     if (header) header.insertAdjacentElement('afterend', banner);
     else document.body.insertBefore(banner, document.body.firstChild);
+    renderSharedQuote();
   }
 
   /* ---------------- 启动 ---------------- */
