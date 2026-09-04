@@ -238,13 +238,19 @@
     <section class="guide">
       <div class="guide-head">
         <h2>🏪 站点设置：店铺名称与联系方式</h2>
-        <span class="hint">改顶部 logo、页脚版权、WhatsApp 号码（改完自动发布上线）</span>
+        <span class="hint">改顶部 logo、页脚版权、WhatsApp 号码、首页首屏文案（改完自动发布上线）</span>
       </div>
       <div class="guide-body">
         <div class="gh-row"><label>店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply"><span class="help">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
         <div class="gh-row"><label>联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）"></div>
         <div class="gh-row"><label>WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571"><span class="help">页脚和客户看到的格式</span></div>
         <div class="gh-row"><label>WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4"><span class="help">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
+        <div class="gh-row" style="margin-top:18px"><label style="font-weight:700">—— 首页首屏文案 ——</label></div>
+        <div class="gh-row"><label>顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · Product Finder"><span class="help">大标题上方的小字标签</span></div>
+        <div class="gh-row"><label>大标题（第一行）</label><input data-cfg-herotitle placeholder="如 Wholesale products"></div>
+        <div class="gh-row"><label>大标题（第二行·强调色）</label><input data-cfg-heroaccent placeholder="如 made simple."><span class="help">这一行会以强调色斜体显示</span></div>
+        <div class="gh-row"><label>副标题</label><textarea data-cfg-herosub rows="3" placeholder="大标题下方的一段介绍文字"></textarea></div>
+        <div class="gh-row"><label>搜索框提示文字</label><input data-cfg-searchph placeholder="如 Search product, brand, category…"></div>
         <div class="gh-actions">
           <button type="button" class="btn btn-dark" data-cfg-save>💾 保存并发布</button>
         </div>
@@ -1340,6 +1346,16 @@
     $('[data-cfg-contact]').value = CFG.contactName || '';
     $('[data-cfg-wadisplay]').value = CFG.whatsappDisplay || '';
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    var hb = $('[data-cfg-herobadge]');
+    if (hb) hb.value = CFG.heroBadge || ((CFG.brand || '') + ' · Product Finder');
+    var ht = $('[data-cfg-herotitle]');
+    if (ht) ht.value = CFG.heroTitle || '';
+    var ha = $('[data-cfg-heroaccent]');
+    if (ha) ha.value = CFG.heroTitleAccent || '';
+    var hs = $('[data-cfg-herosub]');
+    if (hs) hs.value = CFG.heroSubtitle || '';
+    var sp = $('[data-cfg-searchph]');
+    if (sp) sp.value = CFG.searchPlaceholder || '';
     // 显示号码输入时自动提取拨号号码
     var disp = $('[data-cfg-wadisplay]');
     disp.addEventListener('input', function () {
@@ -1362,6 +1378,18 @@
     if (contact) CFG.contactName = contact;
     if (waDisplay) { CFG.whatsappDisplay = waDisplay; CFG.whatsapp = wa; }
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    // 首页首屏文案（可留空=恢复默认行为）
+    var heroBadge = ($('[data-cfg-herobadge]').value || '').trim();
+    var heroTitle = ($('[data-cfg-herotitle]').value || '').trim();
+    var heroAccent = ($('[data-cfg-heroaccent]').value || '').trim();
+    var heroSub = ($('[data-cfg-herosub]').value || '').trim();
+    var searchPh = ($('[data-cfg-searchph]').value || '').trim();
+    if (!heroTitle && heroAccent) { status('大标题第一行为空：请填写第一行，第二行才会显示在其下方', 'err'); return; }
+    if (heroBadge) CFG.heroBadge = heroBadge; else delete CFG.heroBadge;
+    if (heroTitle) CFG.heroTitle = heroTitle; else delete CFG.heroTitle;
+    if (heroAccent) CFG.heroTitleAccent = heroAccent; else delete CFG.heroTitleAccent;
+    if (heroSub) CFG.heroSubtitle = heroSub; else delete CFG.heroSubtitle;
+    if (searchPh) CFG.searchPlaceholder = searchPh; else delete CFG.searchPlaceholder;
     document.title = '产品管理 · ' + brand;
     status('已保存站点设置');
     if (ghEnabled()) {
