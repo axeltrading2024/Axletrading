@@ -1493,6 +1493,53 @@ window.PRODUCTS = [
         "image": "img/prod/v-9.jpg"
       }
     ]
+  },
+  {
+    "id": "p",
+    "name": "popular perfumes",
+    "brand": "",
+    "price": "€18",
+    "note": "popular hot perfumes",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "xerjoff erba pura",
+        "price": "",
+        "image": "img/prod/p-creed-pura-herb.jpg"
+      },
+      {
+        "name": "xerjoff  coro",
+        "price": "",
+        "image": "img/prod/p-xerjoff-coro.jpg"
+      },
+      {
+        "name": "xerjoff Accento",
+        "price": "",
+        "image": "img/prod/p-xerjoff-accento.jpg"
+      },
+      {
+        "name": "marly layton",
+        "price": "",
+        "image": "img/prod/p-marly-layton.jpg"
+      },
+      {
+        "name": "creed",
+        "price": "",
+        "image": "img/prod/p-creed.jpg"
+      },
+      {
+        "name": "YSL libre",
+        "price": "",
+        "image": "img/prod/p-ysl-libre.jpg"
+      },
+      {
+        "name": "YSL saint laurent",
+        "price": "",
+        "image": "img/prod/p-ysl-saint-laurent.jpg"
+      }
+    ]
   }
 ];
 
