@@ -916,6 +916,23 @@ a {
   transform: scale(1.06);
 }
 
+/* 手机端：卡片变小，收窄留白并放大图片比例 */
+@media (max-width: 639px) {
+  .cat-card .media {
+    padding: 14px 12px 6px;
+  }
+  .cat-card .media img {
+    max-height: 88%;
+    max-width: 94%;
+  }
+  .cat-card .foot {
+    padding: 12px 14px;
+  }
+  .cat-card .foot h3 {
+    font-size: 18px;
+  }
+}
+
 .cat-card .foot {
   border-top: 1px solid oklch(92% 0 0 / 0.4);
   background: oklch(100% 0 0 / 0.7);
