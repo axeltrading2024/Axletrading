@@ -404,3 +404,17 @@
 }
 .sub-chip b { color: #e5484d; font-weight: 700; }
 .sub-chip:hover { background: color-mix(in srgb, #e5484d 12%, var(--muted)); }
+.sub-chip.armed { background: #e5484d; color: #fff; }
+.sub-chip.armed b { color: #fff; }
+
+/* 行内子分类输入（替代 prompt 弹窗） */
+.sub-inline { display: inline-flex; align-items: center; gap: 6px; margin-left: 6px; vertical-align: middle; }
+.sub-inline input {
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: 4px 12px; font: inherit; font-size: 12px; width: 170px;
+  background: var(--card); color: var(--foreground); outline: none;
+}
+.sub-inline input:focus { border-color: var(--foreground); }
+
+/* 两段式确认态（替代 confirm 弹窗） */
+.mini-btn.armed { background: #e5484d; border-color: #e5484d; color: #fff; }
