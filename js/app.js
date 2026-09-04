@@ -580,12 +580,18 @@
         setWidth = scroller.children[realCount].offsetLeft - scroller.children[0].offsetLeft;
       }
       // 滚动停稳后：若已进入克隆区，瞬时跳回等价的真实位置
+      // 注意：容器 CSS 有 scroll-behavior: smooth，直接赋值 scrollLeft 也会带动画（看起来就是"退回去"），
+      // 必须临时改成 auto 再赋值，才是真正的瞬时无缝跳转
       var settleTimer = null;
+      function snapBack() {
+        if (setWidth <= 0 || scroller.scrollLeft < setWidth) return;
+        scroller.style.scrollBehavior = 'auto';
+        scroller.scrollLeft -= setWidth;
+        scroller.style.scrollBehavior = '';
+      }
       scroller.addEventListener('scroll', function () {
         clearTimeout(settleTimer);
-        settleTimer = setTimeout(function () {
-          if (setWidth > 0 && scroller.scrollLeft >= setWidth) scroller.scrollLeft -= setWidth;
-        }, 80);
+        settleTimer = setTimeout(snapBack, 80);
       });
 
       // 每 2 秒自动播放一格；悬停/触摸暂停，移开后继续；用户偏好减少动效时不启用
@@ -606,7 +612,11 @@
       if (prev) prev.onclick = function () {
         stopAuto();
         try {
-          if (setWidth > 0 && scroller.scrollLeft < step()) scroller.scrollLeft += setWidth;
+          if (setWidth > 0 && scroller.scrollLeft < step()) {
+            scroller.style.scrollBehavior = 'auto';
+            scroller.scrollLeft += setWidth;
+            scroller.style.scrollBehavior = '';
+          }
           scroller.scrollBy({ left: -step(), behavior: 'smooth' });
         } catch (e) { /* 同上 */ }
         startAuto();
