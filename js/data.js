@@ -337,6 +337,33 @@ window.PRODUCTS = [
       "flip",
       "speaker",
       "bluetooth"
+    ],
+    "variants": [
+      {
+        "name": "Flip 7",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-flip-7.jpg"
+      },
+      {
+        "name": "charge 6",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-charge-6.jpg"
+      },
+      {
+        "name": "GO4",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-go4.jpg"
+      },
+      {
+        "name": "Clip5",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-clip5.jpg"
+      },
+      {
+        "name": "Pulse 6",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-pulse-6.jpg"
+      }
     ]
   },
   {
