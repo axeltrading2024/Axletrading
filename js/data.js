@@ -377,9 +377,9 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "intensely",
+        "name": "carol fantasy",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-intensely.jpg"
+        "image": "img/prod/valentino-born-in-roma-carol-fantasy.jpg"
       },
       {
         "name": "uno",
@@ -397,9 +397,9 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-miss.jpg"
       },
       {
-        "name": "caro fantasy",
+        "name": "intense",
         "price": "",
-        "image": ""
+        "image": "img/prod/valentino-born-in-roma-intense.jpg"
       }
     ]
   },
