@@ -1042,6 +1042,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-",
     "desc": "",
     "collection": "speakers",
+    "popular": true,
     "variants": [
       {
         "name": "1",
