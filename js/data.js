@@ -341,32 +341,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "boom-tower",
-    "name": "Party Tower 120 Speaker",
-    "brand": "EddySupply",
-    "price": "€180",
-    "note": "LED · Karaoke ready-outdoor swimming pool",
-    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
-    "collection": "speakers",
-    "keywords": [
-      "party",
-      "tower",
-      "karaoke"
-    ],
-    "variants": [
-      {
-        "name": "party box120",
-        "price": "€180",
-        "image": "img/prod/boom-tower-party-box120.jpg"
-      },
-      {
-        "name": "partybox 320",
-        "price": "€225",
-        "image": "img/prod/boom-tower-partybox-320.jpg"
-      }
-    ]
-  },
-  {
     "id": "bleu-chanel",
     "name": "Bleu de Chanel EDP 100ml",
     "brand": "Chanel",
@@ -379,43 +353,6 @@ window.PRODUCTS = [
       "chanel",
       "bleu",
       "perfume"
-    ]
-  },
-  {
-    "id": "baccarat",
-    "name": "Baccarat Rouge 540",
-    "brand": "MFK",
-    "price": "€18",
-    "note": "Niche · Saffron amber",
-    "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
-    "collection": "perfumes",
-    "subcategory": "niche",
-    "keywords": [
-      "baccarat",
-      "niche",
-      "perfume"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/baccarat-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/baccarat-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/baccarat-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/baccarat-4.jpg"
-      }
     ]
   },
   {
@@ -458,6 +395,100 @@ window.PRODUCTS = [
         "name": "caro fantasy",
         "price": "",
         "image": ""
+      }
+    ]
+  },
+  {
+    "id": "a",
+    "name": "Armani style perfumes",
+    "brand": "Armani",
+    "price": "€18",
+    "note": "A captivating blend of sugar-coated chestnut and vanilla, defining modern masculine strength through a warm, addictive gourmand-woody scent",
+    "desc": "Armani Stronger With You is an oriental gourmand fragrance crafted for the modern man. It opens with the spice of pink pepper, revealing a signature heart of sugar-coated chestnut and sage, before settling into a warm base of vanilla, amberwood, and cedar. The intertwined gold rings around the bottle's neck symbolize eternal love and connection, making it more than just a fragrance—it's a heartfelt vow of \"being stronger with you.\"",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/a-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/a-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/a-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/a-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/a-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/a-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/a-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/a-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/a-9.jpg"
+      }
+    ]
+  },
+  {
+    "id": "baccarat",
+    "name": "Baccarat Rouge 540",
+    "brand": "MFK",
+    "price": "€18",
+    "note": "Niche · Saffron amber",
+    "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
+    "collection": "perfumes",
+    "subcategory": "niche",
+    "keywords": [
+      "baccarat",
+      "niche",
+      "perfume"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/baccarat-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/baccarat-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/baccarat-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/baccarat-4.jpg"
       }
     ]
   },
@@ -1028,59 +1059,28 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "a",
-    "name": "Armani style perfumes",
-    "brand": "Armani",
-    "price": "€18",
-    "note": "A captivating blend of sugar-coated chestnut and vanilla, defining modern masculine strength through a warm, addictive gourmand-woody scent",
-    "desc": "Armani Stronger With You is an oriental gourmand fragrance crafted for the modern man. It opens with the spice of pink pepper, revealing a signature heart of sugar-coated chestnut and sage, before settling into a warm base of vanilla, amberwood, and cedar. The intertwined gold rings around the bottle's neck symbolize eternal love and connection, making it more than just a fragrance—it's a heartfelt vow of \"being stronger with you.\"",
-    "collection": "perfumes",
-    "subcategory": "best-sellers",
+    "id": "boom-tower",
+    "name": "Party Tower 120 Speaker",
+    "brand": "EddySupply",
+    "price": "€180",
+    "note": "LED · Karaoke ready-outdoor swimming pool",
+    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
+    "collection": "speakers",
+    "keywords": [
+      "party",
+      "tower",
+      "karaoke"
+    ],
     "variants": [
       {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/a-1.jpg"
+        "name": "party box120",
+        "price": "€180",
+        "image": "img/prod/boom-tower-party-box120.jpg"
       },
       {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/a-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/a-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/a-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/a-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/a-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/a-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/a-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/a-9.jpg"
+        "name": "partybox 320",
+        "price": "€225",
+        "image": "img/prod/boom-tower-partybox-320.jpg"
       }
     ]
   },
