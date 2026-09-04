@@ -1436,6 +1436,63 @@ window.PRODUCTS = [
         "image": "img/prod/jean-paul-gaultter-13.jpg"
       }
     ]
+  },
+  {
+    "id": "v",
+    "name": "versace style perfume",
+    "brand": "",
+    "price": "€18",
+    "note": "",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/v-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/v-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/v-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/v-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/v-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/v-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/v-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/v-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/v-9.jpg"
+      }
+    ]
   }
 ];
 
