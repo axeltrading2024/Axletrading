@@ -1718,11 +1718,11 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "j",
-    "name": "jersey",
+    "id": "football-training-kit",
+    "name": "Football training kit",
     "brand": "",
-    "price": "€15",
-    "note": "From the pitch to the streets, wear your passion",
+    "price": "€30",
+    "note": "quick-dry fabric -maximum comfort-unrestricted movement",
     "desc": "",
     "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
@@ -1730,62 +1730,77 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/j-1.jpg"
+        "image": "img/prod/football-training-kit-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/j-2.jpg"
+        "image": "img/prod/football-training-kit-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/j-3.jpg"
+        "image": "img/prod/football-training-kit-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/j-4.jpg"
+        "image": "img/prod/football-training-kit-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/j-5.jpg"
+        "image": "img/prod/football-training-kit-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/j-6.jpg"
+        "image": "img/prod/football-training-kit-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/j-7.jpg"
+        "image": "img/prod/football-training-kit-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/j-8.jpg"
+        "image": "img/prod/football-training-kit-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/j-9.jpg"
+        "image": "img/prod/football-training-kit-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/j-10.jpg"
+        "image": "img/prod/football-training-kit-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/j-11.jpg"
+        "image": "img/prod/football-training-kit-11.jpg"
       },
       {
-        "name": "name+number",
-        "price": "€5",
-        "image": "img/prod/j-12.jpg"
+        "name": "12",
+        "price": "",
+        "image": "img/prod/football-training-kit-12.jpg"
+      },
+      {
+        "name": "13",
+        "price": "",
+        "image": "img/prod/football-training-kit-13.jpg"
+      },
+      {
+        "name": "14",
+        "price": "",
+        "image": "img/prod/football-training-kit-14.jpg"
+      },
+      {
+        "name": "15",
+        "price": "",
+        "image": "img/prod/football-training-kit-15.jpg"
       }
     ]
   }
