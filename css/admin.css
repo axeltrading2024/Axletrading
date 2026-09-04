@@ -146,6 +146,25 @@
 }
 .prod-row .del:hover { color: #e5484d; background: color-mix(in srgb, #e5484d 10%, transparent); }
 .prod-row .del svg { width: 15px; height: 15px; display: block; }
+.prod-row .mv-group {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.prod-row .mv {
+  border: 0; background: transparent; color: var(--muted-foreground);
+  cursor: pointer; padding: 1px 6px; border-radius: 6px;
+  font-size: 11px; line-height: 1.2; flex-shrink: 0;
+}
+.prod-row .mv:hover { color: var(--accent-brand); background: color-mix(in srgb, var(--accent-brand) 12%, transparent); }
+.sort-tip {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--accent-brand) 7%, var(--card));
+  border-bottom: 1px solid var(--border);
+}
 .prod-empty { padding: 30px 16px; text-align: center; color: var(--muted-foreground); font-size: 13px; }
 
 /* ---------- 表单 ---------- */
