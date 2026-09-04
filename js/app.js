@@ -30,6 +30,17 @@
     }
   }, true);
 
+  /* ---------------- 页脚：品牌与 WhatsApp 从配置读取（后台「站点设置」可改） ---------------- */
+  (function renderFooter() {
+    var el = document.querySelector('.site-footer');
+    if (!el || !CFG) return;
+    var year = new Date().getFullYear();
+    var brand = esc(CFG.brand || 'EddySupply');
+    var wa = esc(CFG.whatsappDisplay || '');
+    el.innerHTML = '© <span data-year>' + year + '</span> ' + brand +
+      (wa ? '. Chat with us on WhatsApp · ' + wa : '');
+  })();
+
   /** 从 "$129" / "¥899" 里拆出货币符号和数值 */
   function parsePrice(p) {
     var m = String(p || '').match(/^([^\d\s]*)?\s*([\d.,]+)/);
