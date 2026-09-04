@@ -107,6 +107,10 @@ window.CATEGORIES = [
       {
         "slug": "luxury-bags",
         "name": "luxury bags"
+      },
+      {
+        "slug": "belts",
+        "name": "Belts"
       }
     ],
     "image": "img/cat/sunglasses.png"
