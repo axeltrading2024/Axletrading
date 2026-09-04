@@ -1218,6 +1218,38 @@ window.PRODUCTS = [
         "image": "img/prod/l-6.jpg"
       }
     ]
+  },
+  {
+    "id": "g-2",
+    "name": "Goyard bags",
+    "brand": "",
+    "price": "€8",
+    "note": "understated luxury: featuring a feather-light, hand-painted Y-pattern that speaks only to those who truly know.",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "variants": [
+      {
+        "name": "1",
+        "price": "€8",
+        "image": "img/prod/g-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "€10",
+        "image": "img/prod/g-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "€40",
+        "image": "img/prod/g-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "€65",
+        "image": "img/prod/g-2-4.jpg"
+      }
+    ]
   }
 ];
 
