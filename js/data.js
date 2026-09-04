@@ -589,7 +589,7 @@ window.PRODUCTS = [
     "name": "Apple Watch Series 11",
     "brand": "Apple",
     "price": "€30",
-    "note": "three colors option care your daily routine",
+    "note": "sport&health care -smart-oled",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "watches",
     "subcategory": "smart",
@@ -609,6 +609,26 @@ window.PRODUCTS = [
         "name": "ultra3",
         "price": "",
         "image": "img/prod/apple-watch-11-ultra3.jpg"
+      },
+      {
+        "name": "nike box-S11",
+        "price": "",
+        "image": "img/prod/apple-watch-11-nike-box-s11.jpg"
+      },
+      {
+        "name": "hermes style",
+        "price": "",
+        "image": "img/prod/apple-watch-11-hermes-style.jpg"
+      },
+      {
+        "name": "gucci style",
+        "price": "",
+        "image": "img/prod/apple-watch-11-gucci-style.jpg"
+      },
+      {
+        "name": "nike box-ultra3",
+        "price": "",
+        "image": "img/prod/apple-watch-11-nike-box-ultra3.jpg"
       }
     ]
   },
