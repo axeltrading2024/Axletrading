@@ -141,10 +141,6 @@ window.CATEGORIES = [
       {
         "slug": "clothes",
         "name": "clothes"
-      },
-      {
-        "slug": "shose",
-        "name": "shose"
       }
     ],
     "image": "img/cat/clothes-and-s-hose.png"
@@ -253,6 +249,7 @@ window.PRODUCTS = [
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "popular": true,
     "keywords": [
       "dior",
       "sauvage",
@@ -261,7 +258,7 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "EDP",
+        "name": "EDT",
         "price": "",
         "image": "img/prod/dior-sauvage-edp.jpg"
       },
@@ -276,9 +273,9 @@ window.PRODUCTS = [
         "image": "img/prod/dior-sauvage-parfum.jpg"
       },
       {
-        "name": "EDT",
+        "name": "EDP",
         "price": "",
-        "image": "img/prod/dior-sauvage-edt.jpg"
+        "image": ""
       }
     ]
   },
@@ -385,9 +382,9 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "carol fantasy",
+        "name": "intensely",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-carol-fantasy.jpg"
+        "image": "img/prod/valentino-born-in-roma-intensely.jpg"
       },
       {
         "name": "uno",
@@ -405,9 +402,9 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-miss.jpg"
       },
       {
-        "name": "intense",
+        "name": "caro fantasy",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-intense.jpg"
+        "image": ""
       }
     ]
   },
@@ -958,6 +955,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-",
     "desc": "",
     "collection": "speakers",
+    "popular": true,
     "variants": [
       {
         "name": "1",
@@ -985,6 +983,7 @@ window.PRODUCTS = [
     "desc": "Armani Stronger With You is an oriental gourmand fragrance crafted for the modern man. It opens with the spice of pink pepper, revealing a signature heart of sugar-coated chestnut and sage, before settling into a warm base of vanilla, amberwood, and cedar. The intertwined gold rings around the bottle's neck symbolize eternal love and connection, making it more than just a fragrance—it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "popular": true,
     "variants": [
       {
         "name": "1",
@@ -1084,6 +1083,7 @@ window.PRODUCTS = [
     "note": "foot massage",
     "desc": "",
     "collection": "clothes-and-s-hose",
+    "popular": true,
     "keywords": [
       "nike shose",
       "mind001"
