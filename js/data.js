@@ -457,6 +457,11 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
+        "name": "black",
+        "price": "",
+        "image": "img/prod/rolex-submariner-black.jpg"
+      },
+      {
         "name": "green-black",
         "price": "",
         "image": ""
@@ -475,11 +480,6 @@ window.PRODUCTS = [
         "name": "blue-golden",
         "price": "",
         "image": "img/prod/rolex-submariner-blue-golden.jpg"
-      },
-      {
-        "name": "black",
-        "price": "",
-        "image": "img/prod/rolex-submariner-black.jpg"
       }
     ]
   },
