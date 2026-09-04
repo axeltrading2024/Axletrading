@@ -1039,10 +1039,14 @@ window.PRODUCTS = [
     "name": "JBL boom box4",
     "brand": "",
     "price": "€40",
-    "note": "protable-bass sound-",
+    "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
-    "popular": true,
+    "keywords": [
+      "JBL",
+      "boom box",
+      "portable"
+    ],
     "variants": [
       {
         "name": "1",
