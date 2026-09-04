@@ -886,6 +886,14 @@
         '<div class="shared-quote" data-shared-body></div>' +
         '<div class="shared-total"><span>Estimated total</span><b data-shared-total>—</b></div>' +
         '<p class="shared-note">Quantities are adjustable. Contact us for an official quotation.</p>' +
+        '<div class="shared-contact">' +
+          '<a class="btn btn-whatsapp" data-shared-wa href="' + esc(waLink('Hi ' + (CFG.contactName || CFG.brand) + '! I reviewed the quote list and would like to discuss prices.')) + '" target="_blank" rel="noreferrer">' +
+            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + esc(CFG.whatsappDisplay || 'WhatsApp') +
+          '</a>' +
+          (CFG.contactEmail
+            ? '<a class="btn btn-outline shared-mail" href="mailto:' + esc(CFG.contactEmail) + '">✉ ' + esc(CFG.contactEmail) + '</a>'
+            : '') +
+        '</div>' +
       '</div>';
     if (header) header.insertAdjacentElement('afterend', banner);
     else document.body.insertBefore(banner, document.body.firstChild);
