@@ -253,7 +253,7 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "EDT",
+        "name": "EDP",
         "price": "",
         "image": "img/prod/dior-sauvage-edp.jpg"
       },
@@ -268,9 +268,9 @@ window.PRODUCTS = [
         "image": "img/prod/dior-sauvage-parfum.jpg"
       },
       {
-        "name": "EDP",
+        "name": "EDT",
         "price": "",
-        "image": ""
+        "image": "img/prod/dior-sauvage-edt.jpg"
       }
     ]
   },
