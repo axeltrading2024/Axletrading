@@ -1359,6 +1359,83 @@ window.PRODUCTS = [
         "image": "img/prod/c-10.jpg"
       }
     ]
+  },
+  {
+    "id": "jean-paul-gaultter",
+    "name": "Jean paul gaultter style",
+    "brand": "",
+    "price": "€18",
+    "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": ""
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-11.jpg"
+      },
+      {
+        "name": "12",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-12.jpg"
+      },
+      {
+        "name": "13",
+        "price": "",
+        "image": "img/prod/jean-paul-gaultter-13.jpg"
+      }
+    ]
   }
 ];
 
