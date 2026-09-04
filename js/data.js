@@ -977,7 +977,6 @@ window.PRODUCTS = [
     "desc": "Armani Stronger With You is an oriental gourmand fragrance crafted for the modern man. It opens with the spice of pink pepper, revealing a signature heart of sugar-coated chestnut and sage, before settling into a warm base of vanilla, amberwood, and cedar. The intertwined gold rings around the bottle's neck symbolize eternal love and connection, making it more than just a fragrance—it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "popular": true,
     "variants": [
       {
         "name": "1",
