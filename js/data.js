@@ -141,6 +141,10 @@ window.CATEGORIES = [
       {
         "slug": "clothes",
         "name": "clothes"
+      },
+      {
+        "slug": "shose",
+        "name": "shose"
       }
     ],
     "image": "img/cat/clothes-and-s-hose.png"
