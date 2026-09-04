@@ -1067,7 +1067,7 @@ window.PRODUCTS = [
     "name": "security camera",
     "brand": "EddySupply",
     "price": "€59",
-    "note": "dual camera-360 protection",
+    "note": "dual lens dual views-AI alert",
     "desc": "",
     "collection": "other",
     "variants": [
