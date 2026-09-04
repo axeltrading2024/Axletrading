@@ -1123,6 +1123,48 @@ window.PRODUCTS = [
         "image": "img/prod/m-4.jpg"
       }
     ]
+  },
+  {
+    "id": "s-2",
+    "name": "Swatch style",
+    "brand": "",
+    "price": "€18",
+    "note": "sport-timing-alarm",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "GA2100",
+        "price": "€18",
+        "image": "img/prod/s-2-ga2100.jpg"
+      },
+      {
+        "name": "GA110",
+        "price": "€18",
+        "image": "img/prod/s-2-gm2100.jpg"
+      },
+      {
+        "name": "couple",
+        "price": "€32",
+        "image": "img/prod/s-2-couple.jpg"
+      },
+      {
+        "name": "GA800",
+        "price": "€18",
+        "image": "img/prod/s-2-ga800.jpg"
+      },
+      {
+        "name": "Omega-swatch",
+        "price": "€25",
+        "image": "img/prod/s-2-omega-swatch.jpg"
+      },
+      {
+        "name": "AP swatch",
+        "price": "€65",
+        "image": "img/prod/s-2-ap-swatch.jpg"
+      }
+    ]
   }
 ];
 
