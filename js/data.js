@@ -448,6 +448,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "luxury",
+    "popular": true,
     "keywords": [
       "rolex",
       "submariner",
@@ -455,11 +456,6 @@ window.PRODUCTS = [
       "watch"
     ],
     "variants": [
-      {
-        "name": "black",
-        "price": "",
-        "image": "img/prod/rolex-submariner-black.jpg"
-      },
       {
         "name": "green-black",
         "price": "",
@@ -479,6 +475,11 @@ window.PRODUCTS = [
         "name": "blue-golden",
         "price": "",
         "image": "img/prod/rolex-submariner-blue-golden.jpg"
+      },
+      {
+        "name": "black",
+        "price": "",
+        "image": "img/prod/rolex-submariner-black.jpg"
       }
     ]
   },
