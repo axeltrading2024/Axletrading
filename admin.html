@@ -70,6 +70,7 @@
           <input type="search" data-search placeholder="搜索产品名 / 品牌 / 关键词…">
         </div>
         <div class="admin-filters" data-cat-filters></div>
+        <div class="sort-tip" data-sort-tip style="display:none">↕ 点 ↑↓ 调整该分类页面的产品显示顺序，保存后自动发布</div>
         <div class="prod-list" data-prod-list></div>
         <div style="padding:12px 14px;border-top:1px solid var(--border)">
           <button type="button" class="btn btn-dark" style="width:100%;justify-content:center" data-new>＋ 添加新产品</button>
@@ -499,6 +500,8 @@
       list.innerHTML = '<div class="prod-empty">没有匹配的产品</div>';
       return;
     }
+    // 选中具体分类且未搜索时，显示排序按钮（分类内上下移动）
+    var canSort = state.catFilter !== 'all' && !q;
     list.innerHTML = rows.map(function (p) {
       return '' +
         '<div class="prod-row' + (state.editingId === p.id ? ' is-active' : '') + '" data-open="' + esc(p.id) + '">' +
@@ -508,11 +511,40 @@
             '<div class="pm">' + esc(p.brand) + ' · ' + esc(p.price) + (p.subcategory ? ' · ' + esc(p.subcategory) : '') + '</div>' +
           '</div>' +
           (p.popular ? '<span class="star" title="首页热门">★</span>' : '') +
+          (canSort ?
+            '<span class="mv-group">' +
+              '<button type="button" class="mv" data-move="' + esc(p.id) + '" data-dir="-1" title="上移（分类页排序靠前）">↑</button>' +
+              '<button type="button" class="mv" data-move="' + esc(p.id) + '" data-dir="1" title="下移（分类页排序靠后）">↓</button>' +
+            '</span>' : '') +
           '<button type="button" class="del" data-del="' + esc(p.id) + '" title="删除">' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>' +
           '</button>' +
         '</div>';
     }).join('');
+    if (canSort) {
+      var sortTip = $('[data-sort-tip]');
+      if (sortTip) sortTip.style.display = 'block';
+    } else {
+      var sortTip2 = $('[data-sort-tip]');
+      if (sortTip2) sortTip2.style.display = 'none';
+    }
+  }
+
+  // 分类内上移/下移：直接调整 PRODUCTS 数组内位置，前台分类页按数组顺序显示
+  function moveProduct(id, dir) {
+    var p = getProduct(id);
+    if (!p) return;
+    var ids = PRODUCTS.filter(function (x) { return x.collection === p.collection; }).map(function (x) { return x.id; });
+    var idx = ids.indexOf(id);
+    var to = idx + dir;
+    if (to < 0 || to >= ids.length) return;
+    var other = getProduct(ids[to]);
+    // 先取出 p，再按方向插到 other 前（上移）/后（下移）；间隔着其他分类的产品也能正确交换
+    PRODUCTS.splice(PRODUCTS.indexOf(p), 1);
+    PRODUCTS.splice(PRODUCTS.indexOf(other) + (dir > 0 ? 1 : 0), 0, p);
+    status('已' + (dir < 0 ? '上移' : '下移') + '：' + p.name + '（已自动发布）');
+    renderList();
+    publishIfReady();
   }
 
   function renderFilters() {
@@ -944,6 +976,8 @@
       renderList();
     });
     $('[data-prod-list]').addEventListener('click', function (e) {
+      var mv = e.target.closest('[data-move]');
+      if (mv) { e.stopPropagation(); moveProduct(mv.getAttribute('data-move'), parseInt(mv.getAttribute('data-dir'), 10)); return; }
       var del = e.target.closest('[data-del]');
       if (del) { e.stopPropagation(); deleteProduct(del.getAttribute('data-del'), del); return; }
       var row = e.target.closest('[data-open]');
