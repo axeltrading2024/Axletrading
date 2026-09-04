@@ -1716,6 +1716,78 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-15.jpg"
       }
     ]
+  },
+  {
+    "id": "j",
+    "name": "jersey",
+    "brand": "",
+    "price": "€15",
+    "note": "From the pitch to the streets, wear your passion",
+    "desc": "",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "clothes",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/j-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/j-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/j-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/j-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/j-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/j-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/j-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/j-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/j-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/j-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/j-11.jpg"
+      },
+      {
+        "name": "name+number",
+        "price": "€5",
+        "image": "img/prod/j-12.jpg"
+      }
+    ]
   }
 ];
 
