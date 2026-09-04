@@ -1540,6 +1540,73 @@ window.PRODUCTS = [
         "image": "img/prod/p-ysl-saint-laurent.jpg"
       }
     ]
+  },
+  {
+    "id": "l-2",
+    "name": "LV style perfume",
+    "brand": "",
+    "price": "€30",
+    "note": "Wear the art of travel, embrace your endless journey",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "keywords": [
+      "lv",
+      "perfumes",
+      "brave"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/l-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/l-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/l-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/l-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/l-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/l-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/l-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/l-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/l-2-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/l-2-10.jpg"
+      }
+    ]
   }
 ];
 
