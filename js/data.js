@@ -1087,7 +1087,6 @@ window.PRODUCTS = [
     "note": "foot massage",
     "desc": "",
     "collection": "clothes-and-s-hose",
-    "popular": true,
     "keywords": [
       "nike shose",
       "mind001"
