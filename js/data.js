@@ -389,11 +389,33 @@ window.PRODUCTS = [
     "note": "Niche · Saffron amber",
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
-    "subcategory": "niche",
+    "subcategory": "best-sellers",
     "keywords": [
       "baccarat",
       "niche",
       "perfume"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/baccarat-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/baccarat-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/baccarat-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/baccarat-4.jpg"
+      }
     ]
   },
   {
