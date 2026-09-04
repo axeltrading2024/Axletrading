@@ -1284,6 +1284,25 @@ a {
   padding: 0 2px;
 }
 
+.shared-banner .shared-contact {
+  max-width: 560px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 0 2px;
+}
+
+.shared-banner .shared-contact .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shared-banner .shared-contact .shared-mail {
+  font-size: 14px;
+}
+
 /* ---------------- Toast ---------------- */
 .toast {
   position: fixed;
