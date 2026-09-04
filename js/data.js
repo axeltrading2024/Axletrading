@@ -1607,6 +1607,93 @@ window.PRODUCTS = [
         "image": "img/prod/l-2-10.jpg"
       }
     ]
+  },
+  {
+    "id": "paco-rabannel",
+    "name": "Paco Rabannel style perfume",
+    "brand": "",
+    "price": "€18",
+    "note": "",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/paco-rabannel-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/paco-rabannel-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/paco-rabannel-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/paco-rabannel-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/paco-rabannel-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/paco-rabannel-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/paco-rabannel-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/paco-rabannel-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/paco-rabannel-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/paco-rabannel-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/paco-rabannel-11.jpg"
+      },
+      {
+        "name": "12",
+        "price": "",
+        "image": "img/prod/paco-rabannel-12.jpg"
+      },
+      {
+        "name": "13",
+        "price": "",
+        "image": "img/prod/paco-rabannel-13.jpg"
+      },
+      {
+        "name": "14",
+        "price": "",
+        "image": "img/prod/paco-rabannel-14.jpg"
+      },
+      {
+        "name": "15",
+        "price": "",
+        "image": "img/prod/paco-rabannel-15.jpg"
+      }
+    ]
   }
 ];
 
