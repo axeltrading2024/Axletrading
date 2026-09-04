@@ -567,8 +567,30 @@
       var prev = $('[data-carousel-prev]');
       var next = $('[data-carousel-next]');
       var step = function () { return Math.min(scroller.clientWidth * 0.8, 340); };
-      if (prev) prev.onclick = function () { scroller.scrollBy({ left: -step(), behavior: 'smooth' }); };
-      if (next) next.onclick = function () { scroller.scrollBy({ left: step(), behavior: 'smooth' }); };
+      // 每 3 秒自动轮播：前进一格，到末尾回开头；悬停/触摸暂停，移开后继续
+      var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      var autoTimer = null;
+      function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
+      function startAuto() {
+        if (reduceMotion || autoTimer) return;
+        autoTimer = setInterval(function () {
+          try {
+            var maxLeft = scroller.scrollWidth - scroller.clientWidth - 2;
+            if (scroller.scrollLeft >= maxLeft) {
+              scroller.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+              scroller.scrollBy({ left: step(), behavior: 'smooth' });
+            }
+          } catch (e) { /* 环境不支持平滑滚动时静默跳过 */ }
+        }, 3000);
+      }
+      scroller.addEventListener('mouseenter', stopAuto);
+      scroller.addEventListener('mouseleave', startAuto);
+      scroller.addEventListener('touchstart', stopAuto, { passive: true });
+      scroller.addEventListener('touchend', startAuto);
+      if (prev) prev.onclick = function () { stopAuto(); scroller.scrollBy({ left: -step(), behavior: 'smooth' }); startAuto(); };
+      if (next) next.onclick = function () { stopAuto(); scroller.scrollBy({ left: step(), behavior: 'smooth' }); startAuto(); };
+      startAuto();
     }
 
     // 分类网格
