@@ -567,29 +567,51 @@
       var prev = $('[data-carousel-prev]');
       var next = $('[data-carousel-next]');
       var step = function () { return Math.min(scroller.clientWidth * 0.8, 340); };
-      // 每 3 秒自动轮播：前进一格，到末尾回开头；悬停/触摸暂停，移开后继续
+
+      // 无缝循环播放：把整组卡片克隆一份接在尾部，滚入克隆区后瞬时回位（前后内容相同，肉眼不可见）
+      var setWidth = 0;
+      var realCount = scroller.children.length;
+      if (realCount) {
+        Array.prototype.slice.call(scroller.children).forEach(function (el) {
+          var c = el.cloneNode(true);
+          c.setAttribute('aria-hidden', 'true');
+          scroller.appendChild(c);
+        });
+        setWidth = scroller.children[realCount].offsetLeft - scroller.children[0].offsetLeft;
+      }
+      // 滚动停稳后：若已进入克隆区，瞬时跳回等价的真实位置
+      var settleTimer = null;
+      scroller.addEventListener('scroll', function () {
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(function () {
+          if (setWidth > 0 && scroller.scrollLeft >= setWidth) scroller.scrollLeft -= setWidth;
+        }, 80);
+      });
+
+      // 每 2 秒自动播放一格；悬停/触摸暂停，移开后继续；用户偏好减少动效时不启用
       var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
       var autoTimer = null;
+      function tick() {
+        try { scroller.scrollBy({ left: step(), behavior: 'smooth' }); } catch (e) { /* 环境不支持平滑滚动时静默跳过 */ }
+      }
       function stopAuto() { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
       function startAuto() {
         if (reduceMotion || autoTimer) return;
-        autoTimer = setInterval(function () {
-          try {
-            var maxLeft = scroller.scrollWidth - scroller.clientWidth - 2;
-            if (scroller.scrollLeft >= maxLeft) {
-              scroller.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-              scroller.scrollBy({ left: step(), behavior: 'smooth' });
-            }
-          } catch (e) { /* 环境不支持平滑滚动时静默跳过 */ }
-        }, 3000);
+        autoTimer = setInterval(tick, 2000);
       }
       scroller.addEventListener('mouseenter', stopAuto);
       scroller.addEventListener('mouseleave', startAuto);
       scroller.addEventListener('touchstart', stopAuto, { passive: true });
       scroller.addEventListener('touchend', startAuto);
-      if (prev) prev.onclick = function () { stopAuto(); scroller.scrollBy({ left: -step(), behavior: 'smooth' }); startAuto(); };
-      if (next) next.onclick = function () { stopAuto(); scroller.scrollBy({ left: step(), behavior: 'smooth' }); startAuto(); };
+      if (prev) prev.onclick = function () {
+        stopAuto();
+        try {
+          if (setWidth > 0 && scroller.scrollLeft < step()) scroller.scrollLeft += setWidth;
+          scroller.scrollBy({ left: -step(), behavior: 'smooth' });
+        } catch (e) { /* 同上 */ }
+        startAuto();
+      };
+      if (next) next.onclick = function () { stopAuto(); tick(); startAuto(); };
       startAuto();
     }
 
