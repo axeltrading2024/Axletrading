@@ -369,9 +369,9 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "keywords": [
-      "oud",
-      "arabic",
-      "perfume"
+      "valentino",
+      "born in roma",
+      "luxury perfumes"
     ],
     "variants": [
       {
