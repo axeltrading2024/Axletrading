@@ -1176,6 +1176,48 @@ window.PRODUCTS = [
         "image": "img/prod/g-5.jpg"
       }
     ]
+  },
+  {
+    "id": "l",
+    "name": "LV style bags",
+    "brand": "",
+    "price": "€85",
+    "note": "fashional-elegance-metal logo",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": ""
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/l-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/l-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/l-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/l-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/l-6.jpg"
+      }
+    ]
   }
 ];
 
