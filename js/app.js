@@ -125,6 +125,61 @@
     return it.id + (it.variant ? '::' + it.variant : '');
   }
 
+  /* ---------------- 专属分享链接（把询价清单编码进网址 #l=...） ---------------- */
+  /** 清单 → base64url 字符串（只存 id/型号/数量，价格等打开时按最新数据渲染） */
+  function encodeItems(items) {
+    var arr = items.map(function (it) {
+      return { i: it.id, v: it.variant || '', q: it.qty };
+    });
+    var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(arr))));
+    return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  /** base64url 字符串 → 清单条目（过滤掉已下架的产品 id） */
+  function decodeItems(str) {
+    try {
+      var s = str.replace(/-/g, '+').replace(/_/g, '/');
+      while (s.length % 4) s += '=';
+      var arr = JSON.parse(decodeURIComponent(escape(atob(s))));
+      if (!Array.isArray(arr)) return [];
+      return arr.filter(function (x) { return x && x.i && getProduct(x.i); }).map(function (x) {
+        var p = getProduct(x.i);
+        return {
+          id: p.id, variant: x.v || '', name: p.name, brand: p.brand,
+          image: p.image, price: p.price,
+          qty: (parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1),
+        };
+      });
+    } catch (e) { return []; }
+  }
+
+  /** 当前清单 → 可复制的专属链接（始终指向首页，客户打开看到精选横幅） */
+  function buildShareUrl(items) {
+    if (!items.length) return '';
+    var base = location.origin + location.pathname.replace(/[^/]*$/, 'index.html');
+    return base + '#l=' + encodeItems(items);
+  }
+
+  /** 复制文本到剪贴板（http 环境降级用 execCommand） */
+  function copyText(text, okMsg) {
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); toast(okMsg); }
+      catch (e) { toast('Copy failed — please copy from the address bar'); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { toast(okMsg); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
   /* ---------------- 询价篮 ---------------- */
   var Store = {
     items: [],
@@ -285,6 +340,7 @@
           '<a class="btn btn-whatsapp" data-send-inquiry href="#" target="_blank" rel="noreferrer">' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Send on WhatsApp' +
           '</a>' +
+          '<button type="button" class="share" data-share-link>🔗 Copy share link</button>' +
           '<button type="button" class="clear" data-clear-inquiry>Clear list</button>' +
         '</div>' +
       '</aside>' +
@@ -343,6 +399,11 @@
       var disabled = n === 0;
       sendEl.style.opacity = disabled ? '0.45' : '1';
       sendEl.style.pointerEvents = disabled ? 'none' : 'auto';
+    }
+    var shareEl = $('[data-share-link]');
+    if (shareEl) {
+      shareEl.style.opacity = n === 0 ? '0.45' : '1';
+      shareEl.style.pointerEvents = n === 0 ? 'none' : 'auto';
     }
 
     if (!body) return;
@@ -442,6 +503,33 @@
 
       if (t.closest('[data-clear-inquiry]')) {
         if (Store.items.length) { Store.clear(); toast('Inquiry list cleared'); }
+        return;
+      }
+
+      if (t.closest('[data-share-link]')) {
+        var url = buildShareUrl(Store.items);
+        if (url) copyText(url, 'Share link copied — send it to your customer');
+        return;
+      }
+
+      var addAllBtn = t.closest('[data-shared-addall]');
+      if (addAllBtn) {
+        var shared = decodeItems((location.hash.match(/[#&]l=([^&]+)/) || [])[1] || '');
+        shared.forEach(function (it) {
+          var key = itemKey(it);
+          var ex = Store.items.filter(function (x) { return itemKey(x) === key; })[0];
+          if (ex) ex.qty += it.qty; else Store.items.push(it);
+        });
+        Store.save();
+        Store.emit();
+        toast('Added to your inquiry list');
+        return;
+      }
+
+      if (t.closest('[data-shared-dismiss]')) {
+        var sb = $('[data-shared-banner]');
+        if (sb) sb.remove();
+        history.replaceState(null, '', location.pathname + location.search);
         return;
       }
     });
@@ -743,11 +831,51 @@
         '<p>No products in this sub-collection at the moment.</p></div>';
   }
 
+  /* ---------------- 专属链接落地：客户打开 #l=... 时显示精选清单横幅 ---------------- */
+  function initSharedList() {
+    var m = location.hash.match(/[#&]l=([^&]+)/);
+    if (!m) return;
+    var items = decodeItems(m[1]);
+    if (!items.length) return;
+    var header = $('.site-header');
+    var banner = document.createElement('section');
+    banner.className = 'shared-banner';
+    banner.setAttribute('data-shared-banner', '');
+    banner.innerHTML = '' +
+      '<div class="wrap">' +
+        '<div class="shared-head">' +
+          '<div>' +
+            '<p class="eyebrow">Curated for you · ' + esc(CFG.brand) + '</p>' +
+            '<h2>' + items.length + ' product' + (items.length === 1 ? '' : 's') + ' picked for you</h2>' +
+          '</div>' +
+          '<button type="button" class="shared-close" data-shared-dismiss aria-label="Dismiss">' + ICON.close + '</button>' +
+        '</div>' +
+        '<div class="shared-grid">' +
+          items.map(function (it) {
+            return '<a class="shared-item" href="product.html?id=' + esc(it.id) + '">' +
+              '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '" loading="lazy">' +
+              '<span class="s-name">' + esc(it.name) + (it.variant ? ' · ' + esc(it.variant) : '') + '</span>' +
+              '<span class="s-price">' + esc(it.price) + '</span>' +
+            '</a>';
+          }).join('') +
+        '</div>' +
+        '<div class="shared-actions">' +
+          '<a class="btn btn-whatsapp" data-shared-wa href="' + esc(waLink(buildInquiryMessage(items))) + '" target="_blank" rel="noreferrer">' +
+            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Ask about these on WhatsApp' +
+          '</a>' +
+          '<button type="button" class="btn btn-outline" data-shared-addall>Add all to my inquiry list</button>' +
+        '</div>' +
+      '</div>';
+    if (header) header.insertAdjacentElement('afterend', banner);
+    else document.body.insertBefore(banner, document.body.firstChild);
+  }
+
   /* ---------------- 启动 ---------------- */
   function boot() {
     mountChrome();
     Store.load();
     bindGlobal();
+    initSharedList();
 
     var page = document.body.getAttribute('data-page');
     if (page === 'product') initProduct();
