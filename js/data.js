@@ -137,7 +137,12 @@ window.CATEGORIES = [
     "slug": "clothes-and-s-hose",
     "name": "clothes & shose",
     "tagline": "fashion style",
-    "subcategories": [],
+    "subcategories": [
+      {
+        "slug": "clothes",
+        "name": "clothes"
+      }
+    ],
     "image": "img/cat/clothes-and-s-hose.png"
   }
 ];
