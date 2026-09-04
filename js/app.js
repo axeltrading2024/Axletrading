@@ -144,9 +144,14 @@
       if (!Array.isArray(arr)) return [];
       return arr.filter(function (x) { return x && x.i && getProduct(x.i); }).map(function (x) {
         var p = getProduct(x.i);
+        var v = null;
+        if (x.v && p.variants && p.variants.length) {
+          p.variants.forEach(function (y) { if (y.name === x.v) v = y; });
+        }
         return {
           id: p.id, variant: x.v || '', name: p.name, brand: p.brand,
-          image: p.image, price: p.price,
+          image: (v && v.image) ? v.image : p.image,
+          price: (v && v.price) ? v.price : p.price,
           qty: (parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1),
         };
       });
