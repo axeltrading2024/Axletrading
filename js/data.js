@@ -13,6 +13,7 @@ window.SITE_CONFIG = {
   "contactName": "Eddy",
   "whatsapp": "4915224901963",
   "whatsappDisplay": "+49 152 2490 1963",
+  "contactEmail": "axeltrading@163.com",
   "greeting": "Hi Eddy! I'd like some information about your products.",
   "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",
   "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
