@@ -389,7 +389,7 @@ window.PRODUCTS = [
     "note": "Niche · Saffron amber",
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
-    "subcategory": "best-sellers",
+    "subcategory": "niche",
     "keywords": [
       "baccarat",
       "niche",
