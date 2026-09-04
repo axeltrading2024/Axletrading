@@ -1297,6 +1297,68 @@ window.PRODUCTS = [
         "image": "img/prod/t-6.jpg"
       }
     ]
+  },
+  {
+    "id": "c",
+    "name": "corrolina herrena style",
+    "brand": "",
+    "price": "€18",
+    "note": "Embrace your duality, rule with fearless elegance",
+    "desc": "it is good to be bad",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/c-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/c-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/c-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/c-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/c-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/c-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/c-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/c-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/c-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/c-10.jpg"
+      }
+    ]
   }
 ];
 
