@@ -8,17 +8,18 @@
  */
 
 window.SITE_CONFIG = {
-  "brand": "EddySupply",
+  "brand": "Axeltrading",
   "tagline": "Wholesale Product Finder",
   "contactName": "Eddy",
-  "whatsapp": "8615875209571",
-  "whatsappDisplay": "+86 158 7520 9571",
+  "whatsapp": "4915224901963",
+  "whatsappDisplay": "+49 152 2490 1963",
   "greeting": "Hi Eddy! I'd like some information about your products.",
   "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",
   "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
+  "heroBadge": "Axeltrading · reliable supplier",
   "heroTitle": "Wholesale products",
-  "heroTitleAccent": "made simple.",
-  "heroSubtitle": "Browse the full catalogue, build your inquiry list, and send it all to Eddy in one message. No more back-and-forth on WhatsApp.",
+  "heroTitleAccent": "Made Effortless",
+  "heroSubtitle": "Explore the full catalog, curate your inquiry list, and send it to Eddy in a single message to get a fast quote.",
   "searchPlaceholder": "Search product, brand, category…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
 };
@@ -135,12 +136,7 @@ window.CATEGORIES = [
     "slug": "clothes-and-s-hose",
     "name": "clothes & shose",
     "tagline": "fashion style",
-    "subcategories": [
-      {
-        "slug": "shose",
-        "name": "shose"
-      }
-    ],
+    "subcategories": [],
     "image": "img/cat/clothes-and-s-hose.png"
   }
 ];
@@ -594,7 +590,7 @@ window.PRODUCTS = [
     "name": "Apple Watch Series 11",
     "brand": "Apple",
     "price": "€30",
-    "note": "sport&health care -smart-oled",
+    "note": "three colors option care your daily routine",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "watches",
     "subcategory": "smart",
@@ -614,26 +610,6 @@ window.PRODUCTS = [
         "name": "ultra3",
         "price": "",
         "image": "img/prod/apple-watch-11-ultra3.jpg"
-      },
-      {
-        "name": "nike box-S11",
-        "price": "",
-        "image": "img/prod/apple-watch-11-nike-box-s11.jpg"
-      },
-      {
-        "name": "hermes style",
-        "price": "",
-        "image": "img/prod/apple-watch-11-hermes-style.jpg"
-      },
-      {
-        "name": "gucci style",
-        "price": "",
-        "image": "img/prod/apple-watch-11-gucci-style.jpg"
-      },
-      {
-        "name": "nike box-ultra3",
-        "price": "",
-        "image": "img/prod/apple-watch-11-nike-box-ultra3.jpg"
       }
     ]
   },
@@ -1126,48 +1102,6 @@ window.PRODUCTS = [
         "name": "4",
         "price": "",
         "image": "img/prod/m-4.jpg"
-      }
-    ]
-  },
-  {
-    "id": "s-2",
-    "name": "Swatch style",
-    "brand": "",
-    "price": "€18",
-    "note": "sport-timing-alarm",
-    "desc": "",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "GA2100",
-        "price": "€18",
-        "image": "img/prod/s-2-ga2100.jpg"
-      },
-      {
-        "name": "GA110",
-        "price": "€18",
-        "image": "img/prod/s-2-gm2100.jpg"
-      },
-      {
-        "name": "couple",
-        "price": "€32",
-        "image": "img/prod/s-2-couple.jpg"
-      },
-      {
-        "name": "GA800",
-        "price": "€18",
-        "image": "img/prod/s-2-ga800.jpg"
-      },
-      {
-        "name": "Omega-swatch",
-        "price": "€25",
-        "image": "img/prod/s-2-omega-swatch.jpg"
-      },
-      {
-        "name": "AP swatch",
-        "price": "€65",
-        "image": "img/prod/s-2-ap-swatch.jpg"
       }
     ]
   }
