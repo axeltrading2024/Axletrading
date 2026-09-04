@@ -469,7 +469,7 @@
     var subEl = $('[data-hero-sub]');
     if (subEl) subEl.textContent = CFG.heroSubtitle;
     var badgeEl = $('[data-hero-badge]');
-    if (badgeEl) badgeEl.textContent = CFG.brand + ' · Product Finder';
+    if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · Product Finder');
     var phEl = $('[data-search-input]');
     if (phEl) phEl.placeholder = CFG.searchPlaceholder;
 
