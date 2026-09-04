@@ -244,6 +244,7 @@
         <div class="gh-row"><label>店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply"><span class="help">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
         <div class="gh-row"><label>联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）"></div>
         <div class="gh-row"><label>WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571"><span class="help">页脚和客户看到的格式</span></div>
+        <div class="gh-row"><label>联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com"><span class="help">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
         <div class="gh-row"><label>WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4"><span class="help">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
         <div class="gh-row" style="margin-top:18px"><label style="font-weight:700">—— 首页首屏文案 ——</label></div>
         <div class="gh-row"><label>顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · Product Finder"><span class="help">大标题上方的小字标签</span></div>
@@ -1346,6 +1347,8 @@
     $('[data-cfg-contact]').value = CFG.contactName || '';
     $('[data-cfg-wadisplay]').value = CFG.whatsappDisplay || '';
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    var em = $('[data-cfg-email]');
+    if (em) em.value = CFG.contactEmail || '';
     var hb = $('[data-cfg-herobadge]');
     if (hb) hb.value = CFG.heroBadge || ((CFG.brand || '') + ' · Product Finder');
     var ht = $('[data-cfg-herotitle]');
@@ -1377,6 +1380,8 @@
     CFG.brand = brand;
     if (contact) CFG.contactName = contact;
     if (waDisplay) { CFG.whatsappDisplay = waDisplay; CFG.whatsapp = wa; }
+    var email = ($('[data-cfg-email]').value || '').trim();
+    if (email) CFG.contactEmail = email; else delete CFG.contactEmail;
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
     // 首页首屏文案（可留空=恢复默认行为）
     var heroBadge = ($('[data-cfg-herobadge]').value || '').trim();
