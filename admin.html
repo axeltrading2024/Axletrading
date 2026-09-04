@@ -234,6 +234,23 @@
       </div>
     </section>
 
+    <!-- 站点设置：店铺名称与联系方式 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>🏪 站点设置：店铺名称与联系方式</h2>
+        <span class="hint">改顶部 logo、页脚版权、WhatsApp 号码（改完自动发布上线）</span>
+      </div>
+      <div class="guide-body">
+        <div class="gh-row"><label>店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply"><span class="help">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
+        <div class="gh-row"><label>联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）"></div>
+        <div class="gh-row"><label>WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571"><span class="help">页脚和客户看到的格式</span></div>
+        <div class="gh-row"><label>WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4"><span class="help">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
+        <div class="gh-actions">
+          <button type="button" class="btn btn-dark" data-cfg-save>💾 保存并发布</button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script src="js/data.js"></script>
@@ -1313,6 +1330,51 @@
     return ghPut(path, b64, 'Update category image: ' + slug + '.png');
   }
 
+  /* ---------------- 站点设置：店铺名称与联系方式 ---------------- */
+  function waDigits(s) { return String(s || '').replace(/[^0-9]/g, ''); }
+
+  function fillSiteSettings() {
+    var b = $('[data-cfg-brand]');
+    if (!b) return;
+    b.value = CFG.brand || '';
+    $('[data-cfg-contact]').value = CFG.contactName || '';
+    $('[data-cfg-wadisplay]').value = CFG.whatsappDisplay || '';
+    $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    // 显示号码输入时自动提取拨号号码
+    var disp = $('[data-cfg-wadisplay]');
+    disp.addEventListener('input', function () {
+      $('[data-cfg-wa]').value = waDigits(disp.value);
+    });
+  }
+
+  function saveSiteSettings() {
+    var brand = ($('[data-cfg-brand]').value || '').trim();
+    if (!brand) { status('店铺名称不能为空', 'err'); return; }
+    var contact = ($('[data-cfg-contact]').value || '').trim();
+    var waDisplay = ($('[data-cfg-wadisplay]').value || '').trim();
+    var wa = waDigits(waDisplay);
+    if (waDisplay && wa.length < 8) {
+      status('WhatsApp 号码看起来不对，请包含国家码，如 +86 158 7520 9571', 'err');
+      return;
+    }
+    if (!waDisplay && !confirm('WhatsApp 显示号码为空，页脚将不显示联系方式。确定继续？')) return;
+    CFG.brand = brand;
+    if (contact) CFG.contactName = contact;
+    if (waDisplay) { CFG.whatsappDisplay = waDisplay; CFG.whatsapp = wa; }
+    $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    document.title = '产品管理 · ' + brand;
+    status('已保存站点设置');
+    if (ghEnabled()) {
+      publishData().then(function () {
+        status('✅ 站点设置已保存并发布（约 1 分钟后官网生效）');
+      }).catch(function (e) {
+        status('已保存，但发布失败：' + e.message, 'err');
+      });
+    } else {
+      status('已保存站点设置。未连接一键发布，请记得导出 data.js 并手动上传。', 'err');
+    }
+  }
+
   function fillCollectionSelect() {
     var sel = $('[data-f-collection]');
     sel.innerHTML = CATEGORIES.map(function (c) {
@@ -1328,6 +1390,9 @@
     renderCatManageList();
     renderHotManageList();
     renderCatList();
+    fillSiteSettings();
+    var cfgSaveBtn = $('[data-cfg-save]');
+    if (cfgSaveBtn) cfgSaveBtn.addEventListener('click', saveSiteSettings);
     resetForm();
     bind();
     renderGhPanel();
