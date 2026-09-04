@@ -298,32 +298,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "boom-tower",
-    "name": "Party Tower 120 Speaker",
-    "brand": "EddySupply",
-    "price": "€180",
-    "note": "LED · Karaoke ready-outdoor swimming pool",
-    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
-    "collection": "speakers",
-    "keywords": [
-      "party",
-      "tower",
-      "karaoke"
-    ],
-    "variants": [
-      {
-        "name": "party box120",
-        "price": "€180",
-        "image": "img/prod/boom-tower-party-box120.jpg"
-      },
-      {
-        "name": "partybox 320",
-        "price": "€225",
-        "image": "img/prod/boom-tower-partybox-320.jpg"
-      }
-    ]
-  },
-  {
     "id": "jbl-flip-7",
     "name": "JBL Flip 7",
     "brand": "oem",
@@ -363,6 +337,32 @@ window.PRODUCTS = [
         "name": "Pulse 6",
         "price": "",
         "image": "img/prod/jbl-flip-7-pulse-6.jpg"
+      }
+    ]
+  },
+  {
+    "id": "boom-tower",
+    "name": "Party Tower 120 Speaker",
+    "brand": "EddySupply",
+    "price": "€180",
+    "note": "LED · Karaoke ready-outdoor swimming pool",
+    "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
+    "collection": "speakers",
+    "keywords": [
+      "party",
+      "tower",
+      "karaoke"
+    ],
+    "variants": [
+      {
+        "name": "party box120",
+        "price": "€180",
+        "image": "img/prod/boom-tower-party-box120.jpg"
+      },
+      {
+        "name": "partybox 320",
+        "price": "€225",
+        "image": "img/prod/boom-tower-partybox-320.jpg"
       }
     ]
   },
