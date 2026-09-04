@@ -439,6 +439,29 @@
     return PRODUCTS.filter(function (p) { return p.collection === slug; });
   }
 
+  /** 两段式确认：第一次点返回 false 并把按钮临时变成「确认删除？」，3 秒内再点返回 true。
+   *  替代 confirm() 弹窗 —— 浏览器拦截弹窗后 confirm 会静默返回 false，导致功能失效。 */
+  function confirmClick(btn) {
+    if (btn.getAttribute('data-armed') === '1') {
+      btn.removeAttribute('data-armed');
+      btn.innerHTML = btn.getAttribute('data-orig') || btn.innerHTML;
+      btn.classList.remove('armed');
+      return true;
+    }
+    btn.setAttribute('data-armed', '1');
+    if (!btn.getAttribute('data-orig')) btn.setAttribute('data-orig', btn.innerHTML);
+    btn.innerHTML = '确认删除？';
+    btn.classList.add('armed');
+    setTimeout(function () {
+      if (btn.getAttribute('data-armed') === '1') {
+        btn.removeAttribute('data-armed');
+        btn.innerHTML = btn.getAttribute('data-orig') || btn.innerHTML;
+        btn.classList.remove('armed');
+      }
+    }, 3000);
+    return false;
+  }
+
   /* ---------------- 状态 ---------------- */
   var state = {
     filter: '',
@@ -606,10 +629,10 @@
     }
   }
 
-  function deleteProduct(id) {
+  function deleteProduct(id, btn) {
     var p = getProduct(id);
     if (!p) return;
-    if (!confirm('确定删除「' + p.name + '」？\n删除后自动发布到线上。')) return;
+    if (!btn || !confirmClick(btn)) return;
     PRODUCTS = PRODUCTS.filter(function (x) { return x.id !== id; });
     status('已删除：' + p.name);
     resetForm();
@@ -922,7 +945,7 @@
     });
     $('[data-prod-list]').addEventListener('click', function (e) {
       var del = e.target.closest('[data-del]');
-      if (del) { e.stopPropagation(); deleteProduct(del.getAttribute('data-del')); return; }
+      if (del) { e.stopPropagation(); deleteProduct(del.getAttribute('data-del'), del); return; }
       var row = e.target.closest('[data-open]');
       if (row) fillForm(getProduct(row.getAttribute('data-open')));
     });
@@ -944,7 +967,7 @@
     $('[data-new]').addEventListener('click', resetForm);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.addEventListener('click', function () {
-      if (state.editingId) deleteProduct(state.editingId);
+      if (state.editingId) deleteProduct(state.editingId, delCur);
     });
 
     // 图片
@@ -1069,15 +1092,15 @@
       b.addEventListener('click', function () { openCatForm(b.getAttribute('data-cat-edit')); });
     });
     $$('[data-cat-del]', box).forEach(function (b) {
-      b.addEventListener('click', function () { deleteCategory(b.getAttribute('data-cat-del')); });
+      b.addEventListener('click', function () { deleteCategory(b.getAttribute('data-cat-del'), b); });
     });
     $$('[data-sub-add]', box).forEach(function (b) {
-      b.addEventListener('click', function () { addSubcategory(b.getAttribute('data-sub-add')); });
+      b.addEventListener('click', function () { addSubcategory(b.getAttribute('data-sub-add'), b); });
     });
     $$('[data-sub-del]', box).forEach(function (b) {
       b.addEventListener('click', function () {
         var parts = b.getAttribute('data-sub-del').split('|');
-        deleteSubcategory(parts[0], parts[1]);
+        deleteSubcategory(parts[0], parts[1], b);
       });
     });
   }
@@ -1120,25 +1143,47 @@
     publishIfReady();
   }
 
-  function addSubcategory(catSlug) {
+  function addSubcategory(catSlug, btn) {
     var c = getCategory(catSlug);
     if (!c) return;
-    var name = prompt('输入子分类名称（如 Luxury Watches）：');
-    if (!name || !name.trim()) return;
-    name = name.trim();
-    var used = (c.subcategories || []).map(function (s) { return s.slug; });
-    var slug = slugify(name, used);
-    if (!c.subcategories) c.subcategories = [];
-    c.subcategories.push({ slug: slug, name: name });
-    status('已添加子分类：' + name);
-    renderCatManageList();
-    renderFilters();
-    publishIfReady();
+    // 行内输入（替代 prompt 弹窗，避免被浏览器拦截后静默失效）
+    if ($('.sub-inline', btn.parentNode)) return;
+    var holder = document.createElement('span');
+    holder.className = 'sub-inline';
+    holder.innerHTML = '<input type="text" maxlength="30" placeholder="子分类名称，回车确认">' +
+      '<button type="button" class="mini-btn">确定</button>';
+    btn.parentNode.insertBefore(holder, btn);
+    btn.style.display = 'none';
+    var input = $('input', holder);
+    var okBtn = holder.querySelector('button');
+    input.focus();
+    function cancel() {
+      if (holder.parentNode) holder.parentNode.removeChild(holder);
+      btn.style.display = '';
+    }
+    function commit() {
+      var name = (input.value || '').trim();
+      if (!name) { cancel(); return; }
+      var used = (c.subcategories || []).map(function (s) { return s.slug; });
+      var slug = slugify(name, used);
+      if (!c.subcategories) c.subcategories = [];
+      c.subcategories.push({ slug: slug, name: name });
+      status('已添加子分类：' + name);
+      renderCatManageList();
+      renderFilters();
+      publishIfReady();
+    }
+    okBtn.addEventListener('click', commit);
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); commit(); }
+      else if (e.key === 'Escape') { e.preventDefault(); cancel(); }
+    });
   }
 
-  function deleteSubcategory(catSlug, subSlug) {
+  function deleteSubcategory(catSlug, subSlug, chip) {
     var c = getCategory(catSlug);
-    if (!c || !confirm('确定删除子分类「' + subSlug + '」？\n该子分类下的产品会保留，但子分类标记会被清除。')) return;
+    if (!c) return;
+    if (!chip || !confirmClick(chip)) return;
     c.subcategories = (c.subcategories || []).filter(function (s) { return s.slug !== subSlug; });
     PRODUCTS.forEach(function (p) {
       if (p.collection === catSlug && p.subcategory === subSlug) delete p.subcategory;
@@ -1150,13 +1195,14 @@
     publishIfReady();
   }
 
-  function deleteCategory(slug) {
+  function deleteCategory(slug, btn) {
     var c = getCategory(slug);
     if (!c) return;
-    var affected = PRODUCTS.filter(function (p) { return p.collection === slug; });
-    var msg = '确定删除分类「' + c.name + '」？';
-    if (affected.length) msg += '\n⚠️ 该分类下有 ' + affected.length + ' 个产品，删除后这些产品会移到「Other Products」。';
-    if (!confirm(msg)) return;
+    if (!btn || !confirmClick(btn)) {
+      var affected0 = PRODUCTS.filter(function (p) { return p.collection === slug; });
+      if (affected0.length) status('⚠️ 该分类下有 ' + affected0.length + ' 个产品，删除后这些产品会移到「Other Products」。再点一次「确认删除？」继续');
+      return;
+    }
     CATEGORIES = CATEGORIES.filter(function (x) { return x.slug !== slug; });
     // 受影响产品移到 other（若存在）否则移到第一个分类
     var fallbackCat = getCategory('other') || CATEGORIES[0];
@@ -1376,7 +1422,7 @@
       status('WhatsApp 号码看起来不对，请包含国家码，如 +86 158 7520 9571', 'err');
       return;
     }
-    if (!waDisplay && !confirm('WhatsApp 显示号码为空，页脚将不显示联系方式。确定继续？')) return;
+    if (!waDisplay) status('提示：WhatsApp 显示号码为空，页脚将不显示联系方式');
     CFG.brand = brand;
     if (contact) CFG.contactName = contact;
     if (waDisplay) { CFG.whatsappDisplay = waDisplay; CFG.whatsapp = wa; }
