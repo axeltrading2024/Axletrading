@@ -368,7 +368,6 @@ window.PRODUCTS = [
     "desc": "Valentino Born in Roma is a \"cool couture\" fragrance that pays homage to the Eternal City. It perfectly balances the luxury of haute couture with a modern, free-spirited attitude, blending a luminous jasmine trio, warm bourbon vanilla, and cool contemporary woods",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "popular": true,
     "keywords": [
       "oud",
       "arabic",
