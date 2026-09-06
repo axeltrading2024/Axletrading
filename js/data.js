@@ -266,24 +266,59 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "EDT",
+        "name": "Sauvage-EDP",
         "price": "",
-        "image": "img/prod/dior-sauvage-edp.jpg"
+        "image": "img/prod/dior-sauvage-sauvage-edp.jpg"
       },
       {
-        "name": "Exilir",
+        "name": "Sauvage-Exilir",
         "price": "",
         "image": "img/prod/dior-sauvage-exilir.jpg"
       },
       {
-        "name": "parfum",
+        "name": "Sauvage-parfum",
         "price": "",
         "image": "img/prod/dior-sauvage-parfum.jpg"
       },
       {
-        "name": "EDP",
+        "name": "Sauvage-EDT",
         "price": "",
-        "image": ""
+        "image": "img/prod/dior-sauvage-sauvage-edt.jpg"
+      },
+      {
+        "name": "Homme-1",
+        "price": "",
+        "image": "img/prod/dior-sauvage-homme-1.jpg"
+      },
+      {
+        "name": "Homme-2",
+        "price": "",
+        "image": "img/prod/dior-sauvage-homme-2.jpg"
+      },
+      {
+        "name": "jadore-1",
+        "price": "",
+        "image": "img/prod/dior-sauvage-jadore-1.jpg"
+      },
+      {
+        "name": "jadore-2",
+        "price": "",
+        "image": "img/prod/dior-sauvage-jadore-2.jpg"
+      },
+      {
+        "name": "MIss dior-1",
+        "price": "",
+        "image": "img/prod/dior-sauvage-miss-dior.jpg"
+      },
+      {
+        "name": "MIss dior-2",
+        "price": "",
+        "image": "img/prod/dior-sauvage-miss-dior-2.jpg"
+      },
+      {
+        "name": "MIss dior-3",
+        "price": "",
+        "image": "img/prod/dior-sauvage-miss-dior-3.jpg"
       }
     ]
   },
