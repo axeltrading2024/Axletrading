@@ -782,6 +782,18 @@ window.PRODUCTS = [
       "galaxy",
       "smart",
       "watch"
+    ],
+    "variants": [
+      {
+        "name": "serial8 classic",
+        "price": "",
+        "image": "img/prod/galaxy-watch-serial8-classic.jpg"
+      },
+      {
+        "name": "galaxy ultra",
+        "price": "",
+        "image": "img/prod/galaxy-watch-galaxy-ultra.jpg"
+      }
     ]
   },
   {
