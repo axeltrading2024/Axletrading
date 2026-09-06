@@ -2303,6 +2303,57 @@ window.PRODUCTS = [
         "image": "img/prod/h-4.jpg"
       }
     ]
+  },
+  {
+    "id": "g-4",
+    "name": "Gucci style luxury belt",
+    "brand": "",
+    "price": "€30",
+    "note": "Luxry belt",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "keywords": [
+      "Gucci",
+      "luxury belt"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/g-4-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/g-4-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/g-4-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/g-4-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/g-4-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/g-4-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/g-4-7.jpg"
+      }
+    ]
   }
 ];
 
