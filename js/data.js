@@ -1003,34 +1003,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "rayban-meta",
-    "name": "Ray-Ban Meta AI Glasses",
-    "brand": "Ray-Ban",
-    "price": "€75",
-    "note": "Camera · Voice AI-real translation",
-    "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
-    "collection": "sunglasses",
-    "subcategory": "ai",
-    "keywords": [
-      "rayban",
-      "meta",
-      "ai",
-      "smart glasses"
-    ],
-    "variants": [
-      {
-        "name": "MT5",
-        "price": "€60",
-        "image": "img/prod/rayban-meta-mt5.jpg"
-      },
-      {
-        "name": "rayban meta",
-        "price": "",
-        "image": ""
-      }
-    ]
-  },
-  {
     "id": "gentle-monster",
     "name": "LV style sunglasses",
     "brand": "Oem",
@@ -1089,6 +1061,34 @@ window.PRODUCTS = [
         "name": "9",
         "price": "",
         "image": "img/prod/gentle-monster-9.jpg"
+      }
+    ]
+  },
+  {
+    "id": "rayban-meta",
+    "name": "Ray-Ban Meta AI Glasses",
+    "brand": "Ray-Ban",
+    "price": "€75",
+    "note": "Camera · Voice AI-real translation",
+    "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
+    "collection": "sunglasses",
+    "subcategory": "ai",
+    "keywords": [
+      "rayban",
+      "meta",
+      "ai",
+      "smart glasses"
+    ],
+    "variants": [
+      {
+        "name": "MT5",
+        "price": "€60",
+        "image": "img/prod/rayban-meta-mt5.jpg"
+      },
+      {
+        "name": "rayban meta",
+        "price": "",
+        "image": ""
       }
     ]
   },
