@@ -2219,7 +2219,7 @@ window.PRODUCTS = [
   },
   {
     "id": "l-4",
-    "name": "LV blet",
+    "name": "LV belt",
     "brand": "",
     "price": "€30",
     "note": "luxury belt",
