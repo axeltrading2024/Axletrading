@@ -343,6 +343,43 @@ window.PRODUCTS = [
       "chanel",
       "bleu",
       "perfume"
+    ],
+    "variants": [
+      {
+        "name": "blue channle",
+        "price": "",
+        "image": "img/prod/bleu-chanel-blue-channle.jpg"
+      },
+      {
+        "name": "coco-1",
+        "price": "",
+        "image": "img/prod/bleu-chanel-coco-1.jpg"
+      },
+      {
+        "name": "coco-2",
+        "price": "",
+        "image": "img/prod/bleu-chanel-coco-2.jpg"
+      },
+      {
+        "name": "coco-3",
+        "price": "",
+        "image": "img/prod/bleu-chanel-coco-3.jpg"
+      },
+      {
+        "name": "coco-4",
+        "price": "",
+        "image": "img/prod/bleu-chanel-coco-4.jpg"
+      },
+      {
+        "name": "chance-1",
+        "price": "",
+        "image": "img/prod/bleu-chanel-chance-1.jpg"
+      },
+      {
+        "name": "chance-2",
+        "price": "",
+        "image": "img/prod/bleu-chanel-chance-2.jpg"
+      }
     ]
   },
   {
