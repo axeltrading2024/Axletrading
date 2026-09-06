@@ -433,29 +433,49 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "intensely",
+        "name": "Born in roma-intensely",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-intensely.jpg"
       },
       {
-        "name": "uno",
+        "name": "Born in roma",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-uno.jpg"
       },
       {
-        "name": "extradose",
+        "name": "Born in roma-extradose",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-extradose.jpg"
       },
       {
-        "name": "donna",
+        "name": "Born in roma-coral fantasy",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-miss.jpg"
+        "image": "img/prod/valentino-born-in-roma-born-in-roma-caro-fantasy.jpg"
       },
       {
-        "name": "caro fantasy",
+        "name": "Born in roma-donna intense",
         "price": "",
-        "image": ""
+        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-intense.jpg"
+      },
+      {
+        "name": "Born in roma-donna coral fantasy",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-coral-fantasy.jpg"
+      },
+      {
+        "name": "Born in roma-donna extradose",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-extradose.jpg"
+      },
+      {
+        "name": "donna",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-donna.jpg"
+      },
+      {
+        "name": "Uomo",
+        "price": "",
+        "image": "img/prod/valentino-born-in-roma-uomo.jpg"
       }
     ]
   },
