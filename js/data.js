@@ -132,12 +132,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "other",
-    "name": "Other Products",
-    "tagline": "The rest",
-    "image": "img/cat/other.png"
-  },
-  {
     "slug": "clothes-and-s-hose",
     "name": "clothes & shose",
     "tagline": "fashion style",
@@ -152,6 +146,12 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/clothes-and-s-hose.png"
+  },
+  {
+    "slug": "other",
+    "name": "Other Products",
+    "tagline": "The rest",
+    "image": "img/cat/other.png"
   }
 ];
 
