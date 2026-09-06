@@ -2216,6 +2216,57 @@ window.PRODUCTS = [
         "image": "img/prod/l-3-10.jpg"
       }
     ]
+  },
+  {
+    "id": "l-4",
+    "name": "LV blet",
+    "brand": "",
+    "price": "€30",
+    "note": "luxury belt",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "keywords": [
+      "LV",
+      "luxury.belts"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/l-4-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/l-4-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/l-4-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/l-4-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/l-4-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/l-4-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/l-4-7.jpg"
+      }
+    ]
   }
 ];
 
