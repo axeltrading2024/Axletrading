@@ -263,7 +263,7 @@
     <section class="guide" data-page-node-id="Sz60YESD9q8UnUHjmFkN1Q">
       <div class="guide-head" data-page-node-id="m51JKJywb7ZdA2NHUkuxZh">
         <h2 data-page-node-id="9TDg0xqGCG1LXvHSTlGEIz">📊 访问统计</h2>
-        <span class="hint" data-page-node-id="F9hbFPWVEJnjXHxYKxzLFp">网站访问人数与热门页面（数据来自 GoatCounter）</span>
+        <span class="hint" data-page-node-id="F9hbFPWVEJnjXHxYKxzLFp">网站访问人数、访客国家与热门页面（数据来自 GoatCounter）</span>
       </div>
       <div class="guide-body" data-page-node-id="ne5HXvEHfhzyNBJIkaY8qw">
         <div class="gh-row" data-page-node-id="6AtpBaslJ0xMSquglKe2WF">
@@ -279,7 +279,11 @@
           <!-- JS 动态填充：今日 / 昨日 / 本周 / 本月 / 累计 -->
         </div>
         <div class="gc-top-wrap" data-page-node-id="TkYoPJYEjQCu7kHN0CJABa">
-          <div class="it-h" style="margin-bottom:6px" data-page-node-id="OUX6F5qeXpGsMUlPmgzjRx">🔥 近 30 天热门页面</div>
+          <div class="it-h" style="margin-bottom:6px" data-page-node-id="OUX6F5qeXpGsMUlPmgzjRx">🌍 访客国家（近 30 天）</div>
+          <div class="gc-top" data-gc-geo data-page-node-id="geoNew0000000000000001">点「刷新数据」加载</div>
+        </div>
+        <div class="gc-top-wrap" data-page-node-id="TkYoPJYEjQCu7kHN0CJABb">
+          <div class="it-h" style="margin-bottom:6px" data-page-node-id="OUX6F5qeXpGsMUlPmgzjRy">🔥 近 30 天热门页面</div>
           <div class="gc-top" data-gc-top data-page-node-id="VlkEMi3vwM30scLKJ3b2Vh">点「刷新数据」加载</div>
         </div>
       </div>
@@ -1577,8 +1581,9 @@
   function gcLoadStats() {
     var token = gcToken();
     if (!token) { status('请先粘贴并保存 GoatCounter API 密钥', 'err'); return; }
-    $('[data-gc-top]').textContent = '加载中…（约 3 秒，请稍候）';
+    $('[data-gc-top]').textContent = '加载中…（约 4 秒，请稍候）';
     $('[data-gc-stats]').innerHTML = '';
+    $('[data-gc-geo]').textContent = '加载中…';
     var now = new Date();
     var startToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var DAY = 86400000;
@@ -1595,6 +1600,8 @@
       totalQuery(new Date(startToday.getFullYear(), startToday.getMonth(), 1)),
       totalQuery(new Date(startToday.getTime() - 730 * DAY)),
       function () { return gcFetch(token, '/stats/hits?start=' + encodeURIComponent(gcRfc3339(new Date(startToday.getTime() - 29 * DAY))) + '&end=' + endNow + '&limit=10'); },
+      // 访客国家：按 IP 归属地聚合（GoatCounter 只存国家名，不存 IP）
+      function () { return gcFetch(token, '/stats/locations?start=' + encodeURIComponent(gcRfc3339(new Date(startToday.getTime() - 29 * DAY))) + '&end=' + endNow + '&limit=12'); },
     ], function (res) {
       function card(label, v) {
         return '<div class="gc-card"><div class="gc-num">' + (v == null ? '—' : v) + '</div><div class="gc-label">' + esc(label) + '</div></div>';
@@ -1609,11 +1616,18 @@
       $('[data-gc-top]').innerHTML = hits.length ? hits.map(function (h) {
         return '<div class="gc-row"><span class="gc-path">' + esc(h.path) + '</span><b>' + h.count + ' 人</b></div>';
       }).join('') : '<span class="help">近 30 天暂无数据（统计脚本刚上线，访客进来后才会累计）</span>';
+      var geo = (res[6] && res[6].stats) || [];
+      var geoTotal = geo.reduce(function (a, s) { return a + (s.count || 0); }, 0);
+      $('[data-gc-geo]').innerHTML = geo.length ? geo.map(function (s) {
+        var pct = geoTotal ? Math.round((s.count || 0) * 100 / geoTotal) : 0;
+        return '<div class="gc-row"><span class="gc-path">' + esc(s.name || s.id || '未知') + '</span><b>' + (s.count || 0) + ' 人 · ' + pct + '%</b></div>';
+      }).join('') : '<span class="help">近 30 天暂无国家数据（访客进来后才会累计）</span>';
       status('✅ 访问统计已更新');
     }, function (e) {
       // 错误直接显示在统计面板里，方便看到
       $('[data-gc-stats]').innerHTML = '<div class="gc-err">⚠️ 加载失败：' + esc(e.message || '未知错误') + '。请确认网络后重试；若提示密钥无效请重新生成。</div>';
       $('[data-gc-top]').textContent = '';
+      $('[data-gc-geo]').textContent = '';
       status('访问统计加载失败：' + e.message, 'err');
     });
   }
