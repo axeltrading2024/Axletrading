@@ -1985,6 +1985,15 @@ window.PRODUCTS = [
         "image": "img/prod/m-2-gen2.jpg"
       }
     ]
+  },
+  {
+    "id": "s-2",
+    "name": "sony style",
+    "brand": "",
+    "price": "€18",
+    "note": "bluetooth 5.2-mini",
+    "desc": "",
+    "collection": "speakers"
   }
 ];
 
