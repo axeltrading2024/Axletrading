@@ -2112,6 +2112,48 @@ window.PRODUCTS = [
         "image": "img/prod/d-2.jpg"
       }
     ]
+  },
+  {
+    "id": "p-2",
+    "name": "RIMOWA style",
+    "brand": "",
+    "price": "€8",
+    "note": "suitcase style-colorful",
+    "desc": "",
+    "collection": "chargers",
+    "subcategory": "phonecase",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/p-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/p-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/p-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/p-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/p-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/p-2-6.jpg"
+      }
+    ]
   }
 ];
 
