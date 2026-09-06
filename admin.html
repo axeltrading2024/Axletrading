@@ -1,286 +1,286 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="zh-CN" data-page-node-id="Z1RvquK1eOODSeZN1FCKLE">
+<head data-page-node-id="qvX8PcbwHvZgqWYhLFFXVo">
+  <meta charset="utf-8" data-page-node-id="W8ltB7rAX5oneJGamWMQbC">
+  <meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="vp0nl8yoFjhDJfpsGMf4bx">
   <title>产品管理 · EddySupply</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231a1a1a'/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle'>E</text></svg>">
-  <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
+  <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
+  <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
+  <link rel="stylesheet" href="css/admin.css" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
-<body class="admin-body">
+<body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
   <!-- 顶部工具条 -->
-  <header class="admin-top">
-    <div class="admin-top-inner">
-      <a class="admin-brand" href="admin.html">
-        <span class="brand-mark">E</span>
-        <span>产品管理后台<small>EddySupply · 改产品、导出、发布</small></span>
+  <header class="admin-top" data-page-node-id="XAjv5qxaysjo3ItUpEL6tE">
+    <div class="admin-top-inner" data-page-node-id="NEcSDd8KuzTurz5QyOZGFY">
+      <a class="admin-brand" href="admin.html" data-page-node-id="EcXzRkp3dC228EjgOWP0Vy">
+        <span class="brand-mark" data-page-node-id="xdGn3Jc1FbijCUyUEEwM7L">E</span>
+        <span data-page-node-id="hhglln5OlmFWK55UYB2R7p">产品管理后台<small data-page-node-id="QJeruiMVHDW1kGHsQiuFQh">EddySupply · 改产品、导出、发布</small></span>
       </a>
-      <div class="admin-actions">
-        <button type="button" class="btn btn-outline" data-check>🔍 检查问题</button>
-        <button type="button" class="btn btn-outline" data-import>⬆ 导入 data.js</button>
-        <button type="button" class="btn btn-dark" data-export>⬇ 导出 data.js</button>
-        <button type="button" class="btn btn-ghost" data-open-site>打开网站 →</button>
+      <div class="admin-actions" data-page-node-id="I2puicdL4dhiWbfPHf5FYH">
+        <button type="button" class="btn btn-outline" data-check data-page-node-id="RCT7DAtN88D8KHPHTI6YeR">🔍 检查问题</button>
+        <button type="button" class="btn btn-outline" data-import data-page-node-id="PC0qqNG07PWAJRcElCkR3C">⬆ 导入 data.js</button>
+        <button type="button" class="btn btn-dark" data-export data-page-node-id="g0T6aBrEn0Keib7o3GaTtJ">⬇ 导出 data.js</button>
+        <button type="button" class="btn btn-ghost" data-open-site data-page-node-id="oeOwp56THqzevMSu7kc3Ui">打开网站 →</button>
       </div>
-      <input type="file" accept=".js" data-import-file style="display:none">
+      <input type="file" accept=".js" data-import-file style="display:none" data-page-node-id="gfG5YaCDLpmlkNAwgOPIGf">
     </div>
   </header>
 
-  <main class="admin-main">
+  <main class="admin-main" data-page-node-id="YXcp20FuJxCM4UeCirf9WS">
 
     <!-- 状态条 -->
-    <div class="status-bar" data-status></div>
+    <div class="status-bar" data-status data-page-node-id="u90lewe364nIWQP19jTFmt"></div>
 
     <!-- 一键发布设置 -->
-    <section class="panel gh-panel">
-      <div class="panel-head">
-        <h2>⚙️ 一键发布（保存产品后自动更新官网）</h2>
-        <span class="hint gh-status" data-gh-status></span>
+    <section class="panel gh-panel" data-page-node-id="XHlsKGZL6enkLDdjJR9rwZ">
+      <div class="panel-head" data-page-node-id="dd2WUFcr6aazgwAzdGaa4h">
+        <h2 data-page-node-id="07DdvBkff8EVVRFNEeqVI5">⚙️ 一键发布（保存产品后自动更新官网）</h2>
+        <span class="hint gh-status" data-gh-status data-page-node-id="DQffDKiXMvj879V7IF5uIG"></span>
       </div>
-      <div class="gh-body">
-        <div class="gh-row">
-          <label>GitHub 仓库</label>
-          <input data-gh-repo placeholder="如 axeltrading2024/Axletrading" spellcheck="false">
+      <div class="gh-body" data-page-node-id="jORwzoUKHyIPWn1gYB0l30">
+        <div class="gh-row" data-page-node-id="EmapoIsUlcBoB9RsRgTQUW">
+          <label data-page-node-id="TM8aXTKGAylwOJ8PcE0w6d">GitHub 仓库</label>
+          <input data-gh-repo placeholder="如 axeltrading2024/Axletrading" spellcheck="false" data-page-node-id="r99fArFHepuxw7h4sJrGzN">
         </div>
-        <div class="gh-row">
-          <label>GitHub 密钥（token）</label>
-          <input data-gh-token type="password" placeholder="ghp_ 开头的一串字符" spellcheck="false" autocomplete="off">
+        <div class="gh-row" data-page-node-id="4nEczhIQJpPzymyz7pB5EF">
+          <label data-page-node-id="9Sxx3zg91jS14MTytZJorF">GitHub 密钥（token）</label>
+          <input data-gh-token type="password" placeholder="ghp_ 开头的一串字符" spellcheck="false" autocomplete="off" data-page-node-id="EzKxqAueop8IEwbB5t8RGN">
         </div>
-        <div class="gh-row gh-actions">
-          <button type="button" class="btn btn-dark" data-gh-save>💾 保存设置</button>
-          <button type="button" class="btn btn-outline" data-gh-test>🔌 测试连接</button>
-          <button type="button" class="btn btn-outline" data-gh-publish>🔄 重新发布</button>
-          <span class="hint" style="margin-left:auto">密钥存在你的浏览器里，不会上传到别处；后台地址请勿发给客户</span>
+        <div class="gh-row gh-actions" data-page-node-id="0A7Z6HGWuAC5Z94uFEcIQB">
+          <button type="button" class="btn btn-dark" data-gh-save data-page-node-id="eQJc22D70I6fuxk3LXsAqb">💾 保存设置</button>
+          <button type="button" class="btn btn-outline" data-gh-test data-page-node-id="sFpaaotxBaYUlaMDfUkfVv">🔌 测试连接</button>
+          <button type="button" class="btn btn-outline" data-gh-publish data-page-node-id="wHHZwFePfNZSBcQOJUDfGw">🔄 重新发布</button>
+          <span class="hint" style="margin-left:auto" data-page-node-id="Dlq1EGrtBeTmVr63TPnPJV">密钥存在你的浏览器里，不会上传到别处；后台地址请勿发给客户</span>
         </div>
-        <div class="gh-tip">首次配置：填写仓库名和密钥 → 保存设置 → 测试连接显示 ✅ 后，以后每次「保存产品」自动发布，「选择图片」自动上传。约 1 分钟后官网生效。</div>
+        <div class="gh-tip" data-page-node-id="U9yOLd29lPX8RTdu4DKRi7">首次配置：填写仓库名和密钥 → 保存设置 → 测试连接显示 ✅ 后，以后每次「保存产品」自动发布，「选择图片」自动上传。约 1 分钟后官网生效。</div>
       </div>
     </section>
 
-    <div class="admin-layout">
+    <div class="admin-layout" data-page-node-id="QyiPXiHFeJ3iJhWp2RRwPQ">
 
       <!-- 左：产品列表 -->
-      <section class="panel">
-        <div class="panel-head">
-          <h2>产品列表</h2>
-          <span class="hint" data-prod-count></span>
+      <section class="panel" data-page-node-id="DfijplCtjsfS9GRKsTDxJT">
+        <div class="panel-head" data-page-node-id="Ce4GfNB7f4G5A4DF6MjNJ4">
+          <h2 data-page-node-id="rcvECKAqNqJuWxurwG2s0x">产品列表</h2>
+          <span class="hint" data-prod-count data-page-node-id="282rZmCZnXa4E0zP1GK6D8"></span>
         </div>
-        <div class="admin-search">
-          <input type="search" data-search placeholder="搜索产品名 / 品牌 / 关键词…">
+        <div class="admin-search" data-page-node-id="MFndxOk7horEq7rOe5YQgc">
+          <input type="search" data-search placeholder="搜索产品名 / 品牌 / 关键词…" data-page-node-id="n6HvgVPepS3tKS0wXtKtfY">
         </div>
-        <div class="admin-filters" data-cat-filters></div>
-        <div class="sort-tip" data-sort-tip style="display:none">↕ 点 ↑↓ 调整该分类页面的产品显示顺序，保存后自动发布</div>
-        <div class="prod-list" data-prod-list></div>
-        <div style="padding:12px 14px;border-top:1px solid var(--border)">
-          <button type="button" class="btn btn-dark" style="width:100%;justify-content:center" data-new>＋ 添加新产品</button>
+        <div class="admin-filters" data-cat-filters data-page-node-id="mJxuiwEGtsg038fcu5G6QT"></div>
+        <div class="sort-tip" data-sort-tip style="display:none" data-page-node-id="AZB9hwnNfwF3hZbK14lI7x">↕ 点 ↑↓ 调整该分类页面的产品显示顺序，保存后自动发布</div>
+        <div class="prod-list" data-prod-list data-page-node-id="xwtnIi9500g2qG4t0cpVTX"></div>
+        <div style="padding:12px 14px;border-top:1px solid var(--border)" data-page-node-id="yWICAASWXOUdvpZHooNVoQ">
+          <button type="button" class="btn btn-dark" style="width:100%;justify-content:center" data-new data-page-node-id="8kD847YWaNNIFbohJRCvJu">＋ 添加新产品</button>
         </div>
       </section>
 
       <!-- 右：编辑表单 -->
-      <section class="panel">
-        <div class="panel-head">
-          <h2 data-form-title>添加新产品</h2>
-          <span class="hint">填完点「保存产品」，最后记得「导出 data.js」</span>
+      <section class="panel" data-page-node-id="TKJE1BsHETFTaarDNes8ca">
+        <div class="panel-head" data-page-node-id="iDV1S39uwIXTjxWM2qVEMP">
+          <h2 data-form-title data-page-node-id="1asG7oScMVisXrc4OIkp4y">添加新产品</h2>
+          <span class="hint" data-page-node-id="Kcr34KBKzINUOFvPnkf2Gw">填完点「保存产品」，最后记得「导出 data.js」</span>
         </div>
-        <div class="admin-form">
-          <div class="form-grid" data-form-grid>
-            <div class="field">
-              <label for="f-id">产品 ID（网址用，一般不用改）</label>
-              <input id="f-id" data-f-id placeholder="自动生成，如 apple-watch">
-              <span class="help">只能用小写字母、数字、短横线</span>
+        <div class="admin-form" data-page-node-id="2HQenbNNUXookeaAvyJVMs">
+          <div class="form-grid" data-form-grid data-page-node-id="fAGF5u6qHK9ED1aFSQlBA8">
+            <div class="field" data-page-node-id="mc1RXoEJAYbiTVF15r5FAU">
+              <label for="f-id" data-page-node-id="K2cUbPSQobSy72jxAXoXc7">产品 ID（网址用，一般不用改）</label>
+              <input id="f-id" data-f-id placeholder="自动生成，如 apple-watch" data-page-node-id="WSfwJeOz8YsNDIKiwaCqBm">
+              <span class="help" data-page-node-id="D0gpaJh8gQgCGk9LoZZLZm">只能用小写字母、数字、短横线</span>
             </div>
-            <div class="field">
-              <label for="f-name">产品名称 *</label>
-              <input id="f-name" data-f-name placeholder="如 AirPods Pro 2">
+            <div class="field" data-page-node-id="Ea85xccExehygCpivVMGby">
+              <label for="f-name" data-page-node-id="YHvOSgq7ORnvnVuytbzQ8W">产品名称 *</label>
+              <input id="f-name" data-f-name placeholder="如 AirPods Pro 2" data-page-node-id="MM9bEpGfdHVYh777sXHbNp">
             </div>
-            <div class="field">
-              <label for="f-brand">品牌 *</label>
-              <input id="f-brand" data-f-brand placeholder="如 Apple">
+            <div class="field" data-page-node-id="WrYuKftfMv5vd9LLfqs1ZG">
+              <label for="f-brand" data-page-node-id="zQgsmOxCmzCQkKLh6IHjjx">品牌 *</label>
+              <input id="f-brand" data-f-brand placeholder="如 Apple" data-page-node-id="kfFFWoNTcXtOHuz72gTaTJ">
             </div>
-            <div class="field">
-              <label for="f-price">批发价 *</label>
-              <input id="f-price" data-f-price placeholder="如 $129">
+            <div class="field" data-page-node-id="q4GsXofDyAnhFr4Vt99HUE">
+              <label for="f-price" data-page-node-id="83KuOkKYB4vvEJFgCNj2NR">批发价 *</label>
+              <input id="f-price" data-f-price placeholder="如 $129" data-page-node-id="G3J4olhofsAANrs9eAlxJZ">
             </div>
-            <div class="field">
-              <label for="f-collection">所属分类 *</label>
-              <select id="f-collection" data-f-collection></select>
+            <div class="field" data-page-node-id="vOeDREFO1R3WCYvJScrbSB">
+              <label for="f-collection" data-page-node-id="fEv7e7O5FTNodt6BrHCHgA">所属分类 *</label>
+              <select id="f-collection" data-f-collection data-page-node-id="mdhwuJiXYjVhkVtJRFEPoa"></select>
             </div>
-            <div class="field">
-              <label for="f-subcategory">子分类（可选）</label>
-              <select id="f-subcategory" data-f-subcategory></select>
+            <div class="field" data-page-node-id="VMXmugMAYL0qU3ZyYOjGLk">
+              <label for="f-subcategory" data-page-node-id="I2q9vqFQ5aqpOAHnzCyjYK">子分类（可选）</label>
+              <select id="f-subcategory" data-f-subcategory data-page-node-id="ECQNbAtAykJ22ZUkg4aLeG"></select>
             </div>
-            <div class="field full">
-              <label for="f-note">一句话卖点（卡片上显示）</label>
-              <input id="f-note" data-f-note placeholder="如 ANC · Wireless charging case">
+            <div class="field full" data-page-node-id="RrSQkTPzioK8KYLhsNo2yy">
+              <label for="f-note" data-page-node-id="rcoAHfRFAwUnroBAelUhLl">一句话卖点（卡片上显示）</label>
+              <input id="f-note" data-f-note placeholder="如 ANC · Wireless charging case" data-page-node-id="r9iGlbGxCLaxxV7T8BaGDN">
             </div>
-            <div class="field full">
-              <label for="f-desc">详细介绍（详情页显示）</label>
+            <div class="field full" data-page-node-id="9VWTCrsqlcW47QDd7EeGOu">
+              <label for="f-desc" data-page-node-id="Lwh85WzdwScQ2tEWhUzYZw">详细介绍（详情页显示）</label>
               <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
             </div>
-            <div class="field full">
-              <label for="f-keywords">搜索关键词（英文逗号分隔）</label>
-              <input id="f-keywords" data-f-keywords placeholder="如 airpods, apple, wireless">
+            <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
+              <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
+              <input id="f-keywords" data-f-keywords placeholder="如 airpods, apple, wireless" data-page-node-id="8M1FFu9dCGtCX5RXo2vTi5">
             </div>
-            <div class="field check">
-              <input type="checkbox" id="f-popular" data-f-popular>
-              <label for="f-popular">设为热门（显示在首页 Popular 轮播）</label>
-            </div>
-          </div>
-
-          <div class="img-tools">
-            <img data-img-preview alt="产品图预览" src="">
-            <div>
-              <div class="it-h">产品图片</div>
-              <div class="it-name" data-img-name style="font-size:12px;font-weight:600;color:var(--accent-brand);margin-bottom:4px">选择图片后自动改名</div>
-              <div class="it-p" data-img-tip>选择图片后会自动压缩并命名为「产品ID.jpg」下载</div>
-              <input type="file" accept="image/*" data-img-file>
-              <div class="it-tip">保存位置：<code>img/prod/</code>（图名 = 产品 ID）</div>
+            <div class="field check" data-page-node-id="BRNfnebAaiaH4uI6TyCmaJ">
+              <input type="checkbox" id="f-popular" data-f-popular data-page-node-id="FYz6wIjW6A6AVpcCVftzkF">
+              <label for="f-popular" data-page-node-id="KNiFiRO2SEibmCenrKqHNI">设为热门（显示在首页 Popular 轮播）</label>
             </div>
           </div>
 
-          <div class="var-mgr">
-            <div class="it-h">型号 / Variants（可选）</div>
-            <div class="it-p">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图。访客在详情页点型号按钮切换。</div>
-            <div data-var-list></div>
-            <div class="gh-actions" style="margin-top:8px">
-              <button type="button" class="btn btn-outline" data-var-add>＋ 添加型号</button>
+          <div class="img-tools" data-page-node-id="xfIZjrR9GTZKYc0z3Rus2y">
+            <img data-img-preview alt="产品图预览" src="" data-page-node-id="qZT4tkNXYy0hbFxv8KuBDO">
+            <div data-page-node-id="RQbDhQlwws93Mrnv5hM9ly">
+              <div class="it-h" data-page-node-id="1CfMVuHjU62HMXMuo9JcFh">产品图片</div>
+              <div class="it-name" data-img-name style="font-size:12px;font-weight:600;color:var(--accent-brand);margin-bottom:4px" data-page-node-id="FFpHHp5V9MnesW51rTpqTA">选择图片后自动改名</div>
+              <div class="it-p" data-img-tip data-page-node-id="JE3ZQGLFHq1LGmHzaKxHOd">选择图片后会自动压缩并命名为「产品ID.jpg」下载</div>
+              <input type="file" accept="image/*" data-img-file data-page-node-id="ZWl3b5iW6x32c8wnnEYDEW">
+              <div class="it-tip" data-page-node-id="eNjDxhjxj3DDv3vW6DPmsD">保存位置：<code data-page-node-id="BtBxDfu6vXUKhC7mvR9nTG">img/prod/</code>（图名 = 产品 ID）</div>
             </div>
           </div>
 
-          <div class="form-foot">
-            <button type="button" class="btn btn-dark" data-save>💾 保存产品</button>
-            <button type="button" class="btn btn-outline" data-new>清空重填</button>
-            <button type="button" class="btn btn-danger" data-del-current style="display:none" title="删除当前编辑的产品">删除</button>
+          <div class="var-mgr" data-page-node-id="Q8y4OElaqV4LMGHkolhiW6">
+            <div class="it-h" data-page-node-id="QnWYR4CijtPlsCLbHrXHgX">型号 / Variants（可选）</div>
+            <div class="it-p" data-page-node-id="QCjWUAMthZsMsmCyZGAJ0Z">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图。访客在详情页点型号按钮切换。</div>
+            <div data-var-list data-page-node-id="JjF1Yf0R6NEN7bbMVmIXPF"></div>
+            <div class="gh-actions" style="margin-top:8px" data-page-node-id="YsYenW7MFVt1U3Ihwh5Jys">
+              <button type="button" class="btn btn-outline" data-var-add data-page-node-id="e8Gmniwrl1RrFM3MO8qBdF">＋ 添加型号</button>
+            </div>
+          </div>
+
+          <div class="form-foot" data-page-node-id="G5J5DQUIFTJb3UBXmIdSGH">
+            <button type="button" class="btn btn-dark" data-save data-page-node-id="ncPWdbIF135ICQNogopqVG">💾 保存产品</button>
+            <button type="button" class="btn btn-outline" data-new data-page-node-id="FzGmEmq0giJm86Pap2Kp2h">清空重填</button>
+            <button type="button" class="btn btn-danger" data-del-current style="display:none" title="删除当前编辑的产品" data-page-node-id="Uwa7pBXq7xz6g5ppwpBHgZ">删除</button>
           </div>
         </div>
       </section>
     </div>
 
     <!-- 检查报告 -->
-    <div class="report" data-report style="display:none"></div>
+    <div class="report" data-report style="display:none" data-page-node-id="SG5WZOQAeTsr0PgNPEf1tE"></div>
 
     <!-- 发布指南 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>📖 小白三步走：改产品 → 导出 → 发布</h2>
+    <section class="guide" data-page-node-id="rBO0rmPqAajDACwKpNt9vb">
+      <div class="guide-head" data-page-node-id="eHXv3qVvv6NUjxVZT4fDdh">
+        <h2 data-page-node-id="UZMPexENyEIB7hDKqLRpoo">📖 小白三步走：改产品 → 导出 → 发布</h2>
       </div>
-      <div class="guide-body">
-        <div class="gstep">
-          <div class="num">1</div>
-          <div>
-            <h4>改产品（就在本页）</h4>
-            <p>点左边产品 → 右边改 → 保存；点「＋ 添加新产品」新增。新产品的图片选好后会自动压缩、自动改名下载，把下载的图片放进网站文件夹的 <code>img/prod/</code> 里。</p>
+      <div class="guide-body" data-page-node-id="DOaa1I65iawm9Q7VJcZDxk">
+        <div class="gstep" data-page-node-id="ChlMincFAEnc7GCczCauqZ">
+          <div class="num" data-page-node-id="7bXFLoO5Je7DQ1nvrAwqoX">1</div>
+          <div data-page-node-id="uVBDJj0VUlfnOtYY4EXirx">
+            <h4 data-page-node-id="nftZgfaQMW48t5cMDnQ5dS">改产品（就在本页）</h4>
+            <p data-page-node-id="81vpQMJvraAZxXyh6FmGh8">点左边产品 → 右边改 → 保存；点「＋ 添加新产品」新增。新产品的图片选好后会自动压缩、自动改名下载，把下载的图片放进网站文件夹的 <code data-page-node-id="zugbVhCEFKXwnE73ZZom04">img/prod/</code> 里。</p>
           </div>
         </div>
-        <div class="gstep">
-          <div class="num">2</div>
-          <div>
-            <h4>导出数据</h4>
-            <p>点顶部「⬇ 导出 data.js」，下载一个 <code>data.js</code> 文件。它就是整个网站的产品数据。</p>
+        <div class="gstep" data-page-node-id="bf4DKrsSeXe7eYG73dV2cY">
+          <div class="num" data-page-node-id="8nJpVlfXEENVQFaCwrUpon">2</div>
+          <div data-page-node-id="NUAqnJDSdA1bFxg8RynCAG">
+            <h4 data-page-node-id="HrEvROkpwbCqR7X6PPwisB">导出数据</h4>
+            <p data-page-node-id="BaH5puohfHFpYRw2mPxTD0">点顶部「⬇ 导出 data.js」，下载一个 <code data-page-node-id="HmaeyzqKSRqFhXaQqGCRp4">data.js</code> 文件。它就是整个网站的产品数据。</p>
           </div>
         </div>
-        <div class="gstep">
-          <div class="num">3</div>
-          <div>
-            <h4>发布上线</h4>
-            <p>把导出的 <code>data.js</code>（以及新下载的图片）上传到托管平台，覆盖同名文件，网站 1 分钟内自动更新。托管平台选一个免费的：<strong>GitHub Pages</strong>（全球访问，最常用）或 <strong>腾讯云 EdgeOne Pages</strong>（国内也能快速访问）。具体步骤见我的回复。</p>
+        <div class="gstep" data-page-node-id="vU8Klv5r9BHwDNiELZE098">
+          <div class="num" data-page-node-id="jEMG7eFZxU1vD63Dg2lOjP">3</div>
+          <div data-page-node-id="kPv4yp48nYGbZ0GmNI1Xfd">
+            <h4 data-page-node-id="myHrBZaZXi8w9Y1ffzWlGm">发布上线</h4>
+            <p data-page-node-id="OULaNPEl5Me43rY21I4ruV">把导出的 <code data-page-node-id="aWKCpgKyrkNfwmidYCdCs0">data.js</code>（以及新下载的图片）上传到托管平台，覆盖同名文件，网站 1 分钟内自动更新。托管平台选一个免费的：<strong data-page-node-id="YDBRwENk8UUpmXu8RdYkPR">GitHub Pages</strong>（全球访问，最常用）或 <strong data-page-node-id="nSdht1bRWQv0c6g92LIsd2">腾讯云 EdgeOne Pages</strong>（国内也能快速访问）。具体步骤见我的回复。</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 分类与子分类管理 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>🗂 分类与子分类管理</h2>
-        <span class="hint">增加 / 删除分类，管理子分类（改完自动发布上线）</span>
+    <section class="guide" data-page-node-id="Y2O7vyij5pFnzMZnzrqLYi">
+      <div class="guide-head" data-page-node-id="hOFeRAtLTkYEdjP51tB7TG">
+        <h2 data-page-node-id="Ypjq1Zl7d8nObplPTZFRLm">🗂 分类与子分类管理</h2>
+        <span class="hint" data-page-node-id="Kr0LaOU3VPCnqGBirAlVP4">增加 / 删除分类，管理子分类（改完自动发布上线）</span>
       </div>
-      <div class="guide-body">
-        <div class="gh-actions" style="margin-bottom:4px">
-          <button type="button" class="btn btn-dark" data-cat-add>＋ 添加分类</button>
+      <div class="guide-body" data-page-node-id="YZ4ZSmP4gZnsypSie7j9iv">
+        <div class="gh-actions" style="margin-bottom:4px" data-page-node-id="1nzmqCpMo1Y7ImRh3C94IN">
+          <button type="button" class="btn btn-dark" data-cat-add data-page-node-id="CT233B6bOGKFcxpUmPjVRy">＋ 添加分类</button>
         </div>
         <!-- 添加 / 改名表单（默认隐藏） -->
-        <div class="cat-form" data-cat-form style="display:none">
-          <div class="gh-row"><label>分类名称 *</label><input data-cat-name placeholder="如 Smart Home"></div>
-          <div class="gh-row"><label>一句话描述</label><input data-cat-tagline placeholder="如 Connected living（可留空）"></div>
-          <div class="gh-actions">
-            <button type="button" class="btn btn-dark" data-cat-save>💾 保存</button>
-            <button type="button" class="btn btn-outline" data-cat-cancel>取消</button>
+        <div class="cat-form" data-cat-form style="display:none" data-page-node-id="Re5M4wmKGhZtDdfLJTT0Cu">
+          <div class="gh-row" data-page-node-id="zrT7kUbPYwkJ253aUiwExq"><label data-page-node-id="CIB87ZdhJHyPKIK7vmvr4W">分类名称 *</label><input data-cat-name placeholder="如 Smart Home" data-page-node-id="yduZGmbw88ZRyF5pwwgBEe"></div>
+          <div class="gh-row" data-page-node-id="zXoLrPlT233oIW4uJw5d4S"><label data-page-node-id="thtExr2VHK0JqjoM2bgDYk">一句话描述</label><input data-cat-tagline placeholder="如 Connected living（可留空）" data-page-node-id="SrS3azIsTpCRvu8Y7luR8Z"></div>
+          <div class="gh-actions" data-page-node-id="0huPAUETE8uPUsh5sRSqnU">
+            <button type="button" class="btn btn-dark" data-cat-save data-page-node-id="qHxD1wcPn0gALRT00Lx5rE">💾 保存</button>
+            <button type="button" class="btn btn-outline" data-cat-cancel data-page-node-id="1MFn8w8P3VDbWOCfkVEaCE">取消</button>
           </div>
         </div>
-        <div data-cat-manage-list></div>
+        <div data-cat-manage-list data-page-node-id="zPGWzTsY1phfNW9igtLTZ6"></div>
       </div>
     </section>
 
     <!-- 热门产品排序 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>🔥 热门产品排序</h2>
-        <span class="hint">调整首页「Popular products」横滑区的显示顺序（改完自动发布）</span>
+    <section class="guide" data-page-node-id="4ISwgKyUPbfDu59nbLTlge">
+      <div class="guide-head" data-page-node-id="EV5atZHukSYE0XKnx8IG0W">
+        <h2 data-page-node-id="7mNZ3tFWWkfaBMRvgIeaOl">🔥 热门产品排序</h2>
+        <span class="hint" data-page-node-id="2o1eengdvsYFceI2TdwxYH">调整首页「Popular products」横滑区的显示顺序（改完自动发布）</span>
       </div>
-      <div class="guide-body" data-hot-manage-list>
+      <div class="guide-body" data-hot-manage-list data-page-node-id="8dpDqk4DBEejQPbFHzFFJT">
         <!-- JS 动态填充 -->
       </div>
     </section>
 
     <!-- 分类图片管理 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>📂 分类图片管理</h2>
-        <span class="hint">首页上每个分类卡片的图片，点「换图」即可更换</span>
+    <section class="guide" data-page-node-id="Z58JxA0E5k4Wx0P2ylirVm">
+      <div class="guide-head" data-page-node-id="9xiEf87NM2zf8gBGowjCic">
+        <h2 data-page-node-id="CjGOBnLKHXHCBmcAsGVUZ5">📂 分类图片管理</h2>
+        <span class="hint" data-page-node-id="apNwr4PhsTHcK3Ea7m9fBb">首页上每个分类卡片的图片，点「换图」即可更换</span>
       </div>
-      <div class="guide-body" data-cat-list>
+      <div class="guide-body" data-cat-list data-page-node-id="5KtQuOO8ltI5P6c5Yr6zln">
         <!-- JS 动态填充 -->
       </div>
     </section>
 
     <!-- 站点设置：店铺名称与联系方式 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>🏪 站点设置：店铺名称与联系方式</h2>
-        <span class="hint">改顶部 logo、页脚版权、WhatsApp 号码、首页首屏文案（改完自动发布上线）</span>
+    <section class="guide" data-page-node-id="PMIh3SKo6NWk69R1hcix2L">
+      <div class="guide-head" data-page-node-id="oL5hregQnOjBHluFInkG6g">
+        <h2 data-page-node-id="A0KQQfw0yjOAqAZcpAXmNl">🏪 站点设置：店铺名称与联系方式</h2>
+        <span class="hint" data-page-node-id="3YHa7wQibMgmx90jeCr2Bp">改顶部 logo、页脚版权、WhatsApp 号码、首页首屏文案（改完自动发布上线）</span>
       </div>
-      <div class="guide-body">
-        <div class="gh-row"><label>店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply"><span class="help">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
-        <div class="gh-row"><label>联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）"></div>
-        <div class="gh-row"><label>WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571"><span class="help">页脚和客户看到的格式</span></div>
-        <div class="gh-row"><label>联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com"><span class="help">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
-        <div class="gh-row"><label>WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4"><span class="help">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
-        <div class="gh-row" style="margin-top:18px"><label style="font-weight:700">—— 首页首屏文案 ——</label></div>
-        <div class="gh-row"><label>顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · Product Finder"><span class="help">大标题上方的小字标签</span></div>
-        <div class="gh-row"><label>大标题（第一行）</label><input data-cfg-herotitle placeholder="如 Wholesale products"></div>
-        <div class="gh-row"><label>大标题（第二行·强调色）</label><input data-cfg-heroaccent placeholder="如 made simple."><span class="help">这一行会以强调色斜体显示</span></div>
-        <div class="gh-row"><label>副标题</label><textarea data-cfg-herosub rows="3" placeholder="大标题下方的一段介绍文字"></textarea></div>
-        <div class="gh-row"><label>搜索框提示文字</label><input data-cfg-searchph placeholder="如 Search product, brand, category…"></div>
-        <div class="gh-actions">
-          <button type="button" class="btn btn-dark" data-cfg-save>💾 保存并发布</button>
+      <div class="guide-body" data-page-node-id="EWxjH2JaWjKRm6RRbqX841">
+        <div class="gh-row" data-page-node-id="O5USZDt1ICwjeoToRTqXD8"><label data-page-node-id="ongXnUA5EWSG8MWG4E9TEe">店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply" data-page-node-id="xET2kwn3DUc8q2FLLQfKyx"><span class="help" data-page-node-id="tOfFK2evAZqX3HKhNwJUJ2">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
+        <div class="gh-row" data-page-node-id="z8kk475lL3OjMHArlsGA7g"><label data-page-node-id="U3HGXIrblUsAH7dbSQ2pMY">联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）" data-page-node-id="TCTlE56lmSzVpCEus8AigH"></div>
+        <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
+        <div class="gh-row" data-page-node-id="RBVD6h8UbrNTLYodb2QyPU"><label data-page-node-id="BWEpAv08wwiBqjJ5Bz8E0K">联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com" data-page-node-id="DftCljIYxFSqnY3DevwOET"><span class="help" data-page-node-id="sRbEfXBjWMkPfaE4zLNzDR">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
+        <div class="gh-row" data-page-node-id="FFA6kaMvDBZX7dIuyfQ3uz"><label data-page-node-id="Cwj3fhvtk6UdlpEV5IJYpv">WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4" data-page-node-id="OmGEZP3z5JxvWeql0cVm5b"><span class="help" data-page-node-id="VGFT0VYbWcyPhPOGpj8LfV">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
+        <div class="gh-row" style="margin-top:18px" data-page-node-id="zG4X3hO7xG3Kg0HdMvxHPt"><label style="font-weight:700" data-page-node-id="c0WBMRgQYj8OrifdRkWWTx">—— 首页首屏文案 ——</label></div>
+        <div class="gh-row" data-page-node-id="dfjoJRo8ReICFxe3RQHFqS"><label data-page-node-id="qwtYoGTEbyEnQLiHSg3soI">顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · Product Finder" data-page-node-id="8LA5H6J7TwKyc5JZAXM4jP"><span class="help" data-page-node-id="dDZnq4c6pcb5SvG9t2Rjlm">大标题上方的小字标签</span></div>
+        <div class="gh-row" data-page-node-id="BTG6MMlKmeQUTLEc92DMUC"><label data-page-node-id="uAGwIEs9VfYNHKgmN6Gy60">大标题（第一行）</label><input data-cfg-herotitle placeholder="如 Wholesale products" data-page-node-id="yMsBGRL7eWfvzzzVbXSrEh"></div>
+        <div class="gh-row" data-page-node-id="HT7Q4IcUXzc1PKuocWc3zK"><label data-page-node-id="ilmcRjX9MopYmkMyPcvGYk">大标题（第二行·强调色）</label><input data-cfg-heroaccent placeholder="如 made simple." data-page-node-id="A1cOFktMaoXUBTeoZEb83R"><span class="help" data-page-node-id="9EOcW2ZOZo3czCc1CW8uXS">这一行会以强调色斜体显示</span></div>
+        <div class="gh-row" data-page-node-id="0kHDmuL0m6BwBDhloMtnpp"><label data-page-node-id="ykDTSJeqOf6NEKRnEQh9hz">副标题</label><textarea data-cfg-herosub rows="3" placeholder="大标题下方的一段介绍文字"></textarea></div>
+        <div class="gh-row" data-page-node-id="zldgnLoY4HEE9fvhure60b"><label data-page-node-id="bLONYMlfyzfeshOLdj1fKq">搜索框提示文字</label><input data-cfg-searchph placeholder="如 Search product, brand, category…" data-page-node-id="MhCaz1WCVIJ8yYF0KqC2la"></div>
+        <div class="gh-actions" data-page-node-id="GLZrELSI2lfEF22bllvVEs">
+          <button type="button" class="btn btn-dark" data-cfg-save data-page-node-id="RVXLZGJG43fm0qvnZcjBBP">💾 保存并发布</button>
         </div>
       </div>
     </section>
 
     <!-- 访问统计：读取 GoatCounter 数据 -->
-    <section class="guide">
-      <div class="guide-head">
-        <h2>📊 访问统计</h2>
-        <span class="hint">网站访问人数与热门页面（数据来自 GoatCounter）</span>
+    <section class="guide" data-page-node-id="Sz60YESD9q8UnUHjmFkN1Q">
+      <div class="guide-head" data-page-node-id="m51JKJywb7ZdA2NHUkuxZh">
+        <h2 data-page-node-id="9TDg0xqGCG1LXvHSTlGEIz">📊 访问统计</h2>
+        <span class="hint" data-page-node-id="F9hbFPWVEJnjXHxYKxzLFp">网站访问人数与热门页面（数据来自 GoatCounter）</span>
       </div>
-      <div class="guide-body">
-        <div class="gh-row">
-          <label>GoatCounter API 密钥</label>
-          <input data-gc-token type="password" placeholder="在 goatcounter.com → 头像 → API 生成" spellcheck="false" autocomplete="off">
-          <span class="help">密钥只存在你的浏览器里，不会上传到别处；在 <a href="https://axeltrading.goatcounter.com" target="_blank" rel="noopener">axeltrading.goatcounter.com</a> 可看完整报表</span>
+      <div class="guide-body" data-page-node-id="ne5HXvEHfhzyNBJIkaY8qw">
+        <div class="gh-row" data-page-node-id="6AtpBaslJ0xMSquglKe2WF">
+          <label data-page-node-id="0nfR0iBqDXevbmrRwZFiN0">GoatCounter API 密钥</label>
+          <input data-gc-token type="password" placeholder="在 goatcounter.com → 头像 → API 生成" spellcheck="false" autocomplete="off" data-page-node-id="ji7iMJIFOWpZxJxp7dkcr3">
+          <span class="help" data-page-node-id="kGCar3BtEnv1xUhskKMoid">密钥只存在你的浏览器里，不会上传到别处；在 <a href="https://axeltrading.goatcounter.com" target="_blank" rel="noopener" data-page-node-id="dD9SYgbW2wd6eK6r72eqwp">axeltrading.goatcounter.com</a> 可看完整报表</span>
         </div>
-        <div class="gh-actions">
-          <button type="button" class="btn btn-dark" data-gc-save>💾 保存密钥</button>
-          <button type="button" class="btn btn-outline" data-gc-refresh>🔄 刷新数据</button>
+        <div class="gh-actions" data-page-node-id="lCqkWtSoFwXDi8DG2AzP2Y">
+          <button type="button" class="btn btn-dark" data-gc-save data-page-node-id="RECTPKNCempilBlHNbMhwf">💾 保存密钥</button>
+          <button type="button" class="btn btn-outline" data-gc-refresh data-page-node-id="248BntCDCyfSAdFyAqW0Po">🔄 刷新数据</button>
         </div>
-        <div class="gc-grid" data-gc-stats>
+        <div class="gc-grid" data-gc-stats data-page-node-id="k9ZrMogo6zFBYPW1tUEcLR">
           <!-- JS 动态填充：今日 / 昨日 / 本周 / 本月 / 累计 -->
         </div>
-        <div class="gc-top-wrap">
-          <div class="it-h" style="margin-bottom:6px">🔥 近 30 天热门页面</div>
-          <div class="gc-top" data-gc-top>点「刷新数据」加载</div>
+        <div class="gc-top-wrap" data-page-node-id="TkYoPJYEjQCu7kHN0CJABa">
+          <div class="it-h" style="margin-bottom:6px" data-page-node-id="OUX6F5qeXpGsMUlPmgzjRx">🔥 近 30 天热门页面</div>
+          <div class="gc-top" data-gc-top data-page-node-id="VlkEMi3vwM30scLKJ3b2Vh">点「刷新数据」加载</div>
         </div>
       </div>
     </section>
@@ -1533,9 +1533,10 @@
     function pad(n) { return (n < 10 ? '0' : '') + n; }
     var off = -d.getTimezoneOffset();
     var sign = off >= 0 ? '+' : '-';
+    // RFC3339 时区偏移必须带冒号（+08:00），不带冒号（+0800）会被 GoatCounter 400 拒绝
     return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
       'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':00' + sign +
-      pad(Math.floor(Math.abs(off) / 60)) + pad(Math.abs(off) % 60);
+      pad(Math.floor(Math.abs(off) / 60)) + ':' + pad(Math.abs(off) % 60);
   }
   function gcFetch(token, path, tries) {
     tries = tries || 0;
