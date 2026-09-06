@@ -2154,6 +2154,68 @@ window.PRODUCTS = [
         "image": "img/prod/p-2-6.jpg"
       }
     ]
+  },
+  {
+    "id": "l-3",
+    "name": "lululemon style",
+    "brand": "",
+    "price": "€30",
+    "note": "slim style and fashionable",
+    "desc": "",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "clothes",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/l-3-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/l-3-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/l-3-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/l-3-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/l-3-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/l-3-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/l-3-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/l-3-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/l-3-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/l-3-10.jpg"
+      }
+    ]
   }
 ];
 
