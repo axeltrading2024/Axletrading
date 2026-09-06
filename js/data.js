@@ -1964,6 +1964,27 @@ window.PRODUCTS = [
         "image": "img/prod/j-12.jpg"
       }
     ]
+  },
+  {
+    "id": "m-2",
+    "name": "wireless microphone",
+    "brand": "",
+    "price": "€30",
+    "note": "wireless- 2-channel",
+    "desc": "2-channel wireless microphone system",
+    "collection": "speakers",
+    "variants": [
+      {
+        "name": "gen1",
+        "price": "",
+        "image": "img/prod/m-2-gen1.jpg"
+      },
+      {
+        "name": "gen2",
+        "price": "",
+        "image": "img/prod/m-2-gen2.jpg"
+      }
+    ]
   }
 ];
 
