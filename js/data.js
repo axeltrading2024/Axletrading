@@ -2058,6 +2058,38 @@ window.PRODUCTS = [
     "note": "bluetooth 5.2-mini",
     "desc": "",
     "collection": "speakers"
+  },
+  {
+    "id": "g-3",
+    "name": "Gshock style",
+    "brand": "",
+    "price": "€18",
+    "note": "sport-passion-young",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "GA 2100",
+        "price": "",
+        "image": "img/prod/g-3-ga-2100.jpg"
+      },
+      {
+        "name": "GA800",
+        "price": "",
+        "image": "img/prod/g-3-ga800.jpg"
+      },
+      {
+        "name": "GA110",
+        "price": "",
+        "image": "img/prod/g-3-ga110.jpg"
+      },
+      {
+        "name": "GA+BA couple",
+        "price": "",
+        "image": "img/prod/g-3-ga-ba-couple.jpg"
+      }
+    ]
   }
 ];
 
