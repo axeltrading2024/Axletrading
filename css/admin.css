@@ -380,6 +380,12 @@
 }
 .gc-path { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--foreground); }
 .gc-row b { color: var(--accent-brand); white-space: nowrap; }
+.gc-err {
+  grid-column: 1 / -1;
+  border: 1px solid color-mix(in srgb, #e5484d 35%, var(--border));
+  background: color-mix(in srgb, #e5484d 8%, var(--card));
+  color: var(--foreground); border-radius: 10px; padding: 12px 14px; font-size: 13px; line-height: 1.6;
+}
 
 /* ============ 分类图片管理 ============ */
 .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
