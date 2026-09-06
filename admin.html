@@ -1537,34 +1537,64 @@
       'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':00' + sign +
       pad(Math.floor(Math.abs(off) / 60)) + pad(Math.abs(off) % 60);
   }
-  function gcFetch(token, path) {
+  function gcFetch(token, path, tries) {
+    tries = tries || 0;
     return fetch(GC_API + path, {
       headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
     }).then(function (r) {
       if (r.status === 401) throw new Error('密钥无效，请重新在 GoatCounter 生成并保存');
+      if (r.status === 429 && tries < 3) {
+        // 限速：等 1.2 秒后重试
+        return new Promise(function (res) { setTimeout(res, 1200); }).then(function () {
+          return gcFetch(token, path, tries + 1);
+        });
+      }
       if (!r.ok) throw new Error('请求失败（' + r.status + '）');
       return r.json();
+    }).catch(function (e) {
+      if (e instanceof TypeError && tries < 3) {
+        // 网络抖动也重试
+        return new Promise(function (res) { setTimeout(res, 1200); }).then(function () {
+          return gcFetch(token, path, tries + 1);
+        });
+      }
+      throw e;
     });
+  }
+  // 串行执行请求（间隔 350ms），避免触发 GoatCounter 限速
+  function gcSeries(tasks, done, fail) {
+    var results = [], i = 0;
+    function next() {
+      if (i >= tasks.length) { done(results); return; }
+      tasks[i++]().then(function (r) {
+        results.push(r);
+        setTimeout(next, 350);
+      }).catch(fail);
+    }
+    next();
   }
   function gcLoadStats() {
     var token = gcToken();
     if (!token) { status('请先粘贴并保存 GoatCounter API 密钥', 'err'); return; }
-    $('[data-gc-top]').textContent = '加载中…';
+    $('[data-gc-top]').textContent = '加载中…（约 3 秒，请稍候）';
+    $('[data-gc-stats]').innerHTML = '';
     var now = new Date();
     var startToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     var DAY = 86400000;
     var endNow = encodeURIComponent(gcRfc3339(new Date(now.getTime() + 3600000)));
     function totalQuery(startD, endD) {
-      return gcFetch(token, '/stats/total?start=' + encodeURIComponent(gcRfc3339(startD)) + '&end=' + (endD ? encodeURIComponent(gcRfc3339(endD)) : endNow));
+      return function () {
+        return gcFetch(token, '/stats/total?start=' + encodeURIComponent(gcRfc3339(startD)) + '&end=' + (endD ? encodeURIComponent(gcRfc3339(endD)) : endNow));
+      };
     }
-    Promise.all([
+    gcSeries([
       totalQuery(startToday),
       totalQuery(startYesterdayF(), startToday),
       totalQuery(new Date(startToday.getTime() - 6 * DAY)),
       totalQuery(new Date(startToday.getFullYear(), startToday.getMonth(), 1)),
       totalQuery(new Date(startToday.getTime() - 730 * DAY)),
-      gcFetch(token, '/stats/hits?start=' + encodeURIComponent(gcRfc3339(new Date(startToday.getTime() - 29 * DAY))) + '&end=' + endNow + '&limit=10'),
-    ]).then(function (res) {
+      function () { return gcFetch(token, '/stats/hits?start=' + encodeURIComponent(gcRfc3339(new Date(startToday.getTime() - 29 * DAY))) + '&end=' + endNow + '&limit=10'); },
+    ], function (res) {
       function card(label, v) {
         return '<div class="gc-card"><div class="gc-num">' + (v == null ? '—' : v) + '</div><div class="gc-label">' + esc(label) + '</div></div>';
       }
@@ -1579,7 +1609,9 @@
         return '<div class="gc-row"><span class="gc-path">' + esc(h.path) + '</span><b>' + h.count + ' 人</b></div>';
       }).join('') : '<span class="help">近 30 天暂无数据（统计脚本刚上线，访客进来后才会累计）</span>';
       status('✅ 访问统计已更新');
-    }).catch(function (e) {
+    }, function (e) {
+      // 错误直接显示在统计面板里，方便看到
+      $('[data-gc-stats]').innerHTML = '<div class="gc-err">⚠️ 加载失败：' + esc(e.message || '未知错误') + '。请确认网络后重试；若提示密钥无效请重新生成。</div>';
       $('[data-gc-top]').textContent = '';
       status('访问统计加载失败：' + e.message, 'err');
     });
