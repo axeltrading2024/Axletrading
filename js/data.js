@@ -1183,7 +1183,7 @@ window.PRODUCTS = [
   },
   {
     "id": "leather-case",
-    "name": "brand phoncase",
+    "name": "Otter style phoncase",
     "brand": "EddySupply",
     "price": "€5",
     "note": "premium protectiion-magsafe",
