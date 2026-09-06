@@ -741,34 +741,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
-    "brand": "Apple",
-    "price": "€30",
-    "note": "three colors option care your daily routine",
-    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
-    "collection": "watches",
-    "subcategory": "smart",
-    "popular": true,
-    "keywords": [
-      "apple",
-      "watch",
-      "smart"
-    ],
-    "variants": [
-      {
-        "name": "S11",
-        "price": "",
-        "image": "img/prod/apple-watch-11-s11.jpg"
-      },
-      {
-        "name": "ultra3",
-        "price": "",
-        "image": "img/prod/apple-watch-11-ultra3.jpg"
-      }
-    ]
-  },
-  {
     "id": "r",
     "name": "rolex datejust style",
     "brand": "rolex",
@@ -817,6 +789,34 @@ window.PRODUCTS = [
         "name": "8",
         "price": "€75",
         "image": "img/prod/r-8.jpg"
+      }
+    ]
+  },
+  {
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
+    "brand": "Apple",
+    "price": "€30",
+    "note": "three colors option care your daily routine",
+    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "popular": true,
+    "keywords": [
+      "apple",
+      "watch",
+      "smart"
+    ],
+    "variants": [
+      {
+        "name": "S11",
+        "price": "",
+        "image": "img/prod/apple-watch-11-s11.jpg"
+      },
+      {
+        "name": "ultra3",
+        "price": "",
+        "image": "img/prod/apple-watch-11-ultra3.jpg"
       }
     ]
   },
