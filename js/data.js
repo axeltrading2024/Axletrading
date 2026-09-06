@@ -1094,10 +1094,10 @@ window.PRODUCTS = [
   },
   {
     "id": "gan-65w",
-    "name": "GaN Fast Charger 65W",
+    "name": "GaN Fast Charger 45W",
     "brand": "EddySupply",
-    "price": "€10",
-    "note": "USB-C · 3-port",
+    "price": "€8",
+    "note": "USB-C · 2-port",
     "desc": "Compact GaN charger delivering 65W across three ports for laptop, tablet and phone.",
     "collection": "chargers",
     "subcategory": "chargers",
@@ -1105,6 +1105,28 @@ window.PRODUCTS = [
       "charger",
       "usb-c",
       "gan"
+    ],
+    "variants": [
+      {
+        "name": "25W adapter",
+        "price": "€4",
+        "image": "img/prod/gan-65w-1.jpg"
+      },
+      {
+        "name": "25W  fit",
+        "price": "€6",
+        "image": "img/prod/gan-65w-25w-fit.jpg"
+      },
+      {
+        "name": "45W fit",
+        "price": "€8",
+        "image": "img/prod/gan-65w-45w-fit.jpg"
+      },
+      {
+        "name": "45W adapter",
+        "price": "€6",
+        "image": "img/prod/gan-65w-45w-adapter.jpg"
+      }
     ]
   },
   {
