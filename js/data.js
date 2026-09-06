@@ -349,7 +349,7 @@ window.PRODUCTS = [
         "image": "img/prod/jbl-flip-7-charge-6.jpg"
       },
       {
-        "name": "GO4",
+        "name": "GO5",
         "price": "",
         "image": "img/prod/jbl-flip-7-go4.jpg"
       },
