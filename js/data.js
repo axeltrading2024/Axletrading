@@ -2267,6 +2267,42 @@ window.PRODUCTS = [
         "image": "img/prod/l-4-7.jpg"
       }
     ]
+  },
+  {
+    "id": "h",
+    "name": "Hermes style belt",
+    "brand": "",
+    "price": "€30",
+    "note": "Hermes belt",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "keywords": [
+      "Hermes",
+      "luxury belt"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/h-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/h-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/h-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/h-4.jpg"
+      }
+    ]
   }
 ];
 
