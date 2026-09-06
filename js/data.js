@@ -288,20 +288,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "jbl-charge",
-    "name": "JBL Charge 6",
-    "brand": "Oem",
-    "price": "€20",
-    "note": "Powerbank speaker-protable",
-    "desc": "Room-filling sound plus a built-in powerbank to top up your phone on the go.",
-    "collection": "speakers",
-    "keywords": [
-      "jbl",
-      "charge",
-      "speaker"
-    ]
-  },
-  {
     "id": "jbl-flip-7",
     "name": "JBL Flip 7",
     "brand": "oem",
