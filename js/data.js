@@ -2090,6 +2090,28 @@ window.PRODUCTS = [
     "note": "bluetooth 5.2-mini",
     "desc": "",
     "collection": "speakers"
+  },
+  {
+    "id": "d",
+    "name": "dyson airstrait style",
+    "brand": "",
+    "price": "€130",
+    "note": "tempreture control-harmless-gift box",
+    "desc": "",
+    "collection": "hair-dryers",
+    "subcategory": "hair-care",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/d-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/d-2.jpg"
+      }
+    ]
   }
 ];
 
