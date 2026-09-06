@@ -259,6 +259,32 @@
       </div>
     </section>
 
+    <!-- 访问统计：读取 GoatCounter 数据 -->
+    <section class="guide">
+      <div class="guide-head">
+        <h2>📊 访问统计</h2>
+        <span class="hint">网站访问人数与热门页面（数据来自 GoatCounter）</span>
+      </div>
+      <div class="guide-body">
+        <div class="gh-row">
+          <label>GoatCounter API 密钥</label>
+          <input data-gc-token type="password" placeholder="在 goatcounter.com → 头像 → API 生成" spellcheck="false" autocomplete="off">
+          <span class="help">密钥只存在你的浏览器里，不会上传到别处；在 <a href="https://axeltrading.goatcounter.com" target="_blank" rel="noopener">axeltrading.goatcounter.com</a> 可看完整报表</span>
+        </div>
+        <div class="gh-actions">
+          <button type="button" class="btn btn-dark" data-gc-save>💾 保存密钥</button>
+          <button type="button" class="btn btn-outline" data-gc-refresh>🔄 刷新数据</button>
+        </div>
+        <div class="gc-grid" data-gc-stats>
+          <!-- JS 动态填充：今日 / 昨日 / 本周 / 本月 / 累计 -->
+        </div>
+        <div class="gc-top-wrap">
+          <div class="it-h" style="margin-bottom:6px">🔥 近 30 天热门页面</div>
+          <div class="gc-top" data-gc-top>点「刷新数据」加载</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <script src="js/data.js"></script>
@@ -1495,6 +1521,74 @@
     }).join('');
   }
 
+  /* ============================================================
+   *  访问统计：读取 GoatCounter（密钥只存浏览器本地）
+   * ============================================================ */
+  var GC_KEY = 'eddysupply_gc_token_v1';
+  var GC_API = 'https://axeltrading.goatcounter.com/api/v0';
+  function gcToken() {
+    try { return localStorage.getItem(GC_KEY) || ''; } catch (e) { return ''; }
+  }
+  function gcRfc3339(d) {
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    var off = -d.getTimezoneOffset();
+    var sign = off >= 0 ? '+' : '-';
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+      'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':00' + sign +
+      pad(Math.floor(Math.abs(off) / 60)) + pad(Math.abs(off) % 60);
+  }
+  function gcFetch(token, path) {
+    return fetch(GC_API + path, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+    }).then(function (r) {
+      if (r.status === 401) throw new Error('密钥无效，请重新在 GoatCounter 生成并保存');
+      if (!r.ok) throw new Error('请求失败（' + r.status + '）');
+      return r.json();
+    });
+  }
+  function gcLoadStats() {
+    var token = gcToken();
+    if (!token) { status('请先粘贴并保存 GoatCounter API 密钥', 'err'); return; }
+    $('[data-gc-top]').textContent = '加载中…';
+    var now = new Date();
+    var startToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var DAY = 86400000;
+    var endNow = encodeURIComponent(gcRfc3339(new Date(now.getTime() + 3600000)));
+    function totalQuery(startD, endD) {
+      return gcFetch(token, '/stats/total?start=' + encodeURIComponent(gcRfc3339(startD)) + '&end=' + (endD ? encodeURIComponent(gcRfc3339(endD)) : endNow));
+    }
+    Promise.all([
+      totalQuery(startToday),
+      totalQuery(startYesterdayF(), startToday),
+      totalQuery(new Date(startToday.getTime() - 6 * DAY)),
+      totalQuery(new Date(startToday.getFullYear(), startToday.getMonth(), 1)),
+      totalQuery(new Date(startToday.getTime() - 730 * DAY)),
+      gcFetch(token, '/stats/hits?start=' + encodeURIComponent(gcRfc3339(new Date(startToday.getTime() - 29 * DAY))) + '&end=' + endNow + '&limit=10'),
+    ]).then(function (res) {
+      function card(label, v) {
+        return '<div class="gc-card"><div class="gc-num">' + (v == null ? '—' : v) + '</div><div class="gc-label">' + esc(label) + '</div></div>';
+      }
+      $('[data-gc-stats]').innerHTML =
+        card('今日访问人数', res[0].total) +
+        card('昨日', res[1].total) +
+        card('近 7 天', res[2].total) +
+        card('本月', res[3].total) +
+        card('累计', res[4].total);
+      var hits = (res[5] && res[5].hits) || [];
+      $('[data-gc-top]').innerHTML = hits.length ? hits.map(function (h) {
+        return '<div class="gc-row"><span class="gc-path">' + esc(h.path) + '</span><b>' + h.count + ' 人</b></div>';
+      }).join('') : '<span class="help">近 30 天暂无数据（统计脚本刚上线，访客进来后才会累计）</span>';
+      status('✅ 访问统计已更新');
+    }).catch(function (e) {
+      $('[data-gc-top]').textContent = '';
+      status('访问统计加载失败：' + e.message, 'err');
+    });
+  }
+  function startYesterdayF() {
+    var n = new Date();
+    return new Date(n.getFullYear(), n.getMonth(), n.getDate() - 1);
+  }
+
   /* ---------------- 启动 ---------------- */
   function boot() {
     fillCollectionSelect();
@@ -1506,6 +1600,22 @@
     fillSiteSettings();
     var cfgSaveBtn = $('[data-cfg-save]');
     if (cfgSaveBtn) cfgSaveBtn.addEventListener('click', saveSiteSettings);
+    // 访问统计：回填密钥 + 绑定按钮
+    var gcTokenInput = $('[data-gc-token]');
+    if (gcTokenInput) gcTokenInput.value = gcToken();
+    var gcSaveBtn = $('[data-gc-save]');
+    if (gcSaveBtn) gcSaveBtn.addEventListener('click', function () {
+      var t = ($('[data-gc-token]').value || '').trim();
+      if (!t) { status('请先在 GoatCounter 后台生成 API 密钥并粘贴到这里', 'err'); return; }
+      try { localStorage.setItem(GC_KEY, t); } catch (e) {}
+      status('✅ 密钥已保存，点「🔄 刷新数据」加载统计');
+    });
+    var gcRefreshBtn = $('[data-gc-refresh]');
+    if (gcRefreshBtn) gcRefreshBtn.addEventListener('click', function () {
+      var t = ($('[data-gc-token]').value || '').trim();
+      if (t) { try { localStorage.setItem(GC_KEY, t); } catch (e) {} }
+      gcLoadStats();
+    });
     resetForm();
     bind();
     renderGhPanel();
