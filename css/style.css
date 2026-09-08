@@ -1549,7 +1549,9 @@ a {
 
 .spec-list {
   margin-top: 32px;
-  border-top: 1px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2px 20px;
 }
 
 .spec-row {
@@ -1560,10 +1562,19 @@ a {
   font-size: 14px;
 }
 
+.spec-row:last-child {
+  border-bottom: none;
+}
+
 .spec-row .k {
   width: 96px;
   flex-shrink: 0;
   color: var(--muted-foreground);
+}
+
+.spec-row span:not(.k) {
+  margin-left: auto;
+  text-align: right;
 }
 
 .tag-row {
