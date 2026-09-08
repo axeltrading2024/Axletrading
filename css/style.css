@@ -1508,6 +1508,15 @@ a {
   border-color: var(--foreground);
 }
 
+/* 按钮宽度比例：Add : Review = 3 : 2（Review 为 Add 的 2/3） */
+.detail-actions [data-add] {
+  flex: 3 1 0;
+}
+
+.detail-actions [data-open-inquiry] {
+  flex: 2 1 0;
+}
+
 .variant-block {
   margin-top: 22px;
 }
@@ -1542,9 +1551,9 @@ a {
   border-color: var(--foreground);
 }
 .variant-chip.is-active {
-  background: var(--foreground);
-  color: var(--card);
-  border-color: var(--foreground);
+  background: var(--whatsapp);
+  color: #ffffff;
+  border-color: var(--whatsapp);
 }
 
 .spec-list {
