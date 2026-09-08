@@ -282,6 +282,7 @@
               '<h3 class="name">' + esc(p.name) + '</h3>' +
               '<span class="price">' + esc(p.price) + '</span>' +
             '</div>' +
+            '<p class="price-note-card">Wholesale · Ask for volume pricing</p>' +
             '<p class="note">' + esc(p.note) + '</p>' +
           '</div>' +
           '<button type="button" class="add btn btn-sm btn-outline add-btn" data-add="' + esc(p.id) + '">' +
