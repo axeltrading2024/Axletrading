@@ -746,8 +746,10 @@
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
           '<h1>' + esc(p.name) + '</h1>' +
-          '<p class="detail-price" data-variant-price>' + esc(defPrice) + '</p>' +
-          '<p class="detail-desc">' + esc(p.desc || p.note) + '</p>' +
+          '<p class="detail-price" data-variant-price>' + esc(defPrice) +
+            '<span class="price-note">Wholesale · Ask for volume pricing</span>' +
+          '</p>' +
+          ((p.note || p.desc) ? '<p class="detail-desc">' + esc(p.note || p.desc) + '</p>' : '') +
           (variants
             ? '<div class="variant-block">' +
                 '<div class="variant-label">Model / Option</div>' +
@@ -762,27 +764,23 @@
             '<button type="button" class="btn btn-dark" data-add="' + esc(p.id) + '"' + (variants ? ' data-variant="' + esc(variants[0].name) + '"' : '') + '>' +
               '<span class="ico">' + ICON.plus + '</span><span class="lbl">Add to Inquiry</span>' +
             '</button>' +
-            '<a class="btn btn-whatsapp" data-ask="' + esc(p.id) + '" href="#" target="_blank" rel="noreferrer">' +
-              ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Ask on WhatsApp' +
-            '</a>' +
+            '<button type="button" class="btn btn-outline" data-open-inquiry>Review inquiry list</button>' +
           '</div>' +
+          '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; Back to ' + esc(cat ? cat.name : p.collection) + '</a>' +
           '<div class="spec-list">' +
-            '<div class="spec-row"><span class="k">Brand</span><span>' + esc(p.brand) + '</span></div>' +
-            '<div class="spec-row"><span class="k">Features</span><span>' + esc(p.note) + '</span></div>' +
+            '<div class="spec-row"><span class="k">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
             '<div class="spec-row"><span class="k">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
+            '<div class="spec-row"><span class="k">Shipping</span><span>Worldwide · Quoted on request</span></div>' +
+            '<div class="spec-row"><span class="k">MOQ</span><span>Flexible — ask ' + esc(CFG.contactName || 'us') + '</span></div>' +
           '</div>' +
-          (p.keywords && p.keywords.length
-            ? '<div class="tag-row">' + p.keywords.map(function (k) { return '<span class="tag">' + esc(k) + '</span>'; }).join('') + '</div>'
-            : '') +
         '</div>' +
       '</div>';
 
-    // 型号切换：点型号按钮 → 换主图 / 换价格 / 更新 Add 按钮与 WhatsApp
+    // 型号切换：点型号按钮 → 换主图 / 换价格 / 更新 Add 按钮
     if (variants) {
       var imgEl = $('[data-variant-img]');
       var priceEl = $('[data-variant-price]');
       var addBtn = $('[data-add][data-variant]');
-      var askEl = $('[data-ask]');
       $$('.variant-chip').forEach(function (chip) {
         chip.addEventListener('click', function () {
           $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
@@ -793,20 +791,9 @@
           if (imgEl) imgEl.src = vImg;
           if (priceEl) priceEl.textContent = vPrice;
           if (addBtn) addBtn.setAttribute('data-variant', vName);
-          if (askEl) {
-            askEl.href = waLink("Hi " + CFG.contactName + "! I'm interested in " + p.name +
-              " (" + vName + ", " + vPrice + ", " + p.brand + "). Could you share pricing and MOQ?");
-          }
           syncAddButtons();
         });
       });
-    }
-
-    // 「Ask on WhatsApp」带上这个产品的信息
-    var ask = $('[data-ask]');
-    if (ask) {
-      ask.href = waLink("Hi " + CFG.contactName + "! I'm interested in " + p.name +
-        " (" + p.brand + ", " + p.price + "). Could you share pricing and MOQ?");
     }
 
     // 同分类推荐
