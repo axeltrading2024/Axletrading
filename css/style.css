@@ -852,6 +852,13 @@ a {
   color: var(--muted-foreground);
 }
 
+.price-note-card {
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+  letter-spacing: 0.01em;
+}
+
 .product-card .add {
   margin-top: auto;
 }
