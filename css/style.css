@@ -1456,6 +1456,37 @@ a {
   line-height: 1;
 }
 
+.price-note {
+  margin-left: 12px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--muted-foreground);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--foreground);
+}
+
+@media (max-width: 480px) {
+  .price-note {
+    display: block;
+    margin-left: 0;
+    margin-top: 8px;
+    white-space: normal;
+  }
+}
+
 .detail-desc {
   margin-top: 16px;
   font-size: 15px;
@@ -1468,6 +1499,13 @@ a {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+}
+
+/* 产品详情页主按钮保持黑色（旧版风格），已加购状态由 .btn-in-cart 接管 */
+.detail-actions [data-add]:not(.btn-in-cart) {
+  background: var(--foreground);
+  color: var(--background);
+  border-color: var(--foreground);
 }
 
 .variant-block {
