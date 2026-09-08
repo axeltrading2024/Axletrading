@@ -771,7 +771,7 @@
             '<div class="spec-row"><span class="k">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
             '<div class="spec-row"><span class="k">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
             '<div class="spec-row"><span class="k">Shipping</span><span>Worldwide · Quoted on request</span></div>' +
-            '<div class="spec-row"><span class="k">MOQ</span><span>Flexible — ask ' + esc(CFG.contactName || 'us') + '</span></div>' +
+            '<div class="spec-row"><span class="k">MOQ</span><span>Flexible</span></div>' +
           '</div>' +
         '</div>' +
       '</div>';
