@@ -714,6 +714,17 @@
   /* ============================================================
    *  产品详情页
    * ============================================================ */
+  /** 动态页设置 canonical / og:url（Google 会渲染 JS，直接生效） */
+  function setCanonical(path) {
+    var url = 'https://eddytrading.com' + path;
+    var set = function (sel, attr, val) {
+      var el = $(sel);
+      if (el) el.setAttribute(attr, val);
+    };
+    set('link[rel="canonical"]', 'href', url);
+    set('meta[property="og:url"]', 'content', url);
+  }
+
   function initProduct() {
     var host = $('[data-product]');
     if (!host) return;
@@ -731,6 +742,7 @@
 
     var cat = getCategory(p.collection);
     document.title = p.name + ' — ' + CFG.brand;
+    setCanonical('/product.html?id=' + encodeURIComponent(p.id));
 
     var variants = (p.variants && p.variants.length) ? p.variants : null;
     var defImage = p.image || '';
@@ -834,6 +846,7 @@
     }
 
     document.title = cat.name + ' — ' + CFG.brand;
+    setCanonical('/category.html?slug=' + encodeURIComponent(slug));
 
     var all = productsIn(slug);
     var sub = param('sub');
