@@ -2320,12 +2320,17 @@ window.PRODUCTS = [
   {
     "id": "l-3",
     "name": "lululemon style",
-    "brand": "",
+    "brand": "lululemon",
     "price": "€30",
     "note": "slim style and fashionable",
     "desc": "",
     "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
+    "keywords": [
+      "lululemon",
+      "slim clothes",
+      "clothes"
+    ],
     "variants": [
       {
         "name": "1",
