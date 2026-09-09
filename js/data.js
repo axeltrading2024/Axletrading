@@ -870,34 +870,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
-    "brand": "Apple",
-    "price": "€30",
-    "note": "three colors option care your daily routine",
-    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
-    "collection": "watches",
-    "subcategory": "smart",
-    "popular": true,
-    "keywords": [
-      "apple",
-      "watch",
-      "smart"
-    ],
-    "variants": [
-      {
-        "name": "S11",
-        "price": "",
-        "image": "img/prod/apple-watch-11-s11.jpg"
-      },
-      {
-        "name": "ultra3",
-        "price": "",
-        "image": "img/prod/apple-watch-11-ultra3.jpg"
-      }
-    ]
-  },
-  {
     "id": "c-2",
     "name": "Cartier style",
     "brand": "",
@@ -955,6 +927,34 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
+    "brand": "Apple",
+    "price": "€30",
+    "note": "three colors option care your daily routine",
+    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "popular": true,
+    "keywords": [
+      "apple",
+      "watch",
+      "smart"
+    ],
+    "variants": [
+      {
+        "name": "S11",
+        "price": "",
+        "image": "img/prod/apple-watch-11-s11.jpg"
+      },
+      {
+        "name": "ultra3",
+        "price": "",
+        "image": "img/prod/apple-watch-11-ultra3.jpg"
+      }
+    ]
+  },
+  {
     "id": "g-3",
     "name": "Gshock style",
     "brand": "",
@@ -983,6 +983,67 @@ window.PRODUCTS = [
         "name": "GA+BA couple",
         "price": "",
         "image": "img/prod/g-3-ga-ba-couple.jpg"
+      }
+    ]
+  },
+  {
+    "id": "t-2",
+    "name": "Tissot style",
+    "brand": "Tissot",
+    "price": "€65",
+    "note": "luxry-young",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "keywords": [
+      "tissot",
+      "luxry watch"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/t-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/t-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/t-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/t-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/t-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/t-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/t-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/t-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/t-2-9.jpg"
       }
     ]
   },
@@ -2508,67 +2569,6 @@ window.PRODUCTS = [
         "name": "7",
         "price": "",
         "image": "img/prod/g-4-7.jpg"
-      }
-    ]
-  },
-  {
-    "id": "t-2",
-    "name": "Tissot style",
-    "brand": "Tissot",
-    "price": "€65",
-    "note": "luxry-young",
-    "desc": "",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "keywords": [
-      "tissot",
-      "luxry watch"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/t-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/t-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/t-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/t-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/t-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/t-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/t-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/t-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/t-2-9.jpg"
       }
     ]
   }
