@@ -1472,6 +1472,7 @@ window.PRODUCTS = [
     "note": "foot massage",
     "desc": "",
     "collection": "clothes-and-s-hose",
+    "subcategory": "shose",
     "keywords": [
       "nike",
       "shose",
