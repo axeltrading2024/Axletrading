@@ -751,6 +751,63 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "r-2",
+    "name": "Rolex GMT-Master style",
+    "brand": "Rolex",
+    "price": "€65",
+    "note": "dual timing-luxury",
+    "desc": "For dual time zone",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/r-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/r-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/r-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/r-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/r-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/r-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/r-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/r-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/r-2-9.jpg"
+      }
+    ]
+  },
+  {
     "id": "ap-royal-oak",
     "name": "AP Royal Oak Style",
     "brand": "Audemars Piguet",
@@ -809,63 +866,6 @@ window.PRODUCTS = [
         "name": "9",
         "price": "",
         "image": "img/prod/ap-royal-oak-9.jpg"
-      }
-    ]
-  },
-  {
-    "id": "r-2",
-    "name": "Rolex GMT-Master style",
-    "brand": "Rolex",
-    "price": "€65",
-    "note": "dual timing-luxury",
-    "desc": "For dual time zone",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/r-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/r-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/r-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/r-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/r-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/r-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/r-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/r-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/r-2-9.jpg"
       }
     ]
   },
@@ -2451,6 +2451,63 @@ window.PRODUCTS = [
         "name": "7",
         "price": "",
         "image": "img/prod/g-4-7.jpg"
+      }
+    ]
+  },
+  {
+    "id": "c-2",
+    "name": "Cartier style",
+    "brand": "",
+    "price": "€65",
+    "note": "elegant-luxury",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/c-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/c-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/c-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/c-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/c-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/c-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/c-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/c-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/c-2-9.jpg"
       }
     ]
   }
