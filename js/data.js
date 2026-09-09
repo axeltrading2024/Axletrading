@@ -1437,7 +1437,7 @@ window.PRODUCTS = [
   },
   {
     "id": "boom-tower",
-    "name": "Party Tower 120 Speaker",
+    "name": "Party box 120 Speaker",
     "brand": "EddySupply",
     "price": "€180",
     "note": "LED · Karaoke ready-outdoor swimming pool",
