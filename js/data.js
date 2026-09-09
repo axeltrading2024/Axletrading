@@ -870,124 +870,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "c-2",
-    "name": "Cartier style",
-    "brand": "",
-    "price": "€65",
-    "note": "elegant-luxury",
-    "desc": "",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/c-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/c-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/c-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/c-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/c-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/c-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/c-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/c-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/c-2-9.jpg"
-      }
-    ]
-  },
-  {
-    "id": "t-2",
-    "name": "Tissot style",
-    "brand": "Tissot",
-    "price": "€65",
-    "note": "luxry-young",
-    "desc": "",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "keywords": [
-      "tissot",
-      "luxry watch"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/t-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/t-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/t-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/t-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/t-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/t-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/t-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/t-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/t-2-9.jpg"
-      }
-    ]
-  },
-  {
     "id": "apple-watch-11",
     "name": "Apple Watch Series 11",
     "brand": "Apple",
@@ -1044,6 +926,63 @@ window.PRODUCTS = [
         "name": "GA+BA couple",
         "price": "",
         "image": "img/prod/g-3-ga-ba-couple.jpg"
+      }
+    ]
+  },
+  {
+    "id": "c-2",
+    "name": "Cartier style",
+    "brand": "",
+    "price": "€65",
+    "note": "elegant-luxury",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/c-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/c-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/c-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/c-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/c-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/c-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/c-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/c-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/c-2-9.jpg"
       }
     ]
   },
