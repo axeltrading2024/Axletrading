@@ -873,6 +873,63 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "r-2",
+    "name": "Rolex GMT-Master style",
+    "brand": "Rolex",
+    "price": "€65",
+    "note": "dual timing-luxury",
+    "desc": "For dual time zone",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/r-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/r-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/r-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/r-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/r-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/r-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/r-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/r-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/r-2-9.jpg"
+      }
+    ]
+  },
+  {
     "id": "galaxy-watch",
     "name": "Galaxy Watch Ultra",
     "brand": "Samsung",
@@ -2394,63 +2451,6 @@ window.PRODUCTS = [
         "name": "7",
         "price": "",
         "image": "img/prod/g-4-7.jpg"
-      }
-    ]
-  },
-  {
-    "id": "r-2",
-    "name": "Rolex GMT-Master style",
-    "brand": "Rolex",
-    "price": "€65",
-    "note": "dual timing-luxury",
-    "desc": "For dual time zone",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/r-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/r-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/r-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/r-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/r-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/r-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/r-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/r-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/r-2-9.jpg"
       }
     ]
   }
