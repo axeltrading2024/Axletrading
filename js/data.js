@@ -325,7 +325,7 @@ window.PRODUCTS = [
   {
     "id": "jbl-flip-7",
     "name": "JBL Flip 7",
-    "brand": "oem",
+    "brand": "JBL",
     "price": "€18",
     "note": "Portable · Waterproof",
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
