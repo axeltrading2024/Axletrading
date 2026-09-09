@@ -1446,10 +1446,14 @@ window.PRODUCTS = [
     "name": "NFC card",
     "brand": "",
     "price": "€2",
-    "note": "NFC card",
-    "desc": "tap and rate you a five star",
+    "note": "NFC card-google card",
+    "desc": "tap and rate you  five star",
     "collection": "other",
     "popular": true,
+    "keywords": [
+      "NFC",
+      "google"
+    ],
     "variants": [
       {
         "name": "sticker",
