@@ -1429,6 +1429,10 @@ window.PRODUCTS = [
     "note": "dual lens dual views-AI alert",
     "desc": "",
     "collection": "other",
+    "keywords": [
+      "camera",
+      "security"
+    ],
     "variants": [
       {
         "name": "dual lens",
