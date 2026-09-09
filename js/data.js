@@ -2150,7 +2150,7 @@ window.PRODUCTS = [
   {
     "id": "j",
     "name": "jersey",
-    "brand": "",
+    "brand": "EddySupply",
     "price": "€15",
     "note": "football club or national team jersey",
     "desc": "numbers and name could be customized, vintage style are also in stock",
