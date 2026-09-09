@@ -1467,13 +1467,14 @@ window.PRODUCTS = [
   {
     "id": "m",
     "name": "nike mind001",
-    "brand": "",
+    "brand": "nike",
     "price": "€25",
     "note": "foot massage",
     "desc": "",
     "collection": "clothes-and-s-hose",
     "keywords": [
-      "nike shose",
+      "nike",
+      "shose",
       "mind001"
     ],
     "variants": [
@@ -2055,143 +2056,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "y",
-    "name": "yeezy style slide",
-    "brand": "adidas",
-    "price": "€15",
-    "note": "fashion-lighter-soft",
-    "desc": "",
-    "collection": "clothes-and-s-hose",
-    "subcategory": "shose",
-    "keywords": [
-      "slide",
-      "yeezy"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/y-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/y-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/y-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/y-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/y-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/y-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/y-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/y-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/y-9.jpg"
-      }
-    ]
-  },
-  {
-    "id": "j",
-    "name": "jersey",
-    "brand": "",
-    "price": "€15",
-    "note": "football club or national team jersey",
-    "desc": "numbers and name could be customized, vintage style are also in stock",
-    "collection": "clothes-and-s-hose",
-    "subcategory": "clothes",
-    "keywords": [
-      "jersey. football kit",
-      "club jersey"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/j-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/j-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/j-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/j-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/j-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/j-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/j-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/j-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/j-9.jpg"
-      },
-      {
-        "name": "10",
-        "price": "",
-        "image": "img/prod/j-10.jpg"
-      },
-      {
-        "name": "11",
-        "price": "",
-        "image": "img/prod/j-11.jpg"
-      },
-      {
-        "name": "12",
-        "price": "",
-        "image": "img/prod/j-12.jpg"
-      }
-    ]
-  },
-  {
     "id": "football-training-kit",
     "name": "Football training kit",
     "brand": "",
@@ -2275,6 +2139,82 @@ window.PRODUCTS = [
         "name": "15",
         "price": "",
         "image": "img/prod/football-training-kit-15.jpg"
+      }
+    ]
+  },
+  {
+    "id": "j",
+    "name": "jersey",
+    "brand": "",
+    "price": "€15",
+    "note": "football club or national team jersey",
+    "desc": "numbers and name could be customized, vintage style are also in stock",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "clothes",
+    "keywords": [
+      "jersey. football kit",
+      "club jersey"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/j-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/j-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/j-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/j-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/j-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/j-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/j-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/j-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/j-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/j-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/j-11.jpg"
+      },
+      {
+        "name": "12",
+        "price": "",
+        "image": "img/prod/j-12.jpg"
       }
     ]
   },
