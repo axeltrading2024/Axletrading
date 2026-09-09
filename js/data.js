@@ -2366,6 +2366,78 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "y",
+    "name": "yeezy style slide",
+    "brand": "yeezy",
+    "price": "€15",
+    "note": "comfortable-soft-fashion",
+    "desc": "",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "shose",
+    "keywords": [
+      "yeezy",
+      "slide",
+      "adidas"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/y-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/y-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/y-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/y-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/y-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/y-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/y-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/y-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/y-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/y-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/y-11.jpg"
+      }
+    ]
+  },
+  {
     "id": "l-3",
     "name": "lululemon style",
     "brand": "lululemon",
@@ -2567,78 +2639,6 @@ window.PRODUCTS = [
         "name": "7",
         "price": "",
         "image": "img/prod/g-4-7.jpg"
-      }
-    ]
-  },
-  {
-    "id": "y",
-    "name": "yeezy style slide",
-    "brand": "yeezy",
-    "price": "€15",
-    "note": "comfortable-soft-fashion",
-    "desc": "",
-    "collection": "clothes-and-s-hose",
-    "subcategory": "shose",
-    "keywords": [
-      "yeezy",
-      "slide",
-      "adidas"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/y-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/y-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/y-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/y-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/y-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/y-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/y-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/y-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/y-9.jpg"
-      },
-      {
-        "name": "10",
-        "price": "",
-        "image": "img/prod/y-10.jpg"
-      },
-      {
-        "name": "11",
-        "price": "",
-        "image": "img/prod/y-11.jpg"
       }
     ]
   }
