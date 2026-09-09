@@ -339,29 +339,69 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Flip 7",
+        "name": "Flip 7-purple",
         "price": "",
-        "image": "img/prod/jbl-flip-7-flip-7.jpg"
+        "image": "img/prod/jbl-flip-7-flip-7-1.jpg"
       },
       {
-        "name": "charge 6",
+        "name": "Flip7-blue",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge-6.jpg"
+        "image": "img/prod/jbl-flip-7-flip7-2.jpg"
       },
       {
-        "name": "GO5",
+        "name": "Flip7-black",
         "price": "",
-        "image": "img/prod/jbl-flip-7-go4.jpg"
+        "image": "img/prod/jbl-flip-7-flip7-3.jpg"
       },
       {
-        "name": "Clip5",
+        "name": "Flip7-red",
         "price": "",
-        "image": "img/prod/jbl-flip-7-clip5.jpg"
+        "image": "img/prod/jbl-flip-7-flip7-4.jpg"
       },
       {
-        "name": "Pulse 6",
+        "name": "Charge6-black1",
         "price": "",
-        "image": "img/prod/jbl-flip-7-pulse-6.jpg"
+        "image": "img/prod/jbl-flip-7-charge6.jpg"
+      },
+      {
+        "name": "Charge6-black2",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-charge6-black2.jpg"
+      },
+      {
+        "name": "Charge6-blue",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-charge6-blue.jpg"
+      },
+      {
+        "name": "Charge6-purple",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-charge6-purple.jpg"
+      },
+      {
+        "name": "Charge6-red",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-charge6-red.jpg"
+      },
+      {
+        "name": "GO5-1",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-go5-1.jpg"
+      },
+      {
+        "name": "GO5-2",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-go5-2.jpg"
+      },
+      {
+        "name": "GO5-3",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-go5-3.jpg"
+      },
+      {
+        "name": "GO5-4",
+        "price": "",
+        "image": "img/prod/jbl-flip-7-go5-4.jpg"
       }
     ]
   },
