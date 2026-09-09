@@ -324,7 +324,7 @@ window.PRODUCTS = [
   },
   {
     "id": "jbl-flip-7",
-    "name": "JBL Flip 7",
+    "name": "JBL small speaker",
     "brand": "JBL",
     "price": "€18",
     "note": "Portable · Waterproof",
@@ -360,27 +360,27 @@ window.PRODUCTS = [
       },
       {
         "name": "Charge6-black1",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/jbl-flip-7-charge6.jpg"
       },
       {
         "name": "Charge6-black2",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/jbl-flip-7-charge6-black2.jpg"
       },
       {
         "name": "Charge6-blue",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/jbl-flip-7-charge6-blue.jpg"
       },
       {
         "name": "Charge6-purple",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/jbl-flip-7-charge6-purple.jpg"
       },
       {
         "name": "Charge6-red",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/jbl-flip-7-charge6-red.jpg"
       },
       {
