@@ -2065,6 +2065,10 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
+    "keywords": [
+      "football kit",
+      "trainning kit"
+    ],
     "variants": [
       {
         "name": "1",
