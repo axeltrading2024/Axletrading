@@ -699,6 +699,58 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "r",
+    "name": "rolex datejust style",
+    "brand": "rolex",
+    "price": "€65",
+    "note": "classic-elegant-waterprrof-practical",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/r-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/r-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/r-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/r-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/r-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/r-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/r-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "€75",
+        "image": "img/prod/r-8.jpg"
+      }
+    ]
+  },
+  {
     "id": "ap-royal-oak",
     "name": "AP Royal Oak Style",
     "brand": "Audemars Piguet",
@@ -761,54 +813,59 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "r",
-    "name": "rolex datejust style",
-    "brand": "rolex",
+    "id": "r-2",
+    "name": "Rolex GMT-Master style",
+    "brand": "Rolex",
     "price": "€65",
-    "note": "classic-elegant-waterprrof-practical",
-    "desc": "",
+    "note": "dual timing-luxury",
+    "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "luxury",
     "variants": [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/r-1.jpg"
+        "image": "img/prod/r-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/r-2.jpg"
+        "image": "img/prod/r-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/r-3.jpg"
+        "image": "img/prod/r-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/r-4.jpg"
+        "image": "img/prod/r-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/r-5.jpg"
+        "image": "img/prod/r-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/r-6.jpg"
+        "image": "img/prod/r-2-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/r-7.jpg"
+        "image": "img/prod/r-2-7.jpg"
       },
       {
         "name": "8",
-        "price": "€75",
-        "image": "img/prod/r-8.jpg"
+        "price": "",
+        "image": "img/prod/r-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/r-2-9.jpg"
       }
     ]
   },
@@ -869,63 +926,6 @@ window.PRODUCTS = [
         "name": "GA+BA couple",
         "price": "",
         "image": "img/prod/g-3-ga-ba-couple.jpg"
-      }
-    ]
-  },
-  {
-    "id": "r-2",
-    "name": "Rolex GMT-Master style",
-    "brand": "Rolex",
-    "price": "€65",
-    "note": "dual timing-luxury",
-    "desc": "For dual time zone",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/r-2-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/r-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/r-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/r-2-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/r-2-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/r-2-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/r-2-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/r-2-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/r-2-9.jpg"
       }
     ]
   },
