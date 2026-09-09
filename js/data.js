@@ -1051,6 +1051,16 @@ window.PRODUCTS = [
         "name": "galaxy ultra",
         "price": "",
         "image": "img/prod/galaxy-watch-galaxy-ultra.jpg"
+      },
+      {
+        "name": "serial 9",
+        "price": "",
+        "image": "img/prod/galaxy-watch-serial-9.jpg"
+      },
+      {
+        "name": "ultra2",
+        "price": "",
+        "image": "img/prod/galaxy-watch-ultra2.jpg"
       }
     ]
   },
