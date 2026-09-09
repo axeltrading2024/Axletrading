@@ -737,6 +737,26 @@ window.PRODUCTS = [
         "name": "5",
         "price": "",
         "image": "img/prod/ap-royal-oak-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/ap-royal-oak-9.jpg"
       }
     ]
   },
