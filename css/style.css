@@ -1078,6 +1078,86 @@ a {
   fill: currentColor;
 }
 
+/* ---------------- 右下角浮动购物车（黑底） ---------------- */
+.cart-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 41;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 22px;
+  background: var(--foreground);
+  color: var(--background);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: 0 18px 40px -14px oklch(0% 0 0 / 0.5),
+    inset 0 0 0 1px oklch(100% 0 0 / 0.08);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.cart-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 46px -14px oklch(0% 0 0 / 0.55),
+    inset 0 0 0 1px oklch(100% 0 0 / 0.14);
+}
+
+.cart-fab:active {
+  transform: translateY(0);
+}
+
+.cart-fab-ico {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cart-fab-ico svg {
+  width: 21px;
+  height: 21px;
+  display: block;
+}
+
+.cart-fab .inquiry-count {
+  min-width: 22px;
+  padding: 3px 7px;
+  font-size: 11px;
+  background: oklch(100% 0 0 / 0.16);
+  color: oklch(100% 0 0);
+}
+
+.cart-fab .inquiry-count.has-items {
+  background: var(--whatsapp);
+  color: oklch(100% 0 0);
+}
+
+/* 抽屉打开时让出右侧空间，避免与面板叠在一起 */
+body:has(.drawer.open) .cart-fab {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .cart-fab {
+    right: 14px;
+    bottom: 14px;
+    gap: 8px;
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+  .cart-fab-ico svg { width: 19px; height: 19px; }
+  /* 提示条上移，避免被浮动购物车遮住 */
+  .toast { bottom: 78px; }
+}
+
 /* ---------------- 询价抽屉 ---------------- */
 .drawer-backdrop {
   position: fixed;
