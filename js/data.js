@@ -159,7 +159,6 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "video": "img/vid/airpods-pro-2.mp4",
     "name": "AirPods",
     "brand": "Apple",
     "price": "€12",
@@ -167,6 +166,7 @@ window.PRODUCTS = [
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "popular": true,
+    "video": "img/vid/airpods-pro-2.mp4",
     "keywords": [
       "airpods",
       "apple",
@@ -616,7 +616,6 @@ window.PRODUCTS = [
   },
   {
     "id": "rolex-submariner",
-    "video": "img/vid/rolex-submariner.mp4",
     "name": "Rolex Submariner Style",
     "brand": "Rolex",
     "price": "€65",
@@ -625,6 +624,7 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "luxury",
     "popular": true,
+    "video": "img/vid/rolex-submariner.mp4",
     "keywords": [
       "rolex",
       "submariner",
@@ -688,6 +688,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "luxury",
+    "video": "img/vid/r.mp4",
     "variants": [
       {
         "name": "1",
