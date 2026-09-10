@@ -73,6 +73,7 @@
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.4c0-1 1.1-1.6 1.9-1.1l8.6 6.6c.7.5.7 1.6 0 2.1l-8.6 6.6c-.8.6-1.9 0-1.9-1V5.4Z"/></svg>',
     arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3.2"/><path d="m3.6 7.4 7.5 5.3c.54.38 1.26.38 1.8 0l7.5-5.3"/></svg>',
     chevLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
     chevRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
@@ -1123,6 +1124,41 @@
     renderSharedQuote();
   }
 
+  /* ---------------- 联系方式小卡片：页面里写 <div data-contact-cards></div> 即可
+       内容全部取自站点配置（后台「站点设置」改号码 / 邮箱后这两张卡自动跟着变） ---------------- */
+  function renderContactCards() {
+    var hosts = $$('[data-contact-cards]');
+    if (!hosts.length || !CFG) return;
+
+    var wa = CFG.whatsapp
+      ? '<a class="cc-card cc-wa" href="' + esc(waLink(CFG.greeting)) + '" target="_blank" rel="noreferrer">' +
+          '<span class="cc-shine" aria-hidden="true"></span>' +
+          '<span class="cc-ico">' + ICON.whatsapp + '</span>' +
+          '<span class="cc-txt">' +
+            '<span class="cc-k">WhatsApp · fastest</span>' +
+            '<span class="cc-v">' + esc(CFG.whatsappDisplay || 'Chat now') + '</span>' +
+            '<span class="cc-sub">Send your inquiry list — quote within 24 hours</span>' +
+          '</span>' +
+          '<span class="cc-arrow">' + ICON.arrowRight + '</span>' +
+        '</a>'
+      : '';
+
+    var mail = CFG.contactEmail
+      ? '<a class="cc-card cc-mail" href="mailto:' + esc(CFG.contactEmail) + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' +
+          '<span class="cc-ico">' + ICON.mail + '</span>' +
+          '<span class="cc-txt">' +
+            '<span class="cc-k">Email · catalogs &amp; docs</span>' +
+            '<span class="cc-v">' + esc(CFG.contactEmail) + '</span>' +
+            '<span class="cc-sub">Price lists, shipping documents and invoices</span>' +
+          '</span>' +
+          '<span class="cc-arrow">' + ICON.arrowRight + '</span>' +
+        '</a>'
+      : '';
+
+    if (!wa && !mail) return;
+    hosts.forEach(function (h) { h.innerHTML = wa + mail; });
+  }
+
   /* ---------------- 通用 WhatsApp 按钮：任何页面只要写 [data-wa-chat] 即可 ---------------- */
   function initWaChat() {
     $$('[data-wa-chat]').forEach(function (a) {
@@ -1139,6 +1175,7 @@
     Store.load();
     bindGlobal();
     initWaChat();
+    renderContactCards();
     initSharedList();
 
     var page = document.body.getAttribute('data-page');
