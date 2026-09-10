@@ -1773,7 +1773,8 @@ a {
 
 /* 锚点滚动补偿 sticky header */
 #popular,
-#browse {
+#browse,
+#about {
   scroll-margin-top: calc(var(--header-h) + 16px);
 }
 
@@ -1864,6 +1865,12 @@ a {
 .about-cta h2 { font-size: 26px; }
 .about-cta p { color: var(--muted-foreground); margin: 8px 0 20px; }
 .about-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ==================== 首页 About / FAQ 区块 ==================== */
+.about-home-inner { max-width: 880px; }
+.about-home .faq-section { margin-top: 40px; }
+.about-home .faq-section h3 { font-size: 22px; margin-bottom: 16px; }
+.about-home-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 
 .site-footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
