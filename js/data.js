@@ -159,6 +159,7 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
+    "video": "img/vid/airpods-pro-2.mp4",
     "name": "AirPods",
     "brand": "Apple",
     "price": "€12",
@@ -615,6 +616,7 @@ window.PRODUCTS = [
   },
   {
     "id": "rolex-submariner",
+    "video": "img/vid/rolex-submariner.mp4",
     "name": "Rolex Submariner Style",
     "brand": "Rolex",
     "price": "€65",
