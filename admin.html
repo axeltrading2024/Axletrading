@@ -601,7 +601,7 @@
   }
 
   /* ---------------- 表单 ---------------- */
-  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular'];
+  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video'];
 
   function fillForm(p) {
     if (!p) { resetForm(); return; }
@@ -851,7 +851,8 @@
       var b64 = String(fr.result).split(',')[1] || '';
       ghPut(path, b64, '上传产品视频 ' + fname).then(function () {
         $('[data-f-video]').value = path;
-        $('[data-video-tip]').textContent = '✅ 已上传：' + path + '（约 1-2 分钟后官网生效）';
+        $('[data-video-tip]').innerHTML = '✅ 视频文件已上传：' + path +
+          '<br><b style="color:#c0392b">⚠️ 还差最后一步：请点上面的「💾 保存产品」，否则详情页不会出现「Watch video」按钮。</b>';
         showVideoPreview(path);
         status('✅ 视频已上传：' + path + ' —— 记得点「保存产品」写入数据');
       }).catch(function (e) {
