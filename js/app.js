@@ -38,7 +38,8 @@
     var brand = esc(CFG.brand || 'EddySupply');
     var wa = esc(CFG.whatsappDisplay || '');
     el.innerHTML = '© <span data-year>' + year + '</span> ' + brand +
-      (wa ? '. Chat with us on WhatsApp · ' + wa : '');
+      ' · <a href="about.html">About / FAQ</a>' +
+      (wa ? ' · WhatsApp ' + wa : '');
   })();
 
   /** 从 "$129" / "¥899" 里拆出货币符号和数值 */
@@ -321,6 +322,7 @@
             '<a href="index.html" data-nav="home">Home</a>' +
             '<a href="index.html#popular" data-nav="popular">Popular</a>' +
             '<a href="index.html#browse" data-nav="browse">Browse</a>' +
+            '<a href="about.html" data-nav="about">About / FAQ</a>' +
           '</nav>' +
           '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
             ICON.clipboard + 'Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
@@ -755,7 +757,13 @@
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
       '<div class="detail">' +
-        '<div class="detail-media"><img data-variant-img src="' + esc(defImage) + '" alt="' + esc(p.name) + '"></div>' +
+        '<div class="detail-media">' +
+          '<img data-variant-img src="' + esc(defImage) + '" alt="' + esc(p.name) + '">' +
+          (p.video
+            ? '<video class="detail-video" data-detail-video src="' + esc(p.video) + '" controls playsinline preload="metadata" style="display:none"></video>' +
+              '<button type="button" class="video-toggle" data-video-toggle>▶ Watch video</button>'
+            : '') +
+        '</div>' +
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
           '<h1>' + esc(p.name) + '</h1>' +
@@ -789,11 +797,28 @@
         '</div>' +
       '</div>';
 
+    // 视频切换：图 ↔ 视频 互斥显示；切型号时回到图片
+    var vToggle = $('[data-video-toggle]');
+    if (vToggle) {
+      var vImg = $('[data-variant-img]');
+      var vEl = $('[data-detail-video]');
+      vToggle.addEventListener('click', function () {
+        var showVideo = vEl.style.display === 'none';
+        vEl.style.display = showVideo ? '' : 'none';
+        vImg.style.display = showVideo ? 'none' : '';
+        vToggle.textContent = showVideo ? '🖼 Show photo' : '▶ Watch video';
+        if (showVideo) { vEl.currentTime = 0; vEl.play().catch(function () {}); }
+        else vEl.pause();
+      });
+    }
+
     // 型号切换：点型号按钮 → 换主图 / 换价格 / 更新 Add 按钮
     if (variants) {
       var imgEl = $('[data-variant-img]');
       var priceEl = $('[data-variant-price]');
       var addBtn = $('[data-add][data-variant]');
+      var vEl2 = $('[data-detail-video]');
+      var vTog2 = $('[data-video-toggle]');
       $$('.variant-chip').forEach(function (chip) {
         chip.addEventListener('click', function () {
           $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
@@ -804,6 +829,12 @@
           if (imgEl) imgEl.src = vImg;
           if (priceEl) priceEl.textContent = vPrice;
           if (addBtn) addBtn.setAttribute('data-variant', vName);
+          // 切换型号时退出视频回到图片
+          if (vEl2 && vEl2.style.display !== 'none') {
+            vEl2.pause(); vEl2.style.display = 'none';
+            imgEl.style.display = '';
+            if (vTog2) vTog2.textContent = '▶ Watch video';
+          }
           syncAddButtons();
         });
       });
@@ -970,7 +1001,7 @@
     var page = document.body.getAttribute('data-page');
     if (page === 'product') initProduct();
     else if (page === 'category') initCategory();
-    else initHome();
+    else if (page !== 'about') initHome();
 
     renderInquiry();
     syncAddButtons();
