@@ -266,6 +266,16 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+.var-row .var-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  cursor: zoom-in;
+}
 .var-row .var-img-status {
   font-size: 11px;
   color: var(--muted-foreground);
