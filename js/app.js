@@ -38,7 +38,7 @@
     var brand = esc(CFG.brand || 'EddySupply');
     var wa = esc(CFG.whatsappDisplay || '');
     el.innerHTML = '© <span data-year>' + year + '</span> ' + brand +
-      ' · <a href="about.html">About / FAQ</a>' +
+      ' · <a href="about.html">About Us</a>' +
       (wa ? ' · WhatsApp ' + wa : '');
   })();
 
@@ -335,7 +335,7 @@
             '<a href="index.html" data-nav="home">Home</a>' +
             '<a href="index.html#popular" data-nav="popular">Popular</a>' +
             '<a href="index.html#browse" data-nav="browse">Browse</a>' +
-            '<a href="about.html" data-nav="about">About / FAQ</a>' +
+            '<a href="index.html#about" data-nav="about">About Us</a>' +
           '</nav>' +
           '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
             '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
@@ -1123,11 +1123,22 @@
     renderSharedQuote();
   }
 
+  /* ---------------- 通用 WhatsApp 按钮：任何页面只要写 [data-wa-chat] 即可 ---------------- */
+  function initWaChat() {
+    $$('[data-wa-chat]').forEach(function (a) {
+      if (!CFG.whatsapp) return;
+      var text = a.getAttribute('data-wa-text') ||
+        ('Hi ' + (CFG.contactName || CFG.brand) + '! I have a question before ordering.');
+      a.href = waLink(text);
+    });
+  }
+
   /* ---------------- 启动 ---------------- */
   function boot() {
     mountChrome();
     Store.load();
     bindGlobal();
+    initWaChat();
     initSharedList();
 
     var page = document.body.getAttribute('data-page');
