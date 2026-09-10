@@ -967,66 +967,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
-    "brand": "Apple",
-    "price": "€30",
-    "note": "three colors option care your daily routine",
-    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
-    "collection": "watches",
-    "subcategory": "smart",
-    "popular": true,
-    "keywords": [
-      "apple",
-      "watch",
-      "smart"
-    ],
-    "variants": [
-      {
-        "name": "S11",
-        "price": "",
-        "image": "img/prod/apple-watch-11-s11.jpg"
-      },
-      {
-        "name": "ultra3",
-        "price": "",
-        "image": "img/prod/apple-watch-11-ultra3.jpg"
-      }
-    ]
-  },
-  {
-    "id": "g-3",
-    "name": "Gshock style",
-    "brand": "",
-    "price": "€18",
-    "note": "sport-passion-young",
-    "desc": "",
-    "collection": "watches",
-    "subcategory": "luxury",
-    "variants": [
-      {
-        "name": "GA 2100",
-        "price": "",
-        "image": "img/prod/g-3-ga-2100.jpg"
-      },
-      {
-        "name": "GA800",
-        "price": "",
-        "image": "img/prod/g-3-ga800.jpg"
-      },
-      {
-        "name": "GA110",
-        "price": "",
-        "image": "img/prod/g-3-ga110.jpg"
-      },
-      {
-        "name": "GA+BA couple",
-        "price": "",
-        "image": "img/prod/g-3-ga-ba-couple.jpg"
-      }
-    ]
-  },
-  {
     "id": "t-2",
     "name": "Tissot style",
     "brand": "Tissot",
@@ -1084,6 +1024,66 @@ window.PRODUCTS = [
         "name": "9",
         "price": "",
         "image": "img/prod/t-2-9.jpg"
+      }
+    ]
+  },
+  {
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
+    "brand": "Apple",
+    "price": "€30",
+    "note": "three colors option care your daily routine",
+    "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
+    "collection": "watches",
+    "subcategory": "smart",
+    "popular": true,
+    "keywords": [
+      "apple",
+      "watch",
+      "smart"
+    ],
+    "variants": [
+      {
+        "name": "S11",
+        "price": "",
+        "image": "img/prod/apple-watch-11-s11.jpg"
+      },
+      {
+        "name": "ultra3",
+        "price": "",
+        "image": "img/prod/apple-watch-11-ultra3.jpg"
+      }
+    ]
+  },
+  {
+    "id": "g-3",
+    "name": "Gshock style",
+    "brand": "",
+    "price": "€18",
+    "note": "sport-passion-young",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "variants": [
+      {
+        "name": "GA 2100",
+        "price": "",
+        "image": "img/prod/g-3-ga-2100.jpg"
+      },
+      {
+        "name": "GA800",
+        "price": "",
+        "image": "img/prod/g-3-ga800.jpg"
+      },
+      {
+        "name": "GA110",
+        "price": "",
+        "image": "img/prod/g-3-ga110.jpg"
+      },
+      {
+        "name": "GA+BA couple",
+        "price": "",
+        "image": "img/prod/g-3-ga-ba-couple.jpg"
       }
     ]
   },
