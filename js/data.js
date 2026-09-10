@@ -2722,6 +2722,41 @@ window.PRODUCTS = [
         "image": "img/prod/g-4-7.jpg"
       }
     ]
+  },
+  {
+    "id": "d-2",
+    "name": "down",
+    "brand": "EddySupply",
+    "price": "€85",
+    "note": "down jacket- down coat-fashion and warm",
+    "desc": "",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "clothes",
+    "keywords": [
+      "jacket",
+      "down",
+      "coat",
+      "clothese",
+      "burberry",
+      "northface"
+    ],
+    "variants": [
+      {
+        "name": "Northface-1",
+        "price": "",
+        "image": "img/prod/d-2-northface-1.jpg"
+      },
+      {
+        "name": "Burberry-1",
+        "price": "",
+        "image": "img/prod/d-2-burberry-1.jpg"
+      },
+      {
+        "name": "Burberry-2",
+        "price": "",
+        "image": "img/prod/d-2-burberry-2.jpg"
+      }
+    ]
   }
 ];
 
