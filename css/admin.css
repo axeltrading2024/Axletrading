@@ -461,3 +461,20 @@
 
 /* 两段式确认态（替代 confirm 弹窗） */
 .mini-btn.armed { background: #e5484d; border-color: #e5484d; color: #fff; }
+
+/* ==================== 产品视频上传 ==================== */
+.vid-upload {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.vid-pick { cursor: pointer; }
+.vid-preview {
+  width: 100%;
+  max-width: 320px;
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #000;
+}
