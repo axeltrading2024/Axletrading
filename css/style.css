@@ -1872,6 +1872,110 @@ a {
 .about-home .faq-section h3 { font-size: 22px; margin-bottom: 16px; }
 .about-home-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 
+/* ==================== 联系方式小卡片（数据卡下方） ==================== */
+.contact-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.cc-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.25s var(--ease-out-soft), box-shadow 0.25s var(--ease-out-soft),
+    border-color 0.25s;
+}
+
+.cc-card:hover { transform: translateY(-3px); }
+
+.cc-ico {
+  flex: 0 0 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+}
+.cc-ico svg { width: 24px; height: 24px; }
+
+.cc-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.cc-k { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; }
+.cc-v { font-family: var(--font-display); font-size: 19px; line-height: 1.15; overflow-wrap: anywhere; }
+.cc-sub { font-size: 11.5px; line-height: 1.35; }
+
+.cc-arrow {
+  margin-left: auto;
+  flex: 0 0 auto;
+  transition: transform 0.25s var(--ease-out-soft), opacity 0.25s;
+}
+.cc-arrow svg { width: 18px; height: 18px; }
+.cc-card:hover .cc-arrow { transform: translateX(4px); }
+
+/* —— WhatsApp 卡：绿色渐变 + 高光 + 扫光 —— */
+.cc-wa {
+  color: var(--whatsapp-foreground);
+  background: linear-gradient(135deg, oklch(76% 0.17 145), oklch(58% 0.15 155));
+  box-shadow: 0 12px 26px -14px oklch(60% 0.15 152 / 0.85);
+}
+.cc-wa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(125% 95% at 10% 0%, oklch(100% 0 0 / 0.4), transparent 62%);
+}
+.cc-wa:hover { box-shadow: 0 18px 34px -14px oklch(58% 0.15 152 / 0.9); }
+.cc-wa .cc-ico { background: oklch(100% 0 0 / 0.22); }
+.cc-wa .cc-k { opacity: 0.92; }
+.cc-wa .cc-sub { opacity: 0.9; }
+
+.cc-shine {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 70px;
+  z-index: 2;
+  background: linear-gradient(100deg, transparent, oklch(100% 0 0 / 0.5), transparent);
+  transform: translateX(-170%) rotate(8deg);
+  pointer-events: none;
+}
+.cc-wa:hover .cc-shine { animation: ccShine 0.9s var(--ease-out-soft); }
+@keyframes ccShine {
+  to { transform: translateX(600%) rotate(8deg); }
+}
+
+/* —— 邮箱卡：白底描边 —— */
+.cc-mail {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  box-shadow: var(--shadow-soft);
+}
+.cc-mail .cc-ico { background: var(--muted); color: var(--foreground); }
+.cc-mail .cc-k,
+.cc-mail .cc-sub { color: var(--muted-foreground); }
+.cc-mail .cc-arrow { color: var(--muted-foreground); }
+.cc-mail:hover { border-color: oklch(76% 0 0); box-shadow: var(--shadow-lift); }
+
+@media (max-width: 639px) {
+  .contact-cards { grid-template-columns: 1fr; }
+  .cc-v { font-size: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-card,
+  .cc-arrow { transition: none; }
+  .cc-card:hover { transform: none; }
+  .cc-wa:hover .cc-shine { animation: none; }
+}
+
 .site-footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
 @media (max-width: 639px) {
