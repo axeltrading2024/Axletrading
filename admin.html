@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20260910a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -621,11 +621,14 @@
     syncSubcats();
     if (p.subcategory) $('[data-f-subcategory]').value = p.subcategory;
     $('[data-form-title]').textContent = '编辑产品';
-    var imgUrl = p.image || '';
-    if (imgUrl && !imgUrl.match(/^https?:\/\//) && !imgUrl.match(/^data:/)) {
-      imgUrl = 'https://axeltrading2024.github.io/Axletrading/' + imgUrl + '?t=' + Date.now();
-    }
-    $('[data-img-preview]').src = imgUrl;
+    var mp = $('[data-img-preview]');
+    mp.onerror = function () {
+      mp.onerror = null;
+      mp.style.opacity = '0.25';
+      $('[data-img-tip]').textContent = '⚠️ 主图打不开：' + (p.image || '（未设置）');
+    };
+    mp.onload = function () { mp.style.opacity = '1'; };
+    mp.src = resolveImgUrl(p.image);
     $('[data-img-name]').textContent = p.id + '.jpg';
     $('[data-img-tip]').textContent = '已用图片：' + p.image;
     renderVarRows(p.variants);
@@ -641,7 +644,10 @@
     $('[data-f-collection]').value = CATEGORIES.length ? CATEGORIES[0].slug : '';
     $('[data-form-title]').textContent = '添加新产品';
     syncSubcats();
-    $('[data-img-preview]').src = '';
+    var mp0 = $('[data-img-preview]');
+    mp0.onerror = null;
+    mp0.style.opacity = '1';
+    mp0.src = '';
     $('[data-img-name]').textContent = '选择图片后自动改名';
     $('[data-img-tip]').textContent = '不上传图片则沿用分类插画';
     showVideoPreview('');
@@ -860,6 +866,34 @@
     return slugify(name, []);
   }
 
+  /* 缩略图：路径 → 线上绝对地址（与主图预览同一正本） */
+  function resolveImgUrl(path) {
+    if (!path) return '';
+    if (/^(https?:|data:)/.test(path)) return path;
+    return 'https://axeltrading2024.github.io/Axletrading/' + path + '?t=' + Date.now();
+  }
+
+  /* 图片打不开时的占位图（红色警示三角） */
+  var THUMB_BROKEN = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">' +
+    '<rect width="48" height="48" rx="10" fill="#fee2e2"/>' +
+    '<path d="M24 11 L38 35 H10 Z" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>' +
+    '<rect x="23" y="19" width="2" height="8" rx="1" fill="#dc2626"/>' +
+    '<circle cx="24" cy="30.5" r="1.5" fill="#dc2626"/></svg>');
+
+  function setVarThumb(thumb, src) {
+    if (!thumb) return;
+    if (!src) { thumb.style.display = 'none'; thumb.removeAttribute('src'); return; }
+    thumb.style.display = '';
+    thumb.onerror = function () {
+      thumb.onerror = null;
+      thumb.src = THUMB_BROKEN;
+      thumb.title = '⚠️ 图片打不开：' + src + '（数据里的路径和实际文件对不上？）';
+    };
+    thumb.src = src;
+  }
+
+
   function addVarRow(v, focus) {
     var list = $('[data-var-list]');
     if (!list) return;
@@ -873,6 +907,7 @@
         '<input class="var-price" data-var-price placeholder="价格，如 $129（留空则同主价）" value="' + esc(v.price || '') + '">' +
       '</div>' +
       '<div class="var-img">' +
+        '<img class="var-thumb" data-var-thumb alt="型号图缩略图" title="点击查看大图"' + (v.image ? '' : ' style="display:none"') + '>' +
         '<input type="file" accept="image/*" data-var-file style="display:none">' +
         '<button type="button" class="btn btn-outline" data-var-pick>🖼 图片</button>' +
         '<span class="var-img-status" data-var-img-status>' + (v.image ? '✅ ' + esc(v.image) : '未选（用主图）') + '</span>' +
@@ -880,6 +915,7 @@
       '</div>' +
       '<button type="button" class="btn btn-ghost var-del" data-var-del title="删除该型号">×</button>';
     list.appendChild(row);
+    if (v.image) setVarThumb(row.querySelector('[data-var-thumb]'), resolveImgUrl(v.image));
     if (focus) {
       var n = row.querySelector('[data-var-name]');
       if (n) n.focus();
@@ -938,6 +974,7 @@
       var fname = pid + '-' + varSlug(vName) + '.jpg';
       var st = row.querySelector('[data-var-img-status]');
       var hv = row.querySelector('[data-var-img-value]');
+      setVarThumb(row.querySelector('[data-var-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
       if (ghEnabled()) {
         st.textContent = '正在上传 ' + fname + ' …';
         var b64 = String(dataUrl).split(',')[1] || dataUrl;
@@ -1136,6 +1173,8 @@
     varList.addEventListener('click', function (e) {
       var row = e.target.closest('[data-var-row]');
       if (!row) return;
+      var thumbEl = e.target.closest('[data-var-thumb]');
+      if (thumbEl && thumbEl.src) { window.open(thumbEl.src, '_blank'); return; }
       var del = e.target.closest('[data-var-del]');
       if (del) { row.remove(); return; }
       var pick = e.target.closest('[data-var-pick]');
