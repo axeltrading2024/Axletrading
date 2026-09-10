@@ -1709,3 +1709,95 @@ a {
 #browse {
   scroll-margin-top: calc(var(--header-h) + 16px);
 }
+
+/* ==================== 产品视频 ==================== */
+.detail-media { position: relative; }
+.detail-media .detail-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius, 16px);
+  background: #000;
+}
+.video-toggle {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--foreground);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s ease;
+}
+.video-toggle:hover { background: #fff; }
+
+/* ==================== About / FAQ 页 ==================== */
+.about-main { padding: 48px 16px 80px; max-width: 860px; }
+.about-hero h1 { font-size: 40px; line-height: 1.1; margin: 4px 0 16px; }
+.about-lede { font-size: 17px; line-height: 1.7; color: var(--muted-foreground); }
+.about-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+}
+.about-facts .fact {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 12px;
+  text-align: center;
+}
+.about-facts .fact b { display: block; font-family: var(--font-display); font-size: 22px; }
+.about-facts .fact span { font-size: 12px; color: var(--muted-foreground); }
+
+.faq-section { margin-top: 56px; }
+.faq-section h2 { font-size: 28px; margin-bottom: 20px; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 10px;
+  background: var(--card);
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 16px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 20px; color: var(--muted-foreground); }
+.faq-item[open] summary::after { content: '–'; }
+.faq-item[open] summary { border-bottom: 1px solid var(--border); }
+.faq-body { padding: 14px 20px 18px; font-size: 15px; line-height: 1.7; color: var(--muted-foreground); }
+
+.about-cta {
+  margin-top: 56px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 24px;
+  text-align: center;
+}
+.about-cta h2 { font-size: 26px; }
+.about-cta p { color: var(--muted-foreground); margin: 8px 0 20px; }
+.about-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.site-footer a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+@media (max-width: 639px) {
+  .about-hero h1 { font-size: 30px; }
+  .about-facts { grid-template-columns: repeat(2, 1fr); }
+  .about-main { padding: 32px 16px 56px; }
+}
