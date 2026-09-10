@@ -550,7 +550,7 @@
     list.innerHTML = rows.map(function (p) {
       return '' +
         '<div class="prod-row' + (state.editingId === p.id ? ' is-active' : '') + '" data-open="' + esc(p.id) + '">' +
-          '<img src="' + esc(p.image && !p.image.match(/^https?:\/\//) && !p.image.match(/^data:/) ? 'https://axeltrading2024.github.io/Axletrading/' + p.image : p.image) + '" alt="" loading="lazy">' +
+          '<img src="' + esc(p.image && !p.image.match(/^https?:\/\//) && !p.image.match(/^data:/) ? 'https://eddytrading.com/' + p.image : p.image) + '" alt="" loading="lazy">' +
           '<div class="meta">' +
             '<div class="pn">' + esc(p.name) + '</div>' +
             '<div class="pm">' + esc(p.brand) + ' · ' + esc(p.price) + (p.subcategory ? ' · ' + esc(p.subcategory) : '') + '</div>' +
@@ -628,7 +628,7 @@
       $('[data-img-tip]').textContent = '⚠️ 主图打不开：' + (p.image || '（未设置）');
     };
     mp.onload = function () { mp.style.opacity = '1'; };
-    mp.src = resolveImgUrl(p.image);
+    mp.src = localPreviews[p.image] || resolveImgUrl(p.image);
     $('[data-img-name]').textContent = p.id + '.jpg';
     $('[data-img-tip]').textContent = '已用图片：' + p.image;
     renderVarRows(p.variants);
@@ -739,6 +739,15 @@
   }
 
   /* ---------------- 图片工具：压缩 + 自动改名 ---------------- */
+  /* 刚上传过的图保留本地预览（路径 → dataURL），保存/切换时不从网上重拉，避免 CDN 返回旧缓存图 */
+  var localPreviews = {};
+
+  /* 缩略图：路径 → 线上绝对地址（与主图预览同一正本） */
+  function resolveImgUrl(path) {
+    if (!path) return '';
+    if (/^(https?:|data:)/.test(path)) return path;
+    return 'https://eddytrading.com/' + path + '?t=' + Date.now();
+  }
   function handleImageFile(file) {
     if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
     var target = 800;
@@ -769,6 +778,7 @@
         var fname = id + '.jpg';
         $('[data-img-name]').textContent = fname;
         var dataUrl = cv.toDataURL('image/jpeg', 0.82);
+        localPreviews['img/prod/' + fname] = dataUrl; // 上传后保存不重拉网络图，防止 CDN 旧缓存
 
         // 已连接 GitHub → 直接上传到线上 img/prod/
         if (ghEnabled()) {
@@ -866,13 +876,6 @@
     return slugify(name, []);
   }
 
-  /* 缩略图：路径 → 线上绝对地址（与主图预览同一正本） */
-  function resolveImgUrl(path) {
-    if (!path) return '';
-    if (/^(https?:|data:)/.test(path)) return path;
-    return 'https://axeltrading2024.github.io/Axletrading/' + path + '?t=' + Date.now();
-  }
-
   /* 图片打不开时的占位图（红色警示三角） */
   var THUMB_BROKEN = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">' +
@@ -915,7 +918,7 @@
       '</div>' +
       '<button type="button" class="btn btn-ghost var-del" data-var-del title="删除该型号">×</button>';
     list.appendChild(row);
-    if (v.image) setVarThumb(row.querySelector('[data-var-thumb]'), resolveImgUrl(v.image));
+    if (v.image) setVarThumb(row.querySelector('[data-var-thumb]'), localPreviews[v.image] || resolveImgUrl(v.image));
     if (focus) {
       var n = row.querySelector('[data-var-name]');
       if (n) n.focus();
@@ -975,6 +978,7 @@
       var st = row.querySelector('[data-var-img-status]');
       var hv = row.querySelector('[data-var-img-value]');
       setVarThumb(row.querySelector('[data-var-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
+      localPreviews['img/prod/' + fname] = dataUrl;
       if (ghEnabled()) {
         st.textContent = '正在上传 ' + fname + ' …';
         var b64 = String(dataUrl).split(',')[1] || dataUrl;
@@ -1504,7 +1508,7 @@
     box.innerHTML = '<div class="cat-grid">' + CATEGORIES.map(function (c) {
       var imgUrl = c.image || '';
       if (imgUrl && !imgUrl.match(/^https?:\/\//) && !imgUrl.match(/^data:/)) {
-        imgUrl = 'https://axeltrading2024.github.io/Axletrading/' + imgUrl + '?t=' + Date.now();
+        imgUrl = 'https://eddytrading.com/' + imgUrl + '?t=' + Date.now();
       }
       return '<div class="cat-card" data-cat-slug="' + esc(c.slug) + '">' +
         '<img src="' + esc(imgUrl) + '" alt="' + esc(c.name) + '" loading="lazy">' +
@@ -1555,7 +1559,7 @@
             status('✅ 分类图片已更新：' + slug + '.png（约 1 分钟后首页生效）');
             // 刷新当前卡片图片
             var cardImg = $('[data-cat-slug="' + slug + '"] img');
-            if (cardImg) cardImg.src = 'https://axeltrading2024.github.io/Axletrading/img/cat/' + slug + '.png?t=' + Date.now();
+            if (cardImg) cardImg.src = 'https://eddytrading.com/img/cat/' + slug + '.png?t=' + Date.now();
           }).catch(function (e) {
             if (statusEl) { statusEl.textContent = '上传失败'; statusEl.className = 'cat-status err'; }
             status('分类图片上传失败：' + e.message, 'err');
