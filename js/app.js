@@ -69,6 +69,11 @@
       '<path d="M3.5 9.3h17l-1.7 8.5c-.22 1.15-1.23 1.98-2.4 1.98H7.6c-1.17 0-2.18-.83-2.4-1.98L3.5 9.3Z" fill="url(#inqBasketG)"/>' +
       '<path d="M9.3 12.2v4.6M14.7 12.2v4.6" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity=".92"/>' +
     '</svg>',
+    /* 白描边购物篮：用于黑底悬浮按钮（跟随 currentColor） */
+    basketLine: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M3.5 9.3h17l-1.7 8.5c-.22 1.15-1.23 1.98-2.4 1.98H7.6c-1.17 0-2.18-.83-2.4-1.98L3.5 9.3Z"/>' +
+      '<path d="M8.3 9.3c0-2.6 1.5-4.3 3.7-4.3s3.7 1.7 3.7 4.3"/>' +
+    '</svg>',
     plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.4c0-1 1.1-1.6 1.9-1.1l8.6 6.6c.7.5.7 1.6 0 2.1l-8.6 6.6c-.8.6-1.9 0-1.9-1V5.4Z"/></svg>',
@@ -367,6 +372,12 @@
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
+      /* 右下角黑底悬浮购物车：随时可打开询价清单 */
+      '<button type="button" class="cart-fab" data-open-inquiry aria-label="Open inquiry list">' +
+        '<span class="cart-fab-ico">' + ICON.basketLine + '</span>' +
+        '<span class="cart-fab-text">Inquiry</span>' +
+        '<span class="inquiry-count" data-inquiry-count>0</span>' +
+      '</button>' +
       '<div class="toast" data-toast></div>';
     document.body.appendChild(frag);
 
@@ -472,7 +483,8 @@
   var bumpSuppress = false; // 飞入动画期间先不跳动，等「飞到位」再跳
   function bumpCount() {
     if (bumpSuppress) return;
-    var el = $('[data-inquiry-count]');
+    // 跳动与光环保持在同一处：优先右下角浮动购物车
+    var el = $('.cart-fab [data-inquiry-count]') || $('[data-inquiry-count]');
     if (!el) return;
     el.classList.remove('inquiry-bump');
     void el.offsetWidth; // 强制重排以重启动画
@@ -482,7 +494,7 @@
 
   /** 飞到购物篮时的「接住」脉冲光环 */
   function catchPulse() {
-    var btn = $('.inquiry-toggle') || $('[data-open-inquiry]');
+    var btn = $('.cart-fab') || $('.inquiry-toggle') || $('[data-open-inquiry]');
     if (!btn) return;
     btn.classList.remove('inquiry-catch');
     void btn.offsetWidth;
@@ -506,7 +518,8 @@
    * fromEl 为被点击的按钮；使用 fixed 定位 + 视口坐标，兼容粘性头部。
    */
   function flyToCart(fromEl, id, variant) {
-    var target = $('.inquiry-toggle');
+    // 终点优先用右下角浮动购物车，回退到导航栏购物篮
+    var target = $('.cart-fab') || $('.inquiry-toggle');
     if (!target || !fromEl) { catchPulse(); return; }
     // 尊重系统的「减少动效」设置
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
