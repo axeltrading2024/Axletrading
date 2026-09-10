@@ -58,6 +58,17 @@
   var ICON = {
     search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
     clipboard: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="18" rx="2"/><path d="M9 2h6v4H9z"/><path d="M9 12h6M9 16h6"/></svg>',
+    /* 彩色购物篮：绿色渐变篮身 + 白色提手/篮纹，比线框图标醒目 */
+    basket: '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+      '<defs>' +
+        '<linearGradient id="inqBasketG" x1="0" y1="0" x2="0.6" y2="1">' +
+          '<stop offset="0" stop-color="#3ddc84"/><stop offset="1" stop-color="#12a05a"/>' +
+        '</linearGradient>' +
+      '</defs>' +
+      '<path d="M8.3 9.3c0-2.6 1.5-4.3 3.7-4.3s3.7 1.7 3.7 4.3" fill="none" stroke="#0f8f4f" stroke-width="1.7" stroke-linecap="round"/>' +
+      '<path d="M3.5 9.3h17l-1.7 8.5c-.22 1.15-1.23 1.98-2.4 1.98H7.6c-1.17 0-2.18-.83-2.4-1.98L3.5 9.3Z" fill="url(#inqBasketG)"/>' +
+      '<path d="M9.3 12.2v4.6M14.7 12.2v4.6" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity=".92"/>' +
+    '</svg>',
     plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>',
     arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
@@ -325,7 +336,7 @@
             '<a href="about.html" data-nav="about">About / FAQ</a>' +
           '</nav>' +
           '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
-            ICON.clipboard + 'Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
+            '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
           '</button>' +
         '</div></header>';
     }
@@ -344,7 +355,7 @@
         '</div>' +
         '<div class="drawer-body" data-drawer-body></div>' +
         '<div class="drawer-foot">' +
-          '<div class="total"><span>Estimated total</span><b data-drawer-total>—</b></div>' +
+          '<div class="total"><span>Products total</span><b data-drawer-total>—</b></div>' +
           '<a class="btn btn-whatsapp" data-send-inquiry href="#" target="_blank" rel="noreferrer">' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Send on WhatsApp' +
           '</a>' +
@@ -455,13 +466,99 @@
   }
 
   var bumpTimer = null;
+  var bumpSuppress = false; // 飞入动画期间先不跳动，等「飞到位」再跳
   function bumpCount() {
+    if (bumpSuppress) return;
     var el = $('[data-inquiry-count]');
     if (!el) return;
     el.classList.remove('inquiry-bump');
     void el.offsetWidth; // 强制重排以重启动画
     el.classList.add('inquiry-bump');
     clearTimeout(bumpTimer);
+  }
+
+  /** 飞到购物篮时的「接住」脉冲光环 */
+  function catchPulse() {
+    var btn = $('.inquiry-toggle') || $('[data-open-inquiry]');
+    if (!btn) return;
+    btn.classList.remove('inquiry-catch');
+    void btn.offsetWidth;
+    btn.classList.add('inquiry-catch');
+  }
+
+  /** 取某个产品（可带型号）用于飞行动画的缩略图 */
+  function flyImageFor(id, variant) {
+    var p = getProduct(id);
+    if (!p) return '';
+    if (variant && p.variants) {
+      for (var i = 0; i < p.variants.length; i++) {
+        if (p.variants[i].name === variant && p.variants[i].image) return p.variants[i].image;
+      }
+    }
+    return p.image || '';
+  }
+
+  /**
+   * 点击 Add to Inquiry 后，让商品小图从按钮/卡片图片「飞入」右上角购物篮。
+   * fromEl 为被点击的按钮；使用 fixed 定位 + 视口坐标，兼容粘性头部。
+   */
+  function flyToCart(fromEl, id, variant) {
+    var target = $('.inquiry-toggle');
+    if (!target || !fromEl) { catchPulse(); return; }
+    // 尊重系统的「减少动效」设置
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      bumpCount(); catchPulse(); return;
+    }
+
+    // 起点优先用卡片/详情页上的商品图，找不到就用按钮本身
+    var card = fromEl.closest('article');
+    var srcImg = card
+      ? card.querySelector('.thumb img, .media img')
+      : (fromEl.closest('.detail-actions') ? document.querySelector('.detail-media img') : null);
+    var startEl = srcImg || fromEl;
+
+    var f = startEl.getBoundingClientRect();
+    var t = target.getBoundingClientRect();
+    if (!f.width || !t.width) { bumpCount(); catchPulse(); return; }
+
+    var size = 52;
+    var sx = f.left + f.width / 2 - size / 2;
+    var sy = f.top + f.height / 2 - size / 2;
+    var tx = t.left + t.width / 2 - size / 2;
+    var ty = t.top + t.height / 2 - size / 2;
+
+    var fly = document.createElement('div');
+    fly.className = 'fly-to-cart';
+    fly.style.width = size + 'px';
+    fly.style.height = size + 'px';
+    fly.style.left = sx + 'px';
+    fly.style.top = sy + 'px';
+    var imgUrl = flyImageFor(id, variant);
+    fly.innerHTML = '<img src="' + esc(imgUrl) + '" alt="">';
+    document.body.appendChild(fly);
+
+    // 弧线路径：中途往上抛一点（并保证不会飞出屏幕顶部）
+    var arc = Math.min(140, Math.abs(ty - sy) * 0.45 + 36);
+    var mx = (sx + tx) / 2 - 24;
+    var my = Math.min(sy, ty) - arc;
+    if (my < 8) my = 8;
+
+    var anim;
+    try {
+      anim = fly.animate([
+        { transform: 'translate(0px,0px) scale(1)', opacity: 1 },
+        { transform: 'translate(' + (mx - sx) + 'px,' + (my - sy) + 'px) scale(1.15)', opacity: 1, offset: 0.5 },
+        { transform: 'translate(' + (tx - sx) + 'px,' + (ty - sy) + 'px) scale(0.28)', opacity: 0.9 },
+      ], { duration: 680, easing: 'cubic-bezier(.32,.72,.36,1)', fill: 'forwards' });
+    } catch (e) {
+      fly.parentNode && fly.parentNode.removeChild(fly);
+      bumpCount(); catchPulse(); return;
+    }
+    anim.onfinish = function () {
+      if (fly.parentNode) fly.parentNode.removeChild(fly);
+      bumpCount();
+      catchPulse();
+    };
   }
 
   function addProduct(id, variant, silent) {
@@ -490,7 +587,12 @@
 
       var addBtn = t.closest('[data-add]');
       if (addBtn) {
-        addProduct(addBtn.getAttribute('data-add'), addBtn.getAttribute('data-variant') || '');
+        var addId = addBtn.getAttribute('data-add');
+        var addVar = addBtn.getAttribute('data-variant') || '';
+        bumpSuppress = true;            // 先不跳动，等商品图飞到位再跳
+        addProduct(addId, addVar);
+        bumpSuppress = false;
+        flyToCart(addBtn, addId, addVar);
         return;
       }
 
@@ -1010,7 +1112,7 @@
           '</div>' +
         '</div>' +
         '<div class="shared-quote" data-shared-body></div>' +
-        '<div class="shared-total"><span>Estimated total</span><b data-shared-total>—</b></div>' +
+        '<div class="shared-total"><span>Products total</span><b data-shared-total>—</b></div>' +
         '<p class="shared-note">Quantities are adjustable. Contact us for an official quotation.</p>' +
         sharedContactHtml() +
       '</div>';
