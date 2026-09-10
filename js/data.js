@@ -479,7 +479,7 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-intensely.jpg"
       },
       {
-        "name": "Born in roma",
+        "name": "Born in roma-uomo",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-uno.jpg"
       },
@@ -514,7 +514,7 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-donna.jpg"
       },
       {
-        "name": "Uomo",
+        "name": "Uomo-intense",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-uomo.jpg"
       }
