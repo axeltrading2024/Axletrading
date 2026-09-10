@@ -957,11 +957,46 @@
     if (totalEl) totalEl.textContent = sharedTotal() || '—';
   }
 
+  /** 报价单底部引流联系区（WhatsApp + 邮箱）—— 正常报价单与「链接失效」提示都用它 */
+  function sharedContactHtml() {
+    return '<div class="shared-contact">' +
+      '<a class="btn btn-whatsapp" data-shared-wa href="' + esc(waLink('Hi ' + (CFG.contactName || CFG.brand) + '! I reviewed the quote list and would like to discuss prices.')) + '" target="_blank" rel="noreferrer">' +
+        ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + esc(CFG.whatsappDisplay || 'WhatsApp') +
+      '</a>' +
+      (CFG.contactEmail
+        ? '<a class="btn btn-outline shared-mail" href="mailto:' + esc(CFG.contactEmail) + '">✉ ' + esc(CFG.contactEmail) + '</a>'
+        : '') +
+    '</div>';
+  }
+
+  /** 链接里的产品已下架/改动时，不再静默变回首页，而是给出提示 + 联系方式 */
+  function renderSharedExpired() {
+    var header = $('.site-header');
+    var banner = document.createElement('section');
+    banner.className = 'shared-banner';
+    banner.setAttribute('data-shared-banner', '');
+    banner.setAttribute('data-shared-expired', '');
+    banner.innerHTML = '' +
+      '<div class="wrap">' +
+        '<div class="shared-head">' +
+          '<div>' +
+            '<p class="eyebrow">Quote list · ' + esc(CFG.brand) + '</p>' +
+            '<h2>This quote list is out of date</h2>' +
+          '</div>' +
+        '</div>' +
+        '<p class="shared-note">The items in this link are no longer in the catalog — our stock and prices change often. ' +
+          'Message us and we\'ll send you a fresh quotation.</p>' +
+        sharedContactHtml() +
+      '</div>';
+    if (header) header.insertAdjacentElement('afterend', banner);
+    else document.body.insertBefore(banner, document.body.firstChild);
+  }
+
   function initSharedList() {
     var m = location.hash.match(/[#&]l=([^&]+)/);
     if (!m) return;
     sharedItems = decodeItems(m[1]);
-    if (!sharedItems.length) return;
+    if (!sharedItems.length) { renderSharedExpired(); return; }
     var header = $('.site-header');
     var banner = document.createElement('section');
     banner.className = 'shared-banner';
@@ -977,14 +1012,7 @@
         '<div class="shared-quote" data-shared-body></div>' +
         '<div class="shared-total"><span>Estimated total</span><b data-shared-total>—</b></div>' +
         '<p class="shared-note">Quantities are adjustable. Contact us for an official quotation.</p>' +
-        '<div class="shared-contact">' +
-          '<a class="btn btn-whatsapp" data-shared-wa href="' + esc(waLink('Hi ' + (CFG.contactName || CFG.brand) + '! I reviewed the quote list and would like to discuss prices.')) + '" target="_blank" rel="noreferrer">' +
-            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + esc(CFG.whatsappDisplay || 'WhatsApp') +
-          '</a>' +
-          (CFG.contactEmail
-            ? '<a class="btn btn-outline shared-mail" href="mailto:' + esc(CFG.contactEmail) + '">✉ ' + esc(CFG.contactEmail) + '</a>'
-            : '') +
-        '</div>' +
+        sharedContactHtml() +
       '</div>';
     if (header) header.insertAdjacentElement('afterend', banner);
     else document.body.insertBefore(banner, document.body.firstChild);
