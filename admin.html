@@ -120,8 +120,17 @@
               <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
             </div>
             <div class="field full">
-              <label for="f-video">视频链接（可选，mp4 直链或网站地址，客户在详情页点「Watch video」播放）</label>
-              <input id="f-video" data-f-video placeholder="如 https://eddytrading.com/img/vid/xxx.mp4">
+              <label for="f-video">产品视频（可选，客户在详情页点「Watch video」播放）</label>
+              <input id="f-video" data-f-video placeholder="点下方「选择本地视频」上传，或直接粘贴视频网址">
+              <div class="vid-upload">
+                <label class="btn btn-outline vid-pick">
+                  🎬 选择本地视频
+                  <input type="file" accept="video/mp4,video/quicktime,video/*" data-video-file style="display:none">
+                </label>
+                <button type="button" class="btn btn-outline" data-video-clear>清空视频</button>
+              </div>
+              <div class="it-tip" data-video-tip>上传建议：mp4，15-30 秒，单文件 ≤ 25MB（超了要压缩）；上传后自动存到 img/vid/</div>
+              <video data-video-preview class="vid-preview" controls muted playsinline style="display:none"></video>
             </div>
             <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
               <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
@@ -383,6 +392,7 @@
       };
       if (p.subcategory) o.subcategory = p.subcategory;
       if (p.popular) o.popular = true;
+      if (p.video) o.video = p.video;
       if (p.keywords && p.keywords.length) o.keywords = p.keywords;
       if (p.variants && p.variants.length) {
         o.variants = p.variants.map(function (v) {
@@ -602,6 +612,9 @@
     $('[data-f-price]').value = p.price || '';
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
+    $('[data-f-video]').value = p.video || '';
+    showVideoPreview(p.video || '');
+    if (p.video) $('[data-video-tip]').textContent = '已有视频：' + p.video;
     $('[data-f-collection]').value = p.collection || '';
     $('[data-f-popular]').checked = !!p.popular;
     $('[data-f-keywords]').value = (p.keywords || []).join(', ');
@@ -631,6 +644,8 @@
     $('[data-img-preview]').src = '';
     $('[data-img-name]').textContent = '选择图片后自动改名';
     $('[data-img-tip]').textContent = '不上传图片则沿用分类插画';
+    showVideoPreview('');
+    $('[data-video-tip]').textContent = '上传建议：mp4，15-30 秒，单文件 ≤ 25MB（超了要压缩）；上传后自动存到 img/vid/';
     renderVarRows(null);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'none';
@@ -773,8 +788,66 @@
     reader.readAsDataURL(file);
   }
 
-  function triggerDownload(fname, dataUrl) {
-    var a = document.createElement('a');
+  /* ---------------- 视频工具：本地文件直传 img/vid/ ---------------- */
+  var VIDEO_MAX_MB = 25;
+
+  function showVideoPreview(path) {
+    var v = $('[data-video-preview]');
+    if (!v) return;
+    if (path) {
+      v.src = path;
+      v.style.display = 'block';
+    } else {
+      v.removeAttribute('src');
+      v.style.display = 'none';
+    }
+  }
+
+  function handleVideoFile(file) {
+    if (!file) return;
+    if (String(file.type).indexOf('video/') !== 0) { status('请选择视频文件（推荐 mp4）', 'err'); return; }
+    var mb = file.size / 1048576;
+    if (mb > VIDEO_MAX_MB) {
+      $('[data-video-tip]').innerHTML = '❌ 该视频 ' + mb.toFixed(1) + ' MB，超过 ' + VIDEO_MAX_MB +
+        'MB 上限 —— 网站会拒绝加载，请先压缩（发我帮你压也可以）';
+      status('视频超过 ' + VIDEO_MAX_MB + 'MB，无法上传', 'err');
+      return;
+    }
+    if (!ghEnabled()) {
+      $('[data-video-tip]').textContent = '未连接 GitHub —— 请先在下方「GitHub 设置」里填仓库与密钥';
+      status('未连接 GitHub，无法上传视频', 'err');
+      return;
+    }
+    var id = $('[data-f-id]').value.trim();
+    if (!id) {
+      id = slugify($('[data-f-name]').value, PRODUCTS.map(function (x) { return x.id; }));
+      $('[data-f-id]').value = id;
+    }
+    var m = /\.(mp4|webm|mov|m4v)$/i.exec(file.name || '');
+    var ext = m ? m[1].toLowerCase() : 'mp4';
+    var fname = id + '.' + ext;
+    var path = 'img/vid/' + fname;
+    $('[data-video-tip]').textContent = '正在上传 ' + fname + '（' + mb.toFixed(1) + ' MB）… 大文件较慢，请勿关闭页面';
+    status('开始上传视频 ' + fname + ' …');
+
+    var fr = new FileReader();
+    fr.onload = function () {
+      var b64 = String(fr.result).split(',')[1] || '';
+      ghPut(path, b64, '上传产品视频 ' + fname).then(function () {
+        $('[data-f-video]').value = path;
+        $('[data-video-tip]').textContent = '✅ 已上传：' + path + '（约 1-2 分钟后官网生效）';
+        showVideoPreview(path);
+        status('✅ 视频已上传：' + path + ' —— 记得点「保存产品」写入数据');
+      }).catch(function (e) {
+        $('[data-video-tip]').textContent = '上传失败：' + e.message;
+        status('视频上传失败：' + e.message, 'err');
+      });
+    };
+    fr.onerror = function () { status('读取视频文件失败', 'err'); };
+    fr.readAsDataURL(file);
+  }
+
+  function triggerDownload(fname, dataUrl) {    var a = document.createElement('a');
     a.href = dataUrl;
     a.download = fname;
     document.body.appendChild(a);
@@ -1044,6 +1117,17 @@
     $('[data-img-file]').addEventListener('change', function (e) {
       handleImageFile(e.target.files[0]);
       e.target.value = '';
+    });
+
+    // 产品视频（本地文件直传）
+    $('[data-video-file]').addEventListener('change', function (e) {
+      handleVideoFile(e.target.files[0]);
+      e.target.value = '';
+    });
+    $('[data-video-clear]').addEventListener('click', function () {
+      $('[data-f-video]').value = '';
+      $('[data-video-tip]').textContent = '已清空视频 —— 记得点「保存产品」写入数据';
+      showVideoPreview('');
     });
 
     // 型号 / Variants
