@@ -1538,24 +1538,34 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "red",
         "price": "",
         "image": "img/prod/m-1.jpg"
       },
       {
-        "name": "2",
+        "name": "beige",
+        "price": "",
+        "image": "img/prod/m-2.jpg"
+      },
+      {
+        "name": "black",
         "price": "",
         "image": "img/prod/m-3.jpg"
       },
       {
-        "name": "3",
+        "name": "grey",
         "price": "",
         "image": "img/prod/m-4.jpg"
       },
       {
-        "name": "4",
+        "name": "blue",
         "price": "",
-        "image": "img/prod/m-4.jpg"
+        "image": "img/prod/m-blue.jpg"
+      },
+      {
+        "name": "green",
+        "price": "",
+        "image": "img/prod/m-green.jpg"
       }
     ]
   },
