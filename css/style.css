@@ -1746,7 +1746,7 @@ a {
 .about-lede { font-size: 17px; line-height: 1.7; color: var(--muted-foreground); }
 .about-facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 12px;
   margin-top: 28px;
 }
