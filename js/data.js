@@ -631,29 +631,49 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "black",
+        "name": "Black",
         "price": "",
         "image": "img/prod/rolex-submariner-black.jpg"
       },
       {
-        "name": "green-black",
+        "name": "Green-black",
         "price": "",
-        "image": ""
+        "image": "img/prod/rolex-submariner-green-black.jpg"
       },
       {
-        "name": "green",
+        "name": "Green",
         "price": "",
         "image": "img/prod/rolex-submariner-green.jpg"
       },
       {
-        "name": "black-golden",
+        "name": "Black-gold-1",
         "price": "",
         "image": "img/prod/rolex-submariner-black-golden.jpg"
       },
       {
-        "name": "blue-golden",
+        "name": "Blue",
         "price": "",
         "image": "img/prod/rolex-submariner-blue-golden.jpg"
+      },
+      {
+        "name": "Blue-black",
+        "price": "",
+        "image": "img/prod/rolex-submariner-blue-black.jpg"
+      },
+      {
+        "name": "Ultra-black",
+        "price": "",
+        "image": "img/prod/rolex-submariner-ultra-black.jpg"
+      },
+      {
+        "name": "Labubu",
+        "price": "",
+        "image": "img/prod/rolex-submariner-labubu.jpg"
+      },
+      {
+        "name": "Black-gold-2",
+        "price": "",
+        "image": "img/prod/rolex-submariner-black-gold-2.jpg"
       }
     ]
   },
