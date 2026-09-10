@@ -2661,6 +2661,67 @@ window.PRODUCTS = [
         "image": "img/prod/g-4-7.jpg"
       }
     ]
+  },
+  {
+    "id": "t-2",
+    "name": "Tissot style",
+    "brand": "Tissot",
+    "price": "€65",
+    "note": "Luxury-young-passion",
+    "desc": "",
+    "collection": "watches",
+    "subcategory": "luxury",
+    "keywords": [
+      "luxury watch",
+      "tissot"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/t-2-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/t-2-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/t-2-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/t-2-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/t-2-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/t-2-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/t-2-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/t-2-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/t-2-9.jpg"
+      }
+    ]
   }
 ];
 
