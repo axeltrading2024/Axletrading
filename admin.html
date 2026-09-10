@@ -119,6 +119,10 @@
               <label for="f-desc" data-page-node-id="Lwh85WzdwScQ2tEWhUzYZw">详细介绍（详情页显示）</label>
               <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
             </div>
+            <div class="field full">
+              <label for="f-video">视频链接（可选，mp4 直链或网站地址，客户在详情页点「Watch video」播放）</label>
+              <input id="f-video" data-f-video placeholder="如 https://eddytrading.com/img/vid/xxx.mp4">
+            </div>
             <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
               <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
               <input id="f-keywords" data-f-keywords placeholder="如 airpods, apple, wireless" data-page-node-id="8M1FFu9dCGtCX5RXo2vTi5">
@@ -651,6 +655,7 @@
     p.popular = $('[data-f-popular]').checked;
     p.keywords = p.keywords ? p.keywords.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : [];
     if (!p.subcategory) p.subcategory = undefined;
+    if (!p.video) p.video = undefined;
     p.variants = collectVariants();
     return p;
   }
