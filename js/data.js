@@ -1721,43 +1721,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "g",
-    "name": "Gucci style luxury bags",
-    "brand": "",
-    "price": "€85",
-    "note": "leather-metal-logo",
-    "desc": "",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/g-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/g-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/g-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/g-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/g-5.jpg"
-      }
-    ]
-  },
-  {
     "id": "r-3",
     "name": "Rayban style sunglasses",
     "brand": "Ray-Ban",
@@ -1815,6 +1778,43 @@ window.PRODUCTS = [
         "name": "9",
         "price": "",
         "image": "img/prod/r-3-9.jpg"
+      }
+    ]
+  },
+  {
+    "id": "g",
+    "name": "Gucci style luxury bags",
+    "brand": "",
+    "price": "€85",
+    "note": "leather-metal-logo",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/g-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/g-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/g-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/g-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/g-5.jpg"
       }
     ]
   },
