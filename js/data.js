@@ -1732,6 +1732,7 @@ window.PRODUCTS = [
     "note": "NFC card-google card",
     "desc": "tap and rate you  five star",
     "collection": "other",
+    "subcategory": "other-products",
     "popular": true,
     "keywords": [
       "NFC",
