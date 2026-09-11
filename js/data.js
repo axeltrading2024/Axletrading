@@ -1001,6 +1001,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "luxury",
+    "video": "img/vid/t-2.mp4",
     "keywords": [
       "luxury watch",
       "tissot"
