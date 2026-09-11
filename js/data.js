@@ -2312,22 +2312,17 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-1-million-parfum-100ml.jpg"
       },
       {
-        "name": "6",
+        "name": "Invictus Legend EDP 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Invictus Parfum 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-7.jpg"
       },
       {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/paco-rabannel-8.jpg"
-      },
-      {
-        "name": "9",
+        "name": "Invictus Victory EDP extreme 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-9.jpg"
       },
@@ -2342,12 +2337,12 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-11.jpg"
       },
       {
-        "name": "12",
+        "name": "FAME Blooming pink EDP 80ml",
         "price": "",
         "image": "img/prod/paco-rabannel-12.jpg"
       },
       {
-        "name": "13",
+        "name": "FAME EDP 80ml",
         "price": "",
         "image": "img/prod/paco-rabannel-13.jpg"
       },
@@ -2357,7 +2352,7 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-14.jpg"
       },
       {
-        "name": "15",
+        "name": "Million Gold for her 90ml",
         "price": "",
         "image": "img/prod/paco-rabannel-15.jpg"
       }
