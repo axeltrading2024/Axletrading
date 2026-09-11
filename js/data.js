@@ -278,13 +278,14 @@ window.PRODUCTS = [
   {
     "id": "dior-sauvage",
     "name": "Dior Sauvage 100ml",
-    "brand": "OEM",
+    "brand": "Dior",
     "price": "€18",
     "note": "Icon fragrance",
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "popular": true,
+    "video": "img/vid/dior-sauvage.mp4",
     "keywords": [
       "dior",
       "sauvage",
