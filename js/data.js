@@ -1339,6 +1339,67 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "r-3",
+    "name": "Rayban style sunglasses",
+    "brand": "Ray-Ban",
+    "price": "€35",
+    "note": "fashion-uvprotection",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "keywords": [
+      "rayban",
+      "sunglasses"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/r-3-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/r-3-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/r-3-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/r-3-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/r-3-7.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/r-3-8.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/r-3-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/r-3-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/r-3-9.jpg"
+      }
+    ]
+  },
+  {
     "id": "gentle-monster",
     "name": "LV style sunglasses",
     "brand": "Oem",
@@ -1717,67 +1778,6 @@ window.PRODUCTS = [
         "name": "green",
         "price": "",
         "image": "img/prod/m-green.jpg"
-      }
-    ]
-  },
-  {
-    "id": "r-3",
-    "name": "Rayban style sunglasses",
-    "brand": "Ray-Ban",
-    "price": "€35",
-    "note": "fashion-uvprotection",
-    "desc": "",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
-    "keywords": [
-      "rayban",
-      "sunglasses"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/r-3-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/r-3-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/r-3-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/r-3-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/r-3-7.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/r-3-8.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/r-3-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/r-3-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/r-3-9.jpg"
       }
     ]
   },
