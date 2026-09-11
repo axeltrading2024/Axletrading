@@ -1405,10 +1405,9 @@ window.PRODUCTS = [
     "name": "Ray-Ban Meta AI Glasses",
     "brand": "Ray-Ban",
     "price": "€75",
-    "note": "Camera · Voice AI-real translation",
+    "note": "Camera · Voicerecord- AI-real translation",
     "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
-    "collection": "sunglasses",
-    "subcategory": "ai",
+    "collection": "other",
     "keywords": [
       "rayban",
       "meta",
