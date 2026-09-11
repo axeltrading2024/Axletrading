@@ -73,6 +73,10 @@ window.CATEGORIES = [
       {
         "slug": "cartier-style",
         "name": "Cartier style"
+      },
+      {
+        "slug": "swatch",
+        "name": "Swatch"
       }
     ],
     "image": "img/cat/watches.png"
