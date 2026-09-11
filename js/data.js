@@ -685,13 +685,21 @@ window.PRODUCTS = [
   },
   {
     "id": "r",
-    "name": "rolex datejust style",
+    "name": "rolex day-date style",
     "brand": "rolex",
     "price": "€65",
     "note": "classic-elegant-waterprrof-practical",
     "desc": "",
     "collection": "watches",
     "subcategory": "luxury",
+    "video": "img/vid/r.mp4",
+    "keywords": [
+      "Rolex",
+      "datejust",
+      "day date",
+      "luxury",
+      "watch"
+    ],
     "variants": [
       {
         "name": "1",
@@ -730,8 +738,28 @@ window.PRODUCTS = [
       },
       {
         "name": "8",
-        "price": "€75",
+        "price": "",
         "image": "img/prod/r-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/r-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/r-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/r-11.jpg"
+      },
+      {
+        "name": "12",
+        "price": "",
+        "image": "img/prod/r-12.jpg"
       }
     ]
   },
