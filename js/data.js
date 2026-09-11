@@ -180,17 +180,17 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "pro2",
+        "name": "Airpods-pro2",
         "price": "",
         "image": "img/prod/airpods-pro-2-airpods-pro2.jpg"
       },
       {
-        "name": "gen4",
+        "name": "Airpods-gen4",
         "price": "",
         "image": "img/prod/airpods-pro-2-airpods-gen4.jpg"
       },
       {
-        "name": "pro3",
+        "name": "Airpods-pro3",
         "price": "",
         "image": "img/prod/airpods-pro-2-pro3.jpg"
       }
