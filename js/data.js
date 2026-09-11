@@ -69,6 +69,10 @@ window.CATEGORIES = [
       {
         "slug": "tissot-style",
         "name": "Tissot style"
+      },
+      {
+        "slug": "cartier-style",
+        "name": "Cartier style"
       }
     ],
     "image": "img/cat/watches.png"
