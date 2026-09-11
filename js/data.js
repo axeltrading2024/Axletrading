@@ -834,12 +834,12 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "Classic Rose",
         "price": "",
         "image": "img/prod/dyson-supersonic-1.jpg"
       },
       {
-        "name": "2",
+        "name": "other color",
         "price": "",
         "image": "img/prod/dyson-supersonic-2.jpg"
       }
