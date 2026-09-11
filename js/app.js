@@ -391,15 +391,22 @@
             '<a href="index.html#browse" data-nav="browse">Browse</a>' +
             '<a href="index.html#about" data-nav="about">About Us</a>' +
           '</nav>' +
-          '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
-            '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
-          '</button>' +
-          '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">' +
-            ICON.menu +
-          '</button>' +
+          '<div class="header-actions">' +
+            '<button type="button" class="nav-search" data-open-search aria-label="Search products" title="Search products (Ctrl+K)">' +
+              ICON.search +
+            '</button>' +
+            '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
+              '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
+            '</button>' +
+            '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">' +
+              ICON.menu +
+            '</button>' +
+          '</div>' +
         '</div>' +
         /* 手机端下拉菜单（>=640px 隐藏） */
         '<div class="mobile-nav" id="mobile-nav" data-mobile-nav>' +
+          '<button type="button" class="mnav-search" data-open-search>' +
+            ICON.search.replace('<svg', '<svg style="width:17px;height:17px"') + 'Search products</button>' +
           '<nav>' +
             '<a href="index.html">Home</a>' +
             '<a href="index.html#popular">Popular products</a>' +
@@ -443,6 +450,20 @@
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
+      /* 顶栏搜索浮层：任何页面都能直接搜（复用首页那套产品检索） */
+      '<div class="search-modal" data-search-modal aria-hidden="true">' +
+        '<div class="search-modal-backdrop" data-close-search></div>' +
+        '<div class="search-modal-card" role="dialog" aria-modal="true" aria-label="Search products">' +
+          '<div class="smod-field">' +
+            '<span class="smod-ico">' + ICON.search + '</span>' +
+            '<input type="search" data-sm-input placeholder="Search product, brand, category…" aria-label="Search products" autocomplete="off">' +
+            '<button type="button" class="smod-close" data-close-search aria-label="Close search">' + ICON.close + '</button>' +
+          '</div>' +
+          '<div class="smod-body" data-sm-body>' +
+            '<p class="smod-hint">Type to search across all 1000+ products — brand, product name or category.</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
       /* 右下角黑底悬浮购物车：随时可打开询价清单 */
       '<button type="button" class="cart-fab" data-open-inquiry aria-label="Open inquiry list">' +
         '<span class="cart-fab-ico">' + ICON.basketLine + '</span>' +
@@ -909,6 +930,98 @@
     });
   }
 
+  /* ---------------- 顶栏搜索浮层（P1-6） ----------------
+     让分类页 / 详情页 / About 页也能直接搜产品，不必先回首页。 */
+  function initHeaderSearch() {
+    var modal = $('[data-search-modal]');
+    var input = $('[data-sm-input]');
+    var body = $('[data-sm-body]');
+    var triggers = $$('[data-open-search]');
+    if (!modal || !input || !body || !triggers.length) return;
+
+    var active = -1;
+    var hint = '<p class="smod-hint">Type to search across all 1000+ products — brand, product name or category.</p>';
+
+    function render(list, q) {
+      if (!q) { body.innerHTML = hint; active = -1; return; }
+      if (!list.length) {
+        body.innerHTML = '<div class="suggest-empty">No products match “' + esc(q) + '”.<br>' +
+          'Try a brand (Dior, Dyson), a category (Perfumes, Watches) or ask us on WhatsApp.</div>';
+        active = -1;
+        return;
+      }
+      body.innerHTML = '<div class="smod-list">' + list.map(function (p) {
+        return '<a class="suggest-item" href="product.html?id=' + esc(p.id) + '">' +
+          '<img src="' + esc(p.image) + '" alt="" loading="lazy">' +
+          '<span><span class="s-name">' + esc(p.name) + '</span><br>' +
+          '<span class="s-meta">' + esc(p.brand) + ' · ' + esc(p.price) + '</span></span></a>';
+      }).join('') + '</div>' +
+        '<a class="smod-all" href="index.html#browse">Browse all collections →</a>';
+      active = -1;
+    }
+
+    function open() {
+      // 手机上从汉堡菜单进来时，先把菜单收起来
+      var mnav = $('[data-mobile-nav]');
+      var mtog = $('[data-nav-toggle]');
+      if (mnav) mnav.classList.remove('is-open');
+      if (mtog) { mtog.classList.remove('is-open'); mtog.setAttribute('aria-expanded', 'false'); }
+      document.body.classList.remove('nav-open');
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('search-open');
+      input.value = '';
+      render(null, '');
+      setTimeout(function () { input.focus(); }, 30);
+    }
+
+    function close() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('search-open');
+      input.blur();
+      active = -1;
+    }
+
+    triggers.forEach(function (t) { t.addEventListener('click', open); });
+    $$('[data-close-search]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+
+    input.addEventListener('input', function () {
+      var q = input.value.trim();
+      render(q ? search(q, 8) : null, q);
+    });
+
+    input.addEventListener('keydown', function (e) {
+      var items = $$('.smod-list .suggest-item', body);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (!items.length) return;
+        active = (active + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+        items.forEach(function (el, i) { el.classList.toggle('is-active', i === active); });
+        items[active].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (active >= 0 && items[active]) { location.href = items[active].href; return; }
+        var first = search(input.value.trim(), 1)[0];
+        if (first) location.href = 'product.html?id=' + encodeURIComponent(first.id);
+      } else if (e.key === 'Escape') {
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+      // ⌘K / Ctrl+K 快捷唤起
+      if ((e.metaKey || e.ctrlKey) && String(e.key).toLowerCase() === 'k') {
+        e.preventDefault();
+        modal.classList.contains('is-open') ? close() : open();
+      }
+    });
+  }
+
   /* ============================================================
    *  产品详情页
    * ============================================================ */
@@ -1288,6 +1401,48 @@
     host.innerHTML = items;
   }
 
+  /* ---------------- About 实拍图：点击放大查看 ---------------- */
+  function initPhotoViewer() {
+    var items = $$('[data-real-photo]');
+    if (!items.length) return;
+
+    var box = document.createElement('div');
+    box.className = 'photo-viewer';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.innerHTML = '<button class="pv-close" type="button" aria-label="Close">&#10005;</button>' +
+      '<img alt=""><span class="pv-cap"></span>';
+    document.body.appendChild(box);
+
+    var pic = $('img', box);
+    var cap = $('.pv-cap', box);
+
+    function close() {
+      box.classList.remove('is-open');
+      document.body.classList.remove('viewer-open');
+    }
+    function open(a) {
+      pic.src = a.getAttribute('href');
+      var b = $('.real-cap b', a);
+      cap.textContent = b ? b.textContent : '';
+      box.classList.add('is-open');
+      document.body.classList.add('viewer-open');
+    }
+
+    items.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        open(a);
+      });
+    });
+    box.addEventListener('click', function (e) {
+      if (e.target === box || e.target.classList.contains('pv-close')) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  }
+
   /* ---------------- 手机端下拉菜单 ---------------- */
   function initNavMenu() {
     var btn = $('[data-nav-toggle]');
@@ -1340,7 +1495,9 @@
     renderFooter();
     renderHeroStrip();
     renderAboutMosaic();
+    initPhotoViewer();
     initNavMenu();
+    initHeaderSearch();
     initWaChat();
     initSharedList();
 
