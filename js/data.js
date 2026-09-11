@@ -48,12 +48,6 @@ window.CATEGORIES = [
     "image": "img/cat/perfumes.png"
   },
   {
-    "slug": "speakers",
-    "name": "Speakers",
-    "tagline": "Room-filling sound",
-    "image": "img/cat/speakers.png"
-  },
-  {
     "slug": "earbuds-headphones",
     "name": "Earbuds & Headphones",
     "tagline": "Immersive audio",
@@ -74,6 +68,12 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/watches.png"
+  },
+  {
+    "slug": "speakers",
+    "name": "Speakers",
+    "tagline": "Room-filling sound",
+    "image": "img/cat/speakers.png"
   },
   {
     "slug": "hair-dryers",
