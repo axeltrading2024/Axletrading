@@ -61,10 +61,6 @@ window.CATEGORIES = [
       {
         "slug": "luxury",
         "name": "Luxury Watches"
-      },
-      {
-        "slug": "smart",
-        "name": "Smart Watches"
       }
     ],
     "image": "img/cat/watches.png"
@@ -1154,7 +1150,6 @@ window.PRODUCTS = [
     "note": "AMOLED · GPS",
     "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
     "collection": "watches",
-    "subcategory": "smart",
     "keywords": [
       "samsung",
       "galaxy",
