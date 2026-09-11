@@ -1150,6 +1150,7 @@ window.PRODUCTS = [
     "note": "smart watch-care your daily routine",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "other",
+    "subcategory": "smart-watch",
     "popular": true,
     "keywords": [
       "apple",
