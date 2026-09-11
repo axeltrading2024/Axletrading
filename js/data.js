@@ -60,19 +60,19 @@ window.CATEGORIES = [
     "subcategories": [
       {
         "slug": "rolex-style",
-        "name": "Rolex style"
+        "name": "Rolex Style"
       },
       {
         "slug": "ap-style",
-        "name": "Ap style"
+        "name": "AP Style"
       },
       {
         "slug": "tissot-style",
-        "name": "Tissot style"
+        "name": "Tissot Style"
       },
       {
         "slug": "cartier-style",
-        "name": "Cartier style"
+        "name": "Cartier Style"
       },
       {
         "slug": "swatch",
@@ -89,32 +89,32 @@ window.CATEGORIES = [
   },
   {
     "slug": "hair-dryers",
-    "name": "Home applaince",
+    "name": "Home Appliance",
     "tagline": "Salon at home",
     "image": "img/cat/hair-dryers.png",
     "subcategories": [
       {
         "slug": "hair-care",
-        "name": "hair care"
+        "name": "Hair Care"
       },
       {
         "slug": "vacuum-cleaners",
-        "name": "vacuum cleaners"
+        "name": "Vacuum Cleaners"
       }
     ]
   },
   {
     "slug": "clothes-and-s-hose",
-    "name": "clothes & shose",
+    "name": "Clothes & Shoes",
     "tagline": "fashion style",
     "subcategories": [
       {
         "slug": "clothes",
-        "name": "clothes"
+        "name": "Clothes"
       },
       {
         "slug": "shose",
-        "name": "shose"
+        "name": "Shoes"
       }
     ],
     "image": "img/cat/clothes-and-s-hose.png"
@@ -130,7 +130,7 @@ window.CATEGORIES = [
       },
       {
         "slug": "luxury-bags",
-        "name": "luxury bags"
+        "name": "Luxury Bags"
       },
       {
         "slug": "belts",
@@ -147,35 +147,35 @@ window.CATEGORIES = [
     "subcategories": [
       {
         "slug": "smart-watch",
-        "name": "Smart watch"
+        "name": "Smart Watch"
       },
       {
         "slug": "ai-glasses",
-        "name": "AI glasses"
+        "name": "AI Glasses"
       },
       {
         "slug": "other-products",
-        "name": "other products"
+        "name": "Other Products"
       }
     ]
   },
   {
     "slug": "chargers",
-    "name": "Cellphone accessories",
+    "name": "Cellphone Accessories",
     "tagline": "Power and protection",
     "image": "img/cat/chargers.png",
     "subcategories": [
       {
         "slug": "chargers",
-        "name": "chargers"
+        "name": "Chargers"
       },
       {
         "slug": "phonecase",
-        "name": "phonecase"
+        "name": "Phone Cases"
       },
       {
         "slug": "pencil-and-airtag",
-        "name": "Pencil&airtag"
+        "name": "Pencil & AirTag"
       }
     ]
   }
@@ -221,7 +221,7 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "oem",
+    "brand": "OEM",
     "price": "€75",
     "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
@@ -278,7 +278,7 @@ window.PRODUCTS = [
   {
     "id": "dior-sauvage",
     "name": "Dior Sauvage 100ml",
-    "brand": "oem",
+    "brand": "OEM",
     "price": "€18",
     "note": "Icon fragrance",
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
@@ -298,7 +298,7 @@ window.PRODUCTS = [
         "image": "img/prod/dior-sauvage-sauvage-edp.jpg"
       },
       {
-        "name": "Sauvage-Exilir",
+        "name": "Sauvage-Elixir",
         "price": "",
         "image": "img/prod/dior-sauvage-exilir.jpg"
       },
@@ -333,17 +333,17 @@ window.PRODUCTS = [
         "image": "img/prod/dior-sauvage-jadore-2.jpg"
       },
       {
-        "name": "MIss dior-1",
+        "name": "Miss Dior-1",
         "price": "",
         "image": "img/prod/dior-sauvage-miss-dior.jpg"
       },
       {
-        "name": "MIss dior-2",
+        "name": "Miss Dior-2",
         "price": "",
         "image": "img/prod/dior-sauvage-miss-dior-2.jpg"
       },
       {
-        "name": "MIss dior-3",
+        "name": "Miss Dior-3",
         "price": "",
         "image": "img/prod/dior-sauvage-miss-dior-3.jpg"
       }
@@ -487,7 +487,7 @@ window.PRODUCTS = [
   {
     "id": "valentino-born-in-roma",
     "name": "Valentino born in roma",
-    "brand": "oem",
+    "brand": "OEM",
     "price": "€18",
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
     "desc": "Valentino Born in Roma is a \"cool couture\" fragrance that pays homage to the Eternal City. It perfectly balances the luxury of haute couture with a modern, free-spirited attitude, blending a luminous jasmine trio, warm bourbon vanilla, and cool contemporary woods",
@@ -707,8 +707,8 @@ window.PRODUCTS = [
   },
   {
     "id": "r",
-    "name": "rolex day-date style",
-    "brand": "rolex",
+    "name": "Rolex day-date style",
+    "brand": "Rolex",
     "price": "€65",
     "note": "classic-elegant-waterprrof-practical",
     "desc": "",
@@ -987,7 +987,7 @@ window.PRODUCTS = [
   },
   {
     "id": "c-2",
-    "name": "Cartier style",
+    "name": "Cartier Style",
     "brand": "",
     "price": "€65",
     "note": "elegant-luxury",
@@ -1045,7 +1045,7 @@ window.PRODUCTS = [
   },
   {
     "id": "t-2",
-    "name": "Tissot style",
+    "name": "Tissot Style",
     "brand": "Tissot",
     "price": "€65",
     "note": "Luxury-young-passion",
@@ -1276,7 +1276,7 @@ window.PRODUCTS = [
   },
   {
     "id": "d",
-    "name": "dyson airstrait style",
+    "name": "Dyson airstrait style",
     "brand": "",
     "price": "€130",
     "note": "tempreture control-harmless-gift box",
@@ -1326,8 +1326,8 @@ window.PRODUCTS = [
   },
   {
     "id": "prada-glasses",
-    "name": "prada Style Sunglasses",
-    "brand": "prada",
+    "name": "Prada Style Sunglasses",
+    "brand": "Prada",
     "price": "€35",
     "note": "Gold accents",
     "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
@@ -1421,7 +1421,7 @@ window.PRODUCTS = [
   {
     "id": "gentle-monster",
     "name": "LV style sunglasses",
-    "brand": "Oem",
+    "brand": "OEM",
     "price": "€35",
     "note": "Acetate frame",
     "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
@@ -1758,8 +1758,8 @@ window.PRODUCTS = [
   },
   {
     "id": "m",
-    "name": "nike mind001",
-    "brand": "nike",
+    "name": "Nike mind001",
+    "brand": "Nike",
     "price": "€25",
     "note": "foot massage",
     "desc": "",
@@ -1916,7 +1916,7 @@ window.PRODUCTS = [
   },
   {
     "id": "t",
-    "name": "tomford style perfume",
+    "name": "Tom Ford style perfume",
     "brand": "",
     "price": "€18",
     "note": "Bold Luxury-Private Sensuality-Scent of Power",
@@ -1924,7 +1924,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "keywords": [
-      "tomford",
+      "tom ford",
       "luxury",
       "scent"
     ],
@@ -1963,7 +1963,7 @@ window.PRODUCTS = [
   },
   {
     "id": "c",
-    "name": "corrolina herrena style",
+    "name": "Carolina Herrera style",
     "brand": "",
     "price": "€18",
     "note": "Embrace your duality, rule with fearless elegance",
@@ -2025,7 +2025,7 @@ window.PRODUCTS = [
   },
   {
     "id": "jean-paul-gaultter",
-    "name": "Jean paul gaultter style",
+    "name": "Jean Paul Gaultier style",
     "brand": "",
     "price": "€18",
     "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
@@ -2149,7 +2149,7 @@ window.PRODUCTS = [
   },
   {
     "id": "v",
-    "name": "versace style perfume",
+    "name": "Versace style perfume",
     "brand": "",
     "price": "€18",
     "note": "",
@@ -2273,7 +2273,7 @@ window.PRODUCTS = [
   },
   {
     "id": "paco-rabannel",
-    "name": "Paco Rabannel style perfume",
+    "name": "Paco Rabanne style perfume",
     "brand": "",
     "price": "€18",
     "note": "",
@@ -2360,8 +2360,8 @@ window.PRODUCTS = [
   },
   {
     "id": "y",
-    "name": "yeezy style slide",
-    "brand": "yeezy",
+    "name": "Yeezy style slide",
+    "brand": "Yeezy",
     "price": "€15",
     "note": "comfortable-soft-fashion",
     "desc": "",
@@ -2620,7 +2620,7 @@ window.PRODUCTS = [
   },
   {
     "id": "s-2",
-    "name": "sony style",
+    "name": "Sony style",
     "brand": "",
     "price": "€18",
     "note": "bluetooth 5.2-mini",
@@ -2671,8 +2671,8 @@ window.PRODUCTS = [
   },
   {
     "id": "l-3",
-    "name": "lululemon style",
-    "brand": "lululemon",
+    "name": "Lululemon style",
+    "brand": "Lululemon",
     "price": "€30",
     "note": "slim style and fashionable",
     "desc": "",
