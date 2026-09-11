@@ -1178,6 +1178,7 @@ window.PRODUCTS = [
     "note": "AMOLED · GPS",
     "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
     "collection": "other",
+    "subcategory": "smart-watch",
     "keywords": [
       "samsung",
       "galaxy",
