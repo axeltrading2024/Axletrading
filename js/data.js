@@ -1301,7 +1301,7 @@ window.PRODUCTS = [
       {
         "name": "V15 detective",
         "price": "",
-        "image": ""
+        "image": "img/prod/dyson-v15-v15-detective.jpg"
       }
     ]
   },
