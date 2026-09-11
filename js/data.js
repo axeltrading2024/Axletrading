@@ -172,6 +172,10 @@ window.CATEGORIES = [
       {
         "slug": "ai-glasses",
         "name": "AI glasses"
+      },
+      {
+        "slug": "other-products",
+        "name": "other products"
       }
     ]
   }
