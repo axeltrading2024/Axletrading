@@ -65,6 +65,10 @@ window.CATEGORIES = [
       {
         "slug": "ap-style",
         "name": "Ap style"
+      },
+      {
+        "slug": "tissot-style",
+        "name": "Tissot style"
       }
     ],
     "image": "img/cat/watches.png"
