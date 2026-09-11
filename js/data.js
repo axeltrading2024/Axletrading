@@ -2155,56 +2155,66 @@ window.PRODUCTS = [
     "name": "Versace style perfume",
     "brand": "",
     "price": "€18",
-    "note": "",
+    "note": "love-sex-passion",
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "video": "img/vid/v.mp4",
     "variants": [
       {
-        "name": "1",
+        "name": "Pour Femme EDP 100ml",
         "price": "",
         "image": "img/prod/v-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Pour homme EDT 100ml",
         "price": "",
         "image": "img/prod/v-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Crystal Noir EDT 90ml",
         "price": "",
         "image": "img/prod/v-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Bright Crystal Absolu 90ml",
         "price": "",
         "image": "img/prod/v-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Pour homme Dylan blue 100ml",
         "price": "",
         "image": "img/prod/v-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Eros EDT 100ml",
         "price": "",
         "image": "img/prod/v-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Eros Flame EDP 100ml",
         "price": "",
         "image": "img/prod/v-7.jpg"
       },
       {
-        "name": "8",
+        "name": "Eros Energy 100ml",
         "price": "",
         "image": "img/prod/v-8.jpg"
       },
       {
-        "name": "9",
+        "name": "Eros Parfum 100ml",
         "price": "",
         "image": "img/prod/v-9.jpg"
+      },
+      {
+        "name": "Versense 100ml",
+        "price": "",
+        "image": "img/prod/v-versense-100ml.jpg"
+      },
+      {
+        "name": "Oud Noir Pour Homme 100ml",
+        "price": "",
+        "image": "img/prod/v-oud-noir-pour-homme-100ml.jpg"
       }
     ]
   },
