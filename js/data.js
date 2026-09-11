@@ -993,6 +993,7 @@ window.PRODUCTS = [
     "note": "elegant-luxury",
     "desc": "",
     "collection": "watches",
+    "subcategory": "cartier-style",
     "video": "img/vid/c-2.mp4",
     "variants": [
       {
