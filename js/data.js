@@ -2783,6 +2783,32 @@ window.PRODUCTS = [
         "image": "img/prod/d-2-burberry-2.jpg"
       }
     ]
+  },
+  {
+    "id": "s-3",
+    "name": "Apple stylus",
+    "brand": "Apple",
+    "price": "€18",
+    "note": "smart pencil-bluetooth connection",
+    "desc": "",
+    "collection": "chargers",
+    "keywords": [
+      "apple",
+      "pencil",
+      "stylus"
+    ],
+    "variants": [
+      {
+        "name": "Pencil pro",
+        "price": "",
+        "image": "img/prod/s-3-pencil-pro.jpg"
+      },
+      {
+        "name": "Pencil gen3",
+        "price": "",
+        "image": "img/prod/s-3-pencil-gen3.jpg"
+      }
+    ]
   }
 ];
 
