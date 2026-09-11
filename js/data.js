@@ -2792,6 +2792,7 @@ window.PRODUCTS = [
     "note": "smart pencil-bluetooth connection",
     "desc": "",
     "collection": "chargers",
+    "subcategory": "pencil-and-airtag",
     "keywords": [
       "apple",
       "pencil",
