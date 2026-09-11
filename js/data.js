@@ -1054,7 +1054,7 @@ window.PRODUCTS = [
       {
         "name": "10",
         "price": "",
-        "image": ""
+        "image": "img/prod/t-2-10.jpg"
       }
     ]
   },
