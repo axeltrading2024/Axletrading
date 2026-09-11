@@ -1051,6 +1051,7 @@ window.PRODUCTS = [
     "note": "Luxury-young-passion",
     "desc": "",
     "collection": "watches",
+    "subcategory": "tissot-style",
     "video": "img/vid/t-2.mp4",
     "keywords": [
       "luxury watch",
