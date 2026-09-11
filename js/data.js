@@ -1488,6 +1488,7 @@ window.PRODUCTS = [
     "note": "Camera · Voicerecord- AI-real translation",
     "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
     "collection": "other",
+    "subcategory": "ai-glasses",
     "keywords": [
       "rayban",
       "meta",
