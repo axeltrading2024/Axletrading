@@ -57,7 +57,12 @@ window.CATEGORIES = [
     "slug": "watches",
     "name": "Watches",
     "tagline": "Time, refined",
-    "subcategories": [],
+    "subcategories": [
+      {
+        "slug": "rolex-style",
+        "name": "Rolex style"
+      }
+    ],
     "image": "img/cat/watches.png"
   },
   {
