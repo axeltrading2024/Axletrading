@@ -1736,6 +1736,7 @@ window.PRODUCTS = [
     "collection": "other",
     "subcategory": "other-products",
     "popular": true,
+    "video": "img/vid/n.mp4",
     "keywords": [
       "NFC",
       "google"
