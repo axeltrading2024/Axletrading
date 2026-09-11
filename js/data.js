@@ -826,6 +826,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "luxury",
+    "video": "img/vid/r-2.mp4",
     "variants": [
       {
         "name": "1",
