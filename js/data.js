@@ -57,12 +57,7 @@ window.CATEGORIES = [
     "slug": "watches",
     "name": "Watches",
     "tagline": "Time, refined",
-    "subcategories": [
-      {
-        "slug": "luxury",
-        "name": "Luxury Watches"
-      }
-    ],
+    "subcategories": [],
     "image": "img/cat/watches.png"
   },
   {
@@ -618,7 +613,6 @@ window.PRODUCTS = [
     "note": "Automatic · Steel",
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
-    "subcategory": "luxury",
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "keywords": [
@@ -683,7 +677,6 @@ window.PRODUCTS = [
     "note": "classic-elegant-waterprrof-practical",
     "desc": "",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/r.mp4",
     "keywords": [
       "Rolex",
@@ -763,7 +756,6 @@ window.PRODUCTS = [
     "note": "Chronograph",
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/rolex-daytona.mp4",
     "keywords": [
       "rolex",
@@ -845,7 +837,6 @@ window.PRODUCTS = [
     "note": "dual timing-luxury",
     "desc": "For dual time zone",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/r-2.mp4",
     "variants": [
       {
@@ -903,7 +894,6 @@ window.PRODUCTS = [
     "note": "Octagonal bezel",
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/ap-royal-oak.mp4",
     "keywords": [
       "ap",
@@ -966,7 +956,6 @@ window.PRODUCTS = [
     "note": "elegant-luxury",
     "desc": "",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/c-2.mp4",
     "variants": [
       {
@@ -1024,7 +1013,6 @@ window.PRODUCTS = [
     "note": "Luxury-young-passion",
     "desc": "",
     "collection": "watches",
-    "subcategory": "luxury",
     "video": "img/vid/t-2.mp4",
     "keywords": [
       "luxury watch",
@@ -1091,7 +1079,6 @@ window.PRODUCTS = [
     "note": "sport-passion-young",
     "desc": "",
     "collection": "watches",
-    "subcategory": "luxury",
     "variants": [
       {
         "name": "GA 2100",
