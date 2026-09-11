@@ -2332,7 +2332,7 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-9.jpg"
       },
       {
-        "name": "10",
+        "name": "Phantom EDT 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-10.jpg"
       },
