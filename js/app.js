@@ -1373,7 +1373,7 @@
 
     var oneSet = cats.map(function (c) {
       return '<a class="hero-strip-item" href="category.html?slug=' + esc(c.slug) + '" tabindex="-1" aria-hidden="true">' +
-        '<img src="' + esc(c.image) + '" alt="" loading="lazy"></a>';
+        '<img src="' + esc(c.image) + '" alt="" loading="eager"></a>';
     }).join('');
 
     // 复制一份接在尾部，配合 translateX(-50%) 形成无缝循环
