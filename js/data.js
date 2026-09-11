@@ -104,6 +104,26 @@ window.CATEGORIES = [
     ]
   },
   {
+    "slug": "other",
+    "name": "Smart Products",
+    "tagline": "Smart watch-AI glasses-Security",
+    "image": "img/cat/other.png",
+    "subcategories": [
+      {
+        "slug": "smart-watch",
+        "name": "Smart Watch"
+      },
+      {
+        "slug": "ai-glasses",
+        "name": "AI Glasses"
+      },
+      {
+        "slug": "other-products",
+        "name": "Other Products"
+      }
+    ]
+  },
+  {
     "slug": "clothes-and-s-hose",
     "name": "Clothes & Shoes",
     "tagline": "fashion style",
@@ -138,26 +158,6 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/sunglasses.png"
-  },
-  {
-    "slug": "other",
-    "name": "Smart Products",
-    "tagline": "Smart watch-AI glasses-Security",
-    "image": "img/cat/other.png",
-    "subcategories": [
-      {
-        "slug": "smart-watch",
-        "name": "Smart Watch"
-      },
-      {
-        "slug": "ai-glasses",
-        "name": "AI Glasses"
-      },
-      {
-        "slug": "other-products",
-        "name": "Other Products"
-      }
-    ]
   },
   {
     "slug": "chargers",
