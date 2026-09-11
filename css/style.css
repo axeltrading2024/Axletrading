@@ -2419,6 +2419,9 @@ body:has(.drawer.open) .cart-fab {
   background: linear-gradient(90deg, oklch(88% 0 0), oklch(93% 0 0 / 0.2));
 }
 .about-real h2 { font-size: 28px; margin: 0 0 10px; }
+/* 第二组（耳机产线）的组标题：比区块大标题小一级 */
+.about-real h2.real-sub { font-size: 22px; margin: 0 0 8px; }
+.real-head--sub { margin-top: 46px; }
 .real-lede {
   font-size: 15px;
   line-height: 1.7;
@@ -2520,6 +2523,8 @@ body.viewer-open { overflow: hidden; }
 @media (max-width: 640px) {
   .about-real { margin-top: 40px; }
   .about-real h2 { font-size: 23px; }
+  .about-real h2.real-sub { font-size: 19.5px; }
+  .real-head--sub { margin-top: 34px; }
   .real-grid { grid-template-columns: 1fr; gap: 12px; }
   .real-col { gap: 12px; }
   .real-item:hover { transform: none; }
