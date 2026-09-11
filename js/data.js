@@ -1711,6 +1711,7 @@ window.PRODUCTS = [
     "note": "dual lens dual views-AI alert",
     "desc": "",
     "collection": "other",
+    "subcategory": "other-products",
     "keywords": [
       "camera",
       "security"
