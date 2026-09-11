@@ -30,17 +30,65 @@
     }
   }, true);
 
-  /* ---------------- 页脚：品牌与 WhatsApp 从配置读取（后台「站点设置」可改） ---------------- */
-  (function renderFooter() {
+  /* ---------------- 页脚：多栏（分类入口 / 公司 / 联系方式 / 交易说明） ---------------- */
+  function renderFooter() {
     var el = document.querySelector('.site-footer');
     if (!el || !CFG) return;
     var year = new Date().getFullYear();
     var brand = esc(CFG.brand || 'EddySupply');
-    var wa = esc(CFG.whatsappDisplay || '');
-    el.innerHTML = '© <span data-year>' + year + '</span> ' + brand +
-      ' · <a href="about.html">About Us</a>' +
-      (wa ? ' · WhatsApp ' + wa : '');
-  })();
+    var waDisp = esc(CFG.whatsappDisplay || '');
+    var mail = esc(CFG.contactEmail || '');
+
+    // Shop 栏：取前 6 个「有货」的分类
+    var shop = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; }).slice(0, 6);
+    var shopLinks = shop.map(function (c) {
+      return '<li><a href="category.html?slug=' + esc(c.slug) + '">' + esc(c.name) + '</a></li>';
+    }).join('');
+
+    el.innerHTML = '' +
+      '<div class="wrap footer-inner">' +
+        '<div class="footer-grid">' +
+          '<div class="footer-col footer-about">' +
+            '<div class="footer-brand">' +
+              '<span class="brand-mark">' + esc((CFG.brand || 'E').charAt(0)) + '</span>' +
+              '<span class="footer-brand-name">' + brand + '</span>' +
+            '</div>' +
+            '<p class="footer-tagline">Wholesale catalog of Axeltrading — electronics, perfumes, ' +
+              'watches and accessories sourced for overseas retailers, Amazon sellers and dropshippers.</p>' +
+            (CFG.whatsapp
+              ? '<a class="footer-cta" data-wa-chat data-wa-text="Hi! I would like to ask about wholesale pricing." href="#">' +
+                  ICON.whatsapp.replace('<svg', '<svg style="width:15px;height:15px"') + 'Chat on WhatsApp</a>'
+              : '') +
+          '</div>' +
+          (shopLinks
+            ? '<div class="footer-col"><h4>Shop</h4><ul>' + shopLinks +
+              '<li><a href="index.html#browse">All collections</a></li></ul></div>'
+            : '') +
+          '<div class="footer-col"><h4>Company</h4><ul>' +
+            '<li><a href="about.html">About Us</a></li>' +
+            '<li><a href="about.html#faq">FAQ</a></li>' +
+            '<li><a href="index.html#popular">Popular products</a></li>' +
+            '<li><a href="index.html#about">How it works</a></li>' +
+          '</ul></div>' +
+          '<div class="footer-col"><h4>Contact</h4><ul>' +
+            (waDisp ? '<li><a href="' + esc(waLink('Hi! I have a question about your catalog.')) + '" target="_blank" rel="noreferrer">WhatsApp ' + waDisp + '</a></li>' : '') +
+            (mail ? '<li><a href="mailto:' + mail + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' + mail + '</a></li>' : '') +
+            '<li class="footer-plain">Reply within 24 hours</li>' +
+          '</ul></div>' +
+        '</div>' +
+        '<div class="footer-trade">' +
+          '<span><b>Payment</b> T/T · Alipay · USDT · Western Union · Remitly</span>' +
+          '<span><b>Shipping</b> Worldwide, quoted per order</span>' +
+          '<span><b>MOQ</b> Low, flexible by item</span>' +
+        '</div>' +
+        '<div class="footer-bottom">' +
+          '<span>© <span data-year>' + year + '</span> ' + brand + '. All rights reserved.</span>' +
+          '<span>Wholesale only · no retail orders</span>' +
+        '</div>' +
+      '</div>';
+
+    initWaChat();
+  }
 
   /** 从 "$129" / "¥899" 里拆出货币符号和数值 */
   function parsePrice(p) {
@@ -82,6 +130,7 @@
     chevLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
     chevRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+    menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>',
     whatsapp: '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.28c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.79 1.17 2.98.15.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.31.19 1.8.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16 4C9.37 4 4 9.37 4 16c0 2.11.55 4.09 1.52 5.8L4 28l6.35-1.67C12.03 27.4 13.97 28 16 28c6.63 0 12-5.37 12-12S22.63 4 16 4zm0 21.94c-1.83 0-3.55-.5-5.02-1.36l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.87 9.87 0 0 1 6.06 16C6.06 10.51 10.51 6.06 16 6.06S25.94 10.51 25.94 16 21.49 25.94 16 25.94z"/></svg>',
   };
@@ -297,12 +346,11 @@
         '</a>' +
         '<div class="body">' +
           '<div class="min-w-0">' +
-            '<p class="eyebrow" style="letter-spacing:.16em;font-size:11px">' + esc(p.brand) + '</p>' +
+            '<p class="eyebrow card-eyebrow"' + (p.brand ? '' : ' hidden') + '>' + esc(p.brand) + '</p>' +
             '<div class="row">' +
               '<h3 class="name">' + esc(p.name) + '</h3>' +
               '<span class="price">' + esc(p.price) + '</span>' +
             '</div>' +
-            '<p class="price-note-card">Wholesale · Ask for volume pricing</p>' +
             '<p class="note">' + esc(p.note) + '</p>' +
           '</div>' +
           '<button type="button" class="add btn btn-sm btn-outline add-btn" data-add="' + esc(p.id) + '">' +
@@ -346,7 +394,30 @@
           '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
             '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
           '</button>' +
-        '</div></header>';
+          '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">' +
+            ICON.menu +
+          '</button>' +
+        '</div>' +
+        /* 手机端下拉菜单（>=640px 隐藏） */
+        '<div class="mobile-nav" id="mobile-nav" data-mobile-nav>' +
+          '<nav>' +
+            '<a href="index.html">Home</a>' +
+            '<a href="index.html#popular">Popular products</a>' +
+            '<a href="index.html#browse">Browse collections</a>' +
+            '<a href="about.html">About Us</a>' +
+            '<a href="about.html#faq">FAQ</a>' +
+          '</nav>' +
+          '<div class="mobile-nav-foot">' +
+            (CFG.whatsapp
+              ? '<a class="btn btn-whatsapp" data-wa-chat data-wa-text="Hi! I would like to ask about wholesale pricing." href="#">' +
+                  ICON.whatsapp.replace('<svg', '<svg style="width:17px;height:17px"') + 'Chat on WhatsApp</a>'
+              : '') +
+            (CFG.contactEmail
+              ? '<a class="btn btn-outline" href="mailto:' + esc(CFG.contactEmail) + '">' + esc(CFG.contactEmail) + '</a>'
+              : '') +
+          '</div>' +
+        '</div>' +
+        '</header>';
     }
 
     // 抽屉 + 遮罩 + toast + FAB
@@ -384,8 +455,9 @@
     var fab = $('[data-wa-fab]');
     if (fab) fab.href = waLink();
 
-    // 当前导航高亮
+    // 当前导航高亮：分类页/详情页归到 Browse（否则这两页顶栏永远不高亮）
     var page = document.body.getAttribute('data-page');
+    if (page === 'category' || page === 'product') page = 'browse';
     $$('[data-nav]').forEach(function (a) {
       if (a.getAttribute('data-nav') === page) a.classList.add('is-active');
     });
@@ -675,7 +747,13 @@
     var badgeEl = $('[data-hero-badge]');
     if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · Product Finder');
     var phEl = $('[data-search-input]');
-    if (phEl) phEl.placeholder = CFG.searchPlaceholder;
+    if (phEl) {
+      // 手机上原提示文字会被 Browse 按钮挤掉一截，窄屏改用短版
+      var narrow = window.matchMedia && window.matchMedia('(max-width: 639px)').matches;
+      phEl.placeholder = narrow
+        ? (CFG.searchPlaceholderShort || 'Search products…')
+        : CFG.searchPlaceholder;
+    }
 
     // 主推品区块已移除（2026-09-03 需求），首页直接进入热门产品
 
@@ -1009,7 +1087,8 @@
         '<p class="eyebrow-lg">' + esc(cat.tagline) + '</p>' +
         '<h1>' + esc(cat.name) + '</h1>' +
         '<p class="sub">' + all.length + ' product' + (all.length === 1 ? '' : 's') +
-          ' in this collection. Add anything you like to your inquiry list.</p>' +
+          ' in this collection. Wholesale pricing — ask for a volume quote on WhatsApp. ' +
+          'Add anything you like to your inquiry list.</p>' +
       '</div>' +
       (subs.length
         ? '<div class="subnav">' +
@@ -1172,6 +1251,76 @@
     hosts.forEach(function (h) { h.innerHTML = wa + mail; });
   }
 
+  /* ---------------- 首屏产品缩略图跑马灯：填补首屏空白，一眼看到「有货」 ---------------- */
+  function renderHeroStrip() {
+    var host = $('[data-hero-strip]');
+    if (!host) return;
+    var cats = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; });
+    if (cats.length < 4) return;
+
+    var oneSet = cats.map(function (c) {
+      return '<a class="hero-strip-item" href="category.html?slug=' + esc(c.slug) + '" tabindex="-1" aria-hidden="true">' +
+        '<img src="' + esc(c.image) + '" alt="" loading="lazy"></a>';
+    }).join('');
+
+    // 复制一份接在尾部，配合 translateX(-50%) 形成无缝循环
+    host.innerHTML =
+      '<div class="hero-strip-head"><span>What we ship</span><span class="hero-strip-rule"></span>' +
+        '<span>' + cats.length + ' collections · 1000+ products</span></div>' +
+      '<div class="hero-strip-clip"><div class="hero-strip-track">' + oneSet + oneSet + '</div></div>';
+  }
+
+  /* ---------------- About 页图片墙：让「我们是谁」有画面 ---------------- */
+  function renderAboutMosaic() {
+    var host = $('[data-about-mosaic]');
+    if (!host) return;
+    var cats = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; }).slice(0, 6);
+    if (!cats.length) return;
+
+    var items = cats.map(function (c) {
+      return '<a class="mosaic-item" href="category.html?slug=' + esc(c.slug) + '">' +
+        '<img src="' + esc(c.image) + '" alt="' + esc(c.name) + '" loading="lazy">' +
+        '<span class="mosaic-cap">' + esc(c.name) + '</span></a>';
+    }).join('');
+
+    var stat = $('[data-about-stat]');
+    if (stat) stat.textContent = cats.length + ' of 9 collections';
+    host.innerHTML = items;
+  }
+
+  /* ---------------- 手机端下拉菜单 ---------------- */
+  function initNavMenu() {
+    var btn = $('[data-nav-toggle]');
+    var menu = $('[data-mobile-nav]');
+    if (!btn || !menu) return;
+
+    function setOpen(open) {
+      menu.classList.toggle('is-open', open);
+      btn.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.classList.toggle('nav-open', open);
+    }
+
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!menu.classList.contains('is-open'));
+    });
+    // 点菜单里的链接后自动收起
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('click', function (e) {
+      if (!menu.classList.contains('is-open')) return;
+      if (menu.contains(e.target) || btn.contains(e.target)) return;
+      setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    setOpen(false);
+  }
+
   /* ---------------- 通用 WhatsApp 按钮：任何页面只要写 [data-wa-chat] 即可 ---------------- */
   function initWaChat() {
     $$('[data-wa-chat]').forEach(function (a) {
@@ -1187,8 +1336,12 @@
     mountChrome();
     Store.load();
     bindGlobal();
-    initWaChat();
     renderContactCards();
+    renderFooter();
+    renderHeroStrip();
+    renderAboutMosaic();
+    initNavMenu();
+    initWaChat();
     initSharedList();
 
     var page = document.body.getAttribute('data-page');
