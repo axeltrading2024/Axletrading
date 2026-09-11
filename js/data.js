@@ -1297,6 +1297,11 @@ window.PRODUCTS = [
         "name": "V15 submarine",
         "price": "€180",
         "image": "img/prod/dyson-v15-v15-submarine.jpg"
+      },
+      {
+        "name": "V15 detective",
+        "price": "",
+        "image": ""
       }
     ]
   },
