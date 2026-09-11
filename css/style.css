@@ -1957,7 +1957,8 @@ body:has(.drawer.open) .cart-fab {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  width: 80%;
+  width: 64%;
+  min-width: min(520px, 100%);
   margin: 16px auto 0;
 }
 
