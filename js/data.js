@@ -61,6 +61,10 @@ window.CATEGORIES = [
       {
         "slug": "rolex-style",
         "name": "Rolex style"
+      },
+      {
+        "slug": "ap-style",
+        "name": "Ap style"
       }
     ],
     "image": "img/cat/watches.png"
