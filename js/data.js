@@ -1422,7 +1422,7 @@ window.PRODUCTS = [
         "image": "img/prod/rayban-meta-mt5.jpg"
       },
       {
-        "name": "rayban meta",
+        "name": "Rayban meta gen2",
         "price": "",
         "image": ""
       }
