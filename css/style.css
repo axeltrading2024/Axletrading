@@ -1955,10 +1955,10 @@ body:has(.drawer.open) .cart-fab {
 /* ==================== 联系方式小卡片（数据卡下方） ==================== */
 .contact-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  width: 64%;
-  min-width: min(520px, 100%);
+  /* 卡宽锁定 276px（即 64% 方案下的原尺寸），两卡间距 60px，整组居中 */
+  grid-template-columns: repeat(2, minmax(0, 276px));
+  justify-content: center;
+  gap: 60px;
   margin: 16px auto 0;
 }
 
@@ -2047,7 +2047,7 @@ body:has(.drawer.open) .cart-fab {
 .cc-mail:hover { border-color: oklch(76% 0 0); box-shadow: var(--shadow-lift); }
 
 @media (max-width: 639px) {
-  .contact-cards { grid-template-columns: 1fr; width: 100%; }
+  .contact-cards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .cc-v { font-size: 13.5px; }
 }
 
