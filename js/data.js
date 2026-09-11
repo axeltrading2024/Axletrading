@@ -92,6 +92,22 @@ window.CATEGORIES = [
     ]
   },
   {
+    "slug": "clothes-and-s-hose",
+    "name": "clothes & shose",
+    "tagline": "fashion style",
+    "subcategories": [
+      {
+        "slug": "clothes",
+        "name": "clothes"
+      },
+      {
+        "slug": "shose",
+        "name": "shose"
+      }
+    ],
+    "image": "img/cat/clothes-and-s-hose.png"
+  },
+  {
     "slug": "sunglasses",
     "name": "Fashion Accessories",
     "tagline": "Frame your day",
@@ -114,22 +130,6 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/sunglasses.png"
-  },
-  {
-    "slug": "clothes-and-s-hose",
-    "name": "clothes & shose",
-    "tagline": "fashion style",
-    "subcategories": [
-      {
-        "slug": "clothes",
-        "name": "clothes"
-      },
-      {
-        "slug": "shose",
-        "name": "shose"
-      }
-    ],
-    "image": "img/cat/clothes-and-s-hose.png"
   },
   {
     "slug": "chargers",
