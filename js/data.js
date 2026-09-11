@@ -140,26 +140,6 @@ window.CATEGORIES = [
     "image": "img/cat/sunglasses.png"
   },
   {
-    "slug": "chargers",
-    "name": "Cellphone accessories",
-    "tagline": "Power and protection",
-    "image": "img/cat/chargers.png",
-    "subcategories": [
-      {
-        "slug": "chargers",
-        "name": "chargers"
-      },
-      {
-        "slug": "phonecase",
-        "name": "phonecase"
-      },
-      {
-        "slug": "pencil-and-airtag",
-        "name": "Pencil&airtag"
-      }
-    ]
-  },
-  {
     "slug": "other",
     "name": "Smart Products",
     "tagline": "Smart watch-AI glasses-Security",
@@ -176,6 +156,26 @@ window.CATEGORIES = [
       {
         "slug": "other-products",
         "name": "other products"
+      }
+    ]
+  },
+  {
+    "slug": "chargers",
+    "name": "Cellphone accessories",
+    "tagline": "Power and protection",
+    "image": "img/cat/chargers.png",
+    "subcategories": [
+      {
+        "slug": "chargers",
+        "name": "chargers"
+      },
+      {
+        "slug": "phonecase",
+        "name": "phonecase"
+      },
+      {
+        "slug": "pencil-and-airtag",
+        "name": "Pencil&airtag"
       }
     ]
   }
