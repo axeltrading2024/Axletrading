@@ -2159,6 +2159,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "video": "img/vid/v.mp4",
     "variants": [
       {
         "name": "1",
