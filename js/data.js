@@ -128,10 +128,6 @@ window.CATEGORIES = [
       {
         "slug": "phonecase",
         "name": "phonecase"
-      },
-      {
-        "slug": "pencil-and-airtag",
-        "name": "pencil&airtag"
       }
     ]
   },
