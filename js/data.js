@@ -2945,6 +2945,63 @@ window.PRODUCTS = [
         "image": "img/prod/s-3-pencil-gen3.jpg"
       }
     ]
+  },
+  {
+    "id": "l-5",
+    "name": "LV backpack",
+    "brand": "LV",
+    "price": "from €75",
+    "note": "fashionable and elegant backpack",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "keywords": [
+      "LV",
+      "bags",
+      "backpack"
+    ],
+    "variants": [
+      {
+        "name": "style-1",
+        "price": "",
+        "image": "img/prod/l-5-1.jpg"
+      },
+      {
+        "name": "style-2",
+        "price": "",
+        "image": "img/prod/l-5-style-2.jpg"
+      },
+      {
+        "name": "style-3",
+        "price": "",
+        "image": "img/prod/l-5-style-3.jpg"
+      },
+      {
+        "name": "style-4",
+        "price": "",
+        "image": "img/prod/l-5-style-4.jpg"
+      },
+      {
+        "name": "style-5",
+        "price": "",
+        "image": "img/prod/l-5-style-5.jpg"
+      },
+      {
+        "name": "style-6",
+        "price": "",
+        "image": "img/prod/l-5-style-6.jpg"
+      },
+      {
+        "name": "style-7",
+        "price": "",
+        "image": "img/prod/l-5-style-7.jpg"
+      },
+      {
+        "name": "style-8",
+        "price": "",
+        "image": "img/prod/l-5-style-8.jpg"
+      }
+    ]
   }
 ];
 
