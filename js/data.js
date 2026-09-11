@@ -1050,6 +1050,11 @@ window.PRODUCTS = [
         "name": "9",
         "price": "",
         "image": "img/prod/t-2-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": ""
       }
     ]
   },
