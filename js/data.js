@@ -947,6 +947,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "luxury",
+    "video": "img/vid/c-2.mp4",
     "variants": [
       {
         "name": "1",
