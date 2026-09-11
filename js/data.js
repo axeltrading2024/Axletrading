@@ -168,6 +168,10 @@ window.CATEGORIES = [
       {
         "slug": "smart-watch",
         "name": "Smart watch"
+      },
+      {
+        "slug": "ai-glasses",
+        "name": "AI glasses"
       }
     ]
   }
