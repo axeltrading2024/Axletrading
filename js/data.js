@@ -2287,14 +2287,14 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1",
+        "name": "1 Million Royal Parfum 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-1.jpg"
       },
       {
-        "name": "2",
+        "name": "1 Million Gold EDP intense 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-2.jpg"
+        "image": "img/prod/paco-rabannel-1-million-gold-edp-intense-100ml.jpg"
       },
       {
         "name": "1 Million Elixir 100ml",
@@ -2302,14 +2302,14 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-3.jpg"
       },
       {
-        "name": "4",
+        "name": "1 Million Golden Oud 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-4.jpg"
+        "image": "img/prod/paco-rabannel-million-golden-oud.jpg"
       },
       {
-        "name": "5",
+        "name": "1 Million parfum 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-5.jpg"
+        "image": "img/prod/paco-rabannel-1-million-parfum-100ml.jpg"
       },
       {
         "name": "6",
@@ -2337,7 +2337,7 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-10.jpg"
       },
       {
-        "name": "11",
+        "name": "Phantom EDP intense 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-11.jpg"
       },
