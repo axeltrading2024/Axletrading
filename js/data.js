@@ -1128,10 +1128,9 @@ window.PRODUCTS = [
     "name": "Apple Watch Series 11",
     "brand": "Apple",
     "price": "€30",
-    "note": "three colors option care your daily routine",
+    "note": "smart watch-care your daily routine",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
-    "collection": "watches",
-    "subcategory": "smart",
+    "collection": "other",
     "popular": true,
     "keywords": [
       "apple",
@@ -1145,7 +1144,7 @@ window.PRODUCTS = [
         "image": "img/prod/apple-watch-11-s11.jpg"
       },
       {
-        "name": "ultra3",
+        "name": "Ultra3",
         "price": "",
         "image": "img/prod/apple-watch-11-ultra3.jpg"
       }
