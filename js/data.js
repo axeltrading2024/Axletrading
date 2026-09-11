@@ -2297,7 +2297,7 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-2.jpg"
       },
       {
-        "name": "3",
+        "name": "1 Million Elixir 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-3.jpg"
       },
@@ -2352,7 +2352,7 @@ window.PRODUCTS = [
         "image": "img/prod/paco-rabannel-13.jpg"
       },
       {
-        "name": "14",
+        "name": "Pure XS EDT 100ml",
         "price": "",
         "image": "img/prod/paco-rabannel-14.jpg"
       },
