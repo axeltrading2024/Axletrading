@@ -106,7 +106,7 @@ window.CATEGORIES = [
   {
     "slug": "other",
     "name": "Smart Products",
-    "tagline": "Smart watch · AI glasses · Smart home",
+    "tagline": "Smart watch-AI glasses-Security",
     "image": "img/cat/other.png",
     "subcategories": [
       {
@@ -124,16 +124,16 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "clothes-and-shoes",
+    "slug": "clothes-and-s-hose",
     "name": "Clothes & Shoes",
-    "tagline": "Wear the look",
+    "tagline": "fashion style",
     "subcategories": [
       {
         "slug": "clothes",
         "name": "Clothes"
       },
       {
-        "slug": "shoes",
+        "slug": "shose",
         "name": "Shoes"
       }
     ],
@@ -990,7 +990,7 @@ window.PRODUCTS = [
   {
     "id": "c-2",
     "name": "Cartier Style",
-    "brand": "Cartier",
+    "brand": "",
     "price": "€65",
     "note": "elegant-luxury",
     "desc": "",
@@ -1115,7 +1115,7 @@ window.PRODUCTS = [
   {
     "id": "g-3",
     "name": "Gshock style",
-    "brand": "G-Shock",
+    "brand": "",
     "price": "€18",
     "note": "sport-passion-young",
     "desc": "",
@@ -1279,7 +1279,7 @@ window.PRODUCTS = [
   {
     "id": "d",
     "name": "Dyson airstrait style",
-    "brand": "Dyson",
+    "brand": "",
     "price": "€130",
     "note": "tempreture control-harmless-gift box",
     "desc": "",
@@ -1651,7 +1651,7 @@ window.PRODUCTS = [
   {
     "id": "b",
     "name": "JBL boom box4",
-    "brand": "JBL",
+    "brand": "",
     "price": "€40",
     "note": "protable-bass sound-logo",
     "desc": "",
@@ -1729,7 +1729,7 @@ window.PRODUCTS = [
   {
     "id": "n",
     "name": "NFC card",
-    "brand": "Custom",
+    "brand": "",
     "price": "€2",
     "note": "NFC card-google card",
     "desc": "tap and rate you  five star",
@@ -1742,19 +1742,34 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "sticker",
+        "name": "google-sticker",
         "price": "",
         "image": "img/prod/n-sticker.jpg"
       },
       {
-        "name": "stand white",
+        "name": "google-stand white",
         "price": "",
         "image": "img/prod/n-stand-white.jpg"
       },
       {
-        "name": "stand black",
+        "name": "google-stand black",
         "price": "",
         "image": "img/prod/n-stand-black.jpg"
+      },
+      {
+        "name": "facebook-stand",
+        "price": "",
+        "image": "img/prod/n-facebook-1.jpg"
+      },
+      {
+        "name": "ins-stand",
+        "price": "",
+        "image": "img/prod/n-ins-1.jpg"
+      },
+      {
+        "name": "keychain",
+        "price": "",
+        "image": "img/prod/n-keychain.jpg"
       }
     ]
   },
@@ -1765,11 +1780,11 @@ window.PRODUCTS = [
     "price": "€25",
     "note": "foot massage",
     "desc": "",
-    "collection": "clothes-and-shoes",
-    "subcategory": "shoes",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "shose",
     "keywords": [
       "nike",
-      "shoes",
+      "shose",
       "mind001"
     ],
     "variants": [
@@ -1808,7 +1823,7 @@ window.PRODUCTS = [
   {
     "id": "g",
     "name": "Gucci style luxury bags",
-    "brand": "Gucci",
+    "brand": "",
     "price": "€85",
     "note": "leather-metal-logo",
     "desc": "",
@@ -1845,7 +1860,7 @@ window.PRODUCTS = [
   {
     "id": "l",
     "name": "LV style bags",
-    "brand": "Louis Vuitton",
+    "brand": "",
     "price": "€85",
     "note": "fashional-elegance-metal logo",
     "desc": "",
@@ -1887,7 +1902,7 @@ window.PRODUCTS = [
   {
     "id": "g-2",
     "name": "Goyard bags",
-    "brand": "Goyard",
+    "brand": "",
     "price": "€8",
     "note": "understated luxury: featuring a feather-light, hand-painted Y-pattern that speaks only to those who truly know.",
     "desc": "",
@@ -1919,7 +1934,7 @@ window.PRODUCTS = [
   {
     "id": "t",
     "name": "Tom Ford style perfume",
-    "brand": "Tom Ford",
+    "brand": "",
     "price": "€18",
     "note": "Bold Luxury-Private Sensuality-Scent of Power",
     "desc": "",
@@ -1967,7 +1982,7 @@ window.PRODUCTS = [
   {
     "id": "c",
     "name": "Carolina Herrera style",
-    "brand": "Carolina Herrera",
+    "brand": "",
     "price": "€18",
     "note": "Embrace your duality, rule with fearless elegance",
     "desc": "it is good to be bad",
@@ -2029,7 +2044,7 @@ window.PRODUCTS = [
   {
     "id": "jean-paul-gaultter",
     "name": "Jean Paul Gaultier style",
-    "brand": "Jean Paul Gaultier",
+    "brand": "",
     "price": "€18",
     "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
     "desc": "",
@@ -2106,7 +2121,7 @@ window.PRODUCTS = [
   {
     "id": "p",
     "name": "popular perfumes",
-    "brand": "Various",
+    "brand": "",
     "price": "€18",
     "note": "popular hot perfumes",
     "desc": "",
@@ -2153,7 +2168,7 @@ window.PRODUCTS = [
   {
     "id": "v",
     "name": "Versace style perfume",
-    "brand": "Versace",
+    "brand": "",
     "price": "€18",
     "note": "love-sex-passion",
     "desc": "",
@@ -2221,7 +2236,7 @@ window.PRODUCTS = [
   {
     "id": "l-2",
     "name": "LV style perfume",
-    "brand": "Louis Vuitton",
+    "brand": "",
     "price": "€30",
     "note": "Wear the art of travel, embrace your endless journey",
     "desc": "",
@@ -2289,7 +2304,7 @@ window.PRODUCTS = [
   {
     "id": "paco-rabannel",
     "name": "Paco Rabanne style perfume",
-    "brand": "Paco Rabanne",
+    "brand": "",
     "price": "€18",
     "note": "",
     "desc": "",
@@ -2375,8 +2390,8 @@ window.PRODUCTS = [
     "price": "€15",
     "note": "comfortable-soft-fashion",
     "desc": "",
-    "collection": "clothes-and-shoes",
-    "subcategory": "shoes",
+    "collection": "clothes-and-s-hose",
+    "subcategory": "shose",
     "keywords": [
       "yeezy",
       "slide",
@@ -2443,11 +2458,11 @@ window.PRODUCTS = [
   {
     "id": "football-training-kit",
     "name": "Football training kit",
-    "brand": "Generic",
+    "brand": "",
     "price": "€30",
     "note": "quick-dry fabric -maximum comfort-unrestricted movement",
     "desc": "",
-    "collection": "clothes-and-shoes",
+    "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
     "keywords": [
       "football kit",
@@ -2538,7 +2553,7 @@ window.PRODUCTS = [
     "price": "€15",
     "note": "football club or national team jersey",
     "desc": "numbers and name could be customized, vintage style are also in stock",
-    "collection": "clothes-and-shoes",
+    "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
     "keywords": [
       "jersey. football kit",
@@ -2610,7 +2625,7 @@ window.PRODUCTS = [
   {
     "id": "m-2",
     "name": "wireless microphone",
-    "brand": "Generic",
+    "brand": "",
     "price": "€30",
     "note": "wireless- 2-channel",
     "desc": "2-channel wireless microphone system",
@@ -2631,7 +2646,7 @@ window.PRODUCTS = [
   {
     "id": "s-2",
     "name": "Sony style",
-    "brand": "Sony",
+    "brand": "",
     "price": "€18",
     "note": "bluetooth 5.2-mini",
     "desc": "",
@@ -2640,7 +2655,7 @@ window.PRODUCTS = [
   {
     "id": "p-2",
     "name": "RIMOWA style",
-    "brand": "Rimowa",
+    "brand": "",
     "price": "€8",
     "note": "suitcase style-colorful",
     "desc": "moq 10 units for one color",
@@ -2686,7 +2701,7 @@ window.PRODUCTS = [
     "price": "€30",
     "note": "slim style and fashionable",
     "desc": "",
-    "collection": "clothes-and-shoes",
+    "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
     "keywords": [
       "lululemon",
@@ -2749,7 +2764,7 @@ window.PRODUCTS = [
   {
     "id": "l-4",
     "name": "LV belt",
-    "brand": "Louis Vuitton",
+    "brand": "",
     "price": "€30",
     "note": "luxury belt",
     "desc": "",
@@ -2800,7 +2815,7 @@ window.PRODUCTS = [
   {
     "id": "h",
     "name": "Hermes style belt",
-    "brand": "Hermès",
+    "brand": "",
     "price": "€30",
     "note": "Hermes belt",
     "desc": "",
@@ -2836,7 +2851,7 @@ window.PRODUCTS = [
   {
     "id": "g-4",
     "name": "Gucci style luxury belt",
-    "brand": "Gucci",
+    "brand": "",
     "price": "€30",
     "note": "Luxry belt",
     "desc": "",
@@ -2891,7 +2906,7 @@ window.PRODUCTS = [
     "price": "€85",
     "note": "down jacket- down coat-fashion and warm",
     "desc": "",
-    "collection": "clothes-and-shoes",
+    "collection": "clothes-and-s-hose",
     "subcategory": "clothes",
     "keywords": [
       "jacket",
