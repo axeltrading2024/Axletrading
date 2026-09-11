@@ -1118,6 +1118,7 @@ window.PRODUCTS = [
     "note": "sport-passion-young",
     "desc": "",
     "collection": "watches",
+    "subcategory": "swatch",
     "variants": [
       {
         "name": "GA 2100",
