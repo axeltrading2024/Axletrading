@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20260911c">
+  <link rel="stylesheet" href="css/style.css?v=20260911d">
   <script data-goatcounter="https://axeltrading.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -31,6 +31,15 @@
         We help overseas retailers, Amazon sellers and dropshippers source trending products —
         electronics, perfumes, watches and accessories — with clear photos, honest specs and fast,
         direct communication on WhatsApp. No middlemen, no marketplace fees, no guesswork.</p>
+
+      <!-- 图片墙：内容由 js/app.js 按分类图渲染，保持与目录同步 -->
+      <div class="about-mosaic-head">
+        <span>What we ship</span>
+        <span class="rule"></span>
+        <span data-about-stat></span>
+      </div>
+      <div class="about-mosaic" data-about-mosaic></div>
+
       <div class="about-facts">
         <div class="fact"><b>1000+</b><span>products curated</span></div>
         <div class="fact"><b>100+</b><span>countries served</span></div>
@@ -43,7 +52,7 @@
       <div class="contact-cards" data-contact-cards></div>
     </section>
 
-    <section class="faq-section">
+    <section class="faq-section" id="faq">
       <h2>Frequently asked questions</h2>
 
       <details class="faq-item" open>
@@ -134,6 +143,6 @@
   <footer class="site-footer"></footer>
 
   <script src="js/data.js"></script>
-  <script src="js/app.js?v=20260911c"></script>
+  <script src="js/app.js?v=20260911d"></script>
 </body>
 </html>
