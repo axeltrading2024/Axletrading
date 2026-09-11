@@ -113,10 +113,6 @@ window.CATEGORIES = [
     "tagline": "Frame your day",
     "subcategories": [
       {
-        "slug": "ai",
-        "name": "AI Glasses"
-      },
-      {
         "slug": "luxury",
         "name": "Luxury Glasses"
       },
