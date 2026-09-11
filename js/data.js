@@ -479,7 +479,7 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-intensely.jpg"
       },
       {
-        "name": "Born in roma-uomo",
+        "name": "Born in roma",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-uno.jpg"
       },
@@ -514,7 +514,7 @@ window.PRODUCTS = [
         "image": "img/prod/valentino-born-in-roma-donna.jpg"
       },
       {
-        "name": "Uomo-intense",
+        "name": "Uomo",
         "price": "",
         "image": "img/prod/valentino-born-in-roma-uomo.jpg"
       }
@@ -688,7 +688,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "luxury",
-    "video": "img/vid/r.mp4",
     "variants": [
       {
         "name": "1",
@@ -2505,7 +2504,7 @@ window.PRODUCTS = [
     "brand": "",
     "price": "€8",
     "note": "suitcase style-colorful",
-    "desc": "",
+    "desc": "moq 10 units for one color",
     "collection": "chargers",
     "subcategory": "phonecase",
     "variants": [
