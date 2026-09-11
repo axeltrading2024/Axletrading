@@ -153,8 +153,8 @@ window.CATEGORIES = [
   },
   {
     "slug": "other",
-    "name": "Other Products",
-    "tagline": "The rest",
+    "name": "Smart Products",
+    "tagline": "Smart watch-AI glasses-Security",
     "image": "img/cat/other.png"
   }
 ];
