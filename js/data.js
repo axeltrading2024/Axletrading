@@ -116,6 +116,22 @@ window.CATEGORIES = [
     "image": "img/cat/sunglasses.png"
   },
   {
+    "slug": "clothes-and-s-hose",
+    "name": "clothes & shose",
+    "tagline": "fashion style",
+    "subcategories": [
+      {
+        "slug": "clothes",
+        "name": "clothes"
+      },
+      {
+        "slug": "shose",
+        "name": "shose"
+      }
+    ],
+    "image": "img/cat/clothes-and-s-hose.png"
+  },
+  {
     "slug": "chargers",
     "name": "Cellphone accessories",
     "tagline": "Power and protection",
@@ -134,22 +150,6 @@ window.CATEGORIES = [
         "name": "Pencil&airtag"
       }
     ]
-  },
-  {
-    "slug": "clothes-and-s-hose",
-    "name": "clothes & shose",
-    "tagline": "fashion style",
-    "subcategories": [
-      {
-        "slug": "clothes",
-        "name": "clothes"
-      },
-      {
-        "slug": "shose",
-        "name": "shose"
-      }
-    ],
-    "image": "img/cat/clothes-and-s-hose.png"
   },
   {
     "slug": "other",
