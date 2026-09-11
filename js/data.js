@@ -2217,6 +2217,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "video": "img/vid/l-2.mp4",
     "keywords": [
       "lv",
       "perfumes",
