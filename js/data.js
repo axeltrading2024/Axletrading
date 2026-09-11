@@ -1149,7 +1149,7 @@ window.PRODUCTS = [
     "price": "€30",
     "note": "AMOLED · GPS",
     "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
-    "collection": "watches",
+    "collection": "other",
     "keywords": [
       "samsung",
       "galaxy",
