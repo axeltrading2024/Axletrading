@@ -28,12 +28,6 @@ window.SITE_CONFIG = {
 /* ---------------- 分类 ---------------- */
 window.CATEGORIES = [
   {
-    "slug": "speakers",
-    "name": "Speakers",
-    "tagline": "Room-filling sound",
-    "image": "img/cat/speakers.png"
-  },
-  {
     "slug": "perfumes",
     "name": "Perfumes",
     "tagline": "Signature scents",
@@ -52,6 +46,12 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/perfumes.png"
+  },
+  {
+    "slug": "speakers",
+    "name": "Speakers",
+    "tagline": "Room-filling sound",
+    "image": "img/cat/speakers.png"
   },
   {
     "slug": "earbuds-headphones",
