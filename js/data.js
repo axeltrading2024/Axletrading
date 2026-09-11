@@ -1266,12 +1266,12 @@ window.PRODUCTS = [
     "subcategory": "hair-care",
     "variants": [
       {
-        "name": "1",
+        "name": "Classic",
         "price": "",
         "image": "img/prod/d-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Gift box",
         "price": "",
         "image": "img/prod/d-2.jpg"
       }
