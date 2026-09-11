@@ -2978,28 +2978,33 @@ window.PRODUCTS = [
       },
       {
         "name": "style-4",
-        "price": "€90",
-        "image": "img/prod/l-5-style-4.jpg"
+        "price": "€85",
+        "image": "img/prod/l-5-style-7.jpg"
       },
       {
         "name": "style-5",
-        "price": "€90",
-        "image": "img/prod/l-5-style-5.jpg"
+        "price": "€85",
+        "image": "img/prod/l-5-style-8.jpg"
       },
       {
         "name": "style-6",
-        "price": "€90",
+        "price": "",
         "image": "img/prod/l-5-style-6.jpg"
       },
       {
         "name": "style-7",
-        "price": "€90",
+        "price": "",
         "image": "img/prod/l-5-style-7.jpg"
       },
       {
         "name": "style-8",
-        "price": "€90",
+        "price": "",
         "image": "img/prod/l-5-style-8.jpg"
+      },
+      {
+        "name": "style-9",
+        "price": "",
+        "image": "img/prod/l-5-style-9.jpg"
       }
     ]
   }
