@@ -1153,7 +1153,7 @@ window.PRODUCTS = [
   },
   {
     "id": "galaxy-watch",
-    "name": "Galaxy Watch Ultra",
+    "name": "Galaxy Watch",
     "brand": "Samsung",
     "price": "€30",
     "note": "AMOLED · GPS",
@@ -1168,22 +1168,22 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "serial8 classic",
+        "name": "Galaxy serial 8",
         "price": "",
         "image": "img/prod/galaxy-watch-serial8-classic.jpg"
       },
       {
-        "name": "galaxy ultra",
+        "name": "Galaxy ultra",
         "price": "",
         "image": "img/prod/galaxy-watch-galaxy-ultra.jpg"
       },
       {
-        "name": "serial 9",
+        "name": "Galaxyserial 9",
         "price": "",
         "image": "img/prod/galaxy-watch-serial-9.jpg"
       },
       {
-        "name": "ultra2",
+        "name": "Galaxyultra2",
         "price": "",
         "image": "img/prod/galaxy-watch-ultra2.jpg"
       }
