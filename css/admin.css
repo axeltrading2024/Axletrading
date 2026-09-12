@@ -296,6 +296,28 @@
   align-items: center;
   justify-content: center;
 }
+/* 型号排序（↑↓）—— 与产品 / 分类排序同一交互语言 */
+.var-row .var-mv {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+.var-row .var-mv button {
+  border: 0;
+  background: transparent;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.var-row .var-mv button:hover {
+  color: var(--accent-brand);
+  background: color-mix(in srgb, var(--accent-brand) 12%, transparent);
+}
 
 /* ---------- 状态条 ---------- */
 .status-bar {
