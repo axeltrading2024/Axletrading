@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20260910a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20260913a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -155,7 +155,7 @@
 
           <div class="var-mgr" data-page-node-id="Q8y4OElaqV4LMGHkolhiW6">
             <div class="it-h" data-page-node-id="QnWYR4CijtPlsCLbHrXHgX">型号 / Variants（可选）</div>
-            <div class="it-p" data-page-node-id="QCjWUAMthZsMsmCyZGAJ0Z">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图。访客在详情页点型号按钮切换。</div>
+            <div class="it-p" data-page-node-id="QCjWUAMthZsMsmCyZGAJ0Z">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图（建议白底方图，顺序会影响购物车选项）。用行尾的 ↑↓ 调整型号顺序，第一个为详情页默认选中；改完点「保存产品」生效。</div>
             <div data-var-list data-page-node-id="JjF1Yf0R6NEN7bbMVmIXPF"></div>
             <div class="gh-actions" style="margin-top:8px" data-page-node-id="YsYenW7MFVt1U3Ihwh5Jys">
               <button type="button" class="btn btn-outline" data-var-add data-page-node-id="e8Gmniwrl1RrFM3MO8qBdF">＋ 添加型号</button>
@@ -305,7 +305,7 @@
 
   </main>
 
-  <script src="js/data.js"></script>
+  <script src="js/data.js?v=20260913a"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -917,6 +917,10 @@
         '<span class="var-img-status" data-var-img-status>' + (v.image ? '✅ ' + esc(v.image) : '未选（用主图）') + '</span>' +
         '<input type="hidden" data-var-img-value value="' + esc(v.image || '') + '">' +
       '</div>' +
+      '<div class="var-mv">' +
+        '<button type="button" data-var-up title="上移（详情页型号顺序靠前）">↑</button>' +
+        '<button type="button" data-var-down title="下移（详情页型号顺序靠后）">↓</button>' +
+      '</div>' +
       '<button type="button" class="btn btn-ghost var-del" data-var-del title="删除该型号">×</button>';
     list.appendChild(row);
     if (v.image) setVarThumb(row.querySelector('[data-var-thumb]'), localPreviews[v.image] || resolveImgUrl(v.image));
@@ -932,6 +936,26 @@
     if (!list) return;
     list.innerHTML = '';
     (variants || []).forEach(function (v) { addVarRow(v, false); });
+  }
+
+  /** 型号排序：在列表内上移 / 下移（dir=-1 上移，dir=1 下移）
+   *  直接搬动 DOM 节点，输入值 / 已选图片都跟着走；保存时按 DOM 顺序写入 data.js */
+  function moveVarRow(row, dir) {
+    var list = $('[data-var-list]');
+    if (!list || !row) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('[data-var-row]'));
+    var i = rows.indexOf(row);
+    if (i < 0) return;
+    var j = i + dir;
+    if (j < 0 || j >= rows.length) {
+      status(dir < 0 ? '已经是第一个型号了' : '已经是最后一个型号了');
+      return;
+    }
+    if (dir < 0) list.insertBefore(row, rows[j]);
+    else list.insertBefore(row, rows[j].nextSibling);
+    var nmEl = row.querySelector('[data-var-name]');
+    var nm = (nmEl && nmEl.value || '').trim() || '该型号';
+    status('已' + (dir < 0 ? '上移' : '下移') + '「' + nm + '」—— 点「保存产品」后生效（第一个型号为详情页默认选中）');
   }
 
   function collectVariants() {
@@ -1180,6 +1204,10 @@
       if (!row) return;
       var thumbEl = e.target.closest('[data-var-thumb]');
       if (thumbEl && thumbEl.src) { window.open(thumbEl.src, '_blank'); return; }
+      var up = e.target.closest('[data-var-up]');
+      if (up) { moveVarRow(row, -1); return; }
+      var down = e.target.closest('[data-var-down]');
+      if (down) { moveVarRow(row, 1); return; }
       var del = e.target.closest('[data-var-del]');
       if (del) { row.remove(); return; }
       var pick = e.target.closest('[data-var-pick]');
