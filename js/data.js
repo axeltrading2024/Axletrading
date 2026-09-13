@@ -15,6 +15,7 @@ window.SITE_CONFIG = {
   "whatsappDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
   "phoneBackup": "+86 158 7520 9571",
+  /* 页脚底部三行口径 —— 与 about.html 的「How it works」与 FAQ 必须一致 */
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
   "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
@@ -141,7 +142,7 @@ window.CATEGORIES = [
         "name": "Shoes"
       }
     ],
-    "image": "img/cat/clothes-and-shoes.png"
+    "image": "img/cat/clothes-and-s-hose.png"
   },
   {
     "slug": "sunglasses",
@@ -208,17 +209,17 @@ window.PRODUCTS = [
       {
         "name": "Airpods-pro2",
         "price": "",
-        "image": "img/prod/airpods-pro-2-airpods-pro2.jpg"
+        "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
       },
       {
         "name": "Airpods-gen4",
         "price": "",
-        "image": "img/prod/airpods-pro-2-airpods-gen4.jpg"
+        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
       },
       {
         "name": "Airpods-pro3",
         "price": "",
-        "image": "img/prod/airpods-pro-2-pro3.jpg"
+        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
     ]
   },
@@ -240,27 +241,27 @@ window.PRODUCTS = [
       {
         "name": "midnight",
         "price": "",
-        "image": "img/prod/airpods-max-night-black.jpg"
+        "image": "img/prod/var/airpods-max-night-black.jpg"
       },
       {
         "name": "starlight",
         "price": "",
-        "image": "img/prod/airpods-max-starlight.jpg"
+        "image": "img/prod/var/airpods-max-starlight.jpg"
       },
       {
         "name": "orange",
         "price": "",
-        "image": "img/prod/airpods-max-orange.jpg"
+        "image": "img/prod/var/airpods-max-orange.jpg"
       },
       {
         "name": "purple",
         "price": "",
-        "image": "img/prod/airpods-max-purple.jpg"
+        "image": "img/prod/var/airpods-max-purple.jpg"
       },
       {
         "name": "blue",
         "price": "",
-        "image": "img/prod/airpods-max-blue.jpg"
+        "image": "img/prod/var/airpods-max-blue.jpg"
       }
     ]
   },
@@ -300,57 +301,57 @@ window.PRODUCTS = [
       {
         "name": "Sauvage-EDP",
         "price": "",
-        "image": "img/prod/dior-sauvage-sauvage-edp.jpg"
+        "image": "img/prod/var/dior-sauvage-sauvage-edp.jpg"
       },
       {
         "name": "Sauvage-Elixir",
         "price": "",
-        "image": "img/prod/dior-sauvage-exilir.jpg"
+        "image": "img/prod/var/dior-sauvage-exilir.jpg"
       },
       {
         "name": "Sauvage-parfum",
         "price": "",
-        "image": "img/prod/dior-sauvage-parfum.jpg"
+        "image": "img/prod/var/dior-sauvage-parfum.jpg"
       },
       {
         "name": "Sauvage-EDT",
         "price": "",
-        "image": "img/prod/dior-sauvage-sauvage-edt.jpg"
+        "image": "img/prod/var/dior-sauvage-sauvage-edt.jpg"
       },
       {
         "name": "Homme-1",
         "price": "",
-        "image": "img/prod/dior-sauvage-homme-1.jpg"
+        "image": "img/prod/var/dior-sauvage-homme-1.jpg"
       },
       {
         "name": "Homme-2",
         "price": "",
-        "image": "img/prod/dior-sauvage-homme-2.jpg"
+        "image": "img/prod/var/dior-sauvage-homme-2.jpg"
       },
       {
         "name": "jadore-1",
         "price": "",
-        "image": "img/prod/dior-sauvage-jadore-1.jpg"
+        "image": "img/prod/var/dior-sauvage-jadore-1.jpg"
       },
       {
         "name": "jadore-2",
         "price": "",
-        "image": "img/prod/dior-sauvage-jadore-2.jpg"
+        "image": "img/prod/var/dior-sauvage-jadore-2.jpg"
       },
       {
         "name": "Miss Dior-1",
         "price": "",
-        "image": "img/prod/dior-sauvage-miss-dior.jpg"
+        "image": "img/prod/var/dior-sauvage-miss-dior.jpg"
       },
       {
         "name": "Miss Dior-2",
         "price": "",
-        "image": "img/prod/dior-sauvage-miss-dior-2.jpg"
+        "image": "img/prod/var/dior-sauvage-miss-dior-2.jpg"
       },
       {
         "name": "Miss Dior-3",
         "price": "",
-        "image": "img/prod/dior-sauvage-miss-dior-3.jpg"
+        "image": "img/prod/var/dior-sauvage-miss-dior-3.jpg"
       }
     ]
   },
@@ -373,67 +374,67 @@ window.PRODUCTS = [
       {
         "name": "Flip 7-purple",
         "price": "",
-        "image": "img/prod/jbl-flip-7-flip-7-1.jpg"
+        "image": "img/prod/var/jbl-flip-7-flip-7-1.jpg"
       },
       {
         "name": "Flip7-blue",
         "price": "",
-        "image": "img/prod/jbl-flip-7-flip7-2.jpg"
+        "image": "img/prod/var/jbl-flip-7-flip7-2.jpg"
       },
       {
         "name": "Flip7-black",
         "price": "",
-        "image": "img/prod/jbl-flip-7-flip7-3.jpg"
+        "image": "img/prod/var/jbl-flip-7-flip7-3.jpg"
       },
       {
         "name": "Flip7-red",
         "price": "",
-        "image": "img/prod/jbl-flip-7-flip7-4.jpg"
+        "image": "img/prod/var/jbl-flip-7-flip7-4.jpg"
       },
       {
         "name": "Charge6-black1",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge6.jpg"
+        "image": "img/prod/var/jbl-flip-7-charge6.jpg"
       },
       {
         "name": "Charge6-black2",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge6-black2.jpg"
+        "image": "img/prod/var/jbl-flip-7-charge6-black2.jpg"
       },
       {
         "name": "Charge6-blue",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge6-blue.jpg"
+        "image": "img/prod/var/jbl-flip-7-charge6-blue.jpg"
       },
       {
         "name": "Charge6-purple",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge6-purple.jpg"
+        "image": "img/prod/var/jbl-flip-7-charge6-purple.jpg"
       },
       {
         "name": "Charge6-red",
         "price": "",
-        "image": "img/prod/jbl-flip-7-charge6-red.jpg"
+        "image": "img/prod/var/jbl-flip-7-charge6-red.jpg"
       },
       {
         "name": "GO5-1",
         "price": "",
-        "image": "img/prod/jbl-flip-7-go5-1.jpg"
+        "image": "img/prod/var/jbl-flip-7-go5-1.jpg"
       },
       {
         "name": "GO5-2",
         "price": "",
-        "image": "img/prod/jbl-flip-7-go5-2.jpg"
+        "image": "img/prod/var/jbl-flip-7-go5-2.jpg"
       },
       {
         "name": "GO5-3",
         "price": "",
-        "image": "img/prod/jbl-flip-7-go5-3.jpg"
+        "image": "img/prod/var/jbl-flip-7-go5-3.jpg"
       },
       {
         "name": "GO5-4",
         "price": "",
-        "image": "img/prod/jbl-flip-7-go5-4.jpg"
+        "image": "img/prod/var/jbl-flip-7-go5-4.jpg"
       }
     ]
   },
@@ -455,37 +456,37 @@ window.PRODUCTS = [
       {
         "name": "blue channle",
         "price": "",
-        "image": "img/prod/bleu-chanel-blue-channle.jpg"
+        "image": "img/prod/var/bleu-chanel-blue-channle.jpg"
       },
       {
         "name": "coco-1",
         "price": "",
-        "image": "img/prod/bleu-chanel-coco-1.jpg"
+        "image": "img/prod/var/bleu-chanel-coco-1.jpg"
       },
       {
         "name": "coco-2",
         "price": "",
-        "image": "img/prod/bleu-chanel-coco-2.jpg"
+        "image": "img/prod/var/bleu-chanel-coco-2.jpg"
       },
       {
         "name": "coco-3",
         "price": "",
-        "image": "img/prod/bleu-chanel-coco-3.jpg"
+        "image": "img/prod/var/bleu-chanel-coco-3.jpg"
       },
       {
         "name": "coco-4",
         "price": "",
-        "image": "img/prod/bleu-chanel-coco-4.jpg"
+        "image": "img/prod/var/bleu-chanel-coco-4.jpg"
       },
       {
         "name": "chance-1",
         "price": "",
-        "image": "img/prod/bleu-chanel-chance-1.jpg"
+        "image": "img/prod/var/bleu-chanel-chance-1.jpg"
       },
       {
         "name": "chance-2",
         "price": "",
-        "image": "img/prod/bleu-chanel-chance-2.jpg"
+        "image": "img/prod/var/bleu-chanel-chance-2.jpg"
       }
     ]
   },
@@ -508,47 +509,47 @@ window.PRODUCTS = [
       {
         "name": "Born in roma-intensely",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-intensely.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-intensely.jpg"
       },
       {
         "name": "Born in roma",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-uno.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-uno.jpg"
       },
       {
         "name": "Born in roma-extradose",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-extradose.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-extradose.jpg"
       },
       {
         "name": "Born in roma-coral fantasy",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-born-in-roma-caro-fantasy.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-born-in-roma-caro-fantasy.jpg"
       },
       {
         "name": "Born in roma-donna intense",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-intense.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-born-in-roma-donna-intense.jpg"
       },
       {
         "name": "Born in roma-donna coral fantasy",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-coral-fantasy.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-born-in-roma-donna-coral-fantasy.jpg"
       },
       {
         "name": "Born in roma-donna extradose",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-born-in-roma-donna-extradose.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-born-in-roma-donna-extradose.jpg"
       },
       {
         "name": "donna",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-donna.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-donna.jpg"
       },
       {
         "name": "Uomo",
         "price": "",
-        "image": "img/prod/valentino-born-in-roma-uomo.jpg"
+        "image": "img/prod/var/valentino-born-in-roma-uomo.jpg"
       }
     ]
   },
@@ -565,47 +566,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/a-1.jpg"
+        "image": "img/prod/var/a-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/a-2.jpg"
+        "image": "img/prod/var/a-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/a-3.jpg"
+        "image": "img/prod/var/a-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/a-4.jpg"
+        "image": "img/prod/var/a-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/a-5.jpg"
+        "image": "img/prod/var/a-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/a-6.jpg"
+        "image": "img/prod/var/a-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/a-7.jpg"
+        "image": "img/prod/var/a-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/a-8.jpg"
+        "image": "img/prod/var/a-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/a-9.jpg"
+        "image": "img/prod/var/a-9.jpg"
       }
     ]
   },
@@ -627,22 +628,22 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/baccarat-1.jpg"
+        "image": "img/prod/var/baccarat-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/baccarat-2.jpg"
+        "image": "img/prod/var/baccarat-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/baccarat-3.jpg"
+        "image": "img/prod/var/baccarat-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/baccarat-4.jpg"
+        "image": "img/prod/var/baccarat-4.jpg"
       }
     ]
   },
@@ -667,47 +668,47 @@ window.PRODUCTS = [
       {
         "name": "Black",
         "price": "",
-        "image": "img/prod/rolex-submariner-black.jpg"
+        "image": "img/prod/var/rolex-submariner-black.jpg"
       },
       {
         "name": "Green-black",
         "price": "",
-        "image": "img/prod/rolex-submariner-green-black.jpg"
+        "image": "img/prod/var/rolex-submariner-green-black.jpg"
       },
       {
         "name": "Green",
         "price": "",
-        "image": "img/prod/rolex-submariner-green.jpg"
+        "image": "img/prod/var/rolex-submariner-green.jpg"
       },
       {
         "name": "Black-gold-1",
         "price": "",
-        "image": "img/prod/rolex-submariner-black-golden.jpg"
+        "image": "img/prod/var/rolex-submariner-black-golden.jpg"
       },
       {
         "name": "Blue",
         "price": "",
-        "image": "img/prod/rolex-submariner-blue-golden.jpg"
+        "image": "img/prod/var/rolex-submariner-blue-golden.jpg"
       },
       {
         "name": "Blue-black",
         "price": "",
-        "image": "img/prod/rolex-submariner-blue-black.jpg"
+        "image": "img/prod/var/rolex-submariner-blue-black.jpg"
       },
       {
         "name": "Ultra-black",
         "price": "",
-        "image": "img/prod/rolex-submariner-ultra-black.jpg"
+        "image": "img/prod/var/rolex-submariner-ultra-black.jpg"
       },
       {
         "name": "Labubu",
         "price": "",
-        "image": "img/prod/rolex-submariner-labubu.jpg"
+        "image": "img/prod/var/rolex-submariner-labubu.jpg"
       },
       {
         "name": "Black-gold-2",
         "price": "",
-        "image": "img/prod/rolex-submariner-black-gold-2.jpg"
+        "image": "img/prod/var/rolex-submariner-black-gold-2.jpg"
       }
     ]
   },
@@ -731,62 +732,62 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/r-1.jpg"
+        "image": "img/prod/var/r-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/r-2.jpg"
+        "image": "img/prod/var/r-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/r-3.jpg"
+        "image": "img/prod/var/r-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/r-4.jpg"
+        "image": "img/prod/var/r-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/r-5.jpg"
+        "image": "img/prod/var/r-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/r-6.jpg"
+        "image": "img/prod/var/r-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/r-7.jpg"
+        "image": "img/prod/var/r-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/r-8.jpg"
+        "image": "img/prod/var/r-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/r-9.jpg"
+        "image": "img/prod/var/r-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/r-10.jpg"
+        "image": "img/prod/var/r-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/r-11.jpg"
+        "image": "img/prod/var/r-11.jpg"
       },
       {
         "name": "12",
         "price": "",
-        "image": "img/prod/r-12.jpg"
+        "image": "img/prod/var/r-12.jpg"
       }
     ]
   },
@@ -809,37 +810,37 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/rolex-daytona-1.jpg"
+        "image": "img/prod/var/rolex-daytona-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/rolex-daytona-2.jpg"
+        "image": "img/prod/var/rolex-daytona-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/rolex-daytona-3.jpg"
+        "image": "img/prod/var/rolex-daytona-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/rolex-daytona-4.jpg"
+        "image": "img/prod/var/rolex-daytona-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/rolex-daytona-5.jpg"
+        "image": "img/prod/var/rolex-daytona-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/rolex-daytona-6.jpg"
+        "image": "img/prod/var/rolex-daytona-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/rolex-daytona-7.jpg"
+        "image": "img/prod/var/rolex-daytona-7.jpg"
       }
     ]
   },
@@ -862,12 +863,12 @@ window.PRODUCTS = [
       {
         "name": "Classic Rose",
         "price": "",
-        "image": "img/prod/dyson-supersonic-1.jpg"
+        "image": "img/prod/var/dyson-supersonic-1.jpg"
       },
       {
         "name": "other color",
         "price": "",
-        "image": "img/prod/dyson-supersonic-2.jpg"
+        "image": "img/prod/var/dyson-supersonic-2.jpg"
       }
     ]
   },
@@ -884,47 +885,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/r-2-1.jpg"
+        "image": "img/prod/var/r-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/r-2-2.jpg"
+        "image": "img/prod/var/r-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/r-2-3.jpg"
+        "image": "img/prod/var/r-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/r-2-4.jpg"
+        "image": "img/prod/var/r-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/r-2-5.jpg"
+        "image": "img/prod/var/r-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/r-2-6.jpg"
+        "image": "img/prod/var/r-2-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/r-2-7.jpg"
+        "image": "img/prod/var/r-2-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/r-2-8.jpg"
+        "image": "img/prod/var/r-2-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/r-2-9.jpg"
+        "image": "img/prod/var/r-2-9.jpg"
       }
     ]
   },
@@ -947,47 +948,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/ap-royal-oak-1.jpg"
+        "image": "img/prod/var/ap-royal-oak-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/ap-royal-oak-2.jpg"
+        "image": "img/prod/var/ap-royal-oak-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/ap-royal-oak-3.jpg"
+        "image": "img/prod/var/ap-royal-oak-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/ap-royal-oak-4.jpg"
+        "image": "img/prod/var/ap-royal-oak-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/ap-royal-oak-5.jpg"
+        "image": "img/prod/var/ap-royal-oak-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/ap-royal-oak-6.jpg"
+        "image": "img/prod/var/ap-royal-oak-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/ap-royal-oak-7.jpg"
+        "image": "img/prod/var/ap-royal-oak-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/ap-royal-oak-8.jpg"
+        "image": "img/prod/var/ap-royal-oak-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/ap-royal-oak-9.jpg"
+        "image": "img/prod/var/ap-royal-oak-9.jpg"
       }
     ]
   },
@@ -1005,47 +1006,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/c-2-1.jpg"
+        "image": "img/prod/var/c-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/c-2-2.jpg"
+        "image": "img/prod/var/c-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/c-2-3.jpg"
+        "image": "img/prod/var/c-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/c-2-4.jpg"
+        "image": "img/prod/var/c-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/c-2-5.jpg"
+        "image": "img/prod/var/c-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/c-2-6.jpg"
+        "image": "img/prod/var/c-2-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/c-2-7.jpg"
+        "image": "img/prod/var/c-2-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/c-2-8.jpg"
+        "image": "img/prod/var/c-2-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/c-2-9.jpg"
+        "image": "img/prod/var/c-2-9.jpg"
       }
     ]
   },
@@ -1067,52 +1068,52 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/t-2-1.jpg"
+        "image": "img/prod/var/t-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/t-2-2.jpg"
+        "image": "img/prod/var/t-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/t-2-3.jpg"
+        "image": "img/prod/var/t-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/t-2-4.jpg"
+        "image": "img/prod/var/t-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/t-2-5.jpg"
+        "image": "img/prod/var/t-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/t-2-6.jpg"
+        "image": "img/prod/var/t-2-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/t-2-7.jpg"
+        "image": "img/prod/var/t-2-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/t-2-8.jpg"
+        "image": "img/prod/var/t-2-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/t-2-9.jpg"
+        "image": "img/prod/var/t-2-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/t-2-10.jpg"
+        "image": "img/prod/var/t-2-10.jpg"
       }
     ]
   },
@@ -1129,22 +1130,22 @@ window.PRODUCTS = [
       {
         "name": "GA 2100",
         "price": "",
-        "image": "img/prod/g-3-ga-2100.jpg"
+        "image": "img/prod/var/g-3-ga-2100.jpg"
       },
       {
         "name": "GA800",
         "price": "",
-        "image": "img/prod/g-3-ga800.jpg"
+        "image": "img/prod/var/g-3-ga800.jpg"
       },
       {
         "name": "GA110",
         "price": "",
-        "image": "img/prod/g-3-ga110.jpg"
+        "image": "img/prod/var/g-3-ga110.jpg"
       },
       {
         "name": "GA+BA couple",
         "price": "",
-        "image": "img/prod/g-3-ga-ba-couple.jpg"
+        "image": "img/prod/var/g-3-ga-ba-couple.jpg"
       }
     ]
   },
@@ -1167,12 +1168,12 @@ window.PRODUCTS = [
       {
         "name": "S11",
         "price": "",
-        "image": "img/prod/apple-watch-11-s11.jpg"
+        "image": "img/prod/var/apple-watch-11-s11.jpg"
       },
       {
         "name": "Ultra3",
         "price": "",
-        "image": "img/prod/apple-watch-11-ultra3.jpg"
+        "image": "img/prod/var/apple-watch-11-ultra3.jpg"
       }
     ]
   },
@@ -1195,22 +1196,22 @@ window.PRODUCTS = [
       {
         "name": "Galaxy serial 8",
         "price": "",
-        "image": "img/prod/galaxy-watch-serial8-classic.jpg"
+        "image": "img/prod/var/galaxy-watch-serial8-classic.jpg"
       },
       {
         "name": "Galaxy ultra",
         "price": "",
-        "image": "img/prod/galaxy-watch-galaxy-ultra.jpg"
+        "image": "img/prod/var/galaxy-watch-galaxy-ultra.jpg"
       },
       {
         "name": "Galaxyserial 9",
         "price": "",
-        "image": "img/prod/galaxy-watch-serial-9.jpg"
+        "image": "img/prod/var/galaxy-watch-serial-9.jpg"
       },
       {
         "name": "Galaxyultra2",
         "price": "",
-        "image": "img/prod/galaxy-watch-ultra2.jpg"
+        "image": "img/prod/var/galaxy-watch-ultra2.jpg"
       }
     ]
   },
@@ -1231,52 +1232,52 @@ window.PRODUCTS = [
       {
         "name": "HS05-1",
         "price": "€135",
-        "image": "img/prod/dyson-airwrap-1.jpg"
+        "image": "img/prod/var/dyson-airwrap-1.jpg"
       },
       {
         "name": "HS05-2",
         "price": "€135",
-        "image": "img/prod/dyson-airwrap-2.jpg"
+        "image": "img/prod/var/dyson-airwrap-2.jpg"
       },
       {
         "name": "HS05-3",
         "price": "€135",
-        "image": "img/prod/dyson-airwrap-3.jpg"
+        "image": "img/prod/var/dyson-airwrap-3.jpg"
       },
       {
         "name": "HS05-4",
         "price": "€135",
-        "image": "img/prod/dyson-airwrap-hs05-4.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs05-4.jpg"
       },
       {
         "name": "HS08-1",
         "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-1.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs08-1.jpg"
       },
       {
         "name": "HS08-2",
         "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-2.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs08-2.jpg"
       },
       {
         "name": "HS08-3",
         "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-3.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs08-3.jpg"
       },
       {
         "name": "HS08-4",
         "price": "€145",
-        "image": "img/prod/dyson-airwrap-hs08-4.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs08-4.jpg"
       },
       {
         "name": "Hs09-1",
         "price": "€150",
-        "image": "img/prod/dyson-airwrap-hs09-1.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs09-1.jpg"
       },
       {
         "name": "Hs09-2",
         "price": "€150",
-        "image": "img/prod/dyson-airwrap-hs09-2.jpg"
+        "image": "img/prod/var/dyson-airwrap-hs09-2.jpg"
       }
     ]
   },
@@ -1293,12 +1294,12 @@ window.PRODUCTS = [
       {
         "name": "Classic",
         "price": "",
-        "image": "img/prod/d-1.jpg"
+        "image": "img/prod/var/d-1.jpg"
       },
       {
         "name": "Gift box",
         "price": "",
-        "image": "img/prod/d-2.jpg"
+        "image": "img/prod/var/d-2.jpg"
       }
     ]
   },
@@ -1321,12 +1322,12 @@ window.PRODUCTS = [
       {
         "name": "V15 submarine",
         "price": "€180",
-        "image": "img/prod/dyson-v15-v15-submarine.jpg"
+        "image": "img/prod/var/dyson-v15-v15-submarine.jpg"
       },
       {
         "name": "V15 detective",
         "price": "",
-        "image": "img/prod/dyson-v15-v15-detective.jpg"
+        "image": "img/prod/var/dyson-v15-v15-detective.jpg"
       }
     ]
   },
@@ -1349,17 +1350,17 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/prada-glasses-1.jpg"
+        "image": "img/prod/var/prada-glasses-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/prada-glasses-2.jpg"
+        "image": "img/prod/var/prada-glasses-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/prada-glasses-3.jpg"
+        "image": "img/prod/var/prada-glasses-3.jpg"
       }
     ]
   },
@@ -1380,47 +1381,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/r-3-1.jpg"
+        "image": "img/prod/var/r-3-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/r-3-2.jpg"
+        "image": "img/prod/var/r-3-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/r-3-3.jpg"
+        "image": "img/prod/var/r-3-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/r-3-4.jpg"
+        "image": "img/prod/var/r-3-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/r-3-7.jpg"
+        "image": "img/prod/var/r-3-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/r-3-8.jpg"
+        "image": "img/prod/var/r-3-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/r-3-7.jpg"
+        "image": "img/prod/var/r-3-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/r-3-8.jpg"
+        "image": "img/prod/var/r-3-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/r-3-9.jpg"
+        "image": "img/prod/var/r-3-9.jpg"
       }
     ]
   },
@@ -1442,47 +1443,47 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/gentle-monster-1.jpg"
+        "image": "img/prod/var/gentle-monster-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/gentle-monster-2.jpg"
+        "image": "img/prod/var/gentle-monster-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/gentle-monster-3.jpg"
+        "image": "img/prod/var/gentle-monster-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/gentle-monster-4.jpg"
+        "image": "img/prod/var/gentle-monster-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/gentle-monster-5.jpg"
+        "image": "img/prod/var/gentle-monster-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/gentle-monster-6.jpg"
+        "image": "img/prod/var/gentle-monster-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/gentle-monster-7.jpg"
+        "image": "img/prod/var/gentle-monster-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/gentle-monster-8.jpg"
+        "image": "img/prod/var/gentle-monster-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/gentle-monster-9.jpg"
+        "image": "img/prod/var/gentle-monster-9.jpg"
       }
     ]
   },
@@ -1505,7 +1506,7 @@ window.PRODUCTS = [
       {
         "name": "MT5",
         "price": "€60",
-        "image": "img/prod/rayban-meta-mt5.jpg"
+        "image": "img/prod/var/rayban-meta-mt5.jpg"
       },
       {
         "name": "Rayban meta gen2",
@@ -1532,22 +1533,22 @@ window.PRODUCTS = [
       {
         "name": "25W adapter",
         "price": "€4",
-        "image": "img/prod/gan-65w-1.jpg"
+        "image": "img/prod/var/gan-65w-1.jpg"
       },
       {
         "name": "25W  fit",
         "price": "€6",
-        "image": "img/prod/gan-65w-25w-fit.jpg"
+        "image": "img/prod/var/gan-65w-25w-fit.jpg"
       },
       {
         "name": "45W fit",
         "price": "€8",
-        "image": "img/prod/gan-65w-45w-fit.jpg"
+        "image": "img/prod/var/gan-65w-45w-fit.jpg"
       },
       {
         "name": "45W adapter",
         "price": "€6",
-        "image": "img/prod/gan-65w-45w-adapter.jpg"
+        "image": "img/prod/var/gan-65w-45w-adapter.jpg"
       }
     ]
   },
@@ -1569,27 +1570,27 @@ window.PRODUCTS = [
       {
         "name": "20W adapter",
         "price": "€2",
-        "image": "img/prod/magsafe-pad-20w-charger.jpg"
+        "image": "img/prod/var/magsafe-pad-20w-charger.jpg"
       },
       {
         "name": "cable",
         "price": "€2",
-        "image": "img/prod/magsafe-pad-cable.jpg"
+        "image": "img/prod/var/magsafe-pad-cable.jpg"
       },
       {
         "name": "charger fit",
         "price": "€4",
-        "image": "img/prod/magsafe-pad-charger-fit.jpg"
+        "image": "img/prod/var/magsafe-pad-charger-fit.jpg"
       },
       {
         "name": "wireless",
         "price": "€6",
-        "image": "img/prod/magsafe-pad-wireless.jpg"
+        "image": "img/prod/var/magsafe-pad-wireless.jpg"
       },
       {
         "name": "magsafe pack",
         "price": "€8",
-        "image": "img/prod/magsafe-pad-magsafe-pack.jpg"
+        "image": "img/prod/var/magsafe-pad-magsafe-pack.jpg"
       }
     ]
   },
@@ -1611,17 +1612,17 @@ window.PRODUCTS = [
       {
         "name": "clear",
         "price": "",
-        "image": "img/prod/iphone-case-clear-clear.jpg"
+        "image": "img/prod/var/iphone-case-clear-clear.jpg"
       },
       {
         "name": "Woven",
         "price": "",
-        "image": "img/prod/iphone-case-clear-woven.jpg"
+        "image": "img/prod/var/iphone-case-clear-woven.jpg"
       },
       {
         "name": "silicon",
         "price": "",
-        "image": "img/prod/iphone-case-clear-silicon.jpg"
+        "image": "img/prod/var/iphone-case-clear-silicon.jpg"
       }
     ]
   },
@@ -1643,12 +1644,12 @@ window.PRODUCTS = [
       {
         "name": "defender",
         "price": "",
-        "image": "img/prod/leather-case-silicon-protection.jpg"
+        "image": "img/prod/var/leather-case-silicon-protection.jpg"
       },
       {
         "name": "symmetry+",
         "price": "",
-        "image": "img/prod/leather-case-semmetry.jpg"
+        "image": "img/prod/var/leather-case-semmetry.jpg"
       }
     ]
   },
@@ -1669,17 +1670,17 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/b-1.jpg"
+        "image": "img/prod/var/b-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/b-2.jpg"
+        "image": "img/prod/var/b-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/b-3.jpg"
+        "image": "img/prod/var/b-3.jpg"
       }
     ]
   },
@@ -1700,12 +1701,12 @@ window.PRODUCTS = [
       {
         "name": "party box120",
         "price": "€180",
-        "image": "img/prod/boom-tower-party-box120.jpg"
+        "image": "img/prod/var/boom-tower-party-box120.jpg"
       },
       {
         "name": "partybox 320",
         "price": "€225",
-        "image": "img/prod/boom-tower-partybox-320.jpg"
+        "image": "img/prod/var/boom-tower-partybox-320.jpg"
       }
     ]
   },
@@ -1748,17 +1749,17 @@ window.PRODUCTS = [
       {
         "name": "sticker",
         "price": "",
-        "image": "img/prod/n-sticker.jpg"
+        "image": "img/prod/var/n-sticker.jpg"
       },
       {
         "name": "stand white",
         "price": "",
-        "image": "img/prod/n-stand-white.jpg"
+        "image": "img/prod/var/n-stand-white.jpg"
       },
       {
         "name": "stand black",
         "price": "",
-        "image": "img/prod/n-stand-black.jpg"
+        "image": "img/prod/var/n-stand-black.jpg"
       }
     ]
   },
@@ -1780,32 +1781,32 @@ window.PRODUCTS = [
       {
         "name": "red",
         "price": "",
-        "image": "img/prod/m-1.jpg"
+        "image": "img/prod/var/m-1.jpg"
       },
       {
         "name": "beige",
         "price": "",
-        "image": "img/prod/m-2.jpg"
+        "image": "img/prod/var/m-2.jpg"
       },
       {
         "name": "black",
         "price": "",
-        "image": "img/prod/m-3.jpg"
+        "image": "img/prod/var/m-3.jpg"
       },
       {
         "name": "grey",
         "price": "",
-        "image": "img/prod/m-4.jpg"
+        "image": "img/prod/var/m-4.jpg"
       },
       {
         "name": "blue",
         "price": "",
-        "image": "img/prod/m-blue.jpg"
+        "image": "img/prod/var/m-blue.jpg"
       },
       {
         "name": "green",
         "price": "",
-        "image": "img/prod/m-green.jpg"
+        "image": "img/prod/var/m-green.jpg"
       }
     ]
   },
@@ -1822,27 +1823,27 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/g-1.jpg"
+        "image": "img/prod/var/g-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/g-2.jpg"
+        "image": "img/prod/var/g-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/g-3.jpg"
+        "image": "img/prod/var/g-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/g-4.jpg"
+        "image": "img/prod/var/g-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/g-5.jpg"
+        "image": "img/prod/var/g-5.jpg"
       }
     ]
   },
@@ -1864,27 +1865,27 @@ window.PRODUCTS = [
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/l-2.jpg"
+        "image": "img/prod/var/l-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/l-3.jpg"
+        "image": "img/prod/var/l-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/l-4.jpg"
+        "image": "img/prod/var/l-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/l-5.jpg"
+        "image": "img/prod/var/l-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/l-6.jpg"
+        "image": "img/prod/var/l-6.jpg"
       }
     ]
   },
@@ -1901,22 +1902,22 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "€8",
-        "image": "img/prod/g-2-1.jpg"
+        "image": "img/prod/var/g-2-1.jpg"
       },
       {
         "name": "2",
         "price": "€10",
-        "image": "img/prod/g-2-2.jpg"
+        "image": "img/prod/var/g-2-2.jpg"
       },
       {
         "name": "3",
         "price": "€40",
-        "image": "img/prod/g-2-3.jpg"
+        "image": "img/prod/var/g-2-3.jpg"
       },
       {
         "name": "4",
         "price": "€65",
-        "image": "img/prod/g-2-4.jpg"
+        "image": "img/prod/var/g-2-4.jpg"
       }
     ]
   },
@@ -1939,32 +1940,32 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/t-1.jpg"
+        "image": "img/prod/var/t-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/t-2.jpg"
+        "image": "img/prod/var/t-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/t-3.jpg"
+        "image": "img/prod/var/t-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/t-4.jpg"
+        "image": "img/prod/var/t-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/t-5.jpg"
+        "image": "img/prod/var/t-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/t-6.jpg"
+        "image": "img/prod/var/t-6.jpg"
       }
     ]
   },
@@ -1981,52 +1982,52 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/c-1.jpg"
+        "image": "img/prod/var/c-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/c-2.jpg"
+        "image": "img/prod/var/c-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/c-3.jpg"
+        "image": "img/prod/var/c-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/c-4.jpg"
+        "image": "img/prod/var/c-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/c-5.jpg"
+        "image": "img/prod/var/c-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/c-6.jpg"
+        "image": "img/prod/var/c-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/c-7.jpg"
+        "image": "img/prod/var/c-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/c-8.jpg"
+        "image": "img/prod/var/c-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/c-9.jpg"
+        "image": "img/prod/var/c-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/c-10.jpg"
+        "image": "img/prod/var/c-10.jpg"
       }
     ]
   },
@@ -2048,62 +2049,62 @@ window.PRODUCTS = [
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-2.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-3.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-4.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-5.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-6.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-7.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-8.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-9.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-10.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-11.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-11.jpg"
       },
       {
         "name": "12",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-12.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-12.jpg"
       },
       {
         "name": "13",
         "price": "",
-        "image": "img/prod/jean-paul-gaultter-13.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-13.jpg"
       }
     ]
   },
@@ -2120,37 +2121,37 @@ window.PRODUCTS = [
       {
         "name": "xerjoff erba pura",
         "price": "",
-        "image": "img/prod/p-creed-pura-herb.jpg"
+        "image": "img/prod/var/p-creed-pura-herb.jpg"
       },
       {
         "name": "xerjoff  coro",
         "price": "",
-        "image": "img/prod/p-xerjoff-coro.jpg"
+        "image": "img/prod/var/p-xerjoff-coro.jpg"
       },
       {
         "name": "xerjoff Accento",
         "price": "",
-        "image": "img/prod/p-xerjoff-accento.jpg"
+        "image": "img/prod/var/p-xerjoff-accento.jpg"
       },
       {
         "name": "marly layton",
         "price": "",
-        "image": "img/prod/p-marly-layton.jpg"
+        "image": "img/prod/var/p-marly-layton.jpg"
       },
       {
         "name": "creed",
         "price": "",
-        "image": "img/prod/p-creed.jpg"
+        "image": "img/prod/var/p-creed.jpg"
       },
       {
         "name": "YSL libre",
         "price": "",
-        "image": "img/prod/p-ysl-libre.jpg"
+        "image": "img/prod/var/p-ysl-libre.jpg"
       },
       {
         "name": "YSL saint laurent",
         "price": "",
-        "image": "img/prod/p-ysl-saint-laurent.jpg"
+        "image": "img/prod/var/p-ysl-saint-laurent.jpg"
       }
     ]
   },
@@ -2168,57 +2169,57 @@ window.PRODUCTS = [
       {
         "name": "Pour Femme EDP 100ml",
         "price": "",
-        "image": "img/prod/v-1.jpg"
+        "image": "img/prod/var/v-1.jpg"
       },
       {
         "name": "Pour homme EDT 100ml",
         "price": "",
-        "image": "img/prod/v-2.jpg"
+        "image": "img/prod/var/v-2.jpg"
       },
       {
         "name": "Crystal Noir EDT 90ml",
         "price": "",
-        "image": "img/prod/v-3.jpg"
+        "image": "img/prod/var/v-3.jpg"
       },
       {
         "name": "Bright Crystal Absolu 90ml",
         "price": "",
-        "image": "img/prod/v-4.jpg"
+        "image": "img/prod/var/v-4.jpg"
       },
       {
         "name": "Pour homme Dylan blue 100ml",
         "price": "",
-        "image": "img/prod/v-5.jpg"
+        "image": "img/prod/var/v-5.jpg"
       },
       {
         "name": "Eros EDT 100ml",
         "price": "",
-        "image": "img/prod/v-6.jpg"
+        "image": "img/prod/var/v-6.jpg"
       },
       {
         "name": "Eros Flame EDP 100ml",
         "price": "",
-        "image": "img/prod/v-7.jpg"
+        "image": "img/prod/var/v-7.jpg"
       },
       {
         "name": "Eros Energy 100ml",
         "price": "",
-        "image": "img/prod/v-8.jpg"
+        "image": "img/prod/var/v-8.jpg"
       },
       {
         "name": "Eros Parfum 100ml",
         "price": "",
-        "image": "img/prod/v-9.jpg"
+        "image": "img/prod/var/v-9.jpg"
       },
       {
         "name": "Versense 100ml",
         "price": "",
-        "image": "img/prod/v-versense-100ml.jpg"
+        "image": "img/prod/var/v-versense-100ml.jpg"
       },
       {
         "name": "Oud Noir Pour Homme 100ml",
         "price": "",
-        "image": "img/prod/v-oud-noir-pour-homme-100ml.jpg"
+        "image": "img/prod/var/v-oud-noir-pour-homme-100ml.jpg"
       }
     ]
   },
@@ -2241,52 +2242,52 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/l-2-1.jpg"
+        "image": "img/prod/var/l-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/l-2-2.jpg"
+        "image": "img/prod/var/l-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/l-2-3.jpg"
+        "image": "img/prod/var/l-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/l-2-4.jpg"
+        "image": "img/prod/var/l-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/l-2-5.jpg"
+        "image": "img/prod/var/l-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/l-2-6.jpg"
+        "image": "img/prod/var/l-2-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/l-2-7.jpg"
+        "image": "img/prod/var/l-2-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/l-2-8.jpg"
+        "image": "img/prod/var/l-2-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/l-2-9.jpg"
+        "image": "img/prod/var/l-2-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/l-2-10.jpg"
+        "image": "img/prod/var/l-2-10.jpg"
       }
     ]
   },
@@ -2303,72 +2304,72 @@ window.PRODUCTS = [
       {
         "name": "1 Million Royal Parfum 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-1.jpg"
+        "image": "img/prod/var/paco-rabannel-1.jpg"
       },
       {
         "name": "1 Million Gold EDP intense 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-1-million-gold-edp-intense-100ml.jpg"
+        "image": "img/prod/var/paco-rabannel-1-million-gold-edp-intense-100ml.jpg"
       },
       {
         "name": "1 Million Elixir 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-3.jpg"
+        "image": "img/prod/var/paco-rabannel-3.jpg"
       },
       {
         "name": "1 Million Golden Oud 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-million-golden-oud.jpg"
+        "image": "img/prod/var/paco-rabannel-million-golden-oud.jpg"
       },
       {
         "name": "1 Million parfum 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-1-million-parfum-100ml.jpg"
+        "image": "img/prod/var/paco-rabannel-1-million-parfum-100ml.jpg"
       },
       {
         "name": "Invictus Legend EDP 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-6.jpg"
+        "image": "img/prod/var/paco-rabannel-6.jpg"
       },
       {
         "name": "Invictus Parfum 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-7.jpg"
+        "image": "img/prod/var/paco-rabannel-7.jpg"
       },
       {
         "name": "Invictus Victory EDP extreme 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-9.jpg"
+        "image": "img/prod/var/paco-rabannel-9.jpg"
       },
       {
         "name": "Phantom EDT 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-10.jpg"
+        "image": "img/prod/var/paco-rabannel-10.jpg"
       },
       {
         "name": "Phantom EDP intense 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-11.jpg"
+        "image": "img/prod/var/paco-rabannel-11.jpg"
       },
       {
         "name": "FAME Blooming pink EDP 80ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-12.jpg"
+        "image": "img/prod/var/paco-rabannel-12.jpg"
       },
       {
         "name": "FAME EDP 80ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-13.jpg"
+        "image": "img/prod/var/paco-rabannel-13.jpg"
       },
       {
         "name": "Pure XS EDT 100ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-14.jpg"
+        "image": "img/prod/var/paco-rabannel-14.jpg"
       },
       {
         "name": "Million Gold for her 90ml",
         "price": "",
-        "image": "img/prod/paco-rabannel-15.jpg"
+        "image": "img/prod/var/paco-rabannel-15.jpg"
       }
     ]
   },
@@ -2390,57 +2391,57 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/y-1.jpg"
+        "image": "img/prod/var/y-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/y-2.jpg"
+        "image": "img/prod/var/y-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/y-3.jpg"
+        "image": "img/prod/var/y-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/y-4.jpg"
+        "image": "img/prod/var/y-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/y-5.jpg"
+        "image": "img/prod/var/y-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/y-6.jpg"
+        "image": "img/prod/var/y-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/y-7.jpg"
+        "image": "img/prod/var/y-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/y-8.jpg"
+        "image": "img/prod/var/y-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/y-9.jpg"
+        "image": "img/prod/var/y-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/y-10.jpg"
+        "image": "img/prod/var/y-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/y-11.jpg"
+        "image": "img/prod/var/y-11.jpg"
       }
     ]
   },
@@ -2461,77 +2462,77 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/football-training-kit-1.jpg"
+        "image": "img/prod/var/football-training-kit-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/football-training-kit-2.jpg"
+        "image": "img/prod/var/football-training-kit-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/football-training-kit-3.jpg"
+        "image": "img/prod/var/football-training-kit-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/football-training-kit-4.jpg"
+        "image": "img/prod/var/football-training-kit-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/football-training-kit-5.jpg"
+        "image": "img/prod/var/football-training-kit-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/football-training-kit-6.jpg"
+        "image": "img/prod/var/football-training-kit-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/football-training-kit-7.jpg"
+        "image": "img/prod/var/football-training-kit-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/football-training-kit-8.jpg"
+        "image": "img/prod/var/football-training-kit-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/football-training-kit-9.jpg"
+        "image": "img/prod/var/football-training-kit-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/football-training-kit-10.jpg"
+        "image": "img/prod/var/football-training-kit-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/football-training-kit-11.jpg"
+        "image": "img/prod/var/football-training-kit-11.jpg"
       },
       {
         "name": "12",
         "price": "",
-        "image": "img/prod/football-training-kit-12.jpg"
+        "image": "img/prod/var/football-training-kit-12.jpg"
       },
       {
         "name": "13",
         "price": "",
-        "image": "img/prod/football-training-kit-13.jpg"
+        "image": "img/prod/var/football-training-kit-13.jpg"
       },
       {
         "name": "14",
         "price": "",
-        "image": "img/prod/football-training-kit-14.jpg"
+        "image": "img/prod/var/football-training-kit-14.jpg"
       },
       {
         "name": "15",
         "price": "",
-        "image": "img/prod/football-training-kit-15.jpg"
+        "image": "img/prod/var/football-training-kit-15.jpg"
       }
     ]
   },
@@ -2552,62 +2553,62 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/j-1.jpg"
+        "image": "img/prod/var/j-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/j-2.jpg"
+        "image": "img/prod/var/j-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/j-3.jpg"
+        "image": "img/prod/var/j-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/j-4.jpg"
+        "image": "img/prod/var/j-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/j-5.jpg"
+        "image": "img/prod/var/j-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/j-6.jpg"
+        "image": "img/prod/var/j-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/j-7.jpg"
+        "image": "img/prod/var/j-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/j-8.jpg"
+        "image": "img/prod/var/j-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/j-9.jpg"
+        "image": "img/prod/var/j-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/j-10.jpg"
+        "image": "img/prod/var/j-10.jpg"
       },
       {
         "name": "11",
         "price": "",
-        "image": "img/prod/j-11.jpg"
+        "image": "img/prod/var/j-11.jpg"
       },
       {
         "name": "12",
         "price": "",
-        "image": "img/prod/j-12.jpg"
+        "image": "img/prod/var/j-12.jpg"
       }
     ]
   },
@@ -2623,12 +2624,12 @@ window.PRODUCTS = [
       {
         "name": "gen1",
         "price": "",
-        "image": "img/prod/m-2-gen1.jpg"
+        "image": "img/prod/var/m-2-gen1.jpg"
       },
       {
         "name": "gen2",
         "price": "",
-        "image": "img/prod/m-2-gen2.jpg"
+        "image": "img/prod/var/m-2-gen2.jpg"
       }
     ]
   },
@@ -2654,32 +2655,32 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/p-2-1.jpg"
+        "image": "img/prod/var/p-2-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/p-2-2.jpg"
+        "image": "img/prod/var/p-2-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/p-2-3.jpg"
+        "image": "img/prod/var/p-2-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/p-2-4.jpg"
+        "image": "img/prod/var/p-2-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/p-2-5.jpg"
+        "image": "img/prod/var/p-2-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/p-2-6.jpg"
+        "image": "img/prod/var/p-2-6.jpg"
       }
     ]
   },
@@ -2701,52 +2702,52 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/l-3-1.jpg"
+        "image": "img/prod/var/l-3-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/l-3-2.jpg"
+        "image": "img/prod/var/l-3-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/l-3-3.jpg"
+        "image": "img/prod/var/l-3-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/l-3-4.jpg"
+        "image": "img/prod/var/l-3-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/l-3-5.jpg"
+        "image": "img/prod/var/l-3-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/l-3-6.jpg"
+        "image": "img/prod/var/l-3-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/l-3-7.jpg"
+        "image": "img/prod/var/l-3-7.jpg"
       },
       {
         "name": "8",
         "price": "",
-        "image": "img/prod/l-3-8.jpg"
+        "image": "img/prod/var/l-3-8.jpg"
       },
       {
         "name": "9",
         "price": "",
-        "image": "img/prod/l-3-9.jpg"
+        "image": "img/prod/var/l-3-9.jpg"
       },
       {
         "name": "10",
         "price": "",
-        "image": "img/prod/l-3-10.jpg"
+        "image": "img/prod/var/l-3-10.jpg"
       }
     ]
   },
@@ -2767,37 +2768,37 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/l-4-1.jpg"
+        "image": "img/prod/var/l-4-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/l-4-2.jpg"
+        "image": "img/prod/var/l-4-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/l-4-3.jpg"
+        "image": "img/prod/var/l-4-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/l-4-4.jpg"
+        "image": "img/prod/var/l-4-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/l-4-5.jpg"
+        "image": "img/prod/var/l-4-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/l-4-6.jpg"
+        "image": "img/prod/var/l-4-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/l-4-7.jpg"
+        "image": "img/prod/var/l-4-7.jpg"
       }
     ]
   },
@@ -2818,22 +2819,22 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/h-1.jpg"
+        "image": "img/prod/var/h-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/h-2.jpg"
+        "image": "img/prod/var/h-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/h-3.jpg"
+        "image": "img/prod/var/h-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/h-4.jpg"
+        "image": "img/prod/var/h-4.jpg"
       }
     ]
   },
@@ -2854,37 +2855,37 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/g-4-1.jpg"
+        "image": "img/prod/var/g-4-1.jpg"
       },
       {
         "name": "2",
         "price": "",
-        "image": "img/prod/g-4-2.jpg"
+        "image": "img/prod/var/g-4-2.jpg"
       },
       {
         "name": "3",
         "price": "",
-        "image": "img/prod/g-4-3.jpg"
+        "image": "img/prod/var/g-4-3.jpg"
       },
       {
         "name": "4",
         "price": "",
-        "image": "img/prod/g-4-4.jpg"
+        "image": "img/prod/var/g-4-4.jpg"
       },
       {
         "name": "5",
         "price": "",
-        "image": "img/prod/g-4-5.jpg"
+        "image": "img/prod/var/g-4-5.jpg"
       },
       {
         "name": "6",
         "price": "",
-        "image": "img/prod/g-4-6.jpg"
+        "image": "img/prod/var/g-4-6.jpg"
       },
       {
         "name": "7",
         "price": "",
-        "image": "img/prod/g-4-7.jpg"
+        "image": "img/prod/var/g-4-7.jpg"
       }
     ]
   },
@@ -2909,17 +2910,17 @@ window.PRODUCTS = [
       {
         "name": "Northface-1",
         "price": "",
-        "image": "img/prod/d-2-northface-1.jpg"
+        "image": "img/prod/var/d-2-northface-1.jpg"
       },
       {
         "name": "Burberry-1",
         "price": "",
-        "image": "img/prod/d-2-burberry-1.jpg"
+        "image": "img/prod/var/d-2-burberry-1.jpg"
       },
       {
         "name": "Burberry-2",
         "price": "",
-        "image": "img/prod/d-2-burberry-2.jpg"
+        "image": "img/prod/var/d-2-burberry-2.jpg"
       }
     ]
   },
@@ -2941,12 +2942,12 @@ window.PRODUCTS = [
       {
         "name": "Pencil pro",
         "price": "",
-        "image": "img/prod/s-3-pencil-pro.jpg"
+        "image": "img/prod/var/s-3-pencil-pro.jpg"
       },
       {
         "name": "Pencil gen3",
         "price": "",
-        "image": "img/prod/s-3-pencil-gen3.jpg"
+        "image": "img/prod/var/s-3-pencil-gen3.jpg"
       }
     ]
   },
@@ -2968,47 +2969,47 @@ window.PRODUCTS = [
       {
         "name": "style-1",
         "price": "€75",
-        "image": "img/prod/l-5-1.jpg"
+        "image": "img/prod/var/l-5-1.jpg"
       },
       {
         "name": "style-2",
         "price": "€75",
-        "image": "img/prod/l-5-style-2.jpg"
+        "image": "img/prod/var/l-5-style-2.jpg"
       },
       {
         "name": "style-3",
         "price": "€75",
-        "image": "img/prod/l-5-style-3.jpg"
+        "image": "img/prod/var/l-5-style-3.jpg"
       },
       {
         "name": "style-4",
         "price": "€85",
-        "image": "img/prod/l-5-style-7.jpg"
+        "image": "img/prod/var/l-5-style-4.jpg"
       },
       {
         "name": "style-5",
         "price": "€85",
-        "image": "img/prod/l-5-style-8.jpg"
+        "image": "img/prod/var/l-5-style-5.jpg"
       },
       {
         "name": "style-6",
         "price": "",
-        "image": "img/prod/l-5-style-6.jpg"
+        "image": "img/prod/var/l-5-style-6.jpg"
       },
       {
         "name": "style-7",
         "price": "",
-        "image": "img/prod/l-5-style-7.jpg"
+        "image": "img/prod/var/l-5-style-7.jpg"
       },
       {
         "name": "style-8",
         "price": "",
-        "image": "img/prod/l-5-style-8.jpg"
+        "image": "img/prod/var/l-5-style-8.jpg"
       },
       {
         "name": "style-9",
         "price": "",
-        "image": "img/prod/l-5-style-9.jpg"
+        "image": "img/prod/var/l-5-style-9.jpg"
       }
     ]
   }

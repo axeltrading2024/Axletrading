@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20260913a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20260913c" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -155,7 +155,7 @@
 
           <div class="var-mgr" data-page-node-id="Q8y4OElaqV4LMGHkolhiW6">
             <div class="it-h" data-page-node-id="QnWYR4CijtPlsCLbHrXHgX">型号 / Variants（可选）</div>
-            <div class="it-p" data-page-node-id="QCjWUAMthZsMsmCyZGAJ0Z">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图（建议白底方图，顺序会影响购物车选项）。用行尾的 ↑↓ 调整型号顺序，第一个为详情页默认选中；改完点「保存产品」生效。</div>
+            <div class="it-p" data-page-node-id="QCjWUAMthZsMsmCyZGAJ0Z">同一产品不同颜色 / 规格：每行填型号名、价格，再上传一张图（建议白底方图，顺序会影响购物车选项）。用行尾的 ↑↓ 调整型号顺序，第一个为详情页默认选中；改完点「保存产品」生效。型号图统一存到 <code>img/prod/var/</code>，与产品主图物理隔离，不会再串图。</div>
             <div data-var-list data-page-node-id="JjF1Yf0R6NEN7bbMVmIXPF"></div>
             <div class="gh-actions" style="margin-top:8px" data-page-node-id="YsYenW7MFVt1U3Ihwh5Jys">
               <button type="button" class="btn btn-outline" data-var-add data-page-node-id="e8Gmniwrl1RrFM3MO8qBdF">＋ 添加型号</button>
@@ -305,7 +305,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20260913b"></script>
+  <script src="js/data.js?v=20260913c"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -692,18 +692,31 @@
     if (used.indexOf(p.id) > -1) { status('产品 ID「' + p.id + '」已被占用，请换一个', 'err'); return; }
     if (!/^[a-z0-9-]+$/.test(p.id)) { status('ID 只能用小写字母、数字和短横线（如 apple-watch）', 'err'); return; }
 
+    // 型号图体检：同一产品内两行不能共用一张图（历史上「改名后上传」会造成这种重名）
+    var seenImg = {}, dupe = '';
+    (p.variants || []).forEach(function (v) {
+      if (!v.image) return;
+      if (seenImg[v.image]) dupe = '型号「' + seenImg[v.image] + '」和「' + v.name + '」指向同一张图 ' + v.image;
+      else seenImg[v.image] = v.name;
+    });
+    if (dupe) { status('❌ ' + dupe + '，请给其中一个重新选图后再保存', 'err'); return; }
+
+    // 旧格式提醒：型号图应统一放在 img/prod/var/ 下（避免与别的产品主图重名）
+    var legacy = (p.variants || []).filter(function (v) { return v.image && v.image.indexOf('img/prod/') === 0 && v.image.indexOf(VARIANT_IMG_DIR) !== 0; });
+
     // 图片路径：新图 → img/prod/<id>.jpg；若是原分类插画顶替则保持
     var old = state.editingId ? getProduct(state.editingId) : null;
     p.image = (old && old.image) || 'img/prod/' + p.id + '.jpg';
     if (old && String(old.image).indexOf('img/cat/') === 0) p.image = old.image;
 
+    var legacyNote = legacy.length ? '（提醒：有 ' + legacy.length + ' 个型号图不在 img/prod/var/ 下，建议重新选图，避免与别的产品主图重名）' : '';
     if (state.editingId) {
       var idx = PRODUCTS.indexOf(old);
       PRODUCTS.splice(idx, 1, p);
-      status('已保存：' + p.name);
+      status('已保存：' + p.name + legacyNote);
     } else {
       PRODUCTS.push(p);
-      status('已添加：' + p.name + '（ID: ' + p.id + '）');
+      status('已添加：' + p.name + '（ID: ' + p.id + '）' + legacyNote);
     }
     fillForm(p);
 
@@ -993,35 +1006,55 @@
     reader.readAsDataURL(file);
   }
 
+  /* 型号图统一存放目录。
+     产品 ID 只允许 [a-z0-9-]，永远不含「/」，
+     所以 img/prod/var/<产品ID>-<型号名>.jpg 与主图 img/prod/<产品ID>.jpg 不可能重名。 */
+  var VARIANT_IMG_DIR = 'img/prod/var/';
+
+  /* 同一产品内已有别的型号占用的文件名（用于自动避让，杜绝两行共用一张图） */
+  function takenVariantNames(row) {
+    var taken = {};
+    $$('[data-var-row]').forEach(function (r) {
+      if (r === row) return;
+      var v = (r.querySelector('[data-var-img-value]').value || '').trim();
+      if (v) taken[v.split('/').pop()] = true;
+    });
+    return taken;
+  }
+
   function handleVariantImage(file, row) {
     if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
     compressToJpeg(file, function (dataUrl) {
       var vName = (row.querySelector('[data-var-name]').value || '').trim();
       if (!vName) { status('请先填写型号名，再选图片', 'err'); return; }
       var pid = ($('[data-f-id]').value || '').trim() || slugify($('[data-f-name]').value || 'product', []);
-      var fname = pid + '-' + varSlug(vName) + '.jpg';
+      var base = pid + '-' + varSlug(vName);
+      var taken = takenVariantNames(row);
+      var fname = base + '.jpg', n = 2;
+      while (taken[fname]) { fname = base + '-' + n + '.jpg'; n++; }
+      var path = VARIANT_IMG_DIR + fname;
       var st = row.querySelector('[data-var-img-status]');
       var hv = row.querySelector('[data-var-img-value]');
       setVarThumb(row.querySelector('[data-var-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
-      localPreviews['img/prod/' + fname] = dataUrl;
+      localPreviews[path] = dataUrl;
       if (ghEnabled()) {
-        st.textContent = '正在上传 ' + fname + ' …';
+        st.textContent = '正在上传 ' + path + ' …';
         var b64 = String(dataUrl).split(',')[1] || dataUrl;
-        ghPut('img/prod/' + fname, b64, '上传型号图 ' + fname).then(function () {
-          hv.value = 'img/prod/' + fname;
-          st.textContent = '✅ 已发布：img/prod/' + fname;
-          status('✅ 型号图已发布：' + fname);
+        ghPut(path, b64, '上传型号图 ' + fname).then(function () {
+          hv.value = path;
+          st.textContent = '✅ 已发布：' + path;
+          status('✅ 型号图已发布：' + path);
         }).catch(function (e) {
-          hv.value = 'img/prod/' + fname;
-          st.textContent = '上传失败，已下载，稍后手动传';
+          hv.value = path;
+          st.textContent = '上传失败，已下载，稍后手动放到 img/prod/var/';
           triggerDownload(fname, dataUrl);
           status('型号图上传失败：' + e.message, 'err');
         });
       } else {
-        hv.value = 'img/prod/' + fname;
-        st.textContent = '已处理，下载到 img/prod/';
+        hv.value = path;
+        st.textContent = '已处理，下载后请放到 img/prod/var/';
         triggerDownload(fname, dataUrl);
-        status('型号图已处理并开始下载：' + fname);
+        status('型号图已处理并开始下载：' + fname + '（请放进 img/prod/var/）');
       }
     });
   }
