@@ -68,18 +68,19 @@
             '<li><a href="about.html">About Us</a></li>' +
             '<li><a href="about.html#faq">FAQ</a></li>' +
             '<li><a href="index.html#popular">Popular products</a></li>' +
-            '<li><a href="index.html#about">How it works</a></li>' +
+            '<li><a href="about.html#how-it-works">How it works</a></li>' +
           '</ul></div>' +
           '<div class="footer-col"><h4>Contact</h4><ul>' +
             (waDisp ? '<li><a href="' + esc(waLink('Hi! I have a question about your catalog.')) + '" target="_blank" rel="noreferrer">WhatsApp ' + waDisp + '</a></li>' : '') +
+            (CFG.phoneBackup ? '<li><a href="tel:' + esc(String(CFG.phoneBackup).replace(/[^\d+]/g, '')) + '">' + esc(CFG.phoneBackup) + ' · calls &amp; backup</a></li>' : '') +
             (mail ? '<li><a href="mailto:' + mail + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' + mail + '</a></li>' : '') +
             '<li class="footer-plain">Reply within 24 hours</li>' +
           '</ul></div>' +
         '</div>' +
         '<div class="footer-trade">' +
-          '<span><b>Payment</b> T/T · Alipay · USDT · Western Union · Remitly</span>' +
-          '<span><b>Shipping</b> Worldwide, quoted per order</span>' +
-          '<span><b>MOQ</b> Low, flexible by item</span>' +
+          '<span><b>Payment</b> ' + esc(CFG.tradePayment || 'T/T · Alipay · USDT · Western Union · Remitly') + '</span>' +
+          '<span><b>Shipping</b> ' + esc(CFG.tradeShipping || 'Worldwide, quoted per order') + '</span>' +
+          '<span><b>MOQ</b> ' + esc(CFG.tradeMoq || 'Low, flexible by item') + '</span>' +
         '</div>' +
         '<div class="footer-bottom">' +
           '<span>© <span data-year>' + year + '</span> ' + brand + '. All rights reserved.</span>' +
