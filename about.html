@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20260912a">
+  <link rel="stylesheet" href="css/style.css?v=20260913b">
   <script data-goatcounter="https://axeltrading.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -140,6 +140,62 @@
         </div>
       </section>
 
+      <!-- 下单 / 付款 / 物流 三步说明：与线下物料 "How to order, pay & ship" 同一口径。
+           改任何数字时，请同步本页 FAQ、index.html 的 FAQ 摘要、以及 js/data.js 的
+           tradePayment / tradeShipping / tradeMoq 三处，避免前后说法不一致。 -->
+      <section class="hiw" id="how-it-works">
+        <div class="section-head">
+          <p class="eyebrow-lg">How it works</p>
+          <h2 class="display">How to order, pay &amp; ship</h2>
+          <p class="sub">Three steps from catalog to your door.</p>
+        </div>
+
+        <div class="hiw-grid">
+          <div class="hiw-card">
+            <p class="hiw-kicker">01</p>
+            <h3 class="hiw-title">How to order?</h3>
+            <ul class="hiw-list">
+              <li><b>Browse the catalog</b><span>eddytrading.com — 1000+ products</span></li>
+              <li><b>Add items to your inquiry list</b><span>One tap per item, kept in your browser</span></li>
+              <li><b>Send the list on WhatsApp</b><span>The site writes the message for you</span></li>
+              <li><b>Get your quote within 24 hours</b><span>Unit price, MOQ and shipping cost</span></li>
+            </ul>
+            <p class="hiw-foot">No account needed — send your list as it is.</p>
+          </div>
+
+          <div class="hiw-card">
+            <p class="hiw-kicker">02</p>
+            <h3 class="hiw-title">How to pay?</h3>
+            <ul class="hiw-list">
+              <li><b>T/T bank transfer</b><span>Best for bulk orders</span></li>
+              <li><b>Alipay</b><span>Small orders and repeat buyers</span></li>
+              <li><b>USDT · Western Union · Remitly</b><span>Samples and fast payments</span></li>
+              <li><b>Formal invoice for every order</b><span>Pay only to the account shown on it</span></li>
+            </ul>
+            <p class="hiw-foot">Payment confirmed, then we start packing.</p>
+          </div>
+
+          <div class="hiw-card">
+            <p class="hiw-kicker">03</p>
+            <h3 class="hiw-title">How about shipping?</h3>
+            <ul class="hiw-list">
+              <li><b>Express air</b><span>DHL · UPS · FedEx — typically 8–10 working days</span></li>
+              <li><b>Perfumes &amp; batteries</b><span>18–22 days on the sensitive-goods line</span></li>
+              <li><b>Sea freight</b><span>20 kg minimum — about 50 days, lowest cost per kg</span></li>
+              <li><b>Duties</b><span>DDP in the US &amp; Europe, DAP elsewhere</span></li>
+            </ul>
+            <p class="hiw-foot">Shipping is quoted per order, before you pay.</p>
+          </div>
+        </div>
+
+        <p class="hiw-note">
+          <b>Transit times are carrier estimates, not guaranteed delivery dates.</b>
+          In-stock items are dispatched within 24–48 hours after payment clears.
+          If something arrives damaged, send photos within 7 days and we replace or refund
+          the affected units.
+        </p>
+      </section>
+
       <!-- 联系方式卡片：内容由 js/app.js 依据站点设置渲染（改号码/邮箱只需改后台） -->
       <div class="contact-cards" data-contact-cards></div>
     </section>
@@ -150,9 +206,12 @@
       <details class="faq-item" open>
         <summary>How do I place an order?</summary>
         <div class="faq-body">
-          <p>Browse the catalog, add items to your inquiry list, then send the list to Eddy in one
-            tap on WhatsApp or by email — the site builds the message for you. You'll get a quote
-            with the final price, MOQ and shipping cost, and we take it from there.</p>
+          <p>Browse the catalog and add each item to your inquiry list — one tap per item and
+            no account needed. Then send the list to Eddy on WhatsApp or by email: the site
+            writes the message for you.</p>
+          <p>You get a quote within 24 hours with the unit price, MOQ and shipping cost.
+            We start picking and packing once payment is confirmed, and we send you the
+            tracking number as soon as your parcel leaves.</p>
         </div>
       </details>
 
@@ -178,30 +237,54 @@
         <div class="faq-body">
           <p>We ship worldwide. Shipping isn't a flat fee — it depends on weight, destination and
             speed (express air vs. sea freight). Send your inquiry list with your country and we
-            quote the exact shipping cost before you commit to anything.</p>
+            quote the exact shipping cost before you pay anything.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>What payment methods do you accept?</summary>
         <div class="faq-body">
-          <p>We accept bank transfer (T/T), Alipay, USDT, Western Union and Remitly — ask Eddy on
-            WhatsApp for the option that fits your order size. Production starts after payment
-            is confirmed.</p>
+          <p>We accept bank transfer (T/T), Alipay, USDT, Western Union and Remitly:</p>
+          <ul>
+            <li><b>T/T bank transfer</b> — the usual route for bulk orders.</li>
+            <li><b>Alipay</b> — suits smaller orders and repeat buyers.</li>
+            <li><b>USDT · Western Union · Remitly</b> — fast, good for samples.</li>
+          </ul>
+          <p>Every order comes with a <b>formal invoice</b> showing the exact account to pay into.
+            Pay only to the account on that invoice — if anyone asks you to pay somewhere else,
+            it is not us. Production starts once payment is confirmed.</p>
         </div>
       </details>
 
       <details class="faq-item">
         <summary>How long does delivery take?</summary>
         <div class="faq-body">
-          <p>In-stock items are usually dispatched within 24–48 hours after payment is confirmed.</p>
+          <p>In-stock items are dispatched within 24–48 hours after payment is confirmed.</p>
           <ul>
-            <li>Express delivery by <b>DHL / UPS / FedEx</b> normally takes <b>10–15 days</b>.</li>
-            <li><b>Perfumes and batteries</b> take a little longer — they are restricted goods and need
-              special handling and extra shipping documents, so allow a few days more.</li>
-            <li>Sea freight is available for large orders: cheaper, but usually <b>25–40 days</b>.</li>
+            <li>Express air by <b>DHL / UPS / FedEx</b> — typically <b>8–10 working days</b>.</li>
+            <li><b>Perfumes and battery products</b> — about <b>18–22 days</b>. Alcohol-based liquids
+              and lithium batteries can't travel on standard express, so they fly on a dedicated
+              sensitive-goods line instead. It isn't slower handling, it's a different channel.</li>
+            <li><b>Sea freight</b> — minimum <b>20 kg</b>, about <b>50 days</b>. Lowest cost per kg
+              for large, non-urgent orders.</li>
           </ul>
-          <p>We confirm the exact timeline with every quote.</p>
+          <p>These are carrier estimates, not guaranteed delivery dates — we confirm the exact
+            timeline with every quote.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Are import duties and taxes included?</summary>
+        <div class="faq-body">
+          <p>It depends on where you are:</p>
+          <ul>
+            <li><b>United States and Europe — DDP.</b> We clear customs and pay the duties, so the
+              price on your invoice is the final price. Nothing extra to settle on delivery.</li>
+            <li><b>All other regions — DAP.</b> We deliver to your address; duties and taxes are
+              paid by you on arrival.</li>
+          </ul>
+          <p>We declare your goods at their real value — no under-declaring, which keeps your
+            customs records clean. Tell Eddy your destination and we quote DDP or DAP up front.</p>
         </div>
       </details>
 
@@ -234,7 +317,7 @@
 
   <footer class="site-footer"></footer>
 
-  <script src="js/data.js?v=20260912a"></script>
-  <script src="js/app.js?v=20260912a"></script>
+  <script src="js/data.js?v=20260913b"></script>
+  <script src="js/app.js?v=20260913b"></script>
 </body>
 </html>
