@@ -14,6 +14,11 @@ window.SITE_CONFIG = {
   "whatsapp": "4915224901963",
   "whatsappDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
+  "phoneBackup": "+86 158 7520 9571",
+  /* 页脚底部三行口径 —— 与 about.html 的「How it works」与 FAQ 必须一致 */
+  "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
+  "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
+  "tradeMoq": "Low, flexible by item",
   "greeting": "Hi Eddy! I'd like some information about your products.",
   "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",
   "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
@@ -137,7 +142,7 @@ window.CATEGORIES = [
         "name": "Shoes"
       }
     ],
-    "image": "img/cat/clothes-and-shoes.png"
+    "image": "img/cat/clothes-and-s-hose.png"
   },
   {
     "slug": "sunglasses",
