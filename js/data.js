@@ -2920,16 +2920,6 @@ window.PRODUCTS = [
         "name": "Burberry-2",
         "price": "",
         "image": "img/prod/d-2-burberry-2.jpg"
-      },
-      {
-        "name": "Moncler Templon",
-        "price": "",
-        "image": "img/prod/d-2-moncler-templon.jpg"
-      },
-      {
-        "name": "Moncler Batman",
-        "price": "",
-        "image": "img/prod/d-2-moncler-batman.jpg"
       }
     ]
   },
