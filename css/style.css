@@ -2829,3 +2829,100 @@ body.search-open { overflow: hidden; }
   .search-modal { align-items: flex-start; }
   .smod-body { max-height: calc(100vh - 66px); }
 }
+
+/* ==================== 下单 / 付款 / 物流 三步说明（How it works） ====================
+   与线下物料 "How to order, pay & ship" 同一套口径。改这里的数字时，
+   请同步 about.html 的 FAQ、index.html 的 FAQ 摘要与页脚 footer-trade 三处，
+   否则前后说法不一致。 */
+.hiw { margin-top: 56px; }
+.hiw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.hiw-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+.hiw-kicker {
+  font-family: var(--font-display);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--muted-foreground);
+}
+.hiw-title {
+  margin: 8px 0 18px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.hiw-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+}
+.hiw-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--foreground);
+}
+.hiw-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--foreground);
+  opacity: 0.34;
+}
+.hiw-list li b { font-weight: 700; }
+.hiw-list li span {
+  display: block;
+  margin-top: 2px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.hiw-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+.hiw-note {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+.hiw-note b { color: var(--foreground); font-weight: 600; }
+
+@media (max-width: 900px) {
+  .hiw { margin-top: 40px; }
+  .hiw-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .hiw-title { font-size: 17px; margin-bottom: 14px; }
+  .hiw-list { gap: 11px; }
+}
+
+@media (max-width: 639px) {
+  .hiw-note { padding: 12px 14px; }
+}
