@@ -3026,6 +3026,38 @@ window.PRODUCTS = [
         "image": "img/prod/var/l-5-style-9.jpg"
       }
     ]
+  },
+  {
+    "id": "n-2",
+    "name": "Nike ReactX",
+    "brand": "Nike",
+    "price": "€25",
+    "note": "soft-light-warterplaying",
+    "desc": "",
+    "collection": "clothes-and-shoes",
+    "subcategory": "shoes",
+    "keywords": [
+      "nike",
+      "shose",
+      "reactx"
+    ],
+    "variants": [
+      {
+        "name": "Green",
+        "price": "",
+        "image": "img/prod/var/n-2-1.jpg"
+      },
+      {
+        "name": "Grey",
+        "price": "",
+        "image": "img/prod/var/n-2-2.jpg"
+      },
+      {
+        "name": "More colors",
+        "price": "",
+        "image": "img/prod/var/n-2-3.jpg"
+      }
+    ]
   }
 ];
 
