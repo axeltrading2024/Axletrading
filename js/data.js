@@ -86,12 +86,6 @@ window.CATEGORIES = [
     "image": "img/cat/watches.png"
   },
   {
-    "slug": "speakers",
-    "name": "Speakers",
-    "tagline": "Room-filling sound",
-    "image": "img/cat/speakers.png"
-  },
-  {
     "slug": "hair-dryers",
     "name": "Home Appliance",
     "tagline": "Salon at home",
@@ -106,6 +100,12 @@ window.CATEGORIES = [
         "name": "Vacuum Cleaners"
       }
     ]
+  },
+  {
+    "slug": "speakers",
+    "name": "Speakers",
+    "tagline": "Room-filling sound",
+    "image": "img/cat/speakers.png"
   },
   {
     "slug": "other",
