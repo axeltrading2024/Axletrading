@@ -15,7 +15,6 @@ window.SITE_CONFIG = {
   "whatsappDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
   "phoneBackup": "+86 158 7520 9571",
-  /* 页脚底部三行口径 —— 与 about.html 的「How it works」与 FAQ 必须一致 */
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
   "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
@@ -142,7 +141,7 @@ window.CATEGORIES = [
         "name": "Shoes"
       }
     ],
-    "image": "img/cat/clothes-and-s-hose.png"
+    "image": "img/cat/clothes-and-shoes.png"
   },
   {
     "slug": "sunglasses",
@@ -2908,19 +2907,34 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Northface-1",
-        "price": "",
+        "name": "Northface-down coat",
+        "price": "€165",
         "image": "img/prod/var/d-2-northface-1.jpg"
       },
       {
+        "name": "northface-down jacket",
+        "price": "€85",
+        "image": "img/prod/var/d-2-northface-down-jacket.jpg"
+      },
+      {
         "name": "Burberry-1",
-        "price": "",
+        "price": "€100",
         "image": "img/prod/var/d-2-burberry-1.jpg"
       },
       {
         "name": "Burberry-2",
-        "price": "",
+        "price": "€110",
         "image": "img/prod/var/d-2-burberry-2.jpg"
+      },
+      {
+        "name": "Moncler Templon",
+        "price": "€100",
+        "image": "img/prod/var/d-2-moncler-templon.jpg"
+      },
+      {
+        "name": "moncler batman",
+        "price": "€110",
+        "image": "img/prod/var/d-2-moncler-batman.jpg"
       }
     ]
   },
