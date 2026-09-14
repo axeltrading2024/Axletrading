@@ -3075,7 +3075,7 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "Prada-1",
         "price": "",
         "image": "img/prod/var/p-3-1.jpg"
       }
