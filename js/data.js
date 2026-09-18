@@ -3080,6 +3080,53 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-3-1.jpg"
       }
     ]
+  },
+  {
+    "id": "m-3",
+    "name": "New balance shose",
+    "brand": "new balance",
+    "price": "€35",
+    "note": "comfortable-fashion-young",
+    "desc": "size from 38 to 45",
+    "collection": "clothes-and-shoes",
+    "subcategory": "shoes",
+    "keywords": [
+      "shose",
+      "NB",
+      "new balance"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/var/m-3-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/var/m-3-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/var/m-3-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/var/m-3-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/var/m-3-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/var/m-3-6.jpg"
+      }
+    ]
   }
 ];
 
