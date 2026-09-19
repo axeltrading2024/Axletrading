@@ -53,38 +53,38 @@
               '<span class="brand-mark">' + esc((CFG.brand || 'E').charAt(0)) + '</span>' +
               '<span class="footer-brand-name">' + brand + '</span>' +
             '</div>' +
-            '<p class="footer-tagline">Wholesale catalog of Axeltrading — electronics, perfumes, ' +
+            '<p class="footer-tagline" data-i18n-html="footer_tagline">Wholesale catalog of Axeltrading — electronics, perfumes, ' +
               'watches and accessories sourced for overseas retailers, Amazon sellers and dropshippers.</p>' +
             (CFG.whatsapp
               ? '<a class="footer-cta" data-wa-chat data-wa-text="Hi! I would like to ask about wholesale pricing." href="#">' +
-                  ICON.whatsapp.replace('<svg', '<svg style="width:15px;height:15px"') + 'Chat on WhatsApp</a>'
+                  ICON.whatsapp.replace('<svg', '<svg style="width:15px;height:15px"') + '<span data-i18n="chat_wa">Chat on WhatsApp</span></a>'
               : '') +
           '</div>' +
           (shopLinks
-            ? '<div class="footer-col"><h4>Shop</h4><ul>' + shopLinks +
-              '<li><a href="index.html#browse">All collections</a></li></ul></div>'
+            ? '<div class="footer-col"><h4 data-i18n="footer_shop">Shop</h4><ul>' + shopLinks +
+              '<li><a href="index.html#browse" data-i18n="footer_all">All collections</a></li></ul></div>'
             : '') +
-          '<div class="footer-col"><h4>Company</h4><ul>' +
-            '<li><a href="about.html">About Us</a></li>' +
-            '<li><a href="about.html#faq">FAQ</a></li>' +
-            '<li><a href="index.html#popular">Popular products</a></li>' +
-            '<li><a href="about.html#how-it-works">How it works</a></li>' +
+          '<div class="footer-col"><h4 data-i18n="footer_company">Company</h4><ul>' +
+            '<li><a href="about.html" data-i18n="nav_about">About Us</a></li>' +
+            '<li><a href="about.html#faq" data-i18n="footer_faq">FAQ</a></li>' +
+            '<li><a href="index.html#popular" data-i18n="footer_popular">Popular products</a></li>' +
+            '<li><a href="about.html#how-it-works" data-i18n="footer_how">How it works</a></li>' +
           '</ul></div>' +
-          '<div class="footer-col"><h4>Contact</h4><ul>' +
+          '<div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><ul>' +
             (waDisp ? '<li><a href="' + esc(waLink('Hi! I have a question about your catalog.')) + '" target="_blank" rel="noreferrer">WhatsApp ' + waDisp + '</a></li>' : '') +
             (CFG.phoneBackup ? '<li><a href="tel:' + esc(String(CFG.phoneBackup).replace(/[^\d+]/g, '')) + '">' + esc(CFG.phoneBackup) + ' · calls &amp; backup</a></li>' : '') +
             (mail ? '<li><a href="mailto:' + mail + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' + mail + '</a></li>' : '') +
-            '<li class="footer-plain">Reply within 24 hours</li>' +
+            '<li class="footer-plain" data-i18n="footer_reply">Reply within 24 hours</li>' +
           '</ul></div>' +
         '</div>' +
         '<div class="footer-trade">' +
-          '<span><b>Payment</b> ' + esc(CFG.tradePayment || 'T/T · Alipay · USDT · Western Union · Remitly') + '</span>' +
-          '<span><b>Shipping</b> ' + esc(CFG.tradeShipping || 'Worldwide, quoted per order') + '</span>' +
-          '<span><b>MOQ</b> ' + esc(CFG.tradeMoq || 'Low, flexible by item') + '</span>' +
+          '<span><b data-i18n="footer_payment">Payment</b> ' + esc(CFG.tradePayment || 'T/T · Alipay · USDT · Western Union · Remitly') + '</span>' +
+          '<span><b data-i18n="footer_shipping">Shipping</b> ' + esc(CFG.tradeShipping || 'Worldwide, quoted per order') + '</span>' +
+          '<span><b data-i18n="footer_moq">MOQ</b> ' + esc(CFG.tradeMoq || 'Low, flexible by item') + '</span>' +
         '</div>' +
         '<div class="footer-bottom">' +
           '<span>© <span data-year>' + year + '</span> ' + brand + '. All rights reserved.</span>' +
-          '<span>Wholesale only · no retail orders</span>' +
+          '<span data-i18n="footer_wholesale_only">Wholesale only · no retail orders</span>' +
         '</div>' +
       '</div>';
 
@@ -244,7 +244,7 @@
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); toast(okMsg); }
-      catch (e) { toast('Copy failed — please copy from the address bar'); }
+      catch (e) { toast(window.T('copy_failed')); }
       document.body.removeChild(ta);
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -355,7 +355,7 @@
             '<p class="note">' + esc(p.note) + '</p>' +
           '</div>' +
           '<button type="button" class="add btn btn-sm btn-outline add-btn" data-add="' + esc(p.id) + '">' +
-            '<span class="ico">' + ICON.plus + '</span><span class="lbl">Add to Inquiry</span>' +
+            '<span class="ico">' + ICON.plus + '</span><span class="lbl" data-i18n="add_to_inquiry">Add to Inquiry</span>' +
           '</button>' +
         '</div>' +
       '</article>';
@@ -387,17 +387,18 @@
             '<span class="brand-name">' + esc(CFG.brand) + '</span>' +
           '</a>' +
           '<nav class="site-nav">' +
-            '<a href="index.html" data-nav="home">Home</a>' +
-            '<a href="index.html#popular" data-nav="popular">Popular</a>' +
-            '<a href="index.html#browse" data-nav="browse">Browse</a>' +
-            '<a href="index.html#about" data-nav="about">About Us</a>' +
+            '<a href="index.html" data-nav="home" data-i18n="nav_home">Home</a>' +
+            '<a href="index.html#popular" data-nav="popular" data-i18n="nav_popular">Popular</a>' +
+            '<a href="index.html#browse" data-nav="browse" data-i18n="nav_browse">Browse</a>' +
+            '<a href="index.html#about" data-nav="about" data-i18n="nav_about">About Us</a>' +
           '</nav>' +
           '<div class="header-actions">' +
             '<button type="button" class="nav-search" data-open-search aria-label="Search products" title="Search products (Ctrl+K)">' +
               ICON.search +
             '</button>' +
+            '<span class="lang-switch" data-lang-switch></span>' +
             '<button type="button" class="inquiry-toggle" data-open-inquiry aria-label="Open inquiry list">' +
-              '<span class="inq-ico">' + ICON.basket + '</span>Inquiry<span class="inquiry-count" data-inquiry-count>0</span>' +
+              '<span class="inq-ico">' + ICON.basket + '</span><span class="inq-label" data-i18n="inquiry">Inquiry</span><span class="inquiry-count" data-inquiry-count>0</span>' +
             '</button>' +
             '<button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">' +
               ICON.menu +
@@ -407,18 +408,18 @@
         /* 手机端下拉菜单（>=640px 隐藏） */
         '<div class="mobile-nav" id="mobile-nav" data-mobile-nav>' +
           '<button type="button" class="mnav-search" data-open-search>' +
-            ICON.search.replace('<svg', '<svg style="width:17px;height:17px"') + 'Search products</button>' +
+            ICON.search.replace('<svg', '<svg style="width:17px;height:17px"') + '<span data-i18n="search_aria">Search products</span></button>' +
           '<nav>' +
-            '<a href="index.html">Home</a>' +
-            '<a href="index.html#popular">Popular products</a>' +
-            '<a href="index.html#browse">Browse collections</a>' +
-            '<a href="about.html">About Us</a>' +
-            '<a href="about.html#faq">FAQ</a>' +
+            '<a href="index.html" data-i18n="nav_home">Home</a>' +
+            '<a href="index.html#popular" data-i18n="nav_popular">Popular products</a>' +
+            '<a href="index.html#browse" data-i18n="nav_browse">Browse collections</a>' +
+            '<a href="about.html" data-i18n="nav_about">About Us</a>' +
+            '<a href="about.html#faq" data-i18n="footer_faq">FAQ</a>' +
           '</nav>' +
           '<div class="mobile-nav-foot">' +
             (CFG.whatsapp
               ? '<a class="btn btn-whatsapp" data-wa-chat data-wa-text="Hi! I would like to ask about wholesale pricing." href="#">' +
-                  ICON.whatsapp.replace('<svg', '<svg style="width:17px;height:17px"') + 'Chat on WhatsApp</a>'
+                  ICON.whatsapp.replace('<svg', '<svg style="width:17px;height:17px"') + '<span data-i18n="chat_wa">Chat on WhatsApp</span></a>'
               : '') +
             (CFG.contactEmail
               ? '<a class="btn btn-outline" href="mailto:' + esc(CFG.contactEmail) + '">' + esc(CFG.contactEmail) + '</a>'
@@ -435,19 +436,19 @@
       '<aside class="drawer" data-drawer aria-hidden="true">' +
         '<div class="drawer-head">' +
           '<div>' +
-            '<h2>Inquiry list</h2>' +
+            '<h2 data-i18n="drawer_title">Inquiry list</h2>' +
             '<p class="count" data-drawer-count>0 items</p>' +
           '</div>' +
           '<button type="button" class="drawer-close" data-close-inquiry aria-label="Close">' + ICON.close + '</button>' +
         '</div>' +
         '<div class="drawer-body" data-drawer-body></div>' +
         '<div class="drawer-foot">' +
-          '<div class="total"><span>Products total</span><b data-drawer-total>—</b></div>' +
+          '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<a class="btn btn-whatsapp" data-send-inquiry href="#" target="_blank" rel="noreferrer">' +
-            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + 'Send on WhatsApp' +
+            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
           '</a>' +
-          '<button type="button" class="share" data-share-link>🔗 Copy share link</button>' +
-          '<button type="button" class="clear" data-clear-inquiry>Clear list</button>' +
+          '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
+          '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
@@ -457,18 +458,18 @@
         '<div class="search-modal-card" role="dialog" aria-modal="true" aria-label="Search products">' +
           '<div class="smod-field">' +
             '<span class="smod-ico">' + ICON.search + '</span>' +
-            '<input type="search" data-sm-input placeholder="Search product, brand, category…" aria-label="Search products" autocomplete="off">' +
+            '<input type="search" data-sm-input placeholder="Search product, brand, category…" aria-label="Search products" autocomplete="off" data-i18n-ph="search_placeholder">' +
             '<button type="button" class="smod-close" data-close-search aria-label="Close search">' + ICON.close + '</button>' +
           '</div>' +
           '<div class="smod-body" data-sm-body>' +
-            '<p class="smod-hint">Type to search across all 1000+ products — brand, product name or category.</p>' +
+            '<p class="smod-hint" data-i18n="search_hint">Type to search across all 1000+ products — brand, product name or category.</p>' +
           '</div>' +
         '</div>' +
       '</div>' +
       /* 右下角黑底悬浮购物车：随时可打开询价清单 */
       '<button type="button" class="cart-fab" data-open-inquiry aria-label="Open inquiry list">' +
         '<span class="cart-fab-ico">' + ICON.basketLine + '</span>' +
-        '<span class="cart-fab-text">Inquiry</span>' +
+        '<span class="cart-fab-text" data-i18n="inquiry">Inquiry</span>' +
         '<span class="inquiry-count" data-inquiry-count>0</span>' +
       '</button>' +
       '<div class="toast" data-toast></div>';
@@ -519,7 +520,7 @@
       el.textContent = n;
       el.classList.toggle('has-items', n > 0);
     });
-    if (dCnt) dCnt.textContent = n + (n === 1 ? ' item' : ' items');
+    if (dCnt) dCnt.textContent = window.T('drawer_count', { n: n });
     if (totalEl) totalEl.textContent = Store.total() || '—';
     if (sendEl) {
       sendEl.href = waLink(buildInquiryMessage(Store.items));
@@ -535,7 +536,7 @@
 
     if (!body) return;
     if (!Store.items.length) {
-      body.innerHTML = '<div class="drawer-empty">Your list is empty.<br>Add products and send them in one message.</div>';
+      body.innerHTML = '<div class="drawer-empty">' + window.T('drawer_empty') + '</div>';
       return;
     }
     body.innerHTML = Store.items.map(function (it) {
@@ -567,7 +568,7 @@
       btn.classList.toggle('btn-outline', !inList);
       btn.setAttribute('aria-pressed', inList ? 'true' : 'false');
       var lbl = $('.lbl', btn);
-      if (lbl) lbl.textContent = inList ? 'In inquiry list' : 'Add to Inquiry';
+      if (lbl) lbl.textContent = inList ? window.T('in_inquiry_list') : window.T('add_to_inquiry');
       var ico = $('.ico', btn);
       if (ico) ico.innerHTML = inList ? ICON.check : ICON.plus;
     });
@@ -687,7 +688,7 @@
       price: v ? (v.price || p.price) : p.price,
       qty: 1,
     });
-    if (!silent) toast(p.name + (v ? ' [' + v.name + ']' : '') + ' added to inquiry');
+    if (!silent) toast(window.T('toast_added', { name: p.name + (v ? ' [' + v.name + ']' : '') }));
   }
 
   /* ---------------- 全局事件委托 ---------------- */
@@ -722,13 +723,13 @@
       if (rmBtn) { Store.remove(rmBtn.getAttribute('data-remove')); return; }
 
       if (t.closest('[data-clear-inquiry]')) {
-        if (Store.items.length) { Store.clear(); toast('Inquiry list cleared'); }
+        if (Store.items.length) { Store.clear(); toast(window.T('toast_cleared')); }
         return;
       }
 
       if (t.closest('[data-share-link]')) {
         var url = buildShareUrl(Store.items);
-        if (url) copyText(url, 'Share link copied — send it to your customer');
+        if (url) copyText(url, window.T('toast_share'));
         return;
       }
 
@@ -755,27 +756,47 @@
     });
   }
 
-  /* ============================================================
-   *  首页
-   * ============================================================ */
-  function initHome() {
-    // Hero 文案
+  /* ---------------- 语言切换时重新渲染动态文案 ---------------- */
+  function applyHeroLang() {
+    var lang = window.getLang ? window.getLang() : 'en';
     var titleEl = $('[data-hero-title]');
     if (titleEl) {
-      titleEl.innerHTML = esc(CFG.heroTitle) + '<br><span class="accent">' + esc(CFG.heroTitleAccent) + '</span>';
+      titleEl.innerHTML = esc(lang === 'es' && CFG.heroTitleEs ? CFG.heroTitleEs : CFG.heroTitle) + '<br><span class="accent">' + esc(lang === 'es' && CFG.heroTitleAccentEs ? CFG.heroTitleAccentEs : CFG.heroTitleAccent) + '</span>';
     }
     var subEl = $('[data-hero-sub]');
-    if (subEl) subEl.textContent = CFG.heroSubtitle;
+    if (subEl) subEl.textContent = lang === 'es' && CFG.heroSubtitleEs ? CFG.heroSubtitleEs : CFG.heroSubtitle;
     var badgeEl = $('[data-hero-badge]');
     if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · Product Finder');
     var phEl = $('[data-search-input]');
     if (phEl) {
-      // 手机上原提示文字会被 Browse 按钮挤掉一截，窄屏改用短版
       var narrow = window.matchMedia && window.matchMedia('(max-width: 639px)').matches;
-      phEl.placeholder = narrow
-        ? (CFG.searchPlaceholderShort || 'Search products…')
-        : CFG.searchPlaceholder;
+      var phEs = lang === 'es' && CFG.searchPlaceholderEs ? CFG.searchPlaceholderEs : '';
+      phEl.placeholder = narrow ? (CFG.searchPlaceholderShort || (phEs || 'Search products…')) : (phEs || CFG.searchPlaceholder);
     }
+  }
+
+  /** 语言切换后：刷新当前页的动态文案（数据驱动、无 data-i18n 的部分） */
+  window.__translateDynamic = function () {
+    var page = document.body.getAttribute('data-page');
+    if (page === 'product') initProduct();
+    else if (page === 'category') initCategory();
+    else applyHeroLang();
+    renderInquiry();
+    syncAddButtons();
+    // About 页的「X of 9 collections」统计标签随语言刷新
+    var mstat = $('[data-about-stat]');
+    if (mstat) {
+      var mcats = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; }).slice(0, 6);
+      mstat.textContent = window.T('about_stat', { n: mcats.length });
+    }
+  };
+
+  /* ============================================================
+   *  首页
+   * ============================================================ */
+  function initHome() {
+    // Hero 文案（含搜索框占位符，随语言切换）
+    applyHeroLang();
 
     // 主推品区块已移除（2026-09-03 需求），首页直接进入热门产品
 
@@ -898,7 +919,7 @@
               '<span><span class="s-name">' + esc(p.name) + '</span><br>' +
               '<span class="s-meta">' + esc(p.brand) + ' · ' + esc(p.price) + '</span></span></a>';
           }).join('')
-        : '<div class="suggest-empty">No products match that search.</div>';
+        : '<div class="suggest-empty">' + window.T('search_no_match') + '</div>';
       shell.appendChild(panel);
     }
 
@@ -941,7 +962,7 @@
     if (!modal || !input || !body || !triggers.length) return;
 
     var active = -1;
-    var hint = '<p class="smod-hint">Type to search across all 1000+ products — brand, product name or category.</p>';
+    var hint = '<p class="smod-hint" data-i18n="search_hint">Type to search across all 1000+ products — brand, product name or category.</p>';
 
     function render(list, q) {
       if (!q) { body.innerHTML = hint; active = -1; return; }
@@ -1045,9 +1066,9 @@
     if (!p) {
       host.innerHTML = '' +
         '<div class="empty-state">' +
-          '<h2>Product not found</h2>' +
-          '<p>The product you\'re looking for doesn\'t exist or has been removed.</p>' +
-          '<a class="btn btn-dark" href="index.html">Back home</a>' +
+          '<h2 data-i18n="product_not_found">Product not found</h2>' +
+          '<p data-i18n="product_not_found_desc">The product you\'re looking for doesn\'t exist or has been removed.</p>' +
+          '<a class="btn btn-dark" href="index.html" data-i18n="back_home">Back home</a>' +
         '</div>';
       return;
     }
@@ -1062,7 +1083,7 @@
 
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
-        '<a href="index.html">Home</a><span class="sep">/</span>' +
+        '<a href="index.html" data-i18n="nav_home">Home</a><span class="sep">/</span>' +
         '<a href="category.html?slug=' + esc(p.collection) + '">' + esc(cat ? cat.name : p.collection) + '</a>' +
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
@@ -1071,19 +1092,19 @@
           '<img data-variant-img src="' + esc(defImage) + '" alt="' + esc(p.name) + '">' +
           (p.video
             ? '<video class="detail-video" data-detail-video src="' + esc(p.video) + '" controls playsinline preload="metadata" style="display:none"></video>' +
-              '<button type="button" class="video-toggle" data-video-toggle>▶ Watch video</button>'
+              '<button type="button" class="video-toggle" data-video-toggle data-i18n="watch_video">▶ Watch video</button>'
             : '') +
         '</div>' +
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
           '<h1>' + esc(p.name) + '</h1>' +
           '<p class="detail-price" data-variant-price>' + esc(defPrice) +
-            '<span class="price-note">Wholesale · Ask for volume pricing</span>' +
+            '<span class="price-note" data-i18n="wholesale_vol">Wholesale · Ask for volume pricing</span>' +
           '</p>' +
           ((p.note || p.desc) ? '<p class="detail-desc">' + esc(p.note || p.desc) + '</p>' : '') +
           (variants
             ? '<div class="variant-block">' +
-                '<div class="variant-label">Model / Option</div>' +
+                '<div class="variant-label" data-i18n="model_option">Model / Option</div>' +
                 '<div class="variant-row">' +
                   variants.map(function (v, i) {
                     return '<button type="button" class="variant-chip' + (i === 0 ? ' is-active' : '') + '" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
@@ -1093,16 +1114,16 @@
             : '') +
           '<div class="detail-actions">' +
             '<button type="button" class="btn btn-dark" data-add="' + esc(p.id) + '"' + (variants ? ' data-variant="' + esc(variants[0].name) + '"' : '') + '>' +
-              '<span class="ico">' + ICON.plus + '</span><span class="lbl">Add to Inquiry</span>' +
+              '<span class="ico">' + ICON.plus + '</span><span class="lbl" data-i18n="add_to_inquiry">Add to Inquiry</span>' +
             '</button>' +
-            '<button type="button" class="btn btn-outline" data-open-inquiry>Review inquiry list</button>' +
+            '<button type="button" class="btn btn-outline" data-open-inquiry data-i18n="review_list">Review inquiry list</button>' +
           '</div>' +
-          '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; Back to ' + esc(cat ? cat.name : p.collection) + '</a>' +
+          '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; <span data-i18n="back_to">Back to </span>' + esc(cat ? cat.name : p.collection) + '</a>' +
           '<div class="spec-list">' +
-            '<div class="spec-row"><span class="k">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
-            '<div class="spec-row"><span class="k">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
-            '<div class="spec-row"><span class="k">Shipping</span><span>Worldwide · Quoted on request</span></div>' +
-            '<div class="spec-row"><span class="k">MOQ</span><span>Flexible</span></div>' +
+            '<div class="spec-row"><span class="k" data-i18n="spec_brand">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
+            '<div class="spec-row"><span class="k" data-i18n="spec_collection">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
+            '<div class="spec-row"><span class="k" data-i18n="spec_shipping">Shipping</span><span data-i18n="spec_shipping_val">Worldwide · Quoted on request</span></div>' +
+            '<div class="spec-row"><span class="k" data-i18n="spec_moq">MOQ</span><span data-i18n="spec_flexible">Flexible</span></div>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -1116,7 +1137,7 @@
         var showVideo = vEl.style.display === 'none';
         vEl.style.display = showVideo ? '' : 'none';
         vImg.style.display = showVideo ? 'none' : '';
-        vToggle.textContent = showVideo ? '🖼 Show photo' : '▶ Watch video';
+        vToggle.textContent = showVideo ? window.T('show_photo') : window.T('watch_video');
         if (showVideo) { vEl.currentTime = 0; vEl.play().catch(function () {}); }
         else vEl.pause();
       });
@@ -1143,7 +1164,7 @@
           if (vEl2 && vEl2.style.display !== 'none') {
             vEl2.pause(); vEl2.style.display = 'none';
             imgEl.style.display = '';
-            if (vTog2) vTog2.textContent = '▶ Watch video';
+            if (vTog2) vTog2.textContent = window.T('watch_video');
           }
           syncAddButtons();
         });
@@ -1157,8 +1178,8 @@
       if (list.length) {
         rel.innerHTML = '' +
           '<div class="section-head">' +
-            '<p class="eyebrow-lg">You may also like</p>' +
-            '<h2 class="display">More in ' + esc(cat ? cat.name : p.collection) + '</h2>' +
+            '<p class="eyebrow-lg" data-i18n="you_may_like">You may also like</p>' +
+            '<h2 class="display"><span data-i18n="more_in">More in </span>' + esc(cat ? cat.name : p.collection) + '</h2>' +
           '</div>' +
           '<div class="product-grid" style="padding-bottom:0">' +
             list.map(function (x) { return '<div>' + productCardHTML(x) + '</div>'; }).join('') +
@@ -1179,9 +1200,9 @@
     if (!cat) {
       host.innerHTML = '' +
         '<div class="empty-state">' +
-          '<h2>Collection not found</h2>' +
-          '<p>The collection you\'re looking for doesn\'t exist.</p>' +
-          '<a class="btn btn-dark" href="index.html">Back home</a>' +
+          '<h2 data-i18n="collection_not_found">Collection not found</h2>' +
+          '<p data-i18n="collection_not_found_desc">The collection you\'re looking for doesn\'t exist.</p>' +
+          '<a class="btn btn-dark" href="index.html" data-i18n="back_home">Back home</a>' +
         '</div>';
       return;
     }
@@ -1195,18 +1216,16 @@
 
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
-        '<a href="index.html">Home</a><span class="sep">/</span><span>' + esc(cat.name) + '</span>' +
+        '<a href="index.html" data-i18n="nav_home">Home</a><span class="sep">/</span><span>' + esc(cat.name) + '</span>' +
       '</nav>' +
       '<div class="page-head">' +
         '<p class="eyebrow-lg">' + esc(cat.tagline) + '</p>' +
         '<h1>' + esc(cat.name) + '</h1>' +
-        '<p class="sub">' + all.length + ' product' + (all.length === 1 ? '' : 's') +
-          ' in this collection. Wholesale pricing — ask for a volume quote on WhatsApp. ' +
-          'Add anything you like to your inquiry list.</p>' +
+        '<p class="sub">' + window.T('cat_sub', { n: all.length }) + '</p>' +
       '</div>' +
       (subs.length
         ? '<div class="subnav">' +
-            '<a class="chip' + (sub ? '' : ' is-active') + '" href="category.html?slug=' + esc(slug) + '">All</a>' +
+            '<a class="chip' + (sub ? '' : ' is-active') + '" href="category.html?slug=' + esc(slug) + '" data-i18n="sub_all">All</a>' +
             subs.map(function (s) {
               return '<a class="chip' + (sub === s.slug ? ' is-active' : '') +
                 '" href="category.html?slug=' + esc(slug) + '&sub=' + esc(s.slug) + '">' + esc(s.name) + '</a>';
@@ -1219,8 +1238,8 @@
     var grid = $('[data-cat-grid]', host);
     grid.innerHTML = list.length
       ? list.map(function (p) { return '<div>' + productCardHTML(p) + '</div>'; }).join('')
-      : '<div class="empty-state" style="grid-column:1/-1"><h2>Nothing here yet</h2>' +
-        '<p>No products in this sub-collection at the moment.</p></div>';
+      : '<div class="empty-state" style="grid-column:1/-1"><h2 data-i18n="nothing_here">Nothing here yet</h2>' +
+        '<p data-i18n="no_products_sub">No products in this sub-collection at the moment.</p></div>';
   }
 
   /* ---------------- 专属链接落地：客户打开 #l=... 时显示报价清单 ---------------- */
@@ -1291,11 +1310,11 @@
       '<div class="wrap">' +
         '<div class="shared-head">' +
           '<div>' +
-            '<p class="eyebrow">Quote list · ' + esc(CFG.brand) + '</p>' +
-            '<h2>This quote list is out of date</h2>' +
+            '<p class="eyebrow"><span data-i18n="shared_quote_list">Quote list · </span>' + esc(CFG.brand) + '</p>' +
+            '<h2 data-i18n="shared_out_of_date">This quote list is out of date</h2>' +
           '</div>' +
         '</div>' +
-        '<p class="shared-note">The items in this link are no longer in the catalog — our stock and prices change often. ' +
+        '<p class="shared-note" data-i18n="shared_note_expired">The items in this link are no longer in the catalog — our stock and prices change often. ' +
           'Message us and we\'ll send you a fresh quotation.</p>' +
         sharedContactHtml() +
       '</div>';
@@ -1316,13 +1335,13 @@
       '<div class="wrap">' +
         '<div class="shared-head">' +
           '<div>' +
-            '<p class="eyebrow">Quote list · ' + esc(CFG.brand) + '</p>' +
-            '<h2>' + sharedItems.length + ' product' + (sharedItems.length === 1 ? '' : 's') + ' for your review</h2>' +
+            '<p class="eyebrow"><span data-i18n="shared_quote_list">Quote list · </span>' + esc(CFG.brand) + '</p>' +
+            '<h2>' + window.T('shared_review', { n: sharedItems.length }) + '</h2>' +
           '</div>' +
         '</div>' +
         '<div class="shared-quote" data-shared-body></div>' +
-        '<div class="shared-total"><span>Products total</span><b data-shared-total>—</b></div>' +
-        '<p class="shared-note">Quantities are adjustable. Contact us for an official quotation.</p>' +
+        '<div class="shared-total"><span data-i18n="products_total">Products total</span><b data-shared-total>—</b></div>' +
+        '<p class="shared-note" data-i18n="shared_note">Quantities are adjustable. Contact us for an official quotation.</p>' +
         sharedContactHtml() +
       '</div>';
     if (header) header.insertAdjacentElement('afterend', banner);
@@ -1341,9 +1360,9 @@
           '<span class="cc-shine" aria-hidden="true"></span>' +
           '<span class="cc-ico">' + ICON.whatsapp + '</span>' +
           '<span class="cc-txt">' +
-            '<span class="cc-k">WhatsApp · fastest</span>' +
+            '<span class="cc-k" data-i18n="contact_wa_k">WhatsApp · fastest</span>' +
             '<span class="cc-v">' + esc(CFG.whatsappDisplay || 'Chat now') + '</span>' +
-            '<span class="cc-sub">Send your inquiry list — quote within 24 hours</span>' +
+            '<span class="cc-sub" data-i18n="contact_wa_sub">Send your inquiry list — quote within 24 hours</span>' +
           '</span>' +
           '<span class="cc-arrow">' + ICON.arrowRight + '</span>' +
         '</a>'
@@ -1353,9 +1372,9 @@
       ? '<a class="cc-card cc-mail" href="mailto:' + esc(CFG.contactEmail) + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' +
           '<span class="cc-ico">' + ICON.mail + '</span>' +
           '<span class="cc-txt">' +
-            '<span class="cc-k">Email · catalogs &amp; docs</span>' +
+            '<span class="cc-k" data-i18n="contact_mail_k">Email · catalogs &amp; docs</span>' +
             '<span class="cc-v">' + esc(CFG.contactEmail) + '</span>' +
-            '<span class="cc-sub">Price lists, shipping documents and invoices</span>' +
+            '<span class="cc-sub" data-i18n="contact_mail_sub">Price lists, shipping documents and invoices</span>' +
           '</span>' +
           '<span class="cc-arrow">' + ICON.arrowRight + '</span>' +
         '</a>'
@@ -1379,8 +1398,8 @@
 
     // 复制一份接在尾部，配合 translateX(-50%) 形成无缝循环
     host.innerHTML =
-      '<div class="hero-strip-head"><span>What we ship</span><span class="hero-strip-rule"></span>' +
-        '<span>' + cats.length + ' collections · 1000+ products</span></div>' +
+      '<div class="hero-strip-head"><span data-i18n="hero_strip_what">What we ship</span><span class="hero-strip-rule"></span>' +
+        '<span>' + window.T('hero_strip_collections', { n: cats.length }) + '</span></div>' +
       '<div class="hero-strip-clip"><div class="hero-strip-track">' + oneSet + oneSet + '</div></div>';
   }
 
@@ -1398,7 +1417,7 @@
     }).join('');
 
     var stat = $('[data-about-stat]');
-    if (stat) stat.textContent = cats.length + ' of 9 collections';
+    if (stat) stat.textContent = window.T('about_stat', { n: cats.length });
     host.innerHTML = items;
   }
 
@@ -1509,6 +1528,9 @@
 
     renderInquiry();
     syncAddButtons();
+
+    // 多语言：用 data-i18n / 词典回填当前语言（浏览器判定或用户已选）
+    if (window.applyLang) window.applyLang();
   }
 
   if (document.readyState === 'loading') {
