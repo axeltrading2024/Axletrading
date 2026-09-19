@@ -12,10 +12,21 @@
  *   node tools/pub-batch.js <文件> [文件2 ...]
  *   MSG="提交信息" node tools/pub-batch.js <文件...>
  *
+ * 删除文件（一次提交里同时删）：
+ *   node tools/pub-batch.js --del=img/prod/old.jpg --del=img/prod/old2.jpg
+ *
+ * 只看清单不发布：
+ *   node tools/pub-batch.js --dry <文件...>
+ *
+ * 注意（血泪）：本地镜像常常落后线上（用户会在后台直接改）。
+ * 本脚本会把「本地与线上不一致」的文件列出来，但不会替你判断哪个是新的 ——
+ * 发图片前务必确认本地不是旧图，否则会覆盖用户刚上传的内容。
+ *
  * token：从 .gh_hdr.txt 第一行 "Authorization: Bearer <token>" 读取（不落字面量）
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const REPO = 'axeltrading2024/Axletrading';
 const BR = 'main';
@@ -40,6 +51,13 @@ const headers = {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/** git blob 对象 SHA：本地就能算，用于「内容是否已在线上」判重，省掉整包重传 */
+const gitBlobSha = (buf) =>
+  crypto.createHash('sha1')
+    .update(Buffer.from('blob ' + buf.length + '\0', 'latin1'))
+    .update(buf)
+    .digest('hex');
+
 /** 带重试的 GitHub 调用（Pages/规则校验偶发 409 "Timed out validating rule"） */
 async function gh(url, init) {
   for (let i = 1; i <= 4; i++) {
@@ -58,9 +76,17 @@ async function gh(url, init) {
 }
 
 (async () => {
-  const files = process.argv.slice(2);
-  if (!files.length) {
-    console.error('用法: node tools/pub-batch.js <文件...>');
+  const argv = process.argv.slice(2);
+  const DRY = argv.includes('--dry');
+  const delPaths = [];
+  const files = [];
+  argv.forEach((a) => {
+    if (a === '--dry') return;
+    if (a.startsWith('--del=')) { delPaths.push(a.slice(6).replace(/\\/g, '/').replace(/^\.\//, '')); return; }
+    files.push(a);
+  });
+  if (!files.length && !delPaths.length) {
+    console.error('用法: node tools/pub-batch.js <文件...> [--del=<路径>...] [--dry]');
     process.exit(1);
   }
 
@@ -72,22 +98,44 @@ async function gh(url, init) {
   if (!parent) { console.error('读不到父提交'); process.exit(1); }
   console.log('父提交: ' + parentSha.slice(0, 7) + '  tree: ' + parent.tree.sha.slice(0, 7));
 
-  // 2) 每个文件建 blbo
+  // 1.5) 拉线上完整文件表，用于「内容已存在则复用 sha，不重传」
+  const full = await gh(`https://api.github.com/repos/${REPO}/git/trees/${parent.tree.sha}?recursive=1`, { method: 'GET' });
+  const online = new Map();       // path -> sha
+  const onlineShas = new Set();   // 任意路径上的 blob sha
+  if (full && full.tree) {
+    full.tree.forEach((e) => { if (e.type === 'blob') { online.set(e.path, e.sha); onlineShas.add(e.sha); } });
+  }
+  console.log('线上文件数: ' + online.size);
+
+  // 2) 每个文件建 blob（内容线上已有则直接复用 sha，零上传）
   const tree = [];
   for (const f of files) {
     const rel = String(f).replace(/\\/g, '/').replace(/^\.\//, '');
     const abs = path.join(ROOT, rel);
     if (!fs.existsSync(abs)) { console.log(rel + ' -> 跳过（本地不存在）'); continue; }
     const buf = fs.readFileSync(abs);
-    const blob = await gh(`https://api.github.com/repos/${REPO}/git/blobs`, {
-      method: 'POST',
-      body: JSON.stringify({ content: buf.toString('base64'), encoding: 'base64' }),
-    });
-    if (!blob) { console.error(rel + ' -> blob 创建失败'); process.exit(1); }
-    tree.push({ path: rel, mode: '100644', type: 'blob', sha: blob.sha });
-    console.log(rel + ' -> blob ' + blob.sha.slice(0, 7) + ' (' + buf.length + ' B)');
+    const local = gitBlobSha(buf);
+    if (online.get(rel) === local) { console.log(rel + ' -> 与线上一致，跳过'); continue; }
+    let sha = onlineShas.has(local) ? local : null;
+    if (!sha) {
+      const blob = await gh(`https://api.github.com/repos/${REPO}/git/blobs`, {
+        method: 'POST',
+        body: JSON.stringify({ content: buf.toString('base64'), encoding: 'base64' }),
+      });
+      if (!blob) { console.error(rel + ' -> blob 创建失败'); process.exit(1); }
+      sha = blob.sha;
+    }
+    tree.push({ path: rel, mode: '100644', type: 'blob', sha });
+    console.log(rel + ' -> ' + (onlineShas.has(local) ? '复用线上 blob ' : '新 blob ') + sha.slice(0, 7) + ' (' + buf.length + ' B)');
   }
-  if (!tree.length) { console.error('没有可发布的文件'); process.exit(1); }
+  // 2.5) 删除项（tree 里 sha 置 null 即删除）
+  delPaths.forEach((rel) => {
+    if (!online.has(rel)) { console.log(rel + ' -> 删除跳过（线上本来就没有）'); return; }
+    tree.push({ path: rel, mode: '100644', type: 'blob', sha: null });
+    console.log(rel + ' -> 删除');
+  });
+  if (!tree.length) { console.error('没有可发布的改动'); process.exit(1); }
+  if (DRY) { console.log('\n--dry 模式，未发布。将变更 ' + tree.length + ' 项。'); return; }
 
   // 3) 组合新 tree（base_tree 保证未改动的文件保留）
   const newTree = await gh(`https://api.github.com/repos/${REPO}/git/trees`, {
