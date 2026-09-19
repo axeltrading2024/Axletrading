@@ -43,8 +43,8 @@
       <div class="search-shell animate-in d3" data-search-shell>
         <div class="search-box">
           <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg></span>
-          <input type="search" data-search-input placeholder="Search product, brand, category…" aria-label="Search products" autocomplete="off">
-          <a href="#browse" class="btn btn-dark btn-sm" style="flex-shrink:0">Browse</a>
+          <input type="search" data-search-input data-i18n-ph="search_placeholder" placeholder="Search product, brand, category…" aria-label="Search products" autocomplete="off">
+          <a href="#browse" class="btn btn-dark btn-sm" style="flex-shrink:0" data-i18n="nav_browse">Browse</a>
         </div>
       </div>
 
@@ -57,9 +57,9 @@
   <section id="popular" class="section wrap">
     <div class="section-head carousel-head">
       <div style="min-width:0">
-        <p class="eyebrow-lg">Most asked</p>
-        <h2 class="display">Popular products</h2>
-        <p class="sub">The ones customers ask about the most on WhatsApp.</p>
+        <p class="eyebrow-lg" data-i18n="home_most_asked">Most asked</p>
+        <h2 class="display" data-i18n="footer_popular">Popular products</h2>
+        <p class="sub" data-i18n="home_popular_sub">The ones customers ask about the most on WhatsApp.</p>
       </div>
       <div class="carousel-nav">
         <button type="button" class="btn-icon" data-carousel-prev aria-label="Scroll left">
@@ -76,9 +76,9 @@
   <!-- ================= Browse ================= -->
   <section id="browse" class="wrap" style="padding-bottom:96px">
     <div class="section-head">
-      <p class="eyebrow-lg">Explore</p>
-      <h2 class="display">Browse products</h2>
-      <p class="sub">Everything Eddy supplies, organised so you find it in seconds.</p>
+      <p class="eyebrow-lg" data-i18n="home_explore">Explore</p>
+      <h2 class="display" data-i18n="home_browse_title">Browse products</h2>
+      <p class="sub" data-i18n="home_browse_sub">Everything Eddy supplies, organised so you find it in seconds.</p>
     </div>
     <div class="cat-grid" data-categories></div>
   </section>
@@ -88,97 +88,74 @@
        修改 FAQ 文案时，请与 about.html 同步，避免两处说法不一致。 -->
   <section id="about" class="section wrap about-home">
     <div class="section-head">
-      <p class="eyebrow-lg">Who we are</p>
-      <h2 class="display">About us</h2>
-      <p class="sub">The wholesale partner behind your next bestseller.</p>
+      <p class="eyebrow-lg" data-i18n="home_who">Who we are</p>
+      <h2 class="display" data-i18n="nav_about">About us</h2>
+      <p class="sub" data-i18n="about_home_sub">The wholesale partner behind your next bestseller.</p>
     </div>
 
     <div class="about-home-inner">
-      <p class="about-lede">EddySupply is the wholesale catalog of <strong>Axeltrading</strong>, run by Eddy.
-        We help overseas retailers, Amazon sellers and dropshippers source trending products —
-        electronics, perfumes, watches and accessories — with clear photos, honest specs and fast,
-        direct communication on WhatsApp. No middlemen, no marketplace fees, no guesswork.</p>
+      <p class="about-lede" data-i18n-html="about_lede"></p>
 
       <!-- 实拍两张：真实库存与打包现场，比任何文案都管用 -->
       <div class="about-strip" data-about-strip>
         <a class="about-strip-item" href="img/about/carton-label.jpg" data-real-photo>
           <img src="img/about/carton-label.jpg" alt="Sealed export cartons hand-labelled with box number, size and weight, signed by Eddy" loading="lazy" decoding="async">
-          <span class="strip-cap">Packed and signed by Eddy</span>
+          <span class="strip-cap" data-i18n="home_cap_packed">Packed and signed by Eddy</span>
         </a>
         <a class="about-strip-item" href="img/about/stock-shelf.jpg" data-real-photo>
           <img src="img/about/stock-shelf.jpg" alt="Perfume gift boxes of Dior, Chanel, YSL and Xerjoff laid out on our packing table" loading="lazy" decoding="async">
-          <span class="strip-cap">In stock right now</span>
+          <span class="strip-cap" data-i18n="home_cap_stock">In stock right now</span>
         </a>
       </div>
 
       <div class="about-facts">
-        <div class="fact"><b>1000+</b><span>products curated</span></div>
-        <div class="fact"><b>100+</b><span>countries served</span></div>
-        <div class="fact"><b>Low MOQ</b><span>flexible quantity</span></div>
-        <div class="fact"><b>Custom</b><span>OEM / ODM welcome</span></div>
-        <div class="fact"><b>&lt; 24h</b><span>quote reply time</span></div>
+        <div class="fact"><b>1000+</b><span data-i18n="fact_products">products curated</span></div>
+        <div class="fact"><b>100+</b><span data-i18n="fact_countries">countries served</span></div>
+        <div class="fact"><b>Low MOQ</b><span data-i18n="fact_moq">flexible quantity</span></div>
+        <div class="fact"><b>Custom</b><span data-i18n="fact_custom">OEM / ODM welcome</span></div>
+        <div class="fact"><b>&lt; 24h</b><span data-i18n="fact_reply">quote reply time</span></div>
       </div>
 
       <!-- 联系方式卡片：内容由 js/app.js 依据站点设置渲染（改号码/邮箱只需改后台） -->
       <div class="contact-cards" data-contact-cards></div>
 
       <div class="faq-section">
-        <h3>Frequently asked questions</h3>
+        <h3 data-i18n="faq_title">Frequently asked questions</h3>
 
         <details class="faq-item" open>
-          <summary>How do I place an order?</summary>
-          <div class="faq-body">
-            <p>Browse the catalog, add items to your inquiry list, then send the list to Eddy in one
-              tap on WhatsApp or by email — the site builds the message for you. You'll get a quote
-              with the final price, MOQ and shipping cost, and we take it from there.</p>
-          </div>
+          <summary data-i18n="faq1_q">How do I place an order?</summary>
+          <div class="faq-body" data-i18n-html="faq1_a"></div>
         </details>
 
         <details class="faq-item">
-          <summary>What is the MOQ (minimum order quantity)?</summary>
-          <div class="faq-body">
-            <p>MOQ is flexible and varies by product. Some items ship as single units for testing;
-              better prices kick in at volume. Just ask on WhatsApp for the exact MOQ of anything
-              you're interested in.</p>
-          </div>
+          <summary data-i18n="faq2_q">What is the MOQ (minimum order quantity)?</summary>
+          <div class="faq-body" data-i18n-html="faq2_a"></div>
         </details>
 
         <details class="faq-item">
-          <summary>What payment methods do you accept?</summary>
-          <div class="faq-body">
-            <p>We accept bank transfer (T/T) for bulk orders, Alipay for smaller ones, and
-              USDT, Western Union or Remitly for samples. Every order comes with a formal
-              invoice — pay only to the account shown on it. Production starts once payment
-              is confirmed.</p>
-          </div>
+          <summary data-i18n="faq5_q">What payment methods do you accept?</summary>
+          <div class="faq-body" data-i18n-html="faq5_a"></div>
         </details>
 
         <details class="faq-item">
-          <summary>How is shipping handled and what does it cost?</summary>
-          <div class="faq-body">
-            <p>We ship worldwide and shipping isn't a flat fee — it depends on weight, destination
-              and speed, so we quote it before you pay anything. Express air by
-              <b>DHL / UPS / FedEx</b> takes typically <b>8–10 working days</b>; perfumes and
-              battery products fly on a sensitive-goods line, about <b>18–22 days</b>; sea freight
-              starts at <b>20 kg</b> and takes about <b>50 days</b>. Duties are DDP in the US and
-              Europe, DAP elsewhere.</p>
-          </div>
+          <summary data-i18n="faq4_q">How is shipping handled and what does it cost?</summary>
+          <div class="faq-body" data-i18n-html="faq4_a"></div>
         </details>
       </div>
 
       <div class="about-home-actions">
-        <a class="btn btn-outline" href="about.html">See all FAQs &amp; how we work</a>
-        <a class="btn btn-whatsapp" data-wa-chat href="#" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
+        <a class="btn btn-outline" href="about.html" data-i18n="home_see_faq">See all FAQs &amp; how we work</a>
+        <a class="btn btn-whatsapp" data-wa-chat href="#" target="_blank" rel="noreferrer" data-i18n="chat_wa">Chat on WhatsApp</a>
       </div>
     </div>
   </section>
 
   <footer class="site-footer">
-    © <span data-year>2026</span> EddySupply. Chat with us on WhatsApp
+    © <span data-year>2026</span> EddySupply. <span data-i18n="footer_chat">Chat with us on WhatsApp</span>
   </footer>
 
   <script src="js/data.js?v=20260919a"></script>
-  <script src="js/i18n.js?v=20260919a"></script>
+  <script src="js/i18n.js?v=20260919b"></script>
   <script src="js/app.js?v=20260917a"></script>
   <script>
     var y = document.querySelector('[data-year]');
