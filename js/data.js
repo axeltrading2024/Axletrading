@@ -27,7 +27,7 @@ window.SITE_CONFIG = {
   "heroSubtitle": "Explore the full catalog, curate your inquiry list, and send it to Eddy in a single message to get a fast quote.",
   "heroTitleEs": "Productos al por mayor",
   "heroTitleAccentEs": "Más fácil que nunca",
-  "heroSubtitleEs": "Explora todo el catálogo, arma tu lista de cotización y envíala a Eddy en un solo mensaje para recibir una cotización rápida.",
+  "heroSubtitleEs": "Explora el catálogo, arma tu lista de cotización y mándasela a Eddy en un solo mensaje — te enviamos la cotización en 24 h.",
   "searchPlaceholder": "Search product, brand, category…",
   "searchPlaceholderEs": "Busca producto, marca o categoría…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
