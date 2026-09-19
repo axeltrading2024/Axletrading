@@ -381,6 +381,39 @@ a {
   color: var(--foreground);
 }
 
+/* ---- 语言切换（EN / ES）---- */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--card);
+  flex: 0 0 auto;
+}
+.lang-opt {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 6px 9px;
+  border-radius: 9px;
+  color: var(--muted-foreground);
+  transition: background 0.18s, color 0.18s;
+}
+.lang-opt:hover { color: var(--foreground); }
+.lang-opt.is-on {
+  background: var(--foreground);
+  color: var(--background);
+}
+
 /* ---- 手机端汉堡菜单 ---- */
 .nav-toggle {
   display: none;
