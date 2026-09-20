@@ -261,6 +261,7 @@
         <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
         <div class="gh-row" data-page-node-id="RBVD6h8UbrNTLYodb2QyPU"><label data-page-node-id="BWEpAv08wwiBqjJ5Bz8E0K">联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com" data-page-node-id="DftCljIYxFSqnY3DevwOET"><span class="help" data-page-node-id="sRbEfXBjWMkPfaE4zLNzDR">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
         <div class="gh-row" data-page-node-id="FFA6kaMvDBZX7dIuyfQ3uz"><label data-page-node-id="Cwj3fhvtk6UdlpEV5IJYpv">WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4" data-page-node-id="OmGEZP3z5JxvWeql0cVm5b"><span class="help" data-page-node-id="VGFT0VYbWcyPhPOGpj8LfV">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
+        <div class="gh-row"><label>备用号码</label><input data-cfg-wabackup placeholder="如 +49 152 2490 1963"><span class="help">显示在页脚「calls &amp; backup」一行，留空则不显示</span></div>
         <div class="gh-row" style="margin-top:18px" data-page-node-id="zG4X3hO7xG3Kg0HdMvxHPt"><label style="font-weight:700" data-page-node-id="c0WBMRgQYj8OrifdRkWWTx">—— 首页首屏文案 ——</label></div>
         <div class="gh-row" data-page-node-id="dfjoJRo8ReICFxe3RQHFqS"><label data-page-node-id="qwtYoGTEbyEnQLiHSg3soI">顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · Product Finder" data-page-node-id="8LA5H6J7TwKyc5JZAXM4jP"><span class="help" data-page-node-id="dDZnq4c6pcb5SvG9t2Rjlm">大标题上方的小字标签</span></div>
         <div class="gh-row" data-page-node-id="BTG6MMlKmeQUTLEc92DMUC"><label data-page-node-id="uAGwIEs9VfYNHKgmN6Gy60">大标题（第一行）</label><input data-cfg-herotitle placeholder="如 Wholesale products" data-page-node-id="yMsBGRL7eWfvzzzVbXSrEh"></div>
@@ -305,7 +306,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20260913c"></script>
+  <script src="js/data.js?v=20260920a"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -1652,6 +1653,8 @@
     $('[data-cfg-contact]').value = CFG.contactName || '';
     $('[data-cfg-wadisplay]').value = CFG.whatsappDisplay || '';
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    var wb = $('[data-cfg-wabackup]');
+    if (wb) wb.value = CFG.phoneBackup || '';
     var em = $('[data-cfg-email]');
     if (em) em.value = CFG.contactEmail || '';
     var hb = $('[data-cfg-herobadge]');
@@ -1688,6 +1691,8 @@
     var email = ($('[data-cfg-email]').value || '').trim();
     if (email) CFG.contactEmail = email; else delete CFG.contactEmail;
     $('[data-cfg-wa]').value = CFG.whatsapp || '';
+    var waBackup = ($('[data-cfg-wabackup]') && $('[data-cfg-wabackup]').value || '').trim();
+    if (waBackup) CFG.phoneBackup = waBackup; else delete CFG.phoneBackup;
     // 首页首屏文案（可留空=恢复默认行为）
     var heroBadge = ($('[data-cfg-herobadge]').value || '').trim();
     var heroTitle = ($('[data-cfg-herotitle]').value || '').trim();
