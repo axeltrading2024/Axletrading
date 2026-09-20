@@ -95,6 +95,7 @@
     home_cap_stock:     { en: 'In stock right now', es: 'En stock ahora mismo' },
     home_see_faq:       { en: 'See all FAQs & how we work', es: 'Ver todas las preguntas y cómo trabajamos' },
     footer_chat:        { en: 'Chat with us on WhatsApp', es: 'Chatea con nosotros por WhatsApp' },
+    footer_backup:      { en: '· calls & backup', es: '· llamadas y respaldo' },
     about_stat:         { en: '{n} of 9 collections', es: '{n} de 9 colecciones' },
     contact_wa_k:       { en: 'WhatsApp · fastest', es: 'WhatsApp · más rápido' },
     contact_wa_sub:     { en: 'Send your inquiry list — quote within 24 hours',
