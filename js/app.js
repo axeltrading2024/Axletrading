@@ -10,6 +10,15 @@
   var CATEGORIES = window.CATEGORIES || [];
   var STORAGE_KEY = 'eddysupply.inquiry.v1';
 
+  /* 兜底：万一 js/i18n.js 没加载成功（顺序错、被 CDN 拦、旧缓存），
+     仍给 window.T 一个可用实现，避免整站脚本因 window.T 未定义而中断。
+     只返回英文可读串，真实翻译仍由 i18n.js 提供。 */
+  if (typeof window.T !== 'function') {
+    window.T = function (key) {
+      return String(key || '').replace(/_/g, ' ').replace(/^./, function (c) { return c.toUpperCase(); });
+    };
+  }
+
   /* ---------------- 工具 ---------------- */
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -72,7 +81,7 @@
           '</ul></div>' +
           '<div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><ul>' +
             (waDisp ? '<li><a href="' + esc(waLink('Hi! I have a question about your catalog.')) + '" target="_blank" rel="noreferrer">WhatsApp ' + waDisp + '</a></li>' : '') +
-            (CFG.phoneBackup ? '<li><a href="tel:' + esc(String(CFG.phoneBackup).replace(/[^\d+]/g, '')) + '">' + esc(CFG.phoneBackup) + ' · calls &amp; backup</a></li>' : '') +
+            (CFG.phoneBackup ? '<li><a href="tel:' + esc(String(CFG.phoneBackup).replace(/[^\d+]/g, '')) + '">' + esc(CFG.phoneBackup) + ' <span data-i18n="footer_backup">· calls &amp; backup</span></a></li>' : '') +
             (mail ? '<li><a href="mailto:' + mail + '?subject=' + encodeURIComponent('Wholesale inquiry') + '">' + mail + '</a></li>' : '') +
             '<li class="footer-plain" data-i18n="footer_reply">Reply within 24 hours</li>' +
           '</ul></div>' +
