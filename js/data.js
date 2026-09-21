@@ -803,6 +803,7 @@ window.PRODUCTS = [
     "note": "Chronograph",
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
+    "subcategory": "rolex-style",
     "video": "img/vid/rolex-daytona.mp4",
     "keywords": [
       "rolex",
@@ -812,14 +813,14 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/var/rolex-daytona-1.jpg"
-      },
-      {
         "name": "2",
         "price": "",
         "image": "img/prod/var/rolex-daytona-2.jpg"
+      },
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/var/rolex-daytona-1.jpg"
       },
       {
         "name": "3",
