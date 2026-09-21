@@ -11,10 +11,10 @@ window.SITE_CONFIG = {
   "brand": "Axeltrading",
   "tagline": "Wholesale Product Finder",
   "contactName": "Eddy",
-  "whatsapp": "8615875209571",
-  "whatsappDisplay": "+86 158 7520 9571",
+  "whatsapp": "4915224901963",
+  "whatsappDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
-  "phoneBackup": "+49 152 2490 1963",
+  "phoneBackup": "+86 158 7520 9571",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
   "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
@@ -360,21 +360,18 @@ window.PRODUCTS = [
   },
   {
     "id": "jbl-flip-7",
-    "name": "JBL portable speaker",
+    "name": "JBL Flip 7",
     "brand": "JBL",
-    "price": "from €18",
+    "price": "€18",
     "note": "Portable · Waterproof",
-    "desc": "Rugged IP67 portable speaker with punchy bass and 6 hours of playtime.",
+    "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
     "popular": true,
     "keywords": [
       "jbl",
       "flip",
       "speaker",
-      "Charge",
-      "Pulse",
-      "GO",
-      "portable"
+      "bluetooth"
     ],
     "variants": [
       {
@@ -726,6 +723,7 @@ window.PRODUCTS = [
     "note": "classic-elegant-waterprrof-practical",
     "desc": "",
     "collection": "watches",
+    "subcategory": "rolex-style",
     "video": "img/vid/r.mp4",
     "keywords": [
       "Rolex",
@@ -736,62 +734,62 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "Color-1",
         "price": "",
         "image": "img/prod/var/r-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Color-2",
         "price": "",
         "image": "img/prod/var/r-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Color-3",
         "price": "",
         "image": "img/prod/var/r-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Color-4",
         "price": "",
         "image": "img/prod/var/r-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Color-5",
         "price": "",
         "image": "img/prod/var/r-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Color-6",
         "price": "",
         "image": "img/prod/var/r-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Color-7",
         "price": "",
         "image": "img/prod/var/r-7.jpg"
       },
       {
-        "name": "8",
+        "name": "Color-8",
         "price": "",
         "image": "img/prod/var/r-8.jpg"
       },
       {
-        "name": "9",
+        "name": "Color-9",
         "price": "",
         "image": "img/prod/var/r-9.jpg"
       },
       {
-        "name": "10",
+        "name": "Color-10",
         "price": "",
         "image": "img/prod/var/r-10.jpg"
       },
       {
-        "name": "11",
+        "name": "Color-11",
         "price": "",
         "image": "img/prod/var/r-11.jpg"
       },
       {
-        "name": "12",
+        "name": "Style-12",
         "price": "",
         "image": "img/prod/var/r-12.jpg"
       }
