@@ -1009,47 +1009,47 @@ window.PRODUCTS = [
     "video": "img/vid/c-2.mp4",
     "variants": [
       {
-        "name": "1",
+        "name": "Style-1",
         "price": "",
         "image": "img/prod/var/c-2-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Style-2",
         "price": "",
         "image": "img/prod/var/c-2-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Style-3",
         "price": "",
         "image": "img/prod/var/c-2-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Style-4",
         "price": "",
         "image": "img/prod/var/c-2-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Style-5",
         "price": "",
         "image": "img/prod/var/c-2-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Style-6",
         "price": "",
         "image": "img/prod/var/c-2-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Style-7",
         "price": "",
         "image": "img/prod/var/c-2-7.jpg"
       },
       {
-        "name": "8",
+        "name": "Style-8",
         "price": "",
         "image": "img/prod/var/c-2-8.jpg"
       },
       {
-        "name": "9",
+        "name": "Style-9",
         "price": "",
         "image": "img/prod/var/c-2-9.jpg"
       }
