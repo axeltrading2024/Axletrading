@@ -951,14 +951,14 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/var/ap-royal-oak-1.jpg"
-      },
-      {
         "name": "2",
         "price": "",
         "image": "img/prod/var/ap-royal-oak-2.jpg"
+      },
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/var/ap-royal-oak-1.jpg"
       },
       {
         "name": "3",
@@ -1071,52 +1071,52 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "Style -PRX-1",
         "price": "",
         "image": "img/prod/var/t-2-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Style -PRX-2",
         "price": "",
         "image": "img/prod/var/t-2-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Style -PRX-3",
         "price": "",
         "image": "img/prod/var/t-2-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Style -PRX-4",
         "price": "",
         "image": "img/prod/var/t-2-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Style-5",
         "price": "",
         "image": "img/prod/var/t-2-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Style-6",
         "price": "",
         "image": "img/prod/var/t-2-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Style-7",
         "price": "",
         "image": "img/prod/var/t-2-7.jpg"
       },
       {
-        "name": "8",
+        "name": "Style-8",
         "price": "",
         "image": "img/prod/var/t-2-8.jpg"
       },
       {
-        "name": "9",
+        "name": "Style-9",
         "price": "",
         "image": "img/prod/var/t-2-9.jpg"
       },
       {
-        "name": "10",
+        "name": "Style-10",
         "price": "",
         "image": "img/prod/var/t-2-10.jpg"
       }
