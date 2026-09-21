@@ -669,14 +669,14 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Black",
-        "price": "",
-        "image": "img/prod/var/rolex-submariner-black.jpg"
-      },
-      {
         "name": "Green-black",
         "price": "",
         "image": "img/prod/var/rolex-submariner-green-black.jpg"
+      },
+      {
+        "name": "Black",
+        "price": "",
+        "image": "img/prod/var/rolex-submariner-black.jpg"
       },
       {
         "name": "Green",
