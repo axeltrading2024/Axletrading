@@ -734,6 +734,11 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
+        "name": "Color-4",
+        "price": "",
+        "image": "img/prod/var/r-color-4.jpg"
+      },
+      {
         "name": "Color-1",
         "price": "",
         "image": "img/prod/var/r-1.jpg"
@@ -747,11 +752,6 @@ window.PRODUCTS = [
         "name": "Color-3",
         "price": "",
         "image": "img/prod/var/r-3.jpg"
-      },
-      {
-        "name": "Color-4",
-        "price": "",
-        "image": "img/prod/var/r-4.jpg"
       },
       {
         "name": "Color-5",
