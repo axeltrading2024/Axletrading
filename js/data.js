@@ -362,7 +362,7 @@ window.PRODUCTS = [
     "id": "jbl-flip-7",
     "name": "JBL Flip 7",
     "brand": "JBL",
-    "price": "€18",
+    "price": "from €18",
     "note": "Portable · Waterproof",
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
@@ -376,67 +376,67 @@ window.PRODUCTS = [
     "variants": [
       {
         "name": "Flip 7-purple",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-flip-7-1.jpg"
       },
       {
         "name": "Flip7-blue",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-flip7-2.jpg"
       },
       {
         "name": "Flip7-black",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-flip7-3.jpg"
       },
       {
         "name": "Flip7-red",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-flip7-4.jpg"
       },
       {
         "name": "Charge6-black1",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/var/jbl-flip-7-charge6.jpg"
       },
       {
         "name": "Charge6-black2",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/var/jbl-flip-7-charge6-black2.jpg"
       },
       {
         "name": "Charge6-blue",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/var/jbl-flip-7-charge6-blue.jpg"
       },
       {
         "name": "Charge6-purple",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/var/jbl-flip-7-charge6-purple.jpg"
       },
       {
         "name": "Charge6-red",
-        "price": "",
+        "price": "€20",
         "image": "img/prod/var/jbl-flip-7-charge6-red.jpg"
       },
       {
         "name": "GO5-1",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-1.jpg"
       },
       {
         "name": "GO5-2",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-2.jpg"
       },
       {
         "name": "GO5-3",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-3.jpg"
       },
       {
         "name": "GO5-4",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-4.jpg"
       }
     ]
