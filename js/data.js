@@ -640,7 +640,7 @@ window.PRODUCTS = [
   },
   {
     "id": "baccarat",
-    "name": "Maison Francis Kurkdjian",
+    "name": "Maison Francis Kurkdjian 70ml",
     "brand": "MFK",
     "price": "€18",
     "note": "Niche · Saffron amber",
