@@ -627,12 +627,12 @@ window.PRODUCTS = [
         "image": "img/prod/var/a-my-way-edp-nectar.jpg"
       },
       {
-        "name": "8",
+        "name": "Sì EDP Intense",
         "price": "",
         "image": "img/prod/var/a-8.jpg"
       },
       {
-        "name": "9",
+        "name": "Si EDP Fiori",
         "price": "",
         "image": "img/prod/var/a-9.jpg"
       }
