@@ -2310,7 +2310,7 @@ window.PRODUCTS = [
   },
   {
     "id": "l-2",
-    "name": "LV style perfume",
+    "name": "LV style 100ml",
     "brand": "Louis Vuitton",
     "price": "€30",
     "note": "Wear the art of travel, embrace your endless journey",
@@ -2325,54 +2325,64 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "L'IMMENSITE (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-1.jpg"
       },
       {
-        "name": "2",
+        "name": "SPELL ON YOU (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Stellar Times",
         "price": "",
-        "image": "img/prod/var/l-2-3.jpg"
+        "image": "img/prod/var/l-2-stellar-times.jpg"
       },
       {
-        "name": "4",
+        "name": "CITY OF STARS (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-4.jpg"
       },
       {
-        "name": "5",
+        "name": "LV IMAGIN ATION (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-5.jpg"
       },
       {
-        "name": "6",
+        "name": "LV CALIFORNIA VUITTON (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-6.jpg"
       },
       {
-        "name": "7",
+        "name": "PACIFIC CHILL (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-7.jpg"
       },
       {
-        "name": "8",
+        "name": "AFTERNOON SWIM (EDP)",
         "price": "",
         "image": "img/prod/var/l-2-8.jpg"
       },
       {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/var/l-2-9.jpg"
-      },
-      {
-        "name": "10",
+        "name": "Sur la Route(EDP)",
         "price": "",
         "image": "img/prod/var/l-2-10.jpg"
+      },
+      {
+        "name": "LV OMBRE NOMADE (EDP)",
+        "price": "",
+        "image": "img/prod/var/l-2-lv-ombre-nomade-edp.jpg"
+      },
+      {
+        "name": "LES SABLES ROSES (EDP)",
+        "price": "",
+        "image": "img/prod/var/l-2-les-sables-roses-edp.jpg"
+      },
+      {
+        "name": "ON THE BEACH (EDP)",
+        "price": "",
+        "image": "img/prod/var/l-2-on-the-beach-edp.jpg"
       }
     ]
   },
