@@ -2388,7 +2388,7 @@ window.PRODUCTS = [
   },
   {
     "id": "paco-rabannel",
-    "name": "Paco Rabanne style perfume",
+    "name": "Paco Rabanne style  100ml",
     "brand": "Paco Rabanne",
     "price": "€18",
     "note": "",
@@ -2397,52 +2397,52 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1 Million Royal Parfum 100ml",
+        "name": "1 Million Royal Parfum",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1.jpg"
       },
       {
-        "name": "1 Million Gold EDP intense 100ml",
+        "name": "1 Million Gold EDP intense",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1-million-gold-edp-intense-100ml.jpg"
       },
       {
-        "name": "1 Million Elixir 100ml",
+        "name": "1 Million Elixir",
         "price": "",
         "image": "img/prod/var/paco-rabannel-3.jpg"
       },
       {
-        "name": "1 Million Golden Oud 100ml",
+        "name": "1 Million Golden Oud",
         "price": "",
         "image": "img/prod/var/paco-rabannel-million-golden-oud.jpg"
       },
       {
-        "name": "1 Million parfum 100ml",
+        "name": "1 Million parfum",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1-million-parfum-100ml.jpg"
       },
       {
-        "name": "Invictus Legend EDP 100ml",
+        "name": "Invictus Legend EDP",
         "price": "",
         "image": "img/prod/var/paco-rabannel-6.jpg"
       },
       {
-        "name": "Invictus Parfum 100ml",
+        "name": "Invictus Parfum",
         "price": "",
         "image": "img/prod/var/paco-rabannel-7.jpg"
       },
       {
-        "name": "Invictus Victory EDP extreme 100ml",
+        "name": "Invictus Victory EDP extreme",
         "price": "",
         "image": "img/prod/var/paco-rabannel-9.jpg"
       },
       {
-        "name": "Phantom EDT 100ml",
+        "name": "Phantom EDT",
         "price": "",
         "image": "img/prod/var/paco-rabannel-10.jpg"
       },
       {
-        "name": "Phantom EDP intense 100ml",
+        "name": "Phantom EDP intense",
         "price": "",
         "image": "img/prod/var/paco-rabannel-11.jpg"
       },
@@ -2457,7 +2457,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/paco-rabannel-13.jpg"
       },
       {
-        "name": "Pure XS EDT 100ml",
+        "name": "Pure XS EDT",
         "price": "",
         "image": "img/prod/var/paco-rabannel-14.jpg"
       },
