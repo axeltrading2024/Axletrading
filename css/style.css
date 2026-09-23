@@ -1233,6 +1233,9 @@ a {
 }
 
 .cat-card {
+  /* 每个分类可单独设「视觉缩放」与阴影，由 .media img 读取 */
+  --cat-zoom: 1;
+  --cat-shadow: drop-shadow(0 20px 24px oklch(0 0 0 / 0.18));
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1259,11 +1262,19 @@ a {
   max-width: 85%;
   object-fit: contain;
   transition: transform 0.7s var(--ease-out-soft);
-  filter: drop-shadow(0 20px 24px oklch(0 0 0 / 0.18));
+  filter: var(--cat-shadow);
+  transform: scale(var(--cat-zoom));
 }
 
 .cat-card:hover .media img {
-  transform: scale(1.06);
+  transform: scale(calc(var(--cat-zoom) * 1.06));
+}
+
+/* 单个分类的「视觉大小」微调：只缩放，不动图片画布（零重采样）。
+   缩放会连阴影一起放大，故按同比例把 filter 数值收小，视觉阴影与邻近卡片一致。 */
+.cat-card.cat-perfumes {
+  --cat-zoom: 1.2;
+  --cat-shadow: drop-shadow(0 16.67px 20px oklch(0 0 0 / 0.18));
 }
 
 /* 手机端：卡片变小，收窄留白并放大图片比例 */
