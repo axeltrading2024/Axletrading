@@ -2112,12 +2112,12 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1",
+        "name": "JPG Divine 100ml",
         "price": "",
-        "image": ""
+        "image": "img/prod/var/jean-paul-gaultter-jpg-divine-100ml.jpg"
       },
       {
-        "name": "2",
+        "name": "JPG  Le Male Elixir 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-2.jpg"
       },
