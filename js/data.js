@@ -640,7 +640,7 @@ window.PRODUCTS = [
   },
   {
     "id": "baccarat",
-    "name": "Baccarat Rouge 540",
+    "name": "Maison Francis Kurkdjian",
     "brand": "MFK",
     "price": "€18",
     "note": "Niche · Saffron amber",
@@ -654,24 +654,29 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "MFK Baccarat Rouge 540 Extrait De Parfum",
         "price": "",
         "image": "img/prod/var/baccarat-1.jpg"
       },
       {
-        "name": "2",
+        "name": "MFK Grand Soir",
         "price": "",
         "image": "img/prod/var/baccarat-2.jpg"
       },
       {
-        "name": "3",
+        "name": "MFK Oud Satin Mood",
         "price": "",
         "image": "img/prod/var/baccarat-3.jpg"
       },
       {
-        "name": "4",
+        "name": "MFK Baccarat Rouge 540 EDP",
         "price": "",
         "image": "img/prod/var/baccarat-4.jpg"
+      },
+      {
+        "name": "MFK Reflets D'Ambre EDP",
+        "price": "",
+        "image": "img/prod/var/baccarat-mfk-reflets-d-ambre-edp.jpg"
       }
     ]
   },
