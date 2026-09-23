@@ -1988,7 +1988,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/t-3.jpg"
       },
       {
-        "name": "TF VANILLA SEX (EDP)",
+        "name": "TF Soleil DE FEU EDP",
         "price": "",
         "image": "img/prod/var/t-4.jpg"
       },
@@ -2008,9 +2008,24 @@ window.PRODUCTS = [
         "image": "img/prod/var/t-tf-bitter-peach-edp.jpg"
       },
       {
+        "name": "TF Fabulous EDP",
+        "price": "",
+        "image": "img/prod/var/t-tf-fabulous-edp.jpg"
+      },
+      {
         "name": "TF Ombre Leather Parfum",
         "price": "",
         "image": "img/prod/var/t-5.jpg"
+      },
+      {
+        "name": "TF Ombre Leather EDT",
+        "price": "",
+        "image": "img/prod/var/t-tf-ombre-leather-edt.jpg"
+      },
+      {
+        "name": "TF Ombre Leather EDP",
+        "price": "",
+        "image": "img/prod/var/t-tf-ombre-leather-edp.jpg"
       }
     ]
   },
