@@ -2122,34 +2122,9 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-2.jpg"
       },
       {
-        "name": "JPG Le Beau Eau de Parfum 125ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-3.jpg"
-      },
-      {
-        "name": "JPG Le Beau Male 125ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-4.jpg"
-      },
-      {
-        "name": "JPG Le Beau Male EDT 25ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-5.jpg"
-      },
-      {
-        "name": "JPG Ultra Male EDT 125ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-6.jpg"
-      },
-      {
         "name": "JPG  Le Male Le Parfum125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-7.jpg"
-      },
-      {
-        "name": "JPG La Belle Flower Edition 125ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-8.jpg"
       },
       {
         "name": "JPG  Le Male Paradise Garden 125ml",
@@ -2157,9 +2132,29 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-9.jpg"
       },
       {
-        "name": "JPG Classique EDP 125ml",
+        "name": "JPG Ultra  Male EDT 125ml",
         "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-10.jpg"
+        "image": "img/prod/var/jean-paul-gaultter-6.jpg"
+      },
+      {
+        "name": "JPG Le Beau Le Parfum EDP 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-3.jpg"
+      },
+      {
+        "name": "JPG Le Beau 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-4.jpg"
+      },
+      {
+        "name": "JPG Le Beau  EDT 25ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-5.jpg"
+      },
+      {
+        "name": "JPG Le Beau Narciso EDP 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-jpg-le-beau-narciso-edp-125ml.jpg"
       },
       {
         "name": "JPG  Le Beau EDP 125ml",
@@ -2167,19 +2162,29 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-11.jpg"
       },
       {
-        "name": "JPG Scandal  EDP100ml",
+        "name": "JPG La Belle Flower Edition 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-8.jpg"
+      },
+      {
+        "name": "JPG La Belle EDP intens 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-10.jpg"
+      },
+      {
+        "name": "JPG La Belle Paradise Garden125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-jpg-la-belle-paradise-garden125ml.jpg"
+      },
+      {
+        "name": "JPG Scandal Le Parfum for man 100ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-12.jpg"
       },
       {
-        "name": "13",
+        "name": "JPG Scandal Le Parfum for women 100ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-13.jpg"
-      },
-      {
-        "name": "JPG Le Beau Narciso EDP 125ml",
-        "price": "",
-        "image": "img/prod/var/jean-paul-gaultter-jpg-le-beau-narciso-edp-125ml.jpg"
       },
       {
         "name": "JPG Scandal EDT 100ml",
