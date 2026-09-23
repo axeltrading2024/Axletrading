@@ -1958,7 +1958,7 @@ window.PRODUCTS = [
   },
   {
     "id": "t",
-    "name": "Tom Ford style perfume",
+    "name": "Tom Ford style 100ml",
     "brand": "Tom Ford",
     "price": "€18",
     "note": "Bold Luxury-Private Sensuality-Scent of Power",
@@ -1973,34 +1973,44 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "TOBACCO VANILLE (EDP)",
         "price": "",
         "image": "img/prod/var/t-1.jpg"
       },
       {
-        "name": "2",
+        "name": "TF OUD WOOD(EDP)",
         "price": "",
         "image": "img/prod/var/t-2.jpg"
       },
       {
-        "name": "3",
+        "name": "TF LOST CHERRY",
         "price": "",
         "image": "img/prod/var/t-3.jpg"
       },
       {
-        "name": "4",
+        "name": "TF VANILLA SEX (EDP)",
         "price": "",
         "image": "img/prod/var/t-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Cafe Rose EDP",
         "price": "",
-        "image": "img/prod/var/t-5.jpg"
+        "image": "img/prod/var/t-cafe-rose-edp.jpg"
       },
       {
-        "name": "6",
+        "name": "SOLEIL BLANC(EDP)",
         "price": "",
         "image": "img/prod/var/t-6.jpg"
+      },
+      {
+        "name": "TF Bitter Peach EDP",
+        "price": "",
+        "image": "img/prod/var/t-tf-bitter-peach-edp.jpg"
+      },
+      {
+        "name": "TF Ombre Leather Parfum",
+        "price": "",
+        "image": "img/prod/var/t-5.jpg"
       }
     ]
   },
