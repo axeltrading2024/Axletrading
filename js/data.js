@@ -362,7 +362,7 @@ window.PRODUCTS = [
     "id": "jbl-flip-7",
     "name": "JBL Flip 7",
     "brand": "JBL",
-    "price": "€18-€20",
+    "price": "€18",
     "note": "Portable · Waterproof",
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
@@ -376,74 +376,74 @@ window.PRODUCTS = [
     "variants": [
       {
         "name": "Flip 7-purple",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-flip-7-1.jpg"
       },
       {
         "name": "Flip7-blue",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-flip7-2.jpg"
       },
       {
         "name": "Flip7-black",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-flip7-3.jpg"
       },
       {
         "name": "Flip7-red",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-flip7-4.jpg"
       },
       {
         "name": "Charge6-black1",
-        "price": "€20",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-charge6.jpg"
       },
       {
         "name": "Charge6-black2",
-        "price": "€20",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-charge6-black2.jpg"
       },
       {
         "name": "Charge6-blue",
-        "price": "€20",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-charge6-blue.jpg"
       },
       {
         "name": "Charge6-purple",
-        "price": "€20",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-charge6-purple.jpg"
       },
       {
         "name": "Charge6-red",
-        "price": "€20",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-charge6-red.jpg"
       },
       {
         "name": "GO5-1",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-go5-1.jpg"
       },
       {
         "name": "GO5-2",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-go5-2.jpg"
       },
       {
         "name": "GO5-3",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-go5-3.jpg"
       },
       {
         "name": "GO5-4",
-        "price": "€18",
+        "price": "",
         "image": "img/prod/var/jbl-flip-7-go5-4.jpg"
       }
     ]
   },
   {
     "id": "bleu-chanel",
-    "name": "Bleu de Chanel EDP 100ml",
+    "name": "Chanel Style 100ml",
     "brand": "Chanel",
     "price": "€18",
     "note": "Woody aromatic",
@@ -482,14 +482,24 @@ window.PRODUCTS = [
         "image": "img/prod/var/bleu-chanel-coco-4.jpg"
       },
       {
-        "name": "chance-1",
+        "name": "Chance Eau Vive",
         "price": "",
         "image": "img/prod/var/bleu-chanel-chance-1.jpg"
       },
       {
-        "name": "chance-2",
+        "name": "Chance Eau Fraiche",
         "price": "",
         "image": "img/prod/var/bleu-chanel-chance-2.jpg"
+      },
+      {
+        "name": "Chance Eau de Toilette",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-eau-de-toilette.jpg"
+      },
+      {
+        "name": "Chance  Eau de Parfum",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-eau-de-parfum.jpg"
       }
     ]
   },
