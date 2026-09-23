@@ -467,6 +467,11 @@ window.PRODUCTS = [
         "image": "img/prod/var/bleu-chanel-no-5-edp.jpg"
       },
       {
+        "name": "No.5 L'EAU EDT",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-coco-4.jpg"
+      },
+      {
         "name": "coco-1",
         "price": "",
         "image": "img/prod/var/bleu-chanel-coco-1.jpg"
@@ -475,11 +480,6 @@ window.PRODUCTS = [
         "name": "coco-3",
         "price": "",
         "image": "img/prod/var/bleu-chanel-coco-3.jpg"
-      },
-      {
-        "name": "coco-4",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-coco-4.jpg"
       },
       {
         "name": "Chance Eau Vive",
