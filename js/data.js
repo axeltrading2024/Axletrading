@@ -2147,22 +2147,22 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-7.jpg"
       },
       {
-        "name": "8",
+        "name": "JPG La Belle Flower Edition 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-8.jpg"
       },
       {
-        "name": "9",
+        "name": "JPG  Le Male Paradise Garden 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-9.jpg"
       },
       {
-        "name": "10",
+        "name": "JPG Classique EDP 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-10.jpg"
       },
       {
-        "name": "11",
+        "name": "JPG  Le Beau EDP 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-11.jpg"
       },
