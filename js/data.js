@@ -352,19 +352,14 @@ window.PRODUCTS = [
         "image": "img/prod/var/dior-sauvage-jadore-edp-absolu.jpg"
       },
       {
-        "name": "Miss Dior-1",
+        "name": "Miss Dior Eau de Parfum",
         "price": "",
-        "image": "img/prod/var/dior-sauvage-miss-dior.jpg"
+        "image": "img/prod/var/dior-sauvage-miss-dior-eau-de-parfum.jpg"
       },
       {
-        "name": "Miss Dior-2",
+        "name": "Miss Dior AbsolutelyBlooming",
         "price": "",
-        "image": "img/prod/var/dior-sauvage-miss-dior-2.jpg"
-      },
-      {
-        "name": "Miss Dior-3",
-        "price": "",
-        "image": "img/prod/var/dior-sauvage-miss-dior-3.jpg"
+        "image": "img/prod/var/dior-sauvage-miss-dior-absolutelyblooming.jpg"
       }
     ]
   },
