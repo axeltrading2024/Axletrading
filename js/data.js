@@ -2242,7 +2242,7 @@ window.PRODUCTS = [
   },
   {
     "id": "v",
-    "name": "Versace style perfume",
+    "name": "Versace style 100ml",
     "brand": "Versace",
     "price": "€18",
     "note": "love-sex-passion",
