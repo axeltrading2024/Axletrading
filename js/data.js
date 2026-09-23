@@ -2112,7 +2112,7 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "JPG Divine 100ml",
+        "name": "JPG Gaultier Divine 100ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-jpg-divine-100ml.jpg"
       },
@@ -2122,27 +2122,27 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-2.jpg"
       },
       {
-        "name": "3",
+        "name": "JPG Le Beau Eau de Parfum 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-3.jpg"
       },
       {
-        "name": "4",
+        "name": "JPG Le Beau Male 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-4.jpg"
       },
       {
-        "name": "5",
+        "name": "JPG Le Beau Male EDT 25ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-5.jpg"
       },
       {
-        "name": "6",
+        "name": "JPG Ultra Male EDT 125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-6.jpg"
       },
       {
-        "name": "7",
+        "name": "JPG  Le Male Le Parfum125ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-7.jpg"
       },
