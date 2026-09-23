@@ -448,7 +448,7 @@ window.PRODUCTS = [
   },
   {
     "id": "valentino-born-in-roma",
-    "name": "Valentino born in roma",
+    "name": "Valentino born in roma 100ml",
     "brand": "OEM",
     "price": "€18",
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
