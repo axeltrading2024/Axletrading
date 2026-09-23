@@ -447,68 +447,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "bleu-chanel",
-    "name": "Chanel Style 100ml",
-    "brand": "Chanel",
-    "price": "€18",
-    "note": "Woody aromatic",
-    "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
-    "collection": "perfumes",
-    "subcategory": "best-sellers",
-    "keywords": [
-      "chanel",
-      "bleu",
-      "perfume"
-    ],
-    "variants": [
-      {
-        "name": "blue channle",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-blue-channle.jpg"
-      },
-      {
-        "name": "No.5 EDP",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-no-5-edp.jpg"
-      },
-      {
-        "name": "No.5 L'EAU EDT",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-coco-4.jpg"
-      },
-      {
-        "name": "Coco Eau de Parfum",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-coco-1.jpg"
-      },
-      {
-        "name": "Coco Mademoiselle",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-coco-3.jpg"
-      },
-      {
-        "name": "Chance Eau Vive",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-chance-1.jpg"
-      },
-      {
-        "name": "Chance Eau Fraiche",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-chance-2.jpg"
-      },
-      {
-        "name": "Chance Eau de Toilette",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-chance-eau-de-toilette.jpg"
-      },
-      {
-        "name": "Chance  Eau de Parfum",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-chance-eau-de-parfum.jpg"
-      }
-    ]
-  },
-  {
     "id": "valentino-born-in-roma",
     "name": "Valentino born in roma",
     "brand": "OEM",
@@ -568,6 +506,68 @@ window.PRODUCTS = [
         "name": "Uomo",
         "price": "",
         "image": "img/prod/var/valentino-born-in-roma-uomo.jpg"
+      }
+    ]
+  },
+  {
+    "id": "bleu-chanel",
+    "name": "Chanel Style 100ml",
+    "brand": "Chanel",
+    "price": "€18",
+    "note": "Woody aromatic",
+    "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "keywords": [
+      "chanel",
+      "bleu",
+      "perfume"
+    ],
+    "variants": [
+      {
+        "name": "blue channle",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-blue-channle.jpg"
+      },
+      {
+        "name": "No.5 EDP",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-no-5-edp.jpg"
+      },
+      {
+        "name": "No.5 L'EAU EDT",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-coco-4.jpg"
+      },
+      {
+        "name": "Coco Eau de Parfum",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-coco-1.jpg"
+      },
+      {
+        "name": "Coco Mademoiselle",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-coco-3.jpg"
+      },
+      {
+        "name": "Chance Eau Vive",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-1.jpg"
+      },
+      {
+        "name": "Chance Eau Fraiche",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-2.jpg"
+      },
+      {
+        "name": "Chance Eau de Toilette",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-eau-de-toilette.jpg"
+      },
+      {
+        "name": "Chance  Eau de Parfum",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-chance-eau-de-parfum.jpg"
       }
     ]
   },
