@@ -337,12 +337,12 @@ window.PRODUCTS = [
         "image": "img/prod/var/dior-sauvage-homme-parfum.jpg"
       },
       {
-        "name": "jadore-1",
+        "name": "jadore-EDP",
         "price": "",
         "image": "img/prod/var/dior-sauvage-jadore-1.jpg"
       },
       {
-        "name": "jadore-2",
+        "name": "jadore-EDT",
         "price": "",
         "image": "img/prod/var/dior-sauvage-jadore-2.jpg"
       },
