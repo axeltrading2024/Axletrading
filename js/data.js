@@ -11,10 +11,10 @@ window.SITE_CONFIG = {
   "brand": "Axeltrading",
   "tagline": "Wholesale Product Finder",
   "contactName": "Eddy",
-  "whatsapp": "8615875209571",
-  "whatsappDisplay": "+86 158 7520 9571",
+  "whatsapp": "4915224901963",
+  "whatsappDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
-  "phoneBackup": "+49 152 2490 1963",
+  "phoneBackup": "+86 158 7520 9571",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
   "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
@@ -582,39 +582,49 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1",
+        "name": "Stronger With You Intensely",
         "price": "",
         "image": "img/prod/var/a-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Stronger With You Absolutely",
         "price": "",
         "image": "img/prod/var/a-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Stronger With You Tobacco",
         "price": "",
-        "image": "img/prod/var/a-3.jpg"
+        "image": "img/prod/var/a-stronger-with-you-tobacco.jpg"
       },
       {
-        "name": "4",
+        "name": "Stronger With You Ambe",
+        "price": "",
+        "image": "img/prod/var/a-stronger-with-you-ambe.jpg"
+      },
+      {
+        "name": "Armarni Code Parfum",
         "price": "",
         "image": "img/prod/var/a-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Acqua di Giò Profondo EDP",
         "price": "",
         "image": "img/prod/var/a-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Acqua di Giò Profumo Parfum",
         "price": "",
         "image": "img/prod/var/a-6.jpg"
       },
       {
-        "name": "7",
+        "name": "MY WAY Eau de Parfum Intense",
         "price": "",
         "image": "img/prod/var/a-7.jpg"
+      },
+      {
+        "name": "My Way EDP Nectar",
+        "price": "",
+        "image": "img/prod/var/a-my-way-edp-nectar.jpg"
       },
       {
         "name": "8",
