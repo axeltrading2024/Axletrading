@@ -462,14 +462,14 @@ window.PRODUCTS = [
         "image": "img/prod/var/bleu-chanel-blue-channle.jpg"
       },
       {
+        "name": "No.5 EDP",
+        "price": "",
+        "image": "img/prod/var/bleu-chanel-no-5-edp.jpg"
+      },
+      {
         "name": "coco-1",
         "price": "",
         "image": "img/prod/var/bleu-chanel-coco-1.jpg"
-      },
-      {
-        "name": "coco-2",
-        "price": "",
-        "image": "img/prod/var/bleu-chanel-coco-2.jpg"
       },
       {
         "name": "coco-3",
