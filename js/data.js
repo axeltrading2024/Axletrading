@@ -2252,12 +2252,12 @@ window.PRODUCTS = [
     "video": "img/vid/v.mp4",
     "variants": [
       {
-        "name": "Pour Femme EDP 100ml",
+        "name": "Pour Femme EDP",
         "price": "",
         "image": "img/prod/var/v-1.jpg"
       },
       {
-        "name": "Pour homme EDT 100ml",
+        "name": "Pour homme EDT",
         "price": "",
         "image": "img/prod/var/v-2.jpg"
       },
@@ -2272,37 +2272,37 @@ window.PRODUCTS = [
         "image": "img/prod/var/v-4.jpg"
       },
       {
-        "name": "Pour homme Dylan blue 100ml",
+        "name": "Pour homme Dylan blue",
         "price": "",
         "image": "img/prod/var/v-5.jpg"
       },
       {
-        "name": "Eros EDT 100ml",
+        "name": "Eros EDT",
         "price": "",
         "image": "img/prod/var/v-6.jpg"
       },
       {
-        "name": "Eros Flame EDP 100ml",
+        "name": "Eros Flame EDP",
         "price": "",
         "image": "img/prod/var/v-7.jpg"
       },
       {
-        "name": "Eros Energy 100ml",
+        "name": "Eros Energy",
         "price": "",
         "image": "img/prod/var/v-8.jpg"
       },
       {
-        "name": "Eros Parfum 100ml",
+        "name": "Eros Parfum",
         "price": "",
         "image": "img/prod/var/v-9.jpg"
       },
       {
-        "name": "Versense 100ml",
+        "name": "Versense",
         "price": "",
         "image": "img/prod/var/v-versense-100ml.jpg"
       },
       {
-        "name": "Oud Noir Pour Homme 100ml",
+        "name": "Oud Noir Pour Homme",
         "price": "",
         "image": "img/prod/var/v-oud-noir-pour-homme-100ml.jpg"
       }
