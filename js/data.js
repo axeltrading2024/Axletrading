@@ -2031,7 +2031,7 @@ window.PRODUCTS = [
   },
   {
     "id": "c",
-    "name": "Carolina Herrera style",
+    "name": "Carolina Herrera style 80ml",
     "brand": "Carolina Herrera",
     "price": "€18",
     "note": "Embrace your duality, rule with fearless elegance",
