@@ -573,7 +573,7 @@ window.PRODUCTS = [
   },
   {
     "id": "a",
-    "name": "Armani style perfumes",
+    "name": "Armani style perfumes 100ml",
     "brand": "Armani",
     "price": "€18",
     "note": "A captivating blend of sugar-coated chestnut and vanilla, defining modern masculine strength through a warm, addictive gourmand-woody scent",
