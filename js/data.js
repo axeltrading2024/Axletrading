@@ -2055,12 +2055,12 @@ window.PRODUCTS = [
         "image": "img/prod/var/c-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Very Good Girl Elixir",
         "price": "",
         "image": "img/prod/var/c-4.jpg"
       },
       {
-        "name": "5",
+        "name": "GOOD GIRL BLUSH (EDP)",
         "price": "",
         "image": "img/prod/var/c-5.jpg"
       },
@@ -2068,6 +2068,11 @@ window.PRODUCTS = [
         "name": "6",
         "price": "",
         "image": "img/prod/var/c-6.jpg"
+      },
+      {
+        "name": "Good Girl Sparkling Ice",
+        "price": "",
+        "image": "img/prod/var/c-good-girl-sparkling-ice.jpg"
       },
       {
         "name": "7",
