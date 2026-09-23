@@ -285,7 +285,7 @@ window.PRODUCTS = [
   },
   {
     "id": "dior-sauvage",
-    "name": "Dior Sauvage 100ml",
+    "name": "Dior Style 100ml",
     "brand": "Dior",
     "price": "€18",
     "note": "Icon fragrance",
@@ -307,9 +307,9 @@ window.PRODUCTS = [
         "image": "img/prod/var/dior-sauvage-sauvage-edp.jpg"
       },
       {
-        "name": "Sauvage-Elixir",
+        "name": "Sauvage-EDT",
         "price": "",
-        "image": "img/prod/var/dior-sauvage-exilir.jpg"
+        "image": "img/prod/var/dior-sauvage-sauvage-edt.jpg"
       },
       {
         "name": "Sauvage-parfum",
@@ -317,19 +317,24 @@ window.PRODUCTS = [
         "image": "img/prod/var/dior-sauvage-parfum.jpg"
       },
       {
-        "name": "Sauvage-EDT",
+        "name": "Sauvage-Elixir",
         "price": "",
-        "image": "img/prod/var/dior-sauvage-sauvage-edt.jpg"
+        "image": "img/prod/var/dior-sauvage-exilir.jpg"
       },
       {
-        "name": "Homme-1",
+        "name": "HOMME EDP INTENSE",
         "price": "",
         "image": "img/prod/var/dior-sauvage-homme-1.jpg"
       },
       {
-        "name": "Homme-2",
+        "name": "HOMME Eau de Toilette",
         "price": "",
         "image": "img/prod/var/dior-sauvage-homme-2.jpg"
+      },
+      {
+        "name": "HOMME-Parfum",
+        "price": "",
+        "image": "img/prod/var/dior-sauvage-homme-parfum.jpg"
       },
       {
         "name": "jadore-1",
