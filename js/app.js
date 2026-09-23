@@ -373,7 +373,7 @@
   function categoryCardHTML(c) {
     var empty = productsIn(c.slug).length === 0;
     return '' +
-      '<a href="category.html?slug=' + esc(c.slug) + '" class="cat-card card-lift">' +
+      '<a href="category.html?slug=' + esc(c.slug) + '" class="cat-card card-lift cat-' + esc(c.slug) + '">' +
         '<div class="media">' +
           (empty ? '<span class="badge-soon">Coming soon</span>' : '') +
           '<img src="' + esc(c.image) + '" alt="' + esc(c.name) + '" loading="lazy">' +
