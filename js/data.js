@@ -2085,12 +2085,17 @@ window.PRODUCTS = [
         "image": "img/prod/var/c-8.jpg"
       },
       {
-        "name": "9",
+        "name": "212 Men EDT",
         "price": "",
         "image": "img/prod/var/c-9.jpg"
       },
       {
-        "name": "10",
+        "name": "212 Sexy Men EDT",
+        "price": "",
+        "image": "img/prod/var/c-212-sexy-men.jpg"
+      },
+      {
+        "name": "212 Sexy EDP",
         "price": "",
         "image": "img/prod/var/c-10.jpg"
       }
