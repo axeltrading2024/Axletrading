@@ -472,12 +472,12 @@ window.PRODUCTS = [
         "image": "img/prod/var/bleu-chanel-coco-4.jpg"
       },
       {
-        "name": "coco-1",
+        "name": "Coco Eau de Parfum",
         "price": "",
         "image": "img/prod/var/bleu-chanel-coco-1.jpg"
       },
       {
-        "name": "coco-3",
+        "name": "Coco Mademoiselle",
         "price": "",
         "image": "img/prod/var/bleu-chanel-coco-3.jpg"
       },
