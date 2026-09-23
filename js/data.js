@@ -337,14 +337,19 @@ window.PRODUCTS = [
         "image": "img/prod/var/dior-sauvage-homme-parfum.jpg"
       },
       {
+        "name": "jadore-EDT",
+        "price": "",
+        "image": "img/prod/var/dior-sauvage-jadore-2.jpg"
+      },
+      {
         "name": "jadore-EDP",
         "price": "",
         "image": "img/prod/var/dior-sauvage-jadore-1.jpg"
       },
       {
-        "name": "jadore-EDT",
+        "name": "jadore-EDP absolu",
         "price": "",
-        "image": "img/prod/var/dior-sauvage-jadore-2.jpg"
+        "image": "img/prod/var/dior-sauvage-jadore-edp-absolu.jpg"
       },
       {
         "name": "Miss Dior-1",
