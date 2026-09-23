@@ -2167,7 +2167,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-11.jpg"
       },
       {
-        "name": "12",
+        "name": "JPG Scandal  EDP100ml",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-12.jpg"
       },
@@ -2175,6 +2175,16 @@ window.PRODUCTS = [
         "name": "13",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-13.jpg"
+      },
+      {
+        "name": "JPG Le Beau Narciso EDP 125ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-jpg-le-beau-narciso-edp-125ml.jpg"
+      },
+      {
+        "name": "JPG Scandal EDT 100ml",
+        "price": "",
+        "image": "img/prod/var/jean-paul-gaultter-jpg-scandal-edt-100ml.jpg"
       }
     ]
   },
