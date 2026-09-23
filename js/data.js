@@ -2040,24 +2040,29 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1",
+        "name": "GOOD GIRL COILECTOR EDTTION (EDP)",
         "price": "",
         "image": "img/prod/var/c-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Very Good Girl Glam EDP",
         "price": "",
-        "image": "img/prod/var/c-2.jpg"
+        "image": "img/prod/var/c-very-good-girl-glam-edp.jpg"
       },
       {
-        "name": "3",
+        "name": "Good Girl Supreme EDP",
         "price": "",
         "image": "img/prod/var/c-3.jpg"
       },
       {
-        "name": "Very Good Girl Elixir",
+        "name": "Good Girl Elixir",
         "price": "",
         "image": "img/prod/var/c-4.jpg"
+      },
+      {
+        "name": "Good Girl  EDP",
+        "price": "",
+        "image": "img/prod/var/c-6.jpg"
       },
       {
         "name": "GOOD GIRL BLUSH (EDP)",
@@ -2065,22 +2070,17 @@ window.PRODUCTS = [
         "image": "img/prod/var/c-5.jpg"
       },
       {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/var/c-6.jpg"
-      },
-      {
         "name": "Good Girl Sparkling Ice",
         "price": "",
         "image": "img/prod/var/c-good-girl-sparkling-ice.jpg"
       },
       {
-        "name": "7",
+        "name": "Bad Boy EDT",
         "price": "",
         "image": "img/prod/var/c-7.jpg"
       },
       {
-        "name": "8",
+        "name": "Bad Boy EDP",
         "price": "",
         "image": "img/prod/var/c-8.jpg"
       },
