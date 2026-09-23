@@ -2103,7 +2103,7 @@ window.PRODUCTS = [
   },
   {
     "id": "jean-paul-gaultter",
-    "name": "Jean Paul Gaultier style",
+    "name": "Jean Paul Gaultier style 125ml",
     "brand": "Jean Paul Gaultier",
     "price": "€18",
     "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
@@ -2117,62 +2117,62 @@ window.PRODUCTS = [
         "image": "img/prod/var/jean-paul-gaultter-jpg-divine-100ml.jpg"
       },
       {
-        "name": "JPG  Le Male Elixir 125ml",
+        "name": "JPG  Le Male Elixir",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-2.jpg"
       },
       {
-        "name": "JPG  Le Male Le Parfum125ml",
+        "name": "JPG  Le Male Le Parfum",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-7.jpg"
       },
       {
-        "name": "JPG  Le Male Paradise Garden 125ml",
+        "name": "JPG  Le Male Paradise Garden",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-9.jpg"
       },
       {
-        "name": "JPG Ultra  Male EDT 125ml",
+        "name": "JPG Ultra  Male EDT",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-6.jpg"
       },
       {
-        "name": "JPG Le Beau Le Parfum EDP 125ml",
+        "name": "JPG Le Beau Le Parfum EDP",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-3.jpg"
       },
       {
-        "name": "JPG Le Beau 125ml",
+        "name": "JPG Le Beau",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-4.jpg"
       },
       {
-        "name": "JPG Le Beau  EDT 25ml",
+        "name": "JPG Le Beau  EDT",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-5.jpg"
       },
       {
-        "name": "JPG Le Beau Narciso EDP 125ml",
+        "name": "JPG Le Beau Narciso EDP",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-jpg-le-beau-narciso-edp-125ml.jpg"
       },
       {
-        "name": "JPG  Le Beau EDP 125ml",
+        "name": "JPG  Le Beau EDP",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-11.jpg"
       },
       {
-        "name": "JPG La Belle Flower Edition 125ml",
+        "name": "JPG La Belle Flower Edition",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-8.jpg"
       },
       {
-        "name": "JPG La Belle EDP intens 125ml",
+        "name": "JPG La Belle EDP intens",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-10.jpg"
       },
       {
-        "name": "JPG La Belle Paradise Garden125ml",
+        "name": "JPG La Belle Paradise Garden",
         "price": "",
         "image": "img/prod/var/jean-paul-gaultter-jpg-la-belle-paradise-garden125ml.jpg"
       },
