@@ -3175,6 +3175,44 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-3-1.jpg"
       }
     ]
+  },
+  {
+    "id": "p-4",
+    "name": "PS controller",
+    "brand": "Sony",
+    "price": "€12-€35",
+    "note": "bluetooth,PS4 PS5 controller",
+    "desc": "",
+    "collection": "other",
+    "keywords": [
+      "PS",
+      "game",
+      "controller",
+      "ninetendo",
+      "joycon"
+    ],
+    "variants": [
+      {
+        "name": "Ps4 controller",
+        "price": "€12",
+        "image": "img/prod/var/p-4-ps4-controller.jpg"
+      },
+      {
+        "name": "PS5 controller",
+        "price": "€35",
+        "image": "img/prod/var/p-4-ps5-controller.jpg"
+      },
+      {
+        "name": "ninetendo switch",
+        "price": "€18",
+        "image": "img/prod/var/p-4-switch.jpg"
+      },
+      {
+        "name": "ninetendo Joycon",
+        "price": "€20",
+        "image": "img/prod/var/p-4-joycon.jpg"
+      }
+    ]
   }
 ];
 
