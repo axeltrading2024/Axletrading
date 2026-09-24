@@ -1168,22 +1168,22 @@ window.PRODUCTS = [
     "variants": [
       {
         "name": "GA 2100",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/g-3-ga-2100.jpg"
       },
       {
         "name": "GA800",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/g-3-ga800.jpg"
       },
       {
         "name": "GA110",
-        "price": "",
+        "price": "€18",
         "image": "img/prod/var/g-3-ga110.jpg"
       },
       {
         "name": "GA+BA couple",
-        "price": "",
+        "price": "€30",
         "image": "img/prod/var/g-3-ga-ba-couple.jpg"
       }
     ]
