@@ -128,6 +128,10 @@ window.CATEGORIES = [
       {
         "slug": "other-products",
         "name": "Other Products"
+      },
+      {
+        "slug": "gamepad",
+        "name": "Gamepad"
       }
     ]
   },
