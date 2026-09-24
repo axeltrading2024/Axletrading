@@ -1608,9 +1608,14 @@ window.PRODUCTS = [
         "image": "img/prod/var/magsafe-pad-20w-charger.jpg"
       },
       {
-        "name": "cable",
+        "name": "lightning cable",
         "price": "€2.2",
         "image": "img/prod/var/magsafe-pad-cable.jpg"
+      },
+      {
+        "name": "usb-c cable",
+        "price": "€2.2",
+        "image": "img/prod/var/magsafe-pad-usb-c-cable.jpg"
       },
       {
         "name": "charger fit",
