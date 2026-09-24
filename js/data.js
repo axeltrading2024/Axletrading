@@ -1591,7 +1591,7 @@ window.PRODUCTS = [
     "id": "magsafe-pad",
     "name": "cellphone charger",
     "brand": "EddySupply",
-    "price": "€2",
+    "price": "from€2.2",
     "note": "20W fast charger",
     "desc": "Magnetic 15W wireless charging pad with an aluminium shell and slip-free base.",
     "collection": "chargers",
