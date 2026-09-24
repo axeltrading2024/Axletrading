@@ -3178,12 +3178,13 @@ window.PRODUCTS = [
   },
   {
     "id": "p-4",
-    "name": "PS controller",
+    "name": "Gamepad",
     "brand": "Sony",
     "price": "€12-€35",
     "note": "bluetooth,PS4 PS5 controller",
     "desc": "",
     "collection": "other",
+    "subcategory": "gamepad",
     "keywords": [
       "PS",
       "game",
