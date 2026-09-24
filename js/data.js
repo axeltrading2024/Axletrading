@@ -1604,12 +1604,12 @@ window.PRODUCTS = [
     "variants": [
       {
         "name": "20W adapter",
-        "price": "€2",
+        "price": "€2.2",
         "image": "img/prod/var/magsafe-pad-20w-charger.jpg"
       },
       {
         "name": "cable",
-        "price": "€2",
+        "price": "€2.2",
         "image": "img/prod/var/magsafe-pad-cable.jpg"
       },
       {
@@ -2310,7 +2310,7 @@ window.PRODUCTS = [
   },
   {
     "id": "l-2",
-    "name": "LV style 100ml",
+    "name": "LV style perfume",
     "brand": "Louis Vuitton",
     "price": "€30",
     "note": "Wear the art of travel, embrace your endless journey",
@@ -2321,74 +2321,64 @@ window.PRODUCTS = [
     "keywords": [
       "lv",
       "perfumes",
-      "imagination"
+      "brave"
     ],
     "variants": [
       {
-        "name": "L'IMMENSITE (EDP)",
+        "name": "1",
         "price": "",
         "image": "img/prod/var/l-2-1.jpg"
       },
       {
-        "name": "SPELL ON YOU (EDP)",
+        "name": "2",
         "price": "",
         "image": "img/prod/var/l-2-2.jpg"
       },
       {
-        "name": "Stellar Times",
+        "name": "3",
         "price": "",
-        "image": "img/prod/var/l-2-stellar-times.jpg"
+        "image": "img/prod/var/l-2-3.jpg"
       },
       {
-        "name": "CITY OF STARS (EDP)",
+        "name": "4",
         "price": "",
         "image": "img/prod/var/l-2-4.jpg"
       },
       {
-        "name": "LV IMAGIN ATION (EDP)",
+        "name": "5",
         "price": "",
         "image": "img/prod/var/l-2-5.jpg"
       },
       {
-        "name": "LV CALIFORNIA VUITTON (EDP)",
+        "name": "6",
         "price": "",
         "image": "img/prod/var/l-2-6.jpg"
       },
       {
-        "name": "PACIFIC CHILL (EDP)",
+        "name": "7",
         "price": "",
         "image": "img/prod/var/l-2-7.jpg"
       },
       {
-        "name": "AFTERNOON SWIM (EDP)",
+        "name": "8",
         "price": "",
         "image": "img/prod/var/l-2-8.jpg"
       },
       {
-        "name": "Sur la Route(EDP)",
+        "name": "9",
+        "price": "",
+        "image": "img/prod/var/l-2-9.jpg"
+      },
+      {
+        "name": "10",
         "price": "",
         "image": "img/prod/var/l-2-10.jpg"
-      },
-      {
-        "name": "LV OMBRE NOMADE (EDP)",
-        "price": "",
-        "image": "img/prod/var/l-2-lv-ombre-nomade-edp.jpg"
-      },
-      {
-        "name": "LES SABLES ROSES (EDP)",
-        "price": "",
-        "image": "img/prod/var/l-2-les-sables-roses-edp.jpg"
-      },
-      {
-        "name": "ON THE BEACH (EDP)",
-        "price": "",
-        "image": "img/prod/var/l-2-on-the-beach-edp.jpg"
       }
     ]
   },
   {
     "id": "paco-rabannel",
-    "name": "Paco Rabanne style  100ml",
+    "name": "Paco Rabanne style perfume",
     "brand": "Paco Rabanne",
     "price": "€18",
     "note": "",
@@ -2397,52 +2387,52 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "variants": [
       {
-        "name": "1 Million Royal Parfum",
+        "name": "1 Million Royal Parfum 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1.jpg"
       },
       {
-        "name": "1 Million Gold EDP intense",
+        "name": "1 Million Gold EDP intense 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1-million-gold-edp-intense-100ml.jpg"
       },
       {
-        "name": "1 Million Elixir",
+        "name": "1 Million Elixir 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-3.jpg"
       },
       {
-        "name": "1 Million Golden Oud",
+        "name": "1 Million Golden Oud 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-million-golden-oud.jpg"
       },
       {
-        "name": "1 Million parfum",
+        "name": "1 Million parfum 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-1-million-parfum-100ml.jpg"
       },
       {
-        "name": "Invictus Legend EDP",
+        "name": "Invictus Legend EDP 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-6.jpg"
       },
       {
-        "name": "Invictus Parfum",
+        "name": "Invictus Parfum 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-7.jpg"
       },
       {
-        "name": "Invictus Victory EDP extreme",
+        "name": "Invictus Victory EDP extreme 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-9.jpg"
       },
       {
-        "name": "Phantom EDT",
+        "name": "Phantom EDT 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-10.jpg"
       },
       {
-        "name": "Phantom EDP intense",
+        "name": "Phantom EDP intense 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-11.jpg"
       },
@@ -2457,7 +2447,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/paco-rabannel-13.jpg"
       },
       {
-        "name": "Pure XS EDT",
+        "name": "Pure XS EDT 100ml",
         "price": "",
         "image": "img/prod/var/paco-rabannel-14.jpg"
       },
