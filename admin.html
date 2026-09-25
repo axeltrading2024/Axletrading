@@ -133,9 +133,12 @@
               <video data-video-preview class="vid-preview" controls muted playsinline style="display:none"></video>
             </div>
             <div class="field full">
-              <label for="f-images">主图集（可选，详情页自动轮播，最多 4 张，每行一个图片路径）</label>
-              <textarea id="f-images" data-f-images rows="3" placeholder="如 img/prod/var/xxx.jpg（每行一个；留空 = 详情页只显示主图）"></textarea>
-              <div class="it-tip">填 2-4 张图后，详情页主图会自动轮播（3.5 秒一张循环），带左右箭头、圆点和缩略图。</div>
+              <label>主图集（可选，详情页自动轮播，最多 4 张，本地选图自动上传）</label>
+              <div data-gal-list></div>
+              <div class="gh-actions" style="margin-top:8px">
+                <button type="button" class="btn btn-outline" data-gal-add>＋ 添加轮播图</button>
+              </div>
+              <div class="it-tip">点「添加轮播图」→ 选本地图片，会自动压缩并上传到 img/prod/gal/（不用手填路径）；用 ↑↓ 调整轮播顺序。填 2-4 张后，详情页主图会自动轮播（3.5 秒一张循环），带左右箭头、圆点和缩略图。</div>
             </div>
             <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
               <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
@@ -608,7 +611,7 @@
   }
 
   /* ---------------- 表单 ---------------- */
-  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video', 'images'];
+  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video'];
 
   function fillForm(p) {
     if (!p) { resetForm(); return; }
@@ -620,7 +623,7 @@
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
     $('[data-f-video]').value = p.video || '';
-    $('[data-f-images]').value = (p.images || []).join('\n');
+    renderGalRows(p.images);
     showVideoPreview(p.video || '');
     if (p.video) $('[data-video-tip]').textContent = '已有视频：' + p.video;
     $('[data-f-collection]').value = p.collection || '';
@@ -661,6 +664,7 @@
     showVideoPreview('');
     $('[data-video-tip]').textContent = '上传建议：mp4，15-30 秒，单文件 ≤ 25MB（超了要压缩）；上传后自动存到 img/vid/';
     renderVarRows(null);
+    renderGalRows(null);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'none';
     renderList();
@@ -685,7 +689,7 @@
     p.keywords = p.keywords ? p.keywords.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : [];
     if (!p.subcategory) p.subcategory = undefined;
     if (!p.video) p.video = undefined;
-    p.images = p.images ? p.images.split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 4) : undefined;
+    p.images = collectGallery();
     p.variants = collectVariants();
     return p;
   }
@@ -1068,6 +1072,119 @@
     });
   }
 
+  /* ---------------- 主图集 / Gallery（详情页轮播，最多 4 张，本地选图自动上传） ---------------- */
+  /* 与型号图目录物理隔离：img/prod/gal/<产品ID>-g<N>.jpg，避免同名互踩 */
+  var GALLERY_IMG_DIR = 'img/prod/gal/';
+  var GALLERY_MAX = 4;
+
+  function addGalRow(path, focus) {
+    var list = $('[data-gal-list]');
+    if (!list) return null;
+    if (list.querySelectorAll('[data-gal-row]').length >= GALLERY_MAX) {
+      status('最多 ' + GALLERY_MAX + ' 张轮播图，先删掉一张再添加', 'err');
+      return null;
+    }
+    var row = document.createElement('div');
+    row.className = 'var-row';
+    row.setAttribute('data-gal-row', '');
+    row.innerHTML =
+      '<div class="var-img">' +
+        '<img class="var-thumb" data-gal-thumb alt="轮播图缩略图" title="点击查看大图"' + (path ? '' : ' style="display:none"') + '>' +
+        '<input type="file" accept="image/*" data-gal-file style="display:none">' +
+        '<button type="button" class="btn btn-outline" data-gal-pick>🖼 选择本地图片</button>' +
+        '<span class="var-img-status" data-gal-img-status>' + (path ? '✅ ' + esc(path) : '未选择') + '</span>' +
+        '<input type="hidden" data-gal-img-value value="' + esc(path || '') + '">' +
+      '</div>' +
+      '<div class="var-mv">' +
+        '<button type="button" data-gal-up title="前移（轮播顺序靠前）">↑</button>' +
+        '<button type="button" data-gal-down title="后移（轮播顺序靠后）">↓</button>' +
+      '</div>' +
+      '<button type="button" class="btn btn-ghost var-del" data-gal-del title="删除该轮播图">×</button>';
+    list.appendChild(row);
+    if (path) setVarThumb(row.querySelector('[data-gal-thumb]'), localPreviews[path] || resolveImgUrl(path));
+    return row;
+  }
+
+  function renderGalRows(images) {
+    var list = $('[data-gal-list]');
+    if (!list) return;
+    list.innerHTML = '';
+    (images || []).slice(0, GALLERY_MAX).forEach(function (path) { addGalRow(path, false); });
+  }
+
+  /* 同一产品内已有轮播行占用的文件名（自动避让，杜绝两行共用一张图） */
+  function takenGalleryNames(row) {
+    var taken = {};
+    $$('[data-gal-row]').forEach(function (r) {
+      if (r === row) return;
+      var v = (r.querySelector('[data-gal-img-value]').value || '').trim();
+      if (v) taken[v.split('/').pop()] = true;
+    });
+    return taken;
+  }
+
+  function collectGallery() {
+    var out = [], seen = {};
+    $$('[data-gal-row]').forEach(function (row) {
+      var v = (row.querySelector('[data-gal-img-value]').value || '').trim();
+      if (!v || seen[v]) return;
+      seen[v] = true;
+      out.push(v);
+    });
+    return out.length ? out.slice(0, GALLERY_MAX) : undefined;
+  }
+
+  function moveGalRow(row, dir) {
+    var list = $('[data-gal-list]');
+    if (!list || !row) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('[data-gal-row]'));
+    var i = rows.indexOf(row);
+    if (i < 0) return;
+    var j = i + dir;
+    if (j < 0 || j >= rows.length) {
+      status(dir < 0 ? '已经是第一张了' : '已经是最后一张了');
+      return;
+    }
+    if (dir < 0) list.insertBefore(row, rows[j]);
+    else list.insertBefore(row, rows[j].nextSibling);
+    status('已调整顺序 —— 点「保存产品」后生效（第 1 张为详情页默认主图）');
+  }
+
+  function handleGalleryImage(file, row) {
+    if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
+    compressToJpeg(file, function (dataUrl) {
+      var pid = ($('[data-f-id]').value || '').trim() || slugify($('[data-f-name]').value || 'product', []);
+      var base = pid + '-g';
+      var taken = takenGalleryNames(row);
+      var fname = base + '1.jpg', n = 2;
+      while (taken[fname]) { fname = base + n + '.jpg'; n++; }
+      var path = GALLERY_IMG_DIR + fname;
+      var st = row.querySelector('[data-gal-img-status]');
+      var hv = row.querySelector('[data-gal-img-value]');
+      setVarThumb(row.querySelector('[data-gal-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
+      localPreviews[path] = dataUrl;
+      if (ghEnabled()) {
+        st.textContent = '正在上传 ' + path + ' …';
+        var b64 = String(dataUrl).split(',')[1] || dataUrl;
+        ghPut(path, b64, '上传轮播图 ' + fname).then(function () {
+          hv.value = path;
+          st.textContent = '✅ 已发布：' + path;
+          status('✅ 轮播图已发布：' + path + ' —— 记得点「保存产品」');
+        }).catch(function (e) {
+          hv.value = path;
+          st.textContent = '上传失败，已下载，稍后手动放到 img/prod/gal/';
+          triggerDownload(fname, dataUrl);
+          status('轮播图上传失败：' + e.message, 'err');
+        });
+      } else {
+        hv.value = path;
+        st.textContent = '已处理，下载后请放到 img/prod/gal/';
+        triggerDownload(fname, dataUrl);
+        status('轮播图已处理并开始下载：' + fname + '（请放进 img/prod/gal/）');
+      }
+    });
+  }
+
   /* ---------------- 导出 data.js ---------------- */
   function exportData() {
     var content = buildDataJS();
@@ -1263,6 +1380,37 @@
       if (!fi) return;
       var row = fi.closest('[data-var-row]');
       if (row) handleVariantImage(fi.files[0], row);
+      fi.value = '';
+    });
+
+    // 主图集 / Gallery
+    $('[data-gal-add]').addEventListener('click', function () {
+      if (!addGalRow(null, true)) return;
+      status('已添加一行 —— 点「选择本地图片」选图（选完会自动上传，最后点「保存产品」）');
+    });
+    var galList = $('[data-gal-list]');
+    galList.addEventListener('click', function (e) {
+      var row = e.target.closest('[data-gal-row]');
+      if (!row) return;
+      var thumbEl = e.target.closest('[data-gal-thumb]');
+      if (thumbEl && thumbEl.src) { window.open(thumbEl.src, '_blank'); return; }
+      var up = e.target.closest('[data-gal-up]');
+      if (up) { moveGalRow(row, -1); return; }
+      var down = e.target.closest('[data-gal-down]');
+      if (down) { moveGalRow(row, 1); return; }
+      var del = e.target.closest('[data-gal-del]');
+      if (del) { row.remove(); status('已删除该轮播图 —— 点「保存产品」后生效'); return; }
+      var pick = e.target.closest('[data-gal-pick]');
+      if (pick) {
+        var fi = row.querySelector('[data-gal-file]');
+        if (fi) fi.click();
+      }
+    });
+    galList.addEventListener('change', function (e) {
+      var fi = e.target.closest('[data-gal-file]');
+      if (!fi) return;
+      var row = fi.closest('[data-gal-row]');
+      if (row) handleGalleryImage(fi.files[0], row);
       fi.value = '';
     });
 
