@@ -9,6 +9,8 @@
   var PRODUCTS = window.PRODUCTS || [];
   var CATEGORIES = window.CATEGORIES || [];
   var STORAGE_KEY = 'eddysupply.inquiry.v1';
+  var GALLERY_INTERVAL_MS = 2000; // 详情页主图轮播间隔（Eddy 定：2 秒一张）
+  var GALLERY_DBLCLICK_MS = 320;  // 两次点击间隔小于此值 = 双击（取消选择型号）
 
   /* 兜底：万一 js/i18n.js 没加载成功（顺序错、被 CDN 拦、旧缓存），
      仍给 window.T 一个可用实现，避免整站脚本因 window.T 未定义而中断。
@@ -1153,7 +1155,8 @@
                 '<div class="variant-label" data-i18n="model_option">Model / Option</div>' +
                 '<div class="variant-row">' +
                   variants.map(function (v, i) {
-                    return '<button type="button" class="variant-chip' + (i === 0 ? ' is-active' : '') + '" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
+                    // 初始不高亮任何一个：无选择 = 详情页轮播自动播放（Eddy 定）
+                    return '<button type="button" class="variant-chip" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
                   }).join('') +
                 '</div>' +
               '</div>'
@@ -1178,6 +1181,11 @@
     var galMedia = $('[data-gallery]');
     var galImgs = galMedia ? $$('.gallery-img', galMedia) : [];
     var galTimer = null;
+    var galHold = false; // true = 已选中型号 → 轮播保持停止（悬停离开、视频切换都不会重启）
+    /* 型号选择状态同步到 DOM（data-gal-hold），便于样式/调试/回归测试判断 */
+    function galSyncHold() { if (galMedia) galMedia.setAttribute('data-gal-hold', galHold ? '1' : '0'); }
+    /* 选中型号 → 停轮播；取消选择 → 恢复轮播 */
+    function galSetHold(on) { galHold = !!on; galSyncHold(); if (galHold) galStop(); else galStart(); }
     function galShow(i) {
       var n = galImgs.length; if (!n) return;
       var idx = (i % n + n) % n;
@@ -1187,10 +1195,10 @@
       galMedia.setAttribute('data-gal-idx', String(idx));
     }
     function galStart() {
-      if (galTimer || galImgs.length <= 1) return;
+      if (galTimer || galHold || galImgs.length <= 1) return;
       galTimer = setInterval(function () {
         galShow(parseInt(galMedia.getAttribute('data-gal-idx') || '0', 10) + 1);
-      }, 3500);
+      }, GALLERY_INTERVAL_MS);
     }
     function galStop() { if (galTimer) { clearInterval(galTimer); galTimer = null; } }
     /* 破图兜底：某张图 404（如主图未上传、轮播图路径写错）时把它从轮播里摘掉，
@@ -1215,6 +1223,7 @@
       galShow(0);
     }
     if (galMedia) {
+      galSyncHold(); // 初始 data-gal-hold = 0（未选中型号 → 轮播自动播放）
       $$('.gallery-img', galMedia).forEach(function (im) {
         im.addEventListener('error', function () { galDrop(im); });
         if (im.complete && im.naturalWidth === 0) galDrop(im); // 已在缓存里失败过的图
@@ -1239,12 +1248,14 @@
     }
 
     // 视频切换：图 ↔ 视频 互斥显示；切型号时回到图片
+    // 主图元素每次现取：破图兜底 galDrop() 会把 data-variant-img 转移到新的第一张
+    function curVariantImg() { return $('[data-variant-img]'); }
     var vToggle = $('[data-video-toggle]');
     if (vToggle) {
-      var vImg = $('[data-variant-img]');
       var vEl = $('[data-detail-video]');
       vToggle.addEventListener('click', function () {
         var showVideo = vEl.style.display === 'none';
+        var vImg = curVariantImg();
         vEl.style.display = showVideo ? '' : 'none';
         if (vImg) vImg.style.display = showVideo ? 'none' : '';
         vToggle.textContent = showVideo ? window.T('show_photo') : window.T('watch_video');
@@ -1253,34 +1264,71 @@
       });
     }
 
-    // 型号切换：点型号按钮 → 换主图 / 换价格 / 更新 Add 按钮
+    /* 型号选择（Eddy 定）：
+         单击 = 选中 → 换主图/价格，轮播停止；
+         双击（同一条上 320ms 内再点一次）= 取消选择 → 回默认主图/价格，轮播恢复。
+       用点击间隔判断而不是原生 dblclick：触屏上双击经常不派发 dblclick。 */
     if (variants) {
-      var imgEl = $('[data-variant-img]');
       var priceEl = $('[data-variant-price]');
       var addBtn = $('[data-add][data-variant]');
       var vEl2 = $('[data-detail-video]');
       var vTog2 = $('[data-video-toggle]');
+      var lastTapName = '', lastTapAt = 0, swallowChip = null, swallowAt = 0;
+
+      /** 选中某型号：换图/换价 + 暂停轮播 */
+      function selectChip(chip) {
+        $$('.variant-chip').forEach(function (c) { c.classList.toggle('is-active', c === chip); });
+        var vImg = chip.getAttribute('data-variant-image');
+        var vPrice = chip.getAttribute('data-variant-price');
+        var vName = chip.getAttribute('data-variant');
+        var imgEl = curVariantImg();
+        if (imgEl) {
+          imgEl.src = vImg;
+          galShow(0);
+          var th0 = $('.thumb img', galMedia); // 缩略图 1 同步，避免与主图不一致
+          if (th0) th0.src = vImg;
+        }
+        if (priceEl) priceEl.textContent = vPrice;
+        if (addBtn) addBtn.setAttribute('data-variant', vName);
+        // 选中型号时退出视频回到图片
+        if (vEl2 && imgEl && vEl2.style.display !== 'none') {
+          vEl2.pause(); vEl2.style.display = 'none';
+          imgEl.style.display = '';
+          if (vTog2) vTog2.textContent = window.T('watch_video');
+        }
+        galSetHold(true); // 已选中 → 轮播停止
+        syncAddButtons();
+      }
+
+      /** 取消选择：回到默认主图/价格 + 恢复轮播（Add 按钮回落第一个型号，与页面初载一致） */
+      function deselectChip() {
+        $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
+        var imgEl = curVariantImg();
+        if (imgEl) {
+          imgEl.src = defImage;
+          galShow(0);
+          var th0 = $('.thumb img', galMedia);
+          if (th0) th0.src = defImage;
+        }
+        if (priceEl) priceEl.textContent = defPrice;
+        if (addBtn) addBtn.setAttribute('data-variant', variants[0].name);
+        galSetHold(false); // 无选择 → 轮播恢复
+        syncAddButtons();
+      }
+
       $$('.variant-chip').forEach(function (chip) {
         chip.addEventListener('click', function () {
-          $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
-          chip.classList.add('is-active');
-          var vImg = chip.getAttribute('data-variant-image');
-          var vPrice = chip.getAttribute('data-variant-price');
-          var vName = chip.getAttribute('data-variant');
-          if (imgEl) {
-            imgEl.src = vImg; galShow(0); galStop(); galStart();
-            var th0 = $('.thumb img', galMedia); // 缩略图 1 同步，避免与主图不一致
-            if (th0) th0.src = vImg;
+          var now = Date.now();
+          if (swallowChip === chip && now < swallowAt) return; // 双击的第 2 下（取消后的余点击）吞掉，避免又被选上
+          var name = chip.getAttribute('data-variant');
+          var isDouble = (name === lastTapName) && (now - lastTapAt <= GALLERY_DBLCLICK_MS);
+          lastTapName = name; lastTapAt = now;
+          if (isDouble && chip.classList.contains('is-active')) {
+            swallowChip = chip; swallowAt = now + GALLERY_DBLCLICK_MS;
+            deselectChip();
+          } else {
+            selectChip(chip);
           }
-          if (priceEl) priceEl.textContent = vPrice;
-          if (addBtn) addBtn.setAttribute('data-variant', vName);
-          // 切换型号时退出视频回到图片
-          if (vEl2 && vEl2.style.display !== 'none') {
-            vEl2.pause(); vEl2.style.display = 'none';
-            imgEl.style.display = '';
-            if (vTog2) vTog2.textContent = window.T('watch_video');
-          }
-          syncAddButtons();
         });
       });
     }
