@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20260913c" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20260925a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -133,12 +133,12 @@
               <video data-video-preview class="vid-preview" controls muted playsinline style="display:none"></video>
             </div>
             <div class="field full">
-              <label>主图集（可选，详情页自动轮播，最多 4 张，本地选图自动上传）</label>
+              <label>主图与轮播图（第 1 行 = 主图，列表页 / 详情页默认显示；主图 + 轮播共最多 4 张，本地选图自动上传）</label>
               <div data-gal-list></div>
               <div class="gh-actions" style="margin-top:8px">
                 <button type="button" class="btn btn-outline" data-gal-add>＋ 添加轮播图</button>
               </div>
-              <div class="it-tip">点「添加轮播图」→ 选本地图片，会自动压缩并上传到 img/prod/gal/（不用手填路径）；用 ↑↓ 调整轮播顺序。填 2-4 张后，详情页主图会自动轮播（3.5 秒一张循环），带左右箭头、圆点和缩略图。</div>
+              <div class="it-tip">第 1 行固定为<b>主图</b>（存到 img/prod/，图名 = 产品 ID，点「选择主图」即可更换）；点「添加轮播图」加第 2-4 张，自动上传到 img/prod/gal/。轮播图填 2 张以上后，详情页主图区会自动轮播（3.5 秒一张循环），带左右箭头、圆点和缩略图。</div>
             </div>
             <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
               <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
@@ -147,21 +147,6 @@
             <div class="field check" data-page-node-id="BRNfnebAaiaH4uI6TyCmaJ">
               <input type="checkbox" id="f-popular" data-f-popular data-page-node-id="FYz6wIjW6A6AVpcCVftzkF">
               <label for="f-popular" data-page-node-id="KNiFiRO2SEibmCenrKqHNI">设为热门（显示在首页 Popular 轮播）</label>
-            </div>
-          </div>
-
-          <div class="img-tools" data-page-node-id="xfIZjrR9GTZKYc0z3Rus2y">
-            <img data-img-preview alt="产品图预览" src="" data-page-node-id="qZT4tkNXYy0hbFxv8KuBDO">
-            <div data-page-node-id="RQbDhQlwws93Mrnv5hM9ly">
-              <div class="it-h" data-page-node-id="1CfMVuHjU62HMXMuo9JcFh">产品图片</div>
-              <div class="it-name" data-img-name style="font-size:12px;font-weight:600;color:var(--accent-brand);margin-bottom:4px" data-page-node-id="FFpHHp5V9MnesW51rTpqTA">选择图片后自动改名</div>
-              <div class="it-p" data-img-tip data-page-node-id="JE3ZQGLFHq1LGmHzaKxHOd">选择图片后会自动压缩并上传到 img/prod/（图名 = 产品 ID）</div>
-              <div class="vid-upload" style="margin:6px 0">
-                <label class="btn btn-outline vid-pick">🖼 选择 / 更换主图
-                  <input type="file" accept="image/*" data-img-file data-page-node-id="ZWl3b5iW6x32c8wnnEYDEW" style="display:none">
-                </label>
-              </div>
-              <div class="it-tip" data-page-node-id="eNjDxhjxj3DDv3vW6DPmsD">保存位置：<code data-page-node-id="BtBxDfu6vXUKhC7mvR9nTG">img/prod/</code>（图名 = 产品 ID）</div>
             </div>
           </div>
 
@@ -627,7 +612,7 @@
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
     $('[data-f-video]').value = p.video || '';
-    renderGalRows(p.images);
+    renderGalRows(p.image, p.images);
     showVideoPreview(p.video || '');
     if (p.video) $('[data-video-tip]').textContent = '已有视频：' + p.video;
     $('[data-f-collection]').value = p.collection || '';
@@ -636,16 +621,6 @@
     syncSubcats();
     if (p.subcategory) $('[data-f-subcategory]').value = p.subcategory;
     $('[data-form-title]').textContent = '编辑产品';
-    var mp = $('[data-img-preview]');
-    mp.onerror = function () {
-      mp.onerror = null;
-      mp.style.opacity = '0.25';
-      $('[data-img-tip]').textContent = '⚠️ 主图打不开：' + (p.image || '（未设置）');
-    };
-    mp.onload = function () { mp.style.opacity = '1'; };
-    mp.src = localPreviews[p.image] || resolveImgUrl(p.image);
-    $('[data-img-name]').textContent = p.id + '.jpg';
-    $('[data-img-tip]').textContent = '已用图片：' + p.image;
     renderVarRows(p.variants);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'inline-flex';
@@ -659,16 +634,10 @@
     $('[data-f-collection]').value = CATEGORIES.length ? CATEGORIES[0].slug : '';
     $('[data-form-title]').textContent = '添加新产品';
     syncSubcats();
-    var mp0 = $('[data-img-preview]');
-    mp0.onerror = null;
-    mp0.style.opacity = '1';
-    mp0.src = '';
-    $('[data-img-name]').textContent = '选择图片后自动改名';
-    $('[data-img-tip]').textContent = '不上传图片则沿用分类插画';
     showVideoPreview('');
     $('[data-video-tip]').textContent = '上传建议：mp4，15-30 秒，单文件 ≤ 25MB（超了要压缩）；上传后自动存到 img/vid/';
     renderVarRows(null);
-    renderGalRows(null);
+    renderGalRows(null, null);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.style.display = 'none';
     renderList();
@@ -786,62 +755,6 @@
     if (/^(https?:|data:)/.test(path)) return path;
     return 'https://eddytrading.com/' + path + '?t=' + Date.now();
   }
-  function handleImageFile(file) {
-    if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
-    var target = 800;
-    var reader = new FileReader();
-    reader.onload = function () {
-      var img = new Image();
-      img.onload = function () {
-        var scale = Math.min(target / img.width, target / img.height, 1);
-        var w = Math.round(img.width * scale);
-        var h = Math.round(img.height * scale);
-        var cv = document.createElement('canvas');
-        cv.width = w; cv.height = h;
-        var ctx = cv.getContext('2d');
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0, 0, w, h);
-        ctx.drawImage(img, 0, 0, w, h);
-
-        // 预览
-        $('[data-img-preview]').src = cv.toDataURL('image/jpeg', 0.82);
-
-        // 文件名 = 产品 ID
-        var id = $('[data-f-id]').value.trim();
-        if (!id) {
-          var used = PRODUCTS.map(function (x) { return x.id; });
-          id = slugify($('[data-f-name]').value, used);
-          $('[data-f-id]').value = id;
-        }
-        var fname = id + '.jpg';
-        $('[data-img-name]').textContent = fname;
-        var dataUrl = cv.toDataURL('image/jpeg', 0.82);
-        localPreviews['img/prod/' + fname] = dataUrl; // 上传后保存不重拉网络图，防止 CDN 旧缓存
-
-        // 已连接 GitHub → 直接上传到线上 img/prod/
-        if (ghEnabled()) {
-          $('[data-img-tip]').textContent = '正在上传到线上 img/prod/' + fname + ' …';
-          publishImage(id, dataUrl).then(function () {
-            $('[data-img-tip]').textContent = '✅ 图片已发布到线上：img/prod/' + fname;
-            status('✅ 图片已发布：' + fname + '（约 1 分钟后官网生效）');
-          }).catch(function (e) {
-            $('[data-img-tip]').textContent = '图片上传失败，已改为下载，可稍后手动上传';
-            triggerDownload(fname, dataUrl);
-            status('图片上传失败：' + e.message, 'err');
-          });
-          return;
-        }
-
-        // 未连接 GitHub → 下载到本地，用户自行上传
-        $('[data-img-tip]').textContent = '点击「下载图片」保存到 img/prod/ 文件夹';
-        triggerDownload(fname, dataUrl);
-        status('图片已处理并开始下载：' + fname + '（放到 img/prod/ 里即可）');
-      };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(file);
-  }
-
   /* ---------------- 视频工具：本地文件直传 img/vid/ ---------------- */
   var VIDEO_MAX_MB = 25;
 
@@ -1089,39 +1002,44 @@
   var GALLERY_IMG_DIR = 'img/prod/gal/';
   var GALLERY_MAX = 4;
 
-  function addGalRow(path, focus) {
+  function addGalRow(path, focus, isMain) {
     var list = $('[data-gal-list]');
     if (!list) return null;
-    if (list.querySelectorAll('[data-gal-row]').length >= GALLERY_MAX) {
-      status('最多 ' + GALLERY_MAX + ' 张轮播图，先删掉一张再添加', 'err');
+    if (!isMain && list.querySelectorAll('[data-gal-row]:not([data-gal-main])').length >= GALLERY_MAX - 1) {
+      status('主图 + 最多 ' + (GALLERY_MAX - 1) + ' 张轮播图，先删掉一张再添加', 'err');
       return null;
     }
     var row = document.createElement('div');
-    row.className = 'var-row';
+    row.className = 'var-row' + (isMain ? ' gal-main' : '');
+    if (isMain) row.setAttribute('data-gal-main', '');
     row.setAttribute('data-gal-row', '');
     row.innerHTML =
       '<div class="var-img">' +
-        '<img class="var-thumb" data-gal-thumb alt="轮播图缩略图" title="点击查看大图"' + (path ? '' : ' style="display:none"') + '>' +
+        '<img class="var-thumb" data-gal-thumb alt="' + (isMain ? '主图预览' : '轮播图缩略图') + '" title="点击查看大图"' + (path ? '' : ' style="display:none"') + '>' +
         '<input type="file" accept="image/*" data-gal-file style="display:none">' +
-        '<button type="button" class="btn btn-outline" data-gal-pick>🖼 选择本地图片</button>' +
-        '<span class="var-img-status" data-gal-img-status>' + (path ? '✅ ' + esc(path) : '未选择') + '</span>' +
+        '<button type="button" class="btn btn-outline" data-gal-pick>🖼 选择' + (isMain ? '主图' : '本地图片') + '</button>' +
+        (isMain ? '<span class="gal-badge">主图</span>' : '') +
+        '<span class="var-img-status" data-gal-img-status>' + (path ? '✅ ' + esc(path) : (isMain ? '未选择（不上传则详情页沿用分类插画）' : '未选择')) + '</span>' +
         '<input type="hidden" data-gal-img-value value="' + esc(path || '') + '">' +
       '</div>' +
+      (isMain ? '' :
       '<div class="var-mv">' +
         '<button type="button" data-gal-up title="前移（轮播顺序靠前）">↑</button>' +
         '<button type="button" data-gal-down title="后移（轮播顺序靠后）">↓</button>' +
       '</div>' +
-      '<button type="button" class="btn btn-ghost var-del" data-gal-del title="删除该轮播图">×</button>';
+      '<button type="button" class="btn btn-ghost var-del" data-gal-del title="删除该轮播图">×</button>');
     list.appendChild(row);
     if (path) setVarThumb(row.querySelector('[data-gal-thumb]'), localPreviews[path] || resolveImgUrl(path));
     return row;
   }
 
-  function renderGalRows(images) {
+  /* 第 1 行固定为主图（img/prod/<产品ID>.jpg，列表页 + 详情页默认显示），第 2 行起为轮播图 */
+  function renderGalRows(mainImage, images) {
     var list = $('[data-gal-list]');
     if (!list) return;
     list.innerHTML = '';
-    (images || []).slice(0, GALLERY_MAX).forEach(function (path) { addGalRow(path, false); });
+    addGalRow(mainImage || '', false, true);
+    (images || []).slice(0, GALLERY_MAX - 1).forEach(function (path) { addGalRow(path, false); });
   }
 
   /* 同一产品内已有轮播行占用的文件名（自动避让，杜绝两行共用一张图） */
@@ -1138,17 +1056,18 @@
   function collectGallery() {
     var out = [];
     $$('[data-gal-row]').forEach(function (row) {
+      if (row.hasAttribute('data-gal-main')) return; // 主图行单独管理（img/prod/<id>.jpg），不进轮播数组
       var v = (row.querySelector('[data-gal-img-value]').value || '').trim();
       if (!v) return;
       out.push(v); // 不在这里去重：重复的留给 saveProduct 明确报错，提示用户重选
     });
-    return out.length ? out.slice(0, GALLERY_MAX) : undefined;
+    return out.length ? out.slice(0, GALLERY_MAX - 1) : undefined;
   }
 
   function moveGalRow(row, dir) {
     var list = $('[data-gal-list]');
-    if (!list || !row) return;
-    var rows = Array.prototype.slice.call(list.querySelectorAll('[data-gal-row]'));
+    if (!list || !row || row.hasAttribute('data-gal-main')) return; // 主图固定第 1 行，不参与排序
+    var rows = Array.prototype.slice.call(list.querySelectorAll('[data-gal-row]:not([data-gal-main])'));
     var i = rows.indexOf(row);
     if (i < 0) return;
     var j = i + dir;
@@ -1158,21 +1077,44 @@
     }
     if (dir < 0) list.insertBefore(row, rows[j]);
     else list.insertBefore(row, rows[j].nextSibling);
-    status('已调整顺序 —— 点「保存产品」后生效（第 1 张为详情页默认主图）');
+    status('已调整轮播图顺序 —— 点「保存产品」后生效');
   }
 
   function handleGalleryImage(file, row) {
     if (!file || file.type.indexOf('image/') !== 0) { status('请选择图片文件', 'err'); return; }
+    var isMain = row.hasAttribute('data-gal-main');
     compressToJpeg(file, function (dataUrl) {
       var pid = ($('[data-f-id]').value || '').trim() || slugify($('[data-f-name]').value || 'product', []);
+      var st = row.querySelector('[data-gal-img-status]');
+      var hv = row.querySelector('[data-gal-img-value]');
+      setVarThumb(row.querySelector('[data-gal-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
+      if (isMain) {
+        // 主图：固定存 img/prod/<产品ID>.jpg（与 data.js 派生路径一致，列表页 + 详情页默认显示）
+        var mpath = 'img/prod/' + pid + '.jpg';
+        localPreviews[mpath] = dataUrl;
+        hv.value = mpath;
+        if (ghEnabled()) {
+          st.textContent = '正在上传 ' + mpath + ' …';
+          publishImage(pid, dataUrl).then(function () {
+            st.textContent = '✅ 已发布：' + mpath;
+            status('✅ 主图已发布：' + mpath + ' —— 记得点「保存产品」');
+          }).catch(function (e) {
+            st.textContent = '上传失败，已下载，稍后手动放到 img/prod/';
+            triggerDownload(pid + '.jpg', dataUrl);
+            status('主图上传失败：' + e.message, 'err');
+          });
+        } else {
+          st.textContent = '已处理，下载后请放到 img/prod/';
+          triggerDownload(pid + '.jpg', dataUrl);
+          status('主图已处理并开始下载：' + pid + '.jpg（请放进 img/prod/）');
+        }
+        return;
+      }
       var base = pid + '-g';
       var taken = takenGalleryNames(row);
       var fname = base + '1.jpg', n = 2;
       while (taken[fname]) { fname = base + n + '.jpg'; n++; }
       var path = GALLERY_IMG_DIR + fname;
-      var st = row.querySelector('[data-gal-img-status]');
-      var hv = row.querySelector('[data-gal-img-value]');
-      setVarThumb(row.querySelector('[data-gal-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
       localPreviews[path] = dataUrl;
       hv.value = path; // 选图后立刻占位文件名，连着给多行选图也不会撞车（查重靠这个值）
       if (ghEnabled()) {
@@ -1334,23 +1276,13 @@
       if (!state.editingId && !$('[data-f-id]').value) {
         var used = PRODUCTS.map(function (x) { return x.id; });
         $('[data-f-id]').value = slugify($('[data-f-name]').value, used);
-        $('[data-img-name]').textContent = $('[data-f-id]').value + '.jpg';
       }
-    });
-    $('[data-f-id]').addEventListener('input', function () {
-      $('[data-img-name]').textContent = ($('[data-f-id]').value || 'product') + '.jpg';
     });
     $('[data-save]').addEventListener('click', saveProduct);
     $('[data-new]').addEventListener('click', resetForm);
     var delCur = $('[data-del-current]');
     if (delCur) delCur.addEventListener('click', function () {
       if (state.editingId) deleteProduct(state.editingId, delCur);
-    });
-
-    // 图片
-    $('[data-img-file]').addEventListener('change', function (e) {
-      handleImageFile(e.target.files[0]);
-      e.target.value = '';
     });
 
     // 产品视频（本地文件直传）
