@@ -370,10 +370,14 @@
       '</article>';
   }
 
-  /* 详情页主图画廊：优先用 p.images（最多 4 张），回退到单张 p.image。
+  /* 详情页主图画廊：**主图永远作为第 1 张参与轮播**，后面接 p.images（合计最多 4 张，自动去重）。
      单图时只渲染静态图（无箭头/圆点/缩略图）；多图时启用轮播控件。 */
   function productGalleryHTML(p) {
-    var imgs = (p.images && p.images.length) ? p.images.slice(0, 4) : (p.image ? [p.image] : []);
+    var imgs = [];
+    if (p.image) imgs.push(p.image);
+    (p.images || []).forEach(function (src) {
+      if (src && imgs.indexOf(src) === -1 && imgs.length < 4) imgs.push(src);
+    });
     imgs = imgs.filter(Boolean);
     if (!imgs.length) {
       return '<div class="gallery-stage gallery-empty"><div class="gallery-empty-ph">📷</div></div>';
@@ -1189,6 +1193,33 @@
       }, 3500);
     }
     function galStop() { if (galTimer) { clearInterval(galTimer); galTimer = null; } }
+    /* 破图兜底：某张图 404（如主图未上传、轮播图路径写错）时把它从轮播里摘掉，
+       避免第 1 张是破图导致整组画廊不可用；摘到只剩 1 张时自动退回静态图。 */
+    function galDrop(el) {
+      var i = galImgs.indexOf(el);
+      if (i < 0) return;
+      el.remove();
+      var dots = $$('.dot', galMedia), ths = $$('.thumb', galMedia);
+      if (dots[i]) dots[i].remove();
+      if (ths[i]) ths[i].remove();
+      galImgs.splice(i, 1);
+      $$('.dot', galMedia).forEach(function (d, k) { d.setAttribute('data-gal-go', k); });
+      $$('.thumb', galMedia).forEach(function (t, k) { t.setAttribute('data-gal-go', k); });
+      if (el.hasAttribute('data-variant-img') && galImgs.length) galImgs[0].setAttribute('data-variant-img', '');
+      if (galImgs.length <= 1) {
+        galStop();
+        $$('.gallery-nav, .gallery-dots, .gallery-thumbs', galMedia).forEach(function (x) { x.style.display = 'none'; });
+        if (galImgs.length === 1) galShow(0);
+        return;
+      }
+      galShow(0);
+    }
+    if (galMedia) {
+      $$('.gallery-img', galMedia).forEach(function (im) {
+        im.addEventListener('error', function () { galDrop(im); });
+        if (im.complete && im.naturalWidth === 0) galDrop(im); // 已在缓存里失败过的图
+      });
+    }
     if (galMedia && galImgs.length > 1) {
       galMedia.setAttribute('data-gal-idx', '0');
       galMedia.addEventListener('click', function (e) {
@@ -1236,7 +1267,11 @@
           var vImg = chip.getAttribute('data-variant-image');
           var vPrice = chip.getAttribute('data-variant-price');
           var vName = chip.getAttribute('data-variant');
-          if (imgEl) { imgEl.src = vImg; galShow(0); galStop(); galStart(); }
+          if (imgEl) {
+            imgEl.src = vImg; galShow(0); galStop(); galStart();
+            var th0 = $('.thumb img', galMedia); // 缩略图 1 同步，避免与主图不一致
+            if (th0) th0.src = vImg;
+          }
           if (priceEl) priceEl.textContent = vPrice;
           if (addBtn) addBtn.setAttribute('data-variant', vName);
           // 切换型号时退出视频回到图片
