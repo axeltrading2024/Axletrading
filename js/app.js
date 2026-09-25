@@ -370,6 +370,43 @@
       '</article>';
   }
 
+  /* 详情页主图画廊：优先用 p.images（最多 4 张），回退到单张 p.image。
+     单图时只渲染静态图（无箭头/圆点/缩略图）；多图时启用轮播控件。 */
+  function productGalleryHTML(p) {
+    var imgs = (p.images && p.images.length) ? p.images.slice(0, 4) : (p.image ? [p.image] : []);
+    imgs = imgs.filter(Boolean);
+    if (!imgs.length) {
+      return '<div class="gallery-stage gallery-empty"><div class="gallery-empty-ph">📷</div></div>';
+    }
+    var multi = imgs.length > 1;
+    var stage = imgs.map(function (src, i) {
+      return '<img class="gallery-img' + (i === 0 ? ' is-active' : '') + '"' +
+        (i === 0 ? ' data-variant-img' : ' loading="lazy"') +
+        ' src="' + esc(src) + '" alt="' + esc(p.name) + (multi ? ' · ' + (i + 1) : '') + '">';
+    }).join('');
+    var nav = multi
+      ? '<button type="button" class="gallery-nav prev" data-gal-prev aria-label="Previous image">‹</button>' +
+        '<button type="button" class="gallery-nav next" data-gal-next aria-label="Next image">›</button>' +
+        '<div class="gallery-dots" data-gal-dots>' +
+          imgs.map(function (_, i) {
+            return '<button type="button" class="dot' + (i === 0 ? ' is-active' : '') + '" data-gal-go="' + i + '" aria-label="Image ' + (i + 1) + '"></button>';
+          }).join('') +
+        '</div>'
+      : '';
+    var thumbs = multi
+      ? '<div class="gallery-thumbs" data-gal-thumbs>' +
+          imgs.map(function (src, i) {
+            return '<button type="button" class="thumb' + (i === 0 ? ' is-active' : '') + '" data-gal-go="' + i + '"><img src="' + esc(src) + '" alt=""></button>';
+          }).join('') +
+        '</div>'
+      : '';
+    var video = p.video
+      ? '<video class="detail-video" data-detail-video src="' + esc(p.video) + '" controls playsinline preload="metadata" style="display:none"></video>' +
+        '<button type="button" class="video-toggle" data-video-toggle data-i18n="watch_video">▶ Watch video</button>'
+      : '';
+    return '<div class="gallery-stage">' + stage + nav + video + '</div>' + thumbs;
+  }
+
   function categoryCardHTML(c) {
     var empty = productsIn(c.slug).length === 0;
     return '' +
@@ -1097,12 +1134,8 @@
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
       '<div class="detail">' +
-        '<div class="detail-media">' +
-          '<img data-variant-img src="' + esc(defImage) + '" alt="' + esc(p.name) + '">' +
-          (p.video
-            ? '<video class="detail-video" data-detail-video src="' + esc(p.video) + '" controls playsinline preload="metadata" style="display:none"></video>' +
-              '<button type="button" class="video-toggle" data-video-toggle data-i18n="watch_video">▶ Watch video</button>'
-            : '') +
+        '<div class="detail-media" data-gallery>' +
+          productGalleryHTML(p) +
         '</div>' +
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
@@ -1137,6 +1170,43 @@
         '</div>' +
       '</div>';
 
+    // 主图轮播画廊：自动循环 + 手动（箭头/圆点/缩略图）+ 悬停暂停
+    var galMedia = $('[data-gallery]');
+    var galImgs = galMedia ? $$('.gallery-img', galMedia) : [];
+    var galTimer = null;
+    function galShow(i) {
+      var n = galImgs.length; if (!n) return;
+      var idx = (i % n + n) % n;
+      galImgs.forEach(function (im, k) { im.classList.toggle('is-active', k === idx); });
+      $$('.dot', galMedia).forEach(function (d, k) { d.classList.toggle('is-active', k === idx); });
+      $$('.thumb', galMedia).forEach(function (t, k) { t.classList.toggle('is-active', k === idx); });
+      galMedia.setAttribute('data-gal-idx', String(idx));
+    }
+    function galStart() {
+      if (galTimer || galImgs.length <= 1) return;
+      galTimer = setInterval(function () {
+        galShow(parseInt(galMedia.getAttribute('data-gal-idx') || '0', 10) + 1);
+      }, 3500);
+    }
+    function galStop() { if (galTimer) { clearInterval(galTimer); galTimer = null; } }
+    if (galMedia && galImgs.length > 1) {
+      galMedia.setAttribute('data-gal-idx', '0');
+      galMedia.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-gal-prev],[data-gal-next],[data-gal-go]');
+        if (!b) return;
+        if (b.hasAttribute('data-gal-prev')) galShow(parseInt(galMedia.getAttribute('data-gal-idx') || '0', 10) - 1);
+        else if (b.hasAttribute('data-gal-next')) galShow(parseInt(galMedia.getAttribute('data-gal-idx') || '0', 10) + 1);
+        else galShow(parseInt(b.getAttribute('data-gal-go'), 10));
+        galStop(); galStart(); // 手动操作后重置自动计时
+      });
+      galMedia.addEventListener('mouseenter', galStop);
+      galMedia.addEventListener('mouseleave', function () {
+        var v = $('[data-detail-video]', galMedia);
+        if (!v || v.style.display === 'none' || !v.style.display) galStart();
+      });
+      galStart();
+    }
+
     // 视频切换：图 ↔ 视频 互斥显示；切型号时回到图片
     var vToggle = $('[data-video-toggle]');
     if (vToggle) {
@@ -1145,10 +1215,10 @@
       vToggle.addEventListener('click', function () {
         var showVideo = vEl.style.display === 'none';
         vEl.style.display = showVideo ? '' : 'none';
-        vImg.style.display = showVideo ? 'none' : '';
+        if (vImg) vImg.style.display = showVideo ? 'none' : '';
         vToggle.textContent = showVideo ? window.T('show_photo') : window.T('watch_video');
-        if (showVideo) { vEl.currentTime = 0; vEl.play().catch(function () {}); }
-        else vEl.pause();
+        if (showVideo) { vEl.currentTime = 0; vEl.play().catch(function () {}); galStop(); }
+        else { vEl.pause(); galStart(); }
       });
     }
 
@@ -1166,7 +1236,7 @@
           var vImg = chip.getAttribute('data-variant-image');
           var vPrice = chip.getAttribute('data-variant-price');
           var vName = chip.getAttribute('data-variant');
-          if (imgEl) imgEl.src = vImg;
+          if (imgEl) { imgEl.src = vImg; galShow(0); galStop(); galStart(); }
           if (priceEl) priceEl.textContent = vPrice;
           if (addBtn) addBtn.setAttribute('data-variant', vName);
           // 切换型号时退出视频回到图片
