@@ -299,10 +299,9 @@ window.PRODUCTS = [
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
-      "img/prod/var/dior-sauvage-sauvage-edp.jpg",
-      "img/prod/var/dior-sauvage-sauvage-edt.jpg",
-      "img/prod/var/dior-sauvage-parfum.jpg",
-      "img/prod/var/dior-sauvage-exilir.jpg"
+      "img/prod/gal/dior-sauvage-g3.jpg",
+      "img/prod/gal/dior-sauvage-g1.jpg",
+      "img/prod/gal/dior-sauvage-g2.jpg"
     ],
     "keywords": [
       "dior",
