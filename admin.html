@@ -132,6 +132,11 @@
               <div class="it-tip" data-video-tip>上传建议：mp4，15-30 秒，单文件 ≤ 25MB（超了要压缩）；上传后自动存到 img/vid/</div>
               <video data-video-preview class="vid-preview" controls muted playsinline style="display:none"></video>
             </div>
+            <div class="field full">
+              <label for="f-images">主图集（可选，详情页自动轮播，最多 4 张，每行一个图片路径）</label>
+              <textarea id="f-images" data-f-images rows="3" placeholder="如 img/prod/var/xxx.jpg（每行一个；留空 = 详情页只显示主图）"></textarea>
+              <div class="it-tip">填 2-4 张图后，详情页主图会自动轮播（3.5 秒一张循环），带左右箭头、圆点和缩略图。</div>
+            </div>
             <div class="field full" data-page-node-id="p4ylXBewyLCl6uCzSALTok">
               <label for="f-keywords" data-page-node-id="OTs0sk3PTClHZfYCH9VIBb">搜索关键词（英文逗号分隔）</label>
               <input id="f-keywords" data-f-keywords placeholder="如 airpods, apple, wireless" data-page-node-id="8M1FFu9dCGtCX5RXo2vTi5">
@@ -394,6 +399,7 @@
       if (p.subcategory) o.subcategory = p.subcategory;
       if (p.popular) o.popular = true;
       if (p.video) o.video = p.video;
+      if (p.images && p.images.length) o.images = p.images.slice(0, 4);
       if (p.keywords && p.keywords.length) o.keywords = p.keywords;
       if (p.variants && p.variants.length) {
         o.variants = p.variants.map(function (v) {
@@ -602,7 +608,7 @@
   }
 
   /* ---------------- 表单 ---------------- */
-  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video'];
+  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video', 'images'];
 
   function fillForm(p) {
     if (!p) { resetForm(); return; }
@@ -614,6 +620,7 @@
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
     $('[data-f-video]').value = p.video || '';
+    $('[data-f-images]').value = (p.images || []).join('\n');
     showVideoPreview(p.video || '');
     if (p.video) $('[data-video-tip]').textContent = '已有视频：' + p.video;
     $('[data-f-collection]').value = p.collection || '';
@@ -678,6 +685,7 @@
     p.keywords = p.keywords ? p.keywords.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : [];
     if (!p.subcategory) p.subcategory = undefined;
     if (!p.video) p.video = undefined;
+    p.images = p.images ? p.images.split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 4) : undefined;
     p.variants = collectVariants();
     return p;
   }
