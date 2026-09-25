@@ -2970,3 +2970,119 @@ body.search-open { overflow: hidden; }
 @media (max-width: 639px) {
   .hiw-note { padding: 12px 14px; }
 }
+
+/* ==================== 详情页主图轮播画廊 ==================== */
+.gallery-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-2xl, 20px);
+  overflow: hidden;
+  background: var(--muted, #f4f4f5);
+}
+.gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity .5s ease;
+  filter: drop-shadow(0 24px 32px oklch(0 0 0 / 0.12));
+}
+.gallery-img.is-active { opacity: 1; }
+.gallery-empty { display: flex; align-items: center; justify-content: center; background: var(--muted, #f4f4f5); }
+.gallery-empty-ph { font-size: 46px; opacity: .28; }
+
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border, #e5e5e5);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--foreground);
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  opacity: .82;
+  transition: opacity .2s, background .2s;
+  z-index: 3;
+}
+.gallery-nav:hover { opacity: 1; background: #fff; }
+.gallery-nav.prev { left: 12px; }
+.gallery-nav.next { right: 12px; }
+
+.gallery-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 3;
+}
+.gallery-dots .dot {
+  width: 8px;
+  height: 8px;
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.gallery-dots .dot.is-active { background: var(--foreground); transform: scale(1.25); }
+
+.gallery-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.gallery-thumbs .thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #e5e5e5);
+  background: var(--surface, #fff);
+  padding: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: .62;
+  transition: opacity .2s, border-color .2s;
+}
+.gallery-thumbs .thumb img { width: 100%; height: 100%; object-fit: contain; }
+.gallery-thumbs .thumb.is-active,
+.gallery-thumbs .thumb:hover { opacity: 1; border-color: var(--foreground); }
+
+/* 视频按钮移到画廊右上角，避免和底部圆点重叠 */
+.detail-media .video-toggle {
+  top: 14px;
+  right: 14px;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  z-index: 4;
+}
+.detail-media .detail-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-2xl, 20px);
+  background: #000;
+  z-index: 2;
+}
+
+@media (max-width: 639px) {
+  .gallery-nav { width: 36px; height: 36px; font-size: 20px; }
+  .gallery-thumbs .thumb { width: 56px; height: 56px; }
+}
