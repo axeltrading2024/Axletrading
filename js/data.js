@@ -298,6 +298,12 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
+    "images": [
+      "img/prod/var/dior-sauvage-sauvage-edp.jpg",
+      "img/prod/var/dior-sauvage-sauvage-edt.jpg",
+      "img/prod/var/dior-sauvage-parfum.jpg",
+      "img/prod/var/dior-sauvage-exilir.jpg"
+    ],
     "keywords": [
       "dior",
       "sauvage",
