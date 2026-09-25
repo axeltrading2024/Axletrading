@@ -899,10 +899,9 @@ window.PRODUCTS = [
     "collection": "hair-dryers",
     "popular": true,
     "images": [
-      "img/prod/gal/dyson-supersonic-g2.jpg",
       "img/prod/gal/dyson-supersonic-g1.jpg",
       "img/prod/gal/dyson-supersonic-g3.jpg",
-      "img/prod/gal/dyson-supersonic-g4.jpg"
+      "img/prod/gal/dyson-supersonic-g2.jpg"
     ],
     "keywords": [
       "dyson",
