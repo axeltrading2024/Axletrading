@@ -893,7 +893,7 @@ window.PRODUCTS = [
     "id": "dyson-supersonic",
     "name": "Dyson Supersonic",
     "brand": "Dyson",
-    "price": "€65",
+    "price": "€60",
     "note": "Ionic · 5 attachments-10 colors option",
     "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
     "collection": "hair-dryers",
