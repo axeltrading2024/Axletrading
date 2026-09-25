@@ -466,6 +466,11 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "video": "img/vid/valentino-born-in-roma.mp4",
+    "images": [
+      "img/prod/gal/valentino-born-in-roma-g1.jpg",
+      "img/prod/gal/valentino-born-in-roma-g2.jpg",
+      "img/prod/gal/valentino-born-in-roma-g3.jpg"
+    ],
     "keywords": [
       "valentino",
       "born in roma",
