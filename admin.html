@@ -155,8 +155,12 @@
             <div data-page-node-id="RQbDhQlwws93Mrnv5hM9ly">
               <div class="it-h" data-page-node-id="1CfMVuHjU62HMXMuo9JcFh">产品图片</div>
               <div class="it-name" data-img-name style="font-size:12px;font-weight:600;color:var(--accent-brand);margin-bottom:4px" data-page-node-id="FFpHHp5V9MnesW51rTpqTA">选择图片后自动改名</div>
-              <div class="it-p" data-img-tip data-page-node-id="JE3ZQGLFHq1LGmHzaKxHOd">选择图片后会自动压缩并命名为「产品ID.jpg」下载</div>
-              <input type="file" accept="image/*" data-img-file data-page-node-id="ZWl3b5iW6x32c8wnnEYDEW">
+              <div class="it-p" data-img-tip data-page-node-id="JE3ZQGLFHq1LGmHzaKxHOd">选择图片后会自动压缩并上传到 img/prod/（图名 = 产品 ID）</div>
+              <div class="vid-upload" style="margin:6px 0">
+                <label class="btn btn-outline vid-pick">🖼 选择 / 更换主图
+                  <input type="file" accept="image/*" data-img-file data-page-node-id="ZWl3b5iW6x32c8wnnEYDEW" style="display:none">
+                </label>
+              </div>
               <div class="it-tip" data-page-node-id="eNjDxhjxj3DDv3vW6DPmsD">保存位置：<code data-page-node-id="BtBxDfu6vXUKhC7mvR9nTG">img/prod/</code>（图名 = 产品 ID）</div>
             </div>
           </div>
@@ -714,6 +718,14 @@
     });
     if (dupe) { status('❌ ' + dupe + '，请给其中一个重新选图后再保存', 'err'); return; }
 
+    // 主图集体检：两行不能是同一张图（历史数据或连点选图可能撞车）
+    var seenGal = {}, galDupe = '';
+    (p.images || []).forEach(function (v, i) {
+      if (seenGal[v]) galDupe = '第 ' + seenGal[v] + ' 张和第 ' + (i + 1) + ' 张是同一张图 ' + v;
+      else seenGal[v] = i + 1;
+    });
+    if (galDupe) { status('❌ 主图集' + galDupe + ' —— 请给重复的那行重新「选择本地图片」再保存', 'err'); return; }
+
     // 旧格式提醒：型号图应统一放在 img/prod/var/ 下（避免与别的产品主图重名）
     var legacy = (p.variants || []).filter(function (v) { return v.image && v.image.indexOf('img/prod/') === 0 && v.image.indexOf(VARIANT_IMG_DIR) !== 0; });
 
@@ -1124,12 +1136,11 @@
   }
 
   function collectGallery() {
-    var out = [], seen = {};
+    var out = [];
     $$('[data-gal-row]').forEach(function (row) {
       var v = (row.querySelector('[data-gal-img-value]').value || '').trim();
-      if (!v || seen[v]) return;
-      seen[v] = true;
-      out.push(v);
+      if (!v) return;
+      out.push(v); // 不在这里去重：重复的留给 saveProduct 明确报错，提示用户重选
     });
     return out.length ? out.slice(0, GALLERY_MAX) : undefined;
   }
@@ -1163,21 +1174,19 @@
       var hv = row.querySelector('[data-gal-img-value]');
       setVarThumb(row.querySelector('[data-gal-thumb]'), dataUrl); // 先用本地压缩结果预览，所见即所传
       localPreviews[path] = dataUrl;
+      hv.value = path; // 选图后立刻占位文件名，连着给多行选图也不会撞车（查重靠这个值）
       if (ghEnabled()) {
         st.textContent = '正在上传 ' + path + ' …';
         var b64 = String(dataUrl).split(',')[1] || dataUrl;
         ghPut(path, b64, '上传轮播图 ' + fname).then(function () {
-          hv.value = path;
           st.textContent = '✅ 已发布：' + path;
           status('✅ 轮播图已发布：' + path + ' —— 记得点「保存产品」');
         }).catch(function (e) {
-          hv.value = path;
           st.textContent = '上传失败，已下载，稍后手动放到 img/prod/gal/';
           triggerDownload(fname, dataUrl);
           status('轮播图上传失败：' + e.message, 'err');
         });
       } else {
-        hv.value = path;
         st.textContent = '已处理，下载后请放到 img/prod/gal/';
         triggerDownload(fname, dataUrl);
         status('轮播图已处理并开始下载：' + fname + '（请放进 img/prod/gal/）');
