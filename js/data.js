@@ -1345,6 +1345,11 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "hair-dryers",
     "subcategory": "hair-care",
+    "images": [
+      "img/prod/gal/d-g1.jpg",
+      "img/prod/gal/d-g2.jpg",
+      "img/prod/gal/d-g3.jpg"
+    ],
     "variants": [
       {
         "name": "Classic",
