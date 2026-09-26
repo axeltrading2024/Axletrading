@@ -205,6 +205,11 @@ window.PRODUCTS = [
     "collection": "earbuds-headphones",
     "popular": true,
     "video": "img/vid/airpods-pro-2.mp4",
+    "images": [
+      "img/prod/gal/airpods-pro-2-g3.jpg",
+      "img/prod/gal/airpods-pro-2-g1.jpg",
+      "img/prod/gal/airpods-pro-2-g2.jpg"
+    ],
     "keywords": [
       "airpods",
       "apple",
