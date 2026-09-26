@@ -784,6 +784,10 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "rolex-style",
     "video": "img/vid/r.mp4",
+    "images": [
+      "img/prod/gal/r-g1.jpg",
+      "img/prod/gal/r-g2.jpg"
+    ],
     "keywords": [
       "Rolex",
       "datejust",
