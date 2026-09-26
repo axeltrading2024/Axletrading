@@ -715,6 +715,11 @@ window.PRODUCTS = [
     "subcategory": "rolex-style",
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
+    "images": [
+      "img/prod/gal/rolex-submariner-g1.jpg",
+      "img/prod/gal/rolex-submariner-g2.jpg",
+      "img/prod/gal/rolex-submariner-g3.jpg"
+    ],
     "keywords": [
       "rolex",
       "submariner",
