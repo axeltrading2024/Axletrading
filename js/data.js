@@ -3258,6 +3258,51 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-4-joycon.jpg"
       }
     ]
+  },
+  {
+    "id": "g-5",
+    "name": "Goose down jacket",
+    "brand": "Goose",
+    "price": "€105",
+    "note": "warm-fashoin-couple style",
+    "desc": "",
+    "collection": "clothes-and-shoes",
+    "subcategory": "clothes",
+    "images": [
+      "img/prod/gal/g-5-g1.jpg",
+      "img/prod/gal/g-5-g2.jpg",
+      "img/prod/gal/g-5-g3.jpg"
+    ],
+    "keywords": [
+      "down-clothes-canada goose-goose-jacket"
+    ],
+    "variants": [
+      {
+        "name": "Black",
+        "price": "",
+        "image": "img/prod/var/g-5-black.jpg"
+      },
+      {
+        "name": "Grey",
+        "price": "",
+        "image": "img/prod/var/g-5-grey.jpg"
+      },
+      {
+        "name": "Blue",
+        "price": "",
+        "image": "img/prod/var/g-5-blue.jpg"
+      },
+      {
+        "name": "White",
+        "price": "",
+        "image": "img/prod/var/g-5-white.jpg"
+      },
+      {
+        "name": "Off-white",
+        "price": "",
+        "image": "img/prod/var/g-5-off-white.jpg"
+      }
+    ]
   }
 ];
 
