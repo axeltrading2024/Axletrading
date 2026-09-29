@@ -2687,7 +2687,7 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "2627 Real Madrid White [Green Trim/Rose Red] 2627皇马白色【绿边",
+        "name": "2627 Real Madrid White [Green Trim/Rose Red]",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-real-madrid-white-green-trim-rose-red-2627.jpg"
       },
