@@ -2712,16 +2712,6 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-2627-arsenal-red-blue-cam.jpg"
       },
       {
-        "name": "2627 Spain Red [Two-Star]",
-        "price": "",
-        "image": "img/prod/var/football-training-kit-2627-spain-red-two-star.jpg"
-      },
-      {
-        "name": "2627 Spain Columbia Blue [Two-Star",
-        "price": "",
-        "image": "img/prod/var/football-training-kit-2627-spain-columbia-blue-two-star.jpg"
-      },
-      {
         "name": "2627 Man United Black",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-man-united-black.jpg"
@@ -2755,6 +2745,16 @@ window.PRODUCTS = [
         "name": "2627 Real Madrid Royal Blue-Yellow",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-real-madrid-royal-blue-yellow.jpg"
+      },
+      {
+        "name": "2627 Spain Red [Two-Star]",
+        "price": "",
+        "image": "img/prod/var/football-training-kit-2627-spain-red-two-star.jpg"
+      },
+      {
+        "name": "2627 Spain Columbia Blue [Two-Star",
+        "price": "",
+        "image": "img/prod/var/football-training-kit-2627-spain-columbia-blue-two-star.jpg"
       },
       {
         "name": "2627 Colombia Royal Blue",
