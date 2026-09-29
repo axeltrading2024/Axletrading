@@ -383,8 +383,8 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "jbl-flip-7",
-    "name": "JBL Flip 7",
+    "id": "jbl-portable",
+    "name": "JBL Portable speaker",
     "brand": "JBL",
     "price": "from €18",
     "note": "Portable · Waterproof",
