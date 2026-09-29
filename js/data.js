@@ -1199,6 +1199,17 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
+    "images": [
+      "img/prod/gal/g-3-g1.jpg",
+      "img/prod/gal/g-3-g2.jpg",
+      "img/prod/gal/g-3-g3.jpg"
+    ],
+    "keywords": [
+      "watch",
+      "Gshcok",
+      "casio",
+      "sport watch"
+    ],
     "variants": [
       {
         "name": "GA 2100",
