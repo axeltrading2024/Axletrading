@@ -2081,6 +2081,11 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "video": "img/vid/t.mp4",
+    "images": [
+      "img/prod/gal/t-g1.jpg",
+      "img/prod/gal/t-g2.jpg",
+      "img/prod/gal/t-g3.jpg"
+    ],
     "keywords": [
       "tom ford",
       "luxury",
