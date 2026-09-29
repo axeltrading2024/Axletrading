@@ -953,7 +953,13 @@ window.PRODUCTS = [
     "note": "dual timing-luxury",
     "desc": "For dual time zone",
     "collection": "watches",
+    "subcategory": "rolex-style",
     "video": "img/vid/r-2.mp4",
+    "images": [
+      "img/prod/gal/r-2-g3.jpg",
+      "img/prod/gal/r-2-g1.jpg",
+      "img/prod/gal/r-2-g2.jpg"
+    ],
     "variants": [
       {
         "name": "1",
