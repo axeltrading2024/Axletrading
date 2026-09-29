@@ -2774,7 +2774,7 @@ window.PRODUCTS = [
       {
         "name": "more style",
         "price": "",
-        "image": ""
+        "image": "img/prod/var/football-training-kit-more-style.jpg"
       }
     ]
   },
