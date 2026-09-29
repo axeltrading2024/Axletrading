@@ -881,37 +881,37 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/var/rolex-daytona-2.jpg"
-      },
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/var/rolex-daytona-1.jpg"
-      },
-      {
-        "name": "3",
+        "name": "Syle-1",
         "price": "",
         "image": "img/prod/var/rolex-daytona-3.jpg"
       },
       {
-        "name": "4",
+        "name": "Syle-2",
+        "price": "",
+        "image": "img/prod/var/rolex-daytona-2.jpg"
+      },
+      {
+        "name": "Syle-3",
+        "price": "",
+        "image": "img/prod/var/rolex-daytona-1.jpg"
+      },
+      {
+        "name": "Syle-4",
         "price": "",
         "image": "img/prod/var/rolex-daytona-4.jpg"
       },
       {
-        "name": "5",
+        "name": "Syle-5",
         "price": "",
         "image": "img/prod/var/rolex-daytona-5.jpg"
       },
       {
-        "name": "6",
+        "name": "Syle-6",
         "price": "",
         "image": "img/prod/var/rolex-daytona-6.jpg"
       },
       {
-        "name": "7",
+        "name": "Syle-7",
         "price": "",
         "image": "img/prod/var/rolex-daytona-7.jpg"
       }
