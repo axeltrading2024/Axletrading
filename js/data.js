@@ -1012,6 +1012,11 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "ap-style",
     "video": "img/vid/ap-royal-oak.mp4",
+    "images": [
+      "img/prod/gal/ap-royal-oak-g1.jpg",
+      "img/prod/gal/ap-royal-oak-g2.jpg",
+      "img/prod/gal/ap-royal-oak-g3.jpg"
+    ],
     "keywords": [
       "ap",
       "royal oak",
