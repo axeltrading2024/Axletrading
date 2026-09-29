@@ -2668,6 +2668,82 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "j",
+    "name": "jersey",
+    "brand": "EddySupply",
+    "price": "€15",
+    "note": "football club or national team jersey",
+    "desc": "numbers and name could be customized, vintage style are also in stock",
+    "collection": "clothes-and-shoes",
+    "subcategory": "clothes",
+    "keywords": [
+      "jersey. football kit",
+      "club jersey"
+    ],
+    "variants": [
+      {
+        "name": "1",
+        "price": "",
+        "image": "img/prod/var/j-1.jpg"
+      },
+      {
+        "name": "2",
+        "price": "",
+        "image": "img/prod/var/j-2.jpg"
+      },
+      {
+        "name": "3",
+        "price": "",
+        "image": "img/prod/var/j-3.jpg"
+      },
+      {
+        "name": "4",
+        "price": "",
+        "image": "img/prod/var/j-4.jpg"
+      },
+      {
+        "name": "5",
+        "price": "",
+        "image": "img/prod/var/j-5.jpg"
+      },
+      {
+        "name": "6",
+        "price": "",
+        "image": "img/prod/var/j-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/var/j-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/var/j-8.jpg"
+      },
+      {
+        "name": "9",
+        "price": "",
+        "image": "img/prod/var/j-9.jpg"
+      },
+      {
+        "name": "10",
+        "price": "",
+        "image": "img/prod/var/j-10.jpg"
+      },
+      {
+        "name": "11",
+        "price": "",
+        "image": "img/prod/var/j-11.jpg"
+      },
+      {
+        "name": "12",
+        "price": "",
+        "image": "img/prod/var/j-12.jpg"
+      }
+    ]
+  },
+  {
     "id": "football-training-kit",
     "name": "Football training kit",
     "brand": "Generic",
@@ -2779,82 +2855,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "j",
-    "name": "jersey",
-    "brand": "EddySupply",
-    "price": "€15",
-    "note": "football club or national team jersey",
-    "desc": "numbers and name could be customized, vintage style are also in stock",
-    "collection": "clothes-and-shoes",
-    "subcategory": "clothes",
-    "keywords": [
-      "jersey. football kit",
-      "club jersey"
-    ],
-    "variants": [
-      {
-        "name": "1",
-        "price": "",
-        "image": "img/prod/var/j-1.jpg"
-      },
-      {
-        "name": "2",
-        "price": "",
-        "image": "img/prod/var/j-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "",
-        "image": "img/prod/var/j-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "",
-        "image": "img/prod/var/j-4.jpg"
-      },
-      {
-        "name": "5",
-        "price": "",
-        "image": "img/prod/var/j-5.jpg"
-      },
-      {
-        "name": "6",
-        "price": "",
-        "image": "img/prod/var/j-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/var/j-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/var/j-8.jpg"
-      },
-      {
-        "name": "9",
-        "price": "",
-        "image": "img/prod/var/j-9.jpg"
-      },
-      {
-        "name": "10",
-        "price": "",
-        "image": "img/prod/var/j-10.jpg"
-      },
-      {
-        "name": "11",
-        "price": "",
-        "image": "img/prod/var/j-11.jpg"
-      },
-      {
-        "name": "12",
-        "price": "",
-        "image": "img/prod/var/j-12.jpg"
-      }
-    ]
-  },
-  {
     "id": "m-2",
     "name": "wireless microphone",
     "brand": "Generic",
@@ -2923,6 +2923,69 @@ window.PRODUCTS = [
         "name": "6",
         "price": "",
         "image": "img/prod/var/p-2-6.jpg"
+      }
+    ]
+  },
+  {
+    "id": "h-2",
+    "name": "hooded windbreaker",
+    "brand": "EddySupply",
+    "price": "€32",
+    "note": "windbreaker-hoodie-sports-trainning",
+    "desc": "",
+    "collection": "clothes-and-shoes",
+    "subcategory": "clothes",
+    "images": [
+      "img/prod/gal/h-2-g1.jpg",
+      "img/prod/gal/h-2-g2.jpg",
+      "img/prod/gal/h-2-g3.jpg"
+    ],
+    "keywords": [
+      "clothes",
+      "sport",
+      "hoodie",
+      "windbreaker"
+    ],
+    "variants": [
+      {
+        "name": "2627 Arsenal Blue-Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-arsenal-blue-grey.jpg"
+      },
+      {
+        "name": "2627 Arsenal Black",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-arsenal-black.jpg"
+      },
+      {
+        "name": "2627 Spain Red",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-spain-red.jpg"
+      },
+      {
+        "name": "2627 Spain Royal Blue",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-spain-royal-blue.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Light Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-light-grey.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Blue-Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-blue-grey.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Black",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-black.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Dark Green",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-dark-green.jpg"
       }
     ]
   },
@@ -3328,69 +3391,6 @@ window.PRODUCTS = [
         "name": "ninetendo Joycon",
         "price": "€20",
         "image": "img/prod/var/p-4-joycon.jpg"
-      }
-    ]
-  },
-  {
-    "id": "h-2",
-    "name": "hooded windbreaker",
-    "brand": "EddySupply",
-    "price": "€32",
-    "note": "windbreaker-hoodie-sports-trainning",
-    "desc": "",
-    "collection": "clothes-and-shoes",
-    "subcategory": "clothes",
-    "images": [
-      "img/prod/gal/h-2-g1.jpg",
-      "img/prod/gal/h-2-g2.jpg",
-      "img/prod/gal/h-2-g3.jpg"
-    ],
-    "keywords": [
-      "clothes",
-      "sport",
-      "hoodie",
-      "windbreaker"
-    ],
-    "variants": [
-      {
-        "name": "2627 Arsenal Blue-Grey",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-arsenal-blue-grey.jpg"
-      },
-      {
-        "name": "2627 Arsenal Black",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-arsenal-black.jpg"
-      },
-      {
-        "name": "2627 Spain Red",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-spain-red.jpg"
-      },
-      {
-        "name": "2627 Spain Royal Blue",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-spain-royal-blue.jpg"
-      },
-      {
-        "name": "2627 Real Madrid Light Grey",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-real-madrid-light-grey.jpg"
-      },
-      {
-        "name": "2627 Real Madrid Blue-Grey",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-real-madrid-blue-grey.jpg"
-      },
-      {
-        "name": "2627 Real Madrid Black",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-real-madrid-black.jpg"
-      },
-      {
-        "name": "2627 Real Madrid Dark Green",
-        "price": "",
-        "image": "img/prod/var/h-2-2627-real-madrid-dark-green.jpg"
       }
     ]
   },
