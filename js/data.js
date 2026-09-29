@@ -967,47 +967,47 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "color-1",
         "price": "",
         "image": "img/prod/var/r-2-1.jpg"
       },
       {
-        "name": "2",
+        "name": "color-2",
         "price": "",
         "image": "img/prod/var/r-2-2.jpg"
       },
       {
-        "name": "3",
+        "name": "color-3",
         "price": "",
         "image": "img/prod/var/r-2-3.jpg"
       },
       {
-        "name": "4",
+        "name": "color-4",
         "price": "",
         "image": "img/prod/var/r-2-4.jpg"
       },
       {
-        "name": "5",
+        "name": "color-5",
         "price": "",
         "image": "img/prod/var/r-2-5.jpg"
       },
       {
-        "name": "6",
+        "name": "color-6",
         "price": "",
         "image": "img/prod/var/r-2-6.jpg"
       },
       {
-        "name": "7",
+        "name": "color-7",
         "price": "",
         "image": "img/prod/var/r-2-7.jpg"
       },
       {
-        "name": "8",
+        "name": "color-8",
         "price": "",
         "image": "img/prod/var/r-2-8.jpg"
       },
       {
-        "name": "9",
+        "name": "color-9",
         "price": "",
         "image": "img/prod/var/r-2-9.jpg"
       }
