@@ -1075,6 +1075,11 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "cartier-style",
     "video": "img/vid/c-2.mp4",
+    "images": [
+      "img/prod/gal/c-2-g1.jpg",
+      "img/prod/gal/c-2-g2.jpg",
+      "img/prod/gal/c-2-g3.jpg"
+    ],
     "variants": [
       {
         "name": "Style-1",
@@ -1084,7 +1089,7 @@ window.PRODUCTS = [
       {
         "name": "Style-2",
         "price": "",
-        "image": "img/prod/var/c-2-2.jpg"
+        "image": "img/prod/var/c-2-style-2.jpg"
       },
       {
         "name": "Style-3",
