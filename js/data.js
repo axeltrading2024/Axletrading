@@ -3375,6 +3375,69 @@ window.PRODUCTS = [
         "image": "img/prod/var/g-5-off-white.jpg"
       }
     ]
+  },
+  {
+    "id": "h-2",
+    "name": "hooded windbreaker",
+    "brand": "EddySupply",
+    "price": "€32",
+    "note": "windbreaker-hoodie-sports-trainning",
+    "desc": "",
+    "collection": "clothes-and-shoes",
+    "subcategory": "clothes",
+    "images": [
+      "img/prod/gal/h-2-g1.jpg",
+      "img/prod/gal/h-2-g2.jpg",
+      "img/prod/gal/h-2-g3.jpg"
+    ],
+    "keywords": [
+      "clothes",
+      "sport",
+      "hoodie",
+      "windbreaker"
+    ],
+    "variants": [
+      {
+        "name": "2627 Arsenal Blue-Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-arsenal-blue-grey.jpg"
+      },
+      {
+        "name": "2627 Arsenal Black",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-arsenal-black.jpg"
+      },
+      {
+        "name": "2627 Spain Red",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-spain-red.jpg"
+      },
+      {
+        "name": "2627 Spain Royal Blue",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-spain-royal-blue.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Light Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-light-grey.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Blue-Grey",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-blue-grey.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Black",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-black.jpg"
+      },
+      {
+        "name": "2627 Real Madrid Dark Green",
+        "price": "",
+        "image": "img/prod/var/h-2-2627-real-madrid-dark-green.jpg"
+      }
+    ]
   }
 ];
 
