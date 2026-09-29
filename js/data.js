@@ -2676,85 +2676,100 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
+    "images": [
+      "img/prod/gal/football-training-kit-g1.jpg",
+      "img/prod/gal/football-training-kit-g2.jpg",
+      "img/prod/gal/football-training-kit-g3.jpg"
+    ],
     "keywords": [
       "football kit",
       "trainning kit"
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "2627 Real Madrid White [Green Trim/Rose Red] 2627皇马白色【绿边",
         "price": "",
-        "image": "img/prod/var/football-training-kit-1.jpg"
+        "image": "img/prod/var/football-training-kit-2627-real-madrid-white-green-trim-rose-red-2627.jpg"
       },
       {
-        "name": "2",
+        "name": "2627 Real Madrid Orange-Pin",
         "price": "",
-        "image": "img/prod/var/football-training-kit-2.jpg"
+        "image": "img/prod/var/football-training-kit-2627-real-madrid-orange-pin.jpg"
       },
       {
-        "name": "3",
+        "name": "2627 Arsenal Maroon",
         "price": "",
-        "image": "img/prod/var/football-training-kit-3.jpg"
+        "image": "img/prod/var/football-training-kit-2627-arsenal-maroon.jpg"
       },
       {
-        "name": "4",
+        "name": "2627 Barcelona Gold [Collab Edition]",
         "price": "",
-        "image": "img/prod/var/football-training-kit-4.jpg"
+        "image": "img/prod/var/football-training-kit-2627-barcelona-gold-collab-edition.jpg"
       },
       {
-        "name": "5",
+        "name": "2627 Arsenal Red-Blue [Cam",
         "price": "",
-        "image": "img/prod/var/football-training-kit-5.jpg"
+        "image": "img/prod/var/football-training-kit-2627-arsenal-red-blue-cam.jpg"
       },
       {
-        "name": "6",
+        "name": "2627 Spain Red [Two-Star]",
         "price": "",
-        "image": "img/prod/var/football-training-kit-6.jpg"
+        "image": "img/prod/var/football-training-kit-2627-spain-red-two-star.jpg"
       },
       {
-        "name": "7",
+        "name": "2627 Spain Columbia Blue [Two-Star",
         "price": "",
-        "image": "img/prod/var/football-training-kit-7.jpg"
+        "image": "img/prod/var/football-training-kit-2627-spain-columbia-blue-two-star.jpg"
       },
       {
-        "name": "8",
+        "name": "2627 Man United Black",
         "price": "",
-        "image": "img/prod/var/football-training-kit-8.jpg"
+        "image": "img/prod/var/football-training-kit-2627-man-united-black.jpg"
       },
       {
-        "name": "9",
+        "name": "2627 Marseille White",
         "price": "",
-        "image": "img/prod/var/football-training-kit-9.jpg"
+        "image": "img/prod/var/football-training-kit-2627-marseille-white.jpg"
       },
       {
-        "name": "10",
+        "name": "2627 Real Madrid Black-Rose Red",
         "price": "",
-        "image": "img/prod/var/football-training-kit-10.jpg"
+        "image": "img/prod/var/football-training-kit-2627-real-madrid-black-rose-red.jpg"
       },
       {
-        "name": "11",
+        "name": "2627 Barcelona Royal Blue",
         "price": "",
-        "image": "img/prod/var/football-training-kit-11.jpg"
+        "image": "img/prod/var/football-training-kit-2627-barcelona-royal-blue.jpg"
       },
       {
-        "name": "12",
+        "name": "2627 Barcelona Purple [Collab Edition] 2627巴萨紫色【联名款】 063 2627 Arsenal Black [All-Black]",
         "price": "",
-        "image": "img/prod/var/football-training-kit-12.jpg"
+        "image": "img/prod/var/football-training-kit-2627-barcelona-purple-collab-edition-2627-063-2627-arsenal-black-all-black-2.jpg"
       },
       {
-        "name": "13",
+        "name": "2627 Bayern Munich Royal Blue",
         "price": "",
-        "image": "img/prod/var/football-training-kit-13.jpg"
+        "image": "img/prod/var/football-training-kit-2627-bayern-munich-royal-blue.jpg"
       },
       {
-        "name": "14",
+        "name": "2627 Real Madrid Royal Blue-Yellow",
         "price": "",
-        "image": "img/prod/var/football-training-kit-14.jpg"
+        "image": "img/prod/var/football-training-kit-2627-real-madrid-royal-blue-yellow.jpg"
       },
       {
-        "name": "15",
+        "name": "2627 Colombia Royal Blue",
         "price": "",
-        "image": "img/prod/var/football-training-kit-15.jpg"
+        "image": "img/prod/var/football-training-kit-2627-colombia-royal-blue.jpg"
+      },
+      {
+        "name": "2627 Germany Red",
+        "price": "",
+        "image": "img/prod/var/football-training-kit-2627-germany-red.jpg"
+      },
+      {
+        "name": "2627 Italy White",
+        "price": "",
+        "image": "img/prod/var/football-training-kit-2627-italy-white.jpg"
       }
     ]
   },
