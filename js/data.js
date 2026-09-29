@@ -2158,6 +2158,11 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "images": [
+      "img/prod/gal/c-g1.jpg",
+      "img/prod/gal/c-g2.jpg",
+      "img/prod/gal/c-g3.jpg"
+    ],
     "variants": [
       {
         "name": "GOOD GIRL COILECTOR EDTTION (EDP)",
