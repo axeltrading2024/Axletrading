@@ -2770,6 +2770,11 @@ window.PRODUCTS = [
         "name": "2627 Italy White",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-italy-white.jpg"
+      },
+      {
+        "name": "more style",
+        "price": "",
+        "image": ""
       }
     ]
   },
