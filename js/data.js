@@ -2732,7 +2732,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-2627-barcelona-royal-blue.jpg"
       },
       {
-        "name": "2627 Barcelona Purple [Collab Edition] 2627巴萨紫色【联名款】 063 2627 Arsenal Black [All-Black]",
+        "name": "2627 Barcelona Purple [All-Black]",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-barcelona-purple-collab-edition-2627-063-2627-arsenal-black-all-black-2.jpg"
       },
