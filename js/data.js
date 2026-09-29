@@ -2768,7 +2768,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-2627-real-madrid-white-green-trim-rose-red-2627.jpg"
       },
       {
-        "name": "2627 Real Madrid Orange-Pin",
+        "name": "2627 Real Madrid Orange-Pink",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-real-madrid-orange-pin.jpg"
       },
@@ -2778,12 +2778,12 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-2627-arsenal-maroon.jpg"
       },
       {
-        "name": "2627 Barcelona Gold [Collab Edition]",
+        "name": "2627 Barcelona Gold",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-barcelona-gold-collab-edition.jpg"
       },
       {
-        "name": "2627 Arsenal Red-Blue [Cam",
+        "name": "2627 Arsenal Red-Blue",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-arsenal-red-blue-cam.jpg"
       },
@@ -2828,7 +2828,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-2627-spain-red-two-star.jpg"
       },
       {
-        "name": "2627 Spain Columbia Blue [Two-Star",
+        "name": "2627 Spain Columbia Blue [Two-Star]",
         "price": "",
         "image": "img/prod/var/football-training-kit-2627-spain-columbia-blue-two-star.jpg"
       },
