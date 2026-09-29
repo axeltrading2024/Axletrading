@@ -1219,6 +1219,16 @@ window.PRODUCTS = [
         "name": "GA+BA couple",
         "price": "€30",
         "image": "img/prod/var/g-3-ga-ba-couple.jpg"
+      },
+      {
+        "name": "Omega-swatch",
+        "price": "€25",
+        "image": "img/prod/var/g-3-omega-swatch.jpg"
+      },
+      {
+        "name": "Moonswatch",
+        "price": "€32",
+        "image": "img/prod/var/g-3-moonswatch.jpg"
       }
     ]
   },
