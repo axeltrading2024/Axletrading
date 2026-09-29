@@ -2375,6 +2375,11 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "video": "img/vid/v.mp4",
+    "images": [
+      "img/prod/gal/v-g1.jpg",
+      "img/prod/gal/v-g2.jpg",
+      "img/prod/gal/v-g3.jpg"
+    ],
     "variants": [
       {
         "name": "Pour Femme EDP",
