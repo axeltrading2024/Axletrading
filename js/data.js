@@ -609,6 +609,11 @@ window.PRODUCTS = [
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "images": [
+      "img/prod/gal/a-g1.jpg",
+      "img/prod/gal/a-g2.jpg",
+      "img/prod/gal/a-g3.jpg"
+    ],
     "variants": [
       {
         "name": "Stronger With You Intensely",
