@@ -868,6 +868,11 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "rolex-style",
     "video": "img/vid/rolex-daytona.mp4",
+    "images": [
+      "img/prod/gal/rolex-daytona-g2.jpg",
+      "img/prod/gal/rolex-daytona-g1.jpg",
+      "img/prod/gal/rolex-daytona-g3.jpg"
+    ],
     "keywords": [
       "rolex",
       "daytona",
