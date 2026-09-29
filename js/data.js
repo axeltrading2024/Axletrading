@@ -1133,6 +1133,11 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "tissot-style",
     "video": "img/vid/t-2.mp4",
+    "images": [
+      "img/prod/gal/t-2-g1.jpg",
+      "img/prod/gal/t-2-g2.jpg",
+      "img/prod/gal/t-2-g3.jpg"
+    ],
     "keywords": [
       "luxury watch",
       "tissot"
