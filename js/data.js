@@ -1842,6 +1842,11 @@ window.PRODUCTS = [
     "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
+    "images": [
+      "img/prod/gal/b-g1.jpg",
+      "img/prod/gal/b-g2.jpg",
+      "img/prod/gal/b-g3.jpg"
+    ],
     "keywords": [
       "JBL",
       "boom box",
