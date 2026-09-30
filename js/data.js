@@ -2639,6 +2639,11 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "images": [
+      "img/prod/gal/paco-rabannel-g1.jpg",
+      "img/prod/gal/paco-rabannel-g2.jpg",
+      "img/prod/gal/paco-rabannel-g3.jpg"
+    ],
     "variants": [
       {
         "name": "1 Million Royal Parfum 100ml",
