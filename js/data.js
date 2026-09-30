@@ -1943,37 +1943,47 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "sticker",
+        "name": "Sticker",
         "price": "",
         "image": "img/prod/var/n-sticker.jpg"
       },
       {
-        "name": "stand white-1",
+        "name": "Stand white-1",
         "price": "",
         "image": "img/prod/var/n-stand-white.jpg"
       },
       {
-        "name": "stand black-1",
+        "name": "Stand black-1",
         "price": "",
         "image": "img/prod/var/n-stand-black.jpg"
       },
       {
-        "name": "stand white-2",
+        "name": "Stand white-2",
         "price": "",
         "image": "img/prod/var/n-stand-white-2.jpg"
       },
       {
-        "name": "stand black-2",
+        "name": "Stand black-2",
         "price": "",
         "image": "img/prod/var/n-stand-black-2.jpg"
       },
       {
-        "name": "key style",
+        "name": "Round sticker-white",
+        "price": "",
+        "image": "img/prod/var/n-round-sticker.jpg"
+      },
+      {
+        "name": "Round sticker-black",
+        "price": "",
+        "image": "img/prod/var/n-round-sticker-black.jpg"
+      },
+      {
+        "name": "Key style",
         "price": "",
         "image": "img/prod/var/n-key-style.jpg"
       },
       {
-        "name": "more styl",
+        "name": "More styl",
         "price": "",
         "image": "img/prod/var/n-more-styl.jpg"
       }
