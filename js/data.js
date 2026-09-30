@@ -1866,6 +1866,15 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "s-2",
+    "name": "Sony style",
+    "brand": "Sony",
+    "price": "€18",
+    "note": "bluetooth 5.2-mini",
+    "desc": "",
+    "collection": "speakers"
+  },
+  {
     "id": "boom-tower",
     "name": "Party Tower 120 Speaker",
     "brand": "EddySupply",
@@ -2909,15 +2918,6 @@ window.PRODUCTS = [
         "image": "img/prod/var/football-training-kit-more-style.jpg"
       }
     ]
-  },
-  {
-    "id": "s-2",
-    "name": "Sony style",
-    "brand": "Sony",
-    "price": "€18",
-    "note": "bluetooth 5.2-mini",
-    "desc": "",
-    "collection": "speakers"
   },
   {
     "id": "m-2",
