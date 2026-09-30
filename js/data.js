@@ -1975,7 +1975,7 @@ window.PRODUCTS = [
       {
         "name": "more styl",
         "price": "",
-        "image": ""
+        "image": "img/prod/var/n-more-styl.jpg"
       }
     ]
   },
