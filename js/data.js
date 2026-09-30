@@ -1931,6 +1931,12 @@ window.PRODUCTS = [
     "collection": "other",
     "subcategory": "other-products",
     "popular": true,
+    "video": "img/vid/n.mp4",
+    "images": [
+      "img/prod/gal/n-g1.jpg",
+      "img/prod/gal/n-g2.jpg",
+      "img/prod/gal/n-g3.jpg"
+    ],
     "keywords": [
       "NFC",
       "google"
@@ -1942,14 +1948,34 @@ window.PRODUCTS = [
         "image": "img/prod/var/n-sticker.jpg"
       },
       {
-        "name": "stand white",
+        "name": "stand white-1",
         "price": "",
         "image": "img/prod/var/n-stand-white.jpg"
       },
       {
-        "name": "stand black",
+        "name": "stand black-1",
         "price": "",
         "image": "img/prod/var/n-stand-black.jpg"
+      },
+      {
+        "name": "stand white-2",
+        "price": "",
+        "image": "img/prod/var/n-stand-white-2.jpg"
+      },
+      {
+        "name": "stand black-2",
+        "price": "",
+        "image": "img/prod/var/n-stand-black-2.jpg"
+      },
+      {
+        "name": "key style",
+        "price": "",
+        "image": "img/prod/var/n-key-style.jpg"
+      },
+      {
+        "name": "more styl",
+        "price": "",
+        "image": ""
       }
     ]
   },
