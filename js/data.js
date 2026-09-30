@@ -2891,6 +2891,47 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "j-2",
+    "name": "JBL Charge6",
+    "brand": "JBL",
+    "price": "€20",
+    "note": "Portable · Waterproof",
+    "desc": "",
+    "collection": "speakers",
+    "images": [
+      "img/prod/gal/j-2-g2.jpg",
+      "img/prod/gal/j-2-g1.jpg",
+      "img/prod/gal/j-2-g3.jpg"
+    ],
+    "keywords": [
+      "speaker",
+      "JBL",
+      "Charge"
+    ],
+    "variants": [
+      {
+        "name": "Black",
+        "price": "",
+        "image": "img/prod/var/j-2-black.jpg"
+      },
+      {
+        "name": "Red",
+        "price": "",
+        "image": "img/prod/var/j-2-red.jpg"
+      },
+      {
+        "name": "Purple",
+        "price": "",
+        "image": "img/prod/var/j-2-purple.jpg"
+      },
+      {
+        "name": "Blue",
+        "price": "",
+        "image": "img/prod/var/j-2-blue.jpg"
+      }
+    ]
+  },
+  {
     "id": "s-2",
     "name": "Sony style",
     "brand": "Sony",
@@ -3451,47 +3492,6 @@ window.PRODUCTS = [
         "name": "Off-white",
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
-      }
-    ]
-  },
-  {
-    "id": "j-2",
-    "name": "JBL Charge6",
-    "brand": "JBL",
-    "price": "€20",
-    "note": "Portable · Waterproof",
-    "desc": "",
-    "collection": "speakers",
-    "images": [
-      "img/prod/gal/j-2-g2.jpg",
-      "img/prod/gal/j-2-g1.jpg",
-      "img/prod/gal/j-2-g3.jpg"
-    ],
-    "keywords": [
-      "speaker",
-      "JBL",
-      "Charge"
-    ],
-    "variants": [
-      {
-        "name": "Black",
-        "price": "",
-        "image": "img/prod/var/j-2-black.jpg"
-      },
-      {
-        "name": "Red",
-        "price": "",
-        "image": "img/prod/var/j-2-red.jpg"
-      },
-      {
-        "name": "Purple",
-        "price": "",
-        "image": "img/prod/var/j-2-purple.jpg"
-      },
-      {
-        "name": "Blue",
-        "price": "",
-        "image": "img/prod/var/j-2-blue.jpg"
       }
     ]
   }
