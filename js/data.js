@@ -384,9 +384,9 @@ window.PRODUCTS = [
   },
   {
     "id": "jbl-portable",
-    "name": "JBL Portable speaker",
+    "name": "JBL Flip7",
     "brand": "JBL",
-    "price": "from €18",
+    "price": "€18",
     "note": "Portable · Waterproof",
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
