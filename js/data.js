@@ -2329,6 +2329,11 @@ window.PRODUCTS = [
       "img/prod/gal/jean-paul-gaultter-g3.jpg",
       "img/prod/gal/jean-paul-gaultter-g2.jpg"
     ],
+    "keywords": [
+      "perfumes",
+      "JPG",
+      "le male"
+    ],
     "variants": [
       {
         "name": "JPG Gaultier Divine 100ml",
