@@ -2421,6 +2421,11 @@ window.PRODUCTS = [
       "img/prod/gal/p-g2.jpg",
       "img/prod/gal/p-g3.jpg"
     ],
+    "keywords": [
+      "perfumes. prada",
+      "Xejoff",
+      "YSL"
+    ],
     "variants": [
       {
         "name": "xerjoff erba pura",
