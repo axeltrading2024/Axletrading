@@ -1983,7 +1983,7 @@ window.PRODUCTS = [
         "image": "img/prod/var/n-key-style.jpg"
       },
       {
-        "name": "More styl",
+        "name": "More style",
         "price": "",
         "image": "img/prod/var/n-more-styl.jpg"
       }
