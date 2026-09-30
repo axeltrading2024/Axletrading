@@ -391,6 +391,11 @@ window.PRODUCTS = [
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
     "popular": true,
+    "images": [
+      "img/prod/gal/jbl-portable-g1.jpg",
+      "img/prod/gal/jbl-portable-g2.jpg",
+      "img/prod/gal/jbl-portable-g3.jpg"
+    ],
     "keywords": [
       "jbl",
       "flip",
@@ -419,29 +424,14 @@ window.PRODUCTS = [
         "image": "img/prod/var/jbl-flip-7-flip7-4.jpg"
       },
       {
-        "name": "Charge6-black1",
-        "price": "€20",
-        "image": "img/prod/var/jbl-flip-7-charge6.jpg"
+        "name": "Pulse6-white",
+        "price": "€18",
+        "image": "img/prod/var/jbl-portable-pulse6-white.jpg"
       },
       {
-        "name": "Charge6-black2",
-        "price": "€20",
-        "image": "img/prod/var/jbl-flip-7-charge6-black2.jpg"
-      },
-      {
-        "name": "Charge6-blue",
-        "price": "€20",
-        "image": "img/prod/var/jbl-flip-7-charge6-blue.jpg"
-      },
-      {
-        "name": "Charge6-purple",
-        "price": "€20",
-        "image": "img/prod/var/jbl-flip-7-charge6-purple.jpg"
-      },
-      {
-        "name": "Charge6-red",
-        "price": "€20",
-        "image": "img/prod/var/jbl-flip-7-charge6-red.jpg"
+        "name": "Pulse6--black",
+        "price": "€18",
+        "image": "img/prod/var/jbl-portable-pulse6-black.jpg"
       },
       {
         "name": "GO5-1",
