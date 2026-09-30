@@ -2911,6 +2911,15 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "s-2",
+    "name": "Sony style",
+    "brand": "Sony",
+    "price": "€18",
+    "note": "bluetooth 5.2-mini",
+    "desc": "",
+    "collection": "speakers"
+  },
+  {
     "id": "m-2",
     "name": "wireless microphone",
     "brand": "Generic",
@@ -2930,15 +2939,6 @@ window.PRODUCTS = [
         "image": "img/prod/var/m-2-gen2.jpg"
       }
     ]
-  },
-  {
-    "id": "s-2",
-    "name": "Sony style",
-    "brand": "Sony",
-    "price": "€18",
-    "note": "bluetooth 5.2-mini",
-    "desc": "",
-    "collection": "speakers"
   },
   {
     "id": "p-2",
