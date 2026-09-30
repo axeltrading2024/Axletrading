@@ -1879,7 +1879,12 @@ window.PRODUCTS = [
     "price": "€18",
     "note": "bluetooth 5.2-mini",
     "desc": "",
-    "collection": "speakers"
+    "collection": "speakers",
+    "images": [
+      "img/prod/gal/s-2-g1.jpg",
+      "img/prod/gal/s-2-g2.jpg",
+      "img/prod/gal/s-2-g3.jpg"
+    ]
   },
   {
     "id": "boom-tower",
