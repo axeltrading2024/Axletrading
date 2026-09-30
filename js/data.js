@@ -2324,6 +2324,11 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "images": [
+      "img/prod/gal/jean-paul-gaultter-g1.jpg",
+      "img/prod/gal/jean-paul-gaultter-g3.jpg",
+      "img/prod/gal/jean-paul-gaultter-g2.jpg"
+    ],
     "variants": [
       {
         "name": "JPG Gaultier Divine 100ml",
