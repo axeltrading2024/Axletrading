@@ -1894,6 +1894,7 @@ window.PRODUCTS = [
     "note": "LED · Karaoke ready-outdoor swimming pool",
     "desc": "Tall-format party speaker with synchronised LED lighting and dual mic inputs for karaoke.",
     "collection": "speakers",
+    "video": "img/vid/boom-tower.mp4",
     "keywords": [
       "party",
       "tower",
