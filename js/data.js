@@ -2416,6 +2416,11 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "images": [
+      "img/prod/gal/p-g1.jpg",
+      "img/prod/gal/p-g2.jpg",
+      "img/prod/gal/p-g3.jpg"
+    ],
     "variants": [
       {
         "name": "xerjoff erba pura",
@@ -2451,6 +2456,26 @@ window.PRODUCTS = [
         "name": "YSL saint laurent",
         "price": "",
         "image": "img/prod/var/p-ysl-saint-laurent.jpg"
+      },
+      {
+        "name": "Prada Doxe EDP",
+        "price": "",
+        "image": "img/prod/var/p-prada.jpg"
+      },
+      {
+        "name": "Prada Doxe intense EDP",
+        "price": "",
+        "image": "img/prod/var/p-prada-doxe-intense-edp.jpg"
+      },
+      {
+        "name": "Prada Luna Roosa EDT",
+        "price": "",
+        "image": "img/prod/var/p-prada-2.jpg"
+      },
+      {
+        "name": "Prada Luna Roosa  Ocean EDP",
+        "price": "",
+        "image": "img/prod/var/p-prada-luna-roosa-ocean-edp.jpg"
       }
     ]
   },
