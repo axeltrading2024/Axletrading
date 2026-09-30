@@ -2976,6 +2976,9 @@ window.PRODUCTS = [
     "note": "wireless- 2-channel",
     "desc": "2-channel wireless microphone system",
     "collection": "speakers",
+    "images": [
+      "img/prod/gal/m-2-g1.jpg"
+    ],
     "variants": [
       {
         "name": "gen1",
