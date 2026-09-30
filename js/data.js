@@ -2537,6 +2537,11 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "video": "img/vid/l-2.mp4",
+    "images": [
+      "img/prod/gal/l-2-g1.jpg",
+      "img/prod/gal/l-2-g2.jpg",
+      "img/prod/gal/l-2-g3.jpg"
+    ],
     "keywords": [
       "lv",
       "perfumes",
