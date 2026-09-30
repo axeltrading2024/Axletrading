@@ -1843,6 +1843,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
+    "video": "img/vid/b.mp4",
     "images": [
       "img/prod/gal/b-g1.jpg",
       "img/prod/gal/b-g2.jpg",
