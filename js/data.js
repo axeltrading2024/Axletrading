@@ -220,17 +220,17 @@ window.PRODUCTS = [
     "variants": [
       {
         "name": "Airpods-pro2",
-        "price": "",
+        "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
       },
       {
         "name": "Airpods-gen4",
-        "price": "",
+        "price": "€12",
         "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
       },
       {
         "name": "Airpods-pro3",
-        "price": "",
+        "price": "€12",
         "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
     ]
