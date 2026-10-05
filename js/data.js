@@ -2144,24 +2144,29 @@ window.PRODUCTS = [
     "subcategory": "luxury-bags",
     "variants": [
       {
-        "name": "1",
+        "name": "Card wallet-Green",
         "price": "€8",
         "image": "img/prod/var/g-2-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Card wallet-blue",
+        "price": "",
+        "image": "img/prod/var/g-2-card-wallet-blue.jpg"
+      },
+      {
+        "name": "Card wallet-White",
+        "price": "",
+        "image": "img/prod/var/g-2-card-wallet-white.jpg"
+      },
+      {
+        "name": "Card wallet-more colors",
+        "price": "",
+        "image": "img/prod/var/g-2-card-wallet-more-colors.jpg"
+      },
+      {
+        "name": "Cash Wallet",
         "price": "€10",
         "image": "img/prod/var/g-2-2.jpg"
-      },
-      {
-        "name": "3",
-        "price": "€40",
-        "image": "img/prod/var/g-2-3.jpg"
-      },
-      {
-        "name": "4",
-        "price": "€65",
-        "image": "img/prod/var/g-2-4.jpg"
       }
     ]
   },
