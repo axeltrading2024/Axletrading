@@ -1693,6 +1693,31 @@ body:has(.drawer.open) .cart-fab {
   margin-top: 2px;
 }
 
+/* 起订量提示：告诉客户这件商品有下限 */
+.inq-item .i-moq {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--muted-foreground);
+}
+
+/* 已到起订量：减号置灰但仍可点（点了给提示，不是死按钮） */
+.qty button[data-moqlock] {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* 减号被拦时的抖动，提示"到下限了" */
+@keyframes moq-lock {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+.qty button.shake {
+  animation: moq-lock 0.22s ease-in-out;
+}
+
 .qty {
   display: inline-flex;
   align-items: center;

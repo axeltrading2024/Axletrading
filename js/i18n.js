@@ -113,6 +113,8 @@
     toast_added:        { en: '{name} added to inquiry', es: '{name} añadido a la cotización' },
     toast_cleared:      { en: 'Inquiry list cleared', es: 'Lista vaciada' },
     toast_share:        { en: 'Share link copied — send it to your customer', es: 'Enlace copiado — envíalo a tu cliente' },
+    toast_moq_min:      { en: 'Minimum order for this item is {n} pcs', es: 'El pedido mínimo de este artículo es {n} pzs' },
+    moq_min_label:      { en: 'Min. {n}', es: 'Mín. {n}' },
     copy_failed:        { en: 'Copy failed — please copy from the address bar', es: 'Copia fallida — cópialo de la barra de direcciones' },
 
     /* ---------------- About 页（静态文案） ---------------- */

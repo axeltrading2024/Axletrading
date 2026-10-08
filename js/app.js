@@ -205,6 +205,27 @@
     return it.id + (it.variant ? '::' + it.variant : '');
   }
 
+  /* ---------------- 起订量（MOQ） ---------------- */
+  /** 从自由文本 MOQ 里取最小起订数量：'50 pcs per color' → 50；无有效数字 → 0（视为无限制） */
+  function moqQty(p) {
+    if (!p || !p.moq) return 0;
+    var m = String(p.moq).match(/(\d+)/);
+    if (!m) return 0;
+    var n = parseInt(m[1], 10);
+    return n > 1 ? n : 0;   // 1 视为无限制（否则减号永远锁死）
+  }
+
+  /** 清单条目的 MOQ 下限 —— 按型号独立，实时查产品数据（后台改 MOQ 后自动跟随，不存本地副本） */
+  function minQtyOf(it) {
+    var p = it && it.id ? getProduct(it.id) : null;
+    return p ? moqQty(p) : 0;
+  }
+
+  /** 把数量抬到起订量下限（无 MOQ / MOQ<=1 时原样返回） */
+  function moqFloor(qty, minQ) {
+    return (minQ > 1 && qty < minQ) ? minQ : qty;
+  }
+
   /* ---------------- 专属分享链接（把询价清单编码进网址 #l=...） ---------------- */
   /** 清单 → base64url 字符串（只存 id/型号/数量，价格等打开时按最新数据渲染） */
   function encodeItems(items) {
@@ -232,7 +253,8 @@
           id: p.id, variant: x.v || '', name: p.name, brand: p.brand,
           image: (v && v.image) ? v.image : p.image,
           price: (v && v.price) ? v.price : p.price,
-          qty: (parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1),
+          // 分享链接可能来自 MOQ 设定之前，qty 要按当前 MOQ 抬到下限，否则客户会带着低于起订量的数字来询价
+          qty: moqFloor((parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1), moqQty(p)),
         };
       });
     } catch (e) { return []; }
@@ -288,9 +310,18 @@
           };
         });
       } catch (e) { /* 忽略损坏的本地数据 */ }
+      this.clampMoq();
+    },
+
+    /** MOQ 下限钳制：把低于起订量的条目拉到起订量。add/setQty/load 全部经过 save，故这是唯一收口 */
+    clampMoq: function () {
+      this.items.forEach(function (it) {
+        it.qty = moqFloor(it.qty, minQtyOf(it));
+      });
     },
 
     save: function () {
+      this.clampMoq();
       try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items)); } catch (e) {}
     },
 
@@ -593,6 +624,8 @@
     }
     body.innerHTML = Store.items.map(function (it) {
       var key = itemKey(it);
+      var minQ = minQtyOf(it);
+      var atMin = minQ > 1 && it.qty <= minQ;   // 已到起订量 → 减号锁定
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
@@ -601,10 +634,12 @@
             '<p class="i-brand">' + esc(it.brand) + '</p>' +
             '<p class="i-price">' + esc(it.price) + '</p>' +
             '<div class="qty">' +
-              '<button type="button" data-qty="' + esc(key) + '" data-delta="-1" aria-label="Decrease">−</button>' +
+              '<button type="button" data-qty="' + esc(key) + '" data-delta="-1" aria-label="Decrease"' +
+                (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
               '<span class="n">' + it.qty + '</span>' +
               '<button type="button" data-qty="' + esc(key) + '" data-delta="1" aria-label="Increase">+</button>' +
             '</div>' +
+            (minQ > 1 ? '<p class="i-moq">' + esc(window.T('moq_min_label', { n: minQ })) + '</p>' : '') +
           '</div>' +
           '<button type="button" class="inq-remove" data-remove="' + esc(key) + '" aria-label="Remove">' + ICON.trash + '</button>' +
         '</div>';
@@ -767,7 +802,18 @@
         var key = qtyBtn.getAttribute('data-qty');
         var delta = parseInt(qtyBtn.getAttribute('data-delta'), 10);
         var cur = Store.items.filter(function (it) { return itemKey(it) === key; })[0];
-        if (cur) Store.setQty(key, cur.qty + delta);
+        if (cur) {
+          var minQ = minQtyOf(cur);
+          // 减号到起订量就停：静默钳制会让人以为按钮坏了，所以明确提示
+          if (cur.qty + delta < minQ) {
+            qtyBtn.classList.remove('shake');
+            void qtyBtn.offsetWidth;
+            qtyBtn.classList.add('shake');
+            toast(window.T('toast_moq_min', { n: minQ }));
+            return;
+          }
+          Store.setQty(key, cur.qty + delta);
+        }
         return;
       }
 
@@ -790,7 +836,16 @@
         var sIdx = parseInt(sqBtn.getAttribute('data-sqty'), 10);
         var sDelta = parseInt(sqBtn.getAttribute('data-delta'), 10);
         if (sharedItems[sIdx]) {
-          sharedItems[sIdx].qty = Math.max(1, sharedItems[sIdx].qty + sDelta);
+          var sCur = sharedItems[sIdx];
+          var sMin = minQtyOf(sCur);
+          if (sCur.qty + sDelta < sMin) {
+            sqBtn.classList.remove('shake');
+            void sqBtn.offsetWidth;
+            sqBtn.classList.add('shake');
+            toast(window.T('toast_moq_min', { n: sMin }));
+            return;
+          }
+          sCur.qty = Math.max(1, sCur.qty + sDelta);
           renderSharedQuote();
         }
         return;
@@ -1433,6 +1488,8 @@
     var body = $('[data-shared-body]');
     if (!body) return;
     body.innerHTML = sharedItems.map(function (it, idx) {
+      var minQ = minQtyOf(it);
+      var atMin = minQ > 1 && it.qty <= minQ;
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
@@ -1441,10 +1498,12 @@
             '<p class="i-brand">' + esc(it.brand || '') + '</p>' +
             '<p class="i-price">' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</p>' +
             '<div class="qty">' +
-              '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease">−</button>' +
+              '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease"' +
+                (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
               '<span class="n">' + it.qty + '</span>' +
               '<button type="button" data-sqty="' + idx + '" data-delta="1" aria-label="Increase">+</button>' +
             '</div>' +
+            (minQ > 1 ? '<p class="i-moq">' + esc(window.T('moq_min_label', { n: minQ })) + '</p>' : '') +
           '</div>' +
         '</div>';
     }).join('');
