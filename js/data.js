@@ -534,6 +534,7 @@ window.PRODUCTS = [
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
       "img/prod/gal/bleu-chanel-g2.jpg",
