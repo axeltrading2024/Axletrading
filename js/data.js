@@ -2341,6 +2341,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
       "img/prod/gal/jean-paul-gaultter-g3.jpg",
