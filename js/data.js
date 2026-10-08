@@ -675,6 +675,7 @@ window.PRODUCTS = [
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
     "subcategory": "niche",
+    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
