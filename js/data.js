@@ -465,6 +465,7 @@ window.PRODUCTS = [
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs per model",
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
       "img/prod/gal/valentino-born-in-roma-g1.jpg",
