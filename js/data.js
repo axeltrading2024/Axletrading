@@ -3058,9 +3058,10 @@ window.PRODUCTS = [
     "brand": "Rimowa",
     "price": "€8",
     "note": "suitcase style-colorful",
-    "desc": "moq 10 units for one color",
+    "desc": "",
     "collection": "chargers",
     "subcategory": "phonecase",
+    "moq": "10 pcs per color",
     "variants": [
       {
         "name": "1",

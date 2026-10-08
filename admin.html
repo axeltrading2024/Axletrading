@@ -115,6 +115,11 @@
               <label for="f-note" data-page-node-id="rcoAHfRFAwUnroBAelUhLl">一句话卖点（卡片上显示）</label>
               <input id="f-note" data-f-note placeholder="如 ANC · Wireless charging case" data-page-node-id="r9iGlbGxCLaxxV7T8BaGDN">
             </div>
+            <div class="field full">
+              <label for="f-moq">起订量 MOQ（可选，详情页规格表显示；留空则显示 Flexible）</label>
+              <input id="f-moq" data-f-moq placeholder="如 50 pcs per color / 100 pcs mix colors（留空 = Flexible）">
+              <span class="help">英文或行业缩写均可；西语站原样显示，不翻译。留空 = Flexible</span>
+            </div>
             <div class="field full" data-page-node-id="9VWTCrsqlcW47QDd7EeGOu">
               <label for="f-desc" data-page-node-id="Lwh85WzdwScQ2tEWhUzYZw">详细介绍（详情页显示）</label>
               <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
@@ -303,7 +308,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20260925a"></script>
+  <script src="js/data.js?v=20261008a"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -389,6 +394,7 @@
         collection: p.collection,
       };
       if (p.subcategory) o.subcategory = p.subcategory;
+      if (p.moq) o.moq = p.moq;
       if (p.popular) o.popular = true;
       if (p.video) o.video = p.video;
       if (p.images && p.images.length) o.images = p.images.slice(0, 4);
@@ -600,7 +606,7 @@
   }
 
   /* ---------------- 表单 ---------------- */
-  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video'];
+  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video', 'moq'];
 
   function fillForm(p) {
     if (!p) { resetForm(); return; }
@@ -611,6 +617,7 @@
     $('[data-f-price]').value = p.price || '';
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
+    $('[data-f-moq]').value = p.moq || '';
     $('[data-f-video]').value = p.video || '';
     renderGalRows(p.image, p.images);
     showVideoPreview(p.video || '');
@@ -662,6 +669,7 @@
     p.keywords = p.keywords ? p.keywords.split(',').map(function (k) { return k.trim(); }).filter(Boolean) : [];
     if (!p.subcategory) p.subcategory = undefined;
     if (!p.video) p.video = undefined;
+    if (!p.moq) p.moq = undefined;
     p.images = collectGallery();
     p.variants = collectVariants();
     return p;

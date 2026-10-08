@@ -1172,7 +1172,10 @@
             '<div class="spec-row"><span class="k" data-i18n="spec_brand">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
             '<div class="spec-row"><span class="k" data-i18n="spec_collection">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
             '<div class="spec-row"><span class="k" data-i18n="spec_shipping">Shipping</span><span data-i18n="spec_shipping_val">Worldwide · Quoted on request</span></div>' +
-            '<div class="spec-row"><span class="k" data-i18n="spec_moq">MOQ</span><span data-i18n="spec_flexible">Flexible</span></div>' +
+            '<div class="spec-row"><span class="k" data-i18n="spec_moq">MOQ</span>' +
+            (p.moq ? '<span class="spec-moq-text">' + esc(p.moq) + '</span>'
+                   : '<span data-i18n="spec_flexible">Flexible</span>') +
+          '</div>' +
           '</div>' +
         '</div>' +
       '</div>';
