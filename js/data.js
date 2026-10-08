@@ -2184,6 +2184,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs per model",
     "video": "img/vid/t.mp4",
     "images": [
       "img/prod/gal/t-g1.jpg",
