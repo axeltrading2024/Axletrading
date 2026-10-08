@@ -306,7 +306,7 @@ window.PRODUCTS = [
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12",
+    "moq": "12 pcs per model",
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
