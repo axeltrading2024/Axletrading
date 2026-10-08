@@ -2263,6 +2263,7 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/c-g1.jpg",
       "img/prod/gal/c-g2.jpg",
