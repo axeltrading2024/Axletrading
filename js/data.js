@@ -3620,6 +3620,33 @@ window.PRODUCTS = [
         "image": "img/prod/var/g-5-off-white.jpg"
       }
     ]
+  },
+  {
+    "id": "e",
+    "name": "earpods",
+    "brand": "Apple",
+    "price": "€2",
+    "note": "wirecontrol-lightning port-usb c",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "moq": "20",
+    "images": [
+      "img/prod/gal/e-g1.jpg",
+      "img/prod/gal/e-g2.jpg",
+      "img/prod/gal/e-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "lightning port",
+        "price": "",
+        "image": "img/prod/var/e-lightning-port.jpg"
+      },
+      {
+        "name": "usb c port",
+        "price": "",
+        "image": "img/prod/var/e-usb-c-port.jpg"
+      }
+    ]
   }
 ];
 
