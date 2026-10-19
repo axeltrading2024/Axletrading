@@ -545,19 +545,35 @@
           '</div>' +
           '<button type="button" class="inquiry-close" data-close-inquiry-form aria-label="Close">' + ICON.close + '</button>' +
         '</div>' +
-        '<form class="inquiry-form" data-inquiry-form>' +
-          '<label><span><span data-i18n="inquiry_name">Name</span> <em class="req">*</em></span><input name="name" autocomplete="name" required></label>' +
-          '<label><span><span data-i18n="inquiry_phone">Phone number</span> <em class="req">*</em></span><input name="phone" type="tel" autocomplete="tel" required></label>' +
-          '<label><span data-i18n="inquiry_address">Address</span><input name="address" autocomplete="street-address" data-i18n-ph="inquiry_address_ph" placeholder="Street, building, apt."></label>' +
+        '<form class="inquiry-form" data-inquiry-form novalidate>' +
+          '<label><span><span data-i18n="inquiry_name">Name</span> <em class="req">*</em></span>' +
+            '<input name="name" autocomplete="name" maxlength="60" required>' +
+            '<em class="f-err" data-err="name"></em></label>' +
+          '<label><span><span data-i18n="inquiry_phone">Phone number</span> <em class="req">*</em></span>' +
+            '<input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="+1 415 555 0100" required>' +
+            '<em class="f-err" data-err="phone"></em></label>' +
+          '<label><span data-i18n="inquiry_address">Address</span>' +
+            '<input name="address" autocomplete="street-address" maxlength="120" data-i18n-ph="inquiry_address_ph" placeholder="Street, building, apt.">' +
+            '<em class="f-err" data-err="address"></em></label>' +
           '<div class="inquiry-row">' +
-            '<label><span data-i18n="inquiry_city">City</span><input name="city" autocomplete="address-level2"></label>' +
-            '<label><span data-i18n="inquiry_province">Province</span><input name="province" autocomplete="address-level1"></label>' +
+            '<label><span data-i18n="inquiry_city">City</span>' +
+              '<input name="city" autocomplete="address-level2" maxlength="40">' +
+              '<em class="f-err" data-err="city"></em></label>' +
+            '<label><span data-i18n="inquiry_province">Province</span>' +
+              '<input name="province" autocomplete="address-level1" maxlength="40">' +
+              '<em class="f-err" data-err="province"></em></label>' +
           '</div>' +
           '<div class="inquiry-row">' +
-            '<label><span data-i18n="inquiry_zip">City zip code</span><input name="zip" inputmode="numeric" autocomplete="postal-code"></label>' +
-            '<label><span data-i18n="inquiry_country">Country</span><input name="country" autocomplete="country-name"></label>' +
+            '<label><span><span data-i18n="inquiry_zip">City zip code</span> <em class="req">*</em></span>' +
+              '<input name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="12">' +
+              '<em class="f-err" data-err="zip"></em></label>' +
+            '<label><span><span data-i18n="inquiry_country">Country</span> <em class="req">*</em></span>' +
+              '<select name="country" autocomplete="country" data-inquiry-country>' + countryOptionsHtml('') + '</select>' +
+              '<em class="f-err" data-err="country"></em></label>' +
           '</div>' +
-          '<label><span data-i18n="inquiry_email">Email</span><input name="email" type="email" autocomplete="email"></label>' +
+          '<label><span data-i18n="inquiry_email">Email</span>' +
+            '<input name="email" type="email" autocomplete="email" maxlength="80">' +
+            '<em class="f-err" data-err="email"></em></label>' +
           '<label><span data-i18n="inquiry_products">Products you need</span><textarea name="products" rows="2" data-inquiry-products data-i18n-ph="inquiry_products_ph" placeholder="e.g. RIMOWA style × 50, AirPods × 20"></textarea></label>' +
           '<p class="inquiry-note" data-i18n="inquiry_note">Fields marked * are required. We only use these details to prepare your quote.</p>' +
           '<button type="submit" class="btn btn-whatsapp" data-i18n="inquiry_submit_fast">Get a fast quote</button>' +
@@ -655,6 +671,243 @@
     if (p) { p.classList.remove('open'); p.setAttribute('aria-hidden', 'true'); }
     if (b) b.classList.remove('open');
     document.body.style.overflow = '';
+  }
+
+  /* ============================================================
+   *  询盘表单校验（国家 / 区号 / 邮编 / 拦乱写）
+   *  原则：只硬拦「格式确定是错的」，不猜客户是不是在开玩笑；
+   *        真实客户被误拦的代价远大于放过一条乱填。
+   * ============================================================ */
+
+  /* 国家表：[ISO2, EN, ES, 国际区号, 邮编正则(null=该国无邮编), 邮编示例, [国内号码位数下限, 上限]]
+     号码位数按「国内有效位」算（不含国际区号；英国/德国等前导 0 会自动忽略） */
+  var COUNTRIES = [
+    ['US', 'United States', 'Estados Unidos', '1', /^\d{5}(-\d{4})?$/, '90210', [10, 10]],
+    ['CA', 'Canada', 'Canadá', '1', /^[A-Z]\d[A-Z]\s?\d[A-Z]\d$/, 'K1A 0B1', [10, 10]],
+    ['MX', 'Mexico', 'México', '52', /^\d{5}$/, '01000', [10, 10]],
+    ['GB', 'United Kingdom', 'Reino Unido', '44', /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/, 'SW1A 1AA', [10, 10]],
+    ['DE', 'Germany', 'Alemania', '49', /^\d{5}$/, '10115', [6, 11]],
+    ['FR', 'France', 'Francia', '33', /^\d{5}$/, '75001', [9, 9]],
+    ['ES', 'Spain', 'España', '34', /^\d{5}$/, '28001', [9, 9]],
+    ['IT', 'Italy', 'Italia', '39', /^\d{5}$/, '20100', [9, 10]],
+    ['NL', 'Netherlands', 'Países Bajos', '31', /^\d{4}\s?[A-Z]{2}$/, '1012 AB', [9, 9]],
+    ['BE', 'Belgium', 'Bélgica', '32', /^\d{4}$/, '1000', [8, 9]],
+    ['AT', 'Austria', 'Austria', '43', /^\d{4}$/, '1010', [7, 12]],
+    ['CH', 'Switzerland', 'Suiza', '41', /^\d{4}$/, '8001', [9, 9]],
+    ['SE', 'Sweden', 'Suecia', '46', /^\d{3}\s?\d{2}$/, '111 22', [7, 10]],
+    ['NO', 'Norway', 'Noruega', '47', /^\d{4}$/, '0150', [8, 8]],
+    ['DK', 'Denmark', 'Dinamarca', '45', /^\d{4}$/, '1050', [8, 8]],
+    ['FI', 'Finland', 'Finlandia', '358', /^\d{5}$/, '00100', [8, 10]],
+    ['IE', 'Ireland', 'Irlanda', '353', /^[A-Z]\d{2}\s?[A-Z\d]{4}$/, 'D02 X285', [7, 9]],
+    ['PT', 'Portugal', 'Portugal', '351', /^\d{4}-?\d{3}$/, '1000-001', [9, 9]],
+    ['PL', 'Poland', 'Polonia', '48', /^\d{2}-?\d{3}$/, '00-001', [9, 9]],
+    ['CZ', 'Czechia', 'Chequia', '420', /^\d{3}\s?\d{2}$/, '110 00', [9, 9]],
+    ['GR', 'Greece', 'Grecia', '30', /^\d{3}\s?\d{2}$/, '105 57', [10, 10]],
+    ['HU', 'Hungary', 'Hungría', '36', /^\d{4}$/, '1011', [8, 9]],
+    ['RO', 'Romania', 'Rumanía', '40', /^\d{6}$/, '010011', [9, 9]],
+    ['TR', 'Türkiye', 'Turquía', '90', /^\d{5}$/, '34000', [10, 10]],
+    ['AU', 'Australia', 'Australia', '61', /^\d{4}$/, '2000', [9, 9]],
+    ['NZ', 'New Zealand', 'Nueva Zelanda', '64', /^\d{4}$/, '1010', [8, 10]],
+    ['CN', 'China', 'China', '86', /^\d{6}$/, '100000', [11, 11]],
+    ['HK', 'Hong Kong SAR, China', 'Hong Kong (RAE de China)', '852', null, '', [8, 8]],
+    ['TW', 'Taiwan, China', 'Taiwán, China', '886', /^\d{3}(\d{2})?$/, '100', [9, 9]],
+    ['JP', 'Japan', 'Japón', '81', /^\d{3}-?\d{4}$/, '100-0001', [9, 10]],
+    ['KR', 'South Korea', 'Corea del Sur', '82', /^\d{5}$/, '04524', [9, 10]],
+    ['SG', 'Singapore', 'Singapur', '65', /^\d{6}$/, '018956', [8, 8]],
+    ['MY', 'Malaysia', 'Malasia', '60', /^\d{5}$/, '50000', [7, 10]],
+    ['TH', 'Thailand', 'Tailandia', '66', /^\d{5}$/, '10110', [9, 9]],
+    ['VN', 'Vietnam', 'Vietnam', '84', /^\d{5,6}$/, '100000', [9, 10]],
+    ['IN', 'India', 'India', '91', /^\d{6}$/, '110001', [10, 10]],
+    ['ID', 'Indonesia', 'Indonesia', '62', /^\d{5}$/, '10110', [9, 12]],
+    ['PH', 'Philippines', 'Filipinas', '63', /^\d{4}$/, '1000', [10, 10]],
+    ['PK', 'Pakistan', 'Pakistán', '92', /^\d{5}$/, '44000', [10, 10]],
+    ['AE', 'United Arab Emirates', 'Emiratos Árabes Unidos', '971', null, '', [9, 9]],
+    ['SA', 'Saudi Arabia', 'Arabia Saudita', '966', /^\d{5}$/, '11564', [9, 9]],
+    ['IL', 'Israel', 'Israel', '972', /^\d{5}(\d{2})?$/, '6100001', [9, 9]],
+    ['BR', 'Brazil', 'Brasil', '55', /^\d{5}-?\d{3}$/, '01310-100', [10, 11]],
+    ['AR', 'Argentina', 'Argentina', '54', /^([A-Z]\d{4}[A-Z]{3}|\d{4})$/, 'C1000ABC', [10, 11]],
+    ['CL', 'Chile', 'Chile', '56', /^\d{7}$/, '8320000', [9, 9]],
+    ['CO', 'Colombia', 'Colombia', '57', /^\d{6}$/, '110111', [10, 10]],
+    ['PE', 'Peru', 'Perú', '51', /^\d{5}$/, '15001', [9, 9]],
+    ['ZA', 'South Africa', 'Sudáfrica', '27', /^\d{4}$/, '0001', [9, 9]],
+    ['EG', 'Egypt', 'Egipto', '20', /^\d{5}$/, '11511', [9, 10]],
+    ['NG', 'Nigeria', 'Nigeria', '234', /^\d{6}$/, '100001', [9, 10]],
+    ['MA', 'Morocco', 'Marruecos', '212', /^\d{5}$/, '10000', [9, 9]],
+    ['KE', 'Kenya', 'Kenia', '254', /^\d{5}$/, '00100', [9, 9]]
+  ];
+  /* 兜底项放最后（不参与排序）：区号未知、邮编规则宽松 */
+  var COUNTRY_OTHER = ['OTHER', 'Other country', 'Otro país', '',
+    /^[A-Z0-9][A-Z0-9\s-]{1,9}$/, '12345', [6, 15]];
+
+  var COUNTRY_BY_ISO = {};
+  (function () {
+    COUNTRIES.sort(function (a, b) { return a[1].localeCompare(b[1]); });
+    COUNTRIES.push(COUNTRY_OTHER);
+    COUNTRIES.forEach(function (c) { COUNTRY_BY_ISO[c[0]] = c; });
+  })();
+
+  function countryLabel(c) {
+    var lang = (window.getLang && window.getLang()) || 'en';
+    return lang === 'es' ? (c[2] || c[1]) : c[1];
+  }
+  function countryOptionsHtml(selected) {
+    var html = '<option value="">' + esc(window.T('inquiry_country_ph')) + '</option>';
+    COUNTRIES.forEach(function (c) {
+      html += '<option value="' + c[0] + '"' + (c[0] === selected ? ' selected' : '') + '>' +
+        esc(countryLabel(c)) + '</option>';
+    });
+    return html;
+  }
+  /** 语言切换后重建国家下拉（保留已选值） */
+  function translateCountryOptions() {
+    var sel = $('[data-inquiry-country]');
+    if (!sel) return;
+    sel.innerHTML = countryOptionsHtml(sel.value || '');
+  }
+
+  /* 明显乱写的词（键盘就近敲出来的那一类） */
+  var MASH_WORDS = {
+    asd: 1, asda: 1, asdas: 1, asdad: 1, asdasd: 1, asdsad: 1, asdf: 1, asdfg: 1, asdfgh: 1,
+    dsa: 1, sda: 1, ads: 1, dad: 1, dadd: 1, ddd: 1,
+    qwe: 1, qwer: 1, qwert: 1, qwerty: 1, zxc: 1, zxcv: 1, xcvb: 1,
+    test: 1, tests: 1, testing: 1, abc: 1, abcd: 1, abcabc: 1,
+    xxx: 1, xxxx: 1, aaa: 1, aaaa: 1, sss: 1, nnn: 1, nnnn: 1, ffff: 1,
+    nil: 1, null: 1, none: 1, asdfasdf: 1
+  };
+  /* 键盘横向连击 ≥4 键（含反向）；3 键会误伤 Albert / Robert 这类真名，故不做 */
+  var KEY_RUNS = (function () {
+    var rows = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'], out = [];
+    rows.forEach(function (r) {
+      for (var i = 0; i + 4 <= r.length; i++) {
+        var w = r.slice(i, i + 4);
+        out.push(w, w.split('').reverse().join(''));
+      }
+    });
+    return out;
+  })();
+
+  /* 3 键连击：asd / qwe 这类在真实人名地名里不会出现，可以安全做子串判断
+     （'ert'、'wer' 会误伤 Albert、Werner，所以不收） */
+  var MASH_RUNS_3 = ['asd', 'sdf', 'dfg', 'fgh', 'ghj', 'hjk', 'zxc', 'xcv', 'cvb', 'vbn', 'bnm', 'qwe', 'qaz', 'wsx', 'edc'];
+
+  /* 允许的「文字字符」：拉丁（含重音）、希腊、西里尔、希伯来、阿拉伯、中日韩 */
+  var LETTERS = 'A-Za-z\\u00c0-\\u024f\\u0370-\\u03ff\\u0400-\\u04ff\\u0590-\\u05ff\\u0600-\\u06ff\\u3040-\\u30ff\\u4e00-\\u9fa5';
+  var RE_WORDS = new RegExp("^[" + LETTERS + "][ " + LETTERS + "'’.\\-]*$");
+
+  function normLetters(v) {
+    return (v || '').toLowerCase().replace(new RegExp('[^' + LETTERS + ']', 'g'), '');
+  }
+  /** 疑似乱敲：词表命中 / 键盘连击 / 两段重复(dada) / 同字 3 连 / 只有一种字母 / 长串无元音
+   *  全大写缩写（CDMX / NSW / UAE）不套「无元音」这条，否则会被误判 */
+  function looksMash(v) {
+    var raw = (v || '').trim();
+    var s = normLetters(raw);
+    if (!s || s.length < 2) return false;
+    if (MASH_WORDS[s]) return true;
+    for (var m = 0; m < MASH_RUNS_3.length; m++) if (s.indexOf(MASH_RUNS_3[m]) > -1) return true;
+    for (var i = 0; i < KEY_RUNS.length; i++) if (s.indexOf(KEY_RUNS[i]) > -1) return true;
+    if (s.length >= 4 && s.length % 2 === 0 && s.slice(0, s.length / 2) === s.slice(s.length / 2)) return true;
+    if (/(.)\1{2,}/.test(s)) return true;
+    var uniq = {};
+    for (var j = 0; j < s.length; j++) uniq[s[j]] = 1;
+    if (s.length >= 3 && Object.keys(uniq).length < 2) return true;
+    var allCaps = /[A-Z]/.test(raw) && raw === raw.toUpperCase();
+    if (!allCaps && s.length >= 4 && !/[aeiouy\u00e0-\u00ff]/.test(s)) return true;
+    return false;
+  }
+
+  /** 整串是同一个数字 / 经典顺序号（1234567、0123456、9876543）→ 假号
+   *  只认 0/1 开头的升序和 9 开头的降序：像日本 90-1234-5678
+   *  这种真实号码本身带递增片段，不能一律当假号。 */
+  function looksFakeNumber(d) {
+    if (/^(\d)\1{5,}$/.test(d)) return true;
+    if (d.length >= 6) {
+      var inc = true, dec = true;
+      for (var i = 1; i < d.length; i++) {
+        var diff = (+d.charAt(i) - +d.charAt(i - 1) + 10) % 10;
+        if (diff !== 1) inc = false;
+        if (diff !== 9) dec = false;
+      }
+      var head = d.charAt(0);
+      if (inc && (head === '0' || head === '1')) return true;
+      if (dec && head === '9') return true;
+    }
+    return false;
+  }
+
+  function vName(v) {
+    v = (v || '').trim();
+    if (!v) return { k: 'inquiry_err_name' };
+    if (v.length < 2) return { k: 'inquiry_err_name_short' };
+    if (v.length > 60 || !RE_WORDS.test(v)) return { k: 'inquiry_err_name_chars' };
+    if (looksMash(v)) return { k: 'inquiry_err_junk' };
+    return null;
+  }
+  function vCity(v, isProvince) {
+    v = (v || '').trim();
+    if (!v) return null;
+    if (v.length < 2) return { k: 'inquiry_err_city_short' };
+    if (v.length > 40 || !RE_WORDS.test(v)) return { k: 'inquiry_err_city_chars' };
+    if (looksMash(v)) return { k: 'inquiry_err_junk' };
+    return null;
+  }
+  function vAddress(v) {
+    v = (v || '').trim();
+    if (!v) return null;
+    if (v.length < 5) return { k: 'inquiry_err_addr_short' };
+    if (v.length > 120) return { k: 'inquiry_err_addr_long' };
+    if (normLetters(v).length < 3) return { k: 'inquiry_err_addr_short' };
+    if (!/\d/.test(v) && looksMash(v)) return { k: 'inquiry_err_junk' };
+    return null;
+  }
+  function vEmail(v) {
+    v = (v || '').trim();
+    if (!v) return null;
+    return /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(v) ? null : { k: 'inquiry_err_email' };
+  }
+  function vPhone(raw, iso) {
+    var s = (raw || '').trim();
+    if (!s) return { k: 'inquiry_err_phone' };
+    if (/[^\d+\s()\-.]/.test(s)) return { k: 'inquiry_err_phone_chars' };
+    var plus = s.charAt(0) === '+';
+    var d = s.replace(/\D/g, '');
+    var c = COUNTRY_BY_ISO[iso];
+    if (c && c[3]) {
+      var dial = c[3], lo = c[6][0], hi = c[6][1];
+      if (plus) {
+        if (d.indexOf(dial) !== 0) {
+          return { k: 'inquiry_err_phone_dial', p: { dial: '+' + dial, country: countryLabel(c) } };
+        }
+        d = d.slice(dial.length);
+      } else if (d.indexOf('00' + dial) === 0) {
+        d = d.slice(2 + dial.length);
+      }
+      if (!d) return { k: 'inquiry_err_phone' };
+      // 国内长途前导 0（英国 07… / 德国 017…）不算有效位
+      if (!plus && d.charAt(0) === '0' && d.length > hi) d = d.slice(1);
+      if (d.length < lo || d.length > hi) {
+        return { k: 'inquiry_err_phone_len', p: { min: lo, max: hi, country: countryLabel(c) } };
+      }
+    } else if (d.length < 6 || d.length > 15) {
+      return { k: 'inquiry_err_phone_len_generic' };
+    }
+    if (looksFakeNumber(d)) return { k: 'inquiry_err_phone_fake' };
+    return null;
+  }
+  function vZip(raw, iso) {
+    var v = (raw || '').trim().toUpperCase().replace(/\s+/g, ' ');
+    var c = COUNTRY_BY_ISO[iso];
+    if (!c) {
+      if (!v) return null;
+      if (!/^[A-Z0-9][A-Z0-9\s-]{1,9}$/.test(v)) return { k: 'inquiry_err_zip_chars' };
+      return looksMash(v) ? { k: 'inquiry_err_junk' } : null;
+    }
+    if (!c[4]) return null;                       // 该国无邮编（香港 / 阿联酋）
+    if (!v) return { k: 'inquiry_err_zip_req', p: { ex: c[5], country: countryLabel(c) } };
+    if (!c[4].test(v)) return { k: 'inquiry_err_zip_fmt', p: { ex: c[5], country: countryLabel(c) } };
+    // 兜底国家（OTHER）的邮编规则很宽松，额外拦一下乱敲（asda / dada）
+    if (c[0] === 'OTHER' && looksMash(v)) return { k: 'inquiry_err_junk' };
+    return null;
   }
 
   function renderInquiry() {
@@ -971,7 +1224,8 @@
     else applyHeroLang();
     renderInquiry();
     syncAddButtons();
-    // About 页的「X of 9 collections」统计标签随语言刷新
+    // 国家下拉的国家名随语言重建（保留已选项）
+    translateCountryOptions();
     var mstat = $('[data-about-stat]');
     if (mstat) {
       var mcats = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; }).slice(0, 6);
@@ -1851,10 +2105,71 @@
     if (!form) return;
     // 表单提交直达号码：data.js 的 whatsappInquiry，留空则回落到 whatsapp
     var INQ_NO = CFG.whatsappInquiry || CFG.whatsapp;
+
+    /* -------- 字段校验：错误就地显示在字段下方 -------- */
+    function field(name) { return form.querySelector('[name="' + name + '"]'); }
+    function setErr(name, res) {
+      var el = field(name);
+      var box = form.querySelector('[data-err="' + name + '"]');
+      if (el) el.classList.toggle('is-invalid', !!res);
+      if (box) box.textContent = res ? window.T(res.k, res.p) : '';
+      return res;
+    }
+    function validate() {
+      var iso = (field('country') || {}).value || '';
+      function val(n) { var el = field(n); return el ? el.value : ''; }
+      var list = [
+        ['name', vName(val('name'))],
+        ['phone', vPhone(val('phone'), iso)],
+        ['address', vAddress(val('address'))],
+        ['city', vCity(val('city'))],
+        ['province', vCity(val('province'))],
+        ['zip', vZip(val('zip'), iso)],
+        ['country', iso && COUNTRY_BY_ISO[iso] ? null : { k: 'inquiry_err_country' }],
+        ['email', vEmail(val('email'))]
+      ];
+      var bad = [];
+      list.forEach(function (p) { if (setErr(p[0], p[1])) bad.push(p[0]); });
+      return bad;
+    }
+    // 一改动就清掉该字段的报错，别让红字黏着
+    form.addEventListener('input', function (e) {
+      var n = e.target && e.target.getAttribute('name');
+      if (n) setErr(n, null);
+    });
+    form.addEventListener('change', function (e) {
+      var n = e.target && e.target.getAttribute('name');
+      if (n && e.target.tagName !== 'SELECT') setErr(n, null);
+    });
+
+    /* -------- 国家联动：自动带区号、换邮编示例与键盘类型 -------- */
+    var csel = form.querySelector('[data-inquiry-country]');
+    function syncCountry() {
+      var c = COUNTRY_BY_ISO[(csel && csel.value) || ''];
+      var phoneEl = field('phone');
+      var zipEl = field('zip');
+      if (c && c[3]) {
+        var pv = phoneEl ? phoneEl.value.trim() : '';
+        // 空着、或只填了别的区号 → 换成所选国家的区号，省得客户自己查
+        if (phoneEl && (!pv || /^\+\d{1,4}\s*$/.test(pv))) phoneEl.value = '+' + c[3] + ' ';
+      }
+      if (zipEl) {
+        var numeric = !!(c && c[4] && c[4].source.indexOf('^\\d') === 0);
+        zipEl.setAttribute('inputmode', numeric ? 'numeric' : 'text');
+        if (c && c[5]) zipEl.setAttribute('placeholder', c[5]);
+        else if (c) zipEl.removeAttribute('placeholder');
+        if (zipEl.value.trim()) setErr('zip', vZip(zipEl.value, csel.value));
+      }
+      setErr('country', null);
+      setErr('phone', null);
+    }
+    if (csel) csel.addEventListener('change', syncCountry);
+
     function buildMsg() {
       var fd = new FormData(form);
       function v(k) { return ((fd.get(k) || '') + '').trim(); }
       var name = v('name');
+      var c = COUNTRY_BY_ISO[v('country')];
       var lines = ['Hi ' + (CFG.contactName || CFG.brand) + '! New inquiry:'];
       [
         ['Name', name],
@@ -1864,7 +2179,7 @@
         ['City', v('city')],
         ['Province', v('province')],
         ['Zip code', v('zip')],
-        ['Country', v('country')]
+        ['Country', c ? countryLabel(c) : v('country')]
       ].forEach(function (p) { if (p[1]) lines.push(p[0] + ': ' + p[1]); });
       var prods = v('products');
       if (prods) lines.push('Products: ' + prods);
@@ -1874,14 +2189,14 @@
     }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var r = buildMsg();
-      if (!r.name) { toast(window.T('inquiry_err_name')); return; }
-      var phoneEl = form.querySelector('[name="phone"]');
-      if (phoneEl && !phoneEl.value.trim()) {
-        toast(window.T('inquiry_err_phone'));
-        phoneEl.focus();
+      var bad = validate();
+      if (bad.length) {
+        var first = field(bad[0]);
+        if (first) first.focus();
+        toast(window.T('inquiry_err_fix'));
         return;
       }
+      var r = buildMsg();
       window.open(waLink(r.text, INQ_NO), '_blank', 'noopener');
       closeInquiryForm();
     });

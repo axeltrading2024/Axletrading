@@ -1561,13 +1561,40 @@ a {
 .inquiry-close:hover { background: rgba(127,127,127,.12); }
 .inquiry-form { padding: 18px 22px 26px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
 .inquiry-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; }
-.inquiry-form input, .inquiry-form textarea {
+.inquiry-form input, .inquiry-form select, .inquiry-form textarea {
   font: inherit; font-size: 14px; font-weight: 400; padding: 10px 12px;
   border-radius: 10px; border: 1px solid var(--border);
   background: var(--background); color: var(--foreground);
+  width: 100%; box-sizing: border-box;
+}
+.inquiry-form select { padding-right: 8px; }
+.inquiry-form select:focus {
+  outline: none;
+  border-color: oklch(62% 0.15 150 / .75);
+  box-shadow: 0 0 0 3px oklch(62% 0.15 150 / .14);
+}
+/* 字段级校验提示 */
+.inquiry-form .f-err {
+  margin: 0; font-style: normal; font-size: 11.5px; font-weight: 500;
+  line-height: 1.45; color: oklch(55% 0.19 25);
+}
+.inquiry-form .f-err:empty { display: none; }
+.inquiry-form input.is-invalid,
+.inquiry-form select.is-invalid,
+.inquiry-form textarea.is-invalid {
+  border-color: oklch(58% 0.19 25 / .75);
+  box-shadow: 0 0 0 3px oklch(58% 0.19 25 / .10);
+}
+/* 出错时即使正在输入，也保持红框（别被绿色 focus 盖掉） */
+.inquiry-form input.is-invalid:focus,
+.inquiry-form select.is-invalid:focus,
+.inquiry-form textarea.is-invalid:focus {
+  border-color: oklch(55% 0.19 25);
+  box-shadow: 0 0 0 3px oklch(58% 0.19 25 / .16);
 }
 .inquiry-form textarea { min-height: 86px; resize: vertical; }
-.inquiry-form input:focus {
+.inquiry-form input:focus,
+.inquiry-form textarea:focus {
   outline: none;
   border-color: oklch(62% 0.15 150 / .75);
   box-shadow: 0 0 0 3px oklch(62% 0.15 150 / .14);
