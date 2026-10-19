@@ -527,16 +527,15 @@
         '<div class="drawer-body" data-drawer-body></div>' +
         '<div class="drawer-foot">' +
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
-          '<a class="btn btn-whatsapp" data-send-inquiry href="#" target="_blank" rel="noreferrer">' +
+          '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
-          '</a>' +
+          '</button>' +
           '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
           '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
-      /* 询盘接待浮动按钮 + 面板（提交走 WhatsApp，邮件备选） */
-      '<a class="inquiry-fab" data-open-inquiry-form href="#" aria-label="Open inquiry form">' + ICON.mail + '</a>' +
+      /* 询盘接待面板（从询价篮的 Send on WhatsApp 进入，不再单独放悬浮图标） */
       '<div class="inquiry-backdrop" data-inquiry-backdrop></div>' +
       '<aside class="inquiry-panel" data-inquiry-panel aria-hidden="true">' +
         '<div class="inquiry-panel-head">' +
@@ -561,8 +560,8 @@
           '<label><span data-i18n="inquiry_email">Email</span><input name="email" type="email" autocomplete="email"></label>' +
           '<label><span data-i18n="inquiry_products">Products you need</span><textarea name="products" rows="2" data-inquiry-products data-i18n-ph="inquiry_products_ph" placeholder="e.g. RIMOWA style × 50, AirPods × 20"></textarea></label>' +
           '<p class="inquiry-note" data-i18n="inquiry_note">Fields marked * are required. We only use these details to prepare your quote.</p>' +
-          '<button type="submit" class="btn btn-whatsapp" data-i18n="inquiry_submit">Send on WhatsApp</button>' +
-          '<a class="inquiry-mail" data-inquiry-mail href="#" data-i18n="inquiry_mail_alt">or send by email</a>' +
+          '<button type="submit" class="btn btn-whatsapp" data-i18n="inquiry_submit_fast">Get a fast quote</button>' +
+          '<button type="button" class="btn btn-outline inquiry-now" data-send-products-now data-i18n="inquiry_send_now">Send products now</button>' +
         '</form>' +
       '</aside>' +
       /* 顶栏搜索浮层：任何页面都能直接搜（复用首页那套产品检索） */
@@ -636,7 +635,7 @@
     if (cur.indexOf(name) > -1) return;
     el.value = cur ? cur + ', ' + name : name;
   }
-  function openInquiryForm(prefillProduct) {
+  function openInquiryForm(prefillProduct, forceCart) {
     var p = $('[data-inquiry-panel]');
     var b = $('[data-inquiry-backdrop]');
     if (p) { p.classList.add('open'); p.setAttribute('aria-hidden', 'false'); }
@@ -644,12 +643,10 @@
     document.body.style.overflow = 'hidden';
     // 自动带出：商品页传进来的产品名优先，其次用询价篮里已选的品
     if (prefillProduct) setInquiryCtx(prefillProduct);
-    else {
-      var el = productsField();
-      if (el && !el.value.trim()) {
-        var fromCart = cartProductLine();
-        if (fromCart) el.value = fromCart;
-      }
+    var el = productsField();
+    if (el && (forceCart || !el.value.trim())) {
+      var fromCart = cartProductLine();
+      if (fromCart) el.value = fromCart;
     }
   }
   function closeInquiryForm() {
@@ -676,7 +673,6 @@
     if (dCnt) dCnt.textContent = window.T('drawer_count', { n: n });
     if (totalEl) totalEl.textContent = Store.total() || '—';
     if (sendEl) {
-      sendEl.href = waLink(buildInquiryMessage(Store.items));
       var disabled = n === 0;
       sendEl.style.opacity = disabled ? '0.45' : '1';
       sendEl.style.pointerEvents = disabled ? 'none' : 'auto';
@@ -867,7 +863,17 @@
       if (t.closest('[data-open-inquiry]')) { openDrawer(true); return; }
       if (t.closest('[data-close-inquiry]') || t.closest('[data-drawer-backdrop]')) { openDrawer(false); return; }
 
-      if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(); return; }
+      // 询价篮里的「Send on WhatsApp」→ 先打开接待表单（产品自动带入），不再直接跳 WhatsApp
+      if (t.closest('[data-send-inquiry]')) {
+        e.preventDefault();
+        openDrawer(false);
+        openInquiryForm(null, true);
+        var pf = productsField();
+        if (pf && window.matchMedia && window.matchMedia('(min-width: 900px)').matches) pf.focus();
+        return;
+      }
+
+      if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(null, true); return; }
       if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
       var prodInq = t.closest('[data-inquiry-product-trigger]');
       if (prodInq) { openInquiryForm(prodInq.getAttribute('data-product-name')); return; }
@@ -1289,6 +1295,7 @@
                     return '<button type="button" class="variant-chip" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
                   }).join('') +
                 '</div>' +
+                '<p class="variant-hint" data-i18n="variant_hint">Tap once to preview · tap again to confirm · tap again to add. Double-tap to deselect.</p>' +
               '</div>'
             : '') +
           '<div class="detail-actions">' +
@@ -1398,20 +1405,35 @@
       });
     }
 
-    /* 型号选择（Eddy 定）：
-         单击 = 选中 → 换主图/价格，轮播停止；
-         双击（同一条上 320ms 内再点一次）= 取消选择 → 回默认主图/价格，轮播恢复。
-       用点击间隔判断而不是原生 dblclick：触屏上双击经常不派发 dblclick。 */
+    /* 型号选择（Eddy 定的三步逻辑）：
+         第 1 下 = 选中（预览：换主图/价格，轮播停止）
+         第 2 下 = 确认（锁定型号，chip 带实心勾）
+         第 3 下起 = 加入询价篮（之后每一下继续加）
+         双击（同一 chip 上 320ms 内连点两下）= 取消选中 → 回默认主图/价格，轮播恢复。
+       用点击间隔判断而不是原生 dblclick：触屏上双击经常不派发 dblclick。
+       加购延迟 200ms 执行，给「第二下」留出双击判定窗口，避免快速双击把东西加进篮子。 */
     if (variants) {
       var priceEl = $('[data-variant-price]');
       var addBtn = $('[data-add][data-variant]');
       var vEl2 = $('[data-detail-video]');
       var vTog2 = $('[data-video-toggle]');
       var lastTapName = '', lastTapAt = 0, swallowChip = null, swallowAt = 0;
+      var pendingAdd = null;
 
-      /** 选中某型号：换图/换价 + 暂停轮播 */
+      function stageOf(chip) { return parseInt(chip.getAttribute('data-stage') || '0', 10) || 0; }
+      function setStage(chip, st) {
+        chip.setAttribute('data-stage', String(st));
+        chip.classList.toggle('is-active', st >= 1);
+        chip.classList.toggle('is-confirmed', st >= 2);
+        chip.setAttribute('aria-pressed', st >= 1 ? 'true' : 'false');
+      }
+      function cancelPendingAdd() {
+        if (pendingAdd) { clearTimeout(pendingAdd); pendingAdd = null; }
+      }
+
+      /** 选中某型号：换图/换价 + 暂停轮播；其它 chip 一律回到未选 */
       function selectChip(chip) {
-        $$('.variant-chip').forEach(function (c) { c.classList.toggle('is-active', c === chip); });
+        $$('.variant-chip').forEach(function (c) { setStage(c, c === chip ? 1 : 0); });
         var vImg = chip.getAttribute('data-variant-image');
         var vPrice = chip.getAttribute('data-variant-price');
         var vName = chip.getAttribute('data-variant');
@@ -1436,7 +1458,7 @@
 
       /** 取消选择：回到默认主图/价格 + 恢复轮播（Add 按钮回落第一个型号，与页面初载一致） */
       function deselectChip() {
-        $$('.variant-chip').forEach(function (c) { c.classList.remove('is-active'); });
+        $$('.variant-chip').forEach(function (c) { setStage(c, 0); });
         var imgEl = curVariantImg();
         if (imgEl) {
           imgEl.src = defImage;
@@ -1453,16 +1475,33 @@
       $$('.variant-chip').forEach(function (chip) {
         chip.addEventListener('click', function () {
           var now = Date.now();
-          if (swallowChip === chip && now < swallowAt) return; // 双击的第 2 下（取消后的余点击）吞掉，避免又被选上
+          if (swallowChip === chip && now < swallowAt) return; // 双击后的余点击吞掉，避免又被选上
           var name = chip.getAttribute('data-variant');
           var isDouble = (name === lastTapName) && (now - lastTapAt <= GALLERY_DBLCLICK_MS);
           lastTapName = name; lastTapAt = now;
-          if (isDouble && chip.classList.contains('is-active')) {
+
+          if (isDouble) {                       // 双击 = 取消选中
             swallowChip = chip; swallowAt = now + GALLERY_DBLCLICK_MS;
+            cancelPendingAdd();
             deselectChip();
-          } else {
-            selectChip(chip);
+            return;
           }
+
+          var st = stageOf(chip);
+          if (st === 0) { selectChip(chip); return; }          // 第 1 下：选中
+          if (st === 1) { setStage(chip, 2); syncAddButtons(); return; } // 第 2 下：确认
+
+          // 第 3 下起：加入询价篮
+          setStage(chip, st + 1);
+          cancelPendingAdd();
+          pendingAdd = setTimeout(function () {
+            pendingAdd = null;
+            bumpSuppress = true;
+            addProduct(p.id, name);
+            bumpSuppress = false;
+            flyToCart(chip, p.id, name);
+            syncAddButtons();
+          }, 200);
         });
       });
     }
@@ -1810,7 +1849,6 @@
   function initInquiry() {
     var form = $('[data-inquiry-form]');
     if (!form) return;
-    var mailLink = $('[data-inquiry-mail]');
     // 表单提交直达号码：data.js 的 whatsappInquiry，留空则回落到 whatsapp
     var INQ_NO = CFG.whatsappInquiry || CFG.whatsapp;
     function buildMsg() {
@@ -1847,13 +1885,21 @@
       window.open(waLink(r.text, INQ_NO), '_blank', 'noopener');
       closeInquiryForm();
     });
-    if (mailLink) mailLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      var r = buildMsg();
-      if (!r.name) { toast(window.T('inquiry_err_name')); return; }
-      var subject = 'Wholesale inquiry' + (r.name ? ' from ' + r.name : '');
-      mailLink.href = 'mailto:' + CFG.contactEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(r.text);
-      location.href = mailLink.href;
+
+    // 「Send products now」：只要产品清单，不用填表 → 直接发 WhatsApp
+    var nowBtn = $('[data-send-products-now]');
+    if (nowBtn) nowBtn.addEventListener('click', function () {
+      var pf = productsField();
+      var prods = pf ? pf.value.trim() : '';
+      if (!prods) {
+        prods = cartProductLine();
+        if (pf && prods) pf.value = prods;
+      }
+      if (!prods) { toast(window.T('inquiry_err_products')); if (pf) pf.focus(); return; }
+      var text = 'Hi ' + (CFG.contactName || CFG.brand) + '! I\'d like a quote for:\n\n' +
+        prods.split(',').map(function (x) { return '• ' + x.trim(); }).join('\n') + '\n\n' +
+        (CFG.inquiryOutro || 'Please send me pricing, MOQ and shipping details.');
+      window.open(waLink(text, INQ_NO), '_blank', 'noopener');
     });
   }
 
