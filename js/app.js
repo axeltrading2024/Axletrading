@@ -181,8 +181,8 @@
   }
 
   /* ---------------- WhatsApp ---------------- */
-  function waLink(text) {
-    return 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(
+  function waLink(text, num) {
+    return 'https://wa.me/' + (num || CFG.whatsapp) + '?text=' + encodeURIComponent(
       text || CFG.greeting
     );
   }
@@ -535,6 +535,36 @@
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
+      /* 询盘接待浮动按钮 + 面板（提交走 WhatsApp，邮件备选） */
+      '<a class="inquiry-fab" data-open-inquiry-form href="#" aria-label="Open inquiry form">' + ICON.mail + '</a>' +
+      '<div class="inquiry-backdrop" data-inquiry-backdrop></div>' +
+      '<aside class="inquiry-panel" data-inquiry-panel aria-hidden="true">' +
+        '<div class="inquiry-panel-head">' +
+          '<div>' +
+            '<h2 data-i18n="inquiry_title">Inquiry</h2>' +
+            '<p class="count" data-i18n="inquiry_sub">Tell us what you need — we reply within 24h.</p>' +
+          '</div>' +
+          '<button type="button" class="inquiry-close" data-close-inquiry-form aria-label="Close">' + ICON.close + '</button>' +
+        '</div>' +
+        '<form class="inquiry-form" data-inquiry-form>' +
+          '<label><span><span data-i18n="inquiry_name">Name</span> <em class="req">*</em></span><input name="name" autocomplete="name" required></label>' +
+          '<label><span><span data-i18n="inquiry_phone">Phone number</span> <em class="req">*</em></span><input name="phone" type="tel" autocomplete="tel" required></label>' +
+          '<label><span data-i18n="inquiry_address">Address</span><input name="address" autocomplete="street-address" data-i18n-ph="inquiry_address_ph" placeholder="Street, building, apt."></label>' +
+          '<div class="inquiry-row">' +
+            '<label><span data-i18n="inquiry_city">City</span><input name="city" autocomplete="address-level2"></label>' +
+            '<label><span data-i18n="inquiry_province">Province</span><input name="province" autocomplete="address-level1"></label>' +
+          '</div>' +
+          '<div class="inquiry-row">' +
+            '<label><span data-i18n="inquiry_zip">City zip code</span><input name="zip" inputmode="numeric" autocomplete="postal-code"></label>' +
+            '<label><span data-i18n="inquiry_country">Country</span><input name="country" autocomplete="country-name"></label>' +
+          '</div>' +
+          '<label><span data-i18n="inquiry_email">Email</span><input name="email" type="email" autocomplete="email"></label>' +
+          '<label><span data-i18n="inquiry_products">Products you need</span><textarea name="products" rows="2" data-inquiry-products data-i18n-ph="inquiry_products_ph" placeholder="e.g. RIMOWA style × 50, AirPods × 20"></textarea></label>' +
+          '<p class="inquiry-note" data-i18n="inquiry_note">Fields marked * are required. We only use these details to prepare your quote.</p>' +
+          '<button type="submit" class="btn btn-whatsapp" data-i18n="inquiry_submit">Send on WhatsApp</button>' +
+          '<a class="inquiry-mail" data-inquiry-mail href="#" data-i18n="inquiry_mail_alt">or send by email</a>' +
+        '</form>' +
+      '</aside>' +
       /* 顶栏搜索浮层：任何页面都能直接搜（复用首页那套产品检索） */
       '<div class="search-modal" data-search-modal aria-hidden="true">' +
         '<div class="search-modal-backdrop" data-close-search></div>' +
@@ -588,6 +618,46 @@
     b.classList.toggle('open', open);
     d.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  /* ---------------- 询盘接待面板开关 ---------------- */
+  function productsField() { return $('[data-inquiry-products]'); }
+  function cartProductLine() {
+    var items = Store.items || [];
+    return items.map(function (it) {
+      return it.name + (it.variant ? ' [' + it.variant + ']' : '') + ' × ' + it.qty;
+    }).join(', ');
+  }
+  /** 往「产品」输入框里追加一条（已存在则不重复） */
+  function setInquiryCtx(name) {
+    var el = productsField();
+    if (!el || !name) return;
+    var cur = el.value.trim();
+    if (cur.indexOf(name) > -1) return;
+    el.value = cur ? cur + ', ' + name : name;
+  }
+  function openInquiryForm(prefillProduct) {
+    var p = $('[data-inquiry-panel]');
+    var b = $('[data-inquiry-backdrop]');
+    if (p) { p.classList.add('open'); p.setAttribute('aria-hidden', 'false'); }
+    if (b) b.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // 自动带出：商品页传进来的产品名优先，其次用询价篮里已选的品
+    if (prefillProduct) setInquiryCtx(prefillProduct);
+    else {
+      var el = productsField();
+      if (el && !el.value.trim()) {
+        var fromCart = cartProductLine();
+        if (fromCart) el.value = fromCart;
+      }
+    }
+  }
+  function closeInquiryForm() {
+    var p = $('[data-inquiry-panel]');
+    var b = $('[data-inquiry-backdrop]');
+    if (p) { p.classList.remove('open'); p.setAttribute('aria-hidden', 'true'); }
+    if (b) b.classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   function renderInquiry() {
@@ -797,6 +867,11 @@
       if (t.closest('[data-open-inquiry]')) { openDrawer(true); return; }
       if (t.closest('[data-close-inquiry]') || t.closest('[data-drawer-backdrop]')) { openDrawer(false); return; }
 
+      if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(); return; }
+      if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
+      var prodInq = t.closest('[data-inquiry-product-trigger]');
+      if (prodInq) { openInquiryForm(prodInq.getAttribute('data-product-name')); return; }
+
       var qtyBtn = t.closest('[data-qty]');
       if (qtyBtn) {
         var key = qtyBtn.getAttribute('data-qty');
@@ -853,7 +928,7 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') openDrawer(false);
+      if (e.key === 'Escape') { openDrawer(false); closeInquiryForm(); }
     });
 
     Store.onChange(function () {
@@ -1221,6 +1296,7 @@
               '<span class="ico">' + ICON.plus + '</span><span class="lbl" data-i18n="add_to_inquiry">Add to Inquiry</span>' +
             '</button>' +
             '<button type="button" class="btn btn-outline" data-open-inquiry data-i18n="review_list">Review inquiry list</button>' +
+            '<button type="button" class="btn btn-outline" data-inquiry-product-trigger data-product-name="' + esc(p.name) + '" data-i18n="inquiry_product_btn">Inquire this product</button>' +
           '</div>' +
           '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; <span data-i18n="back_to">Back to </span>' + esc(cat ? cat.name : p.collection) + '</a>' +
           '<div class="spec-list">' +
@@ -1730,6 +1806,57 @@
     });
   }
 
+  /* ---------------- 询盘接待表单 ---------------- */
+  function initInquiry() {
+    var form = $('[data-inquiry-form]');
+    if (!form) return;
+    var mailLink = $('[data-inquiry-mail]');
+    // 表单提交直达号码：data.js 的 whatsappInquiry，留空则回落到 whatsapp
+    var INQ_NO = CFG.whatsappInquiry || CFG.whatsapp;
+    function buildMsg() {
+      var fd = new FormData(form);
+      function v(k) { return ((fd.get(k) || '') + '').trim(); }
+      var name = v('name');
+      var lines = ['Hi ' + (CFG.contactName || CFG.brand) + '! New inquiry:'];
+      [
+        ['Name', name],
+        ['Phone', v('phone')],
+        ['Email', v('email')],
+        ['Address', v('address')],
+        ['City', v('city')],
+        ['Province', v('province')],
+        ['Zip code', v('zip')],
+        ['Country', v('country')]
+      ].forEach(function (p) { if (p[1]) lines.push(p[0] + ': ' + p[1]); });
+      var prods = v('products');
+      if (prods) lines.push('Products: ' + prods);
+      lines.push('');
+      lines.push(CFG.inquiryOutro || 'Please send me pricing, MOQ and shipping details.');
+      return { text: lines.join('\n'), name: name };
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var r = buildMsg();
+      if (!r.name) { toast(window.T('inquiry_err_name')); return; }
+      var phoneEl = form.querySelector('[name="phone"]');
+      if (phoneEl && !phoneEl.value.trim()) {
+        toast(window.T('inquiry_err_phone'));
+        phoneEl.focus();
+        return;
+      }
+      window.open(waLink(r.text, INQ_NO), '_blank', 'noopener');
+      closeInquiryForm();
+    });
+    if (mailLink) mailLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      var r = buildMsg();
+      if (!r.name) { toast(window.T('inquiry_err_name')); return; }
+      var subject = 'Wholesale inquiry' + (r.name ? ' from ' + r.name : '');
+      mailLink.href = 'mailto:' + CFG.contactEmail + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(r.text);
+      location.href = mailLink.href;
+    });
+  }
+
   /* ---------------- 启动 ---------------- */
   function boot() {
     mountChrome();
@@ -1752,6 +1879,7 @@
 
     renderInquiry();
     syncAddButtons();
+    initInquiry();
 
     // 多语言：用 data-i18n / 词典回填当前语言（浏览器判定或用户已选）
     if (window.applyLang) window.applyLang();

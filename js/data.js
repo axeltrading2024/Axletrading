@@ -13,6 +13,9 @@ window.SITE_CONFIG = {
   "contactName": "Eddy",
   "whatsapp": "4915224901963",
   "whatsappDisplay": "+49 152 2490 1963",
+  /* 「询盘接待表单」提交后直达的号码（留空则回落到上面的 whatsapp） */
+  "whatsappInquiry": "8615875209571",
+  "whatsappInquiryDisplay": "+86 158 7520 9571",
   "contactEmail": "axeltrading@163.com",
   "phoneBackup": "+86 158 7520 9571",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
@@ -238,7 +241,7 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "Apple",
+    "brand": "OEM",
     "price": "€75",
     "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
@@ -306,7 +309,6 @@ window.PRODUCTS = [
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
@@ -465,7 +467,6 @@ window.PRODUCTS = [
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
       "img/prod/gal/valentino-born-in-roma-g1.jpg",
@@ -534,7 +535,6 @@ window.PRODUCTS = [
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
       "img/prod/gal/bleu-chanel-g2.jpg",
@@ -602,7 +602,6 @@ window.PRODUCTS = [
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/a-g1.jpg",
       "img/prod/gal/a-g2.jpg",
@@ -675,7 +674,6 @@ window.PRODUCTS = [
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
     "subcategory": "niche",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
@@ -1953,7 +1951,6 @@ window.PRODUCTS = [
     "desc": "tap and rate you  five star",
     "collection": "other",
     "subcategory": "other-products",
-    "moq": "30 pcs",
     "popular": true,
     "video": "img/vid/n.mp4",
     "images": [
@@ -2185,7 +2182,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "video": "img/vid/t.mp4",
     "images": [
       "img/prod/gal/t-g1.jpg",
@@ -2264,7 +2260,6 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/c-g1.jpg",
       "img/prod/gal/c-g2.jpg",
@@ -2342,7 +2337,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
       "img/prod/gal/jean-paul-gaultter-g3.jpg",
@@ -2445,7 +2439,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/p-g1.jpg",
       "img/prod/gal/p-g2.jpg",
@@ -2523,7 +2516,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "video": "img/vid/v.mp4",
     "images": [
       "img/prod/gal/v-g1.jpg",
@@ -2597,7 +2589,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "video": "img/vid/l-2.mp4",
     "images": [
       "img/prod/gal/l-2-g1.jpg",
@@ -2671,7 +2662,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs per model",
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
       "img/prod/gal/paco-rabannel-g2.jpg",
@@ -3618,33 +3608,6 @@ window.PRODUCTS = [
         "name": "Off-white",
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
-      }
-    ]
-  },
-  {
-    "id": "e",
-    "name": "earpods",
-    "brand": "Apple",
-    "price": "€2",
-    "note": "wirecontrol-lightning port-usb c",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "moq": "20",
-    "images": [
-      "img/prod/gal/e-g1.jpg",
-      "img/prod/gal/e-g2.jpg",
-      "img/prod/gal/e-g3.jpg"
-    ],
-    "variants": [
-      {
-        "name": "lightning port",
-        "price": "",
-        "image": "img/prod/var/e-lightning-port.jpg"
-      },
-      {
-        "name": "usb c port",
-        "price": "",
-        "image": "img/prod/var/e-usb-c-port.jpg"
       }
     ]
   }
