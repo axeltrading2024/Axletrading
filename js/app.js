@@ -525,10 +525,14 @@
           '<button type="button" class="drawer-close" data-close-inquiry aria-label="Close">' + ICON.close + '</button>' +
         '</div>' +
         '<div class="drawer-body" data-drawer-body></div>' +
+        shipEstHTML() +
         '<div class="drawer-foot">' +
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
+          '</button>' +
+          '<button type="button" class="quote-dl" data-quote-pdf hidden>' +
+            '<span class="qd-ico" aria-hidden="true">⤓</span><span data-i18n="quote_pdf">Download quote (PDF)</span>' +
           '</button>' +
           '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
           '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
@@ -761,8 +765,69 @@
   /** 语言切换后重建国家下拉（保留已选值） */
   function translateCountryOptions() {
     var sel = $('[data-inquiry-country]');
-    if (!sel) return;
-    sel.innerHTML = countryOptionsHtml(sel.value || '');
+    if (sel) sel.innerHTML = countryOptionsHtml(sel.value || '');
+    // 运费估算里的国家下拉（选项更少，只有国家，没有手机号/邮编规则）
+    var shipSel = $('[data-ship-country]');
+    if (shipSel) {
+      var keep = shipSel.value || 'US';
+      shipSel.innerHTML = shipCountryOptionsHtml(keep);
+      shipSel.value = keep;
+      renderShipEst();
+    }
+  }
+
+  /** 运费估算的国家下拉：按运费区（北美 / 欧洲 / 澳新 / 其他）分组 */
+  function shipCountryOptionsHtml(selected) {
+    var R = window.SHIPPING_RATES;
+    var want = selected || 'US';
+    var inZone = {};
+    var html = '';
+    ((R && R.zones) || []).forEach(function (z) {
+      var list = (z.countries || []).map(function (iso) { return COUNTRY_BY_ISO[iso]; })
+        .filter(Boolean)
+        .sort(function (a, b) { return countryLabel(a).localeCompare(countryLabel(b)); });
+      // 美国是默认目的地，始终排在本组第一
+      for (var i = 0; i < list.length; i++) {
+        if (list[i][0] === 'US') { list.unshift(list.splice(i, 1)[0]); break; }
+      }
+      if (!list.length) return;
+      html += '<optgroup label="' + esc(zoneLabel(z)) + '">';
+      list.forEach(function (c) {
+        inZone[c[0]] = 1;
+        html += '<option value="' + c[0] + '"' + (c[0] === want ? ' selected' : '') + '>' +
+          esc(countryLabel(c)) + '</option>';
+      });
+      html += '</optgroup>';
+    });
+    var rest = '';
+    COUNTRIES.forEach(function (c) {
+      if (c[0] === 'OTHER' || inZone[c[0]]) return;
+      rest += '<option value="' + c[0] + '"' + (c[0] === want ? ' selected' : '') + '>' +
+        esc(countryLabel(c)) + '</option>';
+    });
+    rest += '<option value="OTHER"' + (want === 'OTHER' ? ' selected' : '') + '>' +
+      esc(window.T('ship_other_country')) + '</option>';
+    html += '<optgroup label="' + esc(window.T('ship_zone_other')) + '">' + rest + '</optgroup>';
+    return html;
+  }
+
+  function zoneLabel(z) {
+    var lang = (window.getLang && window.getLang()) || 'en';
+    return lang === 'es' ? (z.es || z.en) : (z.en || z.id);
+  }
+
+  function transitLabel(z) {
+    var lang = (window.getLang && window.getLang()) || 'en';
+    var t = z && z.transit;
+    if (!t) return '';
+    return lang === 'es' ? (t.es || t.en) : (t.en || '');
+  }
+
+  /** 运费用到的国家名（纯文本，供提示语与 WhatsApp 文案） */
+  function shipCountryName(iso) {
+    if (!iso || iso === 'OTHER') return window.T('ship_other_country');
+    var c = COUNTRY_BY_ISO[iso];
+    return c ? countryLabel(c) : window.T('ship_other_country');
   }
 
   /* 明显乱写的词（键盘就近敲出来的那一类） */
@@ -910,6 +975,115 @@
     return null;
   }
 
+  /* ---------------- 运费估算（抽屉内折叠面板） ---------------- */
+  function shipEstHTML() {
+    var R = window.SHIPPING_RATES;
+    if (!R || !R.zones) return '';
+    var opts = shipCountryOptionsHtml();
+    return '' +
+      '<div class="ship-est" data-ship-est>' +
+        '<button type="button" class="ship-toggle" data-ship-toggle aria-expanded="false">' +
+          '<span class="ship-ico" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/>' +
+              '<path d="M3 7.5 12 12l9-4.5M12 12v9"/>' +
+            '</svg>' +
+          '</span>' +
+          '<span class="ship-lbl" data-i18n="ship_title">Estimate shipping</span>' +
+          '<span class="ship-caret" aria-hidden="true"></span>' +
+        '</button>' +
+        '<div class="ship-body" data-ship-body hidden>' +
+          '<div class="ship-row">' +
+            '<label class="ship-dest"><span data-i18n="ship_dest">Destination</span>' +
+              '<select data-ship-country>' + opts + '</select></label>' +
+          '</div>' +
+          '<div class="ship-row">' +
+            '<label><span data-i18n="ship_weight">Actual weight (kg)</span>' +
+              '<input type="number" min="0" step="0.1" value="10" inputmode="decimal" data-ship-kg></label>' +
+            '<div class="ship-dims">' +
+              '<span class="ship-dims-l" data-i18n="ship_dims">Box size (cm)</span>' +
+              '<div class="ship-dims-in">' +
+                '<input type="number" min="0" step="1" placeholder="L" inputmode="numeric" data-ship-l>' +
+                '<span>×</span>' +
+                '<input type="number" min="0" step="1" placeholder="W" inputmode="numeric" data-ship-w>' +
+                '<span>×</span>' +
+                '<input type="number" min="0" step="1" placeholder="H" inputmode="numeric" data-ship-h>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ship-out" data-ship-out></div>' +
+          '<p class="ship-note" data-i18n="ship_note">Indicative only — final freight is confirmed with your quotation.</p>' +
+        '</div>' +
+      '</div>';
+  }
+
+  /** 重算并渲染运费结果 */
+  function renderShipEst() {
+    var host = $('[data-ship-est]');
+    if (!host) return;
+    var out = $('[data-ship-out]', host);
+    if (!out) return;
+    function val(sel) { var el = $(sel, host); return el ? el.value : ''; }
+    var iso = val('[data-ship-country]') || 'US';
+    var q = shipQuote(iso, val('[data-ship-kg]'),
+      val('[data-ship-l]'), val('[data-ship-w]'), val('[data-ship-h]'));
+
+    // 未开通固定价的国家：给一句说明 + 直接问 Eddy
+    if (q && q.quoteOnly) {
+      var cname = shipCountryName(iso);
+      out.innerHTML = '' +
+        '<p class="ship-quote-only">' + esc(window.T('ship_quote_only', { country: cname })) + '</p>' +
+        '<a class="ship-wa" href="' + esc(waLink('Hi Eddy! What is the shipping cost to ' + cname + '?')) +
+          '" target="_blank" rel="noreferrer">' +
+          ICON.whatsapp.replace('<svg', '<svg style="width:15px;height:15px"') +
+          '<span>' + esc(window.T('ship_quote_cta')) + '</span></a>';
+      return;
+    }
+    if (!q) {
+      out.innerHTML = '<p class="ship-empty">' + esc(window.T('ship_empty')) + '</p>';
+      return;
+    }
+    var sym = q.currency === 'USD' ? '$' : (q.currency === 'EUR' ? '€' : q.currency + ' ');
+    var lines = [];
+    lines.push('<div class="sr"><span>' + esc(window.T('ship_chargeable')) + '</span><b>' + fmtKg(q.bill) + ' kg</b></div>');
+    if (q.vol > 0) {
+      lines.push('<div class="sr"><span>' + esc(window.T('ship_vol')) + '</span><b>' + fmtKg(q.vol) + ' kg</b></div>');
+    }
+    lines.push('<div class="sr"><span>' + esc(window.T('ship_first')) + '</span><b>' + money(q.base, sym) + '</b></div>');
+    if (q.extra > 0) {
+      lines.push('<div class="sr"><span>' + esc(window.T('ship_extra', { n: q.extra })) + '</span>' +
+        '<b>' + money(q.extra * q.perKg, sym) + '</b></div>');
+    }
+    out.innerHTML = '<div class="ship-lines">' + lines.join('') + '</div>' +
+      '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
+        '<b>' + money(q.cost, sym) + '</b></div>' +
+      '<p class="ship-transit">' + esc(window.T('ship_transit', { d: transitLabel(q.zone) })) + '</p>';
+  }
+
+  function initShipping() {
+    var host = $('[data-ship-est]');
+    if (!host) return;
+    var tog = $('[data-ship-toggle]', host);
+    var body = $('[data-ship-body]', host);
+    if (tog && body) {
+      tog.addEventListener('click', function () {
+        var willOpen = body.hasAttribute('hidden');
+        if (willOpen) body.removeAttribute('hidden');
+        else body.setAttribute('hidden', '');
+        host.classList.toggle('is-open', willOpen);
+        tog.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        if (willOpen) renderShipEst();
+      });
+    }
+    host.addEventListener('input', function (e) {
+      if (e.target.closest('[data-ship-kg],[data-ship-l],[data-ship-w],[data-ship-h]')) renderShipEst();
+    });
+    host.addEventListener('change', function (e) {
+      if (e.target.closest('[data-ship-country]')) renderShipEst();
+    });
+    renderShipEst();
+  }
+
   function renderInquiry() {
     var body = $('[data-drawer-body]');
     var cntEl = $('[data-inquiry-count]');
@@ -935,6 +1109,8 @@
       shareEl.style.opacity = n === 0 ? '0.45' : '1';
       shareEl.style.pointerEvents = n === 0 ? 'none' : 'auto';
     }
+    var quoteEl = $('[data-quote-pdf]');
+    if (quoteEl) quoteEl.hidden = n === 0;   // 空清单不显示「导出报价单」
 
     if (!body) return;
     if (!Store.items.length) {
@@ -1162,6 +1338,15 @@
       if (t.closest('[data-share-link]')) {
         var url = buildShareUrl(Store.items);
         if (url) copyText(url, window.T('toast_share'));
+        return;
+      }
+
+      /* 导出报价单：复用分享链接的数据编码，带 &print=1 打开后自动唤起打印（浏览器「另存为 PDF」） */
+      if (t.closest('[data-quote-pdf]')) {
+        var qUrl = buildShareUrl(Store.items);
+        if (!qUrl) return;
+        openDrawer(false);
+        window.open(qUrl + '&print=1', '_blank', 'noopener');
         return;
       }
 
@@ -1559,6 +1744,7 @@
             '<button type="button" class="btn btn-outline" data-open-inquiry data-i18n="review_list">Review inquiry list</button>' +
             '<button type="button" class="btn btn-outline" data-inquiry-product-trigger data-product-name="' + esc(p.name) + '" data-i18n="inquiry_product_btn">Inquire this product</button>' +
           '</div>' +
+          tierBoxHTML(p) +
           '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; <span data-i18n="back_to">Back to </span>' + esc(cat ? cat.name : p.collection) + '</a>' +
           '<div class="spec-list">' +
             '<div class="spec-row"><span class="k" data-i18n="spec_brand">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
@@ -1700,6 +1886,7 @@
         }
         if (priceEl) priceEl.textContent = vPrice;
         if (addBtn) addBtn.setAttribute('data-variant', vName);
+        updateTierBox(vPrice);   // 阶梯价跟着型号价格走
         // 选中型号时退出视频回到图片
         if (vEl2 && imgEl && vEl2.style.display !== 'none') {
           vEl2.pause(); vEl2.style.display = 'none';
@@ -1722,6 +1909,7 @@
         }
         if (priceEl) priceEl.textContent = defPrice;
         if (addBtn) addBtn.setAttribute('data-variant', variants[0].name);
+        updateTierBox(defPrice);  // 取消选择 → 阶梯价回到默认价格基准
         galSetHold(false); // 无选择 → 轮播恢复
         syncAddButtons();
       }
@@ -1775,6 +1963,8 @@
           '</div>';
       }
     }
+
+    initTier();   // 阶梯价控件（页面重建后需要重新绑定）
   }
 
   /* ============================================================
@@ -1840,7 +2030,195 @@
     return isFinite(n) ? n : null;
   }
 
-  /** 按当前清单数量计算预估合计（保留首个价格里的货币符号） */
+  /* ================================================================
+     阶梯价 + 运费估算
+     数据源：data.js 的 window.TIER_PRICING / window.SHIPPING_RATES
+     （改数字只改 data.js，页面立刻跟着变）
+     ================================================================ */
+
+  /** 当前生效的阶梯档位；data.js 里 TIER_PRICING.enabled = false 即整体关闭 */
+  function tierList() {
+    var t = window.TIER_PRICING;
+    return (t && t.enabled && t.tiers && t.tiers.length) ? t.tiers : null;
+  }
+
+  /** 数量落在哪一档 */
+  function tierFor(qty) {
+    var list = tierList();
+    if (!list) return null;
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      if (qty >= t.min && (t.max === null || t.max === undefined || qty <= t.max)) return t;
+    }
+    return list[list.length - 1];
+  }
+
+  /** 金额格式：整数不带小数、非整数保留两位，并加千分位（€1,140 比 €1140 好读） */
+  function money(n, sym) {
+    var r = Math.round(n * 100) / 100;
+    var s = (r % 1 === 0) ? String(r) : r.toFixed(2);
+    var parts = s.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return (sym || '') + parts.join('.');
+  }
+
+  /** 重量显示：整数不带小数，否则一位 */
+  function fmtKg(n) {
+    var r = Math.round(n * 10) / 10;
+    return r % 1 === 0 ? String(r) : r.toFixed(1);
+  }
+
+  /**
+   * 按数量算单价 / 总价 / 省下多少钱
+   * 返回 { noPrice:true, qty } 表示该价格无法解析
+   */
+  function tierCalc(priceStr, qty) {
+    var pr = parsePrice(priceStr);
+    var q = Math.max(1, parseInt(qty, 10) || 1);
+    if (!pr) return { noPrice: true, qty: q };
+    var t = tierFor(q);
+    var f = t ? t.factor : 1;
+    var unit = pr.value * f;
+    return {
+      sym: pr.symbol, qty: q, tier: t, factor: f,
+      base: pr.value, unit: unit, total: unit * q,
+      saved: (pr.value - unit) * q
+    };
+  }
+
+  /** 产品页「批量阶梯价」区块 HTML（无价格或无阶梯配置时返回空串） */
+  function tierBoxHTML(p) {
+    var list = tierList();
+    if (!list || !p) return '';
+    var pr = parsePrice(p.price);
+    if (!pr) return '';
+    var rows = list.map(function (t, i) {
+      var label = (t.max === null || t.max === undefined) ? (t.min + '+') : (t.min + '–' + t.max);
+      var off = t.factor < 1 ? '<em class="tier-off">−' + Math.round((1 - t.factor) * 100) + '%</em>' : '';
+      return '<tr data-tier-row="' + i + '"><td>' + label + '</td>' +
+        '<td>' + esc(money(pr.value * t.factor, pr.symbol)) + off + '</td></tr>';
+    }).join('');
+    return '' +
+      '<div class="tier-box" data-tier-box data-tier-base="' + esc(p.price) + '">' +
+        '<div class="tier-head">' +
+          '<span data-i18n="tier_title">Volume pricing</span>' +
+          '<span class="tier-badge" data-i18n="tier_auto">Auto-applied</span>' +
+        '</div>' +
+        '<table class="tier-table"><thead><tr>' +
+          '<th data-i18n="tier_qty">Qty</th><th data-i18n="tier_unit">Unit price</th>' +
+        '</tr></thead><tbody>' + rows + '</tbody></table>' +
+        '<div class="tier-calc">' +
+          '<label class="tier-qty-wrap"><span data-i18n="tier_your_qty">Your qty</span>' +
+            '<input type="number" min="1" step="1" value="1" inputmode="numeric" data-tier-qty></label>' +
+          '<div class="tier-out">' +
+            '<span><span data-i18n="tier_unit">Unit price</span><b data-tier-unit>—</b></span>' +
+            '<span><span data-i18n="tier_total">Total</span><b data-tier-total>—</b></span>' +
+          '</div>' +
+        '</div>' +
+        '<p class="tier-saved" data-tier-saved></p>' +
+        '<p class="tier-moq" data-tier-moq hidden></p>' +
+      '</div>';
+  }
+
+  /** 重算阶梯价区块；basePrice 用于切换型号时换价格基准 */
+  function updateTierBox(basePrice) {
+    var box = $('[data-tier-box]');
+    if (!box) return;
+    if (basePrice) box.setAttribute('data-tier-base', basePrice);
+    var base = box.getAttribute('data-tier-base') || '';
+    var input = $('[data-tier-qty]', box);
+    var r = tierCalc(base, input ? input.value : 1);
+    var unitEl = $('[data-tier-unit]', box);
+    var totalEl = $('[data-tier-total]', box);
+    var savedEl = $('[data-tier-saved]', box);
+    var moqEl = $('[data-tier-moq]', box);
+    if (r.noPrice) {
+      if (unitEl) unitEl.textContent = '—';
+      if (totalEl) totalEl.textContent = '—';
+      if (savedEl) savedEl.textContent = '';
+      return;
+    }
+    if (unitEl) unitEl.textContent = money(r.unit, r.sym);
+    if (totalEl) totalEl.textContent = money(r.total, r.sym);
+    if (savedEl) savedEl.textContent = r.saved > 0.005 ? window.T('tier_saved', { v: money(r.saved, r.sym) }) : '';
+    var idx = tierList().indexOf(r.tier);
+    $$('[data-tier-row]', box).forEach(function (tr) {
+      tr.classList.toggle('is-hit', parseInt(tr.getAttribute('data-tier-row'), 10) === idx);
+    });
+    /* MOQ 提示：只提醒，不强行改客户输入 */
+    var p = getProduct(param('id'));
+    var minQ = p ? moqQty(p) : 1;
+    if (moqEl) {
+      if (minQ > 1 && r.qty < minQ) {
+        moqEl.textContent = window.T('tier_below_moq', { n: minQ, q: r.qty });
+        moqEl.hidden = false;
+      } else {
+        moqEl.textContent = '';
+        moqEl.hidden = true;
+      }
+    }
+  }
+
+  function initTier() {
+    var box = $('[data-tier-box]');
+    if (!box) return;
+    var input = $('[data-tier-qty]', box);
+    if (input) {
+      input.addEventListener('input', function () { updateTierBox(); });
+      input.addEventListener('change', function () { updateTierBox(); });
+    }
+    updateTierBox();
+  }
+
+  /** 体积重（kg）= 长×宽×高(cm) ÷ divisor；三边没填全就返回 0 */
+  function volumeKg(l, w, h) {
+    var R = window.SHIPPING_RATES;
+    var d = (R && R.divisor) || 6000;
+    l = parseFloat(l); w = parseFloat(w); h = parseFloat(h);
+    if (!(l > 0 && w > 0 && h > 0)) return 0;
+    return (l * w * h) / d;
+  }
+
+  /** ISO 国家代码 → 运费区域（未开通固定价的国家返回 null） */
+  function shipZone(iso) {
+    var R = window.SHIPPING_RATES;
+    if (!R || !R.zones) return null;
+    for (var i = 0; i < R.zones.length; i++) {
+      if ((R.zones[i].countries || []).indexOf(iso) > -1) return R.zones[i];
+    }
+    return null;
+  }
+
+  /**
+   * 运费估算：首重 1kg 固定价 + 每多 1kg 的续重价
+   * 计费重量 = 实重与体积重【取大】→ 向上取整到整公斤
+   * 未开通的国家返回 { quoteOnly:true }；数据不足返回 null
+   */
+  function shipQuote(iso, actualKg, l, w, h) {
+    var R = window.SHIPPING_RATES;
+    var z = shipZone(iso);
+    var act = parseFloat(actualKg) || 0;
+    if (act < 0) act = 0;
+    var vol = volumeKg(l, w, h);
+    var charge = Math.max(act, vol);
+    if (!z || !(z.base >= 0) || !(z.perKg >= 0)) {
+      return { quoteOnly: true, iso: iso, actual: act, vol: vol, charge: charge };
+    }
+    if (!(charge > 0)) return null;
+    var step = parseFloat(R.roundKg) || 1;
+    var bill = Math.ceil(charge / step - 1e-9) * step;
+    if (bill < step) bill = step;
+    var extra = Math.max(0, Math.round((bill - step) / step));
+    return {
+      zone: z, quoteOnly: false, actual: act, vol: vol,
+      charge: charge, bill: bill, extra: extra,
+      base: z.base, perKg: z.perKg,
+      cost: z.base + extra * z.perKg,
+      currency: z.currency || 'USD'
+    };
+  }
+
+  /** 按当前清单数量计算预估合计（保留首个价格里的货币符号，含千分位） */
   function sharedTotal() {
     var sum = 0, has = false;
     sharedItems.forEach(function (it) {
@@ -1849,8 +2227,7 @@
     });
     if (!has) return '';
     var sym = String(sharedItems[0].price).replace(/[0-9.,\s]/g, '');
-    var r = Math.round(sum * 100) / 100;
-    return sym + (r % 1 === 0 ? String(r) : r.toFixed(2));
+    return money(sum, sym);
   }
 
   function renderSharedQuote() {
@@ -1859,13 +2236,18 @@
     body.innerHTML = sharedItems.map(function (it, idx) {
       var minQ = minQtyOf(it);
       var atMin = minQ > 1 && it.qty <= minQ;
+      var n = priceNum(it.price);
+      var lineTotal = n !== null ? money(n * it.qty, String(it.price).replace(/[0-9.,\s]/g, '')) : '';
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
           '<div class="info">' +
             '<p class="i-name">' + esc(it.name) + (it.variant ? ' <span class="i-var">· ' + esc(it.variant) + '</span>' : '') + '</p>' +
             '<p class="i-brand">' + esc(it.brand || '') + '</p>' +
-            '<p class="i-price">' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</p>' +
+            '<p class="i-price">' +
+              '<span>' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</span>' +
+              (it.qty > 1 && lineTotal ? '<span class="i-line">' + esc(lineTotal) + '</span>' : '') +
+            '</p>' +
             '<div class="qty">' +
               '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease"' +
                 (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
@@ -1878,6 +2260,21 @@
     }).join('');
     var totalEl = $('[data-shared-total]');
     if (totalEl) totalEl.textContent = sharedTotal() || '—';
+  }
+
+  /** 报价单条款与联系信息（打印出来要看得到，所以是纯文本不是按钮） */
+  function sharedTermsHtml() {
+    // 报价单属于询盘链路，优先用询盘专用号（data.js 的 whatsappInquiry）
+    var wa = CFG.whatsappInquiryDisplay || CFG.whatsappDisplay || CFG.whatsapp || '';
+    return '<div class="shared-terms">' +
+      '<p class="st-contact">' +
+        '<b>' + esc(CFG.brand || '') + '</b>' +
+        (wa ? ' · WhatsApp ' + esc(wa) : '') +
+        (CFG.contactEmail ? ' · ' + esc(CFG.contactEmail) : '') +
+      '</p>' +
+      '<p class="st-note" data-i18n="quote_terms">Prices are wholesale, ex-works. Freight, duties and taxes are quoted separately. ' +
+        'Quantities and prices are indicative until confirmed by our written quotation.</p>' +
+    '</div>';
   }
 
   /** 报价单底部引流联系区（WhatsApp + 邮箱）—— 正常报价单与「链接失效」提示都用它 */
@@ -1915,11 +2312,42 @@
     else document.body.insertBefore(banner, document.body.firstChild);
   }
 
+  /** 报价单编号：Q-YYYYMMDD-四位。同一份清单编号稳定，便于双方对账沟通 */
+  function quoteNo(items) {
+    var s = encodeItems(items);
+    var h = 0;
+    for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    var d = new Date();
+    var mm = String(d.getMonth() + 1), dd = String(d.getDate());
+    if (mm.length < 2) mm = '0' + mm;
+    if (dd.length < 2) dd = '0' + dd;
+    var tail = String(h % 10000);
+    while (tail.length < 4) tail = '0' + tail;
+    return 'Q-' + d.getFullYear() + mm + dd + '-' + tail;
+  }
+
+  /** 报价单日期：19 Oct 2026 */
+  function quoteDate() {
+    var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var d = new Date();
+    return d.getDate() + ' ' + M[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  /** 报价单元信息条（单号 / 日期），正常查阅与打印都显示 */
+  function sharedMetaHtml() {
+    return '<div class="shared-meta">' +
+      '<span><span data-i18n="quote_no">Quote no.</span> <b>' + esc(quoteNo(sharedItems)) + '</b></span>' +
+      '<span><span data-i18n="quote_date">Date</span> <b>' + esc(quoteDate()) + '</b></span>' +
+      '<span><span data-i18n="quote_valid">Valid</span> <b data-i18n="quote_valid_days">14 days</b></span>' +
+    '</div>';
+  }
+
   function initSharedList() {
     var m = location.hash.match(/[#&]l=([^&]+)/);
     if (!m) return;
     sharedItems = decodeItems(m[1]);
     if (!sharedItems.length) { renderSharedExpired(); return; }
+    var wantPrint = /[#&]print=1/.test(location.hash);   // 从「Download quote」进来 → 自动唤起打印
     var header = $('.site-header');
     var banner = document.createElement('section');
     banner.className = 'shared-banner';
@@ -1932,14 +2360,23 @@
             '<h2>' + window.T('shared_review', { n: sharedItems.length }) + '</h2>' +
           '</div>' +
         '</div>' +
+        sharedMetaHtml() +
         '<div class="shared-quote" data-shared-body></div>' +
         '<div class="shared-total"><span data-i18n="products_total">Products total</span><b data-shared-total>—</b></div>' +
         '<p class="shared-note" data-i18n="shared_note">Quantities are adjustable. Contact us for an official quotation.</p>' +
         sharedContactHtml() +
+        sharedTermsHtml() +
       '</div>';
     if (header) header.insertAdjacentElement('afterend', banner);
     else document.body.insertBefore(banner, document.body.firstChild);
     renderSharedQuote();
+
+    if (wantPrint) {
+      document.body.classList.add('print-quote');
+      document.title = quoteNo(sharedItems) + ' · ' + CFG.brand;
+      /* 等图片与字体就位再唤起打印，避免打印出空白图 */
+      setTimeout(function () { try { window.print(); } catch (e) {} }, 600);
+    }
   }
 
   /* ---------------- 联系方式小卡片：页面里写 <div data-contact-cards></div> 即可
@@ -2241,6 +2678,7 @@
     renderInquiry();
     syncAddButtons();
     initInquiry();
+    initShipping();   // 抽屉里的运费估算（阶梯价在 initProduct 内初始化）
 
     // 多语言：用 data-i18n / 词典回填当前语言（浏览器判定或用户已选）
     if (window.applyLang) window.applyLang();

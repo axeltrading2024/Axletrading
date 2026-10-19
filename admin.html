@@ -260,7 +260,7 @@
       <div class="guide-body" data-page-node-id="EWxjH2JaWjKRm6RRbqX841">
         <div class="gh-row" data-page-node-id="O5USZDt1ICwjeoToRTqXD8"><label data-page-node-id="ongXnUA5EWSG8MWG4E9TEe">店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply" data-page-node-id="xET2kwn3DUc8q2FLLQfKyx"><span class="help" data-page-node-id="tOfFK2evAZqX3HKhNwJUJ2">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
         <div class="gh-row" data-page-node-id="z8kk475lL3OjMHArlsGA7g"><label data-page-node-id="U3HGXIrblUsAH7dbSQ2pMY">联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）" data-page-node-id="TCTlE56lmSzVpCEus8AigH"></div>
-        <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
+        <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +49 152 2490 1963" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
         <div class="gh-row" data-page-node-id="RBVD6h8UbrNTLYodb2QyPU"><label data-page-node-id="BWEpAv08wwiBqjJ5Bz8E0K">联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com" data-page-node-id="DftCljIYxFSqnY3DevwOET"><span class="help" data-page-node-id="sRbEfXBjWMkPfaE4zLNzDR">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
         <div class="gh-row" data-page-node-id="FFA6kaMvDBZX7dIuyfQ3uz"><label data-page-node-id="Cwj3fhvtk6UdlpEV5IJYpv">WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4" data-page-node-id="OmGEZP3z5JxvWeql0cVm5b"><span class="help" data-page-node-id="VGFT0VYbWcyPhPOGpj8LfV">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
         <div class="gh-row"><label>备用号码</label><input data-cfg-wabackup placeholder="如 +49 152 2490 1963"><span class="help">显示在页脚「calls &amp; backup」一行，留空则不显示</span></div>
@@ -308,7 +308,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20261019c"></script>
+  <script src="js/data.js?v=20261019d"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -1786,7 +1786,7 @@
     var waDisplay = ($('[data-cfg-wadisplay]').value || '').trim();
     var wa = waDigits(waDisplay);
     if (waDisplay && wa.length < 8) {
-      status('WhatsApp 号码看起来不对，请包含国家码，如 +86 158 7520 9571', 'err');
+      status('WhatsApp 号码看起来不对，请包含国家码，如 +49 152 2490 1963', 'err');
       return;
     }
     if (!waDisplay) status('提示：WhatsApp 显示号码为空，页脚将不显示联系方式');

@@ -3220,3 +3220,512 @@ body.search-open { overflow: hidden; }
   .gallery-nav { width: 36px; height: 36px; font-size: 20px; }
   .gallery-thumbs .thumb { width: 56px; height: 56px; }
 }
+
+/* ================================================================
+   批量阶梯价（产品页）
+   ================================================================ */
+.tier-box {
+  margin: 20px 0 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.tier-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.tier-badge {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+
+.tier-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.tier-table th {
+  padding: 9px 14px;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  background: var(--surface);
+  text-align: left;
+}
+
+.tier-table th:last-child,
+.tier-table td:last-child { text-align: right; }
+
+.tier-table td {
+  padding: 9px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.tier-table tr.is-hit td {
+  background: var(--surface);
+  font-weight: 600;
+}
+
+.tier-table tr.is-hit td:first-child {
+  box-shadow: inset 2px 0 0 var(--accent-brand);
+}
+
+.tier-off {
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--accent-brand);
+  margin-left: 6px;
+}
+
+.tier-calc {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 13px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.tier-qty-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.tier-qty-wrap input {
+  width: 96px;
+  font: inherit;
+  font-size: 14px;
+  letter-spacing: 0;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.tier-qty-wrap input:focus {
+  outline: none;
+  border-color: var(--accent-brand);
+}
+
+.tier-out {
+  display: flex;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.tier-out span {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.tier-out b {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--foreground);
+}
+
+.tier-box.is-discount .tier-out b { color: var(--accent-brand); }
+
+.tier-saved,
+.tier-moq {
+  margin: 0;
+  padding: 0 14px;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.tier-saved { color: var(--accent-brand); font-weight: 600; }
+.tier-saved:empty { display: none; }
+.tier-moq { color: oklch(50% 0.17 25); }
+.tier-moq[hidden] { display: none; }
+.tier-saved + .tier-moq { padding-top: 3px; }
+.tier-saved:empty + .tier-moq:not([hidden]) { padding-top: 0; }
+.tier-box .tier-moq:last-child { padding-bottom: 13px; }
+
+/* ================================================================
+   运费估算（询价篮抽屉内）
+   ================================================================ */
+.ship-est {
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+.ship-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--foreground);
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.ship-toggle:hover { background: var(--surface); }
+
+.ship-ico {
+  display: block;
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+.ship-ico svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.ship-lbl { flex: 1; }
+
+.ship-caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  opacity: 0.55;
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ship-est.is-open .ship-caret { transform: rotate(-135deg) translateY(-2px); }
+
+.ship-body {
+  padding: 2px 20px 16px;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+
+.ship-body[hidden] { display: none; }
+
+.ship-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ship-row > label,
+.ship-dims {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.ship-dims-l { letter-spacing: 0.04em; }
+
+.ship-row select,
+.ship-row input,
+.ship-dims-in input {
+  width: 100%;
+  font: inherit;
+  font-size: 13.5px;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.ship-row select:focus,
+.ship-row input:focus,
+.ship-dims-in input:focus {
+  outline: none;
+  border-color: var(--accent-brand);
+}
+
+.ship-dims-in {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ship-dims-in input { text-align: center; padding: 8px 4px; }
+.ship-dims-in span { font-size: 11px; color: var(--muted-foreground); }
+
+.ship-out {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.ship-empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+/* 未开通固定价的国家：说明 + 直接问 Eddy */
+.ship-quote-only {
+  margin: 0 0 9px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+.ship-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--whatsapp-foreground);
+  background: var(--whatsapp);
+}
+
+.ship-wa svg { flex: none; display: block; }
+.ship-wa:hover { filter: brightness(1.05); }
+
+.ship-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.ship-lines .sr {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.ship-lines .sr b { color: var(--foreground); font-weight: 600; }
+
+.ship-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+}
+
+.ship-total b {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.ship-warn {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  color: var(--accent-brand);
+}
+
+.ship-transit {
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+}
+
+.ship-note {
+  margin: 10px 0 0;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+/* 抽屉底部的「导出报价单」 */
+.drawer-foot .quote-dl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.drawer-foot .quote-dl:hover {
+  background: var(--muted);
+  border-color: var(--foreground);
+}
+
+.drawer-foot .quote-dl[hidden] { display: none; }
+.qd-ico { font-size: 14px; line-height: 1; }
+
+/* ================================================================
+   报价单（分享页）信息条 + 打印版
+   ================================================================ */
+.shared-banner .shared-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  max-width: 560px;
+  margin: 0 0 14px;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+}
+
+.shared-banner .shared-meta b {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* 报价单每行小计（数量 > 1 时显示在右侧） */
+.shared-banner .inq-item .i-price {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.shared-banner .i-line {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+/* 条款与联系信息：屏幕上是浅灰小字，打印时是正式信息块 */
+.shared-banner .shared-terms {
+  max-width: 560px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.shared-banner .shared-terms p {
+  margin: 0 0 6px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.shared-banner .shared-terms .st-contact {
+  color: var(--foreground);
+  font-size: 12px;
+}
+
+.shared-banner .shared-terms .st-contact b {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+@media print {
+  @page { margin: 14mm; }
+
+  /* 只打印报价单：从「Download quote」进来时 body 带 print-quote，
+     除报价单本身以外的东西（页头、首页正文、页脚、浮动按钮）全部不打印 */
+  body.print-quote > *:not(.shared-banner) { display: none !important; }
+  body.print-quote main { display: none !important; }
+
+  .site-header,
+  .site-footer,
+  .wa-fab,
+  .cart-fab,
+  .drawer,
+  .drawer-backdrop,
+  .toast,
+  .inquiry-panel,
+  .inquiry-backdrop,
+  .shared-banner .shared-contact,
+  .shared-banner .shared-note { display: none !important; }
+
+  html, body { background: #fff !important; }
+  body { color: #111 !important; }
+
+  .shared-banner {
+    border: 0 !important;
+    background: #fff !important;
+    padding: 0 !important;
+  }
+
+  .shared-banner .wrap {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .shared-banner h2 { font-size: 19pt; margin-top: 2mm; }
+
+  .shared-banner .shared-meta {
+    max-width: none;
+    margin-bottom: 6mm;
+    font-size: 9.5pt;
+  }
+
+  .shared-banner .shared-quote {
+    max-width: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0 14px;
+    page-break-inside: avoid;
+  }
+
+  .shared-banner .inq-item { padding: 9px 0; }
+
+  /* 打印版去掉交互控件 */
+  .shared-banner .inq-item .qty,
+  .shared-banner .inq-item .inq-remove { display: none !important; }
+
+  .shared-banner .shared-total { max-width: none; }
+  .shared-banner .shared-total b { font-size: 15pt; }
+
+  .shared-banner .shared-terms {
+    max-width: none;
+    margin-top: 7mm;
+    padding-top: 5mm;
+    border-top: 1px solid #ddd;
+  }
+
+  .shared-banner .shared-terms p { font-size: 8.5pt; }
+  .shared-banner .shared-terms .st-contact { font-size: 9.5pt; }
+
+  a[href]::after { content: none !important; }
+}
+
