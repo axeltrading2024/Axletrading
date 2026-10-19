@@ -1407,7 +1407,7 @@
     var subEl = $('[data-hero-sub]');
     if (subEl) subEl.textContent = lang === 'es' && CFG.heroSubtitleEs ? CFG.heroSubtitleEs : CFG.heroSubtitle;
     var badgeEl = $('[data-hero-badge]');
-    if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · Product Finder');
+    if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · genuine supplier');
     var phEl = $('[data-search-input]');
     if (phEl) {
       var narrow = window.matchMedia && window.matchMedia('(max-width: 639px)').matches;
