@@ -87,6 +87,7 @@
     ship_quote_only:    { en: 'We don’t have a fixed freight rate for {country} yet — it is quoted case by case.', es: 'Todavía no tenemos tarifa fija para {country} — se cotiza caso por caso.' },
     ship_quote_cta:     { en: 'Ask Eddy on WhatsApp', es: 'Pregunta a Eddy por WhatsApp' },
     ship_note:          { en: 'Indicative only — billed weight is rounded up to the next kg, and final freight is confirmed with your quotation.', es: 'Solo orientativo — el peso facturable se redondea al siguiente kg y el flete final se confirma con tu cotización.' },
+    fx_rate_note:       { en: 'Approximate conversion at 1 EUR = 1.1 USD — we invoice in the quoted currency.', es: 'Conversión aproximada a 1 EUR = 1,1 USD — facturamos en la moneda cotizada.' },
     quote_pdf:          { en: 'Download quote (PDF)', es: 'Descargar cotización (PDF)' },
     quote_no:           { en: 'Quote no.', es: 'N.º de cotización' },
     quote_date:         { en: 'Date', es: 'Fecha' },

@@ -1057,6 +1057,7 @@
     out.innerHTML = '<div class="ship-lines">' + lines.join('') + '</div>' +
       '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
         '<b>' + money(q.cost, sym) + '</b></div>' +
+      fxApproxHtml(q.cost, q.currency, true) +
       '<p class="ship-transit">' + esc(window.T('ship_transit', { d: transitLabel(q.zone) })) + '</p>';
   }
 
@@ -1098,7 +1099,21 @@
       el.classList.toggle('has-items', n > 0);
     });
     if (dCnt) dCnt.textContent = window.T('drawer_count', { n: n });
-    if (totalEl) totalEl.textContent = Store.total() || '—';
+    if (totalEl) {
+      var dtxt = Store.total();
+      if (!dtxt) {
+        totalEl.textContent = '—';
+      } else {
+        var dsum = 0, dcur = '';
+        Store.items.forEach(function (it) {
+          var pr = parsePrice(it.price);
+          if (!pr) return;
+          if (!dcur) dcur = symToCurrency(pr.symbol);
+          dsum += pr.value * it.qty;
+        });
+        totalEl.innerHTML = esc(dtxt) + (dcur ? fxApproxHtml(dsum, dcur) : '');
+      }
+    }
     if (sendEl) {
       var disabled = n === 0;
       sendEl.style.opacity = disabled ? '0.45' : '1';
@@ -2068,6 +2083,49 @@
     return r % 1 === 0 ? String(r) : r.toFixed(1);
   }
 
+  /* ---------- 跨币种约值（汇率在 data.js 的 FX_RATES，固定常量不联网） ---------- */
+
+  /** 货币符号 → 货币代码（认不出就返回空） */
+  function symToCurrency(sym) {
+    var s = String(sym || '').trim();
+    if (!s) return '';
+    if (s === '€' || /eur/i.test(s)) return 'EUR';
+    if (s === '$' || /usd/i.test(s)) return 'USD';
+    return '';
+  }
+
+  /** 货币代码 → 显示符号 */
+  function currencySym(cur) {
+    if (cur === 'EUR') return '€';
+    if (cur === 'USD') return '$';
+    return cur ? cur + ' ' : '';
+  }
+
+  /** 按 FX_RATES 折算，结果取整；同币种 / 缺汇率返回 null */
+  function fxConvert(amount, from, to) {
+    var FX = window.FX_RATES;
+    if (!FX || !FX.rates || !from || !to || from === to) return null;
+    var f = parseFloat(FX.rates[from]), t = parseFloat(FX.rates[to]);
+    if (!(f > 0) || !(t > 0)) return null;
+    var v = amount * t / f;
+    return isFinite(v) ? Math.round(v) : null;
+  }
+
+  /**
+   * 「≈ $238」约值提示（HTML）。主报价数字不动，只在旁边补一个另一币种的约数。
+   * block=true 时独占一行（小面板里用）。
+   */
+  function fxApproxHtml(amount, currency, block) {
+    if (!(amount > 0)) return '';
+    var other = currency === 'USD' ? 'EUR' : (currency === 'EUR' ? 'USD' : '');
+    if (!other) return '';
+    var v = fxConvert(amount, currency, other);
+    if (v === null) return '';
+    var note = (window.T && window.T('fx_rate_note')) || '';
+    return '<span class="fx-approx' + (block ? ' fx-block' : '') + '" title="' + esc(note) + '">≈ ' +
+      money(v, currencySym(other)) + ' ' + other + '</span>';
+  }
+
   /**
    * 按数量算单价 / 总价 / 省下多少钱
    * 返回 { noPrice:true, qty } 表示该价格无法解析
@@ -2219,15 +2277,27 @@
   }
 
   /** 按当前清单数量计算预估合计（保留首个价格里的货币符号，含千分位） */
-  function sharedTotal() {
-    var sum = 0, has = false;
+  /** 清单商品合计（金额 + 货币代码），没有可解析价格时返回 null */
+  function sharedSum() {
+    var sum = 0, has = false, cur = '';
     sharedItems.forEach(function (it) {
       var n = priceNum(it.price);
-      if (n !== null) { sum += n * it.qty; has = true; }
+      if (n !== null) {
+        sum += n * it.qty;
+        has = true;
+        if (!cur) cur = symToCurrency(String(it.price).replace(/[0-9.,\s]/g, ''));
+      }
     });
-    if (!has) return '';
-    var sym = String(sharedItems[0].price).replace(/[0-9.,\s]/g, '');
-    return money(sum, sym);
+    return has ? { sum: sum, currency: cur } : null;
+  }
+
+  function sharedTotal() {
+    var s = sharedSum();
+    if (!s) return '';
+    var sym = s.currency
+      ? currencySym(s.currency)
+      : String(sharedItems[0].price).replace(/[0-9.,\s]/g, '');
+    return money(s.sum, sym);
   }
 
   function renderSharedQuote() {
@@ -2259,7 +2329,11 @@
         '</div>';
     }).join('');
     var totalEl = $('[data-shared-total]');
-    if (totalEl) totalEl.textContent = sharedTotal() || '—';
+    if (totalEl) {
+      var st = sharedSum();
+      var approx = st && st.currency ? fxApproxHtml(st.sum, st.currency) : '';
+      totalEl.innerHTML = esc(sharedTotal() || '—') + approx;
+    }
   }
 
   /** 报价单条款与联系信息（打印出来要看得到，所以是纯文本不是按钮） */
@@ -2274,6 +2348,7 @@
       '</p>' +
       '<p class="st-note" data-i18n="quote_terms">Prices are wholesale, ex-works. Freight, duties and taxes are quoted separately. ' +
         'Quantities and prices are indicative until confirmed by our written quotation.</p>' +
+      '<p class="st-fx" data-i18n="fx_rate_note">Approximate conversion at 1 EUR = 1.1 USD — we invoice in the quoted currency.</p>' +
     '</div>';
   }
 

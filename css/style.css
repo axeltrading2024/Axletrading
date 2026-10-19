@@ -3561,6 +3561,40 @@ body.search-open { overflow: hidden; }
   color: var(--accent-brand);
 }
 
+/* 跨币种约值（汇率常量见 js/data.js 的 FX_RATES） */
+.fx-approx {
+  margin-left: 6px;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--muted-foreground);
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.fx-approx.fx-block {
+  display: block;
+  margin: 3px 0 0;
+  text-align: right;
+}
+
+.shared-total .fx-approx {
+  font-size: 11.5px;
+}
+
+/* 合计区：主价在上、约值折到下一行右对齐，避免把主价挤出去 */
+.shared-total b,
+.drawer-foot .total b {
+  display: block;
+  text-align: right;
+}
+
+.shared-total b .fx-approx,
+.drawer-foot .total b .fx-approx {
+  display: block;
+  margin: 2px 0 0;
+  font-size: 11.5px;
+}
+
 .ship-transit {
   margin: 6px 0 0;
   font-size: 11.5px;
@@ -3654,6 +3688,13 @@ body.search-open { overflow: hidden; }
 .shared-banner .shared-terms .st-contact b {
   font-weight: 600;
   letter-spacing: 0.02em;
+}
+
+/* 汇率说明（配合 data.js 的 FX_RATES） */
+.shared-banner .shared-terms .st-fx {
+  margin-top: -2px;
+  font-size: 10.5px;
+  opacity: 0.8;
 }
 
 @media print {
