@@ -4278,7 +4278,32 @@ body.ask-lock .ask-tab {
   color: var(--muted-foreground);
 }
 
+.lf-done-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .lf-done-wa { display: inline-flex; }
+
+.lf-done-again {
+  min-width: 168px;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.lf-done-again:hover {
+  border-color: var(--foreground);
+}
+
+.lf-done .lf-done-hint {
+  margin: 16px auto 0;
+  max-width: 30rem;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
 
 /* 后端不可用时的 WhatsApp 兜底 */
 .lf-fallback { padding: 8px 0 4px; }

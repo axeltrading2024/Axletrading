@@ -135,10 +135,15 @@
             '<path d="M20 6 9 17l-5-5"/></svg>' +
         '</span>' +
         '<h3 data-i18n="req_ok_title">Request received</h3>' +
-        '<p data-i18n="req_ok_body">Thanks — we&rsquo;ll come back to you within 24 hours with pricing and options.</p>' +
+        '<p data-i18n="req_ok_body">Thank you — your request is in. We&rsquo;ll come back to you within 24 hours with pricing and options.</p>' +
         filesNote +
-        '<a class="btn btn-whatsapp lf-done-wa" data-wa-chat href="' + esc(waHref) + '" target="_blank" rel="noreferrer">' +
-          '<span data-i18n="req_ok_wa">Chat on WhatsApp now</span></a>' +
+        '<div class="lf-done-actions">' +
+          '<a class="btn btn-whatsapp lf-done-wa" data-wa-chat href="' + esc(waHref) + '" target="_blank" rel="noreferrer">' +
+            '<span data-i18n="req_ok_wa">Chat on WhatsApp now</span></a>' +
+          '<button type="button" class="btn btn-outline btn-sm lf-done-again" data-lf-again>' +
+            '<span data-i18n="req_ok_again">Send another request</span></button>' +
+        '</div>' +
+        '<p class="lf-done-hint" data-i18n="req_ok_again_hint">Sourcing more than one item? Send them separately — we quote each one properly.</p>' +
       '</div>';
   }
 
@@ -485,7 +490,10 @@
   }
 
   function fallback(form, data, reason) {
-    var host = form.closest('[data-lead-form]') || form.parentNode;
+    var host =
+      (form && (form.closest('[data-lead-form]') || form.parentNode)) ||
+      document.querySelector('[data-lead-form]');
+    if (!host) return;
     var box = el('div', 'lf-fallback');
     box.innerHTML =
       '<p class="lf-fb-title">' + esc(T('req_fb_title', 'Online form is not available right now.')) + '</p>' +
@@ -559,7 +567,13 @@
           FILE.files = [];
           host.innerHTML = doneHtml(sent);
           if (window.applyLang) window.applyLang();
-          host.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          var again = host.querySelector('[data-lf-again]');
+          if (again) {
+            again.addEventListener('click', function () {
+              restart(host);
+            });
+          }
+          scrollInto(host, 'center');
           return;
         }
         if (res.status === 503 || res.status === 404 || res.status === 405) {
@@ -691,6 +705,53 @@
     }
 
     if (window.applyLang) window.applyLang();
+  }
+
+  /* 轻量滚动工具：jsdom / 老浏览器没有 scrollIntoView 时不要打断流程 */
+  function scrollInto(el, block) {
+    if (!el) return;
+    try {
+      if (typeof el.scrollIntoView === 'function') {
+        el.scrollIntoView({ block: block || 'center', behavior: 'smooth' });
+      }
+    } catch (e) {}
+  }
+
+  /* 成功页上「再提交一个」：把空表单放回来，并滚回顶部、聚焦第一个字段 */
+  function restart(host) {
+    if (!host) return;
+    FILE.files = [];
+    fileSeq = 0;
+    host.removeAttribute('data-lf-ready');
+    host.innerHTML = '';
+    mount(host);
+    resetScroll(host);
+    var p = host.querySelector('[data-lf-product]');
+    if (p && typeof p.focus === 'function') {
+      try {
+        p.focus({ preventScroll: true });
+      } catch (e) {
+        p.focus();
+      }
+    }
+  }
+
+  function resetScroll(el) {
+    var p = el && el.parentNode;
+    while (p && p !== document.body && p !== document.documentElement) {
+      var oy = '';
+      try {
+        oy = window.getComputedStyle(p).overflowY;
+      } catch (e) {}
+      if ((oy === 'auto' || oy === 'scroll') && p.scrollHeight > p.clientHeight) {
+        p.scrollTop = 0;
+        return;
+      }
+      p = p.parentNode;
+    }
+    try {
+      if (typeof window.scrollTo === 'function') window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {}
   }
 
   function init() {
