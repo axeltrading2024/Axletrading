@@ -112,7 +112,7 @@
           '<button type="submit" class="btn btn-dark lf-submit">' +
             '<span data-i18n="req_submit">Send request</span>' +
           '</button>' +
-          '<p class="lf-note" data-i18n="req_note">We reply within 24 hours. No spam, ever.</p>' +
+          '<p class="lf-note" data-i18n="req_note">Eddy reads every request himself. No spam, ever.</p>' +
         '</div>' +
         '<p class="lf-err" data-lf-err hidden></p>' +
       '</form>';
@@ -134,9 +134,10 @@
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' +
             '<path d="M20 6 9 17l-5-5"/></svg>' +
         '</span>' +
-        '<h3 data-i18n="req_ok_title">Request received</h3>' +
-        '<p data-i18n="req_ok_body">Thank you — your request is in. We&rsquo;ll come back to you within 24 hours with pricing and options.</p>' +
+        '<h3 data-i18n="req_ok_title">Thank you &mdash; we&rsquo;re on it.</h3>' +
+        '<p data-i18n="req_ok_body">Your request is in. Every detail you shared helps us grow: it tells us what buyers actually want, and that shapes what we source, how we pack it and how we price it.</p>' +
         filesNote +
+        '<p class="lf-done-sign" data-i18n="req_ok_sign">&mdash; Eddy, EddyTrading</p>' +
         '<div class="lf-done-actions">' +
           '<a class="btn btn-whatsapp lf-done-wa" data-wa-chat href="' + esc(waHref) + '" target="_blank" rel="noreferrer">' +
             '<span data-i18n="req_ok_wa">Chat on WhatsApp now</span></a>' +

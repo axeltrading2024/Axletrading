@@ -4278,6 +4278,14 @@ body.ask-lock .ask-tab {
   color: var(--muted-foreground);
 }
 
+.lf-done .lf-done-sign {
+  margin: -10px auto 18px;
+  font-size: 13px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--muted-foreground);
+}
+
 .lf-done-actions {
   display: flex;
   flex-direction: column;
