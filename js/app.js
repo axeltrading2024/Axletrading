@@ -1402,12 +1402,30 @@
     var lang = window.getLang ? window.getLang() : 'en';
     var titleEl = $('[data-hero-title]');
     if (titleEl) {
-      titleEl.innerHTML = esc(lang === 'es' && CFG.heroTitleEs ? CFG.heroTitleEs : CFG.heroTitle) + '<br><span class="accent">' + esc(lang === 'es' && CFG.heroTitleAccentEs ? CFG.heroTitleAccentEs : CFG.heroTitleAccent) + '</span>';
+      var tTitle = lang === 'es' && CFG.heroTitleEs ? CFG.heroTitleEs : CFG.heroTitle;
+      var tAccent = lang === 'es' && CFG.heroTitleAccentEs ? CFG.heroTitleAccentEs : CFG.heroTitleAccent;
+      var single = CFG.heroSingleLine === true && !!tAccent;
+      titleEl.classList.toggle('is-single', single);
+      if (!tAccent) {
+        titleEl.innerHTML = esc(tTitle);
+      } else if (single) {
+        /* 单行版：两段并用「·」分隔，各段内部不换行（窄屏只在分隔点处折行） */
+        titleEl.innerHTML = '<span class="nw">' + esc(tTitle) + '</span>' +
+          '<span class="h1-dot">·</span>' +
+          '<span class="accent nw">' + esc(tAccent) + '</span>';
+      } else {
+        titleEl.innerHTML = esc(tTitle) + '<br><span class="accent">' + esc(tAccent) + '</span>';
+      }
     }
     var subEl = $('[data-hero-sub]');
     if (subEl) subEl.textContent = lang === 'es' && CFG.heroSubtitleEs ? CFG.heroSubtitleEs : CFG.heroSubtitle;
     var badgeEl = $('[data-hero-badge]');
-    if (badgeEl) badgeEl.textContent = CFG.heroBadge || (CFG.brand + ' · genuine supplier');
+    if (badgeEl) {
+      var badgeEs = CFG.heroBadgeEs || CFG.heroBadge;
+      badgeEl.textContent = (lang === 'es' && badgeEs) ? badgeEs : (CFG.heroBadge || (CFG.brand + ' · wholesale supplier'));
+    }
+    var cntEl = $('[data-hero-strip-count]');
+    if (cntEl) cntEl.textContent = window.T('hero_strip_collections', { n: cntEl.getAttribute('data-n') || '' });
     var phEl = $('[data-search-input]');
     if (phEl) {
       var narrow = window.matchMedia && window.matchMedia('(max-width: 639px)').matches;
@@ -2504,7 +2522,7 @@
     // 复制一份接在尾部，配合 translateX(-50%) 形成无缝循环
     host.innerHTML =
       '<div class="hero-strip-head"><span data-i18n="hero_strip_what">What we ship</span><span class="hero-strip-rule"></span>' +
-        '<span>' + window.T('hero_strip_collections', { n: cats.length }) + '</span></div>' +
+        '<span data-hero-strip-count data-n="' + cats.length + '">' + window.T('hero_strip_collections', { n: cats.length }) + '</span></div>' +
       '<div class="hero-strip-clip"><div class="hero-strip-track">' + oneSet + oneSet + '</div></div>';
   }
 

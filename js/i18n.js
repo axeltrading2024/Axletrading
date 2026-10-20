@@ -207,7 +207,7 @@
     copy_failed:        { en: 'Copy failed — please copy from the address bar', es: 'Copia fallida — cópialo de la barra de direcciones' },
 
     /* ---------------- About 页（静态文案） ---------------- */
-    about_hero:         { en: 'Your wholesale product finder', es: 'Tu buscador de productos al por mayor' },
+    about_hero:         { en: 'Premium quality, factory pricing', es: 'Calidad premium, precio de fábrica' },
     about_lede:         { en: 'EddySupply is the wholesale catalog of <strong>Axeltrading</strong>, run by Eddy. We help overseas retailers, Amazon sellers and dropshippers source trending products — electronics, perfumes, watches and accessories — with clear photos, honest specs and fast, direct communication on WhatsApp. No middlemen, no marketplace fees, no guesswork.',
                            es: 'EddySupply es el catálogo de mayoreo de <strong>Axeltrading</strong>, dirigido por Eddy. Ayudamos a minoristas, vendedores de Amazon y dropshippers a abastecerse de productos de tendencia — electrónica, perfumes, relojes y accesorios — con fotos claras, especificaciones honestas y comunicación rápida y directa por WhatsApp. Sin intermediarios, sin comisiones de marketplace, sin sorpresas.' },
     about_mosaic_what:  { en: 'What we ship', es: 'Lo que enviamos' },

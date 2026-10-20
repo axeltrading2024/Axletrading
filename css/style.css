@@ -774,9 +774,33 @@ a {
   color: var(--muted-foreground);
 }
 
+/* 单行版大标题：两段用「·」分隔，字号按最长一行收小 */
+.hero h1.is-single {
+  font-size: 30px;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+}
+
+@media (min-width: 640px) {
+  .hero h1.is-single {
+    font-size: 54px;
+  }
+}
+
+.hero h1 .nw {
+  white-space: nowrap;
+}
+
+.hero h1 .h1-dot {
+  color: var(--muted-foreground);
+  padding: 0 0.2em;
+  vertical-align: 0.08em;
+  font-style: normal;
+}
+
 .hero-sub {
   margin: 20px auto 0;
-  max-width: 32rem;
+  max-width: 36rem;
   font-size: 16px;
   color: var(--muted-foreground);
 }
