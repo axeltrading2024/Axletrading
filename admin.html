@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261020e" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261020f" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -65,6 +65,8 @@
         <h2>📥 客户留言 <span class="leads-badge" data-leads-badge hidden>0</span></h2>
         <span class="hint" data-leads-status>输入访问口令后加载</span>
       </div>
+
+      <div class="leads-warn" data-leads-warn hidden></div>
 
       <div class="leads-bar">
         <input type="password" class="leads-key" data-leads-key placeholder="访问口令（ADMIN_KEY，只需填一次，存在本机浏览器）" autocomplete="off">
@@ -333,7 +335,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20261020e"></script>
+  <script src="js/data.js?v=20261020f"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -2046,12 +2048,51 @@
   function api(path) {
     return location.origin + path;
   }
+
+  /* ---------------- 接口可用性判断 ----------------
+     客户留言靠 Cloudflare Pages Functions（/api/*）读写 D1。
+     只有真正跑着 Functions 的地址才能用；GitHub Pages（*.github.io）、
+     直接双击打开（file://）都属于纯静态托管，一定拿不到数据。 */
+  var API_HOSTS = ['eddytrading.com', 'www.eddytrading.com', 'axletrading.pages.dev', 'localhost', '127.0.0.1'];
+  function apiHostOk() {
+    if (location.protocol === 'file:') return false;
+    var h = (location.hostname || '').toLowerCase();
+    if (!h) return false;
+    return API_HOSTS.indexOf(h) !== -1 || /^127\./.test(h) || /^192\.168\./.test(h) || /^10\./.test(h);
+  }
+  function wrongHostReason() {
+    var h = (location.hostname || '').toLowerCase();
+    if (location.protocol === 'file:') return '你是直接双击本地文件打开的（file://），这种打开方式没有服务器，接口发不出去。';
+    if (/\.github\.io$/.test(h)) return 'GitHub Pages 只托管静态网页，不运行 Cloudflare 的接口程序（Functions），所以读不到客户留言。';
+    return '当前域名没有运行 Cloudflare 的接口程序（Functions）。';
+  }
+  /* 在不能用的地址上主动提示（而不是等点了按钮才报错）。返回 true 表示当前地址不可用。 */
+  function warnWrongHost() {
+    if (apiHostOk()) return false;
+    var box = $('[data-leads-warn]');
+    var here = location.protocol === 'file:' ? '本地文件 file://' : location.host;
+    if (box) {
+      box.hidden = false;
+      box.innerHTML =
+        '<strong>⚠️ 这个地址连不上客户留言</strong>' +
+        '<p>你现在打开的是 <code>' + esc(here) + '</code>。' + esc(wrongHostReason()) + '</p>' +
+        '<p>客户留言请用正式地址打开：' +
+        '<a href="https://eddytrading.com/admin.html" target="_blank" rel="noopener">https://eddytrading.com/admin.html</a>' +
+        '<a class="leads-warn-btn" href="https://eddytrading.com/admin.html">立即前往 →</a></p>' +
+        '<p class="leads-warn-note">产品管理、保存发布这些功能在这个地址照常能用，只有「客户留言」和附件下载需要正式地址。</p>';
+    }
+    return true;
+  }
   function headers() {
     return { 'x-admin-key': state.key };
   }
 
   /* ---------------- 拉取 ---------------- */
   function load() {
+    if (warnWrongHost()) {
+      say('当前地址没有后台接口，请用 eddytrading.com/admin.html', 'err');
+      return;
+    }
     if (!state.key) { say('请先填访问口令', 'err'); return; }
     state.busy = true;
     say('加载中…');
@@ -2060,7 +2101,7 @@
       .then(function (r) {
         if (r.status === 401) throw new Error('口令不对，或者服务器上还没设置 ADMIN_KEY');
         if (r.status === 503) throw new Error('线上还没绑定 D1 数据库（需要先在 Cloudflare 配置）');
-        if (r.status === 404) throw new Error('找不到接口：纯静态服务没有 Functions，本地请用 tools/dev-server.js 启动');
+        if (r.status === 404) throw new Error('这个地址没有后台接口（纯静态托管）。请改用 https://eddytrading.com/admin.html');
         return r.json();
       })
       .then(function (j) {
@@ -2239,6 +2280,7 @@
 
   /* ---------------- 更新 / 删除 ---------------- */
   function update(id, patch, isDelete) {
+    if (warnWrongHost()) { say('当前地址没有后台接口', 'err'); return Promise.resolve(); }
     var url = api('/api/admin/leads' + (isDelete ? '?id=' + encodeURIComponent(id) : ''));
     var opt = { headers: headers(), cache: 'no-store', method: isDelete ? 'DELETE' : 'PATCH' };
     if (!isDelete) {
@@ -2257,6 +2299,7 @@
 
   /* ---------------- 导出 ---------------- */
   function exportCsv() {
+    if (warnWrongHost()) { say('当前地址没有后台接口，请用 eddytrading.com/admin.html', 'err'); return; }
     if (!state.key) { say('请先填访问口令', 'err'); return; }
     var qs = '?key=' + encodeURIComponent(state.key) + (state.status ? '&status=' + state.status : '');
     fetch(api('/api/admin/export' + qs), { cache: 'no-store' })
@@ -2283,6 +2326,13 @@
   function init() {
     var input = $('[data-leads-key]');
     if (!input) return;
+    /* 一打开就判断地址：不能用就立刻说明原因，不再傻等 404 */
+    if (warnWrongHost()) {
+      say('当前地址没有后台接口，请用 eddytrading.com/admin.html', 'err');
+      var lb = $('[data-leads-load]');
+      if (lb) lb.disabled = true;
+      return;
+    }
     state.key = store(KEY);
     if (state.key) input.value = state.key;
 
