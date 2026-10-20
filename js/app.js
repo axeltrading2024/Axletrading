@@ -80,6 +80,7 @@
             '<li><a href="about.html#faq" data-i18n="footer_faq">FAQ</a></li>' +
             '<li><a href="index.html#popular" data-i18n="footer_popular">Popular products</a></li>' +
             '<li><a href="about.html#how-it-works" data-i18n="footer_how">How it works</a></li>' +
+            '<li><a href="index.html#request" data-i18n="footer_request">Send a product request</a></li>' +
           '</ul></div>' +
           '<div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><ul>' +
             (waDisp ? '<li><a href="' + esc(waLink('Hi! I have a question about your catalog.')) + '" target="_blank" rel="noreferrer">WhatsApp ' + waDisp + '</a></li>' : '') +

@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20260925a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261020c" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -56,6 +56,31 @@
           <span class="hint" style="margin-left:auto" data-page-node-id="Dlq1EGrtBeTmVr63TPnPJV">密钥存在你的浏览器里，不会上传到别处；后台地址请勿发给客户</span>
         </div>
         <div class="gh-tip" data-page-node-id="U9yOLd29lPX8RTdu4DKRi7">首次配置：填写仓库名和密钥 → 保存设置 → 测试连接显示 ✅ 后，以后每次「保存产品」自动发布，「选择图片」自动上传。约 1 分钟后官网生效。</div>
+      </div>
+    </section>
+
+    <!-- 客户留言 / 需求收集（数据来自 Cloudflare D1，经 /api/admin/leads 读取） -->
+    <section class="panel leads-panel">
+      <div class="panel-head">
+        <h2>📥 客户留言 <span class="leads-badge" data-leads-badge hidden>0</span></h2>
+        <span class="hint" data-leads-status>输入访问口令后加载</span>
+      </div>
+
+      <div class="leads-bar">
+        <input type="password" class="leads-key" data-leads-key placeholder="访问口令（ADMIN_KEY，只需填一次，存在本机浏览器）" autocomplete="off">
+        <button type="button" class="btn btn-dark" data-leads-load>连接并刷新</button>
+        <button type="button" class="btn btn-outline" data-leads-export>⬇ 导出 CSV</button>
+      </div>
+
+      <div class="leads-filters" data-leads-filters></div>
+
+      <div class="leads-list" data-leads-list>
+        <p class="leads-empty">还没有连接。填好口令点「连接并刷新」。</p>
+      </div>
+      <div class="leads-more" data-leads-more hidden>
+        <button type="button" class="btn btn-outline" data-leads-prev>上一页</button>
+        <span class="hint" data-leads-page></span>
+        <button type="button" class="btn btn-outline" data-leads-next>下一页</button>
       </div>
     </section>
 
@@ -308,7 +333,7 @@
 
   </main>
 
-  <script src="js/data.js?v=20261020b"></script>
+  <script src="js/data.js?v=20261020c"></script>
   <script>
 /* ============================================================
  *  产品管理后台逻辑（admin.html）
@@ -1981,6 +2006,282 @@
   }
 })();
 
+</script>
+
+<!-- 客户留言面板：走 /api/admin/leads（Cloudflare Functions + D1） -->
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'edsup_leads_key';
+  var PAGE = 20;
+  var STATUSES = [
+    ['new', '新留言'],
+    ['contacted', '已联系'],
+    ['quoted', '已报价'],
+    ['won', '成交'],
+    ['lost', '已放弃']
+  ];
+  var LABEL = {};
+  STATUSES.forEach(function (s) { LABEL[s[0]] = s[1]; });
+
+  var state = { key: '', status: '', offset: 0, total: 0, rows: [], busy: false };
+
+  function $(s, root) { return (root || document).querySelector(s); }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function store(k, v) {
+    try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) {}
+    return '';
+  }
+  function say(msg, kind) {
+    var el = $('[data-leads-status]');
+    if (!el) return;
+    el.textContent = msg || '';
+    el.style.color = kind === 'err' ? '#c0392b' : (kind === 'ok' ? '#1e8e3e' : '');
+  }
+  function api(path) {
+    return location.origin + path;
+  }
+  function headers() {
+    return { 'x-admin-key': state.key };
+  }
+
+  /* ---------------- 拉取 ---------------- */
+  function load() {
+    if (!state.key) { say('请先填访问口令', 'err'); return; }
+    state.busy = true;
+    say('加载中…');
+    var qs = '?limit=' + PAGE + '&offset=' + state.offset + (state.status ? '&status=' + encodeURIComponent(state.status) : '');
+    fetch(api('/api/admin/leads' + qs), { headers: headers(), cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('口令不对，或者服务器上还没设置 ADMIN_KEY');
+        if (r.status === 503) throw new Error('线上还没绑定 D1 数据库（需要先在 Cloudflare 配置）');
+        if (r.status === 404) throw new Error('找不到接口：纯静态服务没有 Functions，本地请用 tools/dev-server.js 启动');
+        return r.json();
+      })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || '读取失败');
+        state.rows = j.rows || [];
+        state.total = j.total || 0;
+        renderCounts(j.counts || {});
+        renderFilters(j.counts || {});
+        renderRows();
+        renderPager();
+        say('已连接 · 共 ' + state.total + ' 条', 'ok');
+      })
+      .catch(function (e) {
+        say(e.message || '读取失败', 'err');
+        var list = $('[data-leads-list]');
+        if (list) list.innerHTML = '<p class="leads-empty">' + esc(e.message || '读取失败') + '</p>';
+      })
+      .then(function () { state.busy = false; });
+  }
+
+  /* ---------------- 渲染 ---------------- */
+  function renderCounts(counts) {
+    var badge = $('[data-leads-badge]');
+    if (!badge) return;
+    var n = counts.new || 0;
+    badge.textContent = n;
+    badge.hidden = !n;
+  }
+
+  function renderFilters(counts) {
+    var host = $('[data-leads-filters]');
+    if (!host) return;
+    var total = 0;
+    STATUSES.forEach(function (s) { total += counts[s[0]] || 0; });
+    var html = '<button type="button" class="leads-chip' + (state.status === '' ? ' is-on' : '') +
+      '" data-leads-filter="">全部 ' + total + '</button>';
+    STATUSES.forEach(function (s) {
+      html += '<button type="button" class="leads-chip' + (state.status === s[0] ? ' is-on' : '') +
+        '" data-leads-filter="' + s[0] + '">' + s[1] + ' ' + (counts[s[0]] || 0) + '</button>';
+    });
+    host.innerHTML = html;
+    Array.prototype.forEach.call(host.querySelectorAll('[data-leads-filter]'), function (b) {
+      b.addEventListener('click', function () {
+        state.status = b.getAttribute('data-leads-filter');
+        state.offset = 0;
+        load();
+      });
+    });
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    var p = function (n) { return n < 10 ? '0' + n : '' + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' +
+      p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  function waLink(contact) {
+    var digits = String(contact || '').replace(/[^\d]/g, '');
+    return digits ? 'https://wa.me/' + digits : '';
+  }
+
+  function renderRows() {
+    var host = $('[data-leads-list]');
+    if (!host) return;
+    if (!state.rows.length) {
+      host.innerHTML = '<p class="leads-empty">这一栏还没有留言。</p>';
+      return;
+    }
+    var html = '';
+    state.rows.forEach(function (r) {
+      var isEmail = r.contact_type === 'email';
+      var quick = isEmail
+        ? '<a class="leads-link" href="mailto:' + esc(r.contact) + '?subject=' + encodeURIComponent('Re: your request') + '">✉ ' + esc(r.contact) + '</a>'
+        : '<a class="leads-link" href="' + esc(waLink(r.contact)) + '" target="_blank" rel="noreferrer">🟢 ' + esc(r.contact) + '</a>';
+
+      var chips = STATUSES.map(function (s) {
+        return '<button type="button" class="leads-chip' + (r.status === s[0] ? ' is-on' : '') +
+          '" data-lead-status="' + s[0] + '" data-lead-id="' + r.id + '">' + s[1] + '</button>';
+      }).join('');
+
+      var facts = [];
+      if (r.category) facts.push('品类：' + esc(r.category));
+      if (r.qty) facts.push('数量：' + esc(r.qty));
+      if (r.target_price) facts.push('目标价：' + esc(r.target_price));
+      if (r.country) facts.push('国家：' + esc(r.country));
+
+      html += '<article class="lead" data-lead-card="' + r.id + '">' +
+        '<div class="lead-top">' +
+          '<span class="lead-time">#' + r.id + ' · ' + esc(fmtTime(r.created_at)) + '</span>' +
+          '<span class="lead-state lead-state-' + esc(r.status) + '">' + esc(LABEL[r.status] || r.status) + '</span>' +
+        '</div>' +
+        '<p class="lead-product">' + esc(r.product || '（未填写需求）') + '</p>' +
+        (r.message ? '<p class="lead-msg">' + esc(r.message) + '</p>' : '') +
+        (facts.length ? '<p class="lead-facts">' + facts.join(' · ') + '</p>' : '') +
+        '<p class="lead-contact">' + quick +
+          (r.name ? ' · <span class="lead-name">' + esc(r.name) + '</span>' : '') +
+          (r.page ? ' · 来源 ' + esc(r.page) : '') +
+        '</p>' +
+        '<div class="lead-actions">' + chips +
+          '<button type="button" class="leads-chip leads-del" data-lead-del="' + r.id + '">删除</button>' +
+        '</div>' +
+        '<textarea class="lead-note" data-lead-note="' + r.id + '" rows="1" placeholder="内部备注（只有你看得到）">' + esc(r.admin_note || '') + '</textarea>' +
+      '</article>';
+    });
+    host.innerHTML = html;
+
+    Array.prototype.forEach.call(host.querySelectorAll('[data-lead-status]'), function (b) {
+      b.addEventListener('click', function () {
+        update(b.getAttribute('data-lead-id'), { status: b.getAttribute('data-lead-status') });
+      });
+    });
+    Array.prototype.forEach.call(host.querySelectorAll('[data-lead-del]'), function (b) {
+      b.addEventListener('click', function () {
+        if (!confirm('确定删除这条留言？删除后不可恢复。')) return;
+        update(b.getAttribute('data-lead-del'), null, true);
+      });
+    });
+    Array.prototype.forEach.call(host.querySelectorAll('[data-lead-note]'), function (t) {
+      t.addEventListener('blur', function () {
+        var id = t.getAttribute('data-lead-note');
+        var card = host.querySelector('[data-lead-card="' + id + '"]');
+        var old = card ? card.getAttribute('data-note-saved') || '' : '';
+        if (t.value === old) return;
+        update(id, { admin_note: t.value }).then(function () {
+          if (card) card.setAttribute('data-note-saved', t.value);
+        });
+      });
+    });
+  }
+
+  function renderPager() {
+    var box = $('[data-leads-more]');
+    var info = $('[data-leads-page]');
+    if (!box || !info) return;
+    var from = state.total ? state.offset + 1 : 0;
+    var to = Math.min(state.offset + PAGE, state.total);
+    info.textContent = from + '–' + to + ' / ' + state.total;
+    box.hidden = state.total <= PAGE;
+    var prev = $('[data-leads-prev]');
+    var next = $('[data-leads-next]');
+    if (prev) prev.disabled = state.offset <= 0;
+    if (next) next.disabled = state.offset + PAGE >= state.total;
+  }
+
+  /* ---------------- 更新 / 删除 ---------------- */
+  function update(id, patch, isDelete) {
+    var url = api('/api/admin/leads' + (isDelete ? '?id=' + encodeURIComponent(id) : ''));
+    var opt = { headers: headers(), cache: 'no-store', method: isDelete ? 'DELETE' : 'PATCH' };
+    if (!isDelete) {
+      opt.headers = Object.assign({}, headers(), { 'content-type': 'application/json' });
+      opt.body = JSON.stringify(Object.assign({ id: Number(id) }, patch));
+    }
+    return fetch(url, opt)
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || '更新失败');
+        say('已更新', 'ok');
+        load();
+      })
+      .catch(function (e) { say(e.message || '更新失败', 'err'); });
+  }
+
+  /* ---------------- 导出 ---------------- */
+  function exportCsv() {
+    if (!state.key) { say('请先填访问口令', 'err'); return; }
+    var qs = '?key=' + encodeURIComponent(state.key) + (state.status ? '&status=' + state.status : '');
+    fetch(api('/api/admin/export' + qs), { cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('口令不对');
+        if (r.status === 503) throw new Error('线上还没绑定 D1 数据库');
+        return r.blob();
+      })
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'leads-' + new Date().toISOString().slice(0, 10) + '.csv';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        say('已导出 CSV', 'ok');
+      })
+      .catch(function (e) { say(e.message || '导出失败', 'err'); });
+  }
+
+  /* ---------------- 绑定 ---------------- */
+  function init() {
+    var input = $('[data-leads-key]');
+    if (!input) return;
+    state.key = store(KEY);
+    if (state.key) input.value = state.key;
+
+    var loadBtn = $('[data-leads-load]');
+    if (loadBtn) loadBtn.addEventListener('click', function () {
+      state.key = (input.value || '').trim();
+      store(KEY, state.key);
+      state.offset = 0;
+      load();
+    });
+    var expBtn = $('[data-leads-export]');
+    if (expBtn) expBtn.addEventListener('click', exportCsv);
+
+    var prev = $('[data-leads-prev]');
+    if (prev) prev.addEventListener('click', function () {
+      state.offset = Math.max(0, state.offset - PAGE); load();
+    });
+    var next = $('[data-leads-next]');
+    if (next) next.addEventListener('click', function () {
+      state.offset += PAGE; load();
+    });
+
+    if (state.key) load();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
 </script>
 </body>
 </html>

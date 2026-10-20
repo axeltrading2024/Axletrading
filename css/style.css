@@ -3777,6 +3777,205 @@ body.search-open { overflow: hidden; }
   opacity: 0.8;
 }
 
+/* ================================================================
+   需求收集 / 留言表单（首页 #request，提交到 /api/inquiry）
+   ================================================================ */
+.request-home { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+.request-inner { max-width: 880px; }
+
+.request-head p.sub { max-width: 40rem; }
+
+.request-card {
+  margin-top: 8px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (min-width: 640px) {
+  .request-card { padding: 32px; }
+}
+
+.lf-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 720px) {
+  .lf-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.lf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lf-full { grid-column: 1 / -1; }
+
+.lf-lbl {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.lf-field input,
+.lf-field textarea,
+.lf-field select {
+  width: 100%;
+  padding: 11px 13px;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--foreground);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+}
+
+.lf-field select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 34px;
+}
+
+.lf-field textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.lf-field input:focus,
+.lf-field textarea:focus,
+.lf-field select:focus {
+  outline: none;
+  background: var(--card);
+  border-color: var(--accent-brand);
+  box-shadow: 0 0 0 3px oklch(62% 0.13 250 / 0.14);
+}
+
+.lf-field input::placeholder,
+.lf-field textarea::placeholder {
+  color: oklch(62% 0 0);
+}
+
+/* 蜜罐：真人看不见，机器人会填 */
+.lf-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lf-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.lf-submit {
+  min-width: 176px;
+  justify-content: center;
+}
+
+.lf-submit[disabled] {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.lf-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.lf-err {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: oklch(52% 0.18 25);
+}
+
+.lf-err[hidden] { display: none; }
+
+/* 提交成功 */
+.lf-done {
+  padding: 20px 8px 12px;
+  text-align: center;
+}
+
+.lf-done-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  background: oklch(94% 0.03 148);
+  color: var(--whatsapp);
+}
+
+.lf-done-ico svg {
+  width: 22px;
+  height: 22px;
+}
+
+.lf-done h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.lf-done p {
+  max-width: 34rem;
+  margin: 8px auto 18px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.lf-done-wa { display: inline-flex; }
+
+/* 后端不可用时的 WhatsApp 兜底 */
+.lf-fallback { padding: 8px 0 4px; }
+
+.lf-fb-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.lf-fb-body {
+  max-width: 40rem;
+  margin: 6px 0 16px;
+  font-size: 13.5px;
+  color: var(--muted-foreground);
+}
+
+.lf-fb-note {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+}
+
+.lf-fb-note:empty { display: none; }
+
+@media print {
+  .request-home { display: none !important; }
+}
+
 @media print {
   @page { margin: 14mm; }
 
