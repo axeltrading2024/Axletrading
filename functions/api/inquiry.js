@@ -18,7 +18,10 @@ import {
   nowIso,
   isoAgo,
   ensureSchema,
+  ensureFileSchema,
   notifyByEmail,
+  normToken,
+  MAX_FILES_PER_LEAD,
 } from '../_lib/leads.js';
 
 const LIMIT_PER_IP = 5;
@@ -113,6 +116,23 @@ export async function onRequestPost(context) {
     );
     const out = await stmt.bind.apply(stmt, cols.map((c) => lead[c])).run();
     const id = (out && out.meta && out.meta.last_row_id) || 0;
+
+    /* ---------- 6.1 认领附件（把上传时拿到的 token 挂到这条留言上） ---------- */
+    try {
+      const tokens = Array.isArray(body.files) ? body.files.slice(0, MAX_FILES_PER_LEAD) : [];
+      if (tokens.length) {
+        await ensureFileSchema(env);
+        for (const t of tokens) {
+          const tk = normToken(t);
+          if (!tk) continue;
+          await env.DB.prepare('UPDATE lead_files SET lead_id = ? WHERE token = ? AND lead_id = 0')
+            .bind(id, tk)
+            .run();
+        }
+      }
+    } catch (e) {
+      /* 附件关联失败不影响留言本身 */
+    }
 
     try {
       await notifyByEmail(env, lead);

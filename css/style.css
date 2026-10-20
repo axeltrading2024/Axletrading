@@ -3869,6 +3869,155 @@ body.search-open { overflow: hidden; }
   color: oklch(62% 0 0);
 }
 
+/* ---------------- 附件上传 ---------------- */
+
+.lf-files-field { margin-top: 2px; }
+
+.lf-drop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 20px 18px;
+  border: 1.5px dashed var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+.lf-drop:hover,
+.lf-drop.is-over {
+  border-color: var(--foreground);
+  background: var(--card);
+}
+
+.lf-drop.is-over { border-style: solid; }
+
+.lf-drop input[type="file"] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  padding: 0;
+  border: 0;
+}
+
+.lf-drop-ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.lf-drop-ico svg { width: 17px; height: 17px; }
+
+.lf-drop-txt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.lf-drop-hint {
+  font-size: 11.5px;
+  color: var(--muted-foreground);
+}
+
+.lf-filelist {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.lf-filelist:empty { display: none; }
+
+.lf-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.lf-chip.is-bad { border-color: #e5484d; }
+
+.lf-chip-kind {
+  flex: none;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted-foreground);
+}
+
+.lf-chip-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--foreground);
+}
+
+.lf-chip-size {
+  flex: none;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+.lf-chip-ok { flex: none; color: #17703a; font-weight: 700; }
+.lf-chip-bad { flex: none; color: #e5484d; font-weight: 700; font-size: 11px; }
+.lf-chip-pct { flex: none; font-size: 11px; color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
+
+.lf-chip-x {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.lf-chip-x:hover { background: var(--surface); color: var(--foreground); }
+
+.lf-chip-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--foreground);
+  opacity: 0.45;
+  transition: width 0.2s;
+}
+
+.lf-done-files {
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: var(--muted-foreground);
+}
+
 /* 蜜罐：真人看不见，机器人会填 */
 .lf-hp {
   position: absolute;

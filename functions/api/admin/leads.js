@@ -61,11 +61,41 @@ export async function onRequestGet(context) {
     counts[r.status] = Number(r.n) || 0;
   });
 
+  /* 把这一页留言的附件挂上去（一个 token 多行 chunk，只取第一行拿元信息） */
+  const list = (rows && rows.results) || [];
+  if (list.length) {
+    try {
+      const ids = list.map((r) => r.id);
+      const ph = ids.map(() => '?').join(',');
+      const fStmt = env.DB.prepare(
+        'SELECT lead_id, token, name, mime, size, MIN(chunk) AS c FROM lead_files ' +
+          'WHERE lead_id IN (' + ph + ') GROUP BY lead_id, token ORDER BY lead_id, c'
+      );
+      const fr = await fStmt.bind.apply(fStmt, ids).all();
+      const byLead = {};
+      ((fr && fr.results) || []).forEach((f) => {
+        (byLead[f.lead_id] || (byLead[f.lead_id] = [])).push({
+          token: f.token,
+          name: f.name,
+          mime: f.mime,
+          size: Number(f.size) || 0,
+        });
+      });
+      list.forEach((r) => {
+        r.files = byLead[r.id] || [];
+      });
+    } catch (e) {
+      list.forEach((r) => {
+        r.files = [];
+      });
+    }
+  }
+
   return json({
     ok: true,
     total: (totalRow && Number(totalRow.n)) || 0,
     counts: counts,
-    rows: (rows && rows.results) || [],
+    rows: list,
   });
 }
 
@@ -116,5 +146,18 @@ export async function onRequestDelete(context) {
 
   const stmt = env.DB.prepare('DELETE FROM leads WHERE id = ?');
   const res = await stmt.bind(id).run();
-  return json({ ok: true, deleted: (res && res.meta && res.meta.changes) || 0 });
+
+  // 附件一起删掉，别留孤儿数据占着 D1 空间
+  let filesDeleted = 0;
+  try {
+    const fstmt = env.DB.prepare('DELETE FROM lead_files WHERE lead_id = ?');
+    const fres = await fstmt.bind(id).run();
+    filesDeleted = (fres && fres.meta && fres.meta.changes) || 0;
+  } catch (e) {}
+
+  return json({
+    ok: true,
+    deleted: (res && res.meta && res.meta.changes) || 0,
+    files_deleted: filesDeleted,
+  });
 }

@@ -705,3 +705,67 @@
 }
 
 .leads-more[hidden] { display: none; }
+
+/* ---------- 留言附件 ---------- */
+.lead-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.lead-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 240px;
+  padding: 6px 10px 6px 6px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--foreground);
+  transition: border-color .16s var(--ease-out-soft), background .16s var(--ease-out-soft);
+}
+
+.lead-file:hover { border-color: var(--muted-foreground); background: var(--card); }
+
+.lead-file-thumb {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  object-fit: cover;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+.lead-file-kind {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 7px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: var(--muted-foreground);
+}
+
+.lead-file-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.lead-file-size {
+  flex: none;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}

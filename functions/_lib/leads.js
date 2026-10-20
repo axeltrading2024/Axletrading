@@ -130,6 +130,85 @@ export async function ensureSchema(env) {
   return schemaReady;
 }
 
+/* ---------------- 附件（图片 / PDF） ----------------
+   存在 D1 里：单行最大 2MB，所以按 CHUNK 分块存，读的时候按 chunk 顺序拼回去。
+   这样不依赖 R2 / KV，现有 D1 绑定就能用，客户上传图片当天就能上线。
+   将来量大了再迁 R2，表结构不用动（token 换成 R2 key 即可）。 */
+
+export const MAX_FILE_BYTES = 6 * 1024 * 1024;   // 单文件 6MB
+export const MAX_FILES_PER_LEAD = 5;             // 每条留言最多 5 个附件
+export const FILE_CHUNK = 512 * 1024;            // 512KB 一块
+export const FILE_TTL_HOURS = 48;                // 未提交的附件保留 48 小时后清掉
+
+/** 允许的类型：图片 + PDF + 常见办公文档 */
+export function fileKind(mime) {
+  const m = String(mime || '').toLowerCase();
+  if (m.indexOf('image/') === 0) return 'image';
+  if (m === 'application/pdf') return 'pdf';
+  if (/word|excel|powerpoint|officedocument|ms-excel|msword/.test(m)) return 'doc';
+  if (m === 'text/plain' || m === 'text/csv' || m === 'application/zip') return 'doc';
+  return '';
+}
+
+/** 32 位十六进制的随机凭证，猜不出来 */
+export function fileToken() {
+  const b = new Uint8Array(16);
+  crypto.getRandomValues(b);
+  return Array.from(b).map((x) => x.toString(16).padStart(2, '0')).join('');
+}
+
+/** 只留合法字符，防止有人往 SQL 参数里塞奇怪东西 */
+export function normToken(v) {
+  return String(v || '').replace(/[^a-f0-9]/gi, '').slice(0, 40).toLowerCase();
+}
+
+let fileSchemaReady = null;
+
+export async function ensureFileSchema(env) {
+  if (!env || !env.DB) throw new Error('no_db');
+  if (!fileSchemaReady) {
+    fileSchemaReady = (async () => {
+      await env.DB.exec(
+        'CREATE TABLE IF NOT EXISTS lead_files (' +
+          'token TEXT NOT NULL,' +
+          'chunk INTEGER NOT NULL,' +
+          "name TEXT NOT NULL DEFAULT ''," +
+          "mime TEXT NOT NULL DEFAULT ''," +
+          'size INTEGER NOT NULL DEFAULT 0,' +
+          'data BLOB NOT NULL,' +
+          "created_at TEXT NOT NULL DEFAULT ''," +
+          'lead_id INTEGER NOT NULL DEFAULT 0,' +
+          "ip_hash TEXT NOT NULL DEFAULT ''," +
+          'PRIMARY KEY (token, chunk)' +
+          ')'
+      );
+      await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_lead_files_lead ON lead_files(lead_id)');
+      await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_lead_files_created ON lead_files(created_at)');
+      await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_lead_files_ip ON lead_files(ip_hash)');
+    })().catch((e) => {
+      fileSchemaReady = null;
+      throw e;
+    });
+  }
+  return fileSchemaReady;
+}
+
+/** 把 Blob 切成 Uint8Array 块 */
+export function splitChunks(buf, size) {
+  const step = size || FILE_CHUNK;
+  const out = [];
+  for (let i = 0; i < buf.length; i += step) out.push(buf.subarray(i, Math.min(i + step, buf.length)));
+  return out;
+}
+
+/** 人话大小：1.2 MB / 380 KB */
+export function humanSize(n) {
+  const v = Number(n) || 0;
+  if (v >= 1048576) return (v / 1048576).toFixed(v >= 10485760 ? 0 : 1) + ' MB';
+  if (v >= 1024) return Math.round(v / 1024) + ' KB';
+  return v + ' B';
+}
+
 /* ---------------- 管理端鉴权 ---------------- */
 
 /**

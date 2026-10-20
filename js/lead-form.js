@@ -90,6 +90,21 @@
             '<textarea data-lf-message rows="2" maxlength="' + MAX.message + '" ' +
               'data-i18n-ph="req_ph_msg" placeholder="Brand, model, packaging, deadline…"></textarea>' +
           '</label>' +
+          '<div class="lf-field lf-full lf-files-field">' +
+            '<span class="lf-lbl" data-i18n="req_f_files">Reference photos or files (optional)</span>' +
+            '<label class="lf-drop" data-lf-drop>' +
+              '<input type="file" data-lf-file multiple ' +
+                'accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.zip">' +
+              '<span class="lf-drop-ico" aria-hidden="true">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+                  '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>' +
+                  '<path d="M7 10l5-5 5 5"/><path d="M12 5v12"/></svg>' +
+              '</span>' +
+              '<span class="lf-drop-txt" data-i18n="req_files_cta">Click to upload, or drag files here</span>' +
+              '<span class="lf-drop-hint" data-i18n="req_files_hint">Photos, PDF, Word or Excel · up to 5 files, 6MB each</span>' +
+            '</label>' +
+            '<div class="lf-filelist" data-lf-filelist></div>' +
+          '</div>' +
         '</div>' +
         '<input class="lf-hp" type="text" data-lf-company tabindex="-1" autocomplete="off" aria-hidden="true">' +
         '<div class="lf-actions">' +
@@ -104,9 +119,14 @@
 
   /* ---------------- 成功 / 失败视图 ---------------- */
 
-  function doneHtml() {
+  function doneHtml(fileCount) {
     var wa = document.querySelector('[data-lf-wa-fallback]');
     var waHref = wa ? wa.getAttribute('href') : '#';
+    var filesNote = fileCount
+      ? '<p class="lf-done-files">' +
+        esc(T('req_ok_files', 'Your {n} attachment(s) came through too.').replace('{n}', String(fileCount))) +
+        '</p>'
+      : '';
     return '' +
       '<div class="lf-done">' +
         '<span class="lf-done-ico" aria-hidden="true">' +
@@ -115,9 +135,237 @@
         '</span>' +
         '<h3 data-i18n="req_ok_title">Request received</h3>' +
         '<p data-i18n="req_ok_body">Thanks — we&rsquo;ll come back to you within 24 hours with pricing and options.</p>' +
+        filesNote +
         '<a class="btn btn-whatsapp lf-done-wa" data-wa-chat href="' + esc(waHref) + '" target="_blank" rel="noreferrer">' +
           '<span data-i18n="req_ok_wa">Chat on WhatsApp now</span></a>' +
       '</div>';
+  }
+
+  /* ---------------- 附件上传 ---------------- */
+
+  var FILE = { max: 5, maxBytes: 6 * 1024 * 1024, files: [] };
+  var fileSeq = 0;
+
+  function fmtSize(n) {
+    n = Number(n) || 0;
+    if (n >= 1048576) return (n / 1048576).toFixed(1) + ' MB';
+    if (n >= 1024) return Math.round(n / 1024) + ' KB';
+    return n + ' B';
+  }
+
+  function fileIcon(kind) {
+    if (kind === 'image') return 'IMG';
+    if (kind === 'pdf') return 'PDF';
+    if (kind === 'doc') return 'DOC';
+    return 'FILE';
+  }
+
+  function renderFiles(form) {
+    var list = form.querySelector('[data-lf-filelist]');
+    if (!list) return;
+    if (!FILE.files.length) {
+      list.innerHTML = '';
+      return;
+    }
+    list.innerHTML = FILE.files
+      .map(function (f) {
+        var state =
+          f.status === 'uploading'
+            ? '<span class="lf-chip-pct">' + (f.pct || 0) + '%</span>'
+            : f.status === 'error'
+            ? '<span class="lf-chip-bad">' + esc(T('req_file_failed', 'failed')) + '</span>'
+            : '<span class="lf-chip-ok" aria-hidden="true">✓</span>';
+        return (
+          '<div class="lf-chip' + (f.status === 'error' ? ' is-bad' : '') + '" data-file="' + f.id + '">' +
+            '<span class="lf-chip-kind">' + fileIcon(f.kind) + '</span>' +
+            '<span class="lf-chip-name" title="' + esc(f.name) + '">' + esc(f.name) + '</span>' +
+            '<span class="lf-chip-size">' + esc(fmtSize(f.size)) + '</span>' +
+            state +
+            '<button type="button" class="lf-chip-x" data-lf-remove="' + f.id + '" ' +
+              'aria-label="' + esc(T('req_file_remove', 'Remove')) + '">&times;</button>' +
+            (f.status === 'uploading'
+              ? '<span class="lf-chip-bar" style="width:' + (f.pct || 0) + '%"></span>'
+              : '') +
+          '</div>'
+        );
+      })
+      .join('');
+  }
+
+  /** 图片在前端缩到最长边 1600px 再传，手机直出 4MB 照片通常能压到 300KB 左右 */
+  function compressImage(file) {
+    return new Promise(function (resolve) {
+      var isImg = /^image\//.test(file.type);
+      if (!isImg || /gif|svg|heic|heif/.test(file.type)) return resolve(file);
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var maxSide = 1600;
+        var w = img.naturalWidth || img.width;
+        var h = img.naturalHeight || img.height;
+        var scale = Math.min(1, maxSide / Math.max(w, h));
+        if (scale === 1 && file.size <= 900 * 1024) {
+          URL.revokeObjectURL(url);
+          resolve(file);
+          return;
+        }
+        var cv = document.createElement('canvas');
+        cv.width = Math.round(w * scale);
+        cv.height = Math.round(h * scale);
+        var cx = cv.getContext('2d');
+        cx.fillStyle = '#ffffff';
+        cx.fillRect(0, 0, cv.width, cv.height);
+        cx.drawImage(img, 0, 0, cv.width, cv.height);
+        cv.toBlob(
+          function (blob) {
+            URL.revokeObjectURL(url);
+            if (!blob || blob.size >= file.size) {
+              resolve(file);
+              return;
+            }
+            var base = file.name.replace(/\.[^.]+$/, '');
+            resolve(new File([blob], base + '.jpg', { type: 'image/jpeg' }));
+          },
+          'image/jpeg',
+          0.82
+        );
+      };
+      img.onerror = function () {
+        URL.revokeObjectURL(url);
+        resolve(file);
+      };
+      img.src = url;
+    });
+  }
+
+  function uploadOne(item, form) {
+    return new Promise(function (resolve) {
+      var fd = new FormData();
+      fd.append('file', item.blob, item.name);
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload');
+      xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable) {
+          item.pct = Math.min(99, Math.round((e.loaded / e.total) * 100));
+          renderFiles(form);
+        }
+      };
+      xhr.onload = function () {
+        var j = null;
+        try {
+          j = JSON.parse(xhr.responseText);
+        } catch (e) {}
+        if (xhr.status === 200 && j && j.ok && j.files && j.files[0]) {
+          item.token = j.files[0].token;
+          item.size = j.files[0].size;
+          item.name = j.files[0].name;
+          item.status = 'done';
+          item.pct = 100;
+        } else {
+          item.status = 'error';
+          item.err = (j && j.error) || 'http_' + xhr.status;
+          // 接口还没上线（503/404/405）：附件功能暂时不可用，但别挡住客户提交
+          if (xhr.status === 503 || xhr.status === 404 || xhr.status === 405) item.unsupported = true;
+        }
+        renderFiles(form);
+        resolve(item);
+      };
+      xhr.onerror = function () {
+        item.status = 'error';
+        item.err = 'network';
+        renderFiles(form);
+        resolve(item);
+      };
+      xhr.send(fd);
+    });
+  }
+
+  function addFiles(fileList, form) {
+    var incoming = Array.prototype.slice.call(fileList || []);
+    if (!incoming.length) return;
+    var errBox = form.querySelector('[data-lf-err]');
+
+    incoming.forEach(function (f) {
+      if (FILE.files.length >= FILE.max) return;
+      if (f.size > FILE.maxBytes) {
+        if (errBox) {
+          errBox.textContent = T('req_err_file_size', 'Each file must be under 6MB.');
+          errBox.hidden = false;
+        }
+        return;
+      }
+      var kind = /^image\//.test(f.type) ? 'image' : /pdf$/.test(f.type) ? 'pdf' : 'doc';
+      var item = {
+        id: 'f' + ++fileSeq,
+        blob: f,
+        name: f.name,
+        size: f.size,
+        kind: kind,
+        status: 'uploading',
+        pct: 0,
+        token: '',
+      };
+      FILE.files.push(item);
+      renderFiles(form);
+
+      compressImage(f)
+        .then(function (out) {
+          item.blob = out;
+          item.size = out.size;
+          item.kind = /^image\//.test(out.type) ? 'image' : item.kind;
+          return uploadOne(item, form);
+        })
+        .then(function () {
+          if (item.unsupported) {
+            FILE.files = FILE.files.filter(function (x) {
+              return x.id !== item.id;
+            });
+            renderFiles(form);
+            if (errBox) {
+              errBox.textContent = T('req_files_unavailable', 'File upload is not available right now — you can still send your request, and share photos on WhatsApp afterwards.');
+              errBox.hidden = false;
+            }
+          }
+        });
+    });
+  }
+
+  function wireFiles(form) {
+    var input = form.querySelector('[data-lf-file]');
+    var drop = form.querySelector('[data-lf-drop]');
+    if (input) {
+      input.addEventListener('change', function () {
+        addFiles(input.value ? input.files : [], form);
+        input.value = '';
+      });
+    }
+    if (drop) {
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) {
+          e.preventDefault();
+          drop.classList.add('is-over');
+        });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) {
+          e.preventDefault();
+          drop.classList.remove('is-over');
+        });
+      });
+      drop.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files, form);
+      });
+    }
+    form.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-lf-remove]');
+      if (!btn) return;
+      e.preventDefault();
+      var id = btn.getAttribute('data-lf-remove');
+      FILE.files = FILE.files.filter(function (x) {
+        return x.id !== id;
+      });
+      renderFiles(form);
+    });
   }
 
   /* ---------------- 提交 ---------------- */
@@ -136,6 +384,13 @@
       target_price: get('[data-lf-price]'),
       message: get('[data-lf-message]'),
       company: get('[data-lf-company]'),
+      files: FILE.files
+        .filter(function (f) {
+          return f.status === 'done' && f.token;
+        })
+        .map(function (f) {
+          return f.token;
+        }),
       ts: mountedAt,
       lang: (window.getLang && window.getLang()) || 'en',
       page: location.pathname + (location.hash || ''),
@@ -197,6 +452,26 @@
     var btn = form.querySelector('.lf-submit');
     var label = btn ? btn.querySelector('span') : null;
     var old = label ? label.textContent : '';
+
+    // 还有文件在传：等它传完再提交，别把 token 丢了
+    var busy = FILE.files.filter(function (f) {
+      return f.status === 'uploading';
+    });
+    if (busy.length) {
+      showErr(form, T('req_files_uploading', 'Uploading your files, please wait…'));
+      setTimeout(function () {
+        submit(form);
+      }, 700);
+      return;
+    }
+    var bad = FILE.files.filter(function (f) {
+      return f.status === 'error';
+    });
+    if (bad.length) {
+      showErr(form, T('req_files_retry', 'Some files could not be uploaded. Remove them and try again.'));
+      return;
+    }
+
     if (btn) btn.disabled = true;
     if (label) label.textContent = T('req_sending', 'Sending…');
 
@@ -213,7 +488,9 @@
       .then(function (res) {
         if (res.status === 200 && res.body && res.body.ok) {
           var host = form.closest('[data-lead-form]') || form.parentNode;
-          host.innerHTML = doneHtml();
+          var sent = data.files ? data.files.length : 0;
+          FILE.files = [];
+          host.innerHTML = doneHtml(sent);
           if (window.applyLang) window.applyLang();
           host.scrollIntoView({ block: 'center', behavior: 'smooth' });
           return;
@@ -250,6 +527,7 @@
       e.preventDefault();
       submit(form);
     });
+    wireFiles(form);
 
     // 备用 WhatsApp 链接（成功页用）：先拼一个空内容的
     if (!document.querySelector('[data-lf-wa-fallback]')) {
