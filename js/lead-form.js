@@ -42,7 +42,8 @@
 
   function categoryOptions() {
     var cats = window.CATEGORIES || [];
-    var html = '<option value="">' + esc(T('req_cat_any', 'Not sure / other')) + '</option>';
+    /* 首项带 data-i18n：切语言时 applyLang 会把 option 文本一起换掉 */
+    var html = '<option value="" data-i18n="req_cat_any">' + esc(T('req_cat_any', 'Not sure / other')) + '</option>';
     cats.forEach(function (c) {
       if (!c || !c.name) return;
       html += '<option value="' + esc(c.name) + '">' + esc(c.name) + '</option>';
@@ -86,9 +87,9 @@
               'data-i18n-ph="req_ph_price" placeholder="e.g. $12">' +
           '</label>' +
           '<label class="lf-field lf-full">' +
-            '<span class="lf-lbl" data-i18n="req_f_msg">Anything else? (optional)</span>' +
+            '<span class="lf-lbl" data-i18n="req_f_msg">Tell us more (optional)</span>' +
             '<textarea data-lf-message rows="2" maxlength="' + MAX.message + '" ' +
-              'data-i18n-ph="req_ph_msg" placeholder="Brand, model, packaging, deadline…"></textarea>' +
+              'data-i18n-ph="req_ph_msg" placeholder="Packaging, label, certification, deadline — the more detail, the better we can quote."></textarea>' +
           '</label>' +
           '<div class="lf-field lf-full lf-files-field">' +
             '<span class="lf-lbl" data-i18n="req_f_files">Reference photos or files (optional)</span>' +
@@ -581,6 +582,91 @@
       });
   }
 
+  /* ---------------- 客服悬浮窗：右侧竖向胶囊 → 右侧抽屉 ---------------- */
+
+  var ask = { lastFocus: null };
+
+  function askLayer() {
+    return document.querySelector('[data-ask-layer]');
+  }
+
+  function raf(fn) {
+    if (window.requestAnimationFrame) window.requestAnimationFrame(fn);
+    else setTimeout(fn, 16);
+  }
+
+  function askOpen(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    var layer = askLayer();
+    if (!layer) return;
+    ask.lastFocus = document.activeElement;
+    layer.hidden = false;
+    // 先渲染出来再加类，否则没有滑入过渡
+    raf(function () {
+      layer.classList.add('open');
+    });
+    document.body.classList.add('ask-lock');
+    var tab = document.querySelector('[data-ask-open]');
+    if (tab) tab.setAttribute('aria-expanded', 'true');
+    setTimeout(function () {
+      var first = layer.querySelector('[data-lf-product]');
+      if (first) {
+        try { first.focus({ preventScroll: true }); } catch (err) { try { first.focus(); } catch (e2) {} }
+      }
+    }, 280);
+  }
+
+  function askClose() {
+    var layer = askLayer();
+    if (!layer) return;
+    layer.classList.remove('open');
+    document.body.classList.remove('ask-lock');
+    var tab = document.querySelector('[data-ask-open]');
+    if (tab) tab.setAttribute('aria-expanded', 'false');
+    setTimeout(function () {
+      if (!layer.classList.contains('open')) layer.hidden = true;
+    }, 340);
+    if (ask.lastFocus && ask.lastFocus.focus) {
+      try { ask.lastFocus.focus({ preventScroll: true }); } catch (err) {}
+    }
+  }
+
+  function initAsk() {
+    var layer = askLayer();
+    var tab = document.querySelector('[data-ask-open]');
+    if (!layer || !tab) return;
+
+    tab.addEventListener('click', askOpen);
+
+    Array.prototype.forEach.call(layer.querySelectorAll('[data-ask-close]'), function (n) {
+      n.addEventListener('click', function (e) {
+        e.preventDefault();
+        askClose();
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && layer.classList.contains('open')) askClose();
+    });
+
+    /* 页脚「Send a product request」等所有 #request 链接都改成打开抽屉，
+       不再跳到已经不存在的页面区块 */
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (/^#request$/.test(href) || /(^|\/)(index\.html)?#request$/.test(href)) {
+        e.preventDefault();
+        askOpen();
+      }
+    });
+
+    /* 别人直接把 .../index.html#request 发过来时，落地就展开 */
+    if (location.hash === '#request') setTimeout(askOpen, 150);
+
+    window.EddyAsk = { open: askOpen, close: askClose };
+  }
+
   /* ---------------- 挂载 ---------------- */
 
   function mount(host) {
@@ -608,6 +694,7 @@
   }
 
   function init() {
+    initAsk();
     var hosts = document.querySelectorAll('[data-lead-form]');
     if (!hosts.length) return;
     Array.prototype.forEach.call(hosts, mount);
