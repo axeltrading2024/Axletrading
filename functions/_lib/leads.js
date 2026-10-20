@@ -140,6 +140,12 @@ export const MAX_FILES_PER_LEAD = 5;             // 每条留言最多 5 个附�
 export const FILE_CHUNK = 512 * 1024;            // 512KB 一块
 export const FILE_TTL_HOURS = 48;                // 未提交的附件保留 48 小时后清掉
 
+/* 缩略图占用「负数块号」：chunk = -1 那一行存的是 400px 小图。
+   好处是完全不用改表结构，token 还是同一个，限流/清理/级联删除全部自动跟着走。
+   后台列表只拉缩略图（约 20KB），点开才拉原图，国内网络也不会卡。 */
+export const THUMB_CHUNK = -1;
+export const MAX_THUMB_BYTES = 300 * 1024;       // 缩略图上限 300KB
+
 /** 允许的类型：图片 + PDF + 常见办公文档 */
 export function fileKind(mime) {
   const m = String(mime || '').toLowerCase();

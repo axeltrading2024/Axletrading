@@ -238,10 +238,67 @@
     });
   }
 
+  /**
+   * 生成后台用的缩略图（最长边 400px、JPEG 0.7，通常 15–35KB）。
+   * 后台列表只拉这张小图，点开才拉原图 —— 国内网络打开后台也不会卡。
+   * 非图片返回 null（PDF/表格不需要缩略图）。
+   */
+  function makeThumb(file) {
+    return new Promise(function (resolve) {
+      if (!/^image\//.test(file.type)) return resolve(null);
+      if (/svg|heic|heif/.test(file.type)) return resolve(null);
+      var url = null;
+      try {
+        url = URL.createObjectURL(file);
+      } catch (e) {
+        return resolve(null);
+      }
+      var img = new Image();
+      var done = false;
+      var finish = function (v) {
+        if (done) return;
+        done = true;
+        try {
+          URL.revokeObjectURL(url);
+        } catch (e) {}
+        resolve(v);
+      };
+      img.onload = function () {
+        try {
+          var maxSide = 400;
+          var w = img.naturalWidth || img.width;
+          var h = img.naturalHeight || img.height;
+          var scale = Math.min(1, maxSide / Math.max(w || 1, h || 1));
+          var cv = document.createElement('canvas');
+          cv.width = Math.max(1, Math.round(w * scale));
+          cv.height = Math.max(1, Math.round(h * scale));
+          var cx = cv.getContext('2d');
+          cx.fillStyle = '#ffffff';
+          cx.fillRect(0, 0, cv.width, cv.height);
+          cx.drawImage(img, 0, 0, cv.width, cv.height);
+          cv.toBlob(
+            function (blob) {
+              finish(blob && blob.size ? blob : null);
+            },
+            'image/jpeg',
+            0.7
+          );
+        } catch (e) {
+          finish(null);
+        }
+      };
+      img.onerror = function () {
+        finish(null);
+      };
+      img.src = url;
+    });
+  }
+
   function uploadOne(item, form) {
     return new Promise(function (resolve) {
       var fd = new FormData();
       fd.append('file', item.blob, item.name);
+      if (item.thumb) fd.append('thumb', item.thumb, 'thumb.jpg');
       var xhr = new XMLHttpRequest();
       xhr.open('POST', '/api/upload');
       xhr.upload.onprogress = function (e) {
@@ -308,11 +365,20 @@
       FILE.files.push(item);
       renderFiles(form);
 
-      compressImage(f)
-        .then(function (out) {
-          item.blob = out;
-          item.size = out.size;
-          item.kind = /^image\//.test(out.type) ? 'image' : item.kind;
+      // 压缩主图 + 生成缩略图并行做，两个都好了再上传（一次请求带两个字段）
+      var mainJob = compressImage(f).then(function (out) {
+        item.blob = out;
+        item.size = out.size;
+        item.kind = /^image\//.test(out.type) ? 'image' : item.kind;
+        return out;
+      });
+      var thumbJob = makeThumb(f).then(function (t) {
+        item.thumb = t;
+        return t;
+      });
+
+      Promise.all([mainJob, thumbJob])
+        .then(function () {
           return uploadOne(item, form);
         })
         .then(function () {

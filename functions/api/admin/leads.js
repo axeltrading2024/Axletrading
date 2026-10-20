@@ -61,15 +61,23 @@ export async function onRequestGet(context) {
     counts[r.status] = Number(r.n) || 0;
   });
 
-  /* 把这一页留言的附件挂上去（一个 token 多行 chunk，只取第一行拿元信息） */
+  /* 把这一页留言的附件挂上去（一个 token 多行 chunk，只取正文第一行拿元信息）
+     缩略图单独存在 chunk = -1，这里用 MAX(CASE…) 只判断有没有，不当正文统计。 */
   const list = (rows && rows.results) || [];
   if (list.length) {
     try {
       const ids = list.map((r) => r.id);
       const ph = ids.map(() => '?').join(',');
       const fStmt = env.DB.prepare(
-        'SELECT lead_id, token, name, mime, size, MIN(chunk) AS c FROM lead_files ' +
-          'WHERE lead_id IN (' + ph + ') GROUP BY lead_id, token ORDER BY lead_id, c'
+        // 注意：GROUP BY 时裸列取值是任意的，缩略图那行(chunk=-1)会污染 name/mime/size，
+        // 所以元信息一律只在 chunk >= 0 的正文行里取。
+        'SELECT lead_id, token, ' +
+          'MAX(CASE WHEN chunk >= 0 THEN name END) AS name, ' +
+          'MAX(CASE WHEN chunk >= 0 THEN mime END) AS mime, ' +
+          'MAX(CASE WHEN chunk >= 0 THEN size END) AS size, ' +
+          'MIN(CASE WHEN chunk >= 0 THEN chunk END) AS c, ' +
+          'MAX(CASE WHEN chunk = -1 THEN 1 ELSE 0 END) AS has_thumb ' +
+          'FROM lead_files WHERE lead_id IN (' + ph + ') GROUP BY lead_id, token ORDER BY lead_id, c'
       );
       const fr = await fStmt.bind.apply(fStmt, ids).all();
       const byLead = {};
@@ -79,6 +87,7 @@ export async function onRequestGet(context) {
           name: f.name,
           mime: f.mime,
           size: Number(f.size) || 0,
+          thumb: Number(f.has_thumb) === 1,
         });
       });
       list.forEach((r) => {

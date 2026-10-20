@@ -23,6 +23,8 @@ import {
   humanSize,
   MAX_FILE_BYTES,
   MAX_FILES_PER_LEAD,
+  MAX_THUMB_BYTES,
+  THUMB_CHUNK,
   FILE_TTL_HOURS,
 } from '../_lib/leads.js';
 
@@ -47,8 +49,11 @@ export async function onRequestPost(context) {
   }
 
   const items = [];
+  const thumbs = [];
   fd.forEach((v, k) => {
-    if (k === 'file' && v && typeof v === 'object' && typeof v.arrayBuffer === 'function') items.push(v);
+    if (!v || typeof v !== 'object' || typeof v.arrayBuffer !== 'function') return;
+    if (k === 'file') items.push(v);
+    else if (k === 'thumb') thumbs.push(v);
   });
   if (!items.length) return json({ ok: false, error: 'no_file' }, 422);
   if (items.length > MAX_FILES_PER_LEAD) return json({ ok: false, error: 'too_many_files' }, 422);
@@ -91,7 +96,8 @@ export async function onRequestPost(context) {
 
     /* ---------- 逐块入库 ---------- */
     const out = [];
-    for (const f of items) {
+    for (let i = 0; i < items.length; i++) {
+      const f = items[i];
       const token = fileToken();
       const buf = new Uint8Array(await f.arrayBuffer());
       const name = String(f.name || 'file').slice(0, 120);
@@ -99,12 +105,33 @@ export async function onRequestPost(context) {
       const chunks = splitChunks(buf);
       const createdAt = nowIso();
 
-      const stmts = chunks.map((c, i) =>
+      const stmts = chunks.map((c, ci) =>
         env.DB.prepare(
           'INSERT INTO lead_files (token, chunk, name, mime, size, data, created_at, lead_id, ip_hash) ' +
             'VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)'
-        ).bind(token, i, name, mime, buf.length, c, createdAt, ipHash)
+        ).bind(token, ci, name, mime, buf.length, c, createdAt, ipHash)
       );
+
+      // 缩略图：客户端生成的 400px 小图，按顺序配对，存成 chunk = -1
+      let hasThumb = false;
+      const th = thumbs[i];
+      if (th && th.size && Number(th.size) <= MAX_THUMB_BYTES && /^image\//.test(String(th.type || ''))) {
+        try {
+          const tb = new Uint8Array(await th.arrayBuffer());
+          if (tb.length) {
+            stmts.push(
+              env.DB.prepare(
+                'INSERT INTO lead_files (token, chunk, name, mime, size, data, created_at, lead_id, ip_hash) ' +
+                  'VALUES (?, ?, ?, ?, ?, ?, ?, 0, ?)'
+              ).bind(token, THUMB_CHUNK, name, 'image/jpeg', tb.length, tb, createdAt, ipHash)
+            );
+            hasThumb = true;
+          }
+        } catch (e) {
+          /* 缩略图失败不影响主文件 */
+        }
+      }
+
       await env.DB.batch(stmts);
 
       out.push({
@@ -114,11 +141,13 @@ export async function onRequestPost(context) {
         size: buf.length,
         kind: fileKind(mime),
         human: humanSize(buf.length),
+        thumb: hasThumb,
       });
     }
 
     return json({ ok: true, files: out });
   } catch (e) {
+    console.error('[upload]', (e && e.stack) || e);
     return json({ ok: false, error: 'server_error' }, 500);
   }
 }
