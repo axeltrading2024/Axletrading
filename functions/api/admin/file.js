@@ -38,29 +38,36 @@ export async function onRequestGet(context) {
     .first();
   if (!meta) return text('not found', 404);
 
-  const rows = await env.DB.prepare('SELECT data FROM lead_files WHERE token = ? ORDER BY chunk')
+  // 先只取块序号（很小），再逐块取内容：
+  // 一次性 SELECT 多行 BLOB 在 D1 上容易拖长响应，分块取更稳。
+  const idx = await env.DB.prepare('SELECT chunk FROM lead_files WHERE token = ? ORDER BY chunk')
     .bind(token)
     .all();
-  const parts = ((rows && rows.results) || []).map((r) => new Uint8Array(r.data));
+  const chunks = ((idx && idx.results) || []).map((r) => Number(r.chunk));
+  if (!chunks.length) return text('not found', 404);
 
-  const total = parts.reduce((n, p) => n + p.length, 0);
-  const buf = new Uint8Array(total);
-  let at = 0;
-  for (const p of parts) {
-    buf.set(p, at);
-    at += p.length;
+  const parts = [];
+  let total = 0;
+  for (const c of chunks) {
+    const row = await env.DB.prepare('SELECT data FROM lead_files WHERE token = ? AND chunk = ?')
+      .bind(token, c)
+      .first();
+    if (!row || row.data == null) continue;
+    const u8 = row.data instanceof ArrayBuffer ? new Uint8Array(row.data) : new Uint8Array(row.data);
+    parts.push(u8);
+    total += u8.length;
   }
+  if (!total) return text('not found', 404);
 
   const mime = String(meta.mime || 'application/octet-stream');
   const isImg = mime.indexOf('image/') === 0;
   const name = String(meta.name || 'file').replace(/["\r\n]/g, '_');
   const ascii = name.replace(/[^\x20-\x7e]/g, '_');
 
-  return new Response(buf, {
+  return new Response(new Blob(parts, { type: mime }), {
     status: 200,
     headers: {
       'content-type': mime,
-      'content-length': String(total),
       'cache-control': 'private, max-age=300',
       'content-disposition':
         (isImg && !forceDl ? 'inline' : 'attachment') +
