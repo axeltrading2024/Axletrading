@@ -3409,6 +3409,8 @@ body.search-open { overflow: hidden; }
   background: var(--card);
 }
 
+/* 折叠条头：浅灰底带，让「Estimate shipping」在纯白抽屉里跳出来，
+   提示客户「点这里就能算运费」；白底图标 + 蓝色描边作为轻量的可点击暗示 */
 .ship-toggle {
   display: flex;
   align-items: center;
@@ -3419,17 +3421,28 @@ body.search-open { overflow: hidden; }
   font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--foreground);
+  background: #f2f2f2;
+  background: oklch(95.5% 0 0);
   text-align: left;
   transition: background 0.2s;
 }
 
-.ship-toggle:hover { background: var(--surface); }
+.ship-toggle:hover { background: oklch(92.5% 0 0); }
+
+.ship-est.is-open .ship-toggle { background: oklch(94.5% 0 0); }
 
 .ship-ico {
-  display: block;
-  width: 16px;
-  height: 16px;
-  opacity: 0.6;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 7px;
+  background: var(--card);
+  box-shadow: inset 0 0 0 1px var(--border);
+  color: var(--accent-brand);
+  opacity: 1;
+  flex: none;
 }
 
 .ship-ico svg {
@@ -3602,15 +3615,24 @@ body.search-open { overflow: hidden; }
   font-size: 14px;
 }
 
+/* 暂估总价：整条浅灰圆角底带，与上面的白色明细行区分开，一眼看到「这是最终估的总数」 */
 .drawer-foot .total.grand {
-  margin-top: 8px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--border);
+  margin: 4px 0 12px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: #f2f2f2;
+  background: oklch(95.5% 0 0);
   color: var(--foreground);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.drawer-foot .total.grand > span {
+  font-weight: 600;
 }
 
 .drawer-foot .total.grand b {
-  font-size: 22px;
+  font-size: 23px;
 }
 
 .drawer-foot .total[hidden],
@@ -3633,11 +3655,20 @@ body.search-open { overflow: hidden; }
   font-size: 15px;
 }
 
+/* 报价单：暂估总价同样用浅灰底带收口，和抽屉里保持同一套视觉语言 */
 .shared-banner .shared-total.is-grand {
-  margin-top: 10px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #f2f2f2;
+  background: oklch(95.5% 0 0);
   color: var(--foreground);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.shared-banner .shared-total.is-grand > span {
+  font-weight: 600;
 }
 
 .shared-banner .shared-total.is-grand b {
