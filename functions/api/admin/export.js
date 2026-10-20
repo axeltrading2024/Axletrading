@@ -2,7 +2,7 @@
  * GET /api/admin/export —— 导出全部留言为 CSV（Excel 可直接打开）
  * 鉴权同上（x-admin-key 或 ?key=）。带 ?status= 可只导某一状态。
  */
-import { clean, adminKeyOk, ensureSchema, toCsv, STATUSES } from '../_lib/leads.js';
+import { clean, adminKeyOk, ensureSchema, toCsv, STATUSES } from '../../_lib/leads.js';
 
 export async function onRequestGet(context) {
   const { request, env } = context;

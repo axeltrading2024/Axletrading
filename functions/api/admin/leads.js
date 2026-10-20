@@ -8,7 +8,7 @@
  *   PATCH  /api/admin/leads   body {id, status?, admin_note?}
  *   DELETE /api/admin/leads?id=123
  */
-import { json, clean, adminKeyOk, ensureSchema, STATUSES } from '../_lib/leads.js';
+import { json, clean, adminKeyOk, ensureSchema, STATUSES } from '../../_lib/leads.js';
 
 function unauthorized() {
   return json({ ok: false, error: 'unauthorized' }, 401);
