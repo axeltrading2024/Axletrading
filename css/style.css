@@ -517,6 +517,15 @@ a {
   }
 }
 
+/* ≤430px：顶栏放不下「搜索 + EN/ES + Inquiry + 汉堡」，会把页面撑出横向滚动。
+   搜索在手机菜单里已有（.mnav-search），这里直接收掉，并收紧间距与按钮内边距。 */
+@media (max-width: 430px) {
+  .site-header .nav-search { display: none; }
+  .site-header .wrap { gap: 8px; }
+  .header-actions { gap: 6px; }
+  .site-header .inquiry-toggle { padding: 6px 10px; }
+}
+
 .inquiry-toggle {
   display: inline-flex;
   align-items: center;
@@ -4315,6 +4324,174 @@ body.ask-lock .ask-tab {
 
 /* 后端不可用时的 WhatsApp 兜底 */
 .lf-fallback { padding: 8px 0 4px; }
+
+/* 成功页「接下来会发生什么」小视频 */
+.lf-why {
+  margin: 2px 0 18px;
+  text-align: left;
+}
+
+.lf-why-frame {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #12120e;
+  line-height: 0;
+}
+
+.lf-why-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 440;
+  object-fit: cover;
+}
+
+.lf-why-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  border: 0;
+  background: oklch(18% 0.01 90 / 0.32);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lf-why-play:hover { background: oklch(18% 0.01 90 / 0.45); }
+
+.lf-why-ico {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: oklch(100% 0 0 / 0.94);
+  color: #12120e;
+  font-size: 15px;
+  padding-left: 3px;
+}
+
+.lf-why.is-playing .lf-why-play { display: none; }
+
+.lf-why-cap {
+  margin: 9px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.lf-why-cap b {
+  display: block;
+  margin-bottom: 1px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+/* 关于页客户案例：真实订单时间轴 + 客户开箱片 */
+.proof { margin-top: 64px; }
+
+.proof-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.proof-step { margin: 0; }
+
+.proof-step img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f1efe8;
+}
+
+.proof-step figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.proof-step figcaption b {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.proof-step figcaption span { color: var(--muted-foreground); }
+
+.proof-media {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  margin: 40px 0 0;
+}
+
+.proof-media-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #12120e;
+  line-height: 0;
+}
+
+.proof-media-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 720 / 900;
+}
+
+.proof-media figcaption { margin: 0; }
+
+.proof-eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.proof-media h3 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.proof-media figcaption p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.proof-video-note {
+  font-size: 12px !important;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .proof-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proof-media { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .proof-media-frame { max-width: 340px; }
+}
+
+@media (max-width: 520px) {
+  .proof-media h3 { font-size: 21px; }
+}
 
 .lf-fb-title {
   font-size: 15px;

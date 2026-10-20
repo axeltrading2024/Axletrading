@@ -138,6 +138,18 @@
         '<p data-i18n="req_ok_body">Your request is in. Every detail you shared helps us grow: it tells us what buyers actually want, and that shapes what we source, how we pack it and how we price it.</p>' +
         filesNote +
         '<p class="lf-done-sign" data-i18n="req_ok_sign">&mdash; Eddy, EddyTrading</p>' +
+        '<div class="lf-why">' +
+          '<div class="lf-why-frame">' +
+            '<video class="lf-why-video" src="img/proof/order-10s.mp4" poster="img/proof/order-10s.jpg" width="720" height="440" muted loop playsinline preload="none"></video>' +
+            '<button type="button" class="lf-why-play" data-lf-why-play data-i18n-aria="req_ok_watch" aria-label="See what happens next (7 seconds)">' +
+              '<span class="lf-why-ico" aria-hidden="true">&#9654;</span>' +
+            '</button>' +
+          '</div>' +
+          '<p class="lf-why-cap">' +
+            '<b data-i18n="req_ok_watch">See what happens next &middot; 7s</b>' +
+            '<span data-i18n="req_ok_why">Quote, then a photo of your parcel and its tracking number.</span>' +
+          '</p>' +
+        '</div>' +
         '<div class="lf-done-actions">' +
           '<a class="btn btn-whatsapp lf-done-wa" data-wa-chat href="' + esc(waHref) + '" target="_blank" rel="noreferrer">' +
             '<span data-i18n="req_ok_wa">Chat on WhatsApp now</span></a>' +
@@ -146,6 +158,23 @@
         '</div>' +
         '<p class="lf-done-hint" data-i18n="req_ok_again_hint">Sourcing more than one item? Send them separately — we quote each one properly.</p>' +
       '</div>';
+  }
+
+  /* 成功页里的小视频：点了才播，避免一提交就自动播消耗流量 */
+  function bindWhy(host) {
+    var box = host.querySelector('.lf-why');
+    if (!box) return;
+    var v = box.querySelector('.lf-why-video');
+    var btn = box.querySelector('[data-lf-why-play]');
+    if (!v || !btn) return;
+    btn.addEventListener('click', function () {
+      box.classList.add('is-playing');
+      v.setAttribute('controls', '');
+      try {
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      } catch (e) {}
+    });
   }
 
   /* ---------------- 附件上传 ---------------- */
@@ -574,6 +603,7 @@
               restart(host);
             });
           }
+          bindWhy(host);
           scrollInto(host, 'center');
           return;
         }
