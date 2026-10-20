@@ -264,7 +264,12 @@
   function buildShareUrl(items) {
     if (!items.length) return '';
     var base = location.origin + location.pathname.replace(/[^/]*$/, 'index.html');
-    return base + '#l=' + encodeItems(items);
+    // 带上运费口径（目的地 + 计费重量），报价单那边就能算出运费与暂估总价，而不是只报货值
+    var f = '';
+    if (lastShip && !lastShip.quoteOnly && lastShip.iso && lastShip.bill > 0) {
+      f = '&f=' + lastShip.iso + '_' + lastShip.bill;
+    }
+    return base + '#l=' + encodeItems(items) + f;
   }
 
   /** 复制文本到剪贴板（http 环境降级用 execCommand） */
@@ -528,6 +533,9 @@
         shipEstHTML() +
         '<div class="drawer-foot">' +
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
+          '<div class="total sub" data-drawer-freight-row hidden><span data-i18n="quote_freight">Freight (est.)</span><b data-drawer-freight>—</b></div>' +
+          '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
+          '<p class="totals-note" data-drawer-est-note hidden></p>' +
           '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
           '</button>' +
@@ -975,6 +983,78 @@
     return null;
   }
 
+  /* ---------------- 合计：商品 + 运费 + 总价暂估 ---------------- */
+  var lastShip = null;        // 当前运费估算；null = 客户还没打开过估算，合计里不掺运费
+  var shipTouched = false;
+
+  /** 询价清单里的商品金额合计（{ sum, currency }）；没有可解析价格时返回 null */
+  function cartSum() {
+    var sum = 0, has = false, cur = '';
+    Store.items.forEach(function (it) {
+      var pr = parsePrice(it.price);
+      if (!pr) return;
+      sum += pr.value * it.qty;
+      has = true;
+      if (!cur) cur = symToCurrency(pr.symbol) || '';
+    });
+    return has ? { sum: sum, currency: cur } : null;
+  }
+
+  /**
+   * 商品合计 + 运费 → 暂估总价（只在这里做币种合并）
+   * 同币种直接相加；跨币种（商品以 € 标价、运费按 $ 报）先把商品按 FX_RATES 折成运费币种，
+   * 并额外给一句折算说明——欧元区客户看不到任何美元数字。
+   */
+  function estBlock(sum, ship) {
+    var T = window.T || function (k) { return k; };
+    var out = {
+      freightTxt: T('quote_freight_pending'),
+      totalTxt: sum ? money(sum.sum, currencySym(sum.currency)) : '—',
+      note: T('est_excl_freight')
+    };
+    if (!ship || ship.quoteOnly) return out;
+    out.freightTxt = money(ship.cost, currencySym(ship.currency));
+    out.note = '';
+    if (!sum) { out.totalTxt = '—'; return out; }
+    var total = null, conv = false;
+    if (sum.currency === ship.currency) {
+      total = sum.sum + ship.cost;
+    } else {
+      var v = fxConvert(sum.sum, sum.currency, ship.currency);
+      if (v !== null) { total = v + ship.cost; conv = true; }
+    }
+    if (total === null) { out.totalTxt = '—'; return out; }
+    out.totalTxt = money(total, currencySym(ship.currency));
+    if (conv) out.note = T('fx_conv_note');
+    return out;
+  }
+
+  /** 抽屉底部「运费 / 总价暂估」两行 */
+  function renderTotals() {
+    var fRow = $('[data-drawer-freight-row]');
+    var eRow = $('[data-drawer-est-row]');
+    if (!fRow || !eRow) return;
+    var noteEl = $('[data-drawer-est-note]');
+    var sum = cartSum();
+    if (!lastShip || !sum) {
+      fRow.hidden = true;
+      eRow.hidden = true;
+      if (noteEl) { noteEl.hidden = true; noteEl.textContent = ''; }
+      return;
+    }
+    var b = estBlock(sum, lastShip);
+    fRow.hidden = false;
+    eRow.hidden = false;
+    var fEl = $('[data-drawer-freight]', fRow);
+    var eEl = $('[data-drawer-est]', eRow);
+    if (fEl) fEl.textContent = b.freightTxt;
+    if (eEl) eEl.textContent = b.totalTxt;
+    if (noteEl) {
+      noteEl.textContent = b.note || '';
+      noteEl.hidden = !b.note;
+    }
+  }
+
   /* ---------------- 运费估算（抽屉内折叠面板） ---------------- */
   function shipEstHTML() {
     var R = window.SHIPPING_RATES;
@@ -1030,6 +1110,8 @@
 
     // 未开通固定价的国家：给一句说明 + 直接问 Eddy
     if (q && q.quoteOnly) {
+      lastShip = shipTouched ? { quoteOnly: true, iso: iso, currency: '' } : null;
+      renderTotals();
       var cname = shipCountryName(iso);
       out.innerHTML = '' +
         '<p class="ship-quote-only">' + esc(window.T('ship_quote_only', { country: cname })) + '</p>' +
@@ -1040,10 +1122,19 @@
       return;
     }
     if (!q) {
+      lastShip = null;
+      renderTotals();
       out.innerHTML = '<p class="ship-empty">' + esc(window.T('ship_empty')) + '</p>';
       return;
     }
     var sym = q.currency === 'USD' ? '$' : (q.currency === 'EUR' ? '€' : q.currency + ' ');
+    // 面板里的运费已经用目的地货币报出（欧元区 €、北美 $），不再折成另一种货币，
+    // 免得欧元区客户看到的是一串美元数字。
+    lastShip = shipTouched ? {
+      iso: iso, bill: q.bill, cost: q.cost, currency: q.currency,
+      zone: q.zone, quoteOnly: false
+    } : null;
+    renderTotals();
     var lines = [];
     lines.push('<div class="sr"><span>' + esc(window.T('ship_chargeable')) + '</span><b>' + fmtKg(q.bill) + ' kg</b></div>');
     if (q.vol > 0) {
@@ -1057,7 +1148,6 @@
     out.innerHTML = '<div class="ship-lines">' + lines.join('') + '</div>' +
       '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
         '<b>' + money(q.cost, sym) + '</b></div>' +
-      fxApproxHtml(q.cost, q.currency, true) +
       '<p class="ship-transit">' + esc(window.T('ship_transit', { d: transitLabel(q.zone) })) + '</p>';
   }
 
@@ -1073,14 +1163,25 @@
         else body.setAttribute('hidden', '');
         host.classList.toggle('is-open', willOpen);
         tog.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-        if (willOpen) renderShipEst();
+        if (willOpen) {
+          // 只有客户真的打开过运费估算，才有「运费 / 总价暂估」这两行——
+          // 否则一进购物车就按默认 10kg 报个运费，反而误导。
+          shipTouched = true;
+          renderShipEst();
+        }
       });
     }
     host.addEventListener('input', function (e) {
-      if (e.target.closest('[data-ship-kg],[data-ship-l],[data-ship-w],[data-ship-h]')) renderShipEst();
+      if (e.target.closest('[data-ship-kg],[data-ship-l],[data-ship-w],[data-ship-h]')) {
+        shipTouched = true;
+        renderShipEst();
+      }
     });
     host.addEventListener('change', function (e) {
-      if (e.target.closest('[data-ship-country]')) renderShipEst();
+      if (e.target.closest('[data-ship-country]')) {
+        shipTouched = true;
+        renderShipEst();
+      }
     });
     renderShipEst();
   }
@@ -1101,19 +1202,9 @@
     if (dCnt) dCnt.textContent = window.T('drawer_count', { n: n });
     if (totalEl) {
       var dtxt = Store.total();
-      if (!dtxt) {
-        totalEl.textContent = '—';
-      } else {
-        var dsum = 0, dcur = '';
-        Store.items.forEach(function (it) {
-          var pr = parsePrice(it.price);
-          if (!pr) return;
-          if (!dcur) dcur = symToCurrency(pr.symbol);
-          dsum += pr.value * it.qty;
-        });
-        totalEl.innerHTML = esc(dtxt) + (dcur ? fxApproxHtml(dsum, dcur) : '');
-      }
+      totalEl.textContent = dtxt || '—';
     }
+    renderTotals();
     if (sendEl) {
       var disabled = n === 0;
       sendEl.style.opacity = disabled ? '0.45' : '1';
@@ -1442,6 +1533,7 @@
     else applyHeroLang();
     renderInquiry();
     syncAddButtons();
+    if (sharedItems.length) renderSharedTotals();   // 报价单的运费行标签带国家名，需按语言重算
     // 国家下拉的国家名随语言重建（保留已选项）
     translateCountryOptions();
     var mstat = $('[data-about-stat]');
@@ -2056,6 +2148,7 @@
 
   /* ---------------- 专属链接落地：客户打开 #l=... 时显示报价清单 ---------------- */
   var sharedItems = [];
+  var sharedShip = null;   // 报价单的运费口径（从链接 &f=ISO_KG 还原）
 
   /** 从 "€18" 这类价格串取数值；无效返回 null */
   function priceNum(s) {
@@ -2127,21 +2220,6 @@
     if (!(f > 0) || !(t > 0)) return null;
     var v = amount * t / f;
     return isFinite(v) ? Math.round(v) : null;
-  }
-
-  /**
-   * 「≈ $238」约值提示（HTML）。主报价数字不动，只在旁边补一个另一币种的约数。
-   * block=true 时独占一行（小面板里用）。
-   */
-  function fxApproxHtml(amount, currency, block) {
-    if (!(amount > 0)) return '';
-    var other = currency === 'USD' ? 'EUR' : (currency === 'EUR' ? 'USD' : '');
-    if (!other) return '';
-    var v = fxConvert(amount, currency, other);
-    if (v === null) return '';
-    var note = (window.T && window.T('fx_rate_note')) || '';
-    return '<span class="fx-approx' + (block ? ' fx-block' : '') + '" title="' + esc(note) + '">≈ ' +
-      money(v, currencySym(other)) + ' ' + other + '</span>';
   }
 
   /**
@@ -2347,11 +2425,41 @@
         '</div>';
     }).join('');
     var totalEl = $('[data-shared-total]');
-    if (totalEl) {
-      var st = sharedSum();
-      var approx = st && st.currency ? fxApproxHtml(st.sum, st.currency) : '';
-      totalEl.innerHTML = esc(sharedTotal() || '—') + approx;
+    if (totalEl) totalEl.textContent = sharedTotal() || '—';
+    renderSharedTotals();
+  }
+
+  /** 报价单里的运费 + 暂估总价（运费口径来自链接里的 &f=ISO_KG） */
+  function renderSharedTotals() {
+    var fRow = $('[data-shared-freight-row]');
+    var eRow = $('[data-shared-est-row]');
+    if (!fRow || !eRow) return;
+    var noteEl = $('[data-shared-est-note]');
+    var b = estBlock(sharedSum(), sharedShip);
+    fRow.hidden = false;
+    eRow.hidden = false;
+    var lblEl = $('[data-shared-freight-lbl]', fRow);
+    var fEl = $('[data-shared-freight]', fRow);
+    var eEl = $('[data-shared-est]', eRow);
+    if (lblEl) {
+      if (sharedShip && !sharedShip.quoteOnly) {
+        lblEl.textContent = window.T('quote_freight_to', { country: shipCountryName(sharedShip.iso) });
+      } else {
+        lblEl.textContent = window.T('quote_freight');
+      }
     }
+    if (fEl) fEl.textContent = b.freightTxt;
+    if (eEl) eEl.textContent = b.totalTxt;
+    if (noteEl) {
+      noteEl.textContent = b.note || '';
+      noteEl.hidden = !b.note;
+    }
+  }
+
+  /** 报价单是否需要汇率说明：只有「商品币种 ≠ 运费币种」时才需要，欧元区报价单不出现美元字样 */
+  function sharedNeedsFx() {
+    var s = sharedSum();
+    return !!(s && s.currency && sharedShip && !sharedShip.quoteOnly && s.currency !== sharedShip.currency);
   }
 
   /** 报价单条款与联系信息（打印出来要看得到，所以是纯文本不是按钮） */
@@ -2366,7 +2474,9 @@
       '</p>' +
       '<p class="st-note" data-i18n="quote_terms">Prices are wholesale, ex-works. Freight, duties and taxes are quoted separately. ' +
         'Quantities and prices are indicative until confirmed by our written quotation.</p>' +
-      '<p class="st-fx" data-i18n="fx_rate_note">Approximate conversion at 1 EUR = 1.1 USD — we invoice in the quoted currency.</p>' +
+      (sharedNeedsFx()
+        ? '<p class="st-fx" data-i18n="fx_rate_note">Approximate conversion at 1 EUR = 1.1 USD — we invoice in the quoted currency.</p>'
+        : '') +
     '</div>';
   }
 
@@ -2431,7 +2541,7 @@
     return '<div class="shared-meta">' +
       '<span><span data-i18n="quote_no">Quote no.</span> <b>' + esc(quoteNo(sharedItems)) + '</b></span>' +
       '<span><span data-i18n="quote_date">Date</span> <b>' + esc(quoteDate()) + '</b></span>' +
-      '<span><span data-i18n="quote_valid">Valid</span> <b data-i18n="quote_valid_days">14 days</b></span>' +
+      '<span><span data-i18n="quote_valid">Valid</span> <b data-i18n="quote_valid_hours">48 hours</b></span>' +
     '</div>';
   }
 
@@ -2440,6 +2550,13 @@
     if (!m) return;
     sharedItems = decodeItems(m[1]);
     if (!sharedItems.length) { renderSharedExpired(); return; }
+    // 运费口径：链接里带着 &f=ES_3（目的地 + 计费重量），按当前价目表重算，不存金额快照
+    var fm = location.hash.match(/[#&]f=([A-Za-z]{2})[_-](\d+(?:\.\d+)?)/);
+    if (fm) {
+      var sq = shipQuote(fm[1].toUpperCase(), parseFloat(fm[2]));
+      sharedShip = (sq && !sq.quoteOnly) ? sq : null;
+      if (sharedShip) sharedShip.iso = fm[1].toUpperCase();
+    }
     var wantPrint = /[#&]print=1/.test(location.hash);   // 从「Download quote」进来 → 自动唤起打印
     var header = $('.site-header');
     var banner = document.createElement('section');
@@ -2456,6 +2573,9 @@
         sharedMetaHtml() +
         '<div class="shared-quote" data-shared-body></div>' +
         '<div class="shared-total"><span data-i18n="products_total">Products total</span><b data-shared-total>—</b></div>' +
+        '<div class="shared-total is-sub" data-shared-freight-row hidden><span data-shared-freight-lbl>Freight (est.)</span><b data-shared-freight>—</b></div>' +
+        '<div class="shared-total is-grand" data-shared-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-shared-est>—</b></div>' +
+        '<p class="shared-note totals-note" data-shared-est-note hidden></p>' +
         '<p class="shared-note" data-i18n="shared_note">Quantities are adjustable. Contact us for an official quotation.</p>' +
         sharedContactHtml() +
         sharedTermsHtml() +

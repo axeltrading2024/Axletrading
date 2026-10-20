@@ -3585,38 +3585,63 @@ body.search-open { overflow: hidden; }
   color: var(--accent-brand);
 }
 
-/* 跨币种约值（汇率常量见 js/data.js 的 FX_RATES） */
-.fx-approx {
-  margin-left: 6px;
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--muted-foreground);
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-
-.fx-approx.fx-block {
-  display: block;
-  margin: 3px 0 0;
-  text-align: right;
-}
-
-.shared-total .fx-approx {
-  font-size: 11.5px;
-}
-
-/* 合计区：主价在上、约值折到下一行右对齐，避免把主价挤出去 */
+/* 合计区：商品合计 / 运费 / 暂估总价（运费两行只在客户打开过运费估算后出现） */
 .shared-total b,
 .drawer-foot .total b {
   display: block;
   text-align: right;
 }
 
-.shared-total b .fx-approx,
-.drawer-foot .total b .fx-approx {
-  display: block;
-  margin: 2px 0 0;
-  font-size: 11.5px;
+.drawer-foot .total.sub,
+.shared-banner .shared-total.is-sub {
+  margin-top: 2px;
+  font-size: 12.5px;
+}
+
+.drawer-foot .total.sub b {
+  font-size: 14px;
+}
+
+.drawer-foot .total.grand {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+  color: var(--foreground);
+}
+
+.drawer-foot .total.grand b {
+  font-size: 22px;
+}
+
+.drawer-foot .total[hidden],
+.shared-banner .shared-total[hidden] {
+  display: none;
+}
+
+.totals-note {
+  margin: -4px 0 12px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  text-align: right;
+}
+
+.totals-note[hidden] { display: none; }
+
+/* 报价单：三行合计，暂估总价加分隔线更醒目 */
+.shared-banner .shared-total.is-sub b {
+  font-size: 15px;
+}
+
+.shared-banner .shared-total.is-grand {
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.shared-banner .shared-total.is-grand b {
+  font-size: 24px;
 }
 
 .ship-transit {
