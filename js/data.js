@@ -20,7 +20,8 @@ window.SITE_CONFIG = {
   /* 备用电话（与 WhatsApp 同一个号，留空则页脚只显示上面那一条） */
   "phoneBackup": "",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
-  "tradeShipping": "Europe €30 + €10/kg · N. America $40 + $15/kg · AU/NZ $30 + $10/kg",
+  /* 页脚 Shipping 只写方式与时效，不写具体运费（首重/续重费率由 About 页与报价单说明） */
+  "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
   "greeting": "Hi Eddy! I'd like some information about your products.",
   "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",

@@ -280,7 +280,7 @@
     hiw_ship_3d:        { en: '20 kg minimum — about 50 days, lowest cost per kg', es: 'Mínimo 20 kg — unos 50 días, menor costo por kg' },
     hiw_ship_4t:        { en: 'Duties', es: 'Aranceles' },
     hiw_ship_4d:        { en: 'DDP in the US & Europe, DAP elsewhere', es: 'DDP en EE. UU. y Europa, DAP en el resto' },
-    hiw_ship_foot:      { en: 'Europe €30 + €10/kg · N. America $40 + $15/kg · AU/NZ $30 + $10/kg', es: 'Europa 30 € + 10 €/kg · Norteamérica 40 $ + 15 $/kg · AU/NZ 30 $ + 10 $/kg' },
+    hiw_ship_foot:      { en: 'Shipping is quoted per order, before you pay.', es: 'El envío se cotiza por pedido, antes de pagar.' },
     hiw_note:           { en: '<b>Transit times are carrier estimates, not guaranteed delivery dates.</b> In-stock items are dispatched within 24–48 hours after payment clears. If something arrives damaged, send photos within 7 days and we replace or refund the affected units.',
                            es: '<b>Los tiempos de tránsito son estimaciones de la transportista, no fechas garantizadas de entrega.</b> Los artículos en stock se despachan en 24–48 horas tras confirmar el pago. Si algo llega dañado, mándanos fotos por WhatsApp en 7 días y lo resolvemos: reemplazamos o reembolsamos las piezas afectadas.' },
     faq_title:          { en: 'Frequently asked questions', es: 'Preguntas frecuentes' },
