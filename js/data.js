@@ -13,14 +13,11 @@ window.SITE_CONFIG = {
   "contactName": "Eddy",
   "whatsapp": "4915224901963",
   "whatsappDisplay": "+49 152 2490 1963",
-  /* 「询盘接待表单 / 报价单」用的号码：全站统一为 +49，不再单独分流 */
   "whatsappInquiry": "4915224901963",
   "whatsappInquiryDisplay": "+49 152 2490 1963",
   "contactEmail": "axeltrading@163.com",
-  /* 备用电话（与 WhatsApp 同一个号，留空则页脚只显示上面那一条） */
   "phoneBackup": "",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
-  /* 页脚 Shipping 只写方式与时效，不写具体运费（首重/续重费率由 About 页与报价单说明） */
   "tradeShipping": "Express 8–10 days · sea 20 kg+ · DDP US/Europe, DAP elsewhere",
   "tradeMoq": "Low, flexible by item",
   "greeting": "Hi Eddy! I'd like some information about your products.",
@@ -28,7 +25,6 @@ window.SITE_CONFIG = {
   "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
   "heroBadge": "EddySupply · wholesale supplier",
   "heroBadgeEs": "EddySupply · proveedor mayorista",
-  /* heroSingleLine = true：大标题与强调行排在同一行，中间用「·」分隔 */
   "heroSingleLine": true,
   "heroTitle": "Premium Quality",
   "heroTitleAccent": "Factory Pricing",
@@ -3617,67 +3613,6 @@ window.PRODUCTS = [
     ]
   }
 ];
-
-/* ================================================================
-   运费估算（参考价 —— 下面的数字随时可以直接改，页面立刻跟着变）
-   计价口径：首重 1kg 固定价 + 每增加 1kg 的续重价
-     计费重量 = 实重与体积重【取大】，再向上取整到整公斤
-     体积重 kg = 长 × 宽 × 高 (cm) ÷ divisor
-   base   = 首重 1kg 运费；perKg = 每多 1kg 的运费
-   currency：该区报价货币（欧洲 / 澳新报欧元，北美报美元）
-   没列进任何 zone 的国家 → 不估价，提示联系 Eddy 单独报价
-   ================================================================ */
-window.SHIPPING_RATES = {
-  divisor: 6000,
-  roundKg: 1,
-  zones: [
-    {
-      id: "NA", en: "North America (US · CA · MX)", es: "Norteamérica (EE. UU. · CA · MX)",
-      base: 40, perKg: 15, currency: "USD",
-      transit: { en: "7–12 business days", es: "7–12 días hábiles" },
-      countries: ["US", "CA", "MX"]
-    },
-    {
-      id: "EU", en: "Europe (EU · UK · NO · SE · DK)", es: "Europa (UE · Reino Unido · NO · SE · DK)",
-      base: 30, perKg: 10, currency: "EUR",
-      transit: { en: "5–8 business days", es: "5–8 días hábiles" },
-      countries: ["GB", "DE", "FR", "ES", "IT", "NL", "BE", "AT", "SE", "NO", "DK",
-                  "FI", "IE", "PT", "PL", "CZ", "GR", "HU", "RO", "TR"]
-    },
-    {
-      id: "AU", en: "Australia & New Zealand", es: "Australia y Nueva Zelanda",
-      base: 30, perKg: 10, currency: "USD",
-      transit: { en: "8–14 business days", es: "8–14 días hábiles" },
-      countries: ["AU", "NZ"]
-    }
-  ],
-  /* 未覆盖国家：只提示，不估价 */
-  quoteFallback: true
-};
-
-/* ================================================================
-   汇率（只用于「约等于」提示，主报价数字永远不变）
-   现在固定 1 EUR = 1.1 USD —— 改这一处，全站约值提示跟着变
-   想加币种：在 rates 里补 "GBP": 0.85 之类，页面会自动多给一个约值
-   ================================================================ */
-window.FX_RATES = {
-  base: "EUR",
-  rates: { EUR: 1, USD: 1.1 }
-};
-
-/* ================================================================
-   批量阶梯价（全站统一三档）
-   factor = 折扣系数：1.00 原价 / 0.95 = 95 折 / 0.90 = 9 折
-   想改档位或折扣，只改这里；max 为 null 表示不封顶
-   ================================================================ */
-window.TIER_PRICING = {
-  enabled: true,
-  tiers: [
-    { min: 1,   max: 99,  factor: 1.00 },
-    { min: 100, max: 499, factor: 0.95 },
-    { min: 500, max: null, factor: 0.90 }
-  ]
-};
 
 /* ---------------- 派生：图片路径（分类图与产品图相互独立） ---------------- */
 (function buildImagePaths() {
