@@ -4412,6 +4412,10 @@ body.ask-lock .ask-tab {
   display: block;
   width: 100%;
   height: auto;
+  /* 时间轴里的图来源不同（聊天截屏 720x440、货品平铺 720x514、付款单 720x527），
+     统一裁成 3:2 才能让每一格的说明文字横向对齐 */
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
   border-radius: 10px;
   background: #f1efe8;
 }
@@ -4491,6 +4495,155 @@ body.ask-lock .ask-tab {
 
 @media (max-width: 520px) {
   .proof-media h3 { font-size: 21px; }
+}
+
+/* ---- 首页「真实订单」区块（index.html #proof）----
+   与关于页共用同一套 .proof-* 组件，这里只做首页的间距与「封箱墙」 */
+.home-proof { margin-top: 0; padding-top: 8px; }
+
+.home-proof > h2 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  letter-spacing: -0.015em;
+}
+
+.packwall { margin-top: 46px; }
+
+/* 打包台实录：复用 .proof-media 的两栏，只把视频压窄一点、加上分隔线 */
+.bench {
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 30px;
+  margin-top: 44px;
+  padding-top: 34px;
+  border-top: 1px solid oklch(90% 0 0 / 0.85);
+}
+
+.bench h3 { font-size: 22px; }
+
+/* 首页版：左边 2×2 截屏（放大了才看得清气泡里的字），右边竖排视频 */
+.proof-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+  margin-top: 22px;
+}
+
+.proof-steps--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+  gap: 16px;
+}
+
+.proof-media--stack {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+}
+
+.proof-media--stack .proof-media-frame { max-width: none; }
+.proof-media--stack h3 { font-size: 22px; }
+
+.packwall-head {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding-top: 22px;
+  border-top: 1px solid oklch(90% 0 0 / 0.85);
+}
+
+.packwall-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+.packwall-head p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+.packwall-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.packwall-grid figure { margin: 0; }
+
+.packwall-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #eceae3;
+}
+
+.packwall-grid figcaption {
+  margin-top: 8px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.proof-more {
+  margin: 34px 0 0;
+}
+
+.proof-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--foreground);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: oklch(78% 0 0);
+  transition: text-decoration-color 0.2s, opacity 0.2s;
+}
+
+.proof-more a:hover { text-decoration-color: var(--foreground); }
+
+@media (max-width: 900px) {
+  .packwall-head { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .packwall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .proof-split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .proof-media--stack .proof-media-frame { max-width: 380px; }
+  /* .bench 是 .proof-media 的修饰类，必须自己再收一次，否则窄屏仍是两栏、文案被挤成一条线 */
+  .bench { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .bench .proof-media-frame { max-width: 340px; }
+}
+
+/* 手机上改成横向滑动：五张排在两列会剩一个孤零零的，滑动的暗示也更强 */
+@media (max-width: 700px) {
+  .home-proof > h2 { font-size: 25px; }
+  /* 截屏缩到 170px 宽就完全读不出气泡里的字了，手机上改单列 */
+  .proof-steps--2 { grid-template-columns: minmax(0, 1fr); }
+  .packwall-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 45%;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .packwall-grid::-webkit-scrollbar { display: none; }
+  .packwall-grid figure { scroll-snap-align: start; }
+  .proof-more { margin-top: 26px; }
 }
 
 .lf-fb-title {
