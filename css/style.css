@@ -4650,6 +4650,10 @@ body.ask-lock .ask-tab {
 /* ---- 首页「真实订单」区块（index.html #proof）----
    与关于页共用同一套 .proof-* 组件，这里只做首页的间距 */
 .home-proof { margin-top: 0; padding-top: 8px; }
+/* 2026-10-21：首页 #proof 与 #about 之间原来是 96+96=192px 大空白，
+   压缩成 28+52=80px，页面更紧凑 */
+.home-proof { padding-bottom: 28px; }
+.about-home { padding-top: 52px; }
 
 .home-proof > h2 {
   margin: 0 0 10px;
@@ -4695,8 +4699,8 @@ body.ask-lock .ask-tab {
   margin: 0;
 }
 
-/* 左栏只剩 4 拍（2 行），视频放开整栏会高出 140px 左右，压到 380 才和左栏齐平 */
-.proof-media--stack .proof-media-frame { max-width: 380px; }
+/* 左栏只剩 4 拍（2 行），视频放开整栏会高出 140px 左右，压到 348 才和左栏齐平 */
+.proof-media--stack .proof-media-frame { max-width: 348px; }
 .proof-media--stack h3 { font-size: 22px; }
 
 .packwall-head {
