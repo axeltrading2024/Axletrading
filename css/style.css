@@ -330,19 +330,31 @@ a {
 .site-nav {
   display: none;
   align-items: center;
-  gap: 30px;
-  font-size: 16px;
+  gap: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--muted-foreground);
 }
 
 .site-nav a {
-  transition: color 0.2s;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 .site-nav a:hover,
 .site-nav a.is-active {
   color: var(--foreground);
+}
+
+/* 选中的词条：白底胶囊 + 柔和投影，与未选中明显区分 */
+.site-nav a.is-active {
+  background: var(--card);
+  font-weight: 600;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 2px 4px oklch(0% 0 0 / 0.05),
+    0 6px 16px -6px oklch(0% 0 0 / 0.28);
 }
 
 @media (min-width: 640px) {
