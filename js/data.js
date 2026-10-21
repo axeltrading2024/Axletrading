@@ -388,7 +388,7 @@ window.PRODUCTS = [
   },
   {
     "id": "jbl-portable",
-    "name": "JBL Flip7",
+    "name": "JBL small speaker-Flip/Pulse/GO",
     "brand": "JBL",
     "price": "€18",
     "note": "Portable · Waterproof",
@@ -438,22 +438,22 @@ window.PRODUCTS = [
         "image": "img/prod/var/jbl-portable-pulse6-black.jpg"
       },
       {
-        "name": "GO5-1",
+        "name": "GO5-Blue",
         "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-1.jpg"
       },
       {
-        "name": "GO5-2",
+        "name": "GO5-Green",
         "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-2.jpg"
       },
       {
-        "name": "GO5-3",
+        "name": "GO5-Red",
         "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-3.jpg"
       },
       {
-        "name": "GO5-4",
+        "name": "GO5-Pink",
         "price": "€18",
         "image": "img/prod/var/jbl-flip-7-go5-4.jpg"
       }
