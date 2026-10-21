@@ -401,12 +401,23 @@
           .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || ('HTTP ' + r.status)); return j; }); });
       });
   }
-  /** 测试 token 与仓库是否可用 */
+  /** 测试 token 与仓库是否可用（优先测输入框里当前的密钥，其次才是已保存的） */
   function ghTest() {
-    var s = ghSettings();
-    if (!s.repo || !s.token) return Promise.reject(new Error('请先填写仓库和密钥'));
-    return fetch('https://api.github.com/repos/' + s.repo, { headers: ghHeaders() })
-      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || ('HTTP ' + r.status)); return j; }); });
+    var repo = ($('[data-gh-repo]').value || '').trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
+    var token = ($('[data-gh-token]').value || '').trim();
+    if (!repo || !token) {
+      var s = ghSettings();
+      repo = repo || s.repo;
+      token = token || s.token;
+    }
+    if (!repo || !token) return Promise.reject(new Error('请先填写仓库和密钥'));
+    return fetch('https://api.github.com/repos/' + repo, {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || ('HTTP ' + r.status)); return j; }); });
   }
   /** 生成当前数据的 data.js 完整内容 */
   function buildDataJS() {
@@ -483,7 +494,9 @@
     if (token) token.value = s.token || '';
     if (st) {
       if (ghEnabled()) {
-        st.textContent = '已连接 ✓  保存产品后会自动发布';
+        var t = s.token || '';
+        var fp = t.length > 10 ? t.slice(0, 6) + '····' + t.slice(-4) : '····';
+        st.textContent = '已连接 ✓  密钥 ' + fp + '（' + t.length + ' 位）保存产品后会自动发布';
         st.className = 'gh-status ok';
       } else {
         st.textContent = '未连接 —— 填写下方仓库与密钥后点「保存设置」';
@@ -1414,14 +1427,24 @@
     });
     var ghTestBtn = $('[data-gh-test]');
     if (ghTestBtn) ghTestBtn.addEventListener('click', function () {
-      if (!ghSettings().repo || !ghSettings().token) { status('请先点「保存设置」', 'err'); return; }
+      var boxToken = ($('[data-gh-token]').value || '').trim();
+      var boxRepo = ($('[data-gh-repo]').value || '').trim();
+      if (!boxRepo || !boxToken) {
+        var sv = ghSettings();
+        if (!sv.repo || !sv.token) { status('请先填写仓库和密钥（或先点「保存设置」）', 'err'); return; }
+      }
       ghTestBtn.disabled = true;
       status('正在测试连接…');
       ghTest().then(function (j) {
-        status('✅ 连接成功：' + j.full_name + '，一键发布已就绪');
+        // 测试通过 → 自动把输入框里的仓库/密钥存下来，一步到位
+        var s = ghSettings();
+        s.repo = boxRepo || s.repo;
+        s.token = boxToken || s.token;
+        ghSaveSettings(s);
+        status('✅ 连接成功：' + j.full_name + '，密钥已保存，一键发布已就绪');
         renderGhPanel();
       }).catch(function (e) {
-        status('连接失败：' + e.message + '（密钥权限需勾选 Contents 读写）', 'err');
+        status('连接失败：' + e.message + '（密钥无效请换新密钥；权限需 Contents 读写）', 'err');
       }).finally(function () { ghTestBtn.disabled = false; });
     });
     var ghPublish = $('[data-gh-publish]');
