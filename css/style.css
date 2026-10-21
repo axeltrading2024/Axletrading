@@ -4572,10 +4572,12 @@ body.ask-lock .ask-tab {
   color: var(--muted-foreground);
 }
 
+/* 8 张（香水 + 耳机）排 4 列两行：一行 5 张时每张只有 180px，
+   编号+重量+尺寸那行字就挤得要换行；两行反而读得出「这是一面墙」 */
 .packwall-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 10px;
   margin-top: 20px;
 }
 
@@ -4621,7 +4623,6 @@ body.ask-lock .ask-tab {
 
 @media (max-width: 900px) {
   .packwall-head { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .packwall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .proof-split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .proof-media--stack .proof-media-frame { max-width: 380px; }
 }
@@ -4635,7 +4636,7 @@ body.ask-lock .ask-tab {
   .packwall-grid {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 45%;
+    grid-auto-columns: 52%;
     grid-template-columns: none;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -4645,6 +4646,8 @@ body.ask-lock .ask-tab {
   }
   .packwall-grid::-webkit-scrollbar { display: none; }
   .packwall-grid figure { scroll-snap-align: start; }
+  /* 52% 的格子放 28 个字符的说明刚好压线，缩一点免得在 360px 屏上被裁 */
+  .packwall-grid figcaption { font-size: 11px; }
   .proof-more { margin-top: 26px; }
 }
 
