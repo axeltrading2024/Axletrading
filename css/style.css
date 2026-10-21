@@ -4572,8 +4572,9 @@ body.ask-lock .ask-tab {
   color: var(--muted-foreground);
 }
 
-/* 8 张（香水 + 耳机）排 4 列两行：一行 5 张时每张只有 180px，
-   编号+重量+尺寸那行字就挤得要换行；两行反而读得出「这是一面墙」 */
+/* 12 张排 4 列三行：一行 5 张以上时每格只剩 200px 出头，
+   编号+重量+尺寸那行字就挤到换行；4 列每格约 305px，一行刚好读完。
+   顺序是「贴胶带之前」→「拆开之后」：前 7 格封箱，后 5 格是同一批货打开的样子。 */
 .packwall-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -4621,32 +4622,27 @@ body.ask-lock .ask-tab {
 
 .proof-more a:hover { text-decoration-color: var(--foreground); }
 
+@media (max-width: 1100px) {
+  /* 12 格：4 列在 900px 上下每格只剩 200px，编号那行开始折行，退到 3 列 */
+  .packwall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 @media (max-width: 900px) {
   .packwall-head { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .proof-split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .proof-media--stack .proof-media-frame { max-width: 380px; }
 }
 
-/* 手机上改成横向滑动：五张排在两列会剩一个孤零零的，滑动的暗示也更强 */
+/* 手机：12 张排 2 列 6 行。
+   以前 8 张时用横滑（一次露 2 张，滑动暗示更强），但 12 张要滑 6 屏，
+   反而让人以为只有两三张——改成整块铺开，一眼看得到「这是一整面墙」 */
 @media (max-width: 700px) {
   .home-proof > h2 { font-size: 25px; }
   /* 截屏缩到 170px 宽就完全读不出气泡里的字了，手机上改单列 */
   .proof-steps--2 { grid-template-columns: minmax(0, 1fr); }
   .proof-arc { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-bottom: 24px; }
-  .packwall-grid {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 52%;
-    grid-template-columns: none;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-  .packwall-grid::-webkit-scrollbar { display: none; }
-  .packwall-grid figure { scroll-snap-align: start; }
-  /* 52% 的格子放 28 个字符的说明刚好压线，缩一点免得在 360px 屏上被裁 */
+  .packwall-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+  /* 两列每格约 170px，28 个字符的「编号·重量·尺寸」刚好一行，字号不再往下压 */
   .packwall-grid figcaption { font-size: 11px; }
   .proof-more { margin-top: 26px; }
 }

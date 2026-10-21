@@ -273,10 +273,11 @@
     proof_v_p:          { en: 'His own phone, his own hands, his own voice — nothing added. You hear the tape go, he lifts the air columns out, then he unwraps every bottle and gives a thumbs-up before closing the carton again.',
                           es: 'Su móvil, sus manos y su voz, sin añadir nada. Se oye la cinta al abrirse, saca las columnas de aire, desempaña cada botella y levanta el pulgar antes de cerrar la caja.' },
     proof_v_note:       { en: '18 seconds, sound on. Used with his permission; his name, address and order total are not shown.', es: '18 segundos, con sonido. Publicado con su permiso: no mostramos su nombre, dirección ni el importe del pedido.' },
-    /* 首页「封箱墙」：同一天台面上的其他包裹，只拍箱体手写编号，零品牌露出 */
-    pack_h3:            { en: 'Same bench, other parcels', es: 'La misma mesa, otros paquetes' },
-    pack_p:             { en: 'Perfume in November, earphones in February — same double wall, same wrap, same handwriting on the side, photographed before the tape went on. Not one special box: this is an ordinary week here.',
-                          es: 'Perfume en noviembre, auriculares en febrero: mismo cartón de doble pared, mismo embalaje y la misma letra en el lateral, fotografiados antes de precintar. No es una caja especial: es una semana normal aquí.' },
+    /* 首页「封箱墙」：前 7 格是贴胶带之前的箱子，后 5 格是同一批货打开的样子。
+       画面里可以看到箱内的品牌包装（Eddy 已确认不介意），但文字只写箱号/重量/品类。 */
+    pack_h3:            { en: 'Same week, twelve parcels', es: 'La misma semana, doce paquetes' },
+    pack_p:             { en: 'Perfume in November, earphones and phone cases in February — same double wall, same wrap, same handwriting on the side. Seven cartons before the tape went on; five of them opened on the same rug. Not one special box: this is an ordinary week here.',
+                          es: 'Perfume en noviembre, auriculares y fundas de móvil en febrero: mismo cartón de doble pared, mismo embalaje, la misma letra en el lateral. Siete cajas antes de precintarlas y cinco de ellas abiertas en la misma alfombra. No es una caja especial: es una semana normal aquí.' },
     proof_more:         { en: 'Read the whole order', es: 'Ver el pedido completo' },
     hiw_eyebrow:        { en: 'How it works', es: 'Cómo funciona' },
     hiw_title:          { en: 'How to order, pay & ship', es: 'Cómo pedir, pagar y enviar' },
