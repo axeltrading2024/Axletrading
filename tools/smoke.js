@@ -325,6 +325,10 @@ function txt(el) {
 
     ok('相关推荐有内容', doc.querySelectorAll('[data-related] .product-card').length > 0);
     ok('document.title 已更新', new RegExp(escRe(P.name)).test(doc.title), doc.title);
+    ok('产品页也有 Chat with Eddy 悬浮胶囊',
+      !!doc.querySelector('[data-ask-open]') && /chat\s+with\s+eddy/i.test(
+        (doc.querySelector('[data-ask-open]') || {}).textContent || ''));
+    ok('产品页挂载 lead-form.js（抽屉表单可用）', !!doc.querySelector('.ask-drawer [data-lead-form]'));
     win.close();
   }
 
@@ -502,6 +506,10 @@ function txt(el) {
         return eb && (eb.getAttribute('hidden') !== null) === (eb.textContent.trim() === '');
       }));
     ok('分类页顶栏 Browse 高亮', !!doc.querySelector('.site-nav a[data-nav="browse"].is-active'));
+    ok('分类页也有 Chat with Eddy 悬浮胶囊',
+      !!doc.querySelector('[data-ask-open]') && /chat\s+with\s+eddy/i.test(
+        (doc.querySelector('[data-ask-open]') || {}).textContent || ''));
+    ok('分类页挂载 lead-form.js（抽屉表单可用）', !!doc.querySelector('.ask-drawer [data-lead-form]'));
     win.close();
   }
 
