@@ -1865,17 +1865,17 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "1",
+        "name": "Black",
         "price": "",
         "image": "img/prod/var/b-1.jpg"
       },
       {
-        "name": "2",
+        "name": "Blue",
         "price": "",
         "image": "img/prod/var/b-2.jpg"
       },
       {
-        "name": "3",
+        "name": "Camo",
         "price": "",
         "image": "img/prod/var/b-3.jpg"
       }
