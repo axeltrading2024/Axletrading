@@ -276,9 +276,9 @@
     /* About 页「封箱墙」（2026-10-21 从首页搬到关于页）：前 8 格是箱子里装了什么，
        后 7 格是封好、称重、手写编号的样子。画面里可以看到箱内的品牌包装（Eddy 已确认
        不介意），但文字只写箱号/重量/品类，不写品牌名。 */
-    pack_h3:            { en: 'Fifteen parcels, one ordinary week', es: 'Quince paquetes, una semana normal' },
-    pack_p:             { en: 'Open them first: earphones, phone cases, speakers, gift sets, a foam-lined carton of odds and ends. Then the same cartons sealed — box number, weight and size written by hand before the tape went on. Eight opened on the same rug, seven taped shut and sent. Not one special box: this is an ordinary week here.',
-                          es: 'Primero ábrelas: auriculares, fundas de móvil, altavoces, estuches de regalo, una caja con espuma llena de surtido. Después las mismas cajas ya cerradas: número, peso y medidas escritos a mano antes de precintar. Ocho abiertas en la misma alfombra, siete precintadas y enviadas. No es una caja especial: es una semana normal aquí.' },
+    pack_h3:            { en: 'Twelve parcels, one ordinary week', es: 'Doce paquetes, una semana normal' },
+    pack_p:             { en: 'Open them first: earphones, phone cases, speakers, gift sets, a foam-lined carton of odds and ends. Then the same cartons sealed — box number, weight and size written by hand before the tape went on. Eight opened on the same rug, four taped shut and sent. Not one special box: this is an ordinary week here.',
+                          es: 'Primero ábrelas: auriculares, fundas de móvil, altavoces, estuches de regalo, una caja con espuma llena de surtido. Después las mismas cajas ya cerradas: número, peso y medidas escritos a mano antes de precintar. Ocho abiertas en la misma alfombra, cuatro precintadas y enviadas. No es una caja especial: es una semana normal aquí.' },
     pack_w1:            { en: 'Earphones · three cartons', es: 'Auriculares · tres cajas' },
     pack_w2:            { en: 'Earphones · one carton, opened', es: 'Auriculares · una caja, abierta' },
     pack_w3:            { en: 'Phone cases · two cartons', es: 'Fundas de móvil · dos cajas' },
