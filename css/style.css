@@ -3920,32 +3920,70 @@ body.search-open { overflow: hidden; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 16px 12px;
+  gap: 11px;
+  padding: 20px 14px;
+  /* 每 7 秒轻轻向外探一下，像招手一样提醒可咨询（精致低调，不闪不吵） */
+  animation: ask-nudge 7s var(--ease-out-soft) infinite;
+}
+
+@keyframes ask-nudge {
+  0%, 86%, 100% { transform: translateX(0); }
+  90% { transform: translateX(-6px); }
+  94% { transform: translateX(-2px); }
 }
 
 .ask-tab-dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   background: var(--whatsapp);
-  box-shadow: 0 0 0 3px oklch(68% 0.17 148 / 0.2);
+  /* WhatsApp 绿呼吸光圈：示意「在线，可聊」 */
+  animation: ask-ping 2.6s ease-out infinite;
+}
+
+@keyframes ask-ping {
+  0% { box-shadow: 0 0 0 0 oklch(68% 0.17 148 / 0.5); }
+  70% { box-shadow: 0 0 0 9px oklch(68% 0.17 148 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(68% 0.17 148 / 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-tab-in, .ask-tab-dot { animation: none; }
 }
 
 .ask-tab:hover .ask-tab-dot,
 .ask-tab:focus-visible .ask-tab-dot {
   background: var(--whatsapp);
   box-shadow: 0 0 0 3px oklch(68% 0.17 148 / 0.18);
+  animation: none;
+}
+
+.ask-tab-txts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
 }
 
 .ask-tab-txt {
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.ask-tab-sub {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.72;
 }
 
 /* 抽屉层 */
@@ -4084,8 +4122,9 @@ body.ask-lock .ask-tab {
   .ask-title { font-size: 23px; }
   .ask-sub { font-size: 12.5px; }
   .ask-body { padding: 16px 18px 26px; }
-  .ask-tab-in { padding: 13px 10px; gap: 8px; }
-  .ask-tab-txt { font-size: 10px; }
+  .ask-tab-in { padding: 15px 11px; gap: 9px; }
+  .ask-tab-txt { font-size: 11px; }
+  .ask-tab-sub { font-size: 8.5px; }
 }
 
 .lf-grid {

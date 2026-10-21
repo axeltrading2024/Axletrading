@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261021j">
+  <link rel="stylesheet" href="css/style.css?v=20261021k">
   <script data-goatcounter="https://axeltrading.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -437,10 +437,45 @@
     </section>
   </main>
 
+  <!-- 需求收集 / 客服窗口：右侧竖向胶囊 → 右侧滑出抽屉（与首页同一套，提交到 /api/inquiry） -->
+  <span id="request" class="ask-anchor" aria-hidden="true"></span>
+
+  <button type="button" class="ask-tab" data-ask-open aria-controls="ask-drawer" aria-expanded="false">
+    <span class="ask-tab-in">
+      <span class="ask-tab-dot" aria-hidden="true"></span>
+      <span class="ask-tab-txts">
+        <span class="ask-tab-txt" data-i18n="ask_tab">Chat with Eddy</span>
+        <span class="ask-tab-sub" data-i18n="ask_tab_sub">Free advice</span>
+      </span>
+    </span>
+  </button>
+
+  <div class="ask-layer" data-ask-layer hidden>
+    <div class="ask-mask" data-ask-close></div>
+    <aside class="ask-drawer" id="ask-drawer" role="dialog" aria-modal="true" aria-labelledby="ask-title">
+      <div class="ask-head">
+        <div class="ask-head-top">
+          <p class="ask-eyebrow" data-i18n="req_eyebrow">Custom sourcing</p>
+          <button type="button" class="ask-close" data-ask-close aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M6 6l12 12M18 6L6 18"/>
+            </svg>
+          </button>
+        </div>
+        <h2 class="ask-title" id="ask-title" data-i18n="req_title">Tell us more. We’ll go further.</h2>
+        <p class="ask-sub" data-i18n="req_sub">The more you share — quantity, target price, packaging, deadline — the further we can go on sourcing, options and pricing. Eddy reads every request himself and usually replies the same day.</p>
+      </div>
+      <div class="ask-body">
+        <div class="ask-form" data-lead-form></div>
+      </div>
+    </aside>
+  </div>
+
   <footer class="site-footer"></footer>
 
   <script src="js/data.js?v=20261021j"></script>
-  <script src="js/i18n.js?v=20261021j"></script>
+  <script src="js/i18n.js?v=20261021k"></script>
   <script src="js/app.js?v=20261021j"></script>
+  <script src="js/lead-form.js?v=20261021j"></script>
 </body>
 </html>
