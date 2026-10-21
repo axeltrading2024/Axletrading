@@ -4509,16 +4509,19 @@ body.ask-lock .ask-tab {
 
 .packwall { margin-top: 46px; }
 
-/* 打包台实录：复用 .proof-media 的两栏，只把视频压窄一点、加上分隔线 */
-.bench {
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: 30px;
-  margin-top: 44px;
-  padding-top: 34px;
-  border-top: 1px solid oklch(90% 0 0 / 0.85);
+/* 开头 / 结果：两句对话横跨整行。
+   6 格挤在 1.5fr 的窄栏里时，截屏只有 ~360px 宽，气泡里的字读不出来，
+   所以把这两句提到最前、放到整行两等分，付款到封箱那四拍再回落到 2×2。 */
+.proof-arc {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 22px;
+  margin-top: 26px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid oklch(90% 0 0 / 0.85);
 }
 
-.bench h3 { font-size: 22px; }
+.proof-arc figcaption b { font-size: 13.5px; }
 
 /* 首页版：左边 2×2 截屏（放大了才看得清气泡里的字），右边竖排视频 */
 .proof-split {
@@ -4541,7 +4544,8 @@ body.ask-lock .ask-tab {
   margin: 0;
 }
 
-.proof-media--stack .proof-media-frame { max-width: none; }
+/* 左栏只剩 4 拍（2 行），视频放开整栏会高出 140px 左右，压到 380 才和左栏齐平 */
+.proof-media--stack .proof-media-frame { max-width: 380px; }
 .proof-media--stack h3 { font-size: 22px; }
 
 .packwall-head {
@@ -4620,9 +4624,6 @@ body.ask-lock .ask-tab {
   .packwall-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .proof-split { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .proof-media--stack .proof-media-frame { max-width: 380px; }
-  /* .bench 是 .proof-media 的修饰类，必须自己再收一次，否则窄屏仍是两栏、文案被挤成一条线 */
-  .bench { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .bench .proof-media-frame { max-width: 340px; }
 }
 
 /* 手机上改成横向滑动：五张排在两列会剩一个孤零零的，滑动的暗示也更强 */
@@ -4630,6 +4631,7 @@ body.ask-lock .ask-tab {
   .home-proof > h2 { font-size: 25px; }
   /* 截屏缩到 170px 宽就完全读不出气泡里的字了，手机上改单列 */
   .proof-steps--2 { grid-template-columns: minmax(0, 1fr); }
+  .proof-arc { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-bottom: 24px; }
   .packwall-grid {
     display: grid;
     grid-auto-flow: column;
