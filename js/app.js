@@ -479,7 +479,10 @@
             '<a href="index.html" data-nav="home" data-i18n="nav_home">Home</a>' +
             '<a href="index.html#popular" data-nav="popular" data-i18n="nav_popular">Popular</a>' +
             '<a href="index.html#browse" data-nav="browse" data-i18n="nav_browse">Browse</a>' +
-            '<a href="index.html#about" data-nav="about" data-i18n="nav_about">About Us</a>' +
+            /* 2026-10-21：以前指向 index.html#about（首页那一小段 FAQ 预览），
+               点了只会在首页内部跳到锚点，地址栏变成 /#about。
+               现在统一指向真正的关于页 about.html，与手机菜单、页脚一致。 */
+            '<a href="about.html" data-nav="about" data-i18n="nav_about">About Us</a>' +
           '</nav>' +
           '<div class="header-actions">' +
             '<button type="button" class="nav-search" data-open-search aria-label="Search products" title="Search products (Ctrl+K)">' +
