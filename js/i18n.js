@@ -273,11 +273,20 @@
     proof_v_p:          { en: 'His own phone, his own hands, his own voice — nothing added. You hear the tape go, he lifts the air columns out, then he unwraps every bottle and gives a thumbs-up before closing the carton again.',
                           es: 'Su móvil, sus manos y su voz, sin añadir nada. Se oye la cinta al abrirse, saca las columnas de aire, desempaña cada botella y levanta el pulgar antes de cerrar la caja.' },
     proof_v_note:       { en: '18 seconds, sound on. Used with his permission; his name, address and order total are not shown.', es: '18 segundos, con sonido. Publicado con su permiso: no mostramos su nombre, dirección ni el importe del pedido.' },
-    /* 首页「封箱墙」：前 7 格是贴胶带之前的箱子，后 5 格是同一批货打开的样子。
-       画面里可以看到箱内的品牌包装（Eddy 已确认不介意），但文字只写箱号/重量/品类。 */
-    pack_h3:            { en: 'Same week, twelve parcels', es: 'La misma semana, doce paquetes' },
-    pack_p:             { en: 'Perfume in November, earphones and phone cases in February — same double wall, same wrap, same handwriting on the side. Seven cartons before the tape went on; five of them opened on the same rug. Not one special box: this is an ordinary week here.',
-                          es: 'Perfume en noviembre, auriculares y fundas de móvil en febrero: mismo cartón de doble pared, mismo embalaje, la misma letra en el lateral. Siete cajas antes de precintarlas y cinco de ellas abiertas en la misma alfombra. No es una caja especial: es una semana normal aquí.' },
+    /* About 页「封箱墙」（2026-10-21 从首页搬到关于页）：前 8 格是箱子里装了什么，
+       后 7 格是封好、称重、手写编号的样子。画面里可以看到箱内的品牌包装（Eddy 已确认
+       不介意），但文字只写箱号/重量/品类，不写品牌名。 */
+    pack_h3:            { en: 'Fifteen parcels, one ordinary week', es: 'Quince paquetes, una semana normal' },
+    pack_p:             { en: 'Open them first: earphones, phone cases, speakers, gift sets, a foam-lined carton of odds and ends. Then the same cartons sealed — box number, weight and size written by hand before the tape went on. Eight opened on the same rug, seven taped shut and sent. Not one special box: this is an ordinary week here.',
+                          es: 'Primero ábrelas: auriculares, fundas de móvil, altavoces, estuches de regalo, una caja con espuma llena de surtido. Después las mismas cajas ya cerradas: número, peso y medidas escritos a mano antes de precintar. Ocho abiertas en la misma alfombra, siete precintadas y enviadas. No es una caja especial: es una semana normal aquí.' },
+    pack_w1:            { en: 'Earphones · three cartons', es: 'Auriculares · tres cajas' },
+    pack_w2:            { en: 'Earphones · one carton, opened', es: 'Auriculares · una caja, abierta' },
+    pack_w3:            { en: 'Phone cases · two cartons', es: 'Fundas de móvil · dos cajas' },
+    pack_w4:            { en: 'Speakers + earphones · one carton', es: 'Altavoces + auriculares · una caja' },
+    pack_w5:            { en: 'Mixed · one carton', es: 'Surtido · una caja' },
+    pack_w6:            { en: 'Mixed · foam-lined carton', es: 'Surtido · caja con espuma' },
+    pack_w7:            { en: 'Gift boxes · one carton', es: 'Estuches de regalo · una caja' },
+    pack_w8:            { en: 'Two cartons, not yet taped', es: 'Dos cajas, aún sin precintar' },
     proof_more:         { en: 'Read the whole order', es: 'Ver el pedido completo' },
     hiw_eyebrow:        { en: 'How it works', es: 'Cómo funciona' },
     hiw_title:          { en: 'How to order, pay & ship', es: 'Cómo pedir, pagar y enviar' },
