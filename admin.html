@@ -419,6 +419,11 @@
       }
     }).then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.message || ('HTTP ' + r.status)); return j; }); });
   }
+  /* 2026-10-21：data.js 尾附的三块配置（运费分区 / 阶梯价 / 汇率）。
+     后台一键发布会重新生成 data.js，以前会丢掉它们（新访客就没有阶梯价和运费估算），
+     这里作为常量原样拼回生成结果末尾，保证永不丢失。 */
+  var GH_TAIL_BLOCKS = "window.SHIPPING_RATES = {\n  divisor: 6000,\n  roundKg: 1,\n  zones: [\n    {\n      id: \"NA\", en: \"North America (US · CA · MX)\", es: \"Norteamérica (EE. UU. · CA · MX)\",\n      base: 40, perKg: 15, currency: \"USD\",\n      transit: { en: \"7–12 business days\", es: \"7–12 días hábiles\" },\n      countries: [\"US\", \"CA\", \"MX\"]\n    },\n    {\n      id: \"EU\", en: \"Europe (EU · UK · NO · SE · DK)\", es: \"Europa (UE · Reino Unido · NO · SE · DK)\",\n      base: 30, perKg: 10, currency: \"EUR\",\n      transit: { en: \"5–8 business days\", es: \"5–8 días hábiles\" },\n      countries: [\"GB\", \"DE\", \"FR\", \"ES\", \"IT\", \"NL\", \"BE\", \"AT\", \"SE\", \"NO\", \"DK\",\n                  \"FI\", \"IE\", \"PT\", \"PL\", \"CZ\", \"GR\", \"HU\", \"RO\", \"TR\"]\n    },\n    {\n      id: \"AU\", en: \"Australia & New Zealand\", es: \"Australia y Nueva Zelanda\",\n      base: 30, perKg: 10, currency: \"USD\",\n      transit: { en: \"8–14 business days\", es: \"8–14 días hábiles\" },\n      countries: [\"AU\", \"NZ\"]\n    }\n  ],\n  /* 未覆盖国家：只提示，不估价 */\n  quoteFallback: true\n};\n\nwindow.TIER_PRICING = {\n  enabled: true,\n  tiers: [\n    { min: 1,   max: 99,  factor: 1.00 },\n    { min: 100, max: 499, factor: 0.95 },\n    { min: 500, max: null, factor: 0.90 }\n  ]\n};\n\nwindow.FX_RATES = {\n  base: \"EUR\",\n  rates: { EUR: 1, USD: 1.1 }\n};\n";
+
   /** 生成当前数据的 data.js 完整内容 */
   function buildDataJS() {
     var prods = PRODUCTS.map(function (p) {
@@ -472,6 +477,8 @@
     lines.push("    p.image = 'img/prod/' + p.id + '.jpg';");
     lines.push('  });');
     lines.push('})();');
+    lines.push('');
+    lines.push(GH_TAIL_BLOCKS);
     return lines.join('\n');
   }
   /** 一键发布 data.js 到 GitHub */

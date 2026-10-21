@@ -3623,3 +3623,44 @@ window.PRODUCTS = [
     p.image = 'img/prod/' + p.id + '.jpg';
   });
 })();
+
+window.SHIPPING_RATES = {
+  divisor: 6000,
+  roundKg: 1,
+  zones: [
+    {
+      id: "NA", en: "North America (US · CA · MX)", es: "Norteamérica (EE. UU. · CA · MX)",
+      base: 40, perKg: 15, currency: "USD",
+      transit: { en: "7–12 business days", es: "7–12 días hábiles" },
+      countries: ["US", "CA", "MX"]
+    },
+    {
+      id: "EU", en: "Europe (EU · UK · NO · SE · DK)", es: "Europa (UE · Reino Unido · NO · SE · DK)",
+      base: 30, perKg: 10, currency: "EUR",
+      transit: { en: "5–8 business days", es: "5–8 días hábiles" },
+      countries: ["GB", "DE", "FR", "ES", "IT", "NL", "BE", "AT", "SE", "NO", "DK",
+                  "FI", "IE", "PT", "PL", "CZ", "GR", "HU", "RO", "TR"]
+    },
+    {
+      id: "AU", en: "Australia & New Zealand", es: "Australia y Nueva Zelanda",
+      base: 30, perKg: 10, currency: "USD",
+      transit: { en: "8–14 business days", es: "8–14 días hábiles" },
+      countries: ["AU", "NZ"]
+    }
+  ],
+  /* 未覆盖国家：只提示，不估价 */
+  quoteFallback: true
+};
+window.TIER_PRICING = {
+  enabled: true,
+  tiers: [
+    { min: 1,   max: 99,  factor: 1.00 },
+    { min: 100, max: 499, factor: 0.95 },
+    { min: 500, max: null, factor: 0.90 }
+  ]
+};
+
+window.FX_RATES = {
+  base: "EUR",
+  rates: { EUR: 1, USD: 1.1 }
+};
