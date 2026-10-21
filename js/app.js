@@ -2763,7 +2763,8 @@
     }
     function open(a) {
       pic.src = a.getAttribute('href');
-      var b = $('.real-cap b', a);
+      // 2026-10-22：About 页说明改为左下角胶囊（strip-cap），灯箱图注跟着取胶囊文字
+      var b = $('.strip-cap', a) || $('.real-cap b', a);
       cap.textContent = b ? b.textContent : '';
       box.classList.add('is-open');
       document.body.classList.add('viewer-open');

@@ -2693,6 +2693,7 @@ body:has(.drawer.open) .cart-fab {
 .real-col { display: grid; gap: 14px; }
 .real-item {
   display: block;
+  position: relative; /* strip-cap 胶囊标签的定位锚点 */
   border: 1px solid oklch(92% 0 0 / 0.7);
   border-radius: 16px;
   background: var(--card);
