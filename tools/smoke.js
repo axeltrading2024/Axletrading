@@ -73,7 +73,13 @@ function txt(el) {
     ok('无 JS 运行时错误', errors.length === 0, errors.join(' | '));
     ok('header 已渲染', !!doc.querySelector('header.site-header'));
     ok('品牌名正确（' + CFG.brand + '）', txt(doc.querySelector('.brand-name')) === CFG.brand);
-    ok('导航 4 项（含 About/FAQ）', doc.querySelectorAll('.site-nav a').length === 4);
+    // 2026-10-21：导航精简为 Home / Products / About Us 三项（Popular 去掉、Browse 改名 Products）
+    ok('导航 3 项（Home / Products / About Us）', doc.querySelectorAll('.site-nav a').length === 3,
+      [...doc.querySelectorAll('.site-nav a')].map((a) => a.textContent.trim()).join(' / '));
+    ok('导航中间项为 Products 且指向 #browse',
+      !!doc.querySelector('.site-nav a[data-nav="products"]') &&
+      /#browse$/.test(doc.querySelector('.site-nav a[data-nav="products"]').getAttribute('href') || ''));
+    ok('导航里没有 Popular', !doc.querySelector('.site-nav a[data-nav="popular"]'));
     // 2026-10-21：顶栏 About Us 必须真的跳到关于页，
     // 以前写成 index.html#about，点了只在首页内滚锚点，地址栏变成 /#about
     const navAbout = doc.querySelector('.site-nav a[data-nav="about"]');
@@ -84,7 +90,9 @@ function txt(el) {
       ![...doc.querySelectorAll('.site-nav a')].some((a) => /#about$/.test(a.getAttribute('href') || '')),
       [...doc.querySelectorAll('.site-nav a')].map((a) => a.getAttribute('href')).join(' '));
     ok('手机端汉堡按钮存在', !!doc.querySelector('[data-nav-toggle]'));
-    ok('手机端菜单含 ≥5 个链接', doc.querySelectorAll('.mobile-nav a').length >= 5);
+    ok('手机端菜单为 Home / Products / About Us 三项',
+      [...doc.querySelectorAll('.mobile-nav nav a')].map((a) => a.textContent.trim()).join(' / ').match(/^Home \/ Products \/ About Us$/) !== null,
+      [...doc.querySelectorAll('.mobile-nav nav a')].map((a) => a.textContent.trim()).join(' / '));
 
     // 首屏图片跑马灯（2026-09-11 新增）
     const stripImgs = doc.querySelectorAll('.hero-strip .hero-strip-item img');
@@ -505,7 +513,7 @@ function txt(el) {
         const eb = c.querySelector('.card-eyebrow');
         return eb && (eb.getAttribute('hidden') !== null) === (eb.textContent.trim() === '');
       }));
-    ok('分类页顶栏 Browse 高亮', !!doc.querySelector('.site-nav a[data-nav="browse"].is-active'));
+    ok('分类页顶栏 Products 高亮', !!doc.querySelector('.site-nav a[data-nav="products"].is-active'));
     ok('分类页也有 Chat with Eddy 悬浮胶囊',
       !!doc.querySelector('[data-ask-open]') && /chat\s+with\s+eddy/i.test(
         (doc.querySelector('[data-ask-open]') || {}).textContent || ''));

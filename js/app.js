@@ -477,8 +477,9 @@
           '</a>' +
           '<nav class="site-nav">' +
             '<a href="index.html" data-nav="home" data-i18n="nav_home">Home</a>' +
-            '<a href="index.html#popular" data-nav="popular" data-i18n="nav_popular">Popular</a>' +
-            '<a href="index.html#browse" data-nav="browse" data-i18n="nav_browse">Browse</a>' +
+            /* 2026-10-21：Popular 与 Browse 两个入口合并为 Products（指向首页 #browse 区块），
+               顶栏只留 Home / Products / About Us 三个按钮 */
+            '<a href="index.html#browse" data-nav="products" data-i18n="nav_products">Products</a>' +
             /* 2026-10-21：以前指向 index.html#about（首页那一小段 FAQ 预览），
                点了只会在首页内部跳到锚点，地址栏变成 /#about。
                现在统一指向真正的关于页 about.html，与手机菜单、页脚一致。 */
@@ -503,10 +504,8 @@
             ICON.search.replace('<svg', '<svg style="width:17px;height:17px"') + '<span data-i18n="search_aria">Search products</span></button>' +
           '<nav>' +
             '<a href="index.html" data-i18n="nav_home">Home</a>' +
-            '<a href="index.html#popular" data-i18n="nav_popular">Popular products</a>' +
-            '<a href="index.html#browse" data-i18n="nav_browse">Browse collections</a>' +
+            '<a href="index.html#browse" data-i18n="nav_products">Products</a>' +
             '<a href="about.html" data-i18n="nav_about">About Us</a>' +
-            '<a href="about.html#faq" data-i18n="footer_faq">FAQ</a>' +
           '</nav>' +
           '<div class="mobile-nav-foot">' +
             (CFG.whatsapp
@@ -622,15 +621,15 @@
     var fab = $('[data-wa-fab]');
     if (fab) fab.href = waLink();
 
-    // 当前导航高亮：分类页/详情页归到 Browse（否则这两页顶栏永远不高亮）
+    // 当前导航高亮：分类页/详情页归到 Products（否则这两页顶栏永远不高亮）
     var page = document.body.getAttribute('data-page');
-    if (page === 'category' || page === 'product') page = 'browse';
+    if (page === 'category' || page === 'product') page = 'products';
     $$('[data-nav]').forEach(function (a) {
       if (a.getAttribute('data-nav') === page) a.classList.add('is-active');
     });
 
-    // 首页滚动跟随：Popular / Browse 是首页里的锚点区块，
-    // 点谁谁立刻亮，滚到哪个区块就亮谁，回到顶部亮 Home
+    // 首页滚动跟随：Products 是首页里的 #browse 锚点区块，
+    // 点它立刻亮，滚到该区块亮它，回到顶部亮 Home
     if (page === 'home') {
       var byNav = {};
       $$('[data-nav]').forEach(function (a) { byNav[a.getAttribute('data-nav')] = a; });
@@ -639,7 +638,7 @@
           a.classList.toggle('is-active', a.getAttribute('data-nav') === name);
         });
       }
-      ['home', 'popular', 'browse'].forEach(function (k) {
+      ['home', 'products'].forEach(function (k) {
         if (byNav[k]) byNav[k].addEventListener('click', function () { setActiveNav(k); });
       });
       var spyTicking = false;
@@ -647,10 +646,8 @@
         spyTicking = false;
         var y = (window.scrollY || window.pageYOffset) + 120;
         var cur = 'home';
-        ['popular', 'browse'].forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el && y >= el.offsetTop - 80) cur = id;
-        });
+        var browseEl = document.getElementById('browse');
+        if (browseEl && y >= browseEl.offsetTop - 80) cur = 'products';
         setActiveNav(cur);
       }
       window.addEventListener('scroll', function () {

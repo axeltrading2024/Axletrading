@@ -330,7 +330,7 @@ a {
 .site-nav {
   display: none;
   align-items: center;
-  gap: 20px;
+  gap: 26px;
   font-size: 18px;
   font-weight: 500;
   color: var(--muted-foreground);

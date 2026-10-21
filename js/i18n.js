@@ -16,7 +16,7 @@
   /* ---------------- 翻译词典 ---------------- */
   var I18N = {
     nav_home:           { en: 'Home', es: 'Inicio' },
-    nav_popular:        { en: 'Popular', es: 'Populares' },
+    nav_products:       { en: 'Products', es: 'Productos' },
     nav_browse:         { en: 'Browse', es: 'Catálogo' },
     nav_about:          { en: 'About Us', es: 'Nosotros' },
     search_placeholder: { en: 'Search product, brand, category…', es: 'Busca producto, marca o categoría…' },
