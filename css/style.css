@@ -2137,6 +2137,15 @@ body:has(.drawer.open) .cart-fab {
   }
 }
 
+/* 左栏 = 图片卡 + 「回到分类」。以前这个返回链接埋在产品信息最底部，
+   右栏长的时候要滚很久才露出来；挪到图下既顺手，也把左栏下半截的空白补上 */
+.detail-side {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
 .detail-media {
   border-radius: var(--radius-3xl);
   border: 1px solid oklch(92% 0 0 / 0.6);
@@ -2192,6 +2201,28 @@ body:has(.drawer.open) .cart-fab {
 
 .back-link:hover {
   color: var(--foreground);
+}
+
+/* 图片下面那颗：做成低调的胶囊按钮，和图卡同宽并列时有分量，
+   不会像一行裸文字那样飘在空白里 */
+.detail-side .back-link {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  margin-top: 0;
+  padding: 9px 16px 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  line-height: 1.2;
+  transition: color .18s, border-color .18s, background .18s;
+}
+
+.detail-side .back-link:hover {
+  color: var(--foreground);
+  border-color: oklch(80% 0 0);
+  background: var(--surface);
 }
 
 @media (max-width: 480px) {
@@ -3256,6 +3287,8 @@ body.search-open { overflow: hidden; }
 
 /* ================================================================
    批量阶梯价（产品页）
+   默认收起：整张卡平时只有一行「VOLUME PRICING · 3 tiers · up to −10%」，
+   点这一行才展开价目表 + 算价区（2026-10-21 Eddy 定）
    ================================================================ */
 .tier-box {
   margin: 20px 0 4px;
@@ -3265,20 +3298,52 @@ body.search-open { overflow: hidden; }
   overflow: hidden;
 }
 
+/* 标题条本身就是按钮，整行可点 */
 .tier-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+  width: 100%;
   padding: 12px 14px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background .16s;
+}
+
+.tier-head:hover { background: var(--surface); }
+
+.tier-box.is-open .tier-head {
   border-bottom: 1px solid var(--border);
+  background: none;
+}
+
+.tier-title {
+  flex-shrink: 0;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+/* 收起时那句概览：几档、最多省几个点。不带 data-i18n（有变量），
+   由 app.js 在切语言时重算 */
+.tier-sum {
+  font-size: 11.5px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .tier-badge {
+  margin-left: auto;
+  flex-shrink: 0;
   font-size: 10.5px;
   font-weight: 500;
   letter-spacing: 0.03em;
@@ -3287,6 +3352,39 @@ body.search-open { overflow: hidden; }
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 2px 9px;
+}
+
+.tier-chev {
+  display: flex;
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  color: var(--muted-foreground);
+  transition: transform .24s ease;
+}
+
+.tier-chev svg { width: 100%; height: 100%; }
+.tier-box.is-open .tier-chev { transform: rotate(180deg); }
+
+/* 展开靠 grid 行高 0fr → 1fr 过渡，不用猜一个 max-height */
+.tier-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .28s ease;
+}
+
+.tier-box.is-open .tier-body { grid-template-rows: 1fr; }
+
+.tier-body-in { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tier-body, .tier-chev { transition: none; }
+}
+
+/* 窄屏：先把那颗「Auto-applied」藏掉，保住摘要 */
+@media (max-width: 430px) {
+  .tier-badge { display: none; }
+  .tier-sum { margin-left: auto; }
 }
 
 .tier-table {

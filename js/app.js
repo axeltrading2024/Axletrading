@@ -1841,8 +1841,13 @@
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
       '<div class="detail">' +
-        '<div class="detail-media" data-gallery>' +
-          productGalleryHTML(p) +
+        /* 左栏 = 看 + 走：图片卡和「回到分类」放同一列，
+           回到分类是个常用出口，之前埋在右栏最底部要滚很久才看到 */
+        '<div class="detail-side">' +
+          '<div class="detail-media" data-gallery>' +
+            productGalleryHTML(p) +
+          '</div>' +
+          '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; <span data-i18n="back_to">Back to </span>' + esc(cat ? cat.name : p.collection) + '</a>' +
         '</div>' +
         '<div class="detail-info">' +
           '<p class="eyebrow-lg">' + esc(p.brand) + '</p>' +
@@ -1871,7 +1876,6 @@
             '<button type="button" class="btn btn-outline" data-inquiry-product-trigger data-product-name="' + esc(p.name) + '" data-i18n="inquiry_product_btn">Inquire this product</button>' +
           '</div>' +
           tierBoxHTML(p) +
-          '<a class="back-link" href="category.html?slug=' + esc(p.collection) + '">&#8592; <span data-i18n="back_to">Back to </span>' + esc(cat ? cat.name : p.collection) + '</a>' +
           '<div class="spec-list">' +
             '<div class="spec-row"><span class="k" data-i18n="spec_brand">Brand</span><span>' + esc(p.brand || '—') + '</span></div>' +
             '<div class="spec-row"><span class="k" data-i18n="spec_collection">Collection</span><span>' + esc(cat ? cat.name : p.collection) + '</span></div>' +
@@ -2241,12 +2245,29 @@
     };
   }
 
-  /** 产品页「批量阶梯价」区块 HTML（无价格或无阶梯配置时返回空串） */
+  /** 收起时那行摘要用的数字：几档、最多省几个点 */
+  function tierSummaryVars() {
+    var list = tierList();
+    if (!list) return null;
+    var maxOff = 0;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].factor < 1) maxOff = Math.max(maxOff, Math.round((1 - list[i].factor) * 100));
+    }
+    return { n: list.length, p: maxOff };
+  }
+
+  /**
+   * 产品页「批量阶梯价」区块 HTML（无价格或无阶梯配置时返回空串）
+   * 2026-10-21 Eddy：默认收起，点标题条才展开完整表格 —— 平时不占版面，
+   * 收起时那行摘要（3 tiers · up to −10%）也够说明「量大有折」。
+   */
   function tierBoxHTML(p) {
     var list = tierList();
     if (!list || !p) return '';
     var pr = parsePrice(p.price);
     if (!pr) return '';
+    var sv = tierSummaryVars();
+    var sum = sv && sv.p > 0 ? window.T('tier_sum', sv) : window.T('tier_sum_flat', { n: list.length });
     var rows = list.map(function (t, i) {
       var label = (t.max === null || t.max === undefined) ? (t.min + '+') : (t.min + '–' + t.max);
       var off = t.factor < 1 ? '<em class="tier-off">−' + Math.round((1 - t.factor) * 100) + '%</em>' : '';
@@ -2255,23 +2276,29 @@
     }).join('');
     return '' +
       '<div class="tier-box" data-tier-box data-tier-base="' + esc(p.price) + '">' +
-        '<div class="tier-head">' +
-          '<span data-i18n="tier_title">Volume pricing</span>' +
+        '<button class="tier-head" type="button" data-tier-toggle aria-expanded="false" aria-controls="tier-body">' +
+          '<span class="tier-title" data-i18n="tier_title">Volume pricing</span>' +
+          '<span class="tier-sum" data-tier-sum>' + esc(sum) + '</span>' +
           '<span class="tier-badge" data-i18n="tier_auto">Auto-applied</span>' +
-        '</div>' +
-        '<table class="tier-table"><thead><tr>' +
-          '<th data-i18n="tier_qty">Qty</th><th data-i18n="tier_unit">Unit price</th>' +
-        '</tr></thead><tbody>' + rows + '</tbody></table>' +
-        '<div class="tier-calc">' +
-          '<label class="tier-qty-wrap"><span data-i18n="tier_your_qty">Your qty</span>' +
-            '<input type="number" min="1" step="1" value="1" inputmode="numeric" data-tier-qty></label>' +
-          '<div class="tier-out">' +
-            '<span><span data-i18n="tier_unit">Unit price</span><b data-tier-unit>—</b></span>' +
-            '<span><span data-i18n="tier_total">Total</span><b data-tier-total>—</b></span>' +
+          '<span class="tier-chev" aria-hidden="true">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>' +
+          '</span>' +
+        '</button>' +
+        '<div class="tier-body" id="tier-body"><div class="tier-body-in">' +
+          '<table class="tier-table"><thead><tr>' +
+            '<th data-i18n="tier_qty">Qty</th><th data-i18n="tier_unit">Unit price</th>' +
+          '</tr></thead><tbody>' + rows + '</tbody></table>' +
+          '<div class="tier-calc">' +
+            '<label class="tier-qty-wrap"><span data-i18n="tier_your_qty">Your qty</span>' +
+              '<input type="number" min="1" step="1" value="1" inputmode="numeric" data-tier-qty></label>' +
+            '<div class="tier-out">' +
+              '<span><span data-i18n="tier_unit">Unit price</span><b data-tier-unit>—</b></span>' +
+              '<span><span data-i18n="tier_total">Total</span><b data-tier-total>—</b></span>' +
+            '</div>' +
           '</div>' +
-        '</div>' +
-        '<p class="tier-saved" data-tier-saved></p>' +
-        '<p class="tier-moq" data-tier-moq hidden></p>' +
+          '<p class="tier-saved" data-tier-saved></p>' +
+          '<p class="tier-moq" data-tier-moq hidden></p>' +
+        '</div></div>' +
       '</div>';
   }
 
@@ -2322,6 +2349,22 @@
       input.addEventListener('input', function () { updateTierBox(); });
       input.addEventListener('change', function () { updateTierBox(); });
     }
+    /* 收起 / 展开：默认收起（只露出「Volume pricing · 3 tiers · up to −10%」一行），
+       点标题条展开表格和算价区。展开状态不做记忆，每次进页面都从收起开始。 */
+    var head = $('[data-tier-toggle]', box);
+    if (head) {
+      head.addEventListener('click', function () {
+        var open = box.classList.toggle('is-open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+    /* 摘要带变量（档数 / 折扣），data-i18n 覆盖不到，切语言时自己重算 */
+    window.addEventListener('i18n:change', function () {
+      var el = $('[data-tier-sum]', box);
+      var sv = tierSummaryVars();
+      if (!el || !sv) return;
+      el.textContent = sv.p > 0 ? window.T('tier_sum', sv) : window.T('tier_sum_flat', { n: sv.n });
+    });
     updateTierBox();
   }
 

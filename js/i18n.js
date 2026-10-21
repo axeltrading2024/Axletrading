@@ -64,6 +64,8 @@
 
     /* ---- 阶梯价 / 运费估算 / 报价单 ---- */
     tier_title:         { en: 'Volume pricing', es: 'Precios por volumen' },
+    tier_sum:           { en: '{n} tiers · up to −{p}%', es: '{n} tramos · hasta −{p}%' },
+    tier_sum_flat:      { en: '{n} tiers', es: '{n} tramos' },
     tier_auto:          { en: 'Auto-applied', es: 'Se aplica solo' },
     tier_qty:           { en: 'Qty', es: 'Cant.' },
     tier_unit:          { en: 'Unit price', es: 'Precio unitario' },
@@ -499,6 +501,9 @@
     applyStatic();
     renderToggle();
     if (typeof window.__translateDynamic === 'function') window.__translateDynamic();
+    /* 带变量的动态文案（如阶梯价收起时的摘要）不在 data-i18n 覆盖范围内，
+       由 app.js 监听这个事件自己重算 */
+    try { window.dispatchEvent(new CustomEvent('i18n:change')); } catch (e) {}
   }
 
   /* ---------------- 暴露接口 ---------------- */
