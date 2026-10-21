@@ -628,6 +628,39 @@
     $$('[data-nav]').forEach(function (a) {
       if (a.getAttribute('data-nav') === page) a.classList.add('is-active');
     });
+
+    // 首页滚动跟随：Popular / Browse 是首页里的锚点区块，
+    // 点谁谁立刻亮，滚到哪个区块就亮谁，回到顶部亮 Home
+    if (page === 'home') {
+      var byNav = {};
+      $$('[data-nav]').forEach(function (a) { byNav[a.getAttribute('data-nav')] = a; });
+      function setActiveNav(name) {
+        $$('[data-nav]').forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('data-nav') === name);
+        });
+      }
+      ['home', 'popular', 'browse'].forEach(function (k) {
+        if (byNav[k]) byNav[k].addEventListener('click', function () { setActiveNav(k); });
+      });
+      var spyTicking = false;
+      function navSpy() {
+        spyTicking = false;
+        var y = (window.scrollY || window.pageYOffset) + 120;
+        var cur = 'home';
+        ['popular', 'browse'].forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el && y >= el.offsetTop - 80) cur = id;
+        });
+        setActiveNav(cur);
+      }
+      window.addEventListener('scroll', function () {
+        if (!spyTicking) {
+          spyTicking = true;
+          window.requestAnimationFrame(navSpy);
+        }
+      }, { passive: true });
+      navSpy();
+    }
   }
 
   /* ---------------- 询价抽屉 ---------------- */
