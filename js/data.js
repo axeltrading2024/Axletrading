@@ -986,7 +986,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 0.25,
+    "weight": 1,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
