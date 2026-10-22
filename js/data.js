@@ -736,7 +736,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 0.25,
+    "weight": 1,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
