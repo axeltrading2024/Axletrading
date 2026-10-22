@@ -309,8 +309,8 @@ window.PRODUCTS = [
     "note": "Icon fragrance",
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
-    "moq": "12",
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
@@ -468,6 +468,7 @@ window.PRODUCTS = [
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
@@ -536,6 +537,7 @@ window.PRODUCTS = [
     "note": "Woody aromatic",
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
@@ -603,6 +605,7 @@ window.PRODUCTS = [
     "note": "A captivating blend of sugar-coated chestnut and vanilla, defining modern masculine strength through a warm, addictive gourmand-woody scent",
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/a-g1.jpg",
@@ -675,6 +678,7 @@ window.PRODUCTS = [
     "note": "Niche · Saffron amber",
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "niche",
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
@@ -2183,6 +2187,7 @@ window.PRODUCTS = [
     "note": "Bold Luxury-Private Sensuality-Scent of Power",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "video": "img/vid/t.mp4",
     "images": [
@@ -2261,6 +2266,7 @@ window.PRODUCTS = [
     "note": "Embrace your duality, rule with fearless elegance",
     "desc": "it is good to be bad",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/c-g1.jpg",
@@ -2338,6 +2344,7 @@ window.PRODUCTS = [
     "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
@@ -2440,6 +2447,7 @@ window.PRODUCTS = [
     "note": "popular hot perfumes",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/p-g1.jpg",
@@ -2517,6 +2525,7 @@ window.PRODUCTS = [
     "note": "love-sex-passion",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "video": "img/vid/v.mp4",
     "images": [
@@ -2590,6 +2599,7 @@ window.PRODUCTS = [
     "note": "Wear the art of travel, embrace your endless journey",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "video": "img/vid/l-2.mp4",
     "images": [
@@ -2663,6 +2673,7 @@ window.PRODUCTS = [
     "note": "",
     "desc": "",
     "collection": "perfumes",
+    "moq": "12 pcs",
     "subcategory": "best-sellers",
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
@@ -3652,7 +3663,6 @@ window.SHIPPING_RATES = {
   /* 未覆盖国家：只提示，不估价 */
   quoteFallback: true
 };
-
 window.TIER_PRICING = {
   enabled: true,
   tiers: [

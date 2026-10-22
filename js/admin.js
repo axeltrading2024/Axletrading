@@ -263,6 +263,7 @@
         collection: p.collection,
       };
       if (p.subcategory) o.subcategory = p.subcategory;
+      if (p.moq) o.moq = p.moq;
       if (p.popular) o.popular = true;
       if (p.keywords && p.keywords.length) o.keywords = p.keywords;
       if (String(p.image || '').indexOf('img/cat/') === 0) fallback.push(p.id);
