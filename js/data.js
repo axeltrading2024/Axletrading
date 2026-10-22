@@ -1700,7 +1700,7 @@ window.PRODUCTS = [
     "desc": "Compact GaN charger delivering 65W across three ports for laptop, tablet and phone.",
     "collection": "chargers",
     "subcategory": "chargers",
-    "weight": 0.15,
+    "weight": 0.1,
     "keywords": [
       "charger",
       "usb-c",
