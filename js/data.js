@@ -1050,7 +1050,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 0.25,
+    "weight": 1,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
