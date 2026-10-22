@@ -614,7 +614,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "images": [
       "img/prod/gal/a-g1.jpg",
       "img/prod/gal/a-g2.jpg",
