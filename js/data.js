@@ -1183,7 +1183,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 0.25,
+    "weight": 1,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
