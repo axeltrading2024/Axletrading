@@ -255,14 +255,14 @@
     proof_s2t:          { en: 'Wrapped and packed', es: 'Envuelto y embalado' },
     proof_s2d:          { en: 'Bubble wrap on every bottle, air columns down both sides, tape last — and a photo on the bench before the carton closes.', es: 'Plástico de burbujas en cada botella, columnas de aire a ambos lados y cinta al final. Y una foto en la mesa antes de cerrar la caja.' },
     proof_s3t:          { en: 'Box 23349 · 1.1 kg', es: 'Caja 23349 · 1,1 kg' },
-    proof_s3d:          { en: 'Marked by hand before the tape goes on: number, size, weight.', es: 'Marcado a mano antes de precintar: número, medidas y peso.' },
+    proof_s3d:          { en: 'Marked by hand before the tape goes on: number, size, weight — then the DHL label goes on top.', es: 'Marcado a mano antes de precintar: número, medidas y peso. Después se pega la etiqueta de DHL.' },
     proof_s4t:          { en: 'Sold out — 18 days later', es: 'Agotado — 18 días después' },
     proof_s4d:          { en: '“We already sold the perfumes we bought. We’ll make the video with the next package.”', es: '«Ya vendimos los perfumes que compramos. Haremos el vídeo con el próximo paquete.»' },
     /* 首页时间轴新增两格：订单清点 / 付款确认 */
     proof_l1t:          { en: 'Pulled and checked, bottle by bottle', es: 'Sacado y revisado, botella a botella' },
     proof_l1d:          { en: 'Two Sauvage, one Erba Pura, and the rest of his list behind them — counted before anything gets wrapped.', es: 'Dos Sauvage, un Erba Pura y el resto de su lista detrás: contados antes de envolver nada.' },
-    proof_p1t:          { en: 'Paid 4 November, 12:38', es: 'Pagado el 4 de noviembre, 12:38' },
-    proof_p1d:          { en: 'Card payment cleared on the platform. The amount is his business, so it is blurred — the date is what starts the 20-day clock.', es: 'Pago con tarjeta confirmado en la plataforma. El importe es cosa suya, por eso está difuminado: la fecha es lo que arranca los 20 días.' },
+    proof_p1t:          { en: 'Paid 4 November', es: 'Pagado el 4 de noviembre' },
+    proof_p1d:          { en: 'He forwards the platform receipt straight into the chat — “Your payment is successful.” The amount stays out of the picture; this date is what starts the 20-day clock.', es: 'Reenvía el recibo de la plataforma directo al chat: «Your payment is successful». El importe no aparece; esa fecha es la que arranca los 20 días.' },
     /* 2026-10-21 删除 bench_*（「箱内实录」第二条视频，与开箱片同源、文案与打包格重复） */
     proof_v_eyebrow:    { en: 'The video he sent back', es: 'El vídeo que nos envió' },
     proof_v_h3:         { en: '“All in perfect conditions.”', es: '«Todo en perfectas condiciones.»' },
