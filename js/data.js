@@ -475,7 +475,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
       "img/prod/gal/valentino-born-in-roma-g1.jpg",
