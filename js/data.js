@@ -3612,7 +3612,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "other",
     "subcategory": "gamepad",
-    "weight": 0.4,
+    "weight": 1,
     "keywords": [
       "PS",
       "game",
