@@ -3306,7 +3306,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "sunglasses",
     "subcategory": "belts",
-    "weight": 0.2,
+    "weight": 0.5,
     "keywords": [
       "LV",
       "luxury.belts"
