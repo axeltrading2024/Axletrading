@@ -296,7 +296,7 @@ window.PRODUCTS = [
     "note": "Active noise cancelling",
     "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
     "collection": "earbuds-headphones",
-    "weight": 0.2,
+    "weight": 1.5,
     "keywords": [
       "sony",
       "wh1000",
