@@ -2993,7 +2993,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
-    "weight": 0.6,
+    "weight": 0.8,
     "images": [
       "img/prod/gal/football-training-kit-g1.jpg",
       "img/prod/gal/football-training-kit-g2.jpg",
