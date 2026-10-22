@@ -248,7 +248,7 @@ window.PRODUCTS = [
     "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
     "collection": "earbuds-headphones",
-    "weight": 0.2,
+    "weight": 1.5,
     "images": [
       "img/prod/gal/airpods-max-g1.jpg",
       "img/prod/gal/airpods-max-g2.jpg",
