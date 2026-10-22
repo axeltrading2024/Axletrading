@@ -1382,7 +1382,7 @@ window.PRODUCTS = [
     "note": "Multi-styler",
     "desc": "Curl, wave, smooth and dry with no extreme heat, using controlled Coanda airflow.",
     "collection": "hair-dryers",
-    "weight": 0.7,
+    "weight": 5,
     "images": [
       "img/prod/gal/dyson-airwrap-g1.jpg",
       "img/prod/gal/dyson-airwrap-g2.jpg",
