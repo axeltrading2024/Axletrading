@@ -2389,7 +2389,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
       "img/prod/gal/jean-paul-gaultter-g3.jpg",
@@ -2493,7 +2493,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "images": [
       "img/prod/gal/p-g1.jpg",
       "img/prod/gal/p-g2.jpg",
@@ -2572,7 +2572,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "video": "img/vid/v.mp4",
     "images": [
       "img/prod/gal/v-g1.jpg",
@@ -2647,7 +2647,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "video": "img/vid/l-2.mp4",
     "images": [
       "img/prod/gal/l-2-g1.jpg",
@@ -2722,7 +2722,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
       "img/prod/gal/paco-rabannel-g2.jpg",
