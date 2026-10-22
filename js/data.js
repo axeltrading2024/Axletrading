@@ -807,7 +807,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 0.25,
+    "weight": 1,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
