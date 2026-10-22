@@ -688,7 +688,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "niche",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.41,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
