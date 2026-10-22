@@ -2110,7 +2110,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "sunglasses",
     "subcategory": "luxury-bags",
-    "weight": 3,
+    "weight": 2.5,
     "variants": [
       {
         "name": "1",
