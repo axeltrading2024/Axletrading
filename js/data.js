@@ -207,7 +207,7 @@ window.PRODUCTS = [
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
-    "weight": 0.2,
+    "weight": 0.22,
     "popular": true,
     "video": "img/vid/airpods-pro-2.mp4",
     "images": [
@@ -312,9 +312,9 @@ window.PRODUCTS = [
     "note": "Icon fragrance",
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
@@ -473,9 +473,9 @@ window.PRODUCTS = [
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
       "img/prod/gal/valentino-born-in-roma-g1.jpg",
@@ -543,9 +543,9 @@ window.PRODUCTS = [
     "note": "Woody aromatic",
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
       "img/prod/gal/bleu-chanel-g2.jpg",
@@ -612,9 +612,9 @@ window.PRODUCTS = [
     "note": "A captivating blend of sugar-coated chestnut and vanilla, defining modern masculine strength through a warm, addictive gourmand-woody scent",
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/a-g1.jpg",
       "img/prod/gal/a-g2.jpg",
@@ -686,9 +686,9 @@ window.PRODUCTS = [
     "note": "Niche · Saffron amber",
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "niche",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
@@ -735,8 +735,8 @@ window.PRODUCTS = [
     "note": "Automatic · Steel",
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "rolex-style",
+    "weight": 0.25,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -806,8 +806,8 @@ window.PRODUCTS = [
     "note": "classic-elegant-waterprrof-practical",
     "desc": "",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "rolex-style",
+    "weight": 0.25,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -891,8 +891,8 @@ window.PRODUCTS = [
     "note": "Chronograph",
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "rolex-style",
+    "weight": 0.25,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -985,8 +985,8 @@ window.PRODUCTS = [
     "note": "dual timing-luxury",
     "desc": "For dual time zone",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "rolex-style",
+    "weight": 0.25,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -1049,8 +1049,8 @@ window.PRODUCTS = [
     "note": "Octagonal bezel",
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "ap-style",
+    "weight": 0.25,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1118,8 +1118,8 @@ window.PRODUCTS = [
     "note": "elegant-luxury",
     "desc": "",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "cartier-style",
+    "weight": 0.25,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1182,8 +1182,8 @@ window.PRODUCTS = [
     "note": "Luxury-young-passion",
     "desc": "",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "tissot-style",
+    "weight": 0.25,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1255,8 +1255,8 @@ window.PRODUCTS = [
     "note": "sport-passion-young",
     "desc": "",
     "collection": "watches",
-    "weight": 0.25,
     "subcategory": "swatch",
+    "weight": 0.25,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
@@ -1314,8 +1314,8 @@ window.PRODUCTS = [
     "note": "smart watch-care your daily routine",
     "desc": "Bigger, brighter display with advanced health tracking and fast charging.",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "smart-watch",
+    "weight": 0.4,
     "popular": true,
     "keywords": [
       "apple",
@@ -1343,8 +1343,8 @@ window.PRODUCTS = [
     "note": "AMOLED · GPS",
     "desc": "Rugged titanium-style smartwatch with a bright AMOLED display and multi-day battery.",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "smart-watch",
+    "weight": 0.4,
     "keywords": [
       "samsung",
       "galaxy",
@@ -1454,8 +1454,8 @@ window.PRODUCTS = [
     "note": "tempreture control-harmless-gift box",
     "desc": "",
     "collection": "hair-dryers",
-    "weight": 0.7,
     "subcategory": "hair-care",
+    "weight": 0.7,
     "images": [
       "img/prod/gal/d-g1.jpg",
       "img/prod/gal/d-g2.jpg",
@@ -1482,8 +1482,8 @@ window.PRODUCTS = [
     "note": "Cordless · HEPA",
     "desc": "High-torque cordless vacuum with laser dust detection and full-machine HEPA filtration.",
     "collection": "hair-dryers",
-    "weight": 0.7,
     "subcategory": "vacuum-cleaners",
+    "weight": 0.7,
     "keywords": [
       "dyson",
       "v15",
@@ -1511,8 +1511,8 @@ window.PRODUCTS = [
     "note": "Gold accents",
     "desc": "Slim metal frame with signature gold-tone detailing and gradient lenses.",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury",
+    "weight": 0.2,
     "keywords": [
       "prada",
       "sunglasses",
@@ -1545,8 +1545,8 @@ window.PRODUCTS = [
     "note": "fashion-uvprotection",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury",
+    "weight": 0.2,
     "keywords": [
       "rayban",
       "sunglasses"
@@ -1607,8 +1607,8 @@ window.PRODUCTS = [
     "note": "Acetate frame",
     "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury",
+    "weight": 0.2,
     "keywords": [
       "LV",
       "luxury",
@@ -1670,8 +1670,8 @@ window.PRODUCTS = [
     "note": "Camera · Voicerecord- AI-real translation",
     "desc": "Hands-free capture, open-ear audio and a built-in voice assistant in a classic frame.",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "ai-glasses",
+    "weight": 0.4,
     "keywords": [
       "rayban",
       "meta",
@@ -1699,8 +1699,8 @@ window.PRODUCTS = [
     "note": "USB-C · 2-port",
     "desc": "Compact GaN charger delivering 65W across three ports for laptop, tablet and phone.",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "chargers",
+    "weight": 0.15,
     "keywords": [
       "charger",
       "usb-c",
@@ -1737,8 +1737,8 @@ window.PRODUCTS = [
     "note": "20W fast charger",
     "desc": "Magnetic 15W wireless charging pad with an aluminium shell and slip-free base.",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "chargers",
+    "weight": 0.15,
     "keywords": [
       "magsafe",
       "wireless",
@@ -1785,8 +1785,8 @@ window.PRODUCTS = [
     "note": "MagSafe compatible",
     "desc": "Slim clear case with reinforced corners and a full-strength MagSafe magnet ring.",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "phonecase",
+    "weight": 0.15,
     "keywords": [
       "iphone",
       "case",
@@ -1818,8 +1818,8 @@ window.PRODUCTS = [
     "note": "premium protectiion-magsafe",
     "desc": "",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "phonecase",
+    "weight": 0.15,
     "keywords": [
       "otter",
       "case",
@@ -1970,8 +1970,8 @@ window.PRODUCTS = [
     "note": "dual lens dual views-AI alert",
     "desc": "",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "other-products",
+    "weight": 0.4,
     "keywords": [
       "camera",
       "security"
@@ -1992,8 +1992,8 @@ window.PRODUCTS = [
     "note": "NFC card-google card",
     "desc": "tap and rate you  five star",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "other-products",
+    "weight": 0.4,
     "popular": true,
     "video": "img/vid/n.mp4",
     "images": [
@@ -2061,8 +2061,8 @@ window.PRODUCTS = [
     "note": "foot massage",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "shoes",
+    "weight": 0.6,
     "keywords": [
       "nike",
       "shoes",
@@ -2109,8 +2109,8 @@ window.PRODUCTS = [
     "note": "leather-metal-logo",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury-bags",
+    "weight": 0.2,
     "variants": [
       {
         "name": "1",
@@ -2147,8 +2147,8 @@ window.PRODUCTS = [
     "note": "fashional-elegance-metal logo",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury-bags",
+    "weight": 0.2,
     "variants": [
       {
         "name": "1",
@@ -2190,8 +2190,8 @@ window.PRODUCTS = [
     "note": "understated luxury: featuring a feather-light, hand-painted Y-pattern that speaks only to those who truly know.",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury-bags",
+    "weight": 0.2,
     "variants": [
       {
         "name": "Card wallet-Green",
@@ -2228,9 +2228,9 @@ window.PRODUCTS = [
     "note": "Bold Luxury-Private Sensuality-Scent of Power",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "video": "img/vid/t.mp4",
     "images": [
       "img/prod/gal/t-g1.jpg",
@@ -2308,9 +2308,9 @@ window.PRODUCTS = [
     "note": "Embrace your duality, rule with fearless elegance",
     "desc": "it is good to be bad",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/c-g1.jpg",
       "img/prod/gal/c-g2.jpg",
@@ -2387,9 +2387,9 @@ window.PRODUCTS = [
     "note": "A sensory manifesto for the fearless: Celebrate diversity, embrace the scandal",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
       "img/prod/gal/jean-paul-gaultter-g3.jpg",
@@ -2491,9 +2491,9 @@ window.PRODUCTS = [
     "note": "popular hot perfumes",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/p-g1.jpg",
       "img/prod/gal/p-g2.jpg",
@@ -2570,9 +2570,9 @@ window.PRODUCTS = [
     "note": "love-sex-passion",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "video": "img/vid/v.mp4",
     "images": [
       "img/prod/gal/v-g1.jpg",
@@ -2645,9 +2645,9 @@ window.PRODUCTS = [
     "note": "Wear the art of travel, embrace your endless journey",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "video": "img/vid/l-2.mp4",
     "images": [
       "img/prod/gal/l-2-g1.jpg",
@@ -2720,9 +2720,9 @@ window.PRODUCTS = [
     "note": "",
     "desc": "",
     "collection": "perfumes",
-    "weight": 0.35,
-    "moq": "12 pcs",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
+    "weight": 0.35,
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
       "img/prod/gal/paco-rabannel-g2.jpg",
@@ -2809,8 +2809,8 @@ window.PRODUCTS = [
     "note": "comfortable-soft-fashion",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "shoes",
+    "weight": 0.6,
     "keywords": [
       "yeezy",
       "slide",
@@ -2882,8 +2882,8 @@ window.PRODUCTS = [
     "note": "soft-light-warterplaying",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "shoes",
+    "weight": 0.6,
     "keywords": [
       "nike",
       "shose",
@@ -2915,8 +2915,8 @@ window.PRODUCTS = [
     "note": "football club or national team jersey",
     "desc": "numbers and name could be customized, vintage style are also in stock",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "keywords": [
       "jersey. football kit",
       "club jersey"
@@ -2992,8 +2992,8 @@ window.PRODUCTS = [
     "note": "quick-dry fabric -maximum comfort-unrestricted movement",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "images": [
       "img/prod/gal/football-training-kit-g1.jpg",
       "img/prod/gal/football-training-kit-g2.jpg",
@@ -3129,9 +3129,9 @@ window.PRODUCTS = [
     "note": "suitcase style-colorful",
     "desc": "",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "phonecase",
     "moq": "10 pcs per color",
+    "weight": 0.15,
     "variants": [
       {
         "name": "1",
@@ -3173,8 +3173,8 @@ window.PRODUCTS = [
     "note": "windbreaker-hoodie-sports-trainning",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "images": [
       "img/prod/gal/h-2-g1.jpg",
       "img/prod/gal/h-2-g2.jpg",
@@ -3237,8 +3237,8 @@ window.PRODUCTS = [
     "note": "slim style and fashionable",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "keywords": [
       "lululemon",
       "slim clothes",
@@ -3305,8 +3305,8 @@ window.PRODUCTS = [
     "note": "luxury belt",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "belts",
+    "weight": 0.2,
     "keywords": [
       "LV",
       "luxury.belts"
@@ -3357,8 +3357,8 @@ window.PRODUCTS = [
     "note": "Hermes belt",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "belts",
+    "weight": 0.2,
     "keywords": [
       "Hermes",
       "luxury belt"
@@ -3394,8 +3394,8 @@ window.PRODUCTS = [
     "note": "Luxry belt",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "belts",
+    "weight": 0.2,
     "keywords": [
       "Gucci",
       "luxury belt"
@@ -3446,8 +3446,8 @@ window.PRODUCTS = [
     "note": "down jacket- down coat-fashion and warm",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "keywords": [
       "jacket",
       "down",
@@ -3497,8 +3497,8 @@ window.PRODUCTS = [
     "note": "smart pencil-bluetooth connection",
     "desc": "",
     "collection": "chargers",
-    "weight": 0.15,
     "subcategory": "pencil-and-airtag",
+    "weight": 0.15,
     "keywords": [
       "apple",
       "pencil",
@@ -3525,8 +3525,8 @@ window.PRODUCTS = [
     "note": "fashionable and elegant backpack",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury-bags",
+    "weight": 0.2,
     "keywords": [
       "LV",
       "bags",
@@ -3588,8 +3588,8 @@ window.PRODUCTS = [
     "note": "fashion-elegant-Business casual",
     "desc": "",
     "collection": "sunglasses",
-    "weight": 0.2,
     "subcategory": "luxury-bags",
+    "weight": 0.2,
     "keywords": [
       "prada",
       "bags",
@@ -3611,8 +3611,8 @@ window.PRODUCTS = [
     "note": "bluetooth,PS4 PS5 controller",
     "desc": "",
     "collection": "other",
-    "weight": 0.4,
     "subcategory": "gamepad",
+    "weight": 0.4,
     "keywords": [
       "PS",
       "game",
@@ -3651,8 +3651,8 @@ window.PRODUCTS = [
     "note": "warm-fashoin-couple style",
     "desc": "",
     "collection": "clothes-and-shoes",
-    "weight": 0.6,
     "subcategory": "clothes",
+    "weight": 0.6,
     "images": [
       "img/prod/gal/g-5-g1.jpg",
       "img/prod/gal/g-5-g2.jpg",
@@ -3728,6 +3728,7 @@ window.SHIPPING_RATES = {
   /* 未覆盖国家：只提示，不估价 */
   quoteFallback: true
 };
+
 window.TIER_PRICING = {
   enabled: true,
   tiers: [
