@@ -688,7 +688,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "niche",
     "moq": "12 pcs",
-    "weight": 0.5,
+    "weight": 0.41,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
@@ -736,7 +736,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -807,7 +807,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -892,7 +892,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -986,7 +986,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -1050,7 +1050,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1119,7 +1119,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "cartier-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1183,7 +1183,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1256,7 +1256,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 1.0,
+    "weight": 0.35,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
@@ -1889,7 +1889,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
-    "weight": 2.93,
+    "weight": 3,
     "video": "img/vid/b.mp4",
     "images": [
       "img/prod/gal/b-g1.jpg",
