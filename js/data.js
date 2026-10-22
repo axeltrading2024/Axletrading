@@ -1608,7 +1608,7 @@ window.PRODUCTS = [
     "desc": "Chunky acetate silhouette with a sculpted browline and UV400 lenses.",
     "collection": "sunglasses",
     "subcategory": "luxury",
-    "weight": 0.2,
+    "weight": 0.3,
     "keywords": [
       "LV",
       "luxury",
