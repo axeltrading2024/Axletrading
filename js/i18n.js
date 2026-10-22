@@ -76,6 +76,7 @@
     ship_title:         { en: 'Estimate shipping', es: 'Estimar envío' },
     ship_dest:          { en: 'Destination', es: 'Destino' },
     ship_weight:        { en: 'Actual weight (kg)', es: 'Peso real (kg)' },
+    ship_weight_hint:   { en: 'Auto-filled from your cart — adjust if needed.', es: 'Rellenado desde tu carrito — ajústalo si hace falta.' },
     ship_dims:          { en: 'Box size (cm)', es: 'Medidas de caja (cm)' },
     ship_empty:         { en: 'Enter weight or box size to estimate.', es: 'Ingresa peso o medidas para estimar.' },
     ship_chargeable:    { en: 'Chargeable weight', es: 'Peso facturable' },

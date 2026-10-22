@@ -312,6 +312,7 @@
             brand: it.brand || '',
             image: it.image || '',
             price: it.price || '',
+            weight: typeof it.weight === 'number' ? it.weight : 0,
             qty: typeof it.qty === 'number' && it.qty > 0 ? Math.floor(it.qty) : 1,
           };
         });
@@ -345,7 +346,7 @@
       } else {
         this.items.push({
           id: product.id, variant: product.variant || '', name: product.name, brand: product.brand,
-          image: product.image, price: product.price, qty: 1,
+          image: product.image, price: product.price, weight: product.weight || 0, qty: 1,
         });
       }
       this.save();
@@ -1034,6 +1035,19 @@
     return has ? { sum: sum, currency: cur } : null;
   }
 
+  /** 购物车总实重（kg）= 每件重量 × 数量 之和；用于运费估算自动预填 */
+  function cartTotalWeight() {
+    var w = 0;
+    Store.items.forEach(function (it) { w += (Number(it.weight) || 0) * (it.qty || 0); });
+    return w;
+  }
+
+  /** 重量格式：整数不带小数，否则最多两位（去掉尾随零） */
+  function fmtWeight(n) {
+    var v = Number(n) || 0;
+    return (Math.round(v * 100) / 100).toString();
+  }
+
   /**
    * 商品合计 + 运费 → 暂估总价（只在这里做币种合并）
    * 同币种直接相加；跨币种（商品以 € 标价、运费按 $ 报）先把商品按 FX_RATES 折成运费币种，
@@ -1125,6 +1139,7 @@
               '</div>' +
             '</div>' +
           '</div>' +
+          '<p class="ship-wt-hint" data-i18n="ship_weight_hint">Auto-filled from your cart — adjust if needed.</p>' +
           '<div class="ship-out" data-ship-out></div>' +
           '<p class="ship-note" data-i18n="ship_note">Indicative only — final freight is confirmed with your quotation.</p>' +
         '</div>' +
@@ -1217,6 +1232,36 @@
         renderShipEst();
       }
     });
+
+    // 按购物车实际总重预填重量；购物车里已有商品时默认展开运费块并直接算好，
+    // 解决「运费估算入口太淡、客户没注意到」的问题。
+    function prefillWeight() {
+      var kg = $('[data-ship-kg]', host);
+      var tw = cartTotalWeight();
+      if (kg && tw > 0) kg.value = fmtWeight(tw);
+    }
+    prefillWeight();
+    if (tog && body && cartTotalWeight() > 0) {
+      body.removeAttribute('hidden');
+      host.classList.add('is-open');
+      tog.setAttribute('aria-expanded', 'true');
+      shipTouched = true;
+    }
+    Store.onChange(function () {
+      prefillWeight();
+      // 购物车里已有商品但运费面板还收着时，自动展开并直接算好，
+      // 确保客户加购后一眼看到运费估算（含自动累加的总重）。
+      if (cartTotalWeight() > 0 && !host.classList.contains('is-open') && tog && body) {
+        body.removeAttribute('hidden');
+        host.classList.add('is-open');
+        tog.setAttribute('aria-expanded', 'true');
+        shipTouched = true;
+        renderShipEst();
+      } else if (host.classList.contains('is-open')) {
+        renderShipEst();
+      }
+    });
+
     renderShipEst();
   }
 
@@ -1408,6 +1453,7 @@
       brand: p.brand,
       image: v ? v.image : p.image,
       price: v ? (v.price || p.price) : p.price,
+      weight: p.weight || 0,
       qty: 1,
     });
     if (!silent) toast(window.T('toast_added', { name: p.name + (v ? ' [' + v.name + ']' : '') }));

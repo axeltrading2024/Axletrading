@@ -147,6 +147,11 @@
               <input id="f-moq" data-f-moq placeholder="如 50 pcs per color / 100 pcs mix colors（留空 = Flexible）">
               <span class="help">英文或行业缩写均可；西语站原样显示，不翻译。留空 = Flexible</span>
             </div>
+            <div class="field full">
+              <label for="f-weight">单件重量 Weight (kg)（运费估算按购物车自动累加总重；留空 = 0.35 默认）</label>
+              <input id="f-weight" data-f-weight type="number" min="0" step="0.01" placeholder="如 0.35（香水约 0.35，耳机约 0.20，手表约 0.25）">
+              <span class="help">每件净重（千克）。客户在购物车里会按「重量 × 数量」自动算出总重并填入运费估算。</span>
+            </div>
             <div class="field full" data-page-node-id="9VWTCrsqlcW47QDd7EeGOu">
               <label for="f-desc" data-page-node-id="Lwh85WzdwScQ2tEWhUzYZw">详细介绍（详情页显示）</label>
               <textarea id="f-desc" data-f-desc placeholder="一段英文描述，客户会在详情页看到"></textarea>
@@ -438,6 +443,7 @@
       };
       if (p.subcategory) o.subcategory = p.subcategory;
       if (p.moq) o.moq = p.moq;
+      if (p.weight != null) o.weight = p.weight;
       if (p.popular) o.popular = true;
       if (p.video) o.video = p.video;
       if (p.images && p.images.length) o.images = p.images.slice(0, 4);
@@ -653,7 +659,7 @@
   }
 
   /* ---------------- 表单 ---------------- */
-  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video', 'moq'];
+  var FIELDS = ['id', 'name', 'brand', 'price', 'note', 'desc', 'collection', 'subcategory', 'keywords', 'popular', 'video', 'moq', 'weight'];
 
   function fillForm(p) {
     if (!p) { resetForm(); return; }
@@ -665,6 +671,7 @@
     $('[data-f-note]').value = p.note || '';
     $('[data-f-desc]').value = p.desc || '';
     $('[data-f-moq]').value = p.moq || '';
+    $('[data-f-weight]').value = (p.weight != null) ? p.weight : '';
     $('[data-f-video]').value = p.video || '';
     renderGalRows(p.image, p.images);
     showVideoPreview(p.video || '');
@@ -717,6 +724,8 @@
     if (!p.subcategory) p.subcategory = undefined;
     if (!p.video) p.video = undefined;
     if (!p.moq) p.moq = undefined;
+    var w = parseFloat(p.weight);
+    p.weight = (!isNaN(w) && w > 0) ? w : undefined;
     p.images = collectGallery();
     p.variants = collectVariants();
     return p;

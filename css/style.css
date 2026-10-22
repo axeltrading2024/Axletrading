@@ -3526,31 +3526,41 @@ body.search-open { overflow: hidden; }
    运费估算（询价篮抽屉内）
    ================================================================ */
 .ship-est {
-  border-top: 1px solid var(--border);
-  background: var(--card);
+  margin: 12px 16px 4px;
+  border: 1.5px solid oklch(82% 0.10 250);
+  border-radius: 12px;
+  background: oklch(97.5% 0.025 250);
+  box-shadow: 0 2px 12px oklch(62% 0.13 250 / 0.10);
+  overflow: hidden;
 }
 
-/* 折叠条头：浅灰底带，让「Estimate shipping」在纯白抽屉里跳出来，
+/* 折叠条头：运输蓝底带，让「Estimate shipping」在抽屉里一眼可见，
    提示客户「点这里就能算运费」；白底图标 + 蓝色描边作为轻量的可点击暗示 */
 .ship-toggle {
   display: flex;
   align-items: center;
   gap: 9px;
   width: 100%;
-  padding: 13px 20px;
+  padding: 13px 18px;
   font-size: 12.5px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.03em;
-  color: var(--foreground);
-  background: #f2f2f2;
-  background: oklch(95.5% 0 0);
+  color: oklch(42% 0.14 250);
+  background: oklch(93% 0.05 250);
   text-align: left;
   transition: background 0.2s;
 }
 
-.ship-toggle:hover { background: oklch(92.5% 0 0); }
+.ship-toggle:hover { background: oklch(89% 0.07 250); }
 
-.ship-est.is-open .ship-toggle { background: oklch(94.5% 0 0); }
+.ship-est.is-open .ship-toggle { background: oklch(90% 0.06 250); }
+
+.ship-wt-hint {
+  margin: 8px 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: oklch(52% 0.10 250);
+}
 
 .ship-ico {
   display: grid;
