@@ -2230,7 +2230,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "video": "img/vid/t.mp4",
     "images": [
       "img/prod/gal/t-g1.jpg",
@@ -2310,7 +2310,7 @@ window.PRODUCTS = [
     "collection": "perfumes",
     "subcategory": "best-sellers",
     "moq": "12 pcs",
-    "weight": 0.35,
+    "weight": 0.5,
     "images": [
       "img/prod/gal/c-g1.jpg",
       "img/prod/gal/c-g2.jpg",
