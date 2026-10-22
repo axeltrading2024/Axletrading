@@ -1455,7 +1455,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "hair-dryers",
     "subcategory": "hair-care",
-    "weight": 0.7,
+    "weight": 3,
     "images": [
       "img/prod/gal/d-g1.jpg",
       "img/prod/gal/d-g2.jpg",
