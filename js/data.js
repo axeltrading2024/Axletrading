@@ -1546,7 +1546,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "sunglasses",
     "subcategory": "luxury",
-    "weight": 0.2,
+    "weight": 0.3,
     "keywords": [
       "rayban",
       "sunglasses"
