@@ -399,7 +399,7 @@ window.PRODUCTS = [
     "note": "Portable · Waterproof",
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
-    "weight": 0.6,
+    "weight": 1,
     "popular": true,
     "images": [
       "img/prod/gal/jbl-portable-g1.jpg",
