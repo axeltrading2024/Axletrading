@@ -3447,7 +3447,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
-    "weight": 0.6,
+    "weight": 1.99,
     "keywords": [
       "jacket",
       "down",
