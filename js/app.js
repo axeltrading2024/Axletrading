@@ -2763,8 +2763,10 @@
     }
     function open(a) {
       pic.src = a.getAttribute('href');
-      // 2026-10-22：About 页说明改为左下角胶囊（strip-cap），灯箱图注跟着取胶囊文字
-      var b = $('.strip-cap', a) || $('.real-cap b', a);
+      // 2026-10-22：About 页说明改为左下角胶囊（strip-cap），灯箱图注跟着取胶囊文字；
+      // proof 时间轴的图没有胶囊，兜底取所在格子的 figcaption 标题
+      var fig = a.closest ? a.closest('figure') : null;
+      var b = $('.strip-cap', a) || $('.real-cap b', a) || (fig ? $('figcaption b', fig) : null);
       cap.textContent = b ? b.textContent : '';
       box.classList.add('is-open');
       document.body.classList.add('viewer-open');
