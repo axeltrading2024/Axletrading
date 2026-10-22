@@ -253,7 +253,7 @@
     proof_s1t:          { en: '11 Sept — first hello', es: '11 sept — primer saludo' },
     proof_s1d:          { en: '“Do you have a catalog, or should we send you pictures of what we want?”', es: '«¿Tienes catálogo o te enviamos fotos de lo que queremos?»' },
     proof_s2t:          { en: 'Wrapped and packed', es: 'Envuelto y embalado' },
-    proof_s2d:          { en: 'Bubble wrap on every bottle, air columns down both sides, tape last — and a photo on the bench before the carton closes.', es: 'Plástico de burbujas en cada botella, columnas de aire a ambos lados y cinta al final. Y una foto en la mesa antes de cerrar la caja.' },
+    proof_s2d:          { en: 'Bubble wrap on every bottle, air columns down both sides, tape last — and a photo inside the carton before it closes.', es: 'Plástico de burbujas en cada botella, columnas de aire a ambos lados y cinta al final. Y una foto dentro de la caja antes de cerrarla.' },
     proof_s3t:          { en: 'Box 23349 · 1.1 kg', es: 'Caja 23349 · 1,1 kg' },
     proof_s3d:          { en: 'Marked by hand before the tape goes on: number, size, weight — then the DHL label goes on top.', es: 'Marcado a mano antes de precintar: número, medidas y peso. Después se pega la etiqueta de DHL.' },
     proof_s4t:          { en: 'Sold out — 18 days later', es: 'Agotado — 18 días después' },
