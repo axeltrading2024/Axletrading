@@ -1889,7 +1889,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
-    "weight": 0.6,
+    "weight": 2.93,
     "video": "img/vid/b.mp4",
     "images": [
       "img/prod/gal/b-g1.jpg",
