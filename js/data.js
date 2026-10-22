@@ -1483,7 +1483,7 @@ window.PRODUCTS = [
     "desc": "High-torque cordless vacuum with laser dust detection and full-machine HEPA filtration.",
     "collection": "hair-dryers",
     "subcategory": "vacuum-cleaners",
-    "weight": 0.7,
+    "weight": 7,
     "keywords": [
       "dyson",
       "v15",
