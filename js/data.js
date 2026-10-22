@@ -2883,7 +2883,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "shoes",
-    "weight": 0.6,
+    "weight": 1.5,
     "keywords": [
       "nike",
       "shose",
