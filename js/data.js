@@ -892,7 +892,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 0.25,
+    "weight": 1,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
