@@ -1256,7 +1256,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 0.25,
+    "weight": 0.35,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
