@@ -3526,7 +3526,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "sunglasses",
     "subcategory": "luxury-bags",
-    "weight": 0.2,
+    "weight": 2,
     "keywords": [
       "LV",
       "bags",
