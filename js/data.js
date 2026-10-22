@@ -3652,7 +3652,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
-    "weight": 0.6,
+    "weight": 1.98,
     "images": [
       "img/prod/gal/g-5-g1.jpg",
       "img/prod/gal/g-5-g2.jpg",
