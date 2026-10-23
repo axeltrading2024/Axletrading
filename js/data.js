@@ -1994,7 +1994,7 @@ window.PRODUCTS = [
     "collection": "other",
     "subcategory": "other-products",
     "moq": "30",
-    "weight": 0.4,
+    "weight": 0.1,
     "popular": true,
     "video": "img/vid/n.mp4",
     "images": [
