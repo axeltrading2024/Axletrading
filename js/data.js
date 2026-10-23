@@ -1993,6 +1993,7 @@ window.PRODUCTS = [
     "desc": "tap and rate you  five star",
     "collection": "other",
     "subcategory": "other-products",
+    "moq": "30",
     "weight": 0.4,
     "popular": true,
     "video": "img/vid/n.mp4",
