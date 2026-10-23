@@ -1184,18 +1184,9 @@
       zone: q.zone, quoteOnly: false
     } : null;
     renderTotals();
-    var lines = [];
-    lines.push('<div class="sr"><span>' + esc(window.T('ship_chargeable')) + '</span><b>' + fmtKg(q.bill) + ' kg</b></div>');
-    if (q.vol > 0) {
-      lines.push('<div class="sr"><span>' + esc(window.T('ship_vol')) + '</span><b>' + fmtKg(q.vol) + ' kg</b></div>');
-    }
-    lines.push('<div class="sr"><span>' + esc(window.T('ship_first')) + '</span><b>' + money(q.base, sym) + '</b></div>');
-    if (q.extra > 0) {
-      lines.push('<div class="sr"><span>' + esc(window.T('ship_extra', { n: q.extra })) + '</span>' +
-        '<b>' + money(q.extra * q.perKg, sym) + '</b></div>');
-    }
-    out.innerHTML = '<div class="ship-lines">' + lines.join('') + '</div>' +
-      '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
+    // 只显示估算运费金额，不再展示分段计算过程（Chargeable/First/Extra），
+    // 客户仍可在上方选目的国、调重量，运费自动按总重估算。
+    out.innerHTML = '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
         '<b>' + money(q.cost, sym) + '</b></div>' +
       '<p class="ship-transit">' + esc(window.T('ship_transit', { d: transitLabel(q.zone) })) + '</p>';
   }
