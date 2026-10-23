@@ -4225,6 +4225,41 @@ body.ask-lock .ask-tab {
 
 .lf-files-field { margin-top: 2px; }
 
+/* 折叠的可选详细信息：默认收起，主区只留必填 + 留言框，方便快速留言 */
+.lf-more {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.lf-more > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  user-select: none;
+}
+.lf-more > summary::-webkit-details-marker { display: none; }
+.lf-more-ico {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--muted-foreground);
+  border-bottom: 2px solid var(--muted-foreground);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  margin-top: -2px;
+}
+.lf-more[open] > summary .lf-more-ico { transform: rotate(45deg); margin-top: 2px; }
+.lf-more-body {
+  padding: 4px 15px 16px;
+  border-top: 1px solid var(--border);
+}
+
 .lf-drop {
   position: relative;
   display: flex;

@@ -375,6 +375,7 @@
     req_f_price:        { en: 'Target price (per unit)', es: 'Precio objetivo (por unidad)' },
     req_ph_price:       { en: 'e.g. $12', es: 'ej. 12 $' },
     req_f_msg:          { en: 'Tell us more (optional)', es: 'Cuéntanos más (opcional)' },
+    req_more_details:   { en: 'More details (optional)', es: 'Más detalles (opcional)' },
     req_ph_msg:         { en: 'Packaging, label, certification, deadline — the more detail, the better we can quote.',
                           es: 'Empaque, etiqueta, certificación, fecha — cuantos más detalles, mejor podemos cotizar.' },
     req_f_files:        { en: 'Reference photos or files (optional)', es: 'Fotos o archivos de referencia (opcional)' },

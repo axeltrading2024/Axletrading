@@ -67,28 +67,36 @@
             '<input type="text" data-lf-contact maxlength="' + MAX.contact + '" required ' +
               'data-i18n-ph="req_ph_contact" placeholder="+1 555 000 1234 or you@company.com" autocomplete="email">' +
           '</label>' +
-          '<label class="lf-field">' +
-            '<span class="lf-lbl" data-i18n="req_f_category">Category</span>' +
-            '<select data-lf-category>' + categoryOptions() + '</select>' +
-          '</label>' +
-          '<label class="lf-field">' +
-            '<span class="lf-lbl" data-i18n="req_f_country">Your country</span>' +
-            '<input type="text" data-lf-country maxlength="' + MAX.country + '" autocomplete="country-name" ' +
-              'data-i18n-ph="req_ph_country" placeholder="United States">' +
-          '</label>' +
-          '<label class="lf-field">' +
-            '<span class="lf-lbl" data-i18n="req_f_qty">Quantity (pcs)</span>' +
-            '<input type="text" data-lf-qty maxlength="' + MAX.qty + '" inputmode="numeric" ' +
-              'data-i18n-ph="req_ph_qty" placeholder="e.g. 100">' +
-          '</label>' +
-          '<label class="lf-field">' +
-            '<span class="lf-lbl" data-i18n="req_f_price">Target price (per unit)</span>' +
-            '<input type="text" data-lf-price maxlength="' + MAX.price + '" ' +
-              'data-i18n-ph="req_ph_price" placeholder="e.g. $12">' +
-          '</label>' +
+          '<details class="lf-more lf-full">' +
+            '<summary class="lf-more-sum">' +
+              '<span class="lf-more-ico" aria-hidden="true"></span>' +
+              '<span data-i18n="req_more_details">More details (optional)</span>' +
+            '</summary>' +
+            '<div class="lf-more-body lf-grid">' +
+              '<label class="lf-field">' +
+                '<span class="lf-lbl" data-i18n="req_f_category">Category</span>' +
+                '<select data-lf-category>' + categoryOptions() + '</select>' +
+              '</label>' +
+              '<label class="lf-field">' +
+                '<span class="lf-lbl" data-i18n="req_f_country">Your country</span>' +
+                '<input type="text" data-lf-country maxlength="' + MAX.country + '" autocomplete="country-name" ' +
+                  'data-i18n-ph="req_ph_country" placeholder="United States">' +
+              '</label>' +
+              '<label class="lf-field">' +
+                '<span class="lf-lbl" data-i18n="req_f_qty">Quantity (pcs)</span>' +
+                '<input type="text" data-lf-qty maxlength="' + MAX.qty + '" inputmode="numeric" ' +
+                  'data-i18n-ph="req_ph_qty" placeholder="e.g. 100">' +
+              '</label>' +
+              '<label class="lf-field">' +
+                '<span class="lf-lbl" data-i18n="req_f_price">Target price (per unit)</span>' +
+                '<input type="text" data-lf-price maxlength="' + MAX.price + '" ' +
+                  'data-i18n-ph="req_ph_price" placeholder="e.g. $12">' +
+              '</label>' +
+            '</div>' +
+          '</details>' +
           '<label class="lf-field lf-full">' +
             '<span class="lf-lbl" data-i18n="req_f_msg">Tell us more (optional)</span>' +
-            '<textarea data-lf-message rows="2" maxlength="' + MAX.message + '" ' +
+            '<textarea data-lf-message rows="3" maxlength="' + MAX.message + '" ' +
               'data-i18n-ph="req_ph_msg" placeholder="Packaging, label, certification, deadline — the more detail, the better we can quote."></textarea>' +
           '</label>' +
           '<div class="lf-field lf-full lf-files-field">' +
