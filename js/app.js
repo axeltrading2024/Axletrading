@@ -1224,33 +1224,22 @@
       }
     });
 
-    // 按购物车实际总重预填重量；购物车里已有商品时默认展开运费块并直接算好，
-    // 解决「运费估算入口太淡、客户没注意到」的问题。
+    // 按购物车实际总重预填重量输入框；运费估算面板默认收起（客户点开再展开）。
     function prefillWeight() {
       var kg = $('[data-ship-kg]', host);
       var tw = cartTotalWeight();
       if (kg && tw > 0) kg.value = fmtWeight(tw);
     }
     prefillWeight();
-    if (tog && body && cartTotalWeight() > 0) {
-      body.removeAttribute('hidden');
-      host.classList.add('is-open');
-      tog.setAttribute('aria-expanded', 'true');
-      shipTouched = true;
-    }
+    // 有商品时让底部「运费 / 总价暂估」按真实总重显示；运费面板本身保持收起（默认）。
+    // （尊重「打开询价栏默认收起」——面板 body 始终 hidden，只有手动点开才展开）
+    if (cartTotalWeight() > 0) shipTouched = true;
     Store.onChange(function () {
       prefillWeight();
-      // 购物车里已有商品但运费面板还收着时，自动展开并直接算好，
-      // 确保客户加购后一眼看到运费估算（含自动累加的总重）。
-      if (cartTotalWeight() > 0 && !host.classList.contains('is-open') && tog && body) {
-        body.removeAttribute('hidden');
-        host.classList.add('is-open');
-        tog.setAttribute('aria-expanded', 'true');
-        shipTouched = true;
-        renderShipEst();
-      } else if (host.classList.contains('is-open')) {
-        renderShipEst();
-      }
+      // 加购后让底部运费栏显示真实总重运费；但不再自动展开面板，保持默认收起。
+      if (cartTotalWeight() > 0) shipTouched = true;
+      // 始终重算（含底部「运费 / 总价暂估」）：面板收起时只更新底部栏，展开时连面板一起更新。
+      renderShipEst();
     });
 
     renderShipEst();
