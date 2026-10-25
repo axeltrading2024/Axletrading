@@ -224,19 +224,24 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Airpods-pro2",
+        "name": "Airpods pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
       },
       {
-        "name": "Airpods-gen4",
+        "name": "Airpods 4",
         "price": "€12",
         "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
       },
       {
-        "name": "Airpods-pro3",
+        "name": "Airpods pro3",
         "price": "€12",
         "image": "img/prod/var/airpods-pro-2-pro3.jpg"
+      },
+      {
+        "name": "Airpods 5",
+        "price": "€12",
+        "image": "img/prod/var/airpods-pro-2-airpods-5.jpg"
       }
     ]
   },
