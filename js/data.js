@@ -950,8 +950,8 @@ window.PRODUCTS = [
     "note": "Ionic · 5 attachments-10 colors option",
     "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
     "collection": "hair-dryers",
+    "subcategory": "hair-care",
     "weight": 3,
-    "popular": true,
     "images": [
       "img/prod/gal/dyson-supersonic-g1.jpg",
       "img/prod/gal/dyson-supersonic-g3.jpg",
