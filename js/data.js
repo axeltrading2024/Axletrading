@@ -1119,6 +1119,7 @@ window.PRODUCTS = [
     "collection": "watches",
     "subcategory": "cartier-style",
     "weight": 1,
+    "popular": true,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
