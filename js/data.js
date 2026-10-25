@@ -315,7 +315,6 @@ window.PRODUCTS = [
     "subcategory": "best-sellers",
     "moq": "12 pcs",
     "weight": 0.5,
-    "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
       "img/prod/gal/dior-sauvage-g3.jpg",
