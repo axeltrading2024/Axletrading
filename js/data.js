@@ -3592,6 +3592,7 @@ window.PRODUCTS = [
     "collection": "sunglasses",
     "subcategory": "luxury-bags",
     "weight": 2,
+    "popular": true,
     "keywords": [
       "prada",
       "bags",
