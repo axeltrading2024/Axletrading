@@ -1848,6 +1848,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "speakers",
     "weight": 1.2,
+    "popular": true,
     "video": "img/vid/j-2.mp4",
     "images": [
       "img/prod/gal/j-2-g2.jpg",
