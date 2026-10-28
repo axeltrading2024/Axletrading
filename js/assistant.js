@@ -1,14 +1,15 @@
 /**
- * js/assistant.js —— 自动接待挂件（规则版）
+ * js/assistant.js —— 自动接待挂件（混合版：规则 + 智能体）
  *
  * 做什么：
  *   · 左下角浮出一颗气泡，点开是一个对话面板
- *   · 6 个快捷问题 + 自由输入，用 js/kb.js 的意图库匹配，回标准答案
+ *   · 6 个快捷问题走即时规则（零成本，回 kb.js 的 short 短答案）
+ *   · 自由输入走智能体：先打 /api/chat 调 Workers AI，简短切题还会反问；AI 不可用自动回退规则
  *   · 答不上来时展开「留联系方式」，POST 到站点已有的 /api/inquiry（Cloudflare Pages Functions + D1）
  *   · 接口不可用 / 被限流 / 客户想找真人 → 一键转 WhatsApp，消息已预填
  *
  * 设计约束：
- *   · 不重复造后端：复用 /api/inquiry 与 D1，线索直接进 admin 后台的「留言」列表
+ *   · 不重复造后端：复用 /api/chat 与 /api/inquiry，前者同平台调 AI，后者落 D1 线索
  *   · 接口有防垃圾三重校验（蜜罐 company、时间陷阱 ts、同 IP 频控），这里必须照做
  *   · 客户任何时候都能一键转真人，绝不把人卡在表单里
  */
@@ -231,43 +232,80 @@
       });
   }
 
-  /* ---------------- 应答 ---------------- */
+  /* ---------------- 多轮历史（喂给智能体做上下文） ---------------- */
+  var history = [];
 
-  function answer(text) {
+  /* ---------------- 规则应答（AI 不可用时的兜底） ---------------- */
+  function rulesAnswer(text) {
     var m = KB.match(text);
+    if (m) {
+      pushBot(t(m.intent.answer));
+      history.push({ role: 'assistant', content: t(m.intent.answer) });
+      if (m.id === 'contact') return;
+    } else {
+      pushBot(t(KB.fallback));
+      history.push({ role: 'assistant', content: t(KB.fallback) });
+      pushLeadForm(text);
+    }
+  }
+
+  /* ---------------- 智能体应答（自由输入主路径） ---------------- */
+  function chatAnswer(text) {
+    var typing = pushTyping();
+    var payload = {
+      message: text,
+      history: history.slice(-8),
+      lang: lang(),
+    };
+    fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) {
+        return r.json().then(function (j) { return { status: r.status, j: j }; });
+      })
+      .catch(function () { return { status: 0, j: null }; })
+      .then(function (res) {
+        typing.remove();
+        var j = res.j;
+        if (j && j.ok && typeof j.reply === 'string' && j.reply.trim()) {
+          pushBot(j.reply);
+          history.push({ role: 'assistant', content: j.reply });
+        } else {
+          /* 智能体不可用（未配置 / 出错 / 超时）→ 回退规则，绝不卡住客户 */
+          rulesAnswer(text);
+        }
+      });
+  }
+
+  function sendFreeText(text) {
+    pushUser(text);
+    history.push({ role: 'user', content: text });
+    chatAnswer(text);
+  }
+
+  /* ---------------- 快捷问题（即时规则，零成本，走 short 短答案） ---------------- */
+  function answerTopic(text, intentId) {
+    pushUser(text);
+    history.push({ role: 'user', content: text });
+    var intent = null;
+    for (var i = 0; i < KB.intents.length; i++) {
+      if (KB.intents[i].id === intentId) { intent = KB.intents[i]; break; }
+    }
+    if (!intent) { chatAnswer(text); return; }
     var typing = pushTyping();
     setTimeout(function () {
       typing.remove();
-      if (m) {
-        pushBot(t(m.intent.answer));
-        if (m.id === 'contact') return;
-      } else {
-        pushBot(t(KB.fallback));
-        pushLeadForm(text);
-      }
-    }, 360);
+      var reply = t(intent.short) || t(intent.answer);
+      pushBot(reply);
+      history.push({ role: 'assistant', content: reply });
+    }, 300);
   }
 
   function ask(text, intentId) {
-    pushUser(text);
-    if (intentId) {
-      var intent = null;
-      for (var i = 0; i < KB.intents.length; i++) {
-        if (KB.intents[i].id === intentId) {
-          intent = KB.intents[i];
-          break;
-        }
-      }
-      if (intent) {
-        var typing = pushTyping();
-        setTimeout(function () {
-          typing.remove();
-          pushBot(t(intent.answer));
-        }, 320);
-        return;
-      }
-    }
-    answer(text);
+    if (intentId) answerTopic(text, intentId);
+    else sendFreeText(text);
   }
 
   /* ---------------- 快捷问题 ---------------- */
