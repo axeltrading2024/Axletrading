@@ -136,6 +136,8 @@
       '<path d="M8.3 9.3c0-2.6 1.5-4.3 3.7-4.3s3.7 1.7 3.7 4.3"/>' +
     '</svg>',
     plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>',
+    /* AI 星标：产品页「Chat with AI」按钮用，四角星是 AI 的通用符号 */
+    ai: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.15 6.25a1.6 1.6 0 0 0 1 1L21.4 12l-6.25 2.15a1.6 1.6 0 0 0-1 1L12 21.4l-2.15-6.25a1.6 1.6 0 0 0-1-1L2.6 12l6.25-2.15a1.6 1.6 0 0 0 1-1L12 2.8z" fill="currentColor"/><circle cx="19.4" cy="4.6" r="1.5" fill="currentColor" opacity=".55"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.4c0-1 1.1-1.6 1.9-1.1l8.6 6.6c.7.5.7 1.6 0 2.1l-8.6 6.6c-.8.6-1.9 0-1.9-1V5.4Z"/></svg>',
     arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>',
@@ -1470,6 +1472,20 @@
 
       if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(null, true); return; }
       if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
+
+      /* 产品页「问 AI」按钮：唤起自动接待挂件，产品名作为上下文一起带进去。
+         挂件没起来（assistant.js 被拦/加载失败）就退回原来的询价表单，避免按钮点了没反应。 */
+      var aiProd = t.closest('[data-ai-product]');
+      if (aiProd) {
+        var aiName = aiProd.getAttribute('data-ai-product') || aiProd.getAttribute('data-product-name') || '';
+        if (window.EddyAssistant && typeof window.EddyAssistant.openProduct === 'function') {
+          window.EddyAssistant.openProduct(aiName);
+        } else {
+          openInquiryForm(aiName);
+        }
+        return;
+      }
+
       var prodInq = t.closest('[data-inquiry-product-trigger]');
       if (prodInq) { openInquiryForm(prodInq.getAttribute('data-product-name')); return; }
 
@@ -1601,6 +1617,11 @@
       var mcats = CATEGORIES.filter(function (c) { return productsIn(c.slug).length > 0; }).slice(0, 6);
       mstat.textContent = window.T('about_stat', { n: mcats.length });
     }
+
+    /* 上面 initProduct/initCategory 会把整块 HTML 重画一遍，模板里写的是英文默认值，
+       会把 applyStatic 已回填的翻译盖回去（切西语后「Review inquiry list」「Brand」等仍是英文）。
+       重画完再补一遍静态回填。 */
+    if (typeof window.__applyStatic === 'function') window.__applyStatic();
   };
 
   /* ============================================================
@@ -1932,7 +1953,11 @@
               '<span class="ico">' + ICON.plus + '</span><span class="lbl" data-i18n="add_to_inquiry">Add to Inquiry</span>' +
             '</button>' +
             '<button type="button" class="btn btn-outline" data-open-inquiry data-i18n="review_list">Review inquiry list</button>' +
-            '<button type="button" class="btn btn-outline" data-inquiry-product-trigger data-product-name="' + esc(p.name) + '" data-i18n="inquiry_product_btn">Inquire this product</button>' +
+            /* 产品页的「问 AI」入口：唤起自动接待挂件并把当前产品带进去，
+               买家不用自己再打一遍产品名；挂件不可用时回退到询盘表单（见 bindGlobal） */
+            '<button type="button" class="btn btn-outline btn-ai" data-ai-product="' + esc(p.name) + '" data-product-name="' + esc(p.name) + '">' +
+              '<span class="ico" aria-hidden="true">' + ICON.ai + '</span><span class="lbl" data-i18n="ai_product_btn">Chat with AI</span>' +
+            '</button>' +
           '</div>' +
           tierBoxHTML(p) +
           '<div class="spec-list">' +
