@@ -2159,7 +2159,7 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": ""
+        "image": "img/prod/var/l-1.jpg"
       },
       {
         "name": "2",
@@ -2185,6 +2185,16 @@ window.PRODUCTS = [
         "name": "6",
         "price": "",
         "image": "img/prod/var/l-6.jpg"
+      },
+      {
+        "name": "7",
+        "price": "",
+        "image": "img/prod/var/l-7.jpg"
+      },
+      {
+        "name": "8",
+        "price": "",
+        "image": "img/prod/var/l-8.jpg"
       }
     ]
   },
