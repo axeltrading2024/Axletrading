@@ -2277,6 +2277,34 @@ body:has(.drawer.open) .cart-fab {
   flex: 2 1 0;
 }
 
+/* 「Chat with AI」：沿用 outline（和旁边两个按钮同一套视觉），只用品牌蓝标出 AI 身份。
+   品牌蓝 = 挂件 --accent-brand，点开看到的面板是同一个颜色，视觉上能对上。 */
+.detail-actions .btn-ai .ico {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  color: var(--accent-brand);
+}
+
+.detail-actions .btn-ai .ico svg {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-actions .btn-ai:hover {
+  border-color: var(--accent-brand);
+}
+
+/* 窄屏（手机）上三个按钮放不下一行，AI 按钮单独掉到第二行只有 144px，
+   孤零零一小块。让它占满整行 —— 更像有意的设计，也更好点。 */
+@media (max-width: 560px) {
+  .detail-actions .btn-ai {
+    flex: 1 1 100%;
+  }
+}
+
 .variant-block {
   margin-top: 22px;
 }
