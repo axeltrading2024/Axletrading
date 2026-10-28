@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistant widget — preview</title>
+<link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/style.css?v=20261023a">
+<link rel="stylesheet" href="../css/assistant.css?v=20261028a">
+<style>
+  /* 预览页专用：模拟站点背景，方便看挂件悬浮效果 */
+  body { min-height: 100vh; }
+  .pv {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px 220px;
+  }
+  .pv h1 { font-size: 34px; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .pv p { color: var(--muted-foreground); line-height: 1.6; margin: 0 0 16px; }
+  .pv-note {
+    margin-top: 28px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted-foreground);
+  }
+  .pv-note b { color: var(--foreground); }
+</style>
+</head>
+<body>
+
+<div class="pv">
+  <h1>Preview page</h1>
+  <p>This page only exists to preview the assistant widget. It loads the real widget code and the real knowledge base — the only difference from production is that this file lives under <b>tools/</b> and is not linked from the site.</p>
+  <p>The bubble sits at the bottom-left, stacked above the WhatsApp button — exactly where it will sit on eddytrading.com.</p>
+
+  <div class="pv-note">
+    <b>Try these:</b> click a quick reply, or type <i>how long does sea freight take</i> / <i>do you do dropshipping</i> / <i>运费怎么算</i> in the input.
+    <br>Anything the knowledge base can't answer opens a small contact form — it posts to the same <b>/api/inquiry</b> endpoint the site already uses, so the lead lands in the admin panel.
+  </div>
+</div>
+
+<!-- 与线上站点保持同样的浮窗叠放关系 -->
+<a class="wa-fab" href="https://wa.me/4915224901963" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.28c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.79 1.17 2.98.15.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.31.19 1.8.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16 4C9.37 4 4 9.37 4 16c0 2.11.55 4.09 1.52 5.8L4 28l6.35-1.67C12.03 27.4 13.97 28 16 28c6.63 0 12-5.37 12-12S22.63 4 16 4zm0 21.94c-1.83 0-3.55-.5-5.02-1.36l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.87 9.87 0 0 1 6.06 16C6.06 10.51 10.51 6.06 16 6.06S25.94 10.51 25.94 16 21.49 25.94 16 25.94z"/></svg>
+</a>
+
+<script src="../js/data.js?v=20261022v"></script>
+<script src="../js/i18n.js?v=20261023a"></script>
+<script src="../js/kb.js?v=20261028a"></script>
+<script src="../js/assistant.js?v=20261028a"></script>
+</body>
+</html>
