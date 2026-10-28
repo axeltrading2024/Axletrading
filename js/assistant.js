@@ -235,12 +235,13 @@
   /* ---------------- 多轮历史（喂给智能体做上下文） ---------------- */
   var history = [];
 
-  /* ---------------- 规则应答（AI 不可用时的兜底） ---------------- */
+  /* ---------------- 规则应答（AI 不可用时的兜底，也走 short 短答案，避免整页糊脸） ---------------- */
   function rulesAnswer(text) {
     var m = KB.match(text);
     if (m) {
-      pushBot(t(m.intent.answer));
-      history.push({ role: 'assistant', content: t(m.intent.answer) });
+      var reply = t(m.intent.short) || t(m.intent.answer);
+      pushBot(reply);
+      history.push({ role: 'assistant', content: reply });
       if (m.id === 'contact') return;
     } else {
       pushBot(t(KB.fallback));
