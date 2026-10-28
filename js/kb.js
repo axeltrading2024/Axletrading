@@ -89,6 +89,10 @@
       {
         id: 'catalog',
         label: { en: 'Products & categories', es: 'Productos y categorías' },
+        short: {
+          en: 'We carry 9 collections and 1000+ products — perfumes, audio, watches, hair care, speakers, smart devices, bags, phone cases and chargers. Tell me which one interests you and I’ll pull a shortlist.',
+          es: 'Tenemos 9 colecciones y más de 1000 productos: perfumes, audio, relojes, cuidado del cabello, bocinas, dispositivos inteligentes, bolsos, fundas y cargadores. Dime cuál te interesa y te preparo una lista.',
+        },
         keywords: [
           'product', 'products', 'catalog', 'catalogue', 'category', 'categories',
           'what do you sell', 'what do you have', 'what do you offer', 'items', 'stock',
@@ -105,6 +109,10 @@
       {
         id: 'pricing',
         label: { en: 'Pricing & MOQ', es: 'Precios y MOQ' },
+        short: {
+          en: 'MOQ is usually 12 pcs (some 10 pcs/colour, a few single units). Pricing is tiered — the more you order, the better the unit price. Send me the item and I’ll get you a quote within 24h.',
+          es: 'El MOQ suele ser 12 unidades (algunos 10 por color, pocos sueltas). Los precios son escalonados: más pedidos, mejor precio. Envíame el artículo y te cotizo en 24 h.',
+        },
         keywords: [
           'price', 'prices', 'pricing', 'cost', 'how much', 'unit price', 'wholesale price',
           'moq', 'minimum', 'minimum order', 'order quantity', 'qty', 'how many pieces',
@@ -119,6 +127,10 @@
       {
         id: 'shipping',
         label: { en: 'Shipping & delivery', es: 'Envío y entrega' },
+        short: {
+          en: 'Express air is ~8–10 working days to most countries; 18–22 days for perfumes & battery items; sea freight ~50 days from 20 kg. Where are you shipping to?',
+          es: 'El aéreo exprés tarda ~8–10 días hábiles a la mayoría de países; 18–22 días para perfumes y artículos con batería; marítimo ~50 días desde 20 kg. ¿A qué país envías?',
+        },
         keywords: [
           'shipping', 'ship', 'shipment', 'delivery', 'deliver', 'freight', 'courier', 'postage',
           'how long', 'how many days', 'when will it arrive', 'dispatch', 'lead time', 'transit',
@@ -132,6 +144,10 @@
       {
         id: 'payment',
         label: { en: 'Payment & after-sales', es: 'Pago y postventa' },
+        short: {
+          en: 'We take T/T bank transfer (bulk), Alipay (small/repeat), and USDT / Western Union / Remitly (samples). Pay only to the account on the invoice; production starts after payment clears.',
+          es: 'Aceptamos transferencia T/T (al por mayor), Alipay (pequeños/repetidos) y USDT / Western Union / Remitly (muestras). Paga solo a la cuenta de la factura; producción tras el pago.',
+        },
         keywords: [
           'payment', 'payments', 'pay', 'paypal', 'invoice', 't/t', 'tt', 'bank transfer',
           'alipay', 'usdt', 'western union', 'remitly', 'credit card', 'card',
@@ -145,6 +161,10 @@
       {
         id: 'aftersales',
         label: { en: 'After-sales & warranty', es: 'Postventa y garantía' },
+        short: {
+          en: 'Damaged or defective? Send photos on WhatsApp within 7 days and we’ll replace or refund the affected units — transit damage is covered too.',
+          es: '¿Dañado o defectuoso? Envíanos fotos por WhatsApp en 7 días y reemplazamos o reembolsamos las unidades afectadas; también el daño en tránsito.',
+        },
         keywords: [
           'damaged', 'damage', 'broken', 'defect', 'defective', 'refund', 'return', 'replace',
           'replacement', 'warranty', 'quality', 'complaint', 'claim', 'wrong item', 'missing',
@@ -158,6 +178,10 @@
       {
         id: 'custom',
         label: { en: 'Custom branding (OEM/ODM)', es: 'Marca propia (OEM/ODM)' },
+        short: {
+          en: 'Yes — logo, packaging and inserts are possible for many products. Custom work has its own MOQ, mould fees may apply, and sampling takes extra time. Send me your idea + quantity and Eddy will confirm.',
+          es: 'Sí — logo, envase e insertos son posibles en muchos productos. El trabajo personalizado tiene su propio MOQ, pueden aplicar costes de molde y la muestra lleva tiempo extra. Envíame tu idea + cantidad y Eddy confirmará.',
+        },
         keywords: [
           'custom', 'customization', 'customise', 'customize', 'oem', 'odm', 'private label',
           'white label', 'logo', 'branding', 'brand it', 'packaging', 'insert', 'gift box',
@@ -171,6 +195,10 @@
       {
         id: 'dropship',
         label: { en: 'Dropshipping', es: 'Dropshipping' },
+        short: {
+          en: 'Yes — including one-piece and blind shipping (your customer never sees our name). MOQ and shipping rates are the same as regular wholesale; you handle returns first, escalate quality issues to us.',
+          es: 'Sí — incluido a una unidad y blind shipping (tu cliente nunca ve nuestro nombre). MOQ y tarifas igual que el mayorista normal; gestionas las devoluciones y nos escalas los problemas de calidad.',
+        },
         keywords: [
           'dropship', 'dropshipping', 'drop ship', 'dropshipping service', 'blind shipping',
           'ship to customer', 'no inventory', 'reseller', 'fulfilment', 'fulfillment',
@@ -184,6 +212,10 @@
       {
         id: 'contact',
         label: { en: 'Talk to a human', es: 'Hablar con una persona' },
+        short: {
+          en: 'I’ll connect you to Eddy — he replies within 24h on WhatsApp. Tap the button below and your message is pre-written.',
+          es: 'Te paso con Eddy — responde en 24 h por WhatsApp. Toca el botón de abajo y tu mensaje ya estará escrito.',
+        },
         keywords: [
           'whatsapp', 'contact', 'email', 'phone', 'call', 'talk', 'human', 'agent', 'someone',
           'representative', 'speak', 'manager', 'owner',
