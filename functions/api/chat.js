@@ -65,8 +65,23 @@ const MODELS = [
   '@cf/meta/llama-3.1-8b-instruct',
 ];
 
-export function buildMessages(message, history, lang) {
+export function buildMessages(message, history, lang, product) {
   const msgs = [{ role: 'system', content: SYSTEM_PROMPT }];
+
+  /* 产品页点「问 AI」时会带 product 进来：让模型全程知道买家在看哪一款，
+     避免后面几轮聊串到别的产品。注意这只是一条上下文，不是新知识——
+     该产品的具体单价/库存/打样时间依然不在知识库里，仍然只能转 Eddy 报价。 */
+  const prod = typeof product === 'string' ? product.trim().slice(0, 160) : '';
+  if (prod) {
+    msgs.push({
+      role: 'system',
+      content:
+        'CONTEXT: the customer is reading the product page for "' + prod +
+        '". Unless they clearly ask about something else, treat their questions as being about this item. ' +
+        'You still do NOT know its exact unit price, current stock or custom MOQ — follow rule 5 and offer Eddy\'s quote instead of guessing.',
+    });
+  }
+
   // 把历史（最近若干轮）带进去，让多轮对话连贯
   const hist = Array.isArray(history) ? history.slice(-8) : [];
   hist.forEach(function (h) {
@@ -117,7 +132,7 @@ export async function onRequestPost(context) {
   if (!message) return json({ ok: false, error: 'bad_request' }, 400);
 
   const history = Array.isArray(body.history) ? body.history : [];
-  const messages = buildMessages(message, history, body.lang);
+  const messages = buildMessages(message, history, body.lang, body.product);
 
   /* 没开 Workers AI 绑定 → 明确告诉前端「降级回规则」 */
   if (!env.AI) {
