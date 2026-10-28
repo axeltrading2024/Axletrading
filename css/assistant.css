@@ -1,0 +1,472 @@
+/**
+ * css/assistant.css —— 自动接待挂件
+ *
+ * 全部颜色 / 圆角 / 阴影都取自站点 css/style.css 的设计变量，
+ * 不另起一套视觉体系（改 :root 就能整体跟着变）。
+ *
+ * 浮窗位置：左下角，叠在 .wa-fab（绿色 WhatsApp，bottom:20px）正上方，
+ * 右下角留给 .cart-fab（黑色购物车）——三个浮窗互不遮挡。
+ */
+
+/* ---------------- 触发气泡 ---------------- */
+.asst-fab {
+  position: fixed;
+  bottom: 88px; /* 20(wa-fab 底) + 56(wa-fab 高) + 12(间距) */
+  left: 20px;
+  z-index: 45;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--accent-brand);
+  box-shadow:
+    0 18px 40px -14px oklch(62% 0.13 250 / 0.55),
+    inset 0 0 0 1px oklch(100% 0 0 / 0.35);
+  transition: transform 0.2s var(--ease-out-soft), opacity 0.2s;
+}
+
+.asst-fab:hover {
+  transform: scale(1.05);
+}
+
+.asst-fab:active {
+  transform: scale(0.95);
+}
+
+.asst-fab svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+/* 面板打开后气泡淡出，避免和面板重影 */
+.asst-root.is-open .asst-fab {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+}
+
+/* ---------------- 引导气泡（首次访问自动出现） ---------------- */
+.asst-teaser {
+  position: fixed;
+  left: 20px;
+  bottom: 156px;
+  z-index: 45;
+  max-width: 240px;
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--foreground);
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.28s var(--ease-out-soft), transform 0.28s var(--ease-out-soft);
+}
+
+.asst-teaser.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* ---------------- 面板 ---------------- */
+.asst-panel {
+  position: fixed;
+  left: 20px;
+  bottom: 156px;
+  z-index: 46;
+  display: none;
+  flex-direction: column;
+  width: 372px;
+  max-width: calc(100vw - 40px);
+  max-height: min(580px, calc(100vh - 220px));
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-lift);
+  transform-origin: bottom left;
+}
+
+.asst-root.is-open .asst-panel {
+  display: flex;
+  animation: asst-in 0.26s var(--ease-out-soft);
+}
+
+@keyframes asst-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------------- 头部 ---------------- */
+.asst-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--foreground);
+  color: var(--background);
+  flex: 0 0 auto;
+}
+
+.asst-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--accent-brand);
+  color: #fff;
+}
+
+.asst-avatar svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.asst-head-txt {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.asst-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.asst-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 12px;
+  line-height: 1.2;
+  opacity: 0.72;
+}
+
+.asst-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #34d399;
+}
+
+.asst-close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: inherit;
+  background: oklch(100% 0 0 / 0.12);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.asst-close:hover {
+  background: oklch(100% 0 0 / 0.22);
+}
+
+/* ---------------- 对话区 ---------------- */
+.asst-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+  background: var(--surface);
+}
+
+.asst-msg {
+  max-width: 88%;
+  margin: 0 0 10px;
+  padding: 11px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.asst-msg-bot {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--foreground);
+  border-bottom-left-radius: 5px;
+}
+
+.asst-msg-user {
+  margin-left: auto;
+  background: var(--accent-brand);
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.asst-msg a {
+  color: inherit;
+}
+
+.asst-typing {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+.asst-typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--muted-foreground);
+  animation: asst-blink 1.1s infinite ease-in-out;
+}
+
+.asst-typing i:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.asst-typing i:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+@keyframes asst-blink {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* ---------------- 快捷问题 ---------------- */
+.asst-chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+
+.asst-chip {
+  padding: 8px 10px;
+  border: 1px solid oklch(90% 0.04 250);
+  border-radius: 12px;
+  background: oklch(97.5% 0.012 250);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.16s, background 0.16s, transform 0.16s;
+}
+
+.asst-chip:hover {
+  border-color: var(--accent-brand);
+  background: oklch(95% 0.03 250);
+}
+
+.asst-chip:active {
+  transform: scale(0.97);
+}
+
+/* ---------------- 留资表单（兜底时展开） ---------------- */
+.asst-lead {
+  margin: 4px 0 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.asst-lead-t {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.asst-lead input,
+.asst-lead textarea {
+  display: block;
+  width: 100%;
+  margin: 0 0 8px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 13px;
+}
+
+.asst-lead textarea {
+  min-height: 58px;
+  resize: vertical;
+}
+
+.asst-lead input:focus,
+.asst-lead textarea:focus {
+  outline: 2px solid oklch(62% 0.13 250 / 0.45);
+  outline-offset: 1px;
+  border-color: var(--accent-brand);
+}
+
+.asst-lead-btn {
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--foreground);
+  color: var(--background);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.asst-lead-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.asst-lead-note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--muted-foreground);
+}
+
+.asst-lead-err {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #b91c1c;
+}
+
+/* ---------------- 输入区 ---------------- */
+.asst-foot {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+.asst-inputrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px 6px;
+}
+
+.asst-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 14px;
+}
+
+.asst-input:focus {
+  outline: none;
+  border-color: var(--accent-brand);
+  box-shadow: 0 0 0 3px oklch(62% 0.13 250 / 0.16);
+}
+
+.asst-send {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--accent-brand);
+  color: #fff;
+}
+
+.asst-send svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.asst-handoff {
+  display: block;
+  padding: 0 16px 12px;
+  color: var(--accent-brand);
+  font-size: 12.5px;
+  text-decoration: none;
+}
+
+.asst-handoff:hover {
+  text-decoration: underline;
+}
+
+/* ---------------- 手机：底部抽屉 ---------------- */
+@media (max-width: 640px) {
+  .asst-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-width: none;
+    max-height: 78vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    transform-origin: bottom center;
+  }
+
+  .asst-teaser {
+    left: 16px;
+    bottom: 148px;
+  }
+
+  .asst-fab {
+    bottom: 80px;
+    left: 16px;
+  }
+}
+
+/* ---------------- 无障碍 / 打印 ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .asst-panel,
+  .asst-teaser,
+  .asst-fab,
+  .asst-typing i {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+body.print-quote .asst-root,
+body.print-quote .asst-teaser {
+  display: none !important;
+}
