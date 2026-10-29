@@ -1473,15 +1473,14 @@
       if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(null, true); return; }
       if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
 
-      /* 产品页「问 AI」按钮：唤起自动接待挂件，产品名作为上下文一起带进去。
+      /* 产品页「Quick answer」按钮：唤起自动接待挂件 + 友好打招呼。
          挂件没起来（assistant.js 被拦/加载失败）就退回原来的询价表单，避免按钮点了没反应。 */
-      var aiProd = t.closest('[data-ai-product]');
-      if (aiProd) {
-        var aiName = aiProd.getAttribute('data-ai-product') || aiProd.getAttribute('data-product-name') || '';
-        if (window.EddyAssistant && typeof window.EddyAssistant.openProduct === 'function') {
-          window.EddyAssistant.openProduct(aiName);
+      var aiQuick = t.closest('[data-ai-quick]');
+      if (aiQuick) {
+        if (window.EddyAssistant && typeof window.EddyAssistant.quickStart === 'function') {
+          window.EddyAssistant.quickStart();
         } else {
-          openInquiryForm(aiName);
+          openInquiryForm(null);
         }
         return;
       }
@@ -1955,8 +1954,8 @@
             '<button type="button" class="btn btn-outline" data-open-inquiry data-i18n="review_list">Review inquiry list</button>' +
             /* 产品页的「问 AI」入口：唤起自动接待挂件并把当前产品带进去，
                买家不用自己再打一遍产品名；挂件不可用时回退到询盘表单（见 bindGlobal） */
-            '<button type="button" class="btn btn-outline btn-ai" data-ai-product="' + esc(p.name) + '" data-product-name="' + esc(p.name) + '">' +
-              '<span class="ico" aria-hidden="true">' + ICON.ai + '</span><span class="lbl" data-i18n="ai_product_btn">Chat with AI</span>' +
+            '<button type="button" class="btn btn-outline btn-ai" data-ai-quick>' +
+              '<span class="ico" aria-hidden="true">' + ICON.ai + '</span><span class="lbl" data-i18n="quick_answer_btn">Quick answer</span>' +
             '</button>' +
           '</div>' +
           tierBoxHTML(p) +
