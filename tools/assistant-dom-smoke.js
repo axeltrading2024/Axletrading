@@ -66,10 +66,27 @@ async function waitFor(doc, sel, ms) {
   const jsErrors = [];
   window.addEventListener('error', (e) => jsErrors.push(String(e.message || e.error)));
 
-  /* 抓 fetch 调用，模拟 /api/inquiry 成功 */
+  /* 抓 fetch 调用：/api/inquiry 走成功；/api/chat 默认模拟智能体成功，可被 __chatMode 切到降级 */
   const calls = [];
+  const inquiryCalls = []; /* 只记 /api/inquiry，留资断言用它，避免被 /api/chat 调用干扰 */
+  window.__chatMode = 'ok'; /* 'ok' = 智能体可用；'unavailable' = 模拟未配置，前端应回退规则 */
   window.fetch = function (url, opts) {
-    calls.push({ url: url, opts: opts, body: JSON.parse(opts.body) });
+    const body = opts && opts.body ? JSON.parse(opts.body) : null;
+    calls.push({ url: url, opts: opts, body: body });
+    if (typeof url === 'string' && url.indexOf('/api/chat') > -1) {
+      if (window.__chatMode === 'unavailable') {
+        return Promise.resolve({ status: 503, json: () => Promise.resolve({ ok: false, error: 'ai_unavailable' }) });
+      }
+      const msg = (body && body.message ? body.message : '').toLowerCase();
+      let reply;
+      if (/ship|deliver|运费|物流|多久|days|how long|delivery/.test(msg)) {
+        reply = 'Express air is about 8–10 working days to most countries. Which country are you shipping to?';
+      } else {
+        reply = 'Sure — tell me a bit more (item, quantity, destination) and Eddy will quote within 24h.';
+      }
+      return Promise.resolve({ status: 200, json: () => Promise.resolve({ ok: true, reply: reply }) });
+    }
+    inquiryCalls.push({ url: url, opts: opts, body: body });
     return Promise.resolve({ status: 200, json: () => Promise.resolve({ ok: true, id: 1 }) });
   };
 
@@ -106,6 +123,24 @@ async function waitFor(doc, sel, ms) {
   doc.querySelector('.asst-fab').dispatchEvent(new window.Event('click', { bubbles: true }));
   ok('面板已展开', doc.querySelector('.asst-root').classList.contains('is-open'));
 
+  /* ---- 2.5 产品页「Quick answer」按钮入口（原 Inquire this product） ---- */
+  console.log('\n[Quick answer 入口 · 全新对话]');
+  ok('挂件暴露 quickStart 给产品页按钮', typeof window.EddyAssistant.quickStart === 'function');
+  ok('此时对话还干净（无买家消息）', doc.querySelectorAll('.asst-msg-user').length === 0,
+    'user=' + doc.querySelectorAll('.asst-msg-user').length);
+  window.EddyAssistant.quickStart();
+  await sleep(500);
+  ok('quickStart 唤起面板（仍展开）', doc.querySelector('.asst-root').classList.contains('is-open'));
+  const greetMsg = Array.from(doc.querySelectorAll('.asst-msg-bot')).map((n) => n.textContent).join(' ');
+  ok('全新对话下用随和招呼开场（Hi bro / Hola amigo）', /Hi bro|Hola amigo/i.test(greetMsg), greetMsg.slice(0, 120));
+  ok('不打断买家（不自动带入产品名 / 不发用户消息）',
+    doc.querySelectorAll('.asst-msg-user').length === 0 && greetMsg.indexOf('Dior') === -1,
+    'user=' + doc.querySelectorAll('.asst-msg-user').length);
+  window.EddyAssistant.quickStart(); /* 重复点：不应重复打招呼 */
+  await sleep(300);
+  ok('重复点不新增气泡（仍为单条招呼）', doc.querySelectorAll('.asst-msg-bot').length === 1,
+    'bot=' + doc.querySelectorAll('.asst-msg-bot').length);
+
   /* ---- 3. 点快捷问题 → 出答案 ---- */
   console.log('\n[快捷问题]');
   const before = doc.querySelectorAll('.asst-msg').length;
@@ -118,15 +153,33 @@ async function waitFor(doc, sel, ms) {
   const botText = Array.from(doc.querySelectorAll('.asst-msg-bot')).map((n) => n.textContent).join(' ');
   ok('机器人回答命中 MOQ 口径', /12 pcs/.test(botText) && /MOQ/i.test(botText));
 
-  /* ---- 4. 自由输入（中文）→ 命中物流 ---- */
-  console.log('\n[自由输入]');
+  /* ---- 4. 自由输入（中文）→ 走智能体，命中物流话题 ---- */
+  console.log('\n[自由输入 · 智能体]');
   const input = doc.querySelector('.asst-input');
   input.value = '运费怎么算';
   doc.querySelector('.asst-send').dispatchEvent(new window.Event('click', { bubbles: true }));
   await sleep(600);
   const botText2 = Array.from(doc.querySelectorAll('.asst-msg-bot')).map((n) => n.textContent).join(' ');
-  ok('中文提问命中物流答案', /DDP/.test(botText2) && /8–10|8-10/.test(botText2));
+  ok('中文提问命中物流话题（智能体或规则均可）', /DDP|8–10|8-10|working days|shipping|days/i.test(botText2));
   ok('输入框已清空', input.value === '');
+
+  /* ---- 4.5 智能体路由：成功渲染 + AI 不可用回退规则 ---- */
+  console.log('\n[智能体路由]');
+  // 4.5a 智能体可用 → 出简短答案 + 反问
+  window.__chatMode = 'ok';
+  input.value = 'Do you ship to Germany?';
+  doc.querySelector('.asst-send').dispatchEvent(new window.Event('click', { bubbles: true }));
+  await sleep(600);
+  const aiReply = Array.from(doc.querySelectorAll('.asst-msg-bot')).map((n) => n.textContent).join(' ');
+  ok('智能体成功 → 出简短答案且含反问', /8–10 working days/i.test(aiReply) && /which country|where are you shipping/i.test(aiReply));
+
+  // 4.5b 智能体不可用 → 自动回退关键词规则
+  window.__chatMode = 'unavailable';
+  input.value = 'what is your MOQ';
+  doc.querySelector('.asst-send').dispatchEvent(new window.Event('click', { bubbles: true }));
+  await sleep(600);
+  const fbReply = Array.from(doc.querySelectorAll('.asst-msg-bot')).map((n) => n.textContent).join(' ');
+  ok('AI 不可用 → 回退规则命中 MOQ 口径', /12 pcs/.test(fbReply) && /MOQ/i.test(fbReply));
 
   /* ---- 5. 答不上来 → 展开留资表单 ---- */
   console.log('\n[兜底 + 留资]');
@@ -145,17 +198,17 @@ async function waitFor(doc, sel, ms) {
   await sleep(300);
   const err = lead.querySelector('[data-a-err]');
   ok('非法联系方式被拦下并提示', !!(err && !err.hidden && err.textContent.length > 0));
-  ok('被拦下时没有发出请求', calls.length === 0, '调用次数 ' + calls.length);
+  ok('被拦下时没有发出 /api/inquiry 请求', inquiryCalls.length === 0, 'inquiry 调用次数 ' + inquiryCalls.length);
 
   /* ---- 7. 填对联系方式 → 提交留资 ---- */
   console.log('\n[提交留资]');
   lead.querySelector('[data-a-contact]').value = 'buyer@example.com';
   lead.dispatchEvent(new window.Event('submit', { bubbles: true, cancelable: true }));
   await sleep(2200); /* 留出时间陷阱的 1.5s 等待 */
-  ok('已调用 /api/inquiry', calls.length === 1, '调用次数 ' + calls.length);
-  if (calls.length) {
-    const b = calls[0].body;
-    ok('接口地址正确', calls[0].url === '/api/inquiry', calls[0].url);
+  ok('已调用 /api/inquiry', inquiryCalls.length === 1, 'inquiry 调用次数 ' + inquiryCalls.length);
+  if (inquiryCalls.length) {
+    const b = inquiryCalls[0].body;
+    ok('接口地址正确', inquiryCalls[0].url === '/api/inquiry', inquiryCalls[0].url);
     ok('带 contact 字段', b.contact === 'buyer@example.com', JSON.stringify(b.contact));
     ok('带 product 字段（≥2 字符）', typeof b.product === 'string' && b.product.length >= 2);
     ok('蜜罐 company 为空', b.company === '');
