@@ -658,20 +658,23 @@ function txt(el) {
     win.close();
   }
 
-  /* ---------------- 商品页一键询盘（产品名带入） ---------------- */
-  console.log('\n[询盘接待表单 · 商品页一键带入]');
+  /* ---------------- 商品页「Quick answer」按钮（唤起挂件 + 友好招呼） ---------------- */
+  console.log('\n[Quick answer 按钮 · 商品页]');
   {
     const { doc, win, errors } = await load(BASE + '/product.html?id=' + encodeURIComponent(firstPopular.id));
     ok('无 JS 运行时错误', errors.length === 0, errors.join(' | '));
-    const btn = doc.querySelector('[data-inquiry-product-trigger]');
-    ok('有「询盘此产品」按钮', !!btn);
+    const btn = doc.querySelector('[data-ai-quick]');
+    ok('有产品页「Quick answer」按钮（原 Inquire this product）', !!btn);
+    ok('按钮带蓝星图标', !!btn && !!btn.querySelector('.ico svg'));
+    ok('按钮文案已换成 Quick answer', !!btn && /Quick answer/i.test(txt(btn)), btn ? txt(btn) : '');
     if (btn) {
       btn.dispatchEvent(new win.MouseEvent('click', { bubbles: true }));
-      const panel = doc.querySelector('[data-inquiry-panel]');
-      const prods = doc.querySelector('[data-inquiry-products]');
-      ok('面板已打开', !!panel && panel.classList.contains('open'));
-      ok('产品项已自动带入（' + firstPopular.name + '）',
-        !!prods && prods.value.indexOf(firstPopular.name) > -1, prods ? prods.value : '');
+      await new Promise((r) => setTimeout(r, 800));
+      const root = doc.querySelector('.asst-root');
+      ok('点击后直接唤起 AI 客服面板', !!root && root.classList.contains('is-open'));
+      ok('面板用随和招呼开场（Hi bro…），不再自动带入产品名',
+        !!root && /Hi bro/i.test(txt(root)) && txt(root).indexOf(firstPopular.name) === -1,
+        root ? txt(root).slice(0, 120) : '');
     }
     win.close();
   }
@@ -750,7 +753,7 @@ function txt(el) {
       const t = () => out.textContent.replace(/\s+/g, ' ');
       const kg = se.querySelector('[data-ship-kg]');
       ok('默认 10kg 美国 = 首重$40 + 9kg×$15 = $175', t().indexOf('$175') > -1, t().slice(0, 110));
-      ok('显示首重 1kg 价格 $40', t().indexOf('$40') > -1, t().slice(0, 110));
+      ok('面板只显示 Estimated freight，不含首重明细', t().indexOf('Estimated freight') > -1 && t().indexOf('First 1') === -1, t().slice(0, 110));
       ok('汇率常量 1 EUR = 1.1 USD', win.FX_RATES && win.FX_RATES.rates.USD === 1.1,
         JSON.stringify(win.FX_RATES));
       ok('美国区只报美元，不折欧元约值', t().indexOf('$175') > -1 && t().indexOf('≈ €') === -1, t().slice(0, 160));
@@ -761,13 +764,13 @@ function txt(el) {
       se.querySelector('[data-ship-w]').value = '50';
       se.querySelector('[data-ship-h]').value = '40';
       kg.dispatchEvent(new win.Event('input', { bubbles: true }));
-      ok('实重与体积重取大（20kg）', t().indexOf('20 kg') > -1, t().slice(0, 140));
+      ok('实重与体积重取大 → 金额 $325（不显示 20 kg 明细）', t().indexOf('$325') > -1 && t().indexOf('kg') === -1, t().slice(0, 140));
       ok('按 20kg 计费 = $40 + 19×$15 = $325', t().indexOf('$325') > -1, t().slice(0, 140));
 
       // 换德国 → 欧元区首重 30 欧 + 每公斤 10 欧
       sel.value = 'DE';
       sel.dispatchEvent(new win.Event('change', { bubbles: true }));
-      ok('德国走欧元区 €30 首重', t().indexOf('€30') > -1, t().slice(0, 110));
+      ok('德国走欧元区 → 金额 €220（不含首重明细）', t().indexOf('€220') > -1 && t().indexOf('First 1') === -1, t().slice(0, 110));
       ok('德国 20kg = €30 + 19×€10 = €220', t().indexOf('€220') > -1, t().slice(0, 140));
       ok('欧元区只报欧元，不出现美元数字',
         t().indexOf('€220') > -1 && t().indexOf('$') === -1, t().slice(0, 160));
@@ -804,7 +807,7 @@ function txt(el) {
       se.querySelector('[data-ship-h]').value = '';
       kg.value = '10.4';
       kg.dispatchEvent(new win.Event('input', { bubbles: true }));
-      ok('10.4kg 进位到 11kg = $190', t().indexOf('11 kg') > -1 && t().indexOf('$190') > -1, t().slice(0, 140));
+      ok('10.4kg 进位到 11kg → 金额 $190（不显示明细）', t().indexOf('$190') > -1 && t().indexOf('kg') === -1, t().slice(0, 140));
     }
     win.close();
   }
@@ -821,6 +824,11 @@ function txt(el) {
 
     doc.querySelector('[data-add]').dispatchEvent(new win.MouseEvent('click', { bubbles: true }));
     const se = doc.querySelector('[data-ship-est]');
+    // 运费面板默认收起；这里显式点开面板并设 10kg，
+    // 以校验「德国 10kg → €120」的运费计算本身（与自动预填的总重无关）。
+    const kg = se.querySelector('[data-ship-kg]');
+    kg.value = '10';
+    kg.dispatchEvent(new win.Event('input', { bubbles: true }));
     se.querySelector('[data-ship-toggle]').dispatchEvent(new win.MouseEvent('click', { bubbles: true }));
     const sel = se.querySelector('[data-ship-country]');
     sel.value = 'DE';
