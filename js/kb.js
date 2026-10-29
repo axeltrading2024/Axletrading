@@ -47,6 +47,11 @@
         en: "Hi! I'm the Axeltrading assistant. Ask me about products, MOQ, pricing, shipping or payment — or pick a topic below.",
         es: '¡Hola! Soy el asistente de Axeltrading. Pregúntame por productos, MOQ, precios, envío o pago — o elige un tema abajo.',
       },
+      /* 产品页「Quick answer」按钮到达时的随和招呼（替代偏机械的初始 welcome） */
+      greetProduct: {
+        en: 'Hi bro! How can I help you today?',
+        es: '¡Hola amigo! ¿En qué puedo ayudarte hoy?',
+      },
       placeholder: { en: 'Type your question…', es: 'Escribe tu pregunta…' },
       handoff: { en: 'Talk to a human on WhatsApp →', es: 'Hablar con una persona por WhatsApp →' },
       send: { en: 'Send', es: 'Enviar' },
