@@ -236,8 +236,7 @@
   var history = [];
 
   /* 产品页点「问 AI」时记住当前产品：后续每一问都会带上，智能体不会串到别的产品上 */
-  var contextProduct = '';
-  var seededProduct = ''; /* 同一产品重复点击不再自问自答一遍 */
+  var greetedProduct = false; /* 产品页「Quick answer」按钮已打过招呼，避免重复 */
 
   /* ---------------- 规则应答（AI 不可用时的兜底，也走 short 短答案，避免整页糊脸） ---------------- */
   function rulesAnswer(text) {
@@ -262,8 +261,6 @@
       history: history.slice(-8),
       lang: lang(),
     };
-    /* 产品页带进来的产品名 → 让智能体全程知道买家在看哪一款 */
-    if (contextProduct) payload.product = contextProduct;
 
     var req;
     try {
@@ -329,29 +326,21 @@
   /* ---------------- 产品页「问 AI」入口 ---------------- */
 
   /**
-   * 由产品页按钮（[data-ai-product]）调用：唤起面板 + 把当前产品带进上下文。
-   * 为什么要替买家先问一句：产品页的按钮点开如果是空白输入框，买家还得自己再打一遍
-   * 产品名，等于白点了。这里直接用他的视角问「MOQ + 物流」——这两个问题智能体答得最稳，
-   * 一开面板就给到价值；产品名同时记进 contextProduct，后面每一问都带着不跑偏。
+   * 由产品页按钮（[data-ai-quick]）调用：唤起面板，并给一句随和的到达招呼。
+   * 不再自动把当前产品带进对话（买家想问什么自己问，避免「替他打字」的突兀感）；
+   * 挂件没起来（assistant.js 被拦/加载失败）就退回原来的询价表单，避免按钮点了没反应。
    */
-  function openProduct(name) {
-    var label = String(name == null ? '' : name).trim();
+  function quickStart() {
     if (!root) mount(); /* 极端情况：按钮比挂件先就绪 */
     if (!root) return;
     open();
-    if (!label) return;
-
-    contextProduct = label;
-    if (seededProduct === label) return; /* 同一产品再点一次，不重复自问 */
-    seededProduct = label;
-
-    setTimeout(function () {
-      sendFreeText(
-        lang() === 'es'
-          ? 'Estoy viendo ' + label + '. ¿Cuál es el MOQ y el plazo de envío?'
-          : "I'm looking at " + label + ". What's the MOQ and shipping time?"
-      );
-    }, 320);
+    if (greetedProduct) return;
+    greetedProduct = true;
+    /* 还没聊过 → 把初始 welcome 换成更随和的到达招呼 */
+    if (!body.querySelector('.asst-msg-user')) {
+      var first = body.querySelector('.asst-msg-bot');
+      if (first) first.textContent = t(KB.ui.greetProduct);
+    }
   }
 
   /* ---------------- 快捷问题 ---------------- */
@@ -495,6 +484,6 @@
     mount();
   }
 
-  /* openProduct：产品页「问 AI about this product」按钮用（app.js 里调） */
-  window.EddyAssistant = { open: open, close: close, ask: ask, openProduct: openProduct };
+  /* quickStart：产品页「Quick answer」按钮用（app.js 里调），替代旧 openProduct */
+  window.EddyAssistant = { open: open, close: close, ask: ask, quickStart: quickStart };
 })();
