@@ -58,9 +58,9 @@
                           es: 'Toca una vez para ver · otra para confirmar · otra para añadir. Doble toque para quitar.' },
     inquiry_mail_alt:   { en: 'or send by email', es: 'o envía por correo' },
     inquiry_product_btn:{ en: 'Inquire this product', es: 'Cotizar este producto' },
-    /* 产品页主 CTA：一键唤起 AI 客服（原「Inquire this product」改成问 AI）
+    /* 产品页主 CTA：一键唤起 AI 客服（原「Inquire this product」改成 Quick answer）
        文案刻意压短：这一行是 3 个按钮并排，太长会挤到第二行 */
-    ai_product_btn:     { en: 'Chat with AI', es: 'Chatear con IA' },
+    quick_answer_btn:   { en: 'Quick answer', es: 'Respuesta rápida' },
     inquiry_err_name:   { en: 'Please enter your name', es: 'Por favor ingresa tu nombre' },
     inquiry_err_phone:  { en: 'Please enter your phone number', es: 'Por favor ingresa tu teléfono' },
     inquiry_country_ph: { en: 'Select your country…', es: 'Selecciona tu país…' },
