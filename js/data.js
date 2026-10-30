@@ -230,6 +230,28 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "a-2",
+    "name": "Airpods pro3",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-2-g1.jpg",
+      "img/prod/gal/a-2-g3.jpg",
+      "img/prod/gal/a-2-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "pro3",
+        "price": "",
+        "image": "img/prod/var/a-2-pro3.jpg"
+      }
+    ]
+  },
+  {
     "id": "airpods-max",
     "name": "AirPods Max",
     "brand": "OEM",
@@ -274,28 +296,6 @@ window.PRODUCTS = [
         "name": "blue",
         "price": "",
         "image": "img/prod/var/airpods-max-blue.jpg"
-      }
-    ]
-  },
-  {
-    "id": "a-2",
-    "name": "Airpods pro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-2-g1.jpg",
-      "img/prod/gal/a-2-g3.jpg",
-      "img/prod/gal/a-2-g2.jpg"
-    ],
-    "variants": [
-      {
-        "name": "pro3",
-        "price": "",
-        "image": "img/prod/var/a-2-pro3.jpg"
       }
     ]
   },
@@ -3699,6 +3699,29 @@ window.PRODUCTS = [
         "name": "Off-white",
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
+      }
+    ]
+  },
+  {
+    "id": "airpods",
+    "name": "AirPods 4",
+    "brand": "",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "video": "img/vid/airpods.mp4",
+    "images": [
+      "img/prod/gal/airpods-g1.jpg",
+      "img/prod/gal/airpods-g2.jpg",
+      "img/prod/gal/airpods-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": "img/prod/var/airpods-airpods-4.jpg"
       }
     ]
   }
