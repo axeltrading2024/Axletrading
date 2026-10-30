@@ -305,6 +305,36 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "airpods",
+    "name": "AirPods 4",
+    "brand": "",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "popular": true,
+    "video": "img/vid/airpods.mp4",
+    "images": [
+      "img/prod/gal/airpods-g1.jpg",
+      "img/prod/gal/airpods-g2.jpg",
+      "img/prod/gal/airpods-g3.jpg"
+    ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "wireless",
+      "earbuds"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": "img/prod/var/airpods-airpods-4.jpg"
+      }
+    ]
+  },
+  {
     "id": "sony-wh1000",
     "name": "Sony-style Wireless Headphones",
     "brand": "Sony",
@@ -3707,36 +3737,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods",
-    "name": "AirPods 4",
-    "brand": "",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "popular": true,
-    "video": "img/vid/airpods.mp4",
-    "images": [
-      "img/prod/gal/airpods-g1.jpg",
-      "img/prod/gal/airpods-g2.jpg",
-      "img/prod/gal/airpods-g3.jpg"
-    ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "wireless",
-      "earbuds"
-    ],
-    "variants": [
-      {
-        "name": "airpods 4",
-        "price": "",
-        "image": "img/prod/var/airpods-airpods-4.jpg"
-      }
-    ]
-  },
-  {
     "id": "a-3",
     "name": "airpods 5",
     "brand": "",
@@ -3749,6 +3749,12 @@ window.PRODUCTS = [
       "img/prod/gal/a-3-g1.jpg",
       "img/prod/gal/a-3-g2.jpg",
       "img/prod/gal/a-3-g3.jpg"
+    ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "wireless",
+      "earbuds"
     ]
   },
   {
