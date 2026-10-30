@@ -3722,6 +3722,12 @@ window.PRODUCTS = [
       "img/prod/gal/airpods-g2.jpg",
       "img/prod/gal/airpods-g3.jpg"
     ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "wireless",
+      "earbuds"
+    ],
     "variants": [
       {
         "name": "airpods 4",
