@@ -208,7 +208,6 @@ window.PRODUCTS = [
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
-    "popular": true,
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
       "img/prod/gal/airpods-pro-2-g1.jpg",
