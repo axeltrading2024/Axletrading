@@ -3711,6 +3711,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "earbuds-headphones",
     "weight": 0.22,
+    "popular": true,
     "video": "img/vid/airpods.mp4",
     "images": [
       "img/prod/gal/airpods-g1.jpg",
