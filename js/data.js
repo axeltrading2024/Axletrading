@@ -3739,6 +3739,32 @@ window.PRODUCTS = [
       "img/prod/gal/a-3-g2.jpg",
       "img/prod/gal/a-3-g3.jpg"
     ]
+  },
+  {
+    "id": "p-5",
+    "name": "JBL pulse 6",
+    "brand": "JBL",
+    "price": "€20",
+    "note": "Portable · Waterproof-Led",
+    "desc": "see the sound-Supports 360° full-color lighting with 16 light show themes.",
+    "collection": "speakers",
+    "weight": 1,
+    "popular": true,
+    "images": [
+      "img/prod/gal/p-5-g1.jpg",
+      "img/prod/gal/p-5-g2.jpg",
+      "img/prod/gal/p-5-g3.jpg"
+    ],
+    "keywords": [
+      "JBL/speakers/pusle"
+    ],
+    "variants": [
+      {
+        "name": "Pulse6",
+        "price": "",
+        "image": "img/prod/var/p-5-1.jpg"
+      }
+    ]
   }
 ];
 
