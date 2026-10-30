@@ -201,15 +201,14 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods",
+    "name": "AirPods pro2",
     "brand": "Apple",
-    "price": "€12",
+    "price": "€10",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
     "popular": true,
-    "video": "img/vid/airpods-pro-2.mp4",
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
       "img/prod/gal/airpods-pro-2-g1.jpg",
@@ -227,21 +226,6 @@ window.PRODUCTS = [
         "name": "Airpods pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
-      },
-      {
-        "name": "Airpods 4",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
-      },
-      {
-        "name": "Airpods pro3",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
-      },
-      {
-        "name": "Airpods 5",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-airpods-5.jpg"
       }
     ]
   },
@@ -2159,7 +2143,7 @@ window.PRODUCTS = [
       {
         "name": "1",
         "price": "",
-        "image": "img/prod/var/l-1.jpg"
+        "image": ""
       },
       {
         "name": "2",
@@ -2185,16 +2169,6 @@ window.PRODUCTS = [
         "name": "6",
         "price": "",
         "image": "img/prod/var/l-6.jpg"
-      },
-      {
-        "name": "7",
-        "price": "",
-        "image": "img/prod/var/l-7.jpg"
-      },
-      {
-        "name": "8",
-        "price": "",
-        "image": "img/prod/var/l-8.jpg"
       }
     ]
   },
