@@ -242,6 +242,12 @@ window.PRODUCTS = [
       "img/prod/gal/a-2-g3.jpg",
       "img/prod/gal/a-2-g2.jpg"
     ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "wireless",
+      "earbuds"
+    ],
     "variants": [
       {
         "name": "pro3",
