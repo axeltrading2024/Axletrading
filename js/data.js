@@ -278,6 +278,28 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "a-2",
+    "name": "Airpods pro3",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-2-g1.jpg",
+      "img/prod/gal/a-2-g3.jpg",
+      "img/prod/gal/a-2-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "pro3",
+        "price": "",
+        "image": "img/prod/var/a-2-pro3.jpg"
+      }
+    ]
+  },
+  {
     "id": "sony-wh1000",
     "name": "Sony-style Wireless Headphones",
     "brand": "Sony",
@@ -3677,28 +3699,6 @@ window.PRODUCTS = [
         "name": "Off-white",
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
-      }
-    ]
-  },
-  {
-    "id": "a-2",
-    "name": "Airpods pro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-2-g1.jpg",
-      "img/prod/gal/a-2-g3.jpg",
-      "img/prod/gal/a-2-g2.jpg"
-    ],
-    "variants": [
-      {
-        "name": "pro3",
-        "price": "",
-        "image": "img/prod/var/a-2-pro3.jpg"
       }
     ]
   }
