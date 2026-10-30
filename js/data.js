@@ -274,7 +274,7 @@ window.PRODUCTS = [
       {
         "name": "midnight",
         "price": "",
-        "image": "img/prod/var/airpods-max-night-black.jpg"
+        "image": "img/prod/var/airpods-max-midnight.jpg"
       },
       {
         "name": "starlight",
