@@ -260,9 +260,9 @@ window.PRODUCTS = [
     "collection": "earbuds-headphones",
     "weight": 1.5,
     "images": [
+      "img/prod/gal/airpods-max-g3.jpg",
       "img/prod/gal/airpods-max-g1.jpg",
-      "img/prod/gal/airpods-max-g2.jpg",
-      "img/prod/gal/airpods-max-g3.jpg"
+      "img/prod/gal/airpods-max-g2.jpg"
     ],
     "keywords": [
       "airpods",
