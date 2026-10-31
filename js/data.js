@@ -1122,7 +1122,7 @@ window.PRODUCTS = [
     "id": "c-2",
     "name": "Cartier Style",
     "brand": "Cartier",
-    "price": "€65",
+    "price": "€70",
     "note": "elegant-luxury",
     "desc": "32/36mm for girl and 42mm for man",
     "collection": "watches",
