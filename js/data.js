@@ -242,12 +242,6 @@ window.PRODUCTS = [
       "img/prod/gal/a-2-g3.jpg",
       "img/prod/gal/a-2-g2.jpg"
     ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "wireless",
-      "earbuds"
-    ],
     "variants": [
       {
         "name": "pro3",
@@ -259,7 +253,7 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "Apple",
+    "brand": "OEM",
     "price": "€75",
     "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
@@ -301,36 +295,6 @@ window.PRODUCTS = [
         "name": "blue",
         "price": "",
         "image": "img/prod/var/airpods-max-blue.jpg"
-      }
-    ]
-  },
-  {
-    "id": "airpods",
-    "name": "AirPods 4",
-    "brand": "",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "popular": true,
-    "video": "img/vid/airpods.mp4",
-    "images": [
-      "img/prod/gal/airpods-g1.jpg",
-      "img/prod/gal/airpods-g2.jpg",
-      "img/prod/gal/airpods-g3.jpg"
-    ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "wireless",
-      "earbuds"
-    ],
-    "variants": [
-      {
-        "name": "airpods 4",
-        "price": "",
-        "image": "img/prod/var/airpods-airpods-4.jpg"
       }
     ]
   },
@@ -3737,6 +3701,30 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "airpods",
+    "name": "AirPods 4",
+    "brand": "",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "popular": true,
+    "video": "img/vid/airpods.mp4",
+    "images": [
+      "img/prod/gal/airpods-g1.jpg",
+      "img/prod/gal/airpods-g2.jpg",
+      "img/prod/gal/airpods-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": "img/prod/var/airpods-airpods-4.jpg"
+      }
+    ]
+  },
+  {
     "id": "a-3",
     "name": "airpods 5",
     "brand": "",
@@ -3749,12 +3737,6 @@ window.PRODUCTS = [
       "img/prod/gal/a-3-g1.jpg",
       "img/prod/gal/a-3-g2.jpg",
       "img/prod/gal/a-3-g3.jpg"
-    ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "wireless",
-      "earbuds"
     ]
   },
   {
