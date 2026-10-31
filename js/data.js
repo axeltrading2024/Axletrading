@@ -830,62 +830,62 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Color-4",
+        "name": "gold-black",
         "price": "",
         "image": "img/prod/var/r-color-4.jpg"
       },
       {
-        "name": "Color-1",
+        "name": "gold-Green",
         "price": "",
         "image": "img/prod/var/r-1.jpg"
       },
       {
-        "name": "Color-2",
+        "name": "gold-gold",
         "price": "",
         "image": "img/prod/var/r-2.jpg"
       },
       {
-        "name": "Color-3",
+        "name": "gold-white",
         "price": "",
         "image": "img/prod/var/r-3.jpg"
       },
       {
-        "name": "Color-5",
+        "name": "Rose gold-rose gold",
         "price": "",
         "image": "img/prod/var/r-5.jpg"
       },
       {
-        "name": "Color-6",
+        "name": "Rose gold-white",
         "price": "",
         "image": "img/prod/var/r-6.jpg"
       },
       {
-        "name": "Color-7",
+        "name": "Rose gold-green",
         "price": "",
         "image": "img/prod/var/r-7.jpg"
       },
       {
-        "name": "Color-8",
+        "name": "Silver-green",
         "price": "",
         "image": "img/prod/var/r-8.jpg"
       },
       {
-        "name": "Color-9",
+        "name": "Silver-white",
         "price": "",
         "image": "img/prod/var/r-9.jpg"
       },
       {
-        "name": "Color-10",
+        "name": "Silver-black",
         "price": "",
         "image": "img/prod/var/r-10.jpg"
       },
       {
-        "name": "Color-11",
+        "name": "Silver-light blue",
         "price": "",
         "image": "img/prod/var/r-color-11.jpg"
       },
       {
-        "name": "Style-12",
+        "name": "Gold-black -2",
         "price": "",
         "image": "img/prod/var/r-12.jpg"
       }
