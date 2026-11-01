@@ -540,6 +540,7 @@
         '<div class="drawer-foot">' +
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<div class="total sub" data-drawer-freight-row hidden><span data-i18n="quote_freight">Freight (est.)</span><b data-drawer-freight>—</b></div>' +
+          '<div class="ship-wt-mini" data-drawer-freight-wt hidden></div>' +
           '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
           '<p class="totals-note" data-drawer-est-note hidden></p>' +
           '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
@@ -1103,6 +1104,16 @@
       noteEl.textContent = b.note || '';
       noteEl.hidden = !b.note;
     }
+    // 底部运费栏下方补一行「计费重量」，折叠状态下也能一眼核对运费按多重算。
+    var wtEl = $('[data-drawer-freight-wt]');
+    if (wtEl) {
+      if (lastShip && !lastShip.quoteOnly && lastShip.bill > 0) {
+        wtEl.textContent = window.T('ship_chargeable') + ': ' + fmtKg(lastShip.bill) + ' kg';
+        wtEl.hidden = false;
+      } else {
+        wtEl.hidden = true;
+      }
+    }
   }
 
   /* ---------------- 运费估算（抽屉内折叠面板） ---------------- */
@@ -1187,8 +1198,10 @@
     } : null;
     renderTotals();
     // 只显示估算运费金额，不再展示分段计算过程（Chargeable/First/Extra），
-    // 客户仍可在上方选目的国、调重量，运费自动按总重估算。
-    out.innerHTML = '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
+    // 但保留一行「计费重量」让卖家/客户一眼核对运费是按多重算的（尤其客户改过重量时）。
+    out.innerHTML = '<div class="ship-bill"><span>' + esc(window.T('ship_chargeable')) + '</span>' +
+        '<b>' + fmtKg(q.bill) + ' kg</b></div>' +
+      '<div class="ship-total"><span>' + esc(window.T('ship_estimate')) + '</span>' +
         '<b>' + money(q.cost, sym) + '</b></div>' +
       '<p class="ship-transit">' + esc(window.T('ship_transit', { d: transitLabel(q.zone) })) + '</p>';
   }
@@ -2581,6 +2594,16 @@
       noteEl.textContent = b.note || '';
       noteEl.hidden = !b.note;
     }
+    // 报价单运费行下方补一行「计费重量」，与抽屉保持一致。
+    var wtEl = $('[data-shared-freight-wt]');
+    if (wtEl) {
+      if (sharedShip && !sharedShip.quoteOnly && sharedShip.bill > 0) {
+        wtEl.textContent = window.T('ship_chargeable') + ': ' + fmtKg(sharedShip.bill) + ' kg';
+        wtEl.hidden = false;
+      } else {
+        wtEl.hidden = true;
+      }
+    }
   }
 
   /** 报价单是否需要汇率说明：只有「商品币种 ≠ 运费币种」时才需要，欧元区报价单不出现美元字样 */
@@ -2701,6 +2724,7 @@
         '<div class="shared-quote" data-shared-body></div>' +
         '<div class="shared-total"><span data-i18n="products_total">Products total</span><b data-shared-total>—</b></div>' +
         '<div class="shared-total is-sub" data-shared-freight-row hidden><span data-shared-freight-lbl>Freight (est.)</span><b data-shared-freight>—</b></div>' +
+        '<div class="ship-wt-mini" data-shared-freight-wt hidden></div>' +
         '<div class="shared-total is-grand" data-shared-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-shared-est>—</b></div>' +
         '<p class="shared-note totals-note" data-shared-est-note hidden></p>' +
         '<p class="shared-note" data-i18n="shared_note">Quantities are adjustable. Contact us for an official quotation.</p>' +
