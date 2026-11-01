@@ -140,22 +140,6 @@ window.CATEGORIES = [
     ]
   },
   {
-    "slug": "clothes-and-shoes",
-    "name": "Clothes & Shoes",
-    "tagline": "Wear the look",
-    "subcategories": [
-      {
-        "slug": "clothes",
-        "name": "Clothes"
-      },
-      {
-        "slug": "shoes",
-        "name": "Shoes"
-      }
-    ],
-    "image": "img/cat/clothes-and-shoes.png"
-  },
-  {
     "slug": "sunglasses",
     "name": "Fashion Accessories",
     "tagline": "Frame your day",
@@ -174,6 +158,22 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/sunglasses.png"
+  },
+  {
+    "slug": "clothes-and-shoes",
+    "name": "Clothes & Shoes",
+    "tagline": "Wear the look",
+    "subcategories": [
+      {
+        "slug": "clothes",
+        "name": "Clothes"
+      },
+      {
+        "slug": "shoes",
+        "name": "Shoes"
+      }
+    ],
+    "image": "img/cat/clothes-and-shoes.png"
   },
   {
     "slug": "chargers",
@@ -830,62 +830,62 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "gold-black",
+        "name": "Color-4",
         "price": "",
         "image": "img/prod/var/r-color-4.jpg"
       },
       {
-        "name": "gold-Green",
+        "name": "Color-1",
         "price": "",
         "image": "img/prod/var/r-1.jpg"
       },
       {
-        "name": "gold-gold",
+        "name": "Color-2",
         "price": "",
         "image": "img/prod/var/r-2.jpg"
       },
       {
-        "name": "gold-white",
+        "name": "Color-3",
         "price": "",
         "image": "img/prod/var/r-3.jpg"
       },
       {
-        "name": "Rose gold-rose gold",
+        "name": "Color-5",
         "price": "",
         "image": "img/prod/var/r-5.jpg"
       },
       {
-        "name": "Rose gold-white",
+        "name": "Color-6",
         "price": "",
         "image": "img/prod/var/r-6.jpg"
       },
       {
-        "name": "Rose gold-green",
+        "name": "Color-7",
         "price": "",
         "image": "img/prod/var/r-7.jpg"
       },
       {
-        "name": "Silver-green",
+        "name": "Color-8",
         "price": "",
         "image": "img/prod/var/r-8.jpg"
       },
       {
-        "name": "Silver-white",
+        "name": "Color-9",
         "price": "",
         "image": "img/prod/var/r-9.jpg"
       },
       {
-        "name": "Silver-black",
+        "name": "Color-10",
         "price": "",
         "image": "img/prod/var/r-10.jpg"
       },
       {
-        "name": "Silver-light blue",
+        "name": "Color-11",
         "price": "",
-        "image": "img/prod/var/r-color-11.jpg"
+        "image": "img/prod/var/r-11.jpg"
       },
       {
-        "name": "Gold-black -2",
+        "name": "Style-12",
         "price": "",
         "image": "img/prod/var/r-12.jpg"
       }
@@ -1122,7 +1122,7 @@ window.PRODUCTS = [
     "id": "c-2",
     "name": "Cartier Style",
     "brand": "Cartier",
-    "price": "€70",
+    "price": "€65",
     "note": "elegant-luxury",
     "desc": "32/36mm for girl and 42mm for man",
     "collection": "watches",
