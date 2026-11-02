@@ -3591,26 +3591,26 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "p-3",
-    "name": "Prada backpack",
-    "brand": "Prada",
-    "price": "€90",
-    "note": "fashion-elegant-Business casual",
+    "id": "airpods",
+    "name": "AirPods 4",
+    "brand": "",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
     "desc": "",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
-    "weight": 2,
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
     "popular": true,
-    "keywords": [
-      "prada",
-      "bags",
-      "backpack"
+    "video": "img/vid/airpods.mp4",
+    "images": [
+      "img/prod/gal/airpods-g1.jpg",
+      "img/prod/gal/airpods-g2.jpg",
+      "img/prod/gal/airpods-g3.jpg"
     ],
     "variants": [
       {
-        "name": "Prada-1",
+        "name": "airpods 4",
         "price": "",
-        "image": "img/prod/var/p-3-1.jpg"
+        "image": "img/prod/var/airpods-airpods-4.jpg"
       }
     ]
   },
@@ -3701,26 +3701,26 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods",
-    "name": "AirPods 4",
-    "brand": "",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
+    "id": "p-3",
+    "name": "Prada backpack",
+    "brand": "Prada",
+    "price": "€90",
+    "note": "fashion-elegant-Business casual",
     "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "weight": 2,
     "popular": true,
-    "video": "img/vid/airpods.mp4",
-    "images": [
-      "img/prod/gal/airpods-g1.jpg",
-      "img/prod/gal/airpods-g2.jpg",
-      "img/prod/gal/airpods-g3.jpg"
+    "keywords": [
+      "prada",
+      "bags",
+      "backpack"
     ],
     "variants": [
       {
-        "name": "airpods 4",
+        "name": "Prada-1",
         "price": "",
-        "image": "img/prod/var/airpods-airpods-4.jpg"
+        "image": "img/prod/var/p-3-1.jpg"
       }
     ]
   },
