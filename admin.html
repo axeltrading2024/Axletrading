@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261020i" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261102a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -2408,6 +2408,47 @@
     if (state.key) load();
   }
 
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+<!-- 板块折叠：每个 .panel / .guide 标题栏注入折叠按钮，状态存 localStorage -->
+<script>
+(function () {
+  'use strict';
+  var KEY = 'eddysupply_admin_collapsed_v1';
+  function loadMap() { try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; } }
+  function saveMap(m) { try { localStorage.setItem(KEY, JSON.stringify(m)); } catch (e) {} }
+  function stableKey(section) {
+    var id = section.getAttribute('data-page-node-id');
+    if (id) return 'id:' + id;
+    return 'sec:' + (section.className || 'x');
+  }
+  function init() {
+    var map = loadMap();
+    var heads = document.querySelectorAll('.panel > .panel-head, .guide > .guide-head');
+    Array.prototype.forEach.call(heads, function (head) {
+      var section = head.parentElement;
+      var key = stableKey(section);
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'pcollapse';
+      btn.setAttribute('aria-label', '折叠或展开此板块');
+      btn.title = '折叠 / 展开';
+      btn.innerHTML = '<span class="chev"></span>';
+      head.insertBefore(btn, head.firstChild);
+      if (map[key]) section.classList.add('collapsed');
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var collapsed = section.classList.toggle('collapsed');
+        var m = loadMap();
+        if (collapsed) m[key] = 1; else delete m[key];
+        saveMap(m);
+      });
+    });
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
