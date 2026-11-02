@@ -1326,6 +1326,11 @@ window.PRODUCTS = [
     "subcategory": "smart-watch",
     "weight": 0.4,
     "popular": true,
+    "images": [
+      "img/prod/gal/apple-watch-g1.jpg",
+      "img/prod/gal/apple-watch-g2.jpg",
+      "img/prod/gal/apple-watch-g3.jpg"
+    ],
     "keywords": [
       "apple",
       "watch",
