@@ -1316,8 +1316,8 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
+    "id": "apple-watch",
+    "name": "Apple Watch",
     "brand": "Apple",
     "price": "€30",
     "note": "smart watch-care your daily routine",
@@ -1341,6 +1341,16 @@ window.PRODUCTS = [
         "name": "Ultra3",
         "price": "",
         "image": "img/prod/var/apple-watch-11-ultra3.jpg"
+      },
+      {
+        "name": "S12",
+        "price": "",
+        "image": "img/prod/var/apple-watch-s12.jpg"
+      },
+      {
+        "name": "Ultra4",
+        "price": "",
+        "image": "img/prod/var/apple-watch-ultra4.jpg"
       }
     ]
   },
