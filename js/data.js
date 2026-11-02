@@ -1456,31 +1456,26 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "d",
-    "name": "Dyson airstrait style",
-    "brand": "Dyson",
-    "price": "€130",
-    "note": "tempreture control-harmless-gift box",
+    "id": "airpods",
+    "name": "AirPods 4",
+    "brand": "",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
     "desc": "",
-    "collection": "hair-dryers",
-    "subcategory": "hair-care",
-    "weight": 3,
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
     "popular": true,
+    "video": "img/vid/airpods.mp4",
     "images": [
-      "img/prod/gal/d-g1.jpg",
-      "img/prod/gal/d-g2.jpg",
-      "img/prod/gal/d-g3.jpg"
+      "img/prod/gal/airpods-g1.jpg",
+      "img/prod/gal/airpods-g2.jpg",
+      "img/prod/gal/airpods-g3.jpg"
     ],
     "variants": [
       {
-        "name": "Classic",
+        "name": "airpods 4",
         "price": "",
-        "image": "img/prod/var/d-1.jpg"
-      },
-      {
-        "name": "Gift box",
-        "price": "",
-        "image": "img/prod/var/d-2.jpg"
+        "image": "img/prod/var/airpods-airpods-4.jpg"
       }
     ]
   },
@@ -3591,26 +3586,31 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods",
-    "name": "AirPods 4",
-    "brand": "",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
+    "id": "d",
+    "name": "Dyson airstrait style",
+    "brand": "Dyson",
+    "price": "€130",
+    "note": "tempreture control-harmless-gift box",
     "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
+    "collection": "hair-dryers",
+    "subcategory": "hair-care",
+    "weight": 3,
     "popular": true,
-    "video": "img/vid/airpods.mp4",
     "images": [
-      "img/prod/gal/airpods-g1.jpg",
-      "img/prod/gal/airpods-g2.jpg",
-      "img/prod/gal/airpods-g3.jpg"
+      "img/prod/gal/d-g1.jpg",
+      "img/prod/gal/d-g2.jpg",
+      "img/prod/gal/d-g3.jpg"
     ],
     "variants": [
       {
-        "name": "airpods 4",
+        "name": "Classic",
         "price": "",
-        "image": "img/prod/var/airpods-airpods-4.jpg"
+        "image": "img/prod/var/d-1.jpg"
+      },
+      {
+        "name": "Gift box",
+        "price": "",
+        "image": "img/prod/var/d-2.jpg"
       }
     ]
   },
@@ -3701,45 +3701,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "p-3",
-    "name": "Prada backpack",
-    "brand": "Prada",
-    "price": "€90",
-    "note": "fashion-elegant-Business casual",
-    "desc": "",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
-    "weight": 2,
-    "popular": true,
-    "keywords": [
-      "prada",
-      "bags",
-      "backpack"
-    ],
-    "variants": [
-      {
-        "name": "Prada-1",
-        "price": "",
-        "image": "img/prod/var/p-3-1.jpg"
-      }
-    ]
-  },
-  {
-    "id": "a-3",
-    "name": "airpods 5",
-    "brand": "",
-    "price": "€13",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.2,
-    "images": [
-      "img/prod/gal/a-3-g1.jpg",
-      "img/prod/gal/a-3-g2.jpg",
-      "img/prod/gal/a-3-g3.jpg"
-    ]
-  },
-  {
     "id": "p-5",
     "name": "JBL pulse 6",
     "brand": "JBL",
@@ -3762,6 +3723,45 @@ window.PRODUCTS = [
         "name": "Pulse6",
         "price": "",
         "image": "img/prod/var/p-5-1.jpg"
+      }
+    ]
+  },
+  {
+    "id": "a-3",
+    "name": "airpods 5",
+    "brand": "",
+    "price": "€13",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.2,
+    "images": [
+      "img/prod/gal/a-3-g1.jpg",
+      "img/prod/gal/a-3-g2.jpg",
+      "img/prod/gal/a-3-g3.jpg"
+    ]
+  },
+  {
+    "id": "p-3",
+    "name": "Prada backpack",
+    "brand": "Prada",
+    "price": "€90",
+    "note": "fashion-elegant-Business casual",
+    "desc": "",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "weight": 2,
+    "popular": true,
+    "keywords": [
+      "prada",
+      "bags",
+      "backpack"
+    ],
+    "variants": [
+      {
+        "name": "Prada-1",
+        "price": "",
+        "image": "img/prod/var/p-3-1.jpg"
       }
     ]
   }
