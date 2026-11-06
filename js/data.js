@@ -3894,6 +3894,57 @@ window.PRODUCTS = [
         "image": "img/prod/var/yves-saint-laurent-l-homme-ultime-le-parfum100-ml.jpg"
       }
     ]
+  },
+  {
+    "id": "parfums-de-marly",
+    "name": "Parfums de Marly style",
+    "brand": "marly",
+    "price": "€18",
+    "note": "nature-grace-lovely",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "weight": 0.5,
+    "images": [
+      "img/prod/gal/parfums-de-marly-g1.jpg",
+      "img/prod/gal/parfums-de-marly-g2.jpg",
+      "img/prod/gal/parfums-de-marly-g3.jpg"
+    ],
+    "keywords": [
+      "perfumes; Parfums de Marly;marly;fragnance"
+    ],
+    "variants": [
+      {
+        "name": "Delina 75ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-marly-delina-exclusif-75ml.jpg"
+      },
+      {
+        "name": "Layton Exclusif 125ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-marly-layton-exclusif-125ml.jpg"
+      },
+      {
+        "name": "Layton 125ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-layton-125ml.jpg"
+      },
+      {
+        "name": "Althair 75ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-althair-75ml.jpg"
+      },
+      {
+        "name": "Oriana 75ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-oriana-75ml.jpg"
+      },
+      {
+        "name": "Cassili 75ml",
+        "price": "",
+        "image": "img/prod/var/parfums-de-marly-cassili-75ml.jpg"
+      }
+    ]
   }
 ];
 
