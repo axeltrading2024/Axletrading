@@ -3833,6 +3833,67 @@ window.PRODUCTS = [
         "image": ""
       }
     ]
+  },
+  {
+    "id": "yves-saint-laurent",
+    "name": "Yves Saint Laurent style perfumes",
+    "brand": "YSL",
+    "price": "€18",
+    "note": "freedome-breaking chains-elegant",
+    "desc": "",
+    "collection": "perfumes",
+    "subcategory": "best-sellers",
+    "weight": 0.5,
+    "images": [
+      "img/prod/gal/yves-saint-laurent-g1.jpg",
+      "img/prod/gal/yves-saint-laurent-g2.jpg",
+      "img/prod/gal/yves-saint-laurent-g3.jpg"
+    ],
+    "keywords": [
+      "perfumes;YSL;Yves Saint Laurent;fragnance"
+    ],
+    "variants": [
+      {
+        "name": "Libre EDP 90ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-libre-edp-90ml.jpg"
+      },
+      {
+        "name": "Libre Le Parfums",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-libre-le-parfums.jpg"
+      },
+      {
+        "name": "Black Opium  90ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-black-opium-90ml.jpg"
+      },
+      {
+        "name": "Red Opium Black 90mL",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-red-opium-black-90ml.jpg"
+      },
+      {
+        "name": "L'Homme EDT 100 ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-l-homme-edt-100-ml.jpg"
+      },
+      {
+        "name": "L'Homme EDP 100 ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-l-homme-edp-100-ml.jpg"
+      },
+      {
+        "name": "L'Homme Ultime  EDP 100ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-l-homme-ultime-edp-100ml.jpg"
+      },
+      {
+        "name": "L'Homme Ultime le Parfum100 ml",
+        "price": "",
+        "image": "img/prod/var/yves-saint-laurent-l-homme-ultime-le-parfum100-ml.jpg"
+      }
+    ]
   }
 ];
 
