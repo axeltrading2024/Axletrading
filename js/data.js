@@ -3768,6 +3768,76 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-3-1.jpg"
       }
     ]
+  },
+  {
+    "id": "c-3",
+    "name": "creed style perfume",
+    "brand": "Creed",
+    "price": "€18",
+    "note": "elegan-passion-energy",
+    "desc": "",
+    "collection": "perfumes",
+    "weight": 0.5,
+    "images": [
+      "img/prod/gal/c-3-g1.jpg",
+      "img/prod/gal/c-3-g2.jpg",
+      "img/prod/gal/c-3-g3.jpg"
+    ],
+    "keywords": [
+      "perfume;Creed;fragnance"
+    ],
+    "variants": [
+      {
+        "name": "Absolu Aventus 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-creed-absolu-aventus-2023.jpg"
+      },
+      {
+        "name": "Aventus for Her 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-aventus-for-her.jpg"
+      },
+      {
+        "name": "Aventus Cologne 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-aventus-cologne.jpg"
+      },
+      {
+        "name": "Love in White 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-love-in-white.jpg"
+      },
+      {
+        "name": "Royal Mayfair 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-royal-mayfair.jpg"
+      },
+      {
+        "name": "Delphinus 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-delphinus.jpg"
+      },
+      {
+        "name": "Spring Flowe 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-spring-flowe.jpg"
+      },
+      {
+        "name": "Virgin Island Water 100ml",
+        "price": "",
+        "image": "img/prod/var/c-3-virgin-island-water-100ml.jpg"
+      },
+      {
+        "name": "Love In Black 75ml",
+        "price": "",
+        "image": "img/prod/var/c-3-love-in-black-75ml.jpg"
+      },
+      {
+        "name": "Love In White 75ml",
+        "price": "",
+        "image": ""
+      }
+    ]
   }
 ];
 
