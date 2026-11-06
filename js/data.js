@@ -2532,26 +2532,6 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-xerjoff-accento.jpg"
       },
       {
-        "name": "marly layton",
-        "price": "",
-        "image": "img/prod/var/p-marly-layton.jpg"
-      },
-      {
-        "name": "creed",
-        "price": "",
-        "image": "img/prod/var/p-creed.jpg"
-      },
-      {
-        "name": "YSL libre",
-        "price": "",
-        "image": "img/prod/var/p-ysl-libre.jpg"
-      },
-      {
-        "name": "YSL saint laurent",
-        "price": "",
-        "image": "img/prod/var/p-ysl-saint-laurent.jpg"
-      },
-      {
         "name": "Prada Doxe EDP",
         "price": "",
         "image": "img/prod/var/p-prada.jpg"
