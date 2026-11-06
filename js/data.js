@@ -618,7 +618,6 @@ window.PRODUCTS = [
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/a-g1.jpg",
@@ -692,7 +691,6 @@ window.PRODUCTS = [
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
     "subcategory": "niche",
-    "moq": "12 pcs",
     "weight": 0.41,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
