@@ -2401,7 +2401,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
@@ -2505,7 +2504,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/p-g1.jpg",
