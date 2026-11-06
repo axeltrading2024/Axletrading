@@ -2244,7 +2244,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/t.mp4",
     "images": [
@@ -2324,7 +2323,6 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/c-g1.jpg",
