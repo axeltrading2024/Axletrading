@@ -2560,6 +2560,11 @@ window.PRODUCTS = [
         "name": "ivenchy Gentleman Society 100ml",
         "price": "",
         "image": "img/prod/var/p-ivenchy-gentleman-society-100ml.jpg"
+      },
+      {
+        "name": "Clive Christian Rock Rose 50ml",
+        "price": "",
+        "image": "img/prod/var/p-clive-christian-rock-rose-50ml.jpg"
       }
     ]
   },
