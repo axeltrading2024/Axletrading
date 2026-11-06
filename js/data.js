@@ -2657,7 +2657,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/l-2.mp4",
     "images": [
@@ -2732,7 +2731,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
