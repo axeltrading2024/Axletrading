@@ -2550,6 +2550,16 @@ window.PRODUCTS = [
         "name": "Prada Luna Roosa  Ocean EDP",
         "price": "",
         "image": "img/prod/var/p-prada-luna-roosa-ocean-edp.jpg"
+      },
+      {
+        "name": "MOSCHINO Toy Boy 100ml",
+        "price": "",
+        "image": "img/prod/var/p-moschino-toy-boy-100ml.jpg"
+      },
+      {
+        "name": "ivenchy Gentleman Society 100ml",
+        "price": "",
+        "image": ""
       }
     ]
   },
