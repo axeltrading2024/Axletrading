@@ -815,7 +815,7 @@
     // 运费估算里的国家下拉（选项更少，只有国家，没有手机号/邮编规则）
     var shipSel = $('[data-ship-country]');
     if (shipSel) {
-      var keep = shipSel.value || 'US';
+      var keep = shipSel.value || 'ES';
       shipSel.innerHTML = shipCountryOptionsHtml(keep);
       shipSel.value = keep;
       renderShipEst();
@@ -825,14 +825,14 @@
   /** 运费估算的国家下拉：按运费区（北美 / 欧洲 / 澳新 / 其他）分组 */
   function shipCountryOptionsHtml(selected) {
     var R = window.SHIPPING_RATES;
-    var want = selected || 'US';
+    var want = selected || 'ES';
     var inZone = {};
     var html = '';
     ((R && R.zones) || []).forEach(function (z) {
       var list = (z.countries || []).map(function (iso) { return COUNTRY_BY_ISO[iso]; })
         .filter(Boolean)
         .sort(function (a, b) { return countryLabel(a).localeCompare(countryLabel(b)); });
-      // 美国是默认目的地，始终排在本组第一
+      // 美国排在本组第一，便于北美买家快速定位（默认目的地已改为西班牙 ES）
       for (var i = 0; i < list.length; i++) {
         if (list[i][0] === 'US') { list.unshift(list.splice(i, 1)[0]); break; }
       }
@@ -1166,7 +1166,7 @@
     var out = $('[data-ship-out]', host);
     if (!out) return;
     function val(sel) { var el = $(sel, host); return el ? el.value : ''; }
-    var iso = val('[data-ship-country]') || 'US';
+    var iso = val('[data-ship-country]') || 'ES';
     var q = shipQuote(iso, val('[data-ship-kg]'),
       val('[data-ship-l]'), val('[data-ship-w]'), val('[data-ship-h]'));
 
