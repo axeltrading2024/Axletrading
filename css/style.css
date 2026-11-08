@@ -1492,7 +1492,9 @@ a {
 
 @media (max-width: 639px) {
   .site-footer {
-    padding-block: 36px 96px;
+    /* 底部留白从 96px 加到 140px：蓝色 AI 气泡(bottom:80+高56=顶136px)原会压到页脚文字，
+       加大留白让 wa-fab / asst-fab 都落进预留区，页脚文字不再被遮挡 */
+    padding-block: 36px 140px;
   }
   .footer-tagline {
     max-width: none;
