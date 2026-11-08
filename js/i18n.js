@@ -52,6 +52,7 @@
     inquiry_msg:        { en: 'Message', es: 'Mensaje' },
     inquiry_submit:     { en: 'Send on WhatsApp', es: 'Enviar por WhatsApp' },
     inquiry_submit_fast:{ en: 'Get a fast quote', es: 'Cotización rápida' },
+    more_questions:     { en: 'More questions', es: 'Más preguntas' },
     inquiry_send_now:   { en: 'Send products now', es: 'Enviar productos ahora' },
     inquiry_err_products:{ en: 'Add at least one product first', es: 'Agrega al menos un producto' },
     variant_hint:       { en: 'Tap once to preview · tap again to confirm · tap again to add. Double-tap to deselect.',

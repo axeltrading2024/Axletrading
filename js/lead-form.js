@@ -686,10 +686,12 @@
 
   function initAsk() {
     var layer = askLayer();
-    var tab = document.querySelector('[data-ask-open]');
-    if (!layer || !tab) return;
+    var triggers = document.querySelectorAll('[data-ask-open]');
+    if (!layer || !triggers.length) return;
 
-    tab.addEventListener('click', askOpen);
+    Array.prototype.forEach.call(triggers, function (t) {
+      t.addEventListener('click', askOpen);
+    });
 
     Array.prototype.forEach.call(layer.querySelectorAll('[data-ask-close]'), function (n) {
       n.addEventListener('click', function (e) {
