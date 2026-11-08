@@ -4192,6 +4192,9 @@ body.ask-lock .ask-tab {
 }
 
 @media (max-width: 639px) {
+  /* 手机端隐藏右侧竖排「Chat with Eddy」标签：它贴右缘中部会遮挡内容，
+     且联系入口已由浮动 WhatsApp 绿钮 + 询价篮 + 页面内 CTA 覆盖，桌面端保留 */
+  .ask-tab { display: none; }
   .ask-drawer { width: 100vw; border-left: 0; }
   .ask-head { padding: 18px 18px 14px; }
   .ask-title { font-size: 23px; }
