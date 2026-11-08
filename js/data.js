@@ -31,7 +31,7 @@ window.SITE_CONFIG = {
   "heroTitleEs": "Calidad Premium",
   "heroTitleAccentEs": "Precio de Fábrica",
   "heroSubtitleEs": "Calidad premium a precio de fábrica — MOQ flexible, precios escalonados, envío rápido y cotización por WhatsApp en 24 horas.",
-  "searchPlaceholder": "Search product, brand, category…",
+  "searchPlaceholder": "rolex",
   "searchPlaceholderEs": "Busca producto, marca o categoría…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
 };
