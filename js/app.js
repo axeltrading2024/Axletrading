@@ -539,18 +539,24 @@
         shipEstHTML() +
         '<div class="drawer-foot">' +
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
-          '<div class="total sub" data-drawer-freight-row hidden><span data-i18n="quote_freight">Freight (est.)</span><b data-drawer-freight>—</b></div>' +
-          '<div class="ship-wt-mini" data-drawer-freight-wt hidden></div>' +
           '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
           '<p class="totals-note" data-drawer-est-note hidden></p>' +
           '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
             ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
           '</button>' +
-          '<button type="button" class="quote-dl" data-quote-pdf hidden>' +
-            '<span class="qd-ico" aria-hidden="true">⤓</span><span data-i18n="quote_pdf">Download quote (PDF)</span>' +
+          '<button type="button" class="foot-more-toggle" data-foot-more aria-expanded="false">' +
+            '<span data-i18n="more_options">More options</span>' +
+            '<span class="foot-more-caret" aria-hidden="true"></span>' +
           '</button>' +
-          '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
-          '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
+          '<div class="foot-more-panel" data-foot-more-panel hidden>' +
+            '<div class="total sub" data-drawer-freight-row hidden><span data-i18n="quote_freight">Freight (est.)</span><b data-drawer-freight>—</b></div>' +
+            '<div class="ship-wt-mini" data-drawer-freight-wt hidden></div>' +
+            '<button type="button" class="quote-dl" data-quote-pdf hidden>' +
+              '<span class="qd-ico" aria-hidden="true">⤓</span><span data-i18n="quote_pdf">Download quote (PDF)</span>' +
+            '</button>' +
+            '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
+            '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
+          '</div>' +
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
@@ -683,6 +689,11 @@
     b.classList.toggle('open', open);
     d.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.body.style.overflow = open ? 'hidden' : '';
+    // 每次打开抽屉，把底部「⋯ More」收起复位，避免上次展开状态残留
+    var fmPanel = $('[data-foot-more-panel]');
+    var fmToggle = $('[data-foot-more]');
+    if (fmPanel) fmPanel.hidden = true;
+    if (fmToggle) { fmToggle.setAttribute('aria-expanded', 'false'); fmToggle.classList.remove('is-open'); }
   }
 
   /* ---------------- 询盘接待面板开关 ---------------- */
@@ -1485,6 +1496,19 @@
 
       if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(null, true); return; }
       if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
+
+      // 抽屉底部「⋯ More」折叠：展开/收起运费明细与次要操作（PDF / 链接 / 清空）
+      if (t.closest('[data-foot-more]')) {
+        var fmToggle = t.closest('[data-foot-more]');
+        var fmPanel = $('[data-foot-more-panel]');
+        if (fmPanel) {
+          var fmOpen = fmPanel.hidden;
+          fmPanel.hidden = !fmOpen;
+          fmToggle.setAttribute('aria-expanded', String(fmOpen));
+          fmToggle.classList.toggle('is-open', fmOpen);
+        }
+        return;
+      }
 
       /* 产品页「Quick answer」按钮：唤起自动接待挂件 + 友好打招呼。
          挂件没起来（assistant.js 被拦/加载失败）就退回原来的询价表单，避免按钮点了没反应。 */

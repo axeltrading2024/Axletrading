@@ -30,6 +30,7 @@
     send_wa:            { en: 'Send on WhatsApp', es: 'Enviar por WhatsApp' },
     copy_link:          { en: '🔗 Copy share link', es: '🔗 Copiar enlace' },
     clear_list:         { en: 'Clear list', es: 'Vaciar lista' },
+    more_options:       { en: 'More options', es: 'Más opciones' },
     inquiry_title:      { en: 'Inquiry', es: 'Cotización' },
     inquiry_sub:        { en: 'Tell us what you need — we reply within 24h.', es: 'Cuéntanos qué necesitas — respondemos en 24 h.' },
     inquiry_name:       { en: 'Name', es: 'Nombre' },
