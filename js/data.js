@@ -3970,7 +3970,7 @@ window.PRODUCTS = [
       {
         "name": "Orange",
         "price": "",
-        "image": ""
+        "image": "img/prod/var/g-6-orange.jpg"
       }
     ]
   }
