@@ -23,15 +23,16 @@ window.SITE_CONFIG = {
   "greeting": "Hi Eddy! I'd like some information about your products.",
   "inquiryIntro": "Hi Eddy! I'd like a quote for the following:",
   "inquiryOutro": "Please send me pricing, MOQ and shipping details.",
-  "heroBadge": "EddySupply · Dependable supplier",
+  "heroBadge": "EddySupply · wholesale supplier",
   "heroBadgeEs": "EddySupply · proveedor mayorista",
   "heroSingleLine": true,
   "heroTitle": "Premium Quality",
   "heroTitleAccent": "Factory Pricing",
+  "heroSubtitle": "Premium quality at factory pricing — flexible MOQ, tiered pricing, fast shipping, and a quote on WhatsApp within 24 hours.",
   "heroTitleEs": "Calidad Premium",
   "heroTitleAccentEs": "Precio de Fábrica",
   "heroSubtitleEs": "Calidad premium a precio de fábrica — MOQ flexible, precios escalonados, envío rápido y cotización por WhatsApp en 24 horas.",
-  "searchPlaceholder": "rolex",
+  "searchPlaceholder": "Search product, brand, category…",
   "searchPlaceholderEs": "Busca producto, marca o categoría…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
 };
