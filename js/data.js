@@ -3945,6 +3945,34 @@ window.PRODUCTS = [
         "image": "img/prod/var/parfums-de-marly-cassili-75ml.jpg"
       }
     ]
+  },
+  {
+    "id": "g-6",
+    "name": "Garmin Fenix8",
+    "brand": "Garmin",
+    "price": "€35",
+    "note": "Smart phone-business style-AI",
+    "desc": "",
+    "collection": "other",
+    "subcategory": "smart-watch",
+    "weight": 0.5,
+    "images": [
+      "img/prod/gal/g-6-g3.jpg",
+      "img/prod/gal/g-6-g1.jpg",
+      "img/prod/gal/g-6-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "Black",
+        "price": "",
+        "image": "img/prod/var/g-6-black.jpg"
+      },
+      {
+        "name": "Orange",
+        "price": "",
+        "image": ""
+      }
+    ]
   }
 ];
 
