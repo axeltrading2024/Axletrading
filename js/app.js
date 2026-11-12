@@ -2691,16 +2691,6 @@
       var lt = (n !== null) ? money(n * it.qty, sym) : '';
       rows.push([it.name, it.variant || '', it.qty, it.price, lt]);
     });
-    rows.push([]);
-    rows.push(['Products total', '', '', '', sharedTotal()]);
-    if (sharedShip && !sharedShip.quoteOnly) {
-      var b = estBlock(sharedSum(), sharedShip);
-      rows.push(['Freight to ' + shipCountryName(sharedShip.iso) + ' (est.)', '', '', '', b.freightTxt]);
-      rows.push(['Estimated total', '', '', '', b.totalTxt]);
-      if (sharedShip.bill > 0) rows.push(['Chargeable weight', '', '', '', fmtKg(sharedShip.bill) + ' kg']);
-    }
-    rows.push(['Quote no.', quoteNo(sharedItems)]);
-    rows.push(['Date', quoteDate()]);
     var tsv = rows.map(function (r) { return r.join('\t'); }).join('\n');
 
     var done = function () {
