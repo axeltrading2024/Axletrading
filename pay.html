@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261112g">
+  <link rel="stylesheet" href="css/style.css?v=20261112h">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -74,6 +74,7 @@
     .pay-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:48px;border-radius:999px;background:var(--whatsapp);color:var(--whatsapp-foreground);font-size:14px;font-weight:600;text-decoration:none;transition:filter .18s}
     .pay-cta:hover{filter:brightness(.95)}
     .pay-safe{margin-top:13px;font-size:11.5px;color:var(--muted-foreground);line-height:1.55;display:flex;gap:7px}
+    .pay-note{margin-top:12px;font-size:11.5px;color:var(--muted-foreground);line-height:1.55}
     .pay-safe svg{flex:none;margin-top:2px;opacity:.7}
     @media(max-width:820px){
       .pay-wrap{padding:26px 16px 56px}
@@ -125,37 +126,37 @@
 
       <section class="pay-card">
         <h2 data-i18n="pay_alipay_head">Pay with Alipay</h2>
-        <p class="pay-lead" data-i18n="pay_alipay_lede">Simple and secure. Scan the code below with the Alipay app, check the amount, and confirm.</p>
+        <p class="pay-lead" data-i18n="pay_alipay_lede">Simple and secure. Scan the code to install the app, then message us for your payment QR.</p>
         <div class="pay-abody">
           <div class="pay-qr">
             <div class="pay-qr-slot">
-              <img id="payQrImg" alt="Alipay payment QR code" hidden>
+              <img id="payQrImg" alt="Alipay app download QR code" hidden>
               <div class="pay-qrf" id="payQrFb">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8"/><path d="M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8"/><path d="M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M4 12h16"/></svg>
-                <b data-i18n="pay_qr_none">Your personal QR</b>
-                <p data-i18n="pay_qr_none_sub">Message us and we send it in seconds — it is unique to this quote.</p>
-                <a id="payQrWa" href="#" target="_blank" rel="noopener" data-i18n="pay_qr_get">Get the QR on WhatsApp</a>
+                <b data-i18n="pay_qr_none">Download Alipay</b>
+                <p data-i18n="pay_qr_none_sub">Use the App Store or Google Play links below, or ask us on WhatsApp.</p>
+                <a id="payQrWa" href="#" target="_blank" rel="noopener" data-i18n="pay_qr_get">Ask us on WhatsApp</a>
               </div>
             </div>
-            <p class="pay-qr-tip" data-i18n="pay_qr_tip">Scan with the Alipay app</p>
+            <p class="pay-qr-tip" data-i18n="pay_qr_tip">Scan to install Alipay</p>
           </div>
 
           <ol class="pay-steps2">
             <li><div>
-              <b data-i18n="pay_step_dl">Download the Alipay app</b>
-              <span data-i18n="pay_step_dl_sub">Free on the App Store or Google Play. Already installed? Skip to step 3.</span>
+              <b data-i18n="pay_step_dl">Install the Alipay app</b>
+              <span data-i18n="pay_step_dl_sub">Scan the code on the left with your camera, or use the App Store / Google Play links below.</span>
             </div></li>
             <li><div>
               <b data-i18n="pay_step_card">Link your bank card</b>
               <span data-i18n="pay_step_card_sub">Add a Visa, Mastercard or UnionPay card inside the app — one time only.</span>
             </div></li>
             <li><div>
-              <b data-i18n="pay_step_scan">Scan this QR code</b>
-              <span data-i18n="pay_step_scan_sub">Open Alipay → Scan → point at the code on this page.</span>
+              <b data-i18n="pay_step_scan">Get the payment QR from us</b>
+              <span data-i18n="pay_step_scan_sub">Tap Send on WhatsApp — we reply with a personal code tied to this quote.</span>
             </div></li>
             <li><div>
-              <b data-i18n="pay_step_done">Confirm the amount and pay</b>
-              <span data-i18n="pay_step_done_sub">Check the reference matches your quote, then confirm.</span>
+              <b data-i18n="pay_step_done">Scan it and confirm</b>
+              <span data-i18n="pay_step_done_sub">Open Alipay → Scan, check the amount and reference match, then confirm.</span>
             </div></li>
           </ol>
         </div>
@@ -167,16 +168,17 @@
       </section>
 
       <section class="pay-card">
-        <h2 data-i18n="pay_after">After you pay</h2>
+        <h2 data-i18n="pay_after">Get the payment QR</h2>
         <ol class="pay-steps">
-          <li><span data-i18n="pay_step1">Send us the payment screenshot on WhatsApp</span></li>
-          <li><span data-i18n="pay_step2">We verify and confirm within 2 working hours</span></li>
-          <li><span data-i18n="pay_step3">Production or picking starts the same day</span></li>
+          <li><span data-i18n="pay_step1">Message us on WhatsApp</span></li>
+          <li><span data-i18n="pay_step2">We send your personal Alipay QR code</span></li>
+          <li><span data-i18n="pay_step3">Scan it in Alipay and pay</span></li>
         </ol>
         <a class="pay-cta" id="payWa" href="#" target="_blank" rel="noopener">
           <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.28c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.79 1.17 2.98.15.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.31.19 1.8.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16 4C9.37 4 4 9.37 4 16c0 2.11.55 4.09 1.52 5.8L4 28l6.35-1.67C12.03 27.4 13.97 28 16 28c6.63 0 12-5.37 12-12S22.63 4 16 4zm0 21.94c-1.83 0-3.55-.5-5.02-1.36l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.87 9.87 0 0 1 6.06 16C6.06 10.51 10.51 6.06 16 6.06S25.94 10.51 25.94 16 21.49 25.94 16 25.94z"/></svg>
-          <span data-i18n="pay_cta">Send payment proof on WhatsApp</span>
+          <span data-i18n="pay_cta">Send on WhatsApp</span>
         </a>
+        <p class="pay-note" data-i18n="pay_afterpay_note">Paid already? Send the screenshot in the same chat — we confirm within 2 working hours and start the same day.</p>
         <p class="pay-safe">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
           <span data-i18n="pay_safe">Pay only to the account shown on our invoice or confirmed on WhatsApp. We never change bank details by email.</span>
@@ -193,9 +195,9 @@
 
   <footer class="site-footer"></footer>
 
-  <script src="js/data.js?v=20261112g"></script>
-  <script src="js/i18n.js?v=20261112g"></script>
-  <script src="js/app.js?v=20261112g"></script>
+  <script src="js/data.js?v=20261112h"></script>
+  <script src="js/i18n.js?v=20261112h"></script>
+  <script src="js/app.js?v=20261112h"></script>
   <script>
     (function () {
       'use strict';
@@ -288,7 +290,7 @@
         var img = document.getElementById('payQrImg');
         var fb = document.getElementById('payQrFb');
         if (!img) return;
-        var src = (P.get('qr') || '').trim() || 'img/alipay-qr.png';
+        var src = (P.get('qr') || '').trim() || 'img/alipay-app-qr.png';
         var probe = new Image();
         probe.onload = function () {
           if (!probe.naturalWidth || probe.naturalWidth < 40) { probe.onerror(); return; }

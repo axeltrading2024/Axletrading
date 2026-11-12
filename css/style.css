@@ -2035,6 +2035,56 @@ body:has(.drawer.open) .cart-fab {
   filter: brightness(1.04);
 }
 
+/* Pay on Alipay：抽屉唯一主行动，蓝底白字（与 WhatsApp 绿区分开） */
+.drawer-foot .share.pay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 14px 0;
+  font-size: 15px;
+  color: #fff;
+  background: #1677ff;
+  border-color: #1677ff;
+}
+
+.drawer-foot .share.pay:hover {
+  filter: brightness(1.06);
+}
+
+.drawer-foot .share.pay svg {
+  flex: none;
+}
+
+/* 次要入口：把清单发到 WhatsApp，压成一行细字，不跟主按钮抢视觉 */
+.drawer-foot .foot-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 11px;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 12px;
+  color: var(--muted-foreground);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color .18s;
+}
+
+.drawer-foot .foot-link:hover {
+  color: var(--foreground);
+  text-decoration: underline;
+}
+
+.drawer-foot .foot-link svg {
+  flex: none;
+  opacity: .7;
+}
+
 /* ---------- 抽屉底部「⋯ More」折叠：把运费明细与次要操作收起来，给产品列表腾版面 ---------- */
 .drawer-foot .total {
   margin-bottom: 8px;

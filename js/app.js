@@ -555,9 +555,13 @@
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
           '<p class="totals-note" data-drawer-est-note hidden></p>' +
-          '<button type="button" class="share wa" data-send-link-wa>' +
-            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') +
-            '<span data-i18n="send_wa">Send on WhatsApp</span>' +
+          '<button type="button" class="share pay" data-pay-alipay>' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19"/><path d="M6.5 15.2h4"/></svg>' +
+            '<span data-i18n="pay_alipay_btn">Pay on Alipay</span>' +
+          '</button>' +
+          '<button type="button" class="foot-link" data-send-link-wa>' +
+            ICON.whatsapp.replace('<svg', '<svg style="width:14px;height:14px"') +
+            '<span data-i18n="send_list_wa">Send list on WhatsApp</span>' +
           '</button>' +
         '</div>' +
       '</aside>' +
@@ -1046,6 +1050,22 @@
     return has ? { sum: sum, currency: cur } : null;
   }
 
+  /** 「估算总额」的数值版（商品合计 + 运费估算）；给抽屉的 Pay on Alipay 拼付款链接用 */
+  function cartEstTotal() {
+    var sum = cartSum();
+    if (!sum) return null;
+    if (!lastShip || lastShip.quoteOnly) return { amount: sum.sum, currency: sum.currency };
+    var total = null;
+    if (sum.currency === lastShip.currency) {
+      total = sum.sum + lastShip.cost;
+    } else {
+      var v = fxConvert(sum.sum, sum.currency, lastShip.currency);
+      if (v !== null) total = v + lastShip.cost;
+    }
+    if (total === null) return { amount: sum.sum, currency: sum.currency };
+    return { amount: Math.round(total * 100) / 100, currency: lastShip.currency };
+  }
+
   /** 购物车总实重（kg）= 每件重量 × 数量 之和；用于运费估算自动预填 */
   function cartTotalWeight() {
     var w = 0;
@@ -1283,10 +1303,12 @@
     }
     renderTotals();
     var shareEl = $('[data-send-link-wa]');
-    if (shareEl) {
-      shareEl.style.opacity = n === 0 ? '0.45' : '1';
-      shareEl.style.pointerEvents = n === 0 ? 'none' : 'auto';
-    }
+    var payEl = $('[data-pay-alipay]');
+    [payEl, shareEl].forEach(function (el) {
+      if (!el) return;
+      el.style.opacity = n === 0 ? '0.45' : '1';
+      el.style.pointerEvents = n === 0 ? 'none' : 'auto';
+    });
 
     if (!body) return;
     if (!Store.items.length) {
@@ -1515,7 +1537,18 @@
         return;
       }
 
-      /* 通过 WhatsApp 直接发送清单专属链接（替代「复制链接」「下载 PDF」） */
+      /* Pay on Alipay：带上清单编号 + 估算总额，直接跳站点付款页 */
+      if (t.closest('[data-pay-alipay]')) {
+        if (!Store.items.length) return;
+        var est = cartEstTotal();
+        var payUrl = 'pay.html?q=' + encodeURIComponent(quoteNo(Store.items));
+        if (est && est.amount != null) payUrl += '&amt=' + encodeURIComponent(String(est.amount));
+        if (est && est.currency) payUrl += '&cur=' + encodeURIComponent(est.currency);
+        location.href = payUrl;
+        return;
+      }
+
+      /* 通过 WhatsApp 直接发送清单专属链接（次要入口，写在付款按钮下方） */
       if (t.closest('[data-send-link-wa]')) {
         var waShare = buildShareUrl(Store.items);
         if (!waShare) return;
