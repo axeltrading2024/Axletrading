@@ -1541,6 +1541,13 @@
         }
         return;
       }
+
+      /* 报价清单页「Copy list」：把清单导出成可粘贴进 Excel / 订单表的 TSV */
+      var copyBtn = t.closest('[data-shared-copy]');
+      if (copyBtn && sharedItems.length) {
+        copySharedList(copyBtn);
+        return;
+      }
     });
 
     document.addEventListener('keydown', function (e) {
@@ -2674,6 +2681,63 @@
     '</div>';
   }
 
+  /** 报价清单 → TSV 文本（带表头，可直接粘贴进 Excel / 订单管理表） */
+  function copySharedList(btn) {
+    var rows = [];
+    rows.push(['Product', 'Variant', 'Qty', 'Unit price', 'Line total']);
+    sharedItems.forEach(function (it) {
+      var n = priceNum(it.price);
+      var sym = String(it.price).replace(/[0-9.,\s]/g, '');
+      var lt = (n !== null) ? money(n * it.qty, sym) : '';
+      rows.push([it.name, it.variant || '', it.qty, it.price, lt]);
+    });
+    rows.push([]);
+    rows.push(['Products total', '', '', '', sharedTotal()]);
+    if (sharedShip && !sharedShip.quoteOnly) {
+      var b = estBlock(sharedSum(), sharedShip);
+      rows.push(['Freight to ' + shipCountryName(sharedShip.iso) + ' (est.)', '', '', '', b.freightTxt]);
+      rows.push(['Estimated total', '', '', '', b.totalTxt]);
+      if (sharedShip.bill > 0) rows.push(['Chargeable weight', '', '', '', fmtKg(sharedShip.bill) + ' kg']);
+    }
+    rows.push(['Quote no.', quoteNo(sharedItems)]);
+    rows.push(['Date', quoteDate()]);
+    var tsv = rows.map(function (r) { return r.join('\t'); }).join('\n');
+
+    var done = function () {
+      var lbl = btn.querySelector('[data-i18n="copy_list"]') || btn.querySelector('span');
+      var orig = btn.getAttribute('data-copy-label');
+      if (orig === null) { orig = lbl ? lbl.textContent : ''; btn.setAttribute('data-copy-label', orig); }
+      btn.classList.add('is-copied');
+      if (lbl) lbl.textContent = window.T('copied');
+      setTimeout(function () {
+        btn.classList.remove('is-copied');
+        if (lbl) lbl.textContent = orig;
+      }, 1600);
+    };
+
+    var fallback = function () {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = tsv;
+        ta.style.position = 'fixed';
+        ta.style.top = '-9999px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) { done(); } else { toast(window.T('copy_failed')); }
+      } catch (e) { toast(window.T('copy_failed')); }
+    };
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(tsv).then(done, fallback);
+    } else {
+      fallback();
+    }
+  }
+
   function initSharedList() {
     var m = location.hash.match(/[#&]l=([^&]+)/);
     if (!m) return;
@@ -2698,6 +2762,10 @@
             '<p class="eyebrow"><span data-i18n="shared_quote_list">Quote list · </span>' + esc(CFG.brand) + '</p>' +
             '<h2>' + window.T('shared_review', { n: sharedItems.length }) + '</h2>' +
           '</div>' +
+          '<button type="button" class="btn btn-outline btn-sm share-copy" data-shared-copy>' +
+            ICON.clipboard.replace('<svg', '<svg style="width:16px;height:16px"') +
+            '<span data-i18n="copy_list">Copy list</span>' +
+          '</button>' +
         '</div>' +
         sharedMetaHtml() +
         '<div class="shared-quote" data-shared-body></div>' +

@@ -2078,7 +2078,20 @@ body:has(.drawer.open) .cart-fab {
 }
 
 .shared-banner .shared-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
   margin-bottom: 14px;
+}
+
+.shared-banner .share-copy {
+  flex: 0 0 auto;
+  margin-top: 4px;
+}
+.shared-banner .share-copy.is-copied {
+  border-color: var(--whatsapp);
+  color: var(--whatsapp);
 }
 
 .shared-banner h2 {

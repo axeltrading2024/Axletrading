@@ -220,6 +220,8 @@
     toast_moq_min:      { en: 'Minimum order for this item is {n} pcs', es: 'El pedido mínimo de este artículo es {n} pzs' },
     moq_min_label:      { en: 'Min. {n}', es: 'Mín. {n}' },
     copy_failed:        { en: 'Copy failed — please copy from the address bar', es: 'Copia fallida — cópialo de la barra de direcciones' },
+    copy_list:          { en: 'Copy list', es: 'Copiar lista' },
+    copied:             { en: 'Copied!', es: '¡Copiado!' },
 
     /* ---------------- About 页（静态文案） ---------------- */
     about_hero:         { en: 'Premium quality, factory pricing', es: 'Calidad premium, precio de fábrica' },
