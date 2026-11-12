@@ -80,6 +80,7 @@
             '<li><a href="about.html#faq" data-i18n="footer_faq">FAQ</a></li>' +
             '<li><a href="index.html#popular" data-i18n="footer_popular">Popular products</a></li>' +
             '<li><a href="about.html#how-it-works" data-i18n="footer_how">How it works</a></li>' +
+            '<li><a href="pay.html" data-i18n="footer_pay">Payment &amp; how to order</a></li>' +
             '<li><a href="index.html#request" data-i18n="footer_request">Send a product request</a></li>' +
           '</ul></div>' +
           '<div class="footer-col"><h4 data-i18n="footer_contact">Contact</h4><ul>' +
@@ -90,7 +91,7 @@
           '</ul></div>' +
         '</div>' +
         '<div class="footer-trade">' +
-          '<span><b data-i18n="footer_payment">Payment</b> ' + esc(CFG.tradePayment || 'T/T · Alipay · USDT · Western Union · Remitly') + '</span>' +
+          '<a class="footer-trade-pay" href="pay.html" title="Payment methods"><b data-i18n="footer_payment">Payment</b> ' + esc(CFG.tradePayment || 'T/T · Alipay · USDT · Western Union · Remitly') + '</a>' +
           '<span><b data-i18n="footer_shipping">Shipping</b> ' + esc(CFG.tradeShipping || 'Worldwide, quoted per order') + '</span>' +
           '<span><b data-i18n="footer_moq">MOQ</b> ' + esc(CFG.tradeMoq || 'Low, flexible by item') + '</span>' +
         '</div>' +
