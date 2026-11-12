@@ -532,6 +532,7 @@
           '<div>' +
             '<h2 data-i18n="drawer_title">Inquiry list</h2>' +
             '<p class="count" data-drawer-count>0 items</p>' +
+            '<p class="est-wt" data-drawer-est-wt hidden></p>' +
           '</div>' +
           '<button type="button" class="drawer-close" data-close-inquiry aria-label="Close">' + ICON.close + '</button>' +
         '</div>' +
@@ -541,22 +542,10 @@
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
           '<p class="totals-note" data-drawer-est-note hidden></p>' +
-          '<button type="button" class="btn btn-whatsapp" data-send-inquiry>' +
-            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') + '<span data-i18n="send_wa">Send on WhatsApp</span>' +
+          '<button type="button" class="share wa" data-send-link-wa>' +
+            ICON.whatsapp.replace('<svg', '<svg style="width:18px;height:18px"') +
+            '<span data-i18n="send_wa">Send on WhatsApp</span>' +
           '</button>' +
-          '<button type="button" class="foot-more-toggle" data-foot-more aria-expanded="false">' +
-            '<span data-i18n="more_options">More options</span>' +
-            '<span class="foot-more-caret" aria-hidden="true"></span>' +
-          '</button>' +
-          '<div class="foot-more-panel" data-foot-more-panel hidden>' +
-            '<div class="total sub" data-drawer-freight-row hidden><span data-i18n="quote_freight">Freight (est.)</span><b data-drawer-freight>—</b></div>' +
-            '<div class="ship-wt-mini" data-drawer-freight-wt hidden></div>' +
-            '<button type="button" class="quote-dl" data-quote-pdf hidden>' +
-              '<span class="qd-ico" aria-hidden="true">⤓</span><span data-i18n="quote_pdf">Download quote (PDF)</span>' +
-            '</button>' +
-            '<button type="button" class="share" data-share-link data-i18n="copy_link">🔗 Copy share link</button>' +
-            '<button type="button" class="clear" data-clear-inquiry data-i18n="clear_list">Clear list</button>' +
-          '</div>' +
         '</div>' +
       '</aside>' +
       '<a class="wa-fab" data-wa-fab href="#" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">' + ICON.whatsapp + '</a>' +
@@ -689,11 +678,6 @@
     b.classList.toggle('open', open);
     d.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.body.style.overflow = open ? 'hidden' : '';
-    // 每次打开抽屉，把底部「⋯ More」收起复位，避免上次展开状态残留
-    var fmPanel = $('[data-foot-more-panel]');
-    var fmToggle = $('[data-foot-more]');
-    if (fmPanel) fmPanel.hidden = true;
-    if (fmToggle) { fmToggle.setAttribute('aria-expanded', 'false'); fmToggle.classList.remove('is-open'); }
   }
 
   /* ---------------- 询盘接待面板开关 ---------------- */
@@ -1091,35 +1075,31 @@
     return out;
   }
 
-  /** 抽屉底部「运费 / 总价暂估」两行 */
+  /** 抽屉底部合计 + 头部「Estimate weight」 */
   function renderTotals() {
-    var fRow = $('[data-drawer-freight-row]');
     var eRow = $('[data-drawer-est-row]');
-    if (!fRow || !eRow) return;
+    if (!eRow) return;
     var noteEl = $('[data-drawer-est-note]');
     var sum = cartSum();
     if (!lastShip || !sum) {
-      fRow.hidden = true;
       eRow.hidden = true;
       if (noteEl) { noteEl.hidden = true; noteEl.textContent = ''; }
-      return;
+    } else {
+      var b = estBlock(sum, lastShip);
+      eRow.hidden = false;
+      var eEl = $('[data-drawer-est]', eRow);
+      if (eEl) eEl.textContent = b.totalTxt;
+      if (noteEl) {
+        noteEl.textContent = b.note || '';
+        noteEl.hidden = !b.note;
+      }
     }
-    var b = estBlock(sum, lastShip);
-    fRow.hidden = false;
-    eRow.hidden = false;
-    var fEl = $('[data-drawer-freight]', fRow);
-    var eEl = $('[data-drawer-est]', eRow);
-    if (fEl) fEl.textContent = b.freightTxt;
-    if (eEl) eEl.textContent = b.totalTxt;
-    if (noteEl) {
-      noteEl.textContent = b.note || '';
-      noteEl.hidden = !b.note;
-    }
-    // 底部运费栏下方补一行「计费重量」，折叠状态下也能一眼核对运费按多重算。
-    var wtEl = $('[data-drawer-freight-wt]');
+    // Estimate weight：放在抽屉头部、商品列表上方；运费算过用计费重量，否则用购物车实重。
+    var wtEl = $('[data-drawer-est-wt]');
     if (wtEl) {
-      if (lastShip && !lastShip.quoteOnly && lastShip.bill > 0) {
-        wtEl.textContent = window.T('ship_chargeable') + ': ' + fmtKg(lastShip.bill) + ' kg';
+      var w = (lastShip && !lastShip.quoteOnly && lastShip.bill > 0) ? lastShip.bill : cartTotalWeight();
+      if (Store.items.length && w > 0) {
+        wtEl.textContent = window.T('estimate_weight') + ': ' + fmtKg(w) + ' kg';
         wtEl.hidden = false;
       } else {
         wtEl.hidden = true;
@@ -1277,7 +1257,6 @@
     var cntAll = $$('[data-inquiry-count]');
     var dCnt = $('[data-drawer-count]');
     var totalEl = $('[data-drawer-total]');
-    var sendEl = $('[data-send-inquiry]');
     var n = Store.count();
 
     cntAll.forEach(function (el) {
@@ -1290,18 +1269,11 @@
       totalEl.textContent = dtxt || '—';
     }
     renderTotals();
-    if (sendEl) {
-      var disabled = n === 0;
-      sendEl.style.opacity = disabled ? '0.45' : '1';
-      sendEl.style.pointerEvents = disabled ? 'none' : 'auto';
-    }
-    var shareEl = $('[data-share-link]');
+    var shareEl = $('[data-send-link-wa]');
     if (shareEl) {
       shareEl.style.opacity = n === 0 ? '0.45' : '1';
       shareEl.style.pointerEvents = n === 0 ? 'none' : 'auto';
     }
-    var quoteEl = $('[data-quote-pdf]');
-    if (quoteEl) quoteEl.hidden = n === 0;   // 空清单不显示「导出报价单」
 
     if (!body) return;
     if (!Store.items.length) {
@@ -1484,31 +1456,8 @@
       if (t.closest('[data-open-inquiry]')) { openDrawer(true); return; }
       if (t.closest('[data-close-inquiry]') || t.closest('[data-drawer-backdrop]')) { openDrawer(false); return; }
 
-      // 询价篮里的「Send on WhatsApp」→ 先打开接待表单（产品自动带入），不再直接跳 WhatsApp
-      if (t.closest('[data-send-inquiry]')) {
-        e.preventDefault();
-        openDrawer(false);
-        openInquiryForm(null, true);
-        var pf = productsField();
-        if (pf && window.matchMedia && window.matchMedia('(min-width: 900px)').matches) pf.focus();
-        return;
-      }
-
       if (t.closest('[data-open-inquiry-form]')) { openInquiryForm(null, true); return; }
       if (t.closest('[data-close-inquiry-form]') || t.closest('[data-inquiry-backdrop]')) { closeInquiryForm(); return; }
-
-      // 抽屉底部「⋯ More」折叠：展开/收起运费明细与次要操作（PDF / 链接 / 清空）
-      if (t.closest('[data-foot-more]')) {
-        var fmToggle = t.closest('[data-foot-more]');
-        var fmPanel = $('[data-foot-more-panel]');
-        if (fmPanel) {
-          var fmOpen = fmPanel.hidden;
-          fmPanel.hidden = !fmOpen;
-          fmToggle.setAttribute('aria-expanded', String(fmOpen));
-          fmToggle.classList.toggle('is-open', fmOpen);
-        }
-        return;
-      }
 
       /* 产品页「Quick answer」按钮：唤起自动接待挂件 + 友好打招呼。
          挂件没起来（assistant.js 被拦/加载失败）就退回原来的询价表单，避免按钮点了没反应。 */
@@ -1553,18 +1502,11 @@
         return;
       }
 
-      if (t.closest('[data-share-link]')) {
-        var url = buildShareUrl(Store.items);
-        if (url) copyText(url, window.T('toast_share'));
-        return;
-      }
-
-      /* 导出报价单：复用分享链接的数据编码，带 &print=1 打开后自动唤起打印（浏览器「另存为 PDF」） */
-      if (t.closest('[data-quote-pdf]')) {
-        var qUrl = buildShareUrl(Store.items);
-        if (!qUrl) return;
-        openDrawer(false);
-        window.open(qUrl + '&print=1', '_blank', 'noopener');
+      /* 通过 WhatsApp 直接发送清单专属链接（替代「复制链接」「下载 PDF」） */
+      if (t.closest('[data-send-link-wa]')) {
+        var waShare = buildShareUrl(Store.items);
+        if (!waShare) return;
+        window.open(waLink(window.T('share_wa_intro') + ' ' + waShare), '_blank', 'noopener');
         return;
       }
 

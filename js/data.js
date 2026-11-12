@@ -13,8 +13,8 @@ window.SITE_CONFIG = {
   "contactName": "Eddy",
   "whatsapp": "8615875209571",
   "whatsappDisplay": "+86 158 7520 9571",
-  "whatsappInquiry": "4915224901963",
-  "whatsappInquiryDisplay": "+49 152 2490 1963",
+  "whatsappInquiry": "8615875209571",
+  "whatsappInquiryDisplay": "+86 158 7520 9571",
   "contactEmail": "axeltrading@163.com",
   "phoneBackup": "+49 152 2490 1963",
   "tradePayment": "T/T · Alipay · USDT · Western Union · Remitly",
@@ -140,6 +140,22 @@ window.CATEGORIES = [
     ]
   },
   {
+    "slug": "clothes-and-shoes",
+    "name": "Clothes & Shoes",
+    "tagline": "Wear the look",
+    "subcategories": [
+      {
+        "slug": "clothes",
+        "name": "Clothes"
+      },
+      {
+        "slug": "shoes",
+        "name": "Shoes"
+      }
+    ],
+    "image": "img/cat/clothes-and-shoes.png"
+  },
+  {
     "slug": "sunglasses",
     "name": "Fashion Accessories",
     "tagline": "Frame your day",
@@ -158,22 +174,6 @@ window.CATEGORIES = [
       }
     ],
     "image": "img/cat/sunglasses.png"
-  },
-  {
-    "slug": "clothes-and-shoes",
-    "name": "Clothes & Shoes",
-    "tagline": "Wear the look",
-    "subcategories": [
-      {
-        "slug": "clothes",
-        "name": "Clothes"
-      },
-      {
-        "slug": "shoes",
-        "name": "Shoes"
-      }
-    ],
-    "image": "img/cat/clothes-and-shoes.png"
   },
   {
     "slug": "chargers",
@@ -201,13 +201,15 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods pro2",
+    "name": "AirPods",
     "brand": "Apple",
-    "price": "€10",
+    "price": "€12",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
+    "popular": true,
+    "video": "img/vid/airpods-pro-2.mp4",
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
       "img/prod/gal/airpods-pro-2-g1.jpg",
@@ -222,31 +224,19 @@ window.PRODUCTS = [
     ],
     "variants": [
       {
-        "name": "Airpods pro2",
+        "name": "Airpods-pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
-      }
-    ]
-  },
-  {
-    "id": "a-2",
-    "name": "Airpods pro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-2-g1.jpg",
-      "img/prod/gal/a-2-g3.jpg",
-      "img/prod/gal/a-2-g2.jpg"
-    ],
-    "variants": [
+      },
       {
-        "name": "pro3",
-        "price": "",
-        "image": "img/prod/var/a-2-pro3.jpg"
+        "name": "Airpods-gen4",
+        "price": "€12",
+        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
+      },
+      {
+        "name": "Airpods-pro3",
+        "price": "€12",
+        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
     ]
   },
@@ -260,9 +250,9 @@ window.PRODUCTS = [
     "collection": "earbuds-headphones",
     "weight": 1.5,
     "images": [
-      "img/prod/gal/airpods-max-g3.jpg",
       "img/prod/gal/airpods-max-g1.jpg",
-      "img/prod/gal/airpods-max-g2.jpg"
+      "img/prod/gal/airpods-max-g2.jpg",
+      "img/prod/gal/airpods-max-g3.jpg"
     ],
     "keywords": [
       "airpods",
@@ -274,7 +264,7 @@ window.PRODUCTS = [
       {
         "name": "midnight",
         "price": "",
-        "image": "img/prod/var/airpods-max-midnight.jpg"
+        "image": "img/prod/var/airpods-max-night-black.jpg"
       },
       {
         "name": "starlight",
@@ -323,7 +313,9 @@ window.PRODUCTS = [
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
+    "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
     "images": [
       "img/prod/gal/dior-sauvage-g3.jpg",
@@ -408,6 +400,7 @@ window.PRODUCTS = [
     "desc": "Rugged IP67 portable speaker with punchy bass and 10 hours of playtime.",
     "collection": "speakers",
     "weight": 1,
+    "popular": true,
     "images": [
       "img/prod/gal/jbl-portable-g1.jpg",
       "img/prod/gal/jbl-portable-g2.jpg",
@@ -475,12 +468,13 @@ window.PRODUCTS = [
   {
     "id": "valentino-born-in-roma",
     "name": "Valentino born in roma 100ml",
-    "brand": "Valentino",
+    "brand": "OEM",
     "price": "€18",
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
@@ -550,6 +544,7 @@ window.PRODUCTS = [
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
@@ -618,6 +613,7 @@ window.PRODUCTS = [
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/a-g1.jpg",
@@ -691,7 +687,8 @@ window.PRODUCTS = [
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
     "subcategory": "niche",
-    "weight": 0.41,
+    "moq": "12 pcs",
+    "weight": 0.5,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
       "img/prod/gal/baccarat-g2.jpg",
@@ -739,7 +736,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -810,7 +807,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -895,7 +892,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -954,8 +951,8 @@ window.PRODUCTS = [
     "note": "Ionic · 5 attachments-10 colors option",
     "desc": "Fast drying with intelligent heat control and five magnetic styling attachments.",
     "collection": "hair-dryers",
-    "subcategory": "hair-care",
     "weight": 3,
+    "popular": true,
     "images": [
       "img/prod/gal/dyson-supersonic-g1.jpg",
       "img/prod/gal/dyson-supersonic-g3.jpg",
@@ -989,7 +986,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -1053,7 +1050,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1119,11 +1116,10 @@ window.PRODUCTS = [
     "brand": "Cartier",
     "price": "€65",
     "note": "elegant-luxury",
-    "desc": "32/36mm for girl and 42mm for man",
+    "desc": "",
     "collection": "watches",
     "subcategory": "cartier-style",
-    "weight": 1,
-    "popular": true,
+    "weight": 1.0,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1187,7 +1183,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1260,7 +1256,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 0.35,
+    "weight": 1.0,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
@@ -1311,8 +1307,8 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "apple-watch",
-    "name": "Apple Watch",
+    "id": "apple-watch-11",
+    "name": "Apple Watch Series 11",
     "brand": "Apple",
     "price": "€30",
     "note": "smart watch-care your daily routine",
@@ -1321,11 +1317,6 @@ window.PRODUCTS = [
     "subcategory": "smart-watch",
     "weight": 0.4,
     "popular": true,
-    "images": [
-      "img/prod/gal/apple-watch-g1.jpg",
-      "img/prod/gal/apple-watch-g2.jpg",
-      "img/prod/gal/apple-watch-g3.jpg"
-    ],
     "keywords": [
       "apple",
       "watch",
@@ -1341,16 +1332,6 @@ window.PRODUCTS = [
         "name": "Ultra3",
         "price": "",
         "image": "img/prod/var/apple-watch-11-ultra3.jpg"
-      },
-      {
-        "name": "S12",
-        "price": "",
-        "image": "img/prod/var/apple-watch-s12.jpg"
-      },
-      {
-        "name": "Ultra4",
-        "price": "",
-        "image": "img/prod/var/apple-watch-ultra4.jpg"
       }
     ]
   },
@@ -1466,26 +1447,30 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods",
-    "name": "AirPods 4",
-    "brand": "",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
+    "id": "d",
+    "name": "Dyson airstrait style",
+    "brand": "Dyson",
+    "price": "€130",
+    "note": "tempreture control-harmless-gift box",
     "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "popular": true,
-    "video": "img/vid/airpods.mp4",
+    "collection": "hair-dryers",
+    "subcategory": "hair-care",
+    "weight": 3,
     "images": [
-      "img/prod/gal/airpods-g1.jpg",
-      "img/prod/gal/airpods-g2.jpg",
-      "img/prod/gal/airpods-g3.jpg"
+      "img/prod/gal/d-g1.jpg",
+      "img/prod/gal/d-g2.jpg",
+      "img/prod/gal/d-g3.jpg"
     ],
     "variants": [
       {
-        "name": "airpods 4",
+        "name": "Classic",
         "price": "",
-        "image": "img/prod/var/airpods-airpods-4.jpg"
+        "image": "img/prod/var/d-1.jpg"
+      },
+      {
+        "name": "Gift box",
+        "price": "",
+        "image": "img/prod/var/d-2.jpg"
       }
     ]
   },
@@ -1904,7 +1889,7 @@ window.PRODUCTS = [
     "note": "protable-bass sound-logo",
     "desc": "",
     "collection": "speakers",
-    "weight": 3,
+    "weight": 2.93,
     "video": "img/vid/b.mp4",
     "images": [
       "img/prod/gal/b-g1.jpg",
@@ -2244,6 +2229,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/t.mp4",
     "images": [
@@ -2323,6 +2309,7 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/c-g1.jpg",
@@ -2401,6 +2388,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
@@ -2504,6 +2492,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/p-g1.jpg",
@@ -2532,6 +2521,26 @@ window.PRODUCTS = [
         "image": "img/prod/var/p-xerjoff-accento.jpg"
       },
       {
+        "name": "marly layton",
+        "price": "",
+        "image": "img/prod/var/p-marly-layton.jpg"
+      },
+      {
+        "name": "creed",
+        "price": "",
+        "image": "img/prod/var/p-creed.jpg"
+      },
+      {
+        "name": "YSL libre",
+        "price": "",
+        "image": "img/prod/var/p-ysl-libre.jpg"
+      },
+      {
+        "name": "YSL saint laurent",
+        "price": "",
+        "image": "img/prod/var/p-ysl-saint-laurent.jpg"
+      },
+      {
         "name": "Prada Doxe EDP",
         "price": "",
         "image": "img/prod/var/p-prada.jpg"
@@ -2550,21 +2559,6 @@ window.PRODUCTS = [
         "name": "Prada Luna Roosa  Ocean EDP",
         "price": "",
         "image": "img/prod/var/p-prada-luna-roosa-ocean-edp.jpg"
-      },
-      {
-        "name": "MOSCHINO Toy Boy 100ml",
-        "price": "",
-        "image": "img/prod/var/p-moschino-toy-boy-100ml.jpg"
-      },
-      {
-        "name": "ivenchy Gentleman Society 100ml",
-        "price": "",
-        "image": "img/prod/var/p-ivenchy-gentleman-society-100ml.jpg"
-      },
-      {
-        "name": "Clive Christian Rock Rose 50ml",
-        "price": "",
-        "image": "img/prod/var/p-clive-christian-rock-rose-50ml.jpg"
       }
     ]
   },
@@ -2652,6 +2646,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/l-2.mp4",
     "images": [
@@ -2726,6 +2721,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
+    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
@@ -3451,7 +3447,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
-    "weight": 2,
+    "weight": 1.99,
     "keywords": [
       "jacket",
       "down",
@@ -3585,31 +3581,25 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "d",
-    "name": "Dyson airstrait style",
-    "brand": "Dyson",
-    "price": "€130",
-    "note": "tempreture control-harmless-gift box",
+    "id": "p-3",
+    "name": "Prada backpack",
+    "brand": "Prada",
+    "price": "€90",
+    "note": "fashion-elegant-Business casual",
     "desc": "",
-    "collection": "hair-dryers",
-    "subcategory": "hair-care",
-    "weight": 3,
-    "popular": true,
-    "images": [
-      "img/prod/gal/d-g1.jpg",
-      "img/prod/gal/d-g2.jpg",
-      "img/prod/gal/d-g3.jpg"
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "weight": 2,
+    "keywords": [
+      "prada",
+      "bags",
+      "backpack"
     ],
     "variants": [
       {
-        "name": "Classic",
+        "name": "Prada-1",
         "price": "",
-        "image": "img/prod/var/d-1.jpg"
-      },
-      {
-        "name": "Gift box",
-        "price": "",
-        "image": "img/prod/var/d-2.jpg"
+        "image": "img/prod/var/p-3-1.jpg"
       }
     ]
   },
@@ -3662,7 +3652,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "clothes-and-shoes",
     "subcategory": "clothes",
-    "weight": 2,
+    "weight": 1.98,
     "images": [
       "img/prod/gal/g-5-g1.jpg",
       "img/prod/gal/g-5-g2.jpg",
@@ -3696,281 +3686,6 @@ window.PRODUCTS = [
         "name": "Off-white",
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
-      }
-    ]
-  },
-  {
-    "id": "p-5",
-    "name": "JBL pulse 6",
-    "brand": "JBL",
-    "price": "€20",
-    "note": "Portable · Waterproof-Led",
-    "desc": "see the sound-Supports 360° full-color lighting with 16 light show themes.",
-    "collection": "speakers",
-    "weight": 1,
-    "popular": true,
-    "images": [
-      "img/prod/gal/p-5-g1.jpg",
-      "img/prod/gal/p-5-g2.jpg",
-      "img/prod/gal/p-5-g3.jpg"
-    ],
-    "keywords": [
-      "JBL/speakers/pusle"
-    ],
-    "variants": [
-      {
-        "name": "Pulse6",
-        "price": "",
-        "image": "img/prod/var/p-5-1.jpg"
-      }
-    ]
-  },
-  {
-    "id": "a-3",
-    "name": "airpods 5",
-    "brand": "",
-    "price": "€13",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.2,
-    "images": [
-      "img/prod/gal/a-3-g1.jpg",
-      "img/prod/gal/a-3-g2.jpg",
-      "img/prod/gal/a-3-g3.jpg"
-    ]
-  },
-  {
-    "id": "p-3",
-    "name": "Prada backpack",
-    "brand": "Prada",
-    "price": "€90",
-    "note": "fashion-elegant-Business casual",
-    "desc": "",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
-    "weight": 2,
-    "popular": true,
-    "keywords": [
-      "prada",
-      "bags",
-      "backpack"
-    ],
-    "variants": [
-      {
-        "name": "Prada-1",
-        "price": "",
-        "image": "img/prod/var/p-3-1.jpg"
-      }
-    ]
-  },
-  {
-    "id": "c-3",
-    "name": "creed style perfume",
-    "brand": "Creed",
-    "price": "€18",
-    "note": "elegan-passion-energy",
-    "desc": "",
-    "collection": "perfumes",
-    "weight": 0.5,
-    "images": [
-      "img/prod/gal/c-3-g1.jpg",
-      "img/prod/gal/c-3-g2.jpg",
-      "img/prod/gal/c-3-g3.jpg"
-    ],
-    "keywords": [
-      "perfume;Creed;fragnance"
-    ],
-    "variants": [
-      {
-        "name": "Absolu Aventus 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-creed-absolu-aventus-2023.jpg"
-      },
-      {
-        "name": "Aventus for Her 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-aventus-for-her.jpg"
-      },
-      {
-        "name": "Aventus Cologne 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-aventus-cologne.jpg"
-      },
-      {
-        "name": "Love in White 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-love-in-white.jpg"
-      },
-      {
-        "name": "Royal Mayfair 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-royal-mayfair.jpg"
-      },
-      {
-        "name": "Delphinus 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-delphinus.jpg"
-      },
-      {
-        "name": "Spring Flowe 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-spring-flowe.jpg"
-      },
-      {
-        "name": "Virgin Island Water 100ml",
-        "price": "",
-        "image": "img/prod/var/c-3-virgin-island-water-100ml.jpg"
-      },
-      {
-        "name": "Love In Black 75ml",
-        "price": "",
-        "image": "img/prod/var/c-3-love-in-black-75ml.jpg"
-      },
-      {
-        "name": "Love In White 75ml",
-        "price": "",
-        "image": ""
-      }
-    ]
-  },
-  {
-    "id": "yves-saint-laurent",
-    "name": "Yves Saint Laurent style perfumes",
-    "brand": "YSL",
-    "price": "€18",
-    "note": "freedome-breaking chains-elegant",
-    "desc": "",
-    "collection": "perfumes",
-    "subcategory": "best-sellers",
-    "weight": 0.5,
-    "images": [
-      "img/prod/gal/yves-saint-laurent-g1.jpg",
-      "img/prod/gal/yves-saint-laurent-g2.jpg",
-      "img/prod/gal/yves-saint-laurent-g3.jpg"
-    ],
-    "keywords": [
-      "perfumes;YSL;Yves Saint Laurent;fragnance"
-    ],
-    "variants": [
-      {
-        "name": "Libre EDP 90ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-libre-edp-90ml.jpg"
-      },
-      {
-        "name": "Libre Le Parfums",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-libre-le-parfums.jpg"
-      },
-      {
-        "name": "Black Opium  90ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-black-opium-90ml.jpg"
-      },
-      {
-        "name": "Red Opium Black 90mL",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-red-opium-black-90ml.jpg"
-      },
-      {
-        "name": "L'Homme EDT 100 ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-l-homme-edt-100-ml.jpg"
-      },
-      {
-        "name": "L'Homme EDP 100 ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-l-homme-edp-100-ml.jpg"
-      },
-      {
-        "name": "L'Homme Ultime  EDP 100ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-l-homme-ultime-edp-100ml.jpg"
-      },
-      {
-        "name": "L'Homme Ultime le Parfum100 ml",
-        "price": "",
-        "image": "img/prod/var/yves-saint-laurent-l-homme-ultime-le-parfum100-ml.jpg"
-      }
-    ]
-  },
-  {
-    "id": "parfums-de-marly",
-    "name": "Parfums de Marly style",
-    "brand": "marly",
-    "price": "€18",
-    "note": "nature-grace-lovely",
-    "desc": "",
-    "collection": "perfumes",
-    "subcategory": "best-sellers",
-    "weight": 0.5,
-    "images": [
-      "img/prod/gal/parfums-de-marly-g1.jpg",
-      "img/prod/gal/parfums-de-marly-g2.jpg",
-      "img/prod/gal/parfums-de-marly-g3.jpg"
-    ],
-    "keywords": [
-      "perfumes; Parfums de Marly;marly;fragnance"
-    ],
-    "variants": [
-      {
-        "name": "Delina 75ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-marly-delina-exclusif-75ml.jpg"
-      },
-      {
-        "name": "Layton Exclusif 125ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-marly-layton-exclusif-125ml.jpg"
-      },
-      {
-        "name": "Layton 125ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-layton-125ml.jpg"
-      },
-      {
-        "name": "Althair 75ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-althair-75ml.jpg"
-      },
-      {
-        "name": "Oriana 75ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-oriana-75ml.jpg"
-      },
-      {
-        "name": "Cassili 75ml",
-        "price": "",
-        "image": "img/prod/var/parfums-de-marly-cassili-75ml.jpg"
-      }
-    ]
-  },
-  {
-    "id": "g-6",
-    "name": "Garmin Fenix8",
-    "brand": "Garmin",
-    "price": "€35",
-    "note": "Smart phone-business style-AI",
-    "desc": "",
-    "collection": "other",
-    "subcategory": "smart-watch",
-    "weight": 0.5,
-    "images": [
-      "img/prod/gal/g-6-g3.jpg",
-      "img/prod/gal/g-6-g1.jpg",
-      "img/prod/gal/g-6-g2.jpg"
-    ],
-    "variants": [
-      {
-        "name": "Black",
-        "price": "",
-        "image": "img/prod/var/g-6-black.jpg"
-      },
-      {
-        "name": "Orange",
-        "price": "",
-        "image": "img/prod/var/g-6-orange.jpg"
       }
     ]
   }

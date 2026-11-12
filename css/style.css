@@ -1767,6 +1767,14 @@ body:has(.drawer.open) .cart-fab {
   color: var(--muted-foreground);
 }
 
+.drawer-head .est-wt {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+.drawer-head .est-wt[hidden] { display: none; }
+
 .drawer-close {
   display: grid;
   place-items: center;
@@ -1973,6 +1981,23 @@ body:has(.drawer.open) .cart-fab {
 
 .drawer-foot .share:hover {
   background: oklch(93% 0 0);
+}
+
+.drawer-foot .share.wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 14px 0;
+  font-size: 15px;
+  color: var(--whatsapp-foreground);
+  background: var(--whatsapp);
+  border-color: var(--whatsapp);
+}
+.drawer-foot .share.wa svg { flex: none; }
+.drawer-foot .share.wa:hover {
+  filter: brightness(1.04);
 }
 
 /* ---------- 抽屉底部「⋯ More」折叠：把运费明细与次要操作收起来，给产品列表腾版面 ---------- */
