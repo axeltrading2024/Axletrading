@@ -85,6 +85,7 @@
     ship_dims:          { en: 'Box size (cm)', es: 'Medidas de caja (cm)' },
     ship_empty:         { en: 'Enter weight or box size to estimate.', es: 'Ingresa peso o medidas para estimar.' },
     ship_chargeable:    { en: 'Chargeable weight', es: 'Peso facturable' },
+    quote_item_as_quoted: { en: 'Price as quoted · not in catalog', es: 'Precio según cotización · ya no en catálogo' },
     estimate_weight:    { en: 'Estimate weight', es: 'Peso estimado' },
     ship_vol:           { en: 'Volumetric weight', es: 'Peso volumétrico' },
     ship_first:         { en: 'First 1 kg', es: 'Primer kg' },

@@ -1849,6 +1849,20 @@ body:has(.drawer.open) .cart-fab {
   color: var(--muted-foreground);
 }
 
+/* 目录里已下架、按发送时快照价显示的商品行：淡琥珀标记，提示报价以当时为准 */
+.inq-item .i-stale {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 1px 8px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  color: #8a5a00;
+  background: #fff3d6;
+  border: 1px solid #f0d28a;
+  border-radius: 999px;
+}
+
 .inq-item .i-price {
   font-family: var(--font-display);
   font-size: 15px;

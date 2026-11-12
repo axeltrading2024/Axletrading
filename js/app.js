@@ -230,36 +230,46 @@
   }
 
   /* ---------------- 专属分享链接（把询价清单编码进网址 #l=...） ---------------- */
-  /** 清单 → base64url 字符串（只存 id/型号/数量，价格等打开时按最新数据渲染） */
+  /** 清单 → base64url 字符串（自带名称/品牌/单价/图片快照，目录查不到时也能按发送时显示，不丢商品） */
   function encodeItems(items) {
     var arr = items.map(function (it) {
-      return { i: it.id, v: it.variant || '', q: it.qty };
+      return {
+        i: it.id, v: it.variant || '', q: it.qty,
+        n: it.name || '', b: it.brand || '', p: it.price || '', m: it.image || ''
+      };
     });
     var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(arr))));
     return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   }
 
-  /** base64url 字符串 → 清单条目（过滤掉已下架的产品 id） */
+  /** base64url 字符串 → 清单条目
+   *  优先用线上目录（价格/图片保持最新）；目录里查不到的，退回发送时快照（不再静默丢弃）。
+   *  旧链接（只编了 id/v/q、无名称）且目录已下架的，仍按原行为丢弃。 */
   function decodeItems(str) {
     try {
       var s = str.replace(/-/g, '+').replace(/_/g, '/');
       while (s.length % 4) s += '=';
       var arr = JSON.parse(decodeURIComponent(escape(atob(s))));
       if (!Array.isArray(arr)) return [];
-      return arr.filter(function (x) { return x && x.i && getProduct(x.i); }).map(function (x) {
+      return arr.filter(function (x) { return x && x.i; }).map(function (x) {
         var p = getProduct(x.i);
         var v = null;
-        if (x.v && p.variants && p.variants.length) {
+        if (p && x.v && p.variants && p.variants.length) {
           p.variants.forEach(function (y) { if (y.name === x.v) v = y; });
         }
+        var name = (p && p.name) || x.n || '';
+        var brand = (p && p.brand) || x.b || '';
+        var price = (v && v.price) ? v.price : ((p && p.price) || x.p || '');
+        var image = (v && v.image) ? v.image : ((p && p.image) || x.m || '');
+        // 线上有目录 或 快照带名称 → 都保留；两者皆无（旧链接的已下架品）才丢弃
+        if (!p && !name) return null;
         return {
-          id: p.id, variant: x.v || '', name: p.name, brand: p.brand,
-          image: (v && v.image) ? v.image : p.image,
-          price: (v && v.price) ? v.price : p.price,
+          id: x.i, variant: x.v || '', name: name, brand: brand, image: image, price: price,
+          stale: !p,
           // 分享链接可能来自 MOQ 设定之前，qty 要按当前 MOQ 抬到下限，否则客户会带着低于起订量的数字来询价
-          qty: moqFloor((parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1), moqQty(p)),
+          qty: moqFloor((parseInt(x.q, 10) > 0 ? Math.floor(parseInt(x.q, 10)) : 1), p ? moqQty(p) : 1),
         };
-      });
+      }).filter(Boolean);
     } catch (e) { return []; }
   }
 
@@ -2518,6 +2528,7 @@
           '<div class="info">' +
             '<p class="i-name">' + esc(it.name) + (it.variant ? ' <span class="i-var">· ' + esc(it.variant) + '</span>' : '') + '</p>' +
             '<p class="i-brand">' + esc(it.brand || '') + '</p>' +
+            (it.stale ? '<p class="i-stale" data-i18n="quote_item_as_quoted">Price as quoted · not in catalog</p>' : '') +
             '<p class="i-price">' +
               '<span>' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</span>' +
               (it.qty > 1 && lineTotal ? '<span class="i-line">' + esc(lineTotal) + '</span>' : '') +
