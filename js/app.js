@@ -1541,7 +1541,10 @@
       if (t.closest('[data-pay-alipay]')) {
         if (!Store.items.length) return;
         var est = cartEstTotal();
-        var payUrl = 'pay.html?q=' + encodeURIComponent(quoteNo(Store.items));
+        var payRef = quoteNo(Store.items);
+        /* 先落库再跳转：keepalive 让请求在页面卸载后仍能发出去 */
+        recordQuote('pay');
+        var payUrl = 'pay.html?q=' + encodeURIComponent(payRef);
         if (est && est.amount != null) payUrl += '&amt=' + encodeURIComponent(String(est.amount));
         if (est && est.currency) payUrl += '&cur=' + encodeURIComponent(est.currency);
         location.href = payUrl;
@@ -1552,6 +1555,7 @@
       if (t.closest('[data-send-link-wa]')) {
         var waShare = buildShareUrl(Store.items);
         if (!waShare) return;
+        recordQuote('pay');   /* 发出去的清单也是报价单，后台要能看到 */
         window.open(waLink(window.T('share_wa_intro') + ' ' + waShare), '_blank', 'noopener');
         return;
       }
@@ -2705,6 +2709,68 @@
     var d = new Date();
     return d.getDate() + ' ' + M[d.getMonth()] + ' ' + d.getFullYear();
   }
+
+  /* ---------------- 报价单落库（后台可查可导出） ----------------
+     以前清单只活在客户浏览器里，商家完全不知道发了多少单、客户要不要。
+     这里在「点付款按钮」和「打开付款页」两个节点各记一次，落进 Cloudflare D1。
+     原则：埋点失败绝不影响主流程，所以整段包在 try 里，且不 await。 */
+
+  var CID_KEY = 'edsup_cid';
+
+  /** 浏览器匿名 ID：只用来区分「不同的人拼了同一份清单」，不含任何个人信息 */
+  function clientId() {
+    try {
+      var v = localStorage.getItem(CID_KEY);
+      if (v && /^[a-z0-9\-]{8,40}$/.test(v)) return v;
+      var nv = 'c' + Date.now().toString(36) + '-' +
+        Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
+      localStorage.setItem(CID_KEY, nv);
+      return nv;
+    } catch (e) {
+      return 'anon';
+    }
+  }
+
+  /**
+   * @param {'pay'|'view'} action
+   * @param {Array=} itemsOverride 付款页那种没有 Store 的场景可以自己传清单
+   */
+  function recordQuote(action, itemsOverride) {
+    try {
+      if (!window.fetch) return;
+      var items = itemsOverride || Store.items;
+      if (!items || !items.length) return;
+      var sum = cartSum();
+      var est = itemsOverride ? null : cartEstTotal();
+      var payload = {
+        ref: quoteNo(items),
+        cid: clientId(),
+        action: action || 'pay',
+        currency: (est && est.currency) || (sum && sum.currency) || '',
+        items_total: sum ? sum.sum : 0,
+        est_total: est && est.amount != null ? est.amount : (sum ? sum.sum : 0),
+        items: items.map(function (it) {
+          return {
+            id: it.id, name: it.name, brand: it.brand,
+            variant: it.variant || '', qty: it.qty, price: it.price,
+          };
+        }),
+        country: (lastShip && lastShip.iso) || '',
+        lang: (document.documentElement.getAttribute('lang') || '').slice(0, 6),
+        page: location.pathname,
+        referrer: (document.referrer || '').slice(0, 200),
+      };
+      fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {
+      /* 静默：记录失败不影响客户付款 */
+    }
+  }
+
 
   /** 报价单元信息条（单号 / 日期），正常查阅与打印都显示 */
   function sharedMetaHtml() {

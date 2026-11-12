@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261112h">
+  <link rel="stylesheet" href="css/style.css?v=20261112i">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -195,9 +195,9 @@
 
   <footer class="site-footer"></footer>
 
-  <script src="js/data.js?v=20261112h"></script>
-  <script src="js/i18n.js?v=20261112h"></script>
-  <script src="js/app.js?v=20261112h"></script>
+  <script src="js/data.js?v=20261112i"></script>
+  <script src="js/i18n.js?v=20261112i"></script>
+  <script src="js/app.js?v=20261112i"></script>
   <script>
     (function () {
       'use strict';
@@ -213,6 +213,37 @@
       var hasAmt = isFinite(amtNum) && amtNum > 0;
 
       if (cur !== 'USD' && cur !== 'EUR') cur = 'EUR';
+
+      /* 记一次「有人打开了这张报价单」——后台能看到链接被点过几次。
+         不阻塞渲染，失败了也静默。清单明细由购物车那边带过来，这里只有单号和金额。 */
+      (function trackView() {
+        try {
+          if (!q || !window.fetch) return;
+          var cid = 'anon';
+          try {
+            cid = localStorage.getItem('edsup_cid') || '';
+            if (!/^[a-z0-9\-]{8,40}$/.test(cid)) {
+              cid = 'c' + Date.now().toString(36) + '-' +
+                Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
+              localStorage.setItem('edsup_cid', cid);
+            }
+          } catch (e2) {}
+          fetch('/api/quote', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              ref: q,
+              cid: cid,
+              action: 'view',
+              currency: cur,
+              est_total: hasAmt ? amtNum : 0,
+              lang: (document.documentElement.getAttribute('lang') || '').slice(0, 6),
+              page: location.pathname,
+            }),
+            keepalive: true
+          }).catch(function () {});
+        } catch (e) {}
+      })();
 
       function fmtMoney(v) {
         try {

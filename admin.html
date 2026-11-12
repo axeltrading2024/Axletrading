@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261102a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261112i" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -84,6 +84,38 @@
         <span class="hint" data-leads-page></span>
         <button type="button" class="btn btn-outline" data-leads-next>下一页</button>
       </div>
+    </section>
+
+    <!-- 网站报价单（客户在购物车点 Pay on Alipay 时落库，数据来自 D1，经 /api/admin/quotes 读取） -->
+    <section class="panel quotes-panel">
+      <div class="panel-head">
+        <h2>🧾 网站报价单 <span class="leads-badge" data-quotes-badge hidden>0</span></h2>
+        <span class="hint" data-quotes-status>输入访问口令后加载</span>
+      </div>
+
+      <div class="quotes-kpi" data-quotes-kpi hidden></div>
+
+      <div class="leads-bar">
+        <input type="password" class="leads-key" data-quotes-key placeholder="访问口令（ADMIN_KEY，和客户留言共用一个）" autocomplete="off">
+        <input type="search" class="leads-key quotes-search" data-quotes-q placeholder="搜报价号 / 产品 / 国家 / 备注…" autocomplete="off">
+        <button type="button" class="btn btn-dark" data-quotes-load>连接并刷新</button>
+        <button type="button" class="btn btn-outline" data-quotes-export-detail>⬇ 明细 CSV</button>
+        <button type="button" class="btn btn-outline" data-quotes-export-summary>⬇ 汇总 CSV</button>
+      </div>
+
+      <div class="leads-filters" data-quotes-filters></div>
+
+      <div class="leads-list" data-quotes-list>
+        <p class="leads-empty">还没有连接。填好口令点「连接并刷新」。</p>
+      </div>
+
+      <div class="leads-more" data-quotes-more hidden>
+        <button type="button" class="btn btn-outline" data-quotes-prev>上一页</button>
+        <span class="hint" data-quotes-page></span>
+        <button type="button" class="btn btn-outline" data-quotes-next>下一页</button>
+      </div>
+
+      <p class="quotes-foot-note">客户点「Pay on Alipay」或把清单发到 WhatsApp 时，这份清单会自动记在这里；打开付款页也会计数。清单只存在客户浏览器里的日子结束了 —— 现在你随时能查到「谁拼了什么、值多少钱、要不要货」。</p>
     </section>
 
     <div class="admin-layout" data-page-node-id="QyiPXiHFeJ3iJhWp2RRwPQ">
@@ -292,10 +324,10 @@
       <div class="guide-body" data-page-node-id="EWxjH2JaWjKRm6RRbqX841">
         <div class="gh-row" data-page-node-id="O5USZDt1ICwjeoToRTqXD8"><label data-page-node-id="ongXnUA5EWSG8MWG4E9TEe">店铺名称 *</label><input data-cfg-brand placeholder="如 EddySupply" data-page-node-id="xET2kwn3DUc8q2FLLQfKyx"><span class="help" data-page-node-id="tOfFK2evAZqX3HKhNwJUJ2">顶部 logo、浏览器标题、页脚版权都会用这个名字</span></div>
         <div class="gh-row" data-page-node-id="z8kk475lL3OjMHArlsGA7g"><label data-page-node-id="U3HGXIrblUsAH7dbSQ2pMY">联系人称呼</label><input data-cfg-contact placeholder="如 Eddy（客户点咨询时消息里出现的名字）" data-page-node-id="TCTlE56lmSzVpCEus8AigH"></div>
-        <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +49 152 2490 1963" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
+        <div class="gh-row" data-page-node-id="ALrwHxA0AZhfcT39KU2M3f"><label data-page-node-id="BPHx1m5JUQAvkDlR21ZJzv">WhatsApp 显示号码</label><input data-cfg-wadisplay placeholder="如 +86 158 7520 9571" data-page-node-id="YG1gFnNkgr4M48K47f6drN"><span class="help" data-page-node-id="VajPy32mxKGnnFRo0wuZgd">页脚和客户看到的格式</span></div>
         <div class="gh-row" data-page-node-id="RBVD6h8UbrNTLYodb2QyPU"><label data-page-node-id="BWEpAv08wwiBqjJ5Bz8E0K">联系邮箱</label><input data-cfg-email placeholder="如 axeltrading@163.com" data-page-node-id="DftCljIYxFSqnY3DevwOET"><span class="help" data-page-node-id="sRbEfXBjWMkPfaE4zLNzDR">显示在客户打开的报价单底部，留空则不显示邮箱</span></div>
         <div class="gh-row" data-page-node-id="FFA6kaMvDBZX7dIuyfQ3uz"><label data-page-node-id="Cwj3fhvtk6UdlpEV5IJYpv">WhatsApp 拨号号码（自动生成）</label><input data-cfg-wa readonly style="background:#f6f6f4" data-page-node-id="OmGEZP3z5JxvWeql0cVm5b"><span class="help" data-page-node-id="VGFT0VYbWcyPhPOGpj8LfV">由显示号码自动提取数字，用于点击跳转 WhatsApp，无需手动填</span></div>
-        <div class="gh-row"><label>备用号码</label><input data-cfg-wabackup placeholder="如 +49 152 2490 1963"><span class="help">显示在页脚「calls &amp; backup」一行，留空则不显示</span></div>
+        <div class="gh-row"><label>备用号码</label><input data-cfg-wabackup placeholder="如 +86 158 7520 9571"><span class="help">显示在页脚「calls &amp; backup」一行，留空则不显示</span></div>
         <div class="gh-row" style="margin-top:18px" data-page-node-id="zG4X3hO7xG3Kg0HdMvxHPt"><label style="font-weight:700" data-page-node-id="c0WBMRgQYj8OrifdRkWWTx">—— 首页首屏文案 ——</label></div>
         <div class="gh-row" data-page-node-id="dfjoJRo8ReICFxe3RQHFqS"><label data-page-node-id="qwtYoGTEbyEnQLiHSg3soI">顶部角标</label><input data-cfg-herobadge placeholder="如 EddySupply · wholesale supplier" data-page-node-id="8LA5H6J7TwKyc5JZAXM4jP"><span class="help" data-page-node-id="dDZnq4c6pcb5SvG9t2Rjlm">大标题上方的小字标签</span></div>
         <div class="gh-row" data-page-node-id="BTG6MMlKmeQUTLEc92DMUC"><label data-page-node-id="uAGwIEs9VfYNHKgmN6Gy60">大标题（第一行）</label><input data-cfg-herotitle placeholder="如 Premium Quality" data-page-node-id="yMsBGRL7eWfvzzzVbXSrEh"></div>
@@ -1863,7 +1895,7 @@
     var waDisplay = ($('[data-cfg-wadisplay]').value || '').trim();
     var wa = waDigits(waDisplay);
     if (waDisplay && wa.length < 8) {
-      status('WhatsApp 号码看起来不对，请包含国家码，如 +49 152 2490 1963', 'err');
+      status('WhatsApp 号码看起来不对，请包含国家码，如 +86 158 7520 9571', 'err');
       return;
     }
     if (!waDisplay) status('提示：WhatsApp 显示号码为空，页脚将不显示联系方式');
@@ -2406,6 +2438,456 @@
     });
 
     if (state.key) load();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+
+<!-- 网站报价单面板：走 /api/admin/quotes（Cloudflare Functions + D1） -->
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'edsup_leads_key';   /* 和客户留言共用一个口令，填一次两处都通 */
+  var PAGE = 20;
+  var STATUSES = [
+    ['new', '新清单'],
+    ['quoted', '已报价'],
+    ['won', '已成交'],
+    ['lost', '已放弃']
+  ];
+  var LABEL = {};
+  STATUSES.forEach(function (s) { LABEL[s[0]] = s[1]; });
+
+  var state = { key: '', status: '', q: '', offset: 0, total: 0, rows: [], sums: {}, busy: false };
+
+  function $(s, root) { return (root || document).querySelector(s); }
+  function all(s, root) { return Array.prototype.slice.call((root || document).querySelectorAll(s)); }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+  function store(k, v) {
+    try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) {}
+    return '';
+  }
+  function say(msg, kind) {
+    var el = $('[data-quotes-status]');
+    if (!el) return;
+    el.textContent = msg || '';
+    el.style.color = kind === 'err' ? '#c0392b' : (kind === 'ok' ? '#1e8e3e' : '');
+  }
+  function api(p) { return location.origin + p; }
+
+  var API_HOSTS = ['eddytrading.com', 'www.eddytrading.com', 'axletrading.pages.dev', 'localhost', '127.0.0.1'];
+  function apiHostOk() {
+    if (location.protocol === 'file:') return false;
+    var h = (location.hostname || '').toLowerCase();
+    if (!h) return false;
+    return API_HOSTS.indexOf(h) !== -1 || /^127\./.test(h) || /^192\.168\./.test(h) || /^10\./.test(h);
+  }
+
+  function headers() { return { 'x-admin-key': state.key }; }
+
+  function money(v, cur) {
+    var n = Number(v) || 0;
+    var sym = cur === 'EUR' ? '€' : (cur === 'USD' ? '$' : (cur || '') + ' ');
+    return sym + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return iso;
+    var p = function (n) { return n < 10 ? '0' + n : '' + n; };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' +
+      p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  function parseItems(row) {
+    try {
+      var a = JSON.parse(row.items_json || '[]');
+      return Array.isArray(a) ? a : [];
+    } catch (e) { return []; }
+  }
+
+  /* ---------------- 拉取 ---------------- */
+  function load() {
+    if (!apiHostOk()) {
+      say('当前地址没有后台接口，请用 eddytrading.com/admin.html', 'err');
+      return;
+    }
+    if (!state.key) { say('请先填访问口令', 'err'); return; }
+    state.busy = true;
+    say('加载中…');
+    var qs = '?limit=' + PAGE + '&offset=' + state.offset +
+      (state.status ? '&status=' + encodeURIComponent(state.status) : '') +
+      (state.q ? '&q=' + encodeURIComponent(state.q) : '');
+    fetch(api('/api/admin/quotes' + qs), { headers: headers(), cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('口令不对，或者服务器上还没设置 ADMIN_KEY');
+        if (r.status === 503) throw new Error('线上还没绑定 D1 数据库');
+        if (r.status === 404) throw new Error('后台接口还没部署（本次改动需要重新发布一次）');
+        return r.json();
+      })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || '读取失败');
+        state.rows = j.rows || [];
+        state.total = j.total || 0;
+        state.sums = j.sums || {};
+        renderKpi(j);
+        renderFilters(j.counts || {});
+        renderRows();
+        renderPager();
+        say('已连接 · 共 ' + state.total + ' 条', 'ok');
+      })
+      .catch(function (e) {
+        say(e.message || '读取失败', 'err');
+        var list = $('[data-quotes-list]');
+        if (list) list.innerHTML = '<p class="leads-empty">' + esc(e.message || '读取失败') + '</p>';
+      })
+      .then(function () { state.busy = false; });
+  }
+
+  /* ---------------- KPI ---------------- */
+  function renderKpi(j) {
+    var box = $('[data-quotes-kpi]');
+    if (!box) return;
+    var counts = j.counts || {};
+    var totalAll = 0;
+    STATUSES.forEach(function (s) { totalAll += counts[s[0]] || 0; });
+    if (!totalAll) { box.hidden = true; return; }
+
+    var cells = [
+      ['今日新增', String(j.today || 0) + ' 单', ''],
+      ['待处理', String(counts.new || 0) + ' 单', 'is-hot'],
+      ['已成交', String(counts.won || 0) + ' 单', '']
+    ];
+    Object.keys(state.sums).forEach(function (cur) {
+      var s = state.sums[cur];
+      if (!s || !s.won_n) return;
+      cells.push(['成交额 ' + cur, money(s.won_amount, cur), 'is-win']);
+    });
+
+    box.innerHTML = cells.map(function (c) {
+      return '<div class="qkpi ' + c[2] + '"><span>' + esc(c[0]) + '</span><b>' + esc(c[1]) + '</b></div>';
+    }).join('');
+    box.hidden = false;
+
+    var badge = $('[data-quotes-badge]');
+    if (badge) {
+      badge.textContent = counts.new || 0;
+      badge.hidden = !(counts.new > 0);
+    }
+  }
+
+  function renderFilters(counts) {
+    var host = $('[data-quotes-filters]');
+    if (!host) return;
+    var total = 0;
+    STATUSES.forEach(function (s) { total += counts[s[0]] || 0; });
+    var html = '<button type="button" class="leads-chip' + (state.status === '' ? ' is-on' : '') +
+      '" data-quotes-filter="">全部 ' + total + '</button>';
+    STATUSES.forEach(function (s) {
+      html += '<button type="button" class="leads-chip' + (state.status === s[0] ? ' is-on' : '') +
+        '" data-quotes-filter="' + s[0] + '">' + s[1] + ' ' + (counts[s[0]] || 0) + '</button>';
+    });
+    host.innerHTML = html;
+    all('[data-quotes-filter]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.status = b.getAttribute('data-quotes-filter');
+        state.offset = 0;
+        load();
+      });
+    });
+  }
+
+  /* ---------------- 渲染列表 ---------------- */
+  /* 商品用 € 标价、总额按 $ 报是常态，所以行小计的符号必须跟着单价走，
+     不能统一用报价单币种，否则会出现「€129 × 2 = $258」这种自相矛盾的数。 */
+  function symOf(price, cur) {
+    var m = String(price || '').match(/[€$£¥]/);
+    if (m) return m[0];
+    return cur === 'EUR' ? '€' : (cur === 'USD' ? '$' : (cur || '') + ' ');
+  }
+
+  function itemsTable(items, cur) {
+    if (!items.length) return '<p class="qempty">这张单没有明细（客户可能只是打开了付款链接）。</p>';
+    var rows = items.map(function (it, i) {
+      var pv = parseFloat(String(it.price || '').replace(/[^0-9.\-]/g, ''));
+      var sym = symOf(it.price, cur);
+      var line = isFinite(pv) ? sym + (pv * (it.qty || 1)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
+      return '<tr>' +
+        '<td class="qn">' + (i + 1) + '</td>' +
+        '<td>' + esc(it.name) + (it.variant ? ' <span class="qvar">' + esc(it.variant) + '</span>' : '') + '</td>' +
+        '<td class="qbrand">' + esc(it.brand || '') + '</td>' +
+        '<td class="num">' + (it.qty || 1) + '</td>' +
+        '<td class="num">' + esc(it.price || '') + '</td>' +
+        '<td class="num">' + line + '</td>' +
+      '</tr>';
+    }).join('');
+    return '<table class="qtable"><thead><tr>' +
+      '<th class="qn">#</th><th>产品</th><th class="qbrand">品牌</th>' +
+      '<th class="num">数量</th><th class="num">单价</th><th class="num">小计</th>' +
+      '</tr></thead><tbody>' + rows + '</tbody></table>';
+  }
+
+  function payUrlFor(r) {
+    var u = location.origin + '/pay?q=' + encodeURIComponent(r.ref);
+    if (Number(r.est_total) > 0) u += '&amt=' + encodeURIComponent(String(r.est_total));
+    if (r.currency) u += '&cur=' + encodeURIComponent(r.currency);
+    return u;
+  }
+
+  function tsvFor(r) {
+    var items = parseItems(r);
+    var head = ['Product', 'Variant', 'Qty', 'Unit price', 'Line total'].join('\t');
+    var lines = items.map(function (it) {
+      var pv = parseFloat(String(it.price || '').replace(/[^0-9.\-]/g, ''));
+      var line = isFinite(pv) ? (pv * (it.qty || 1)).toFixed(2) : '';
+      return [it.name, it.variant || '', it.qty || 1, it.price || '', line].join('\t');
+    });
+    return [head].concat(lines).join('\n');
+  }
+
+  function copyText(text, btn) {
+    var done = function () {
+      if (!btn) return;
+      var old = btn.textContent;
+      btn.textContent = '已复制';
+      setTimeout(function () { btn.textContent = old; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      ta.remove();
+    }
+  }
+
+  function renderRows() {
+    var host = $('[data-quotes-list]');
+    if (!host) return;
+    if (!state.rows.length) {
+      host.innerHTML = '<p class="leads-empty">' +
+        (state.q || state.status ? '这个筛选条件下没有报价单。' : '还没有任何报价单。客户点一次购物车的「Pay on Alipay」就会出现在这里。') +
+        '</p>';
+      return;
+    }
+
+    var html = '';
+    state.rows.forEach(function (r) {
+      var items = parseItems(r);
+      var chips = STATUSES.map(function (s) {
+        return '<button type="button" class="leads-chip' + (r.status === s[0] ? ' is-on' : '') +
+          '" data-quote-status="' + s[0] + '" data-quote-id="' + r.id + '">' + s[1] + '</button>';
+      }).join('');
+
+      var facts = [];
+      if (r.n_items) facts.push(r.n_items + ' 个品项 / ' + (r.units || 0) + ' 件');
+      if (r.country) facts.push('目的国 ' + esc(r.country));
+      if (Number(r.hits) > 1) facts.push('点了 ' + r.hits + ' 次');
+      if (Number(r.pay_views)) facts.push('付款页打开 ' + r.pay_views + ' 次');
+
+      html += '<article class="lead quote-card" data-quote-card="' + r.id + '">' +
+        '<div class="lead-top">' +
+          '<span class="lead-time">#' + r.id + ' · ' + esc(fmtTime(r.created_at)) + '</span>' +
+          '<span class="lead-state lead-state-' + esc(r.status) + '">' + esc(LABEL[r.status] || r.status) + '</span>' +
+        '</div>' +
+        '<div class="qhead">' +
+          '<code class="qref">' + esc(r.ref) + '</code>' +
+          '<b class="qamt">' + (Number(r.est_total) > 0 ? money(r.est_total, r.currency) : '<span class="qnone">没有金额</span>') + '</b>' +
+          (Number(r.items_total) > 0 && Math.abs(Number(r.items_total) - Number(r.est_total)) > 0.01
+            ? '<span class="qsub">商品 ' + money(r.items_total, r.currency) + '</span>'
+            : '') +
+        '</div>' +
+        (facts.length ? '<p class="lead-facts">' + facts.join(' · ') + '</p>' : '') +
+        '<div class="qacts">' +
+          '<button type="button" class="leads-chip" data-quote-toggle="' + r.id + '">明细 ' + items.length + '</button>' +
+          '<button type="button" class="leads-chip" data-quote-copy-tsv="' + r.id + '">📋 清单</button>' +
+          '<button type="button" class="leads-chip" data-quote-copy-url="' + r.id + '">🔗 付款链接</button>' +
+          '<a class="leads-chip" href="' + esc(payUrlFor(r)) + '" target="_blank" rel="noreferrer">打开付款页 ↗</a>' +
+        '</div>' +
+        '<div class="qitems" data-quote-items="' + r.id + '" hidden>' + itemsTable(items, r.currency) + '</div>' +
+        '<div class="lead-actions">' + chips +
+          '<button type="button" class="leads-chip leads-del" data-quote-del="' + r.id + '">删除</button>' +
+        '</div>' +
+        '<textarea class="lead-note" data-quote-note="' + r.id + '" rows="1" placeholder="内部备注（客户名 / 谈了什么 / 为什么没成）">' + esc(r.admin_note || '') + '</textarea>' +
+      '</article>';
+    });
+    host.innerHTML = html;
+
+    Array.prototype.forEach.call(host.querySelectorAll('[data-quote-note]'), function (t) {
+      var id = t.getAttribute('data-quote-note');
+      t.setAttribute('data-note-saved', t.value);
+    });
+
+    all('[data-quote-toggle]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-quote-toggle');
+        var box = host.querySelector('[data-quote-items="' + id + '"]');
+        if (!box) return;
+        box.hidden = !box.hidden;
+        b.classList.toggle('is-on', !box.hidden);
+      });
+    });
+    all('[data-quote-copy-tsv]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var r = findRow(b.getAttribute('data-quote-copy-tsv'));
+        if (r) copyText(tsvFor(r), b);
+      });
+    });
+    all('[data-quote-copy-url]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var r = findRow(b.getAttribute('data-quote-copy-url'));
+        if (r) copyText(payUrlFor(r), b);
+      });
+    });
+    all('[data-quote-status]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        update(b.getAttribute('data-quote-id'), { status: b.getAttribute('data-quote-status') });
+      });
+    });
+    all('[data-quote-del]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!confirm('确定删除这条报价单？删除后不可恢复。')) return;
+        update(b.getAttribute('data-quote-del'), null, true);
+      });
+    });
+    all('[data-quote-note]', host).forEach(function (t) {
+      t.addEventListener('blur', function () {
+        var id = t.getAttribute('data-quote-note');
+        if (t.value === (t.getAttribute('data-note-saved') || '')) return;
+        update(id, { admin_note: t.value }).then(function () {
+          t.setAttribute('data-note-saved', t.value);
+        });
+      });
+    });
+  }
+
+  function findRow(id) {
+    for (var i = 0; i < state.rows.length; i++) {
+      if (String(state.rows[i].id) === String(id)) return state.rows[i];
+    }
+    return null;
+  }
+
+  function renderPager() {
+    var box = $('[data-quotes-more]');
+    var info = $('[data-quotes-page]');
+    if (!box || !info) return;
+    var from = state.total ? state.offset + 1 : 0;
+    var to = Math.min(state.offset + PAGE, state.total);
+    info.textContent = from + '–' + to + ' / ' + state.total;
+    box.hidden = state.total <= PAGE;
+    var prev = $('[data-quotes-prev]');
+    var next = $('[data-quotes-next]');
+    if (prev) prev.disabled = state.offset <= 0;
+    if (next) next.disabled = state.offset + PAGE >= state.total;
+  }
+
+  /* ---------------- 更新 / 删除 ---------------- */
+  function update(id, patch, isDelete) {
+    var url = api('/api/admin/quotes' + (isDelete ? '?id=' + encodeURIComponent(id) : ''));
+    var opt = { headers: headers(), cache: 'no-store', method: isDelete ? 'DELETE' : 'PATCH' };
+    if (!isDelete) {
+      opt.headers = Object.assign({}, headers(), { 'content-type': 'application/json' });
+      opt.body = JSON.stringify(Object.assign({ id: Number(id) }, patch));
+    }
+    return fetch(url, opt)
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || '更新失败');
+        say('已更新', 'ok');
+        load();
+      })
+      .catch(function (e) { say(e.message || '更新失败', 'err'); });
+  }
+
+  /* ---------------- 导出 ---------------- */
+  function exportCsv(mode) {
+    if (!apiHostOk()) { say('当前地址没有后台接口', 'err'); return; }
+    if (!state.key) { say('请先填访问口令', 'err'); return; }
+    var qs = '?key=' + encodeURIComponent(state.key) + '&mode=' + mode +
+      (state.status ? '&status=' + state.status : '');
+    fetch(api('/api/admin/quotes-export' + qs), { cache: 'no-store' })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('口令不对');
+        if (r.status === 503) throw new Error('线上还没绑定 D1 数据库');
+        return r.blob();
+      })
+      .then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'quotes-' + mode + '-' + new Date().toISOString().slice(0, 10) + '.csv';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        say('已导出 ' + (mode === 'summary' ? '汇总' : '明细') + ' CSV', 'ok');
+      })
+      .catch(function (e) { say(e.message || '导出失败', 'err'); });
+  }
+
+  /* ---------------- 绑定 ---------------- */
+  function init() {
+    var input = $('[data-quotes-key]');
+    if (!input) return;
+
+    state.key = store(KEY);
+    if (state.key) input.value = state.key;
+
+    var loadBtn = $('[data-quotes-load]');
+    if (loadBtn) loadBtn.addEventListener('click', function () {
+      state.key = (input.value || '').trim();
+      store(KEY, state.key);
+      var sq = $('[data-quotes-q]');
+      state.q = sq ? (sq.value || '').trim() : '';
+      state.offset = 0;
+      load();
+    });
+
+    var sq = $('[data-quotes-q]');
+    if (sq) sq.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); if (loadBtn) loadBtn.click(); }
+    });
+
+    var d1 = $('[data-quotes-export-detail]');
+    if (d1) d1.addEventListener('click', function () { exportCsv('detail'); });
+    var d2 = $('[data-quotes-export-summary]');
+    if (d2) d2.addEventListener('click', function () { exportCsv('summary'); });
+
+    var prev = $('[data-quotes-prev]');
+    if (prev) prev.addEventListener('click', function () {
+      state.offset = Math.max(0, state.offset - PAGE); load();
+    });
+    var next = $('[data-quotes-next]');
+    if (next) next.addEventListener('click', function () {
+      state.offset += PAGE; load();
+    });
+
+    /* 客户留言那边填了口令并加载过 → 这里直接跟着加载，不用再点一次 */
+    if (state.key && apiHostOk()) {
+      setTimeout(function () {
+        var ls = $('[data-leads-status]');
+        var loaded = ls && /已连接/.test(ls.textContent || '');
+        if (loaded) load();
+        else say('填好口令点「连接并刷新」，或在「客户留言」里连过一次就自动同步');
+      }, 600);
+    } else if (!apiHostOk()) {
+      say('当前地址没有后台接口，请用 eddytrading.com/admin.html', 'err');
+    }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

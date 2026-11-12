@@ -831,3 +831,139 @@
   font-size: 11px;
   color: var(--muted-foreground);
 }
+
+/* ================= 网站报价单面板 ================= */
+
+.quotes-search { flex: 1 1 200px; min-width: 160px; }
+
+.quotes-kpi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 14px 12px;
+}
+
+.quotes-kpi[hidden] { display: none; }
+
+.qkpi {
+  flex: 1 1 120px;
+  min-width: 110px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qkpi span { font-size: 11px; color: var(--muted-foreground); letter-spacing: .02em; }
+.qkpi b { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.qkpi.is-hot b { color: #a35a00; }
+.qkpi.is-win b { color: #17703a; }
+
+.quote-card { position: relative; }
+
+.qhead {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 2px 0 2px;
+}
+
+.qref {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  letter-spacing: .02em;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.qamt {
+  font-size: 19px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.01em;
+}
+
+.qsub { font-size: 12px; color: var(--muted-foreground); }
+
+.qacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.qacts .leads-chip { text-decoration: none; }
+
+.qitems { margin-top: 9px; overflow-x: auto; }
+
+.qtable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.qtable th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.qtable td {
+  padding: 6px 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  vertical-align: top;
+}
+
+.qtable tr:last-child td { border-bottom: 0; }
+.qtable .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.qvar {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted-foreground);
+}
+
+.quotes-foot-note {
+  margin: 0;
+  padding: 0 16px 14px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 640px) {
+  .qamt { font-size: 17px; }
+  .qkpi { flex: 1 1 46%; }
+}
+
+.qtable .qn { width: 30px; color: var(--muted-foreground); }
+.qtable .qbrand { width: 96px; color: var(--muted-foreground); font-size: 12px; }
+.qnone { font-size: 13px; font-weight: 500; color: var(--muted-foreground); }
+.qempty { padding: 10px 2px; font-size: 12.5px; color: var(--muted-foreground); }
+
+/* 列宽固定，避免产品名把整表拉宽、右侧数字贴边 */
+.qtable { table-layout: fixed; }
+.qtable th.num, .qtable td.num { width: 96px; }
+.qtable td { word-break: break-word; }
+.qtable .qn { width: 32px; }
+
+/* 6 列没必要铺满整个面板宽度，限一下更紧凑 */
+.qtable { max-width: 760px; }
