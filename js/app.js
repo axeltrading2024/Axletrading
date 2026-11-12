@@ -3184,6 +3184,18 @@
     initInquiry();
     initShipping();   // 抽屉里的运费估算（阶梯价在 initProduct 内初始化）
 
+    /* ?cart=1：从付款页「Back to cart」回来时，直接把询价篮重新打开
+       （篮子空着就不弹，回到目录页正常浏览；开完把参数从地址栏抹掉，刷新不再弹） */
+    try {
+      var qp = new URLSearchParams(location.search);
+      if (qp.get('cart') === '1') {
+        if (Store.items.length) openDrawer(true);
+        qp.delete('cart');
+        var qs = qp.toString();
+        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+      }
+    } catch (e) {}
+
     // 多语言：用 data-i18n / 词典回填当前语言（浏览器判定或用户已选）
     if (window.applyLang) window.applyLang();
   }

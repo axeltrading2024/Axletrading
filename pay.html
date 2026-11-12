@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261112i">
+  <link rel="stylesheet" href="css/style.css?v=20261112j">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -98,9 +98,9 @@
       <p class="pay-eyebrow" data-i18n="pay_eyebrow">Payment</p>
       <h1 class="pay-title" id="payTitle">Complete your payment</h1>
       <p class="pay-sub" id="paySub"></p>
-      <a class="pay-back" href="index.html">
+      <a class="pay-back" id="payBack" href="index.html?cart=1">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        <span data-i18n="pay_back">Back to catalog</span>
+        <span data-i18n="pay_back">Back to cart</span>
       </a>
     </section>
 
@@ -195,9 +195,9 @@
 
   <footer class="site-footer"></footer>
 
-  <script src="js/data.js?v=20261112i"></script>
-  <script src="js/i18n.js?v=20261112i"></script>
-  <script src="js/app.js?v=20261112i"></script>
+  <script src="js/data.js?v=20261112j"></script>
+  <script src="js/i18n.js?v=20261112j"></script>
+  <script src="js/app.js?v=20261112j"></script>
   <script>
     (function () {
       'use strict';
@@ -365,6 +365,23 @@
           navigator.clipboard.writeText(text).then(done, fail);
         } else { fail(); }
       });
+
+      /* 返回：篮子里还有东西 → 回购物篮（首页 ?cart=1 会自动展开抽屉）；
+         篮子已经空了 → 回目录，文案也跟着换，别让人点进一个空抽屉 */
+      (function initBack() {
+        var a = document.getElementById('payBack');
+        if (!a) return;
+        var has = false;
+        try {
+          var arr = JSON.parse(localStorage.getItem('eddysupply.inquiry.v1') || '[]');
+          has = Array.isArray(arr) && arr.some(function (it) { return it && it.id; });
+        } catch (e) {}
+        if (has) return;
+        a.href = 'index.html';
+        var lab = a.querySelector('[data-i18n]');
+        if (lab) lab.setAttribute('data-i18n', 'pay_back_catalog');
+        if (window.applyLang) window.applyLang();
+      })();
 
       render();
       initQr();
