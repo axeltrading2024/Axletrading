@@ -531,8 +531,10 @@
         '<div class="drawer-head">' +
           '<div>' +
             '<h2 data-i18n="drawer_title">Inquiry list</h2>' +
-            '<p class="count" data-drawer-count>0 items</p>' +
-            '<p class="est-wt" data-drawer-est-wt hidden></p>' +
+            '<div class="count-row">' +
+              '<p class="count" data-drawer-count>0 items</p>' +
+              '<p class="est-wt" data-drawer-est-wt hidden></p>' +
+            '</div>' +
           '</div>' +
           '<button type="button" class="drawer-close" data-close-inquiry aria-label="Close">' + ICON.close + '</button>' +
         '</div>' +
