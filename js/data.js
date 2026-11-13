@@ -3692,6 +3692,13 @@ window.PRODUCTS = [
       "img/prod/gal/a-2-g1.jpg",
       "img/prod/gal/a-2-g3.jpg",
       "img/prod/gal/a-2-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": ""
+      }
     ]
   }
 ];
