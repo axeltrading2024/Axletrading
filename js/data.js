@@ -3722,6 +3722,21 @@ window.PRODUCTS = [
         "image": ""
       }
     ]
+  },
+  {
+    "id": "a-4",
+    "name": "airpods 5",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-4-g1.jpg",
+      "img/prod/gal/a-4-g2.jpg",
+      "img/prod/gal/a-4-g3.jpg"
+    ]
   }
 ];
 
