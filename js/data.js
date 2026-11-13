@@ -203,7 +203,7 @@ window.PRODUCTS = [
     "id": "airpods-pro-2",
     "name": "AirPods pro2",
     "brand": "Apple",
-    "price": "€12",
+    "price": "€10",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
