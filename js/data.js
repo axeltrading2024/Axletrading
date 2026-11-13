@@ -208,7 +208,6 @@ window.PRODUCTS = [
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
-    "popular": true,
     "video": "img/vid/airpods-pro-2.mp4",
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
@@ -3638,6 +3637,43 @@ window.PRODUCTS = [
     ]
   },
   {
+    "id": "a-3",
+    "name": "airpods pro3",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-3-g1.jpg",
+      "img/prod/gal/a-3-g2.jpg",
+      "img/prod/gal/a-3-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods pro3",
+        "price": "",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "id": "a-4",
+    "name": "airpods 5",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-4-g1.jpg",
+      "img/prod/gal/a-4-g2.jpg",
+      "img/prod/gal/a-4-g3.jpg"
+    ]
+  },
+  {
     "id": "airpods-max",
     "name": "AirPods Max",
     "brand": "OEM",
@@ -3683,43 +3719,6 @@ window.PRODUCTS = [
         "price": "",
         "image": "img/prod/var/airpods-max-blue.jpg"
       }
-    ]
-  },
-  {
-    "id": "a-3",
-    "name": "airpods pro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-3-g1.jpg",
-      "img/prod/gal/a-3-g2.jpg",
-      "img/prod/gal/a-3-g3.jpg"
-    ],
-    "variants": [
-      {
-        "name": "airpods pro3",
-        "price": "",
-        "image": ""
-      }
-    ]
-  },
-  {
-    "id": "a-4",
-    "name": "airpods 5",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-4-g1.jpg",
-      "img/prod/gal/a-4-g2.jpg",
-      "img/prod/gal/a-4-g3.jpg"
     ]
   },
   {
