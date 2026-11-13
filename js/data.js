@@ -3678,6 +3678,28 @@ window.PRODUCTS = [
         "image": "img/prod/var/g-5-off-white.jpg"
       }
     ]
+  },
+  {
+    "id": "a-2",
+    "name": "airpods 4",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-2-g1.jpg",
+      "img/prod/gal/a-2-g3.jpg",
+      "img/prod/gal/a-2-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": "img/prod/var/a-2-airpods-4.jpg"
+      }
+    ]
   }
 ];
 
