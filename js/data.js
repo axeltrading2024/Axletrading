@@ -279,22 +279,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "sony-wh1000",
-    "name": "Sony-style Wireless Headphones",
-    "brand": "Sony",
-    "price": "€65",
-    "note": "Active noise cancelling",
-    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
-    "keywords": [
-      "sony",
-      "wh1000",
-      "headphones",
-      "anc"
-    ]
-  },
-  {
     "id": "dior-sauvage",
     "name": "Dior Style 100ml",
     "brand": "Dior",
@@ -3736,6 +3720,22 @@ window.PRODUCTS = [
       "img/prod/gal/a-4-g1.jpg",
       "img/prod/gal/a-4-g2.jpg",
       "img/prod/gal/a-4-g3.jpg"
+    ]
+  },
+  {
+    "id": "sony-wh1000",
+    "name": "Sony-style Wireless Headphones",
+    "brand": "Sony",
+    "price": "€65",
+    "note": "Active noise cancelling",
+    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "keywords": [
+      "sony",
+      "wh1000",
+      "headphones",
+      "anc"
     ]
   }
 ];
