@@ -2760,6 +2760,22 @@
         page: location.pathname,
         referrer: (document.referrer || '').slice(0, 200),
       };
+
+      /* 本地留一份清单快照：付款页只带单号+金额，
+         万一这条 POST 被拦（旧缓存里的老 JS、断网、插件拦截），
+         客户打开付款页时还能用快照把明细补回后台，不至于出现「只有金额没有明细」 */
+      if (!itemsOverride) {
+        try {
+          localStorage.setItem('edsup_quote_snap', JSON.stringify({
+            ref: payload.ref,
+            cur: payload.currency,
+            total: payload.est_total,
+            ts: Date.now(),
+            items: payload.items.slice(0, 60),
+          }));
+        } catch (e) {}
+      }
+
       fetch('/api/quote', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },

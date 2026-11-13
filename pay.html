@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261112k">
+  <link rel="stylesheet" href="css/style.css?v=20261113a">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -196,9 +196,9 @@
 
   <footer class="site-footer"></footer>
 
-  <script src="js/data.js?v=20261112k"></script>
-  <script src="js/i18n.js?v=20261112k"></script>
-  <script src="js/app.js?v=20261112k"></script>
+  <script src="js/data.js?v=20261113a"></script>
+  <script src="js/i18n.js?v=20261113a"></script>
+  <script src="js/app.js?v=20261113a"></script>
   <script>
     (function () {
       'use strict';
@@ -216,10 +216,12 @@
       if (cur !== 'USD' && cur !== 'EUR') cur = 'EUR';
 
       /* 记一次「有人打开了这张报价单」——后台能看到链接被点过几次。
-         不阻塞渲染，失败了也静默。清单明细由购物车那边带过来，这里只有单号和金额。 */
+         不阻塞渲染，失败了也静默。URL 里只有单号和金额，明细靠购物车留下的本地快照补（见下）。 */
       (function trackView() {
         try {
           if (!q || !window.fetch) return;
+          /* 后台自己点「打开付款页」看效果，不该算成客户行为 */
+          if (P.get('from') === 'admin') return;
           var cid = 'anon';
           try {
             cid = localStorage.getItem('edsup_cid') || '';
@@ -229,18 +231,38 @@
               localStorage.setItem('edsup_cid', cid);
             }
           } catch (e2) {}
+
+          /* 明细：购物车那边在跳转前留了快照（同单号且 24h 内才算）。
+             直接用付款链接打开（客户从 WhatsApp 拿到的）就没有快照，这时只有金额，属正常。 */
+          var snapItems = [];
+          var snapTotal = 0;
+          try {
+            var snap = JSON.parse(localStorage.getItem('edsup_quote_snap') || 'null');
+            if (snap && snap.ref === q && Array.isArray(snap.items) &&
+                (Date.now() - (Number(snap.ts) || 0)) < 86400000) {
+              snapItems = snap.items.slice(0, 60);
+              snapTotal = Number(snap.total) || 0;
+            }
+          } catch (e3) {}
+
+          var body = {
+            ref: q,
+            cid: cid,
+            action: 'view',
+            currency: cur,
+            est_total: hasAmt ? amtNum : 0,
+            lang: (document.documentElement.getAttribute('lang') || '').slice(0, 6),
+            page: location.pathname,
+          };
+          if (snapItems.length) {
+            body.items = snapItems;
+            body.items_total = snapTotal;
+          }
+
           fetch('/api/quote', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              ref: q,
-              cid: cid,
-              action: 'view',
-              currency: cur,
-              est_total: hasAmt ? amtNum : 0,
-              lang: (document.documentElement.getAttribute('lang') || '').slice(0, 6),
-              page: location.pathname,
-            }),
+            body: JSON.stringify(body),
             keepalive: true
           }).catch(function () {});
         } catch (e) {}

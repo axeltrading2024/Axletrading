@@ -892,6 +892,19 @@
 
 .qsub { font-size: 12px; color: var(--muted-foreground); }
 
+/* 只有金额、没有清单：提示这是付款链接被直接打开，别当成正常报价单 */
+.qsub-warn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: oklch(94% 0.06 75);
+  color: oklch(45% 0.11 62);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
 .qacts {
   display: flex;
   flex-wrap: wrap;

@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261112k" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261113a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -115,7 +115,7 @@
         <button type="button" class="btn btn-outline" data-quotes-next>下一页</button>
       </div>
 
-      <p class="quotes-foot-note">客户点「Pay on Alipay」或把清单发到 WhatsApp 时，这份清单会自动记在这里；打开付款页也会计数。清单只存在客户浏览器里的日子结束了 —— 现在你随时能查到「谁拼了什么、值多少钱、要不要货」。</p>
+      <p class="quotes-foot-note">客户点「Pay on Alipay」或把清单发到 WhatsApp 时，这份清单会自动记在这里；打开付款页也会计数。清单只存在客户浏览器里的日子结束了 —— 现在你随时能查到「谁拼了什么、值多少钱、要不要货」。<br>看到「仅打开付款链接 · 无清单」的单：只有单号和金额，没有商品明细 —— 说明客户是直接打开你发过去的付款链接（链接里本来就不带商品），或者点付款时那条清单没送到；金额是对的，明细补不回来。</p>
     </section>
 
     <div class="admin-layout" data-page-node-id="QyiPXiHFeJ3iJhWp2RRwPQ">
@@ -2615,7 +2615,7 @@
   }
 
   function itemsTable(items, cur) {
-    if (!items.length) return '<p class="qempty">这张单没有明细（客户可能只是打开了付款链接）。</p>';
+    if (!items.length) return '<p class="qempty">这张单没有明细。原因通常是：客户直接打开了你发过去的付款链接（链接里只有单号 + 金额，没有商品），或者客户点「Pay on Alipay」时那条清单没送到（旧缓存 / 断网 / 插件拦截）。清单只存在客户自己的浏览器里，网站拿不到，所以看不到明细；金额仍然是对的。</p>';
     var rows = items.map(function (it, i) {
       var pv = parseFloat(String(it.price || '').replace(/[^0-9.\-]/g, ''));
       var sym = symOf(it.price, cur);
@@ -2635,10 +2635,12 @@
       '</tr></thead><tbody>' + rows + '</tbody></table>';
   }
 
-  function payUrlFor(r) {
+  function payUrlFor(r, forAdmin) {
     var u = location.origin + '/pay?q=' + encodeURIComponent(r.ref);
     if (Number(r.est_total) > 0) u += '&amt=' + encodeURIComponent(String(r.est_total));
     if (r.currency) u += '&cur=' + encodeURIComponent(r.currency);
+    /* 后台自己打开时带 from=admin，付款页就不记账，免得自己刷出一堆空单 */
+    if (forAdmin) u += '&from=admin';
     return u;
   }
 
@@ -2698,6 +2700,9 @@
       if (r.country) facts.push('目的国 ' + esc(r.country));
       if (Number(r.hits) > 1) facts.push('点了 ' + r.hits + ' 次');
       if (Number(r.pay_views)) facts.push('付款页打开 ' + r.pay_views + ' 次');
+      /* 没有明细的两种来源：① 客户直接打开了付款链接（链接里只有单号+金额）
+         ② 客户点付款时那条记录没送到（旧缓存/断网），只留下打开记录 */
+      var noItems = !items.length;
 
       html += '<article class="lead quote-card" data-quote-card="' + r.id + '">' +
         '<div class="lead-top">' +
@@ -2710,13 +2715,14 @@
           (Number(r.items_total) > 0 && Math.abs(Number(r.items_total) - Number(r.est_total)) > 0.01
             ? '<span class="qsub">商品 ' + money(r.items_total, r.currency) + '</span>'
             : '') +
+          (noItems ? '<span class="qsub qsub-warn" title="付款链接里只有单号和金额，没有购物车清单">仅打开付款链接 · 无清单</span>' : '') +
         '</div>' +
         (facts.length ? '<p class="lead-facts">' + facts.join(' · ') + '</p>' : '') +
         '<div class="qacts">' +
-          '<button type="button" class="leads-chip" data-quote-toggle="' + r.id + '">明细 ' + items.length + '</button>' +
+          '<button type="button" class="leads-chip" data-quote-toggle="' + r.id + '">' + (noItems ? '无明细' : '明细 ' + items.length) + '</button>' +
           '<button type="button" class="leads-chip" data-quote-copy-tsv="' + r.id + '">📋 清单</button>' +
           '<button type="button" class="leads-chip" data-quote-copy-url="' + r.id + '">🔗 付款链接</button>' +
-          '<a class="leads-chip" href="' + esc(payUrlFor(r)) + '" target="_blank" rel="noreferrer">打开付款页 ↗</a>' +
+          '<a class="leads-chip" href="' + esc(payUrlFor(r, true)) + '" target="_blank" rel="noreferrer">打开付款页 ↗</a>' +
         '</div>' +
         '<div class="qitems" data-quote-items="' + r.id + '" hidden>' + itemsTable(items, r.currency) + '</div>' +
         '<div class="lead-actions">' + chips +
