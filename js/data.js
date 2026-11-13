@@ -3623,6 +3623,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "earbuds-headphones",
     "weight": 0.22,
+    "popular": true,
     "images": [
       "img/prod/gal/a-2-g1.jpg",
       "img/prod/gal/a-2-g3.jpg",
