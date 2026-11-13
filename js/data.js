@@ -231,54 +231,6 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "airpods-max",
-    "name": "AirPods Max",
-    "brand": "OEM",
-    "price": "€75",
-    "note": "Over-ear · Spatial audio-meta earmuffs",
-    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
-    "images": [
-      "img/prod/gal/airpods-max-g1.jpg",
-      "img/prod/gal/airpods-max-g2.jpg",
-      "img/prod/gal/airpods-max-g3.jpg"
-    ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "headphones",
-      "over-ear"
-    ],
-    "variants": [
-      {
-        "name": "midnight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-night-black.jpg"
-      },
-      {
-        "name": "starlight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-starlight.jpg"
-      },
-      {
-        "name": "orange",
-        "price": "",
-        "image": "img/prod/var/airpods-max-orange.jpg"
-      },
-      {
-        "name": "purple",
-        "price": "",
-        "image": "img/prod/var/airpods-max-purple.jpg"
-      },
-      {
-        "name": "blue",
-        "price": "",
-        "image": "img/prod/var/airpods-max-blue.jpg"
-      }
-    ]
-  },
-  {
     "id": "dior-sauvage",
     "name": "Dior Style 100ml",
     "brand": "Dior",
@@ -3682,6 +3634,54 @@ window.PRODUCTS = [
         "name": "airpods 4",
         "price": "",
         "image": ""
+      }
+    ]
+  },
+  {
+    "id": "airpods-max",
+    "name": "AirPods Max",
+    "brand": "OEM",
+    "price": "€75",
+    "note": "Over-ear · Spatial audio-meta earmuffs",
+    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "images": [
+      "img/prod/gal/airpods-max-g1.jpg",
+      "img/prod/gal/airpods-max-g2.jpg",
+      "img/prod/gal/airpods-max-g3.jpg"
+    ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "headphones",
+      "over-ear"
+    ],
+    "variants": [
+      {
+        "name": "midnight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-night-black.jpg"
+      },
+      {
+        "name": "starlight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-starlight.jpg"
+      },
+      {
+        "name": "orange",
+        "price": "",
+        "image": "img/prod/var/airpods-max-orange.jpg"
+      },
+      {
+        "name": "purple",
+        "price": "",
+        "image": "img/prod/var/airpods-max-purple.jpg"
+      },
+      {
+        "name": "blue",
+        "price": "",
+        "image": "img/prod/var/airpods-max-blue.jpg"
       }
     ]
   },
