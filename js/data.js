@@ -201,7 +201,7 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods",
+    "name": "AirPods pro2",
     "brand": "Apple",
     "price": "€12",
     "note": "ANC · Wireless charging case-serial number",
@@ -227,16 +227,6 @@ window.PRODUCTS = [
         "name": "Airpods-pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
-      },
-      {
-        "name": "Airpods-gen4",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
-      },
-      {
-        "name": "Airpods-pro3",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
     ]
   },
@@ -736,7 +726,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -807,7 +797,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -892,7 +882,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -986,7 +976,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -1050,7 +1040,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1119,7 +1109,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "cartier-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1183,7 +1173,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1256,7 +1246,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 1.0,
+    "weight": 1,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
