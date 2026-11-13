@@ -3700,6 +3700,28 @@ window.PRODUCTS = [
         "image": ""
       }
     ]
+  },
+  {
+    "id": "a-3",
+    "name": "airpods pro3",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-3-g1.jpg",
+      "img/prod/gal/a-3-g2.jpg",
+      "img/prod/gal/a-3-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods pro3",
+        "price": "",
+        "image": ""
+      }
+    ]
   }
 ];
 
