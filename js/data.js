@@ -151,6 +151,10 @@ window.CATEGORIES = [
       {
         "slug": "shoes",
         "name": "Shoes"
+      },
+      {
+        "slug": "jerseys",
+        "name": "Jerseys"
       }
     ],
     "image": "img/cat/clothes-and-shoes.png"
@@ -201,13 +205,14 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods pro2",
+    "name": "AirPods",
     "brand": "Apple",
-    "price": "€10",
+    "price": "€12",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
+    "popular": true,
     "video": "img/vid/airpods-pro-2.mp4",
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
@@ -226,7 +231,81 @@ window.PRODUCTS = [
         "name": "Airpods-pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
+      },
+      {
+        "name": "Airpods-gen4",
+        "price": "€12",
+        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
+      },
+      {
+        "name": "Airpods-pro3",
+        "price": "€12",
+        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
+    ]
+  },
+  {
+    "id": "airpods-max",
+    "name": "AirPods Max",
+    "brand": "OEM",
+    "price": "€75",
+    "note": "Over-ear · Spatial audio-meta earmuffs",
+    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "images": [
+      "img/prod/gal/airpods-max-g1.jpg",
+      "img/prod/gal/airpods-max-g2.jpg",
+      "img/prod/gal/airpods-max-g3.jpg"
+    ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "headphones",
+      "over-ear"
+    ],
+    "variants": [
+      {
+        "name": "midnight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-night-black.jpg"
+      },
+      {
+        "name": "starlight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-starlight.jpg"
+      },
+      {
+        "name": "orange",
+        "price": "",
+        "image": "img/prod/var/airpods-max-orange.jpg"
+      },
+      {
+        "name": "purple",
+        "price": "",
+        "image": "img/prod/var/airpods-max-purple.jpg"
+      },
+      {
+        "name": "blue",
+        "price": "",
+        "image": "img/prod/var/airpods-max-blue.jpg"
+      }
+    ]
+  },
+  {
+    "id": "sony-wh1000",
+    "name": "Sony-style Wireless Headphones",
+    "brand": "Sony",
+    "price": "€65",
+    "note": "Active noise cancelling",
+    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "keywords": [
+      "sony",
+      "wh1000",
+      "headphones",
+      "anc"
     ]
   },
   {
@@ -661,7 +740,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -732,7 +811,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -817,7 +896,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -911,7 +990,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -975,7 +1054,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1044,7 +1123,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "cartier-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1108,7 +1187,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 1,
+    "weight": 1.0,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1181,7 +1260,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 1,
+    "weight": 1.0,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
@@ -3615,128 +3694,768 @@ window.PRODUCTS = [
     ]
   },
   {
-    "id": "a-2",
-    "name": "airpods 4",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "popular": true,
-    "images": [
-      "img/prod/gal/a-2-g1.jpg",
-      "img/prod/gal/a-2-g3.jpg",
-      "img/prod/gal/a-2-g2.jpg"
-    ],
-    "variants": [
-      {
-        "name": "airpods 4",
-        "price": "",
-        "image": ""
-      }
-    ]
-  },
-  {
-    "id": "a-3",
-    "name": "airpods pro3",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-3-g1.jpg",
-      "img/prod/gal/a-3-g2.jpg",
-      "img/prod/gal/a-3-g3.jpg"
-    ],
-    "variants": [
-      {
-        "name": "airpods pro3",
-        "price": "",
-        "image": ""
-      }
-    ]
-  },
-  {
-    "id": "a-4",
-    "name": "airpods 5",
-    "brand": "Apple",
-    "price": "€12",
-    "note": "ANC · Wireless charging case-serial number",
-    "desc": "",
-    "collection": "earbuds-headphones",
-    "weight": 0.22,
-    "images": [
-      "img/prod/gal/a-4-g1.jpg",
-      "img/prod/gal/a-4-g2.jpg",
-      "img/prod/gal/a-4-g3.jpg"
-    ]
-  },
-  {
-    "id": "airpods-max",
-    "name": "AirPods Max",
-    "brand": "OEM",
-    "price": "€75",
-    "note": "Over-ear · Spatial audio-meta earmuffs",
-    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
-    "images": [
-      "img/prod/gal/airpods-max-g1.jpg",
-      "img/prod/gal/airpods-max-g2.jpg",
-      "img/prod/gal/airpods-max-g3.jpg"
-    ],
+    "id": "celine-belt",
+    "name": "Celine Style Belt",
+    "brand": "Celine",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "price": "€30",
+    "note": "Belt · 3 款可选",
+    "desc": "Pick your belt — 3 styles available.",
     "keywords": [
-      "airpods",
-      "apple",
-      "headphones",
-      "over-ear"
+      "celine",
+      "belt",
+      "belts"
     ],
     "variants": [
       {
-        "name": "midnight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-night-black.jpg"
+        "name": "Style 01",
+        "price": "€30",
+        "image": "img/prod/var/p2275.jpg"
       },
       {
-        "name": "starlight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-starlight.jpg"
+        "name": "Style 02",
+        "price": "€30",
+        "image": "img/prod/var/p2282.jpg"
       },
       {
-        "name": "orange",
-        "price": "",
-        "image": "img/prod/var/airpods-max-orange.jpg"
-      },
-      {
-        "name": "purple",
-        "price": "",
-        "image": "img/prod/var/airpods-max-purple.jpg"
-      },
-      {
-        "name": "blue",
-        "price": "",
-        "image": "img/prod/var/airpods-max-blue.jpg"
+        "name": "Style 03",
+        "price": "€30",
+        "image": "img/prod/var/p2286.jpg"
       }
-    ]
+    ],
+    "image": "img/prod/var/p2275.jpg"
   },
   {
-    "id": "sony-wh1000",
-    "name": "Sony-style Wireless Headphones",
-    "brand": "Sony",
+    "id": "dolce-gabbana-belt",
+    "name": "Dolce & Gabbana Style Belt",
+    "brand": "Dolce & Gabbana",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "price": "€30",
+    "note": "Belt · 2 款可选",
+    "desc": "Pick your belt — 2 styles available.",
+    "keywords": [
+      "dolce & gabbana",
+      "belt",
+      "belts"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€30",
+        "image": "img/prod/var/p2325.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€30",
+        "image": "img/prod/var/p2330.jpg"
+      }
+    ],
+    "image": "img/prod/var/p2325.jpg"
+  },
+  {
+    "id": "ferragamo-belt",
+    "name": "Ferragamo Style Belt",
+    "brand": "Ferragamo",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "price": "€30",
+    "note": "Belt · 2 款可选",
+    "desc": "Pick your belt — 2 styles available.",
+    "keywords": [
+      "ferragamo",
+      "belt",
+      "belts"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€30",
+        "image": "img/prod/var/p2351.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€30",
+        "image": "img/prod/var/p2359.jpg"
+      }
+    ],
+    "image": "img/prod/var/p2351.jpg"
+  },
+  {
+    "id": "tom-ford-belt",
+    "name": "Tom Ford Style Belt",
+    "brand": "Tom Ford",
+    "collection": "sunglasses",
+    "subcategory": "belts",
+    "price": "€30",
+    "note": "Belt · 2 款可选",
+    "desc": "Pick your belt — 2 styles available.",
+    "keywords": [
+      "tom ford",
+      "belt",
+      "belts"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€30",
+        "image": "img/prod/var/p2820.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€30",
+        "image": "img/prod/var/p2825.jpg"
+      }
+    ],
+    "image": "img/prod/var/p2820.jpg"
+  },
+  {
+    "id": "club-jersey",
+    "name": "Club Team Jersey",
+    "brand": "Club Team",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
+    "price": "€15",
+    "note": "Jersey · 13 款可选",
+    "desc": "Pick your jersey — 13 styles available.",
+    "keywords": [
+      "club team",
+      "jersey",
+      "jerseys"
+    ],
+    "variants": [
+      {
+        "name": "Spain Champion Away Double Star",
+        "price": "€15",
+        "image": "img/prod/var/p4380.jpg"
+      },
+      {
+        "name": "Spain Champion Double Star Home",
+        "price": "€15",
+        "image": "img/prod/var/p4381.jpg"
+      },
+      {
+        "name": "Arsenal Away",
+        "price": "€15",
+        "image": "img/prod/var/p4382.jpg"
+      },
+      {
+        "name": "Real Madrid LV Special White",
+        "price": "€15",
+        "image": "img/prod/var/p4406.jpg"
+      },
+      {
+        "name": "Real Madrid LV Special Dark Green",
+        "price": "€15",
+        "image": "img/prod/var/p4407.jpg"
+      },
+      {
+        "name": "Barcelona Pre-match",
+        "price": "€15",
+        "image": "img/prod/var/p4426.jpg"
+      },
+      {
+        "name": "PSG Home Double Star",
+        "price": "€15",
+        "image": "img/prod/var/p4427.jpg"
+      },
+      {
+        "name": "Man City 3rd",
+        "price": "€15",
+        "image": "img/prod/var/p4431.jpg"
+      },
+      {
+        "name": "Bayern Home",
+        "price": "€15",
+        "image": "img/prod/var/p4436.jpg"
+      },
+      {
+        "name": "Man Utd Home",
+        "price": "€15",
+        "image": "img/prod/var/p4441.jpg"
+      },
+      {
+        "name": "Benfica Home",
+        "price": "€15",
+        "image": "img/prod/var/p4446.jpg"
+      },
+      {
+        "name": "Arsenal Home",
+        "price": "€15",
+        "image": "img/prod/var/p4448.jpg"
+      },
+      {
+        "name": "Barcelona Home",
+        "price": "€15",
+        "image": "img/prod/var/p4449.jpg"
+      }
+    ],
+    "image": "img/prod/var/p4380.jpg"
+  },
+  {
+    "id": "long-sleeve-jersey",
+    "name": "Long Sleeve Jersey",
+    "brand": "Long Sleeve",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
+    "price": "€15",
+    "note": "Jersey · 9 款可选",
+    "desc": "Pick your jersey — 9 styles available.",
+    "keywords": [
+      "long sleeve",
+      "jersey",
+      "jerseys"
+    ],
+    "variants": [
+      {
+        "name": "Barcelona Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4495.jpg"
+      },
+      {
+        "name": "Man City Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4496.jpg"
+      },
+      {
+        "name": "Portugal Away Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4503.jpg"
+      },
+      {
+        "name": "Portugal Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4504.jpg"
+      },
+      {
+        "name": "Real Madrid Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4505.jpg"
+      },
+      {
+        "name": "Arsenal Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4507.jpg"
+      },
+      {
+        "name": "Man Utd Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4515.jpg"
+      },
+      {
+        "name": "Argentina Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4518.jpg"
+      },
+      {
+        "name": "Spain Home Long Sleeve",
+        "price": "€15",
+        "image": "img/prod/var/p4524.jpg"
+      }
+    ],
+    "image": "img/prod/var/p4495.jpg"
+  },
+  {
+    "id": "national-team-jersey",
+    "name": "National Team Jersey",
+    "brand": "National Team",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
+    "price": "€15",
+    "note": "Jersey · 6 款可选",
+    "desc": "Pick your jersey — 6 styles available.",
+    "keywords": [
+      "national team",
+      "jersey",
+      "jerseys"
+    ],
+    "variants": [
+      {
+        "name": "Spain Away",
+        "price": "€15",
+        "image": "img/prod/var/p4559.jpg"
+      },
+      {
+        "name": "Brazil Away",
+        "price": "€15",
+        "image": "img/prod/var/p4562.jpg"
+      },
+      {
+        "name": "France Home",
+        "price": "€15",
+        "image": "img/prod/var/p4563.jpg"
+      },
+      {
+        "name": "Spain Home",
+        "price": "€15",
+        "image": "img/prod/var/p4602.jpg"
+      },
+      {
+        "name": "Mexico Home",
+        "price": "€15",
+        "image": "img/prod/var/p4605.jpg"
+      },
+      {
+        "name": "Italy Away",
+        "price": "€15",
+        "image": "img/prod/var/p4609.jpg"
+      }
+    ],
+    "image": "img/prod/var/p4559.jpg"
+  },
+  {
+    "id": "chanel-bag",
+    "name": "Chanel Style Bag",
+    "brand": "Chanel",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "price": "€85",
+    "note": "Bag · 4 款可选",
+    "desc": "Pick your bag — 4 styles available.",
+    "keywords": [
+      "chanel",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€85",
+        "image": "img/prod/var/p1304.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€85",
+        "image": "img/prod/var/p1313.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€85",
+        "image": "img/prod/var/p1315.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€85",
+        "image": "img/prod/var/p1409.jpg"
+      }
+    ],
+    "image": "img/prod/var/p1304.jpg"
+  },
+  {
+    "id": "coach-bag",
+    "name": "Coach Style Bag",
+    "brand": "Coach",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "price": "€85",
+    "note": "Bag · 7 款可选",
+    "desc": "Pick your bag — 7 styles available.",
+    "keywords": [
+      "coach",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€85",
+        "image": "img/prod/var/p1419.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€85",
+        "image": "img/prod/var/p1422.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€85",
+        "image": "img/prod/var/p1434.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€85",
+        "image": "img/prod/var/p1475.jpg"
+      },
+      {
+        "name": "Style 05",
+        "price": "€85",
+        "image": "img/prod/var/p1486.jpg"
+      },
+      {
+        "name": "Style 06",
+        "price": "€85",
+        "image": "img/prod/var/p1487.jpg"
+      },
+      {
+        "name": "Style 07",
+        "price": "€85",
+        "image": "img/prod/var/p1502.jpg"
+      }
+    ],
+    "image": "img/prod/var/p1419.jpg"
+  },
+  {
+    "id": "goyard-bag",
+    "name": "Goyard Style Bag",
+    "brand": "Goyard",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "price": "€35",
+    "note": "Bag · 6 款可选",
+    "desc": "Pick your bag — 6 styles available.",
+    "keywords": [
+      "goyard",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€55",
+        "image": "img/prod/var/p1534.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€55",
+        "image": "img/prod/var/p1541.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€35",
+        "image": "img/prod/var/p1546.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€35",
+        "image": "img/prod/var/p1548.jpg"
+      },
+      {
+        "name": "Style 05",
+        "price": "€55",
+        "image": "img/prod/var/p1570.jpg"
+      },
+      {
+        "name": "Style 06",
+        "price": "€55",
+        "image": "img/prod/var/p1576.jpg"
+      }
+    ],
+    "image": "img/prod/var/p1534.jpg"
+  },
+  {
+    "id": "herm-s-bag",
+    "name": "Hermès Style Bag",
+    "brand": "Hermès",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "price": "€65",
-    "note": "Active noise cancelling",
-    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
+    "note": "Bag · 4 款可选",
+    "desc": "Pick your bag — 4 styles available.",
     "keywords": [
-      "sony",
-      "wh1000",
-      "headphones",
-      "anc"
-    ]
+      "hermès",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€85",
+        "image": "img/prod/var/p1667.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€85",
+        "image": "img/prod/var/p1669.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€85",
+        "image": "img/prod/var/p1694.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€65",
+        "image": "img/prod/var/p1714.jpg"
+      }
+    ],
+    "image": "img/prod/var/p1667.jpg"
+  },
+  {
+    "id": "louis-vuitton-bag",
+    "name": "Louis Vuitton Style Bag",
+    "brand": "Louis Vuitton",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "price": "€65",
+    "note": "Bag · 9 款可选",
+    "desc": "Pick your bag — 9 styles available.",
+    "keywords": [
+      "louis vuitton",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€85",
+        "image": "img/prod/var/p1777.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€85",
+        "image": "img/prod/var/p1787.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€85",
+        "image": "img/prod/var/p1789.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€85",
+        "image": "img/prod/var/p1810.jpg"
+      },
+      {
+        "name": "Style 05",
+        "price": "€65",
+        "image": "img/prod/var/p1844.jpg"
+      },
+      {
+        "name": "Style 06",
+        "price": "€85",
+        "image": "img/prod/var/p1887.jpg"
+      },
+      {
+        "name": "Style 07",
+        "price": "€85",
+        "image": "img/prod/var/p1913.jpg"
+      },
+      {
+        "name": "Style 08",
+        "price": "€85",
+        "image": "img/prod/var/p1915.jpg"
+      },
+      {
+        "name": "Style 09",
+        "price": "€85",
+        "image": "img/prod/var/p1993.jpg"
+      }
+    ],
+    "image": "img/prod/var/p1777.jpg"
+  },
+  {
+    "id": "prada-bag",
+    "name": "Prada Style Bag",
+    "brand": "Prada",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
+    "price": "€65",
+    "note": "Bag · 6 款可选",
+    "desc": "Pick your bag — 6 styles available.",
+    "keywords": [
+      "prada",
+      "bag",
+      "luxury-bags"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€85",
+        "image": "img/prod/var/p2145.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€65",
+        "image": "img/prod/var/p2149.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€85",
+        "image": "img/prod/var/p2160.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€85",
+        "image": "img/prod/var/p2178.jpg"
+      },
+      {
+        "name": "Style 05",
+        "price": "€85",
+        "image": "img/prod/var/p2181.jpg"
+      },
+      {
+        "name": "Style 06",
+        "price": "€85",
+        "image": "img/prod/var/p2215.jpg"
+      }
+    ],
+    "image": "img/prod/var/p2145.jpg"
+  },
+  {
+    "id": "balenciaga-sunglasses",
+    "name": "Balenciaga Style Sunglasses",
+    "brand": "Balenciaga",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "price": "€35",
+    "note": "Sunglasses · 2 款可选",
+    "desc": "Pick your sunglasses — 2 styles available.",
+    "keywords": [
+      "balenciaga",
+      "sunglasses",
+      "luxury"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€35",
+        "image": "img/prod/var/p0005.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€35",
+        "image": "img/prod/var/p0006.jpg"
+      }
+    ],
+    "image": "img/prod/var/p0005.jpg"
+  },
+  {
+    "id": "burberry-sunglasses",
+    "name": "Burberry Style Sunglasses",
+    "brand": "Burberry",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "price": "€35",
+    "note": "Sunglasses · 2 款可选",
+    "desc": "Pick your sunglasses — 2 styles available.",
+    "keywords": [
+      "burberry",
+      "sunglasses",
+      "luxury"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€35",
+        "image": "img/prod/var/p0054.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€35",
+        "image": "img/prod/var/p0063.jpg"
+      }
+    ],
+    "image": "img/prod/var/p0054.jpg"
+  },
+  {
+    "id": "cartier-sunglasses",
+    "name": "Cartier Style Sunglasses",
+    "brand": "Cartier",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "price": "€35",
+    "note": "Sunglasses · 3 款可选",
+    "desc": "Pick your sunglasses — 3 styles available.",
+    "keywords": [
+      "cartier",
+      "sunglasses",
+      "luxury"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€35",
+        "image": "img/prod/var/p0098.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€35",
+        "image": "img/prod/var/p0104.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€35",
+        "image": "img/prod/var/p0139.jpg"
+      }
+    ],
+    "image": "img/prod/var/p0098.jpg"
+  },
+  {
+    "id": "chanel-sunglasses",
+    "name": "Chanel Style Sunglasses",
+    "brand": "Chanel",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "price": "€35",
+    "note": "Sunglasses · 4 款可选",
+    "desc": "Pick your sunglasses — 4 styles available.",
+    "keywords": [
+      "chanel",
+      "sunglasses",
+      "luxury"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€35",
+        "image": "img/prod/var/p0257.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€35",
+        "image": "img/prod/var/p0267.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€35",
+        "image": "img/prod/var/p0271.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€35",
+        "image": "img/prod/var/p0380.jpg"
+      }
+    ],
+    "image": "img/prod/var/p0257.jpg"
+  },
+  {
+    "id": "miu-miu-sunglasses",
+    "name": "Miu Miu Style Sunglasses",
+    "brand": "Miu Miu",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
+    "price": "€35",
+    "note": "Sunglasses · 4 款可选",
+    "desc": "Pick your sunglasses — 4 styles available.",
+    "keywords": [
+      "miu miu",
+      "sunglasses",
+      "luxury"
+    ],
+    "variants": [
+      {
+        "name": "Style 01",
+        "price": "€35",
+        "image": "img/prod/var/p0975.jpg"
+      },
+      {
+        "name": "Style 02",
+        "price": "€35",
+        "image": "img/prod/var/p0976.jpg"
+      },
+      {
+        "name": "Style 03",
+        "price": "€35",
+        "image": "img/prod/var/p0996.jpg"
+      },
+      {
+        "name": "Style 04",
+        "price": "€35",
+        "image": "img/prod/var/p1035.jpg"
+      }
+    ],
+    "image": "img/prod/var/p0975.jpg"
   }
 ];
 
