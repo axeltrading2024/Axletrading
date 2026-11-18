@@ -205,14 +205,13 @@ window.CATEGORIES = [
 window.PRODUCTS = [
   {
     "id": "airpods-pro-2",
-    "name": "AirPods",
+    "name": "AirPods pro2",
     "brand": "Apple",
-    "price": "€12",
+    "price": "€10",
     "note": "ANC · Wireless charging case-serial number",
     "desc": "Adaptive noise cancellation with a precision-tuned driver and a MagSafe-ready charging case.",
     "collection": "earbuds-headphones",
     "weight": 0.22,
-    "popular": true,
     "video": "img/vid/airpods-pro-2.mp4",
     "images": [
       "img/prod/gal/airpods-pro-2-g3.jpg",
@@ -231,81 +230,7 @@ window.PRODUCTS = [
         "name": "Airpods-pro2",
         "price": "€10",
         "image": "img/prod/var/airpods-pro-2-airpods-pro2.jpg"
-      },
-      {
-        "name": "Airpods-gen4",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-airpods-gen4.jpg"
-      },
-      {
-        "name": "Airpods-pro3",
-        "price": "€12",
-        "image": "img/prod/var/airpods-pro-2-pro3.jpg"
       }
-    ]
-  },
-  {
-    "id": "airpods-max",
-    "name": "AirPods Max",
-    "brand": "OEM",
-    "price": "€75",
-    "note": "Over-ear · Spatial audio-meta earmuffs",
-    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
-    "images": [
-      "img/prod/gal/airpods-max-g1.jpg",
-      "img/prod/gal/airpods-max-g2.jpg",
-      "img/prod/gal/airpods-max-g3.jpg"
-    ],
-    "keywords": [
-      "airpods",
-      "apple",
-      "headphones",
-      "over-ear"
-    ],
-    "variants": [
-      {
-        "name": "midnight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-night-black.jpg"
-      },
-      {
-        "name": "starlight",
-        "price": "",
-        "image": "img/prod/var/airpods-max-starlight.jpg"
-      },
-      {
-        "name": "orange",
-        "price": "",
-        "image": "img/prod/var/airpods-max-orange.jpg"
-      },
-      {
-        "name": "purple",
-        "price": "",
-        "image": "img/prod/var/airpods-max-purple.jpg"
-      },
-      {
-        "name": "blue",
-        "price": "",
-        "image": "img/prod/var/airpods-max-blue.jpg"
-      }
-    ]
-  },
-  {
-    "id": "sony-wh1000",
-    "name": "Sony-style Wireless Headphones",
-    "brand": "Sony",
-    "price": "€65",
-    "note": "Active noise cancelling",
-    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
-    "collection": "earbuds-headphones",
-    "weight": 1.5,
-    "keywords": [
-      "sony",
-      "wh1000",
-      "headphones",
-      "anc"
     ]
   },
   {
@@ -740,7 +665,7 @@ window.PRODUCTS = [
     "desc": "Classic dive-watch silhouette with a ceramic bezel insert and automatic movement.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "popular": true,
     "video": "img/vid/rolex-submariner.mp4",
     "images": [
@@ -811,7 +736,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r.mp4",
     "images": [
       "img/prod/gal/r-g1.jpg",
@@ -896,7 +821,7 @@ window.PRODUCTS = [
     "desc": "Motorsport chronograph layout with a tachymeter bezel and screw-down pushers.",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/rolex-daytona.mp4",
     "images": [
       "img/prod/gal/rolex-daytona-g2.jpg",
@@ -990,7 +915,7 @@ window.PRODUCTS = [
     "desc": "For dual time zone",
     "collection": "watches",
     "subcategory": "rolex-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/r-2.mp4",
     "images": [
       "img/prod/gal/r-2-g3.jpg",
@@ -1054,7 +979,7 @@ window.PRODUCTS = [
     "desc": "Iconic octagonal bezel with a tapisserie dial and integrated steel bracelet.",
     "collection": "watches",
     "subcategory": "ap-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/ap-royal-oak.mp4",
     "images": [
       "img/prod/gal/ap-royal-oak-g1.jpg",
@@ -1123,7 +1048,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "cartier-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/c-2.mp4",
     "images": [
       "img/prod/gal/c-2-g1.jpg",
@@ -1187,7 +1112,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "tissot-style",
-    "weight": 1.0,
+    "weight": 1,
     "video": "img/vid/t-2.mp4",
     "images": [
       "img/prod/gal/t-2-g1.jpg",
@@ -1260,7 +1185,7 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "watches",
     "subcategory": "swatch",
-    "weight": 1.0,
+    "weight": 1,
     "images": [
       "img/prod/gal/g-3-g1.jpg",
       "img/prod/gal/g-3-g2.jpg",
@@ -3691,6 +3616,130 @@ window.PRODUCTS = [
         "price": "",
         "image": "img/prod/var/g-5-off-white.jpg"
       }
+    ]
+  },
+  {
+    "id": "a-2",
+    "name": "airpods 4",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "popular": true,
+    "images": [
+      "img/prod/gal/a-2-g1.jpg",
+      "img/prod/gal/a-2-g3.jpg",
+      "img/prod/gal/a-2-g2.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods 4",
+        "price": "",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "id": "a-3",
+    "name": "airpods pro3",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-3-g1.jpg",
+      "img/prod/gal/a-3-g2.jpg",
+      "img/prod/gal/a-3-g3.jpg"
+    ],
+    "variants": [
+      {
+        "name": "airpods pro3",
+        "price": "",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "id": "a-4",
+    "name": "airpods 5",
+    "brand": "Apple",
+    "price": "€12",
+    "note": "ANC · Wireless charging case-serial number",
+    "desc": "",
+    "collection": "earbuds-headphones",
+    "weight": 0.22,
+    "images": [
+      "img/prod/gal/a-4-g1.jpg",
+      "img/prod/gal/a-4-g2.jpg",
+      "img/prod/gal/a-4-g3.jpg"
+    ]
+  },
+  {
+    "id": "airpods-max",
+    "name": "AirPods Max",
+    "brand": "OEM",
+    "price": "€75",
+    "note": "Over-ear · Spatial audio-meta earmuffs",
+    "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "images": [
+      "img/prod/gal/airpods-max-g1.jpg",
+      "img/prod/gal/airpods-max-g2.jpg",
+      "img/prod/gal/airpods-max-g3.jpg"
+    ],
+    "keywords": [
+      "airpods",
+      "apple",
+      "headphones",
+      "over-ear"
+    ],
+    "variants": [
+      {
+        "name": "midnight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-night-black.jpg"
+      },
+      {
+        "name": "starlight",
+        "price": "",
+        "image": "img/prod/var/airpods-max-starlight.jpg"
+      },
+      {
+        "name": "orange",
+        "price": "",
+        "image": "img/prod/var/airpods-max-orange.jpg"
+      },
+      {
+        "name": "purple",
+        "price": "",
+        "image": "img/prod/var/airpods-max-purple.jpg"
+      },
+      {
+        "name": "blue",
+        "price": "",
+        "image": "img/prod/var/airpods-max-blue.jpg"
+      }
+    ]
+  },
+  {
+    "id": "sony-wh1000",
+    "name": "Sony-style Wireless Headphones",
+    "brand": "Sony",
+    "price": "€65",
+    "note": "Active noise cancelling",
+    "desc": "Industry-leading noise cancellation, 30-hour battery and multipoint pairing.",
+    "collection": "earbuds-headphones",
+    "weight": 1.5,
+    "keywords": [
+      "sony",
+      "wh1000",
+      "headphones",
+      "anc"
     ]
   },
   {
