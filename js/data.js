@@ -1237,7 +1237,7 @@ window.PRODUCTS = [
   },
   {
     "id": "apple-watch-11",
-    "name": "Apple Watch Series 11",
+    "name": "Apple Watch",
     "brand": "Apple",
     "price": "€30",
     "note": "smart watch-care your daily routine",
@@ -1261,6 +1261,16 @@ window.PRODUCTS = [
         "name": "Ultra3",
         "price": "",
         "image": "img/prod/var/apple-watch-11-ultra3.jpg"
+      },
+      {
+        "name": "S12",
+        "price": "",
+        "image": "img/prod/var/apple-watch-11-s12.jpg"
+      },
+      {
+        "name": "Ultra4",
+        "price": "",
+        "image": "img/prod/var/apple-watch-11-ultra4.jpg"
       }
     ]
   },
@@ -3746,11 +3756,11 @@ window.PRODUCTS = [
     "id": "celine-belt",
     "name": "Celine Style Belt",
     "brand": "Celine",
-    "collection": "sunglasses",
-    "subcategory": "belts",
     "price": "€30",
     "note": "Belt · 3 款可选",
     "desc": "Pick your belt — 3 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "belts",
     "keywords": [
       "celine",
       "belt",
@@ -3772,18 +3782,17 @@ window.PRODUCTS = [
         "price": "€30",
         "image": "img/prod/var/p2286.jpg"
       }
-    ],
-    "image": "img/prod/var/p2275.jpg"
+    ]
   },
   {
     "id": "dolce-gabbana-belt",
     "name": "Dolce & Gabbana Style Belt",
     "brand": "Dolce & Gabbana",
-    "collection": "sunglasses",
-    "subcategory": "belts",
     "price": "€30",
     "note": "Belt · 2 款可选",
     "desc": "Pick your belt — 2 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "belts",
     "keywords": [
       "dolce & gabbana",
       "belt",
@@ -3800,18 +3809,17 @@ window.PRODUCTS = [
         "price": "€30",
         "image": "img/prod/var/p2330.jpg"
       }
-    ],
-    "image": "img/prod/var/p2325.jpg"
+    ]
   },
   {
     "id": "ferragamo-belt",
     "name": "Ferragamo Style Belt",
     "brand": "Ferragamo",
-    "collection": "sunglasses",
-    "subcategory": "belts",
     "price": "€30",
     "note": "Belt · 2 款可选",
     "desc": "Pick your belt — 2 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "belts",
     "keywords": [
       "ferragamo",
       "belt",
@@ -3828,18 +3836,17 @@ window.PRODUCTS = [
         "price": "€30",
         "image": "img/prod/var/p2359.jpg"
       }
-    ],
-    "image": "img/prod/var/p2351.jpg"
+    ]
   },
   {
     "id": "tom-ford-belt",
     "name": "Tom Ford Style Belt",
     "brand": "Tom Ford",
-    "collection": "sunglasses",
-    "subcategory": "belts",
     "price": "€30",
     "note": "Belt · 2 款可选",
     "desc": "Pick your belt — 2 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "belts",
     "keywords": [
       "tom ford",
       "belt",
@@ -3856,18 +3863,17 @@ window.PRODUCTS = [
         "price": "€30",
         "image": "img/prod/var/p2825.jpg"
       }
-    ],
-    "image": "img/prod/var/p2820.jpg"
+    ]
   },
   {
     "id": "club-jersey",
     "name": "Club Team Jersey",
     "brand": "Club Team",
-    "collection": "clothes-and-shoes",
-    "subcategory": "jerseys",
     "price": "€15",
     "note": "Jersey · 13 款可选",
     "desc": "Pick your jersey — 13 styles available.",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
     "keywords": [
       "club team",
       "jersey",
@@ -3939,18 +3945,17 @@ window.PRODUCTS = [
         "price": "€15",
         "image": "img/prod/var/p4449.jpg"
       }
-    ],
-    "image": "img/prod/var/p4380.jpg"
+    ]
   },
   {
     "id": "long-sleeve-jersey",
     "name": "Long Sleeve Jersey",
     "brand": "Long Sleeve",
-    "collection": "clothes-and-shoes",
-    "subcategory": "jerseys",
     "price": "€15",
     "note": "Jersey · 9 款可选",
     "desc": "Pick your jersey — 9 styles available.",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
     "keywords": [
       "long sleeve",
       "jersey",
@@ -4002,18 +4007,17 @@ window.PRODUCTS = [
         "price": "€15",
         "image": "img/prod/var/p4524.jpg"
       }
-    ],
-    "image": "img/prod/var/p4495.jpg"
+    ]
   },
   {
     "id": "national-team-jersey",
     "name": "National Team Jersey",
     "brand": "National Team",
-    "collection": "clothes-and-shoes",
-    "subcategory": "jerseys",
     "price": "€15",
     "note": "Jersey · 6 款可选",
     "desc": "Pick your jersey — 6 styles available.",
+    "collection": "clothes-and-shoes",
+    "subcategory": "jerseys",
     "keywords": [
       "national team",
       "jersey",
@@ -4050,18 +4054,17 @@ window.PRODUCTS = [
         "price": "€15",
         "image": "img/prod/var/p4609.jpg"
       }
-    ],
-    "image": "img/prod/var/p4559.jpg"
+    ]
   },
   {
     "id": "chanel-bag",
     "name": "Chanel Style Bag",
     "brand": "Chanel",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€85",
     "note": "Bag · 4 款可选",
     "desc": "Pick your bag — 4 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "chanel",
       "bag",
@@ -4088,18 +4091,17 @@ window.PRODUCTS = [
         "price": "€85",
         "image": "img/prod/var/p1409.jpg"
       }
-    ],
-    "image": "img/prod/var/p1304.jpg"
+    ]
   },
   {
     "id": "coach-bag",
     "name": "Coach Style Bag",
     "brand": "Coach",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€85",
     "note": "Bag · 7 款可选",
     "desc": "Pick your bag — 7 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "coach",
       "bag",
@@ -4141,18 +4143,17 @@ window.PRODUCTS = [
         "price": "€85",
         "image": "img/prod/var/p1502.jpg"
       }
-    ],
-    "image": "img/prod/var/p1419.jpg"
+    ]
   },
   {
     "id": "goyard-bag",
     "name": "Goyard Style Bag",
     "brand": "Goyard",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€35",
     "note": "Bag · 6 款可选",
     "desc": "Pick your bag — 6 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "goyard",
       "bag",
@@ -4189,18 +4190,17 @@ window.PRODUCTS = [
         "price": "€55",
         "image": "img/prod/var/p1576.jpg"
       }
-    ],
-    "image": "img/prod/var/p1534.jpg"
+    ]
   },
   {
     "id": "herm-s-bag",
     "name": "Hermès Style Bag",
     "brand": "Hermès",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€65",
     "note": "Bag · 4 款可选",
     "desc": "Pick your bag — 4 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "hermès",
       "bag",
@@ -4227,18 +4227,17 @@ window.PRODUCTS = [
         "price": "€65",
         "image": "img/prod/var/p1714.jpg"
       }
-    ],
-    "image": "img/prod/var/p1667.jpg"
+    ]
   },
   {
     "id": "louis-vuitton-bag",
     "name": "Louis Vuitton Style Bag",
     "brand": "Louis Vuitton",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€65",
     "note": "Bag · 9 款可选",
     "desc": "Pick your bag — 9 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "louis vuitton",
       "bag",
@@ -4290,18 +4289,17 @@ window.PRODUCTS = [
         "price": "€85",
         "image": "img/prod/var/p1993.jpg"
       }
-    ],
-    "image": "img/prod/var/p1777.jpg"
+    ]
   },
   {
     "id": "prada-bag",
     "name": "Prada Style Bag",
     "brand": "Prada",
-    "collection": "sunglasses",
-    "subcategory": "luxury-bags",
     "price": "€65",
     "note": "Bag · 6 款可选",
     "desc": "Pick your bag — 6 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury-bags",
     "keywords": [
       "prada",
       "bag",
@@ -4338,18 +4336,17 @@ window.PRODUCTS = [
         "price": "€85",
         "image": "img/prod/var/p2215.jpg"
       }
-    ],
-    "image": "img/prod/var/p2145.jpg"
+    ]
   },
   {
     "id": "balenciaga-sunglasses",
     "name": "Balenciaga Style Sunglasses",
     "brand": "Balenciaga",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
     "price": "€35",
     "note": "Sunglasses · 2 款可选",
     "desc": "Pick your sunglasses — 2 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
     "keywords": [
       "balenciaga",
       "sunglasses",
@@ -4366,18 +4363,17 @@ window.PRODUCTS = [
         "price": "€35",
         "image": "img/prod/var/p0006.jpg"
       }
-    ],
-    "image": "img/prod/var/p0005.jpg"
+    ]
   },
   {
     "id": "burberry-sunglasses",
     "name": "Burberry Style Sunglasses",
     "brand": "Burberry",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
     "price": "€35",
     "note": "Sunglasses · 2 款可选",
     "desc": "Pick your sunglasses — 2 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
     "keywords": [
       "burberry",
       "sunglasses",
@@ -4394,18 +4390,17 @@ window.PRODUCTS = [
         "price": "€35",
         "image": "img/prod/var/p0063.jpg"
       }
-    ],
-    "image": "img/prod/var/p0054.jpg"
+    ]
   },
   {
     "id": "cartier-sunglasses",
     "name": "Cartier Style Sunglasses",
     "brand": "Cartier",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
     "price": "€35",
     "note": "Sunglasses · 3 款可选",
     "desc": "Pick your sunglasses — 3 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
     "keywords": [
       "cartier",
       "sunglasses",
@@ -4427,18 +4422,17 @@ window.PRODUCTS = [
         "price": "€35",
         "image": "img/prod/var/p0139.jpg"
       }
-    ],
-    "image": "img/prod/var/p0098.jpg"
+    ]
   },
   {
     "id": "chanel-sunglasses",
     "name": "Chanel Style Sunglasses",
     "brand": "Chanel",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
     "price": "€35",
     "note": "Sunglasses · 4 款可选",
     "desc": "Pick your sunglasses — 4 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
     "keywords": [
       "chanel",
       "sunglasses",
@@ -4465,18 +4459,17 @@ window.PRODUCTS = [
         "price": "€35",
         "image": "img/prod/var/p0380.jpg"
       }
-    ],
-    "image": "img/prod/var/p0257.jpg"
+    ]
   },
   {
     "id": "miu-miu-sunglasses",
     "name": "Miu Miu Style Sunglasses",
     "brand": "Miu Miu",
-    "collection": "sunglasses",
-    "subcategory": "luxury",
     "price": "€35",
     "note": "Sunglasses · 4 款可选",
     "desc": "Pick your sunglasses — 4 styles available.",
+    "collection": "sunglasses",
+    "subcategory": "luxury",
     "keywords": [
       "miu miu",
       "sunglasses",
@@ -4503,8 +4496,7 @@ window.PRODUCTS = [
         "price": "€35",
         "image": "img/prod/var/p1035.jpg"
       }
-    ],
-    "image": "img/prod/var/p0975.jpg"
+    ]
   }
 ];
 
