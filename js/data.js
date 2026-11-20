@@ -3422,22 +3422,22 @@ window.PRODUCTS = [
       },
       {
         "name": "style-6",
-        "price": "",
+        "price": "75",
         "image": "img/prod/var/l-5-style-6.jpg"
       },
       {
         "name": "style-7",
-        "price": "",
+        "price": "75",
         "image": "img/prod/var/l-5-style-7.jpg"
       },
       {
         "name": "style-8",
-        "price": "",
+        "price": "75",
         "image": "img/prod/var/l-5-style-8.jpg"
       },
       {
         "name": "style-9",
-        "price": "",
+        "price": "75",
         "image": "img/prod/var/l-5-style-9.jpg"
       }
     ]
