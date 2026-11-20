@@ -104,11 +104,20 @@
     initWaChat();
   }
 
-  /** 从 "$129" / "¥899" 里拆出货币符号和数值 */
+  /** 从 "$129" / "¥899" / "from €75" 里拆出货币符号和数值
+   *  "from €75"（起价）在数据里当作该 SKU 的兜底价，解析时应取 75、符号取 €，
+   *  否则购物车总价会直接跳过这件商品（报价少算钱）。 */
   function parsePrice(p) {
-    var m = String(p || '').match(/^([^\d\s]*)?\s*([\d.,]+)/);
+    var s = String(p || '').replace(/^\s*from\s*/i, '');   // 去掉 "from " 起价前缀
+    var m = s.match(/^([^\d\s]*)?\s*([\d.,]+)/);
     if (!m) return null;
     return { symbol: m[1] || '', value: parseFloat(m[2].replace(/,/g, '')) || 0 };
+  }
+
+  /** 从价格串取纯货币符号（兼容 "from €75"，不会把 from 当成符号） */
+  function priceSymbol(p) {
+    var pr = parsePrice(p);
+    return pr ? pr.symbol : String(p || '').replace(/[0-9.,\s]/g, '');
   }
 
   function param(name) {
@@ -1329,7 +1338,7 @@
             '<div class="qty">' +
               '<button type="button" data-qty="' + esc(key) + '" data-delta="-1" aria-label="Decrease"' +
                 (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
-              '<span class="n">' + it.qty + '</span>' +
+              '<input class="n" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-label="Quantity" data-qty-input="' + esc(key) + '" value="' + esc(it.qty) + '">' +
               '<button type="button" data-qty="' + esc(key) + '" data-delta="1" aria-label="Increase">+</button>' +
             '</div>' +
             (minQ > 1 ? '<p class="i-moq">' + esc(window.T('moq_min_label', { n: minQ })) + '</p>' : '') +
@@ -1588,8 +1597,62 @@
       }
     });
 
+    /* ---- 数量框：可直接键入 ---- */
+    function isQtyInput(el) {
+      return !!(el && el.hasAttribute && (el.hasAttribute('data-qty-input') || el.hasAttribute('data-sqty-input')));
+    }
+    function commitQtyInput(inp) {
+      var digits = String(inp.value || '').replace(/[^\d]/g, '');
+      var key = inp.getAttribute('data-qty-input');
+      var idxAttr = inp.getAttribute('data-sqty-input');
+      if (key != null) {
+        var cur = Store.items.filter(function (it) { return itemKey(it) === key; })[0];
+        if (!cur) return;
+        var n = parseInt(digits, 10);
+        if (!isFinite(n) || n < 1) { inp.value = cur.qty; return; }
+        var minQ = minQtyOf(cur);
+        if (n < minQ) {
+          n = minQ;
+          inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake');
+          toast(window.T('toast_moq_min', { n: minQ }));
+        }
+        inp.value = n;
+        if (n !== cur.qty) Store.setQty(key, n);   // emit → 重绘 + 运费/报价联动
+        return;
+      }
+      if (idxAttr != null) {
+        var idx = parseInt(idxAttr, 10);
+        var sCur = sharedItems[idx];
+        if (!sCur) return;
+        var sn = parseInt(digits, 10);
+        if (!isFinite(sn) || sn < 1) { inp.value = sCur.qty; return; }
+        var sMin = minQtyOf(sCur);
+        if (sn < sMin) {
+          sn = sMin;
+          inp.classList.remove('shake'); void inp.offsetWidth; inp.classList.add('shake');
+          toast(window.T('toast_moq_min', { n: sMin }));
+        }
+        inp.value = sn;
+        if (sn !== sCur.qty) { sCur.qty = sn; renderSharedQuote(); }
+        return;
+      }
+    }
+    document.addEventListener('input', function (e) {
+      if (isQtyInput(e.target)) e.target.value = e.target.value.replace(/[^\d]/g, '');
+    });
+    document.addEventListener('change', function (e) {
+      if (isQtyInput(e.target)) commitQtyInput(e.target);
+    });
+    document.addEventListener('focusin', function (e) {
+      if (isQtyInput(e.target)) { try { e.target.select(); } catch (err) {} }
+    });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') { openDrawer(false); closeInquiryForm(); }
+      if (e.key === 'Enter' && isQtyInput(e.target)) {
+        e.preventDefault();
+        e.target.blur();   // blur 触发 change → commitQtyInput
+      }
     });
 
     Store.onChange(function () {
@@ -2544,7 +2607,7 @@
       if (n !== null) {
         sum += n * it.qty;
         has = true;
-        if (!cur) cur = symToCurrency(String(it.price).replace(/[0-9.,\s]/g, ''));
+        if (!cur) cur = symToCurrency(priceSymbol(it.price));
       }
     });
     return has ? { sum: sum, currency: cur } : null;
@@ -2555,7 +2618,7 @@
     if (!s) return '';
     var sym = s.currency
       ? currencySym(s.currency)
-      : String(sharedItems[0].price).replace(/[0-9.,\s]/g, '');
+      : priceSymbol(sharedItems[0].price);
     return money(s.sum, sym);
   }
 
@@ -2566,7 +2629,7 @@
       var minQ = minQtyOf(it);
       var atMin = minQ > 1 && it.qty <= minQ;
       var n = priceNum(it.price);
-      var lineTotal = n !== null ? money(n * it.qty, String(it.price).replace(/[0-9.,\s]/g, '')) : '';
+      var lineTotal = n !== null ? money(n * it.qty, priceSymbol(it.price)) : '';
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
@@ -2581,7 +2644,7 @@
             '<div class="qty">' +
               '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease"' +
                 (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
-              '<span class="n">' + it.qty + '</span>' +
+              '<input class="n" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-label="Quantity" data-sqty-input="' + idx + '" value="' + esc(it.qty) + '">' +
               '<button type="button" data-sqty="' + idx + '" data-delta="1" aria-label="Increase">+</button>' +
             '</div>' +
             (minQ > 1 ? '<p class="i-moq">' + esc(window.T('moq_min_label', { n: minQ })) + '</p>' : '') +
@@ -2803,7 +2866,7 @@
     rows.push(['Product', 'Variant', 'Qty', 'Unit price', 'Line total']);
     sharedItems.forEach(function (it) {
       var n = priceNum(it.price);
-      var sym = String(it.price).replace(/[0-9.,\s]/g, '');
+      var sym = priceSymbol(it.price);
       var lt = (n !== null) ? money(n * it.qty, sym) : '';
       rows.push([it.name, it.variant || '', it.qty, it.price, lt]);
     });

@@ -1937,6 +1937,30 @@ body:has(.drawer.open) .cart-fab {
   font-variant-numeric: tabular-nums;
 }
 
+/* 数量可直接键入：外观对齐原数字，点入全选后覆盖输入 */
+.qty input.n {
+  width: 46px;
+  max-width: 46px;
+  padding: 2px 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  outline: none;
+  cursor: text;
+}
+.qty input.n::-webkit-outer-spin-button,
+.qty input.n::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.qty input.n:hover { background: var(--muted); }
+.qty input.n:focus { background: var(--muted); box-shadow: 0 0 0 1px var(--border); }
+.qty input.n.shake { animation: moq-lock 0.22s ease-in-out; }
+
 .inq-remove {
   align-self: flex-start;
   display: grid;
