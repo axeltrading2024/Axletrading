@@ -3383,7 +3383,7 @@ window.PRODUCTS = [
     "id": "l-5",
     "name": "LV backpack",
     "brand": "LV",
-    "price": "from €75",
+    "price": "€85",
     "note": "fashionable and elegant backpack",
     "desc": "",
     "collection": "sunglasses",
