@@ -1932,6 +1932,7 @@ window.PRODUCTS = [
     "desc": "tap and rate you  five star",
     "collection": "other",
     "subcategory": "other-products",
+    "moq": "30",
     "weight": 0.4,
     "popular": true,
     "video": "img/vid/n.mp4",
@@ -3383,7 +3384,7 @@ window.PRODUCTS = [
     "id": "l-5",
     "name": "LV backpack",
     "brand": "LV",
-    "price": "€85",
+    "price": "from €75",
     "note": "fashionable and elegant backpack",
     "desc": "",
     "collection": "sunglasses",
@@ -3422,22 +3423,22 @@ window.PRODUCTS = [
       },
       {
         "name": "style-6",
-        "price": "75",
+        "price": "",
         "image": "img/prod/var/l-5-style-6.jpg"
       },
       {
         "name": "style-7",
-        "price": "75",
+        "price": "",
         "image": "img/prod/var/l-5-style-7.jpg"
       },
       {
         "name": "style-8",
-        "price": "75",
+        "price": "",
         "image": "img/prod/var/l-5-style-8.jpg"
       },
       {
         "name": "style-9",
-        "price": "75",
+        "price": "",
         "image": "img/prod/var/l-5-style-9.jpg"
       }
     ]
