@@ -242,7 +242,6 @@ window.PRODUCTS = [
     "desc": "A fresh, spicy signature built on bergamot and ambroxan — the modern classic.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "popular": true,
     "video": "img/vid/dior-sauvage.mp4",
@@ -403,7 +402,6 @@ window.PRODUCTS = [
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/valentino-born-in-roma.mp4",
     "images": [
@@ -473,7 +471,6 @@ window.PRODUCTS = [
     "desc": "Woody-aromatic composition balancing citrus freshness with cedar and amber.",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/bleu-chanel-g1.jpg",
@@ -542,7 +539,6 @@ window.PRODUCTS = [
     "desc": "an oriental gourmand fragrance crafted for the modern man.it's a heartfelt vow of \"being stronger with you.\"",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/a-g1.jpg",
@@ -616,7 +612,6 @@ window.PRODUCTS = [
     "desc": "Saffron, jasmine and ambergris — the cult niche scent with enormous sillage.",
     "collection": "perfumes",
     "subcategory": "niche",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/baccarat-g3.jpg",
@@ -2169,7 +2164,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/t.mp4",
     "images": [
@@ -2249,7 +2243,6 @@ window.PRODUCTS = [
     "desc": "it is good to be bad",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/c-g1.jpg",
@@ -2328,7 +2321,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/jean-paul-gaultter-g1.jpg",
@@ -2432,7 +2424,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/p-g1.jpg",
@@ -2511,7 +2502,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/v.mp4",
     "images": [
@@ -2586,7 +2576,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "video": "img/vid/l-2.mp4",
     "images": [
@@ -2661,7 +2650,6 @@ window.PRODUCTS = [
     "desc": "",
     "collection": "perfumes",
     "subcategory": "best-sellers",
-    "moq": "12 pcs",
     "weight": 0.5,
     "images": [
       "img/prod/gal/paco-rabannel-g1.jpg",
