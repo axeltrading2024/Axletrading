@@ -120,6 +120,31 @@
     return pr ? pr.symbol : String(p || '').replace(/[0-9.,\s]/g, '');
   }
 
+  /* ---------------- 阶梯价：全站金额计算统一入口 ----------------
+   * 2026-11-23：客户在详情页看到 Volume pricing「量大有折」，
+   * 但购物车/报价/付款此前仍按原价×数量算，口径不一致。
+   * 这里把「按数量取折后单价」收敛成单一函数，所有合计/明细都走它，
+   * 避免每个地方各写一遍、再次出现「看得见算不着」。
+   * TIER_PRICING 由 data.js 提供；关闭(enabled:false)时 factor=1 等价原价。 */
+
+  /** 折后单价（数值）。价格无法解析返回 null；未达阶梯档返回原价 */
+  function unitPriceNum(priceStr, qty) {
+    var r = tierCalc(priceStr, qty);
+    return r.noPrice ? null : r.unit;
+  }
+
+  /** 折后行合计（数值）= 折后单价 × 数量；价格无法解析返回 null */
+  function lineTotalNum(priceStr, qty) {
+    var r = tierCalc(priceStr, qty);
+    return r.noPrice ? null : r.total;
+  }
+
+  /** 该数量是否享受折扣（factor<1）*/
+  function hasVolumeDiscount(priceStr, qty) {
+    var r = tierCalc(priceStr, qty);
+    return !r.noPrice && r.factor < 1;
+  }
+
   function param(name) {
     var m = location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
     return m ? decodeURIComponent(m[1]) : null;
@@ -421,32 +446,76 @@
     },
 
     clear: function () {
+      // 清空前留一份快照，供空车状态「恢复上次清单」一键载入（复购场景）
+      if (this.items.length) {
+        try { localStorage.setItem('edsup_last_list', JSON.stringify(this.items)); } catch (e) {}
+      }
       this.items = [];
       this.save();
       this.emit();
+    },
+
+    /** 恢复上次清空的清单；返回恢复件数，无快照返回 0 */
+    restoreLast: function () {
+      var raw = null;
+      try { raw = localStorage.getItem('edsup_last_list'); } catch (e) {}
+      if (!raw) return 0;
+      var arr;
+      try { arr = JSON.parse(raw); } catch (e) { return 0; }
+      if (!Array.isArray(arr) || !arr.length) return 0;
+      this.items = arr.filter(function (it) { return it && it.id; }).map(function (it) {
+        return {
+          id: it.id, variant: it.variant || '', name: it.name || '', brand: it.brand || '',
+          image: it.image || '', price: it.price || '',
+          weight: typeof it.weight === 'number' ? it.weight : 0,
+          qty: typeof it.qty === 'number' && it.qty > 0 ? Math.floor(it.qty) : 1,
+        };
+      });
+      this.save();
+      this.emit();
+      return this.items.length;
     },
 
     total: function () {
       var symbol = '';
       var sum = 0;
       this.items.forEach(function (it) {
-        var pr = parsePrice(it.price);
-        if (!pr) return;
-        if (!symbol) symbol = pr.symbol;
-        sum += pr.value * it.qty;
+        var line = lineTotalNum(it.price, it.qty);   // 阶梯折后行合计
+        if (line === null) return;
+        if (!symbol) symbol = priceSymbol(it.price);
+        sum += line;
       });
-      return symbol ? symbol + sum.toLocaleString('en-US') : null;
+      return symbol ? money(sum, symbol) : null;
     },
   };
 
+  /* ---------------- 最近浏览（本地，跨会话） ---------------- */
+  var RECENT_KEY = 'edsup_recent_products';
+  function pushRecent(id) {
+    if (!id) return;
+    var arr = [];
+    try { arr = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch (e) {}
+    if (!Array.isArray(arr)) arr = [];
+    arr = [id].concat(arr.filter(function (x) { return x && x !== id; })).slice(0, 8);
+    try { localStorage.setItem(RECENT_KEY, JSON.stringify(arr)); } catch (e) {}
+  }
+  function getRecent() {
+    var arr = [];
+    try { arr = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]'); } catch (e) {}
+    if (!Array.isArray(arr)) return [];
+    return arr.map(function (id) { return getProduct(id); }).filter(Boolean);
+  }
+
   /* ---------------- 共用片段 ---------------- */
   function productCardHTML(p) {
+    var varCount = (p.variants && p.variants.length) ? p.variants.length : 0;
     return '' +
       '<article class="product-card card-lift">' +
         '<a class="thumb" href="product.html?id=' + esc(p.id) + '">' +
           '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy">' +
           (p.popular ? '<span class="badge-popular">Popular</span>' : '') +
           (p.video ? '<span class="badge-video">' + ICON.play.replace('<svg', '<svg style="width:9px;height:9px"') + 'Video</span>' : '') +
+          (varCount > 1 ? '<span class="badge-styles">' + esc(window.T('styles_count', { n: varCount })) + '</span>' : '') +
         '</a>' +
         '<div class="body">' +
           '<div class="min-w-0">' +
@@ -638,7 +707,7 @@
               '<em class="f-err" data-err="province"></em></label>' +
           '</div>' +
           '<div class="inquiry-row">' +
-            '<label><span><span data-i18n="inquiry_zip">City zip code</span> <em class="req">*</em></span>' +
+            '<label><span data-i18n="inquiry_zip">City zip code</span>' +
               '<input name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="12">' +
               '<em class="f-err" data-err="zip"></em></label>' +
             '<label><span><span data-i18n="inquiry_country">Country</span> <em class="req">*</em></span>' +
@@ -1084,11 +1153,11 @@
   function cartSum() {
     var sum = 0, has = false, cur = '';
     Store.items.forEach(function (it) {
-      var pr = parsePrice(it.price);
-      if (!pr) return;
-      sum += pr.value * it.qty;
+      var line = lineTotalNum(it.price, it.qty);   // 阶梯折后行合计
+      if (line === null) return;
+      sum += line;
       has = true;
-      if (!cur) cur = symToCurrency(pr.symbol) || '';
+      if (!cur) cur = symToCurrency(priceSymbol(it.price)) || '';
     });
     return has ? { sum: sum, currency: cur } : null;
   }
@@ -1355,20 +1424,30 @@
 
     if (!body) return;
     if (!Store.items.length) {
-      body.innerHTML = '<div class="drawer-empty">' + window.T('drawer_empty') + '</div>';
+      var canRestore = false;
+      try { canRestore = !!(localStorage.getItem('edsup_last_list') && JSON.parse(localStorage.getItem('edsup_last_list') || '[]').length); } catch (e) {}
+      body.innerHTML = '<div class="drawer-empty">' + window.T('drawer_empty') +
+        (canRestore
+          ? '<button type="button" class="btn btn-outline restore-last" data-restore-last>' +
+              ICON.clipboard + '<span data-i18n="restore_last">Restore last list</span></button>'
+          : '') + '</div>';
       return;
     }
     body.innerHTML = Store.items.map(function (it) {
       var key = itemKey(it);
       var minQ = minQtyOf(it);
       var atMin = minQ > 1 && it.qty <= minQ;   // 已到起订量 → 减号锁定
+      var discounted = hasVolumeDiscount(it.price, it.qty);
+      var lineTotal = discounted ? money(lineTotalNum(it.price, it.qty), priceSymbol(it.price)) : '';
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
           '<div class="info">' +
             '<p class="i-name">' + esc(it.name) + (it.variant ? ' <span class="i-var">· ' + esc(it.variant) + '</span>' : '') + '</p>' +
             '<p class="i-brand">' + esc(it.brand) + '</p>' +
-            '<p class="i-price">' + esc(it.price) + '</p>' +
+            (discounted
+              ? '<p class="i-price"><span class="i-was">' + esc(it.price) + '</span> <span class="i-now">' + esc(money(unitPriceNum(it.price, it.qty), priceSymbol(it.price))) + '</span> <span class="i-line">' + esc(lineTotal) + '</span><span class="i-voltag">' + esc(window.T('volume_off', { n: Math.round((1 - tierCalc(it.price, it.qty).factor) * 100) })) + '</span></p>'
+              : '<p class="i-price">' + esc(it.price) + '</p>') +
             '<div class="qty">' +
               '<button type="button" data-qty="' + esc(key) + '" data-delta="-1" aria-label="Decrease"' +
                 (atMin ? ' data-moqlock="1" aria-disabled="true"' : '') + '>−</button>' +
@@ -1520,6 +1599,21 @@
     document.addEventListener('click', function (e) {
       var t = e.target;
 
+      /* 详情页「Add all N styles」：一次把全部款式各加 1 件（批发选款场景） */
+      var addAll = t.closest('[data-add-all]');
+      if (addAll) {
+        var pid = addAll.getAttribute('data-add-all');
+        var prod = getProduct(pid);
+        if (prod && prod.variants && prod.variants.length) {
+          bumpSuppress = true;
+          prod.variants.forEach(function (v) { addProduct(pid, v.name, true); });
+          bumpSuppress = false;
+          toast(window.T('added_all_styles', { n: prod.variants.length, name: prod.name }));
+          flyToCart(addAll, pid, prod.variants[0].name);
+        }
+        return;
+      }
+
       var addBtn = t.closest('[data-add]');
       if (addBtn) {
         var addId = addBtn.getAttribute('data-add');
@@ -1577,6 +1671,18 @@
 
       if (t.closest('[data-clear-inquiry]')) {
         if (Store.items.length) { Store.clear(); toast(window.T('toast_cleared')); }
+        return;
+      }
+
+      /* 恢复上次清空的清单（复购场景） */
+      if (t.closest('[data-restore-last]')) {
+        var restored = Store.restoreLast();
+        if (restored) {
+          toast(window.T('restored_last', { n: restored }));
+          openDrawer(true);
+        } else {
+          toast(window.T('restore_empty'));
+        }
         return;
       }
 
@@ -1927,7 +2033,21 @@
     if (!modal || !input || !body || !triggers.length) return;
 
     var active = -1;
-    var hint = '<p class="smod-hint" data-i18n="search_hint">Type to search across all 1000+ products — brand, product name or category.</p>';
+    // 热门搜索词：取有货品类的前几个名 + 常见品牌，点一下即搜（降低「不知道搜什么」的门槛）
+    var hotWords = [];
+    CATEGORIES.forEach(function (c) {
+      if (productsIn(c.slug).length && c.name && hotWords.indexOf(c.name) === -1) hotWords.push(c.name);
+    });
+    (PRODUCTS.filter(function (p) { return p.popular && p.brand; }).map(function (p) { return p.brand; }))
+      .forEach(function (b) { if (b && hotWords.indexOf(b) === -1) hotWords.push(b); });
+    hotWords = hotWords.slice(0, 6);
+    var hint = '<p class="smod-hint" data-i18n="search_hint">Type to search across all 1000+ products — brand, product name or category.</p>' +
+      (hotWords.length
+        ? '<div class="smod-hot"><span class="smod-hot-lbl" data-i18n="search_hot">Popular</span>' +
+            hotWords.map(function (w) {
+              return '<button type="button" class="smod-hot-chip" data-sm-hot="' + esc(w) + '">' + esc(w) + '</button>';
+            }).join('') + '</div>'
+        : '');
 
     function render(list, q) {
       if (!q) { body.innerHTML = hint; active = -1; return; }
@@ -1981,6 +2101,15 @@
       render(q ? search(q, 8) : null, q);
     });
 
+    // 点热门词：填入搜索框并立即出结果
+    body.addEventListener('click', function (e) {
+      var chip = e.target.closest('[data-sm-hot]');
+      if (!chip) return;
+      input.value = chip.getAttribute('data-sm-hot');
+      input.focus();
+      render(search(input.value.trim(), 8), input.value.trim());
+    });
+
     input.addEventListener('keydown', function (e) {
       var items = $$('.smod-list .suggest-item', body);
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
@@ -2027,6 +2156,7 @@
     var host = $('[data-product]');
     if (!host) return;
     var p = getProduct(param('id'));
+    if (p) pushRecent(p.id);   // 记入最近浏览（含当前这款）
 
     if (!p) {
       host.innerHTML = '' +
@@ -2077,6 +2207,10 @@
                     return '<button type="button" class="variant-chip" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
                   }).join('') +
                 '</div>' +
+                (variants.length > 1
+                  ? '<button type="button" class="add-all-styles" data-add-all="' + esc(p.id) + '">' +
+                      ICON.plus + '<span>' + esc(window.T('add_all_styles', { n: variants.length })) + '</span></button>'
+                  : '') +
                 '<p class="variant-hint" data-i18n="variant_hint">Tap once to preview · tap again to confirm · tap again to add. Double-tap to deselect.</p>' +
               '</div>'
             : '') +
@@ -2310,6 +2444,27 @@
       }
     }
 
+    // 最近浏览：横向小卡，去掉当前这款，最多 6 个
+    var recent = getRecent().filter(function (x) { return x.id !== p.id; }).slice(0, 6);
+    if (rel && recent.length) {
+      var recentHtml = '' +
+        '<div class="recent-block">' +
+          '<div class="section-head">' +
+            '<p class="eyebrow-lg" data-i18n="recent_title">Recently viewed</p>' +
+          '</div>' +
+          '<div class="recent-row">' +
+            recent.map(function (x) {
+              return '<a class="recent-item" href="product.html?id=' + esc(x.id) + '">' +
+                '<img src="' + esc(x.image) + '" alt="" loading="lazy">' +
+                '<span class="recent-name">' + esc(x.name) + '</span>' +
+                '<span class="recent-price">' + esc(x.price) + '</span>' +
+              '</a>';
+            }).join('') +
+          '</div>' +
+        '</div>';
+      rel.insertAdjacentHTML('beforeend', recentHtml);
+    }
+
     initTier();   // 阶梯价控件（页面重建后需要重新绑定）
   }
 
@@ -2337,7 +2492,62 @@
 
     var all = productsIn(slug);
     var sub = param('sub');
+    var brandFilter = param('brand') || '';
+    var sort = param('sort') || '';
     var subs = cat.subcategories || [];
+
+    // 品牌选项：从本品类实际商品里提取（按字母序）
+    var brands = [];
+    all.forEach(function (p) {
+      if (p.brand && brands.indexOf(p.brand) === -1) brands.push(p.brand);
+    });
+    brands.sort(function (a, b) { return a.localeCompare(b); });
+
+    /* 构造带完整筛选状态的分类页 URL；保留 slug/sub，brand/sort 有值才加 */
+    function catUrl(opt) {
+      var q = 'category.html?slug=' + encodeURIComponent(slug);
+      var s = opt.sub !== undefined ? opt.sub : sub;
+      var br = opt.brand !== undefined ? opt.brand : brandFilter;
+      var so = opt.sort !== undefined ? opt.sort : sort;
+      if (s) q += '&sub=' + encodeURIComponent(s);
+      if (br) q += '&brand=' + encodeURIComponent(br);
+      if (so) q += '&sort=' + encodeURIComponent(so);
+      return q;
+    }
+
+    // 子分类 chip 链接带上当前筛选，切换子分类不丢品牌/排序
+    var subChips = subs.length
+      ? '<div class="subnav">' +
+          '<a class="chip' + (sub ? '' : ' is-active') + '" href="' + esc(catUrl({ sub: '' })) + '" data-i18n="sub_all">All</a>' +
+          subs.map(function (s) {
+            return '<a class="chip' + (sub === s.slug ? ' is-active' : '') +
+              '" href="' + esc(catUrl({ sub: s.slug })) + '">' + esc(s.name) + '</a>';
+          }).join('') +
+        '</div>'
+      : '';
+
+    // 筛选栏：品牌下拉 + 排序下拉（change 即跳转，状态写进 URL，可分享可后退）
+    var filterBar = (brands.length > 1 || all.length > 1)
+      ? '<div class="cat-filter">' +
+          (brands.length > 1
+            ? '<label class="cat-filter-fld"><span data-i18n="filter_brand">Brand</span>' +
+                '<select data-cat-brand>' +
+                  '<option value=""' + (brandFilter ? '' : ' selected') + ' data-i18n="filter_all_brands">All brands</option>' +
+                  brands.map(function (b) {
+                    return '<option value="' + esc(b) + '"' + (brandFilter === b ? ' selected' : '') + '>' + esc(b) + '</option>';
+                  }).join('') +
+                '</select></label>'
+            : '') +
+          '<label class="cat-filter-fld"><span data-i18n="filter_sort">Sort</span>' +
+            '<select data-cat-sort>' +
+              '<option value=""' + (sort ? '' : ' selected') + ' data-i18n="sort_default">Featured</option>' +
+              '<option value="price-asc"' + (sort === 'price-asc' ? ' selected' : '') + ' data-i18n="sort_price_asc">Price: low to high</option>' +
+              '<option value="price-desc"' + (sort === 'price-desc' ? ' selected' : '') + ' data-i18n="sort_price_desc">Price: high to low</option>' +
+              '<option value="name-asc"' + (sort === 'name-asc' ? ' selected' : '') + ' data-i18n="sort_name">Name: A to Z</option>' +
+            '</select></label>' +
+          '<span class="cat-filter-count" data-cat-count></span>' +
+        '</div>'
+      : '';
 
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
@@ -2349,23 +2559,43 @@
         '<h1>' + esc(cat.name) + '</h1>' +
         '<p class="sub">' + window.T('cat_sub', { n: all.length }) + '</p>' +
       '</div>' +
-      (subs.length
-        ? '<div class="subnav">' +
-            '<a class="chip' + (sub ? '' : ' is-active') + '" href="category.html?slug=' + esc(slug) + '" data-i18n="sub_all">All</a>' +
-            subs.map(function (s) {
-              return '<a class="chip' + (sub === s.slug ? ' is-active' : '') +
-                '" href="category.html?slug=' + esc(slug) + '&sub=' + esc(s.slug) + '">' + esc(s.name) + '</a>';
-            }).join('') +
-          '</div>'
-        : '') +
+      subChips +
+      filterBar +
       '<div class="product-grid" data-cat-grid></div>';
 
-    var list = sub ? all.filter(function (p) { return p.subcategory === sub; }) : all;
+    // 筛选 + 排序
+    var list = all.filter(function (p) {
+      return (!sub || p.subcategory === sub) && (!brandFilter || p.brand === brandFilter);
+    });
+    if (sort === 'price-asc') {
+      list = list.slice().sort(function (a, b) {
+        var pa = parsePrice(a.price), pb = parsePrice(b.price);
+        return (pa ? pa.value : 0) - (pb ? pb.value : 0);
+      });
+    } else if (sort === 'price-desc') {
+      list = list.slice().sort(function (a, b) {
+        var pa = parsePrice(a.price), pb = parsePrice(b.price);
+        return (pb ? pb.value : 0) - (pa ? pa.value : 0);
+      });
+    } else if (sort === 'name-asc') {
+      list = list.slice().sort(function (a, b) {
+        return String(a.name).localeCompare(String(b.name));
+      });
+    }
+
     var grid = $('[data-cat-grid]', host);
     grid.innerHTML = list.length
       ? list.map(function (p) { return '<div>' + productCardHTML(p) + '</div>'; }).join('')
       : '<div class="empty-state" style="grid-column:1/-1"><h2 data-i18n="nothing_here">Nothing here yet</h2>' +
         '<p data-i18n="no_products_sub">No products in this sub-collection at the moment.</p></div>';
+    var cntEl = $('[data-cat-count]', host);
+    if (cntEl) cntEl.textContent = window.T('filter_showing', { n: list.length, total: all.length });
+
+    // 筛选控件 change → 带状态跳转
+    var brandSel = $('[data-cat-brand]', host);
+    var sortSel = $('[data-cat-sort]', host);
+    if (brandSel) brandSel.addEventListener('change', function () { location.href = catUrl({ brand: brandSel.value }); });
+    if (sortSel) sortSel.addEventListener('change', function () { location.href = catUrl({ sort: sortSel.value }); });
   }
 
   /* ---------------- 专属链接落地：客户打开 #l=... 时显示报价清单 ---------------- */
@@ -2638,9 +2868,9 @@
   function sharedSum() {
     var sum = 0, has = false, cur = '';
     sharedItems.forEach(function (it) {
-      var n = priceNum(it.price);
-      if (n !== null) {
-        sum += n * it.qty;
+      var line = lineTotalNum(it.price, it.qty);   // 阶梯折后行合计
+      if (line !== null) {
+        sum += line;
         has = true;
         if (!cur) cur = symToCurrency(priceSymbol(it.price));
       }
@@ -2663,8 +2893,9 @@
     body.innerHTML = sharedItems.map(function (it, idx) {
       var minQ = minQtyOf(it);
       var atMin = minQ > 1 && it.qty <= minQ;
-      var n = priceNum(it.price);
-      var lineTotal = n !== null ? money(n * it.qty, priceSymbol(it.price)) : '';
+      var discounted = hasVolumeDiscount(it.price, it.qty);
+      var lineTotal = discounted ? money(lineTotalNum(it.price, it.qty), priceSymbol(it.price)) : '';
+      var unitNow = discounted ? money(unitPriceNum(it.price, it.qty), priceSymbol(it.price)) : '';
       return '' +
         '<div class="inq-item">' +
           '<img src="' + esc(it.image) + '" alt="' + esc(it.name) + '">' +
@@ -2673,8 +2904,11 @@
             '<p class="i-brand">' + esc(it.brand || '') + '</p>' +
             (it.stale ? '<p class="i-stale" data-i18n="quote_item_as_quoted">Price as quoted · not in catalog</p>' : '') +
             '<p class="i-price">' +
-              '<span>' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</span>' +
-              (it.qty > 1 && lineTotal ? '<span class="i-line">' + esc(lineTotal) + '</span>' : '') +
+              (discounted
+                ? ('<span class="i-was">' + esc(it.price) + '</span> <span class="i-now">' + esc(unitNow) + '</span>' + (it.qty > 1 ? ' × ' + it.qty : ''))
+                : ('<span>' + esc(it.price) + (it.qty > 1 ? ' × ' + it.qty : '') + '</span>')) +
+              ((it.qty > 1 || discounted) && lineTotal ? '<span class="i-line">' + esc(lineTotal) + '</span>' : '') +
+              (discounted ? '<span class="i-voltag">' + esc(window.T('volume_off', { n: Math.round((1 - tierCalc(it.price, it.qty).factor) * 100) })) + '</span>' : '') +
             '</p>' +
             '<div class="qty">' +
               '<button type="button" data-sqty="' + idx + '" data-delta="-1" aria-label="Decrease"' +
@@ -2848,9 +3082,14 @@
         items_total: sum ? sum.sum : 0,
         est_total: est && est.amount != null ? est.amount : (sum ? sum.sum : 0),
         items: items.map(function (it) {
+          var tr = tierCalc(it.price, it.qty);
           return {
             id: it.id, name: it.name, brand: it.brand,
             variant: it.variant || '', qty: it.qty, price: it.price,
+            // 阶梯价折后信息（price 保留原价，供报价链接/快照恢复用；这两字段仅给后台看）
+            unitPrice: tr.noPrice ? '' : money(tr.unit, tr.sym),
+            factor: tr.noPrice ? 1 : tr.factor,
+            lineTotal: tr.noPrice ? '' : money(tr.total, tr.sym),
           };
         }),
         country: (lastShip && lastShip.iso) || '',
@@ -2900,10 +3139,11 @@
     var rows = [];
     rows.push(['Product', 'Variant', 'Qty', 'Unit price', 'Line total']);
     sharedItems.forEach(function (it) {
-      var n = priceNum(it.price);
       var sym = priceSymbol(it.price);
-      var lt = (n !== null) ? money(n * it.qty, sym) : '';
-      rows.push([it.name, it.variant || '', it.qty, it.price, lt]);
+      var lt = lineTotalNum(it.price, it.qty);
+      var discounted = hasVolumeDiscount(it.price, it.qty);
+      var unitTxt = discounted ? money(unitPriceNum(it.price, it.qty), sym) : it.price;
+      rows.push([it.name, it.variant || '', it.qty, unitTxt, (lt !== null ? money(lt, sym) : '')]);
     });
     var tsv = rows.map(function (r) { return r.join('\t'); }).join('\n');
 
@@ -3208,7 +3448,7 @@
         ['address', vAddress(val('address'))],
         ['city', vCity(val('city'))],
         ['province', vCity(val('province'))],
-        ['zip', vZip(val('zip'), iso)],
+        ['zip', val('zip').trim() ? vZip(val('zip'), iso) : null],   // 邮编选填：空则跳过
         ['country', iso && COUNTRY_BY_ISO[iso] ? null : { k: 'inquiry_err_country' }],
         ['email', vEmail(val('email'))]
       ];

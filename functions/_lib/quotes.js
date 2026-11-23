@@ -95,6 +95,13 @@ export function num(v, max) {
   return Math.round(Math.min(n, lim) * 100) / 100;
 }
 
+/** 阶梯价折扣系数：夹在 0.01~1，非法/缺省按 1（无折扣） */
+function clampFactor(v) {
+  const n = Number(v);
+  if (!isFinite(n) || n <= 0 || n > 1) return 1;
+  return Math.round(n * 1000) / 1000;
+}
+
 /** 清单条目：只留需要的字段，剪断超长值 */
 export function cleanItems(raw) {
   if (!Array.isArray(raw)) return [];
@@ -111,6 +118,9 @@ export function cleanItems(raw) {
       qty: Math.max(1, Math.min(Number(it.qty) || 1, 100000)),
       price: clean(it.price, 30),
       id: clean(it.id, 80),
+      unitPrice: clean(it.unitPrice, 30),
+      lineTotal: clean(it.lineTotal, 30),
+      factor: clampFactor(it.factor),
     });
   }
   return out;
