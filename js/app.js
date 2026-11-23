@@ -154,6 +154,7 @@
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3.2"/><path d="m3.6 7.4 7.5 5.3c.54.38 1.26.38 1.8 0l7.5-5.3"/></svg>',
     chevLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
     chevRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+    chevDown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
     menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
     trash: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>',
@@ -174,6 +175,37 @@
   }
   function popularProducts() {
     return PRODUCTS.filter(function (p) { return p.popular; });
+  }
+
+  /* ---------------- 品类下拉菜单（顶栏 Products / 面包屑共用） ----------------
+   * 点触发器展开 9 个品类，一点即跳，免去回首页再找品类。
+   * variant: 'nav' 顶栏（触发器显示 Products）/ 'crumb' 面包屑（触发器显示当前品类名）
+   * currentSlug: 当前所在品类，用于高亮；nav 场景传空。
+   */
+  function categoryMenuHTML(variant, currentSlug) {
+    var isNav = variant === 'nav';
+    var cur = currentSlug ? getCategory(currentSlug) : null;
+    var triggerLabel = isNav
+      ? '<span data-i18n="nav_products">Products</span>'
+      : esc(cur ? cur.name : (currentSlug || ''));
+    var items = (CATEGORIES || []).map(function (c) {
+      var active = c.slug === currentSlug ? ' is-current' : '';
+      return '<a class="cat-menu-item' + active + '" href="category.html?slug=' + esc(c.slug) + '"' +
+        (c.slug === currentSlug ? ' aria-current="page"' : '') + '>' + esc(c.name) + '</a>';
+    }).join('');
+    var allItem = isNav
+      ? '<a class="cat-menu-item cat-menu-all" href="index.html#browse"><span data-i18n="browse_all">Browse all collections →</span></a>'
+      : '';
+    return '' +
+      '<div class="cat-menu cat-menu--' + variant + '" data-catmenu>' +
+        '<button type="button" class="cat-menu-btn' + (isNav ? ' site-nav-btn' : '') + '"' +
+          (isNav ? ' data-nav="products"' : '') + ' data-catmenu-btn aria-haspopup="true" aria-expanded="false">' +
+          triggerLabel + '<span class="cat-menu-caret">' + ICON.chevDown + '</span>' +
+        '</button>' +
+        '<div class="cat-menu-pop" data-catmenu-pop>' +
+          allItem + items +
+        '</div>' +
+      '</div>';
   }
 
   /** 搜索：名字开头 3 分 / 品牌开头 2 分 / 其它命中 1 分，按分排序 */
@@ -502,7 +534,9 @@
             '<a href="index.html" data-nav="home" data-i18n="nav_home">Home</a>' +
             /* 2026-10-21：Popular 与 Browse 两个入口合并为 Products（指向首页 #browse 区块），
                顶栏只留 Home / Products / About Us 三个按钮 */
-            '<a href="index.html#browse" data-nav="products" data-i18n="nav_products">Products</a>' +
+            categoryMenuHTML('nav', '') +
+            /* 2026-11-23：Products 改为品类下拉，一点直达；面板首项仍可 Browse all 回首页 #browse。
+               原锚点高亮逻辑见下方 data-nav 遍历——下拉按钮带 data-nav="products" 由 mountChrome 后置。 */
             /* 2026-10-21：以前指向 index.html#about（首页那一小段 FAQ 预览），
                点了只会在首页内部跳到锚点，地址栏变成 /#about。
                现在统一指向真正的关于页 about.html，与手机菜单、页脚一致。 */
@@ -527,7 +561,7 @@
             ICON.search.replace('<svg', '<svg style="width:17px;height:17px"') + '<span data-i18n="search_aria">Search products</span></button>' +
           '<nav>' +
             '<a href="index.html" data-i18n="nav_home">Home</a>' +
-            '<a href="index.html#browse" data-i18n="nav_products">Products</a>' +
+            categoryMenuHTML('nav', '') +
             '<a href="about.html" data-i18n="nav_about">About Us</a>' +
           '</nav>' +
           '<div class="mobile-nav-foot">' +
@@ -2015,7 +2049,7 @@
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
         '<a href="index.html" data-i18n="nav_home">Home</a><span class="sep">/</span>' +
-        '<a href="category.html?slug=' + esc(p.collection) + '">' + esc(cat ? cat.name : p.collection) + '</a>' +
+        categoryMenuHTML('crumb', p.collection) +
         '<span class="sep">/</span><span>' + esc(p.name) + '</span>' +
       '</nav>' +
       '<div class="detail">' +
@@ -2307,7 +2341,8 @@
 
     host.innerHTML = '' +
       '<nav class="breadcrumb">' +
-        '<a href="index.html" data-i18n="nav_home">Home</a><span class="sep">/</span><span>' + esc(cat.name) + '</span>' +
+        '<a href="index.html" data-i18n="nav_home">Home</a><span class="sep">/</span>' +
+        categoryMenuHTML('crumb', slug) +
       '</nav>' +
       '<div class="page-head">' +
         '<p class="eyebrow-lg">' + esc(cat.tagline) + '</p>' +
@@ -3077,6 +3112,35 @@
   }
 
   /* ---------------- 手机端下拉菜单 ---------------- */
+  /* 品类下拉：顶栏 Products + 面包屑品类共用。事件委托，互斥展开，点外/Esc 关闭 */
+  function initCategoryMenus() {
+    function closeAll(except) {
+      $$('[data-catmenu].is-open').forEach(function (m) {
+        if (m === except) return;
+        m.classList.remove('is-open');
+        var b = m.querySelector('[data-catmenu-btn]');
+        if (b) b.setAttribute('aria-expanded', 'false');
+      });
+    }
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-catmenu-btn]');
+      if (btn) {
+        e.preventDefault();
+        var menu = btn.closest('[data-catmenu]');
+        var willOpen = !menu.classList.contains('is-open');
+        closeAll(menu);
+        menu.classList.toggle('is-open', willOpen);
+        btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        return;
+      }
+      // 点面板内的链接正常跳转，点面板外/其它地方收起
+      if (!e.target.closest('[data-catmenu-pop]')) closeAll(null);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+  }
+
   function initNavMenu() {
     var btn = $('[data-nav-toggle]');
     var menu = $('[data-mobile-nav]');
@@ -3249,6 +3313,7 @@
     renderAboutMosaic();
     initPhotoViewer();
     initNavMenu();
+    initCategoryMenus();
     initHeaderSearch();
     initWaChat();
     initSharedList();
