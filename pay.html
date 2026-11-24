@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261124b">
+  <link rel="stylesheet" href="css/style.css?v=20261124c">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -227,8 +227,8 @@
   <footer class="site-footer"></footer>
 
   <script src="js/data.js?v=20261122a"></script>
-  <script src="js/i18n.js?v=20261124b"></script>
-  <script src="js/app.js?v=20261124b"></script>
+  <script src="js/i18n.js?v=20261124c"></script>
+  <script src="js/app.js?v=20261124c"></script>
   <script>
     (function () {
       'use strict';
@@ -440,9 +440,40 @@
           if (saved) input.value = saved;
         } catch (e) {}
 
-        /* 基础校验：挡住明显乱填，减少无效号码进后台
-           规则：必须以 + 开头（带国家码）；8~15 位数字；国家码首位非 0；
-           拒绝全相同数字 / 纯递增 / 纯递减（如 0000000000、123456789）。 */
+        /* 号码校验：按国家码校验号段，挡住「国家码对、号码明显错」的乱填
+           （如 +86 265816816 —— 中国手机必须是 1[3-9] 开头的 11 位）。
+           规则表只收录主要贸易市场；未收录的国家码走宽松规则（8~15 位），
+           避免误伤小国客户。 */
+        var CC_RULES = {
+          '1': /^[2-9]\d{9}$/, '7': /^[349]\d{9}$/, '20': /^1[0-2]\d{8}$/, '27': /^[1-8]\d{8}$/,
+          '30': /^6\d{9}$/, '31': /^6\d{8}$/, '32': /^4\d{8}$/, '33': /^[67]\d{8}$/,
+          '34': /^[679]\d{8}$/, '36': /^[237]\d{8}$/, '39': /^3\d{8,9}$/, '40': /^7\d{8}$/,
+          '41': /^7\d{8}$/, '43': /^6\d{8,10}$/, '44': /^7\d{9}$/, '45': /^[2-9]\d{7}$/,
+          '46': /^7\d{8}$/, '47': /^[49]\d{7}$/, '48': /^[5-8]\d{8}$/, '49': /^1[5-7]\d{8,9}$/,
+          '212': /^6\d{8}$/, '234': /^[789]\d{9}$/, '254': /^[17]\d{8}$/,
+          '351': /^[29]\d{8}$/, '352': /^6\d{8}$/, '353': /^8\d{8}$/, '358': /^4\d{7,9}$/,
+          '370': /^6\d{7}$/, '371': /^2\d{7}$/, '372': /^[3-5]\d{6,7}$/, '380': /^[679]\d{8}$/,
+          '385': /^9\d{8}$/, '386': /^[3-7]\d{7}$/, '420': /^[67]\d{8}$/, '421': /^9\d{8}$/,
+          '51': /^9\d{8}$/, '52': /^[1-9]\d{9}$/, '55': /^[1-9]{2}9\d{8}$/, '56': /^9\d{8}$/, '57': /^3\d{9}$/,
+          '60': /^1\d{8,9}$/, '61': /^4\d{8}$/, '62': /^8\d{8,11}$/, '63': /^9\d{9}$/,
+          '64': /^2\d{7,9}$/, '65': /^[89]\d{7}$/, '66': /^[689]\d{8}$/,
+          '81': /^[789]0\d{8}$/, '82': /^1\d{8,9}$/, '84': /^[35789]\d{8}$/, '86': /^1[3-9]\d{9}$/,
+          '90': /^5\d{9}$/, '91': /^[6-9]\d{9}$/, '92': /^3\d{9}$/, '94': /^7\d{8}$/,
+          '880': /^1\d{9}$/, '965': /^[569]\d{7}$/, '966': /^5\d{8}$/, '968': /^[79]\d{7}$/,
+          '971': /^5\d{8}$/, '972': /^5\d{8}$/, '973': /^3\d{7}$/, '974': /^[3-7]\d{7}$/
+        };
+        /* 返回 true=通过 / false=国家码已收录但号段不符 / null=国家码未收录 */
+        function checkNational(d) {
+          var hit = false;
+          for (var len = 3; len >= 1; len--) {
+            if (d.length <= len + 5) continue;
+            var cc = d.slice(0, len);
+            if (!Object.prototype.hasOwnProperty.call(CC_RULES, cc)) continue;
+            hit = true;
+            if (CC_RULES[cc].test(d.slice(len))) return true;
+          }
+          return hit ? false : null;
+        }
         function sequential(d) {
           var up = true, down = true;
           for (var i = 1; i < d.length; i++) {
@@ -460,6 +491,7 @@
           if (d.charAt(0) === '0') return '';           // 国家码首位不能是 0
           if (/^(\d)\1+$/.test(d)) return '';           // 全相同
           if (sequential(d)) return '';                // 纯顺序
+          if (checkNational(d) === false) return '';    // 国家码对、号段错
           return '+' + d;
         }
         function showErr(on) {
