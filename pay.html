@@ -10,7 +10,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="css/fonts.css">
-  <link rel="stylesheet" href="css/style.css?v=20261124a">
+  <link rel="stylesheet" href="css/style.css?v=20261124b">
   <style>
     .pay-wrap{max-width:1000px;margin:0 auto;padding:40px 20px 112px}
     .pay-hero{margin-bottom:22px}
@@ -85,6 +85,9 @@
     .pay-phone-privacy{font-size:11px;color:var(--muted-foreground);margin:9px 0 0;text-align:center}
     .pay-phone-ok{font-size:12.5px;color:var(--accent-brand);font-weight:600;margin:10px 0 0;text-align:center}
     .pay-phone-ok[hidden]{display:none}
+    .pay-phone-err{font-size:12px;color:#c0392b;margin:9px 0 0;text-align:center;line-height:1.45}
+    .pay-phone-err[hidden]{display:none}
+    .pay-phone-num.invalid{border-color:#c0392b}
     .pay-or{text-align:center;font-size:11px;color:var(--muted-foreground);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 14px;position:relative}
     .pay-or::before,.pay-or::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--border)}
     .pay-or::before{left:0}.pay-or::after{right:0}
@@ -194,8 +197,9 @@
           <p class="pay-phone-lead" data-i18n="pay_phone_lead">Leave your number — we'll send the payment code + official quote sheet straight to your WhatsApp.</p>
           <div class="pay-phone-row">
             <input class="pay-phone-num" id="payPhoneInput" type="tel" inputmode="tel" autocomplete="tel" placeholder="+34 612 345 678" aria-label="WhatsApp number" data-i18n-ph="pay_phone_ph">
-            <button class="pay-phone-btn" id="payPhoneBtn" type="button"><span data-i18n="pay_phone_btn">Send to my WhatsApp</span></button>
+            <button class="pay-phone-btn" id="payPhoneBtn" type="button"><span data-i18n="pay_phone_btn">Send me code + quote</span></button>
           </div>
+          <p class="pay-phone-err" id="payPhoneErr" hidden data-i18n="pay_phone_invalid">Enter a valid number with country code</p>
           <p class="pay-phone-privacy" data-i18n="pay_phone_privacy">We only use this to send your documents. No spam.</p>
           <p class="pay-phone-ok" id="payPhoneOk" hidden data-i18n="pay_phone_ok">Number saved — check your WhatsApp shortly.</p>
         </div>
@@ -223,8 +227,8 @@
   <footer class="site-footer"></footer>
 
   <script src="js/data.js?v=20261122a"></script>
-  <script src="js/i18n.js?v=20261124a"></script>
-  <script src="js/app.js?v=20261124a"></script>
+  <script src="js/i18n.js?v=20261124b"></script>
+  <script src="js/app.js?v=20261124b"></script>
   <script>
     (function () {
       'use strict';
@@ -428,6 +432,7 @@
         var input = document.getElementById('payPhoneInput');
         var btn = document.getElementById('payPhoneBtn');
         var okEl = document.getElementById('payPhoneOk');
+        var errEl = document.getElementById('payPhoneErr');
         if (!box || !input || !btn) return;
 
         try {
@@ -435,21 +440,43 @@
           if (saved) input.value = saved;
         } catch (e) {}
 
+        /* 基础校验：挡住明显乱填，减少无效号码进后台
+           规则：必须以 + 开头（带国家码）；8~15 位数字；国家码首位非 0；
+           拒绝全相同数字 / 纯递增 / 纯递减（如 0000000000、123456789）。 */
+        function sequential(d) {
+          var up = true, down = true;
+          for (var i = 1; i < d.length; i++) {
+            var df = (+d.charAt(i)) - (+d.charAt(i - 1));
+            if (df !== 1) up = false;
+            if (df !== -1) down = false;
+          }
+          return up || down;
+        }
         function normalize(v) {
           var s = String(v || '').trim();
-          var plus = s.charAt(0) === '+' ? '+' : '';
-          s = s.replace(/\D/g, '').slice(0, 16);
-          return (s.length >= 6) ? plus + s : '';
+          if (s.charAt(0) !== '+') return '';          // 必须带国家码
+          var d = s.slice(1).replace(/\D/g, '');        // 只留数字
+          if (d.length < 8 || d.length > 15) return ''; // E.164 位数
+          if (d.charAt(0) === '0') return '';           // 国家码首位不能是 0
+          if (/^(\d)\1+$/.test(d)) return '';           // 全相同
+          if (sequential(d)) return '';                // 纯顺序
+          return '+' + d;
         }
+        function showErr(on) {
+          input.classList.toggle('invalid', !!on);
+          if (errEl) errEl.hidden = !on;
+          if (okEl && on) okEl.hidden = true;
+        }
+        input.addEventListener('input', function () { showErr(false); });
 
         btn.addEventListener('click', function () {
           var phone = normalize(input.value);
           if (!phone) {
             input.focus();
-            var T0 = window.T || function (k) { return k; };
-            input.setAttribute('placeholder', T0('pay_phone_invalid') || 'Enter a valid number');
+            showErr(true);
             return;
           }
+          showErr(false);
           btn.disabled = true;
           try { localStorage.setItem('edsup_phone', phone); } catch (e) {}
           try {

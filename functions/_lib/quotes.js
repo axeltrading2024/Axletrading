@@ -90,13 +90,23 @@ export function normCid(v) {
   return String(v || '').replace(/[^a-z0-9\-]/gi, '').slice(0, 40).toLowerCase();
 }
 
-/** WhatsApp 号码：只留数字和首位 +，去掉空格/横线/括号，长度 6~16 位数字 */
+/** WhatsApp 号码：必须带国家码 +；8~15 位数字；拒绝全相同/纯顺序等明显乱填。
+    与付款页前端校验保持一致，挡住无效号码进后台。 */
 export function normPhone(v) {
-  let s = String(v || '').trim();
-  const plus = s.charAt(0) === '+' ? '+' : '';
-  s = s.replace(/\D/g, '').slice(0, 16);
-  if (s.length < 6) return '';
-  return plus + s;
+  const s = String(v || '').trim();
+  if (s.charAt(0) !== '+') return '';
+  const d = s.slice(1).replace(/\D/g, '');
+  if (d.length < 8 || d.length > 15) return '';
+  if (d.charAt(0) === '0') return '';
+  if (/^(\d)\1+$/.test(d)) return '';
+  let up = true, down = true;
+  for (let i = 1; i < d.length; i++) {
+    const df = Number(d.charAt(i)) - Number(d.charAt(i - 1));
+    if (df !== 1) up = false;
+    if (df !== -1) down = false;
+  }
+  if (up || down) return '';
+  return '+' + d;
 }
 
 export function normCurrency(v) {

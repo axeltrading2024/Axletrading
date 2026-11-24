@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261124a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261124b" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -2730,10 +2730,8 @@
         '<div class="qacts">' +
           '<button type="button" class="leads-chip" data-quote-toggle="' + r.id + '">' + (noItems ? '无明细' : '明细 ' + items.length) + '</button>' +
           '<button type="button" class="leads-chip" data-quote-copy-tsv="' + r.id + '">📋 清单</button>' +
-          '<button type="button" class="leads-chip" data-quote-copy-url="' + r.id + '">🔗 付款链接</button>' +
           (r.phone
-            ? '<a class="leads-chip qwa-btn" href="https://wa.me/' + esc(String(r.phone).replace(/\D/g, '')) + '?text=' + encodeURIComponent(followupFor(r)) + '" target="_blank" rel="noreferrer">💬 发 WhatsApp</a>' +
-              '<button type="button" class="leads-chip" data-quote-copy-follow="' + r.id + '">📄 复制话术</button>'
+            ? '<button type="button" class="leads-chip" data-quote-copy-follow="' + r.id + '">📄 复制话术</button>'
             : '') +
           '<a class="leads-chip" href="' + esc(payUrlFor(r, true)) + '" target="_blank" rel="noreferrer">打开付款页 ↗</a>' +
         '</div>' +
@@ -2764,12 +2762,6 @@
       b.addEventListener('click', function () {
         var r = findRow(b.getAttribute('data-quote-copy-tsv'));
         if (r) copyText(tsvFor(r), b);
-      });
-    });
-    all('[data-quote-copy-url]', host).forEach(function (b) {
-      b.addEventListener('click', function () {
-        var r = findRow(b.getAttribute('data-quote-copy-url'));
-        if (r) copyText(payUrlFor(r), b);
       });
     });
     all('[data-quote-copy-follow]', host).forEach(function (b) {
