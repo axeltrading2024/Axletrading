@@ -4,9 +4,11 @@
  * 触发时机（前端，不等结果、不阻塞跳转）：
  *   1) 客户点抽屉底部的「Pay on Alipay」→ action = 'pay'
  *   2) 付款页 pay.html 打开且带着 ?q=    → action = 'view'
+ *   3) 付款页客户留 WhatsApp 号码        → action = 'phone'
  *
- * 只有清单，没有客户联系方式 —— 这本来就不是表单，是行为记录。
- * 联系方式仍然靠客户自己在 WhatsApp 里发，后台可以对着报价号回填。
+ * 默认只有清单、没有联系方式 —— 这是行为记录，不是表单。
+ * 客户愿意留号时（换「付款码+报价单发到你 WhatsApp」），phone 分支把号码写到这张单上，
+ * 后台就能直接看到号码、一键发 WhatsApp；不留号的仍可对报价号人工回填。
  *
  * 幂等：(ref, cid) 唯一。同一个人反复点不会刷出一堆重复单，只累加 hits / pay_views。
  * 换设备则 cid 变、生成新的一条 —— 这是对的，因为它确实是另一次访问。
@@ -22,6 +24,7 @@ import {
   normRef,
   normCid,
   normCurrency,
+  normPhone,
   num,
   cleanItems,
 } from '../_lib/quotes.js';
@@ -45,7 +48,9 @@ export async function onRequestPost(context) {
   if (!ref) return json({ ok: false, error: 'need_ref' }, 422);
 
   const cid = normCid(body.cid) || 'anon';
-  const action = clean(body.action, 12) === 'view' ? 'view' : 'pay';
+  const actionRaw = clean(body.action, 12);
+  const action = (actionRaw === 'view' || actionRaw === 'phone') ? actionRaw : 'pay';
+  const phone = action === 'phone' ? normPhone(body.phone) : '';
   const items = cleanItems(body.items);
   const nItems = items.length;
   const units = items.reduce((s, it) => s + (Number(it.qty) || 0), 0);
@@ -53,6 +58,7 @@ export async function onRequestPost(context) {
   const row = {
     ref: ref,
     cid: cid,
+    phone: phone,
     currency: normCurrency(body.currency),
     items_total: num(body.items_total, 100000000),
     est_total: num(body.est_total, 100000000),
@@ -98,6 +104,11 @@ export async function onRequestPost(context) {
       if (action === 'view') {
         sets.push('pay_views = pay_views + 1');
       }
+      /* 客户留号：写入 phone；只有合法号码才覆盖，避免空值抹掉之前留的号 */
+      if (action === 'phone' && phone) {
+        sets.push('phone = ?');
+        args.push(phone);
+      }
       /* 清单和金额以最新一次为准：客户改了数量再来，金额要跟着变 */
       if (nItems) {
         sets.push('items_json = ?', 'n_items = ?', 'units = ?');
@@ -124,13 +135,13 @@ export async function onRequestPost(context) {
     const cols = [
       'ref', 'cid', 'created_at', 'updated_at', 'status', 'currency',
       'items_total', 'est_total', 'n_items', 'units', 'items_json',
-      'country', 'lang', 'page', 'referrer', 'ua', 'ip_hash', 'hits', 'pay_views',
+      'country', 'lang', 'page', 'referrer', 'ua', 'ip_hash', 'hits', 'pay_views', 'phone',
     ];
     const vals = [
       row.ref, row.cid, now, now, 'new', row.currency,
       row.items_total, row.est_total, row.n_items, row.units, row.items_json,
       row.country, row.lang, row.page, row.referrer, row.ua, row.ip_hash,
-      1, action === 'view' ? 1 : 0,
+      1, action === 'view' ? 1 : 0, row.phone,
     ];
     const sql =
       'INSERT INTO quotes (' + cols.join(',') + ') VALUES (' + cols.map(() => '?').join(',') + ')';

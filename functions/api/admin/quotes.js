@@ -38,9 +38,9 @@ export async function onRequestGet(context) {
     args.push(status);
   }
   if (q) {
-    where.push('(ref LIKE ? OR items_json LIKE ? OR country LIKE ? OR admin_note LIKE ?)');
+    where.push('(ref LIKE ? OR items_json LIKE ? OR country LIKE ? OR admin_note LIKE ? OR phone LIKE ?)');
     const like = '%' + q + '%';
-    args.push(like, like, like, like);
+    args.push(like, like, like, like, like);
   }
   if (days) {
     where.push('created_at > ?');

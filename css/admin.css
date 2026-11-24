@@ -913,6 +913,8 @@
 }
 
 .qacts .leads-chip { text-decoration: none; }
+.qphone { color: var(--accent-brand); font-weight: 600; }
+.qwa-btn { border-color: var(--whatsapp, #25d366) !important; }
 
 .qitems { margin-top: 9px; overflow-x: auto; }
 

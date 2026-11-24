@@ -47,6 +47,7 @@ export async function ensureQuoteSchema(env) {
           'units INTEGER NOT NULL DEFAULT 0,' +
           "items_json TEXT NOT NULL DEFAULT '[]'," +
           "country TEXT NOT NULL DEFAULT ''," +
+          "phone TEXT NOT NULL DEFAULT ''," +
           "lang TEXT NOT NULL DEFAULT ''," +
           "page TEXT NOT NULL DEFAULT ''," +
           "referrer TEXT NOT NULL DEFAULT ''," +
@@ -57,6 +58,12 @@ export async function ensureQuoteSchema(env) {
           "admin_note TEXT NOT NULL DEFAULT ''" +
           ')'
       );
+      /* 老表补列：已有 quotes 表没有 phone，幂等迁移，重复执行报 duplicate 就忽略 */
+      try {
+        await env.DB.exec("ALTER TABLE quotes ADD COLUMN phone TEXT NOT NULL DEFAULT ''");
+      } catch (e) {
+        if (!/duplicate column/i.test(String(e && e.message))) throw e;
+      }
       await env.DB.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quotes_key ON quotes(ref, cid)');
       await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_quotes_created ON quotes(created_at)');
       await env.DB.exec('CREATE INDEX IF NOT EXISTS idx_quotes_status ON quotes(status)');
@@ -81,6 +88,15 @@ export function normRef(v) {
 /** 浏览器匿名 ID：只留十六进制/短横线 */
 export function normCid(v) {
   return String(v || '').replace(/[^a-z0-9\-]/gi, '').slice(0, 40).toLowerCase();
+}
+
+/** WhatsApp 号码：只留数字和首位 +，去掉空格/横线/括号，长度 6~16 位数字 */
+export function normPhone(v) {
+  let s = String(v || '').trim();
+  const plus = s.charAt(0) === '+' ? '+' : '';
+  s = s.replace(/\D/g, '').slice(0, 16);
+  if (s.length < 6) return '';
+  return plus + s;
 }
 
 export function normCurrency(v) {
@@ -138,7 +154,7 @@ export function quotesSummaryCsv(rows) {
   const head = [
     '报价号', '时间', '更新时间', '状态', '币种',
     '商品小计', '估算总额', '品项数', '总件数',
-    '目的国', '查看次数', '付款页打开', '清单', '备注',
+    '目的国', 'WhatsApp', '查看次数', '付款页打开', '清单', '备注',
   ];
   const out = [head.join(',')];
   for (const r of rows) {
@@ -158,6 +174,7 @@ export function quotesSummaryCsv(rows) {
       r.n_items,
       r.units,
       r.country,
+      r.phone || '',
       r.hits,
       r.pay_views,
       list,

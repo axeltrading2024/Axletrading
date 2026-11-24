@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' data-page-node-id="t6XAGsRWkKEXlbLtVOx2r6"><rect width='32' height='32' rx='8' fill='%231a1a1a' data-page-node-id="7AgeebvZf8DrIh6FxdMtFh"/><text x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle' data-page-node-id="Z2BW1XHCIDr1WeGjhy5CDb">E</text></svg>">
   <link rel="stylesheet" href="css/fonts.css" data-page-node-id="vHiajpwZa7NVHWkWxzIyCr">
   <link rel="stylesheet" href="css/style.css" data-page-node-id="M3GIMG63aRn01JIZh69XkL">
-  <link rel="stylesheet" href="css/admin.css?v=20261113a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
+  <link rel="stylesheet" href="css/admin.css?v=20261124a" data-page-node-id="nYYnyNwGucAWRVklHVDzz8">
 </head>
 <body class="admin-body" data-page-node-id="0baWuAdflBIfniqUXGhVrM">
 
@@ -2644,6 +2644,14 @@
     return u;
   }
 
+  /* 跟进话术：带报价号+金额，发给客户本人。用留的号码打开 wa.me，方向反过来（我找他）。 */
+  function followupFor(r) {
+    var amt = Number(r.est_total) > 0 ? money(r.est_total, r.currency) : '';
+    return 'Hi, this is Eddy from Axeltrading — following up on your quote ' + (r.ref || '') +
+      (amt ? ' (' + amt + ')' : '') +
+      '. I have your payment code and official quote sheet ready. Reply here and I will send them right away.';
+  }
+
   function tsvFor(r) {
     var items = parseItems(r);
     var head = ['Product', 'Variant', 'Qty', 'Unit price', 'Line total'].join('\t');
@@ -2698,6 +2706,7 @@
       var facts = [];
       if (r.n_items) facts.push(r.n_items + ' 个品项 / ' + (r.units || 0) + ' 件');
       if (r.country) facts.push('目的国 ' + esc(r.country));
+      if (r.phone) facts.push('<span class="qphone">WhatsApp ' + esc(r.phone) + '</span>');
       if (Number(r.hits) > 1) facts.push('点了 ' + r.hits + ' 次');
       if (Number(r.pay_views)) facts.push('付款页打开 ' + r.pay_views + ' 次');
       /* 没有明细的两种来源：① 客户直接打开了付款链接（链接里只有单号+金额）
@@ -2722,6 +2731,10 @@
           '<button type="button" class="leads-chip" data-quote-toggle="' + r.id + '">' + (noItems ? '无明细' : '明细 ' + items.length) + '</button>' +
           '<button type="button" class="leads-chip" data-quote-copy-tsv="' + r.id + '">📋 清单</button>' +
           '<button type="button" class="leads-chip" data-quote-copy-url="' + r.id + '">🔗 付款链接</button>' +
+          (r.phone
+            ? '<a class="leads-chip qwa-btn" href="https://wa.me/' + esc(String(r.phone).replace(/\D/g, '')) + '?text=' + encodeURIComponent(followupFor(r)) + '" target="_blank" rel="noreferrer">💬 发 WhatsApp</a>' +
+              '<button type="button" class="leads-chip" data-quote-copy-follow="' + r.id + '">📄 复制话术</button>'
+            : '') +
           '<a class="leads-chip" href="' + esc(payUrlFor(r, true)) + '" target="_blank" rel="noreferrer">打开付款页 ↗</a>' +
         '</div>' +
         '<div class="qitems" data-quote-items="' + r.id + '" hidden>' + itemsTable(items, r.currency) + '</div>' +
@@ -2757,6 +2770,12 @@
       b.addEventListener('click', function () {
         var r = findRow(b.getAttribute('data-quote-copy-url'));
         if (r) copyText(payUrlFor(r), b);
+      });
+    });
+    all('[data-quote-copy-follow]', host).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var r = findRow(b.getAttribute('data-quote-copy-follow'));
+        if (r) copyText(followupFor(r), b);
       });
     });
     all('[data-quote-status]', host).forEach(function (b) {
