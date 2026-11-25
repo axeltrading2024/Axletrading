@@ -164,6 +164,52 @@ export async function onRequestPost(context) {
   }
 }
 
-export async function onRequestGet() {
-  return json({ ok: false, error: 'method_not_allowed' }, 405);
+/**
+ * GET /api/quote?ref=Q-... —— 按单号取回商品明细（跨设备恢复用）
+ *
+ * 客户在 A 设备拼好清单，把付款链接发到 WhatsApp，在 B 设备打开：
+ * B 设备没有本地快照，付款页只显示金额，后台那条单也就只剩总额。
+ * 这里让付款页按单号把服务器上已有的明细取回，再随本次打开写回记录。
+ *
+ * 只读；只返回商品字段（目录里本来就公开的名称/数量/单价），
+ * 不返回手机号、cid、IP、来源、UA 等任何个人信息。
+ */
+export async function onRequestGet(context) {
+  const { request, env } = context;
+  if (!env || !env.DB) return json({ ok: false, error: 'not_configured' }, 503);
+
+  let ref = '';
+  try {
+    ref = normRef(new URL(request.url).searchParams.get('ref'));
+  } catch (e) {}
+  if (!ref) return json({ ok: false, error: 'need_ref' }, 422);
+
+  try {
+    await ensureQuoteSchema(env);
+    /* 同一单号可能因换设备有多条 (ref, cid) 记录：取最新一条带明细的 */
+    const row = await env.DB.prepare(
+      "SELECT items_json, items_total, est_total, currency, n_items, units " +
+      "FROM quotes WHERE ref = ? AND items_json IS NOT NULL AND items_json != '[]' " +
+      "ORDER BY id DESC LIMIT 1"
+    ).bind(ref).first();
+
+    if (!row) return json({ ok: true, found: false });
+
+    let items = [];
+    try { items = JSON.parse(row.items_json || '[]'); } catch (e) {}
+    if (!Array.isArray(items) || !items.length) return json({ ok: true, found: false });
+
+    return json({
+      ok: true,
+      found: true,
+      items: items.slice(0, 60),
+      items_total: Number(row.items_total) || 0,
+      est_total: Number(row.est_total) || 0,
+      currency: row.currency || '',
+      n_items: Number(row.n_items) || 0,
+      units: Number(row.units) || 0,
+    });
+  } catch (e) {
+    return json({ ok: false, error: 'server_error' }, 500);
+  }
 }
