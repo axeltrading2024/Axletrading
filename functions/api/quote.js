@@ -2,13 +2,15 @@
  * POST /api/quote —— 记录客户在购物车里生成的报价单（清单）
  *
  * 触发时机（前端，不等结果、不阻塞跳转）：
- *   1) 客户点抽屉底部的「Pay on Alipay」→ action = 'pay'
- *   2) 付款页 pay.html 打开且带着 ?q=    → action = 'view'
- *   3) 付款页客户留 WhatsApp 号码        → action = 'phone'
+ *   1) 客户在清单抽屉里填了合法 WhatsApp 号 → action = 'pay'，同时带 phone（留号前移）
+ *   2) 客户点抽屉底部的「Pay on Alipay」→ action = 'pay'
+ *   3) 付款页 pay.html 打开且带着 ?q=    → action = 'view'
+ *   4) 付款页客户留 WhatsApp 号码        → action = 'phone'
  *
  * 默认只有清单、没有联系方式 —— 这是行为记录，不是表单。
- * 客户愿意留号时（换「付款码+报价单发到你 WhatsApp」），phone 分支把号码写到这张单上，
+ * 客户愿意留号时（换「付款码+报价单发到你 WhatsApp」），phone 会把号码写到这张单上，
  * 后台就能直接看到号码、一键发 WhatsApp；不留号的仍可对报价号人工回填。
+ * 号码一律过 normPhone 校验（带国家码 + 号段），乱填的存不进来。
  *
  * 幂等：(ref, cid) 唯一。同一个人反复点不会刷出一堆重复单，只累加 hits / pay_views。
  * 换设备则 cid 变、生成新的一条 —— 这是对的，因为它确实是另一次访问。
@@ -50,7 +52,7 @@ export async function onRequestPost(context) {
   const cid = normCid(body.cid) || 'anon';
   const actionRaw = clean(body.action, 12);
   const action = (actionRaw === 'view' || actionRaw === 'phone') ? actionRaw : 'pay';
-  const phone = action === 'phone' ? normPhone(body.phone) : '';
+  const phone = normPhone(body.phone);
   const items = cleanItems(body.items);
   const nItems = items.length;
   const units = items.reduce((s, it) => s + (Number(it.qty) || 0), 0);
@@ -104,8 +106,9 @@ export async function onRequestPost(context) {
       if (action === 'view') {
         sets.push('pay_views = pay_views + 1');
       }
-      /* 客户留号：写入 phone；只有合法号码才覆盖，避免空值抹掉之前留的号 */
-      if (action === 'phone' && phone) {
+      /* 客户留号：写入 phone；只有合法号码才覆盖，避免空值抹掉之前留的号。
+         任何 action 都会带 phone（抽屉里留号随清单一起提交，action=pay） */
+      if (phone) {
         sets.push('phone = ?');
         args.push(phone);
       }

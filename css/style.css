@@ -2174,6 +2174,86 @@ body:has(.drawer.open) .cart-fab {
   flex: none;
 }
 
+/* 留号区：清单抽屉里就能填，不必等到付款页（填完随这次清单一起落库） */
+.dph {
+  margin-top: 14px;
+  padding: 11px 12px 10px;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.dph-lead {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+.dph-opt {
+  font-style: normal;
+  opacity: .72;
+}
+
+.dph-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dph-input {
+  width: 100%;
+  height: 40px;
+  padding: 0 38px 0 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 14px;
+}
+
+.dph-input:focus {
+  outline: none;
+  border-color: var(--accent-brand);
+}
+
+.dph-input.invalid {
+  border-color: #c0392b;
+}
+
+.dph-tick {
+  position: absolute;
+  right: 11px;
+  display: flex;
+  color: var(--whatsapp);
+  pointer-events: none;
+}
+
+.dph-tick[hidden] {
+  display: none;
+}
+
+.dph-tick svg {
+  width: 17px;
+  height: 17px;
+}
+
+.dph-err {
+  margin: 7px 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #c0392b;
+}
+
+.dph-err[hidden] {
+  display: none;
+}
+
 /* 次要入口：把清单发到 WhatsApp，压成一行细字，不跟主按钮抢视觉 */
 .drawer-foot .foot-link {
   display: flex;

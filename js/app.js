@@ -667,6 +667,18 @@
           '<div class="total"><span data-i18n="products_total">Products total</span><b data-drawer-total>—</b></div>' +
           '<div class="total grand" data-drawer-est-row hidden><span data-i18n="quote_est_total">Estimated total</span><b data-drawer-est>—</b></div>' +
           '<p class="totals-note" data-drawer-est-note hidden></p>' +
+          /* 留号前移：不必等到付款页，在抽屉里填完就行（号码随这次清单一起落库） */
+          '<div class="dph" data-drawer-phone-box>' +
+            '<label class="dph-lead" for="dphInput">' +
+              '<span data-i18n="drawer_phone_lead">Get the payment code + quote on WhatsApp</span>' +
+              '<em class="dph-opt" data-i18n="optional">(optional)</em>' +
+            '</label>' +
+            '<div class="dph-row">' +
+              '<input class="dph-input" id="dphInput" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="+34 612 345 678" data-drawer-phone aria-label="WhatsApp number" data-i18n-ph="pay_phone_ph">' +
+              '<span class="dph-tick" data-dph-tick hidden aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>' +
+            '</div>' +
+            '<p class="dph-err" data-dph-err hidden data-i18n="pay_phone_invalid">Enter a valid number with country code</p>' +
+          '</div>' +
           '<button type="button" class="share pay" data-pay-alipay>' +
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 10h19"/><path d="M6.5 15.2h4"/></svg>' +
             '<span data-i18n="pay_alipay_btn">Pay on Alipay</span>' +
@@ -745,6 +757,7 @@
       '</button>' +
       '<div class="toast" data-toast></div>';
     document.body.appendChild(frag);
+    initDrawerPhone();
 
     var fab = $('[data-wa-fab]');
     if (fab) fab.href = waLink();
@@ -1689,10 +1702,11 @@
       /* Pay on Alipay：带上清单编号 + 估算总额，直接跳站点付款页 */
       if (t.closest('[data-pay-alipay]')) {
         if (!Store.items.length) return;
+        if (!phoneGate()) return;   /* 填了号码但不合法 → 先拦住，别把废号带去付款页 */
         var est = cartEstTotal();
         var payRef = quoteNo(Store.items);
         /* 先落库再跳转：keepalive 让请求在页面卸载后仍能发出去 */
-        recordQuote('pay');
+        recordQuote('pay', null, drawerPhoneValue());
         var payUrl = 'pay.html?q=' + encodeURIComponent(payRef);
         if (est && est.amount != null) payUrl += '&amt=' + encodeURIComponent(String(est.amount));
         if (est && est.currency) payUrl += '&cur=' + encodeURIComponent(est.currency);
@@ -1702,9 +1716,10 @@
 
       /* 通过 WhatsApp 直接发送清单专属链接（次要入口，写在付款按钮下方） */
       if (t.closest('[data-send-link-wa]')) {
+        if (!phoneGate()) return;
         var waShare = buildShareUrl(Store.items);
         if (!waShare) return;
-        recordQuote('pay');   /* 发出去的清单也是报价单，后台要能看到 */
+        recordQuote('pay', null, drawerPhoneValue());   /* 发出去的清单也是报价单，后台要能看到 */
         window.open(waLink(window.T('share_wa_intro') + ' ' + waShare), '_blank', 'noopener');
         return;
       }
@@ -3064,10 +3079,98 @@
   }
 
   /**
+   * 抽屉留号（留号前移）
+   *
+   * 客户不必等到付款页：在清单抽屉里填完号码，就随这次清单一起落库。
+   * 校验走 js/phone.js 的 window.EDDPhone —— 与付款页同一套规则，不会漂移。
+   */
+  var PHONE_KEY = 'edsup_phone';
+
+  function phoneNorm(v) {
+    return (window.EDDPhone && window.EDDPhone.normalize) ? window.EDDPhone.normalize(v) : '';
+  }
+
+  function drawerPhoneEls() {
+    return {
+      input: $('[data-drawer-phone]'),
+      tick: $('[data-dph-tick]'),
+      err: $('[data-dph-err]')
+    };
+  }
+
+  /** valid: true=合法(打勾) / false=不合法(红字) / null=还没填(中性) */
+  function setPhoneState(valid) {
+    var e = drawerPhoneEls();
+    if (!e.input) return;
+    e.input.classList.toggle('invalid', valid === false);
+    if (e.err) e.err.hidden = valid !== false;
+    if (e.tick) e.tick.hidden = valid !== true;
+  }
+
+  /** 抽屉里的合法号码；空串 = 没填 */
+  function drawerPhoneValue() {
+    var e = drawerPhoneEls();
+    if (!e.input) return '';
+    return phoneNorm(e.input.value);
+  }
+
+  /** 点付款/发 WhatsApp 前过一遍：没填放行；填了但不合法就拦住 */
+  function phoneGate() {
+    var e = drawerPhoneEls();
+    if (!e.input) return true;
+    var raw = String(e.input.value || '').trim();
+    if (!raw) { setPhoneState(null); return true; }
+    if (!phoneNorm(raw)) {
+      setPhoneState(false);
+      try { e.input.focus(); } catch (err) {}
+      return false;
+    }
+    setPhoneState(true);
+    return true;
+  }
+
+  function initDrawerPhone() {
+    var e = drawerPhoneEls();
+    if (!e.input) return;
+
+    try {
+      var saved = localStorage.getItem(PHONE_KEY) || '';
+      if (saved && phoneNorm(saved)) { e.input.value = saved; setPhoneState(true); }
+    } catch (err) {}
+
+    var timer = null;
+
+    function commit() {
+      var raw = String(e.input.value || '').trim();
+      if (!raw) { setPhoneState(null); return; }
+      var p = phoneNorm(raw);
+      if (!p) { setPhoneState(false); return; }
+      setPhoneState(true);
+      try { localStorage.setItem(PHONE_KEY, p); } catch (err) {}
+      /* 号码一合法就落库：客户就算没走到付款页，后台也已经拿到联系方式 */
+      if (Store.items && Store.items.length) recordQuote('pay', null, p);
+    }
+
+    e.input.addEventListener('input', function () {
+      setPhoneState(null);
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(commit, 900);   /* 停手才提交，别每敲一位都打接口 */
+    });
+    e.input.addEventListener('blur', function () {
+      if (timer) clearTimeout(timer);
+      commit();
+    });
+    e.input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); if (timer) clearTimeout(timer); commit(); }
+    });
+  }
+
+  /**
    * @param {'pay'|'view'} action
    * @param {Array=} itemsOverride 付款页那种没有 Store 的场景可以自己传清单
+   * @param {string=} phoneOverride 抽屉里已校验过的号码（合法才传）
    */
-  function recordQuote(action, itemsOverride) {
+  function recordQuote(action, itemsOverride, phoneOverride) {
     try {
       if (!window.fetch) return;
       var items = itemsOverride || Store.items;
@@ -3078,6 +3181,7 @@
         ref: quoteNo(items),
         cid: clientId(),
         action: action || 'pay',
+        phone: phoneOverride || '',
         currency: (est && est.currency) || (sum && sum.currency) || '',
         items_total: sum ? sum.sum : 0,
         est_total: est && est.amount != null ? est.amount : (sum ? sum.sum : 0),
