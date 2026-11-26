@@ -32,8 +32,13 @@ window.SITE_CONFIG = {
   "heroTitleEs": "Calidad Premium",
   "heroTitleAccentEs": "Precio de Fábrica",
   "heroSubtitleEs": "Calidad premium a precio de fábrica — MOQ flexible, precios escalonados, envío rápido y cotización por WhatsApp en 24 horas.",
+  "heroBadgeFr": "EddySupply · fournisseur grossiste",
+  "heroTitleFr": "Qualité Premium",
+  "heroTitleAccentFr": "Prix d’Usine",
+  "heroSubtitleFr": "Qualité premium au prix d’usine — MOQ flexible, tarifs par volume, expédition rapide et devis sur WhatsApp sous 24 heures.",
   "searchPlaceholder": "Search product, brand, category…",
   "searchPlaceholderEs": "Busca producto, marca o categoría…",
+  "searchPlaceholderFr": "Rechercher produit, marque, catégorie…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
 };
 

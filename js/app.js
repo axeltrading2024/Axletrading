@@ -1805,10 +1805,15 @@
   /* ---------------- 语言切换时重新渲染动态文案 ---------------- */
   function applyHeroLang() {
     var lang = window.getLang ? window.getLang() : 'en';
+    /* 按语言取 CFG 里的文案：heroTitle → heroTitleEs → heroTitleFr，缺失回退英文 */
+    function cfgL(base) {
+      var suffix = lang === 'es' ? 'Es' : (lang === 'fr' ? 'Fr' : '');
+      return (suffix && CFG[base + suffix]) ? CFG[base + suffix] : CFG[base];
+    }
     var titleEl = $('[data-hero-title]');
     if (titleEl) {
-      var tTitle = lang === 'es' && CFG.heroTitleEs ? CFG.heroTitleEs : CFG.heroTitle;
-      var tAccent = lang === 'es' && CFG.heroTitleAccentEs ? CFG.heroTitleAccentEs : CFG.heroTitleAccent;
+      var tTitle = cfgL('heroTitle');
+      var tAccent = cfgL('heroTitleAccent');
       var single = CFG.heroSingleLine === true && !!tAccent;
       titleEl.classList.toggle('is-single', single);
       if (!tAccent) {
@@ -1823,19 +1828,19 @@
       }
     }
     var subEl = $('[data-hero-sub]');
-    if (subEl) subEl.textContent = lang === 'es' && CFG.heroSubtitleEs ? CFG.heroSubtitleEs : CFG.heroSubtitle;
+    if (subEl) subEl.textContent = cfgL('heroSubtitle');
     var badgeEl = $('[data-hero-badge]');
     if (badgeEl) {
-      var badgeEs = CFG.heroBadgeEs || CFG.heroBadge;
-      badgeEl.textContent = (lang === 'es' && badgeEs) ? badgeEs : (CFG.heroBadge || (CFG.brand + ' · wholesale supplier'));
+      badgeEl.textContent = cfgL('heroBadge') || (CFG.brand + ' · wholesale supplier');
     }
     var cntEl = $('[data-hero-strip-count]');
     if (cntEl) cntEl.textContent = window.T('hero_strip_collections', { n: cntEl.getAttribute('data-n') || '' });
     var phEl = $('[data-search-input]');
     if (phEl) {
       var narrow = window.matchMedia && window.matchMedia('(max-width: 639px)').matches;
-      var phEs = lang === 'es' && CFG.searchPlaceholderEs ? CFG.searchPlaceholderEs : '';
-      phEl.placeholder = narrow ? (CFG.searchPlaceholderShort || (phEs || 'Search products…')) : (phEs || CFG.searchPlaceholder);
+      var phLocal = (lang === 'es' && CFG.searchPlaceholderEs) ? CFG.searchPlaceholderEs
+                  : (lang === 'fr' && CFG.searchPlaceholderFr) ? CFG.searchPlaceholderFr : '';
+      phEl.placeholder = narrow ? (CFG.searchPlaceholderShort || (phLocal || 'Search products…')) : (phLocal || CFG.searchPlaceholder);
     }
   }
 
