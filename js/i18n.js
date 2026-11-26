@@ -286,7 +286,7 @@
     pay_alt: { en: 'USDT · Western Union · Remitly', es: 'USDT · Western Union · Remitly' , fr: 'USDT · Western Union · Remitly' },
     pay_alt_sub: { en: 'Fast for samples and small amounts.', es: 'Rápido para muestras e importes pequeños.' , fr: 'Rapide pour les échantillons et les petits montants.' },
     pay_after: { en: 'Get the payment QR', es: 'Recibe el QR de pago' , fr: 'Recevoir le QR code de paiement' },
-    pay_step1: { en: 'DM Eddy on WhatsApp', es: 'Manda un DM a Eddy por WhatsApp' , fr: 'Écrire à Eddy sur WhatsApp' },
+    pay_step1: { en: 'DM Eddy on WhatsApp for QR code', es: 'Manda un DM a Eddy por WhatsApp y te enviamos el QR' , fr: 'Écrire à Eddy sur WhatsApp pour recevoir le QR code' },
     pay_step2: { en: 'We send your personal Alipay QR code', es: 'Te enviamos tu código QR de Alipay' , fr: 'Nous vous envoyons votre QR code Alipay' },
     pay_step3: { en: 'Scan it in Alipay and pay', es: 'Escanéalo en Alipay y paga' , fr: 'Scannez-le dans Alipay et payez' },
     pay_cta: { en: 'DM Eddy', es: 'DM a Eddy' , fr: 'DM Eddy' },
