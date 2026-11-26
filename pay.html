@@ -74,7 +74,7 @@
     .pay-cta{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:54px;border-radius:999px;background:var(--whatsapp);color:var(--whatsapp-foreground);font-size:15.5px;letter-spacing:.01em;font-weight:600;text-decoration:none;transition:filter .18s}
     .pay-cta:hover{filter:brightness(.95)}
     .pay-cta svg{width:19px;height:19px}
-    .pay-phone{background:var(--muted);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+    .pay-phone{background:var(--muted);border:1px solid var(--border);border-radius:14px;padding:16px}
     .pay-phone-lead{font-size:12.5px;color:var(--foreground);line-height:1.55;margin:0 0 11px}
     .pay-phone-row{display:flex;gap:8px}
     .pay-phone-num{flex:1;min-width:0;height:44px;padding:0 13px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--foreground);font-size:14px;font-family:inherit}
@@ -88,7 +88,7 @@
     .pay-phone-err{font-size:12px;color:#c0392b;margin:9px 0 0;text-align:center;line-height:1.45}
     .pay-phone-err[hidden]{display:none}
     .pay-phone-num.invalid{border-color:#c0392b}
-    .pay-or{text-align:center;font-size:11px;color:var(--muted-foreground);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 14px;position:relative}
+    .pay-or{text-align:center;font-size:11px;color:var(--muted-foreground);letter-spacing:.06em;text-transform:uppercase;margin:14px 0;position:relative}
     .pay-or::before,.pay-or::after{content:'';position:absolute;top:50%;width:38%;height:1px;background:var(--border)}
     .pay-or::before{left:0}.pay-or::after{right:0}
     .pay-safe{margin-top:18px;font-size:12.5px;color:var(--muted-foreground);line-height:1.65;display:flex;gap:8px}
@@ -193,6 +193,13 @@
           <li><span data-i18n="pay_step3">Scan it in Alipay and pay</span></li>
         </ol>
 
+        <a class="pay-cta" id="payWa" href="#" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.28c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.79 1.17 2.98.15.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.31.19 1.8.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16 4C9.37 4 4 9.37 4 16c0 2.11.55 4.09 1.52 5.8L4 28l6.35-1.67C12.03 27.4 13.97 28 16 28c6.63 0 12-5.37 12-12S22.63 4 16 4zm0 21.94c-1.83 0-3.55-.5-5.02-1.36l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.87 9.87 0 0 1 6.06 16C6.06 10.51 10.51 6.06 16 6.06S25.94 10.51 25.94 16 21.49 25.94 16 25.94z"/></svg>
+          <span data-i18n="pay_cta">Send on WhatsApp</span>
+        </a>
+
+        <div class="pay-or"><span data-i18n="pay_or">or</span></div>
+
         <div class="pay-phone" id="payPhoneBox">
           <p class="pay-phone-lead" data-i18n="pay_phone_lead">Leave your number — we'll send the payment code + official quote sheet straight to your WhatsApp.</p>
           <div class="pay-phone-row">
@@ -203,12 +210,7 @@
           <p class="pay-phone-privacy" data-i18n="pay_phone_privacy">We only use this to send your documents. No spam.</p>
           <p class="pay-phone-ok" id="payPhoneOk" hidden data-i18n="pay_phone_ok">Number saved — check your WhatsApp shortly.</p>
         </div>
-        <div class="pay-or"><span data-i18n="pay_or">or</span></div>
 
-        <a class="pay-cta" id="payWa" href="#" target="_blank" rel="noopener">
-          <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M19.11 17.28c-.29-.15-1.71-.84-1.97-.94-.26-.1-.46-.15-.65.15-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 .98-1 2.4 0 1.42 1.03 2.79 1.17 2.98.15.19 2.02 3.08 4.9 4.32.68.29 1.22.46 1.63.59.68.22 1.31.19 1.8.12.55-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34zM16 4C9.37 4 4 9.37 4 16c0 2.11.55 4.09 1.52 5.8L4 28l6.35-1.67C12.03 27.4 13.97 28 16 28c6.63 0 12-5.37 12-12S22.63 4 16 4zm0 21.94c-1.83 0-3.55-.5-5.02-1.36l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.87 9.87 0 0 1 6.06 16C6.06 10.51 10.51 6.06 16 6.06S25.94 10.51 25.94 16 21.49 25.94 16 25.94z"/></svg>
-          <span data-i18n="pay_cta">Send on WhatsApp</span>
-        </a>
         <p class="pay-note" data-i18n="pay_afterpay_note">Paid already? Send the screenshot in the same chat — we confirm within 2 working hours and start the same day.</p>
         <p class="pay-safe">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
