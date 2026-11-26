@@ -292,7 +292,7 @@
     pay_cta: { en: 'DM Eddy', es: 'DM a Eddy' , fr: 'DM Eddy' },
     pay_phone_lead: { en: "Leave your number — we'll send the payment code + official quote sheet straight to your WhatsApp.", es: 'Deja tu número — te enviamos el código de pago y la cotización oficial directo a tu WhatsApp.' , fr: 'Laissez votre numéro — nous vous envoyons le code de paiement et le devis officiel directement sur WhatsApp.' },
     pay_phone_ph: { en: '+34 612 345 678', es: '+34 612 345 678' , fr: '+33 6 12 34 56 78' },
-    pay_phone_btn: { en: 'Send me code + quote', es: 'Envíame código + cotización' , fr: 'Envoyez-moi le code + le devis' },
+    pay_phone_btn: { en: 'Leave number', es: 'Dejar mi número' , fr: 'Laisser mon numéro' },
     pay_phone_done: { en: '✓ Number saved', es: '✓ Número guardado' , fr: '✓ Numéro enregistré' },
     pay_phone_privacy: { en: 'We only use this to send your documents. No spam.', es: 'Solo lo usamos para enviarte tus documentos. Sin spam.' , fr: 'Nous ne l’utilisons que pour vous envoyer vos documents. Aucun spam.' },
     pay_phone_ok: { en: 'Number saved — check your WhatsApp shortly.', es: 'Número guardado — revisa tu WhatsApp en breve.' , fr: 'Numéro enregistré — consultez votre WhatsApp dans un instant.' },
