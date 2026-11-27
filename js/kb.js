@@ -59,7 +59,7 @@
       teaser: {
         en: 'Questions about MOQ or shipping?',
         es: '¿Dudas sobre MOQ o envío?',
-        fr: 'Des questions sur le MOQ ou la livraison ?',
+        fr: 'MOQ ou livraison : une question ?',
       },
       leadTitle: { en: 'Leave your contact', es: 'Déjanos tu contacto' },
       leadContact: { en: 'WhatsApp or email', es: 'WhatsApp o email' },
