@@ -32,8 +32,13 @@ window.SITE_CONFIG = {
   "heroTitleEs": "Calidad Premium",
   "heroTitleAccentEs": "Precio de Fábrica",
   "heroSubtitleEs": "Calidad premium a precio de fábrica — MOQ flexible, precios escalonados, envío rápido y cotización por WhatsApp en 24 horas.",
+  "heroBadgeFr": "EddySupply · fournisseur grossiste",
+  "heroTitleFr": "Qualité Premium",
+  "heroTitleAccentFr": "Prix d’Usine",
+  "heroSubtitleFr": "Qualité premium au prix d’usine — MOQ flexible, tarifs par volume, expédition rapide et devis sur WhatsApp sous 24 heures.",
   "searchPlaceholder": "Search product, brand, category…",
   "searchPlaceholderEs": "Busca producto, marca o categoría…",
+  "searchPlaceholderFr": "Rechercher produit, marque, catégorie…",
   "seoDescription": "Discover wholesale electronics, perfumes, watches and accessories from EddySupply — then order in one tap on WhatsApp."
 };
 
@@ -396,7 +401,7 @@ window.PRODUCTS = [
   {
     "id": "valentino-born-in-roma",
     "name": "Valentino born in roma 100ml",
-    "brand": "OEM",
+    "brand": "Valentino",
     "price": "€18",
     "note": "cool floral-woody elegance, capturing the rebellious yet sophisticated spirit of Rome",
     "desc": "perfectly balances the luxury of haute couture with a modern, free-spirited attitude",
@@ -3371,7 +3376,7 @@ window.PRODUCTS = [
   {
     "id": "l-5",
     "name": "LV backpack",
-    "brand": "LV",
+    "brand": "Louis Vuitton",
     "price": "from €75",
     "note": "fashionable and elegant backpack",
     "desc": "",
@@ -3603,7 +3608,7 @@ window.PRODUCTS = [
   {
     "id": "airpods-max",
     "name": "AirPods Max",
-    "brand": "OEM",
+    "brand": "Apple",
     "price": "€75",
     "note": "Over-ear · Spatial audio-meta earmuffs",
     "desc": "Over-ear design with computational audio, personalised spatial sound and up to 20 hours of battery.",
