@@ -1599,21 +1599,6 @@
     document.addEventListener('click', function (e) {
       var t = e.target;
 
-      /* 详情页「Add all N styles」：一次把全部款式各加 1 件（批发选款场景） */
-      var addAll = t.closest('[data-add-all]');
-      if (addAll) {
-        var pid = addAll.getAttribute('data-add-all');
-        var prod = getProduct(pid);
-        if (prod && prod.variants && prod.variants.length) {
-          bumpSuppress = true;
-          prod.variants.forEach(function (v) { addProduct(pid, v.name, true); });
-          bumpSuppress = false;
-          toast(window.T('added_all_styles', { n: prod.variants.length, name: prod.name }));
-          flyToCart(addAll, pid, prod.variants[0].name);
-        }
-        return;
-      }
-
       var addBtn = t.closest('[data-add]');
       if (addBtn) {
         var addId = addBtn.getAttribute('data-add');
@@ -2212,10 +2197,6 @@
                     return '<button type="button" class="variant-chip" data-variant="' + esc(v.name) + '" data-variant-price="' + esc(v.price || p.price) + '" data-variant-image="' + esc(v.image || p.image) + '">' + esc(v.name) + '</button>';
                   }).join('') +
                 '</div>' +
-                (variants.length > 1
-                  ? '<button type="button" class="add-all-styles" data-add-all="' + esc(p.id) + '">' +
-                      ICON.plus + '<span>' + esc(window.T('add_all_styles', { n: variants.length })) + '</span></button>'
-                  : '') +
                 '<p class="variant-hint" data-i18n="variant_hint">Tap once to preview · tap again to confirm · tap again to add. Double-tap to deselect.</p>' +
               '</div>'
             : '') +
@@ -2497,30 +2478,16 @@
 
     var all = productsIn(slug);
     var sub = param('sub');
-    var brandFilter = param('brand') || '';
-    var sort = param('sort') || '';
     var subs = cat.subcategories || [];
 
-    // 品牌选项：从本品类实际商品里提取（按字母序）
-    var brands = [];
-    all.forEach(function (p) {
-      if (p.brand && brands.indexOf(p.brand) === -1) brands.push(p.brand);
-    });
-    brands.sort(function (a, b) { return a.localeCompare(b); });
-
-    /* 构造带完整筛选状态的分类页 URL；保留 slug/sub，brand/sort 有值才加 */
+    /* 构造带子分类状态的分类页 URL */
     function catUrl(opt) {
       var q = 'category.html?slug=' + encodeURIComponent(slug);
       var s = opt.sub !== undefined ? opt.sub : sub;
-      var br = opt.brand !== undefined ? opt.brand : brandFilter;
-      var so = opt.sort !== undefined ? opt.sort : sort;
       if (s) q += '&sub=' + encodeURIComponent(s);
-      if (br) q += '&brand=' + encodeURIComponent(br);
-      if (so) q += '&sort=' + encodeURIComponent(so);
       return q;
     }
 
-    // 子分类 chip 链接带上当前筛选，切换子分类不丢品牌/排序
     var subChips = subs.length
       ? '<div class="subnav">' +
           '<a class="chip' + (sub ? '' : ' is-active') + '" href="' + esc(catUrl({ sub: '' })) + '" data-i18n="sub_all">All</a>' +
@@ -2528,29 +2495,6 @@
             return '<a class="chip' + (sub === s.slug ? ' is-active' : '') +
               '" href="' + esc(catUrl({ sub: s.slug })) + '">' + esc(s.name) + '</a>';
           }).join('') +
-        '</div>'
-      : '';
-
-    // 筛选栏：品牌下拉 + 排序下拉（change 即跳转，状态写进 URL，可分享可后退）
-    var filterBar = (brands.length > 1 || all.length > 1)
-      ? '<div class="cat-filter">' +
-          (brands.length > 1
-            ? '<label class="cat-filter-fld"><span data-i18n="filter_brand">Brand</span>' +
-                '<select data-cat-brand>' +
-                  '<option value=""' + (brandFilter ? '' : ' selected') + ' data-i18n="filter_all_brands">All brands</option>' +
-                  brands.map(function (b) {
-                    return '<option value="' + esc(b) + '"' + (brandFilter === b ? ' selected' : '') + '>' + esc(b) + '</option>';
-                  }).join('') +
-                '</select></label>'
-            : '') +
-          '<label class="cat-filter-fld"><span data-i18n="filter_sort">Sort</span>' +
-            '<select data-cat-sort>' +
-              '<option value=""' + (sort ? '' : ' selected') + ' data-i18n="sort_default">Featured</option>' +
-              '<option value="price-asc"' + (sort === 'price-asc' ? ' selected' : '') + ' data-i18n="sort_price_asc">Price: low to high</option>' +
-              '<option value="price-desc"' + (sort === 'price-desc' ? ' selected' : '') + ' data-i18n="sort_price_desc">Price: high to low</option>' +
-              '<option value="name-asc"' + (sort === 'name-asc' ? ' selected' : '') + ' data-i18n="sort_name">Name: A to Z</option>' +
-            '</select></label>' +
-          '<span class="cat-filter-count" data-cat-count></span>' +
         '</div>'
       : '';
 
@@ -2565,42 +2509,17 @@
         '<p class="sub">' + window.T('cat_sub', { n: all.length }) + '</p>' +
       '</div>' +
       subChips +
-      filterBar +
       '<div class="product-grid" data-cat-grid></div>';
 
-    // 筛选 + 排序
     var list = all.filter(function (p) {
-      return (!sub || p.subcategory === sub) && (!brandFilter || p.brand === brandFilter);
+      return !sub || p.subcategory === sub;
     });
-    if (sort === 'price-asc') {
-      list = list.slice().sort(function (a, b) {
-        var pa = parsePrice(a.price), pb = parsePrice(b.price);
-        return (pa ? pa.value : 0) - (pb ? pb.value : 0);
-      });
-    } else if (sort === 'price-desc') {
-      list = list.slice().sort(function (a, b) {
-        var pa = parsePrice(a.price), pb = parsePrice(b.price);
-        return (pb ? pb.value : 0) - (pa ? pa.value : 0);
-      });
-    } else if (sort === 'name-asc') {
-      list = list.slice().sort(function (a, b) {
-        return String(a.name).localeCompare(String(b.name));
-      });
-    }
 
     var grid = $('[data-cat-grid]', host);
     grid.innerHTML = list.length
       ? list.map(function (p) { return '<div>' + productCardHTML(p) + '</div>'; }).join('')
       : '<div class="empty-state" style="grid-column:1/-1"><h2 data-i18n="nothing_here">Nothing here yet</h2>' +
         '<p data-i18n="no_products_sub">No products in this sub-collection at the moment.</p></div>';
-    var cntEl = $('[data-cat-count]', host);
-    if (cntEl) cntEl.textContent = window.T('filter_showing', { n: list.length, total: all.length });
-
-    // 筛选控件 change → 带状态跳转
-    var brandSel = $('[data-cat-brand]', host);
-    var sortSel = $('[data-cat-sort]', host);
-    if (brandSel) brandSel.addEventListener('change', function () { location.href = catUrl({ brand: brandSel.value }); });
-    if (sortSel) sortSel.addEventListener('change', function () { location.href = catUrl({ sort: sortSel.value }); });
   }
 
   /* ---------------- 专属链接落地：客户打开 #l=... 时显示报价清单 ---------------- */
