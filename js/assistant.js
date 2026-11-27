@@ -38,7 +38,8 @@
 
   function lang() {
     try {
-      return window.getLang && window.getLang() === 'es' ? 'es' : 'en';
+      var l = window.getLang ? window.getLang() : 'en';
+      return (l === 'es' || l === 'fr') ? l : 'en';
     } catch (e) {
       return 'en';
     }
